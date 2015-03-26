@@ -26923,3 +26923,8 @@ org.eclipse.core.runtime.CoreException: Launch configuration Topology references
 2015-03-26 14:26:02,969 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2015-03-26 14:26:02,970 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2015-03-26 14:26:02,971 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/bigdata/learning-storm_Code/Chapter8/stormlogprocessing/src/test/resources
+2015-03-26 14:27:25,877 [Worker-14] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.learningstorm:stormlogprocessing:0.0.1-SNAPSHOT @ /home/song/workspace/bigdata/learning-storm_Code/Chapter8/stormlogprocessing/pom.xml.
+2015-03-26 14:27:26,071 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-26 14:27:26,071 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-26 14:27:26,073 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-26 14:27:26,073 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/bigdata/learning-storm_Code/Chapter8/stormlogprocessing/src/test/resources
