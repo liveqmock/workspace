@@ -1,0 +1,60 @@
+<!-- 添加问题 start -->
+<div class="module-add-question" ms-widget="dialog,$,$addQuestionDialogOpts">
+    <form  ms-widget="form,$,$addQuestionFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="warn">*</span>商户名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box customer-title">
+                        <div ms-visible="addType"><span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span></div>
+                        <div ms-visible="!addType">{{merchantName}}</div>
+                        <input type="hidden" class="merchantId" name="merchantId">
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="warn">*</span>问题标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit title" name="title" ms-value="title" maxlength="20"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="warn">*</span>产品名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$scheduleOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="warn">*</span>问题来源：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$formOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="warn">*</span>问题描述：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text description" name="description" ms-text="description"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加问题 end -->

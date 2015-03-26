@@ -1,0 +1,151 @@
+
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-backend-sales-home-waiting">
+<div class="page-bd page-bd-form page-padding">
+    <!--client-header-->
+    <div class="client-head">
+        <!--client-left-->
+        <div class="client-head-left">
+            <div class="client-head-left-logo">
+                <img ms-src="{{merchantData.imgUrl}}"
+                     ms-alt="merchantData.merchant_name">
+            </div>
+            <div class="client-head-left-text pt20">
+                <h2>{{merchantData.merchant_name}}</h2>
+            </div>
+        </div>
+        <!--client-left-end-->
+        <!--client-right-->
+        <div class="client_head_right">
+            <div class="fn-left pt25">
+                <!--button type="button" ms-click="localHref('#/sales/home/mycommunication/'+merchantData.merchant_id+'/')" class="simple-btn mr5"><i class="iconfont icon-blue">&#xe612; </i>通讯录</button-->
+                <button type="button" ms-click="openAdd" class="simple-btn mr5"><i class="iconfont icon-blue">&#xe60f; </i>添加问题</button>
+
+            </div>
+        </div>
+        <!--client-right-end-->
+    </div>
+    <!--client-header-end-->
+    <!--list-->
+    <div class="client-step" >
+        <!--style-->
+        <div class="status-box"
+             ms-class-1="status-ready:pageData.isDisabled == 1"
+             ms-class-2="status-bging:pageData.isDisabled == 2"
+             ms-class-3="status-end:pageData.isDisabled == 3">
+            <button class="number">1</button>
+            <div class="content f14">
+                <h2 class="mb5">商户创建</h2>
+                <div ms-if="!pageData.brandInterviewName">请添加商户访谈单及门店调研单。</div>
+                <div class="content-list">
+                    <div class="page-button status-style"
+                         ms-if="pageData.brandInterviewName">
+                        <p class="text" ms-data-id="merchantId" ms-click="readInterval">商户访谈单</p>
+                        <p ms-if="pageData.isDisabled != 3" class="choice" ms-data-id="merchantId" ms-click="addInterval">
+                            <i class="iconfont">&#xe60f;</i>
+                        </p>
+                    </div>
+                    <div ms-repeat="pageData.shopSurveyList" class="page-button status-style">
+                        <p class="text"
+                           ms-data-id="el.id" ms-click="readSurvey">{{el.storeName}}</p>
+                        <p class="choice">
+                            <i ms-if="pageData.isDisabled != 3" ms-click="removeResearch(el.id,el.storeId)"
+                               class="iconfont">&#xe616;</i>
+                            <i ms-data-id="el.id" ms-click="addSurvey"
+                               class="iconfont"
+                               ms-if="pageData.isDisabled != 3">&#xe60f;</i>
+                        </p>
+                    </div>
+                </div>
+                <div class="update-time status-style" ms-repeat="pageData.operationLogList">
+                    <p class="fn-left-time">{{el.operatingTime |date("yyyy-MM-dd HH:mm")}}</p>
+                    <p class="fn-left-text">{{el.description}}<span ms-if="el.fesLogType == '2'">，点击<a href="javascript:;" ms-data-id="el.remark" ms-click="readCommunication" data-readonly='1'>查看通讯录</a></span></p>
+                </div>
+            </div>
+            <div class="operation" ms-if="pageData.isDisabled != 3">
+                <button class="simple-btn"
+                        ms-if="pageData.isDisabled == 1||pageData.isDisabled == 2"
+                        ms-click="addCommunication"><i class="iconfont icon-blue f26">&#xe60f;</i> 联系人</button>&nbsp;
+                <button class="simple-btn"
+                        ms-if="!pageData.brandInterviewName && pageData.isDisabled == 1"
+                        ms-click="addInterval"><i class="iconfont icon-blue f26">&#xe60f;</i> 访谈单</button>&nbsp;
+                <button class="simple-btn" data-id= ''
+                        ms-if="pageData.isDisabled == 1||pageData.isDisabled == 2"
+                        ms-click="addSurvey"><i class="iconfont icon-blue f26">&#xe60f;</i> 调研单</button>&nbsp;
+                <button class="simple-btn"
+                        ms-if="pageData.isDisabled == 2"
+                        ms-click="stepEnd"><i class="iconfont icon-blue f26">&#xe610;</i> 确认完成</button>
+            </div>
+        </div>
+        <!--style-end-->
+    </div>
+    <!--list-end-->
+</div>
+</div>
+<!-- 添加问题 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$addQuestionDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addQuestionFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>商户名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box customer-title" >
+                        <p class="merchantName">{{merchantData.merchant_name}}</p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 title" name="title" ms-value="title" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$scheduleOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题描述：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text w310 description" name="description" ms-text="description"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加问题 end -->
+<!-- 访谈单 start-->
+<div ms-module="interview,$,$interviewOpts"></div>
+<!-- 访谈单 end-->
+<!-- 调研单 start-->
+<div ms-module="survey,$,$surveyOpts"></div>
+<!-- 调研单 end-->
+<!-- 联系人 start-->
+<div ms-module="address,$,$addressOpts"></div>
+<!-- 联系人 end-->

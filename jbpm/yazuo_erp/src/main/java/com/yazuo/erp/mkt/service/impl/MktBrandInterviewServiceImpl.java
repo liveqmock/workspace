@@ -1,0 +1,445 @@
+/**
+ * Copyright Copyright (c) 2014 
+ * Company 雅座在线（北京）科技发展有限公司
+ * 
+ * 		author		date		description
+ * —————————————————————————————————————————————
+ * 
+ * 
+ */
+
+package com.yazuo.erp.mkt.service.impl;
+
+import java.io.IOException;
+import java.util.*;
+
+import com.yazuo.erp.base.Constant;
+import com.yazuo.erp.base.FileUploaderUtil;
+import com.yazuo.erp.base.JsonResult;
+import com.yazuo.erp.base.TreeVO;
+import com.yazuo.erp.fes.controller.FesOnlineProcessController;
+import com.yazuo.erp.fes.exception.FesBizException;
+import com.yazuo.erp.mkt.vo.*;
+import com.yazuo.erp.mkt.dao.*;
+
+/**
+ * @Description TODO
+ * @author erp team
+ * @date 
+ */
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import junit.framework.Assert;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.yazuo.erp.mkt.service.MktBrandInterviewService;
+import com.yazuo.erp.mkt.service.MktBusinessTypeService;
+import com.yazuo.erp.mkt.service.MktContactService;
+import com.yazuo.erp.mkt.service.MktFormerSalesMerchantService;
+import com.yazuo.erp.mkt.service.MktShopSurveyService;
+import com.yazuo.erp.syn.dao.SynMerchantDao;
+import com.yazuo.erp.syn.service.SynMerchantService;
+import com.yazuo.erp.syn.vo.SynMerchantVO;
+import com.yazuo.erp.system.dao.SysAttachmentDao;
+import com.yazuo.erp.system.service.SysAttachmentService;
+import com.yazuo.erp.system.service.SysDictionaryService;
+import com.yazuo.erp.system.service.SysSalesmanMerchantService;
+import com.yazuo.erp.system.vo.SysAttachmentVO;
+import com.yazuo.erp.system.vo.SysSalesmanMerchantVO;
+import com.yazuo.erp.system.vo.SysUserVO;
+import com.yazuo.util.StringUtil;
+
+@Service
+public class MktBrandInterviewServiceImpl implements MktBrandInterviewService {
+	
+	@Resource
+	private MktBrandInterviewDao mktBrandInterviewDao;
+	@Resource
+	private SynMerchantService synMerchantService;
+	@Resource
+	private SysAttachmentDao sysAttachmentDao;
+	@Resource
+	private MktContactDao mktContactDao;
+	@Resource private SysDictionaryService sysDictionaryService;
+	@Resource private SysAttachmentService sysAttachmentService;
+
+	@Value("${merchantLogoPath}")
+	private String merchantLogoPath;
+	
+	@Value("${mktAttachmentDocumentPath}")
+	private String mktAttachmentDocumentPath;
+	
+	/**
+	 * 访谈单
+	 */
+	@Override
+	public MktBrandInterviewVO loadMktBrandInterview(MktBrandInterviewVO mktBrandInterview){
+		MktBrandInterviewVO brandInterview = new MktBrandInterviewVO();
+		Integer merchantId = mktBrandInterview.getMerchantId();
+
+		MktBrandInterviewVO mktBrandInterviewVOP = new MktBrandInterviewVO();
+		mktBrandInterviewVOP.setMerchantId(merchantId);
+		mktBrandInterviewVOP.setIsEnable(Constant.IS_ENABLE);
+		List<MktBrandInterviewVO> listMktBrandInterviewVO = this.mktBrandInterviewDao.getMktBrandInterviews(mktBrandInterviewVOP);
+		if(listMktBrandInterviewVO.size()>0){ //编辑
+			brandInterview = listMktBrandInterviewVO.get(0);
+			//这是显示图片logo的名字
+			SynMerchantVO synMerchantById = this.synMerchantService.getSynMerchantById(merchantId);
+			SysAttachmentVO sysAttachmentById = this.sysAttachmentDao.getSysAttachmentById(synMerchantById.getAttachmentId());
+			if(sysAttachmentById!=null){
+				brandInterview.setRelativePath(merchantLogoPath+"/"+brandInterview.getAttachmentPath() + "/" + sysAttachmentById.getAttachmentName());
+			}
+			//封装附件电子文档
+			Integer attachmentId = brandInterview.getAttachmentId();
+			if(attachmentId!=null){
+				SysAttachmentVO attachDocument = this.sysAttachmentDao.getSysAttachmentById(attachmentId);
+				String fileFullPath = mktAttachmentDocumentPath +"/"+ attachDocument.getAttachmentName();
+				attachDocument.setFileFullPath(fileFullPath);
+				brandInterview.setAttachDocument(attachDocument);
+			}
+		}
+		//封装 联系人下拉列表
+		MktContactVO mktContact = new MktContactVO();
+		mktContact.setMerchantId(merchantId);
+		List<Map<String, Object>> mktContactList = mktContactDao.getMktContactsMap(mktContact);
+		Map<String, Object> selectedContact = new HashMap<String, Object>();
+		selectedContact.put(Constant.DIC_CHECKED_VALS, brandInterview.getContactId()==null? emptyList:brandInterview.getContactId());
+		selectedContact.put("dropdownlist", mktContactList);
+		brandInterview.setSelectedContact(selectedContact);
+		//封装 商户名称
+		SynMerchantVO synMerchantVO = synMerchantService.getSynMerchantById(merchantId);
+		if(synMerchantVO!=null)
+			brandInterview.setMerchantName(synMerchantVO.getMerchantName());
+		//封装数据字典
+
+		String[] formats = brandInterview.getFormat();
+		final List<TreeVO> dicFormat = this.mktBusinessTypeService.getAllNode(formats);
+		brandInterview.setDicFormat(dicFormat);
+		this.setDicCardType(brandInterview);
+		this.setDicCustomerType(brandInterview);
+		this.setDicJoinType(brandInterview);
+		this.setDicMagSystem(brandInterview);
+		this.setDicMemberRight(brandInterview);
+		this.setDicNetworkCondition(brandInterview);
+		this.setDicNetworkSpeed(brandInterview);
+		return brandInterview;
+	}
+
+	private static List emptyList = Collections.EMPTY_LIST;
+	private void setDicCardType(MktBrandInterviewVO brandInterview) {
+		List<Map<String, Object>> querySysDictionaryByTypeStd = sysDictionaryService.querySysDictionaryByTypeStd("00000069");
+		Map<String, Object> dic = new HashMap<String, Object>();
+		dic.put(Constant.DIC_DIC_OBJECT, querySysDictionaryByTypeStd);
+		dic.put(Constant.DIC_CHECKED_VALS, brandInterview.getCardType()==null? emptyList:brandInterview.getCardType() );
+		brandInterview.setDicCardType(dic);
+	}
+	private void setDicCustomerType(MktBrandInterviewVO brandInterview) {
+		List<Map<String, Object>> querySysDictionaryByTypeStd = sysDictionaryService.querySysDictionaryByTypeStd("00000068");
+		Map<String, Object> dic = new HashMap<String, Object>();
+		dic.put(Constant.DIC_DIC_OBJECT, querySysDictionaryByTypeStd);
+		dic.put(Constant.DIC_CHECKED_VALS, brandInterview.getCustomerType()==null? emptyList:Arrays.asList(brandInterview.getCustomerType()));
+		brandInterview.setDicCustomerType(dic);
+	}
+	private void setDicJoinType(MktBrandInterviewVO brandInterview) {
+		List<Map<String, Object>> querySysDictionaryByTypeStd = sysDictionaryService.querySysDictionaryByTypeStd("00000066");
+		Map<String, Object> dic = new HashMap<String, Object>();
+		dic.put(Constant.DIC_DIC_OBJECT, querySysDictionaryByTypeStd);
+		dic.put(Constant.DIC_CHECKED_VALS, brandInterview.getJoinType()==null? emptyList:Arrays.asList(brandInterview.getJoinType()));
+		brandInterview.setDicJoinType(dic);
+	}
+	private void setDicMagSystem(MktBrandInterviewVO brandInterview) {
+		List<Map<String, Object>> querySysDictionaryByTypeStd = sysDictionaryService.querySysDictionaryByTypeStd("00000070");
+		Map<String, Object> dic = new HashMap<String, Object>();
+		dic.put(Constant.DIC_DIC_OBJECT, querySysDictionaryByTypeStd);
+		dic.put(Constant.DIC_CHECKED_VALS, brandInterview.getManagementSystem()==null? emptyList:brandInterview.getManagementSystem() );
+		brandInterview.setDicMagSystem(dic);
+	}
+	private void setDicMemberRight(MktBrandInterviewVO brandInterview) {
+		List<Map<String, Object>> querySysDictionaryByTypeStd = sysDictionaryService.querySysDictionaryByTypeStd("00000071");
+		Map<String, Object> dic = new HashMap<String, Object>();
+		dic.put(Constant.DIC_DIC_OBJECT, querySysDictionaryByTypeStd);
+		dic.put(Constant.DIC_CHECKED_VALS, brandInterview.getMemberRight()==null? emptyList:brandInterview.getMemberRight() );
+		brandInterview.setDicMemberRight(dic);
+	}
+	private void setDicNetworkCondition(MktBrandInterviewVO brandInterview) {
+		List<Map<String, Object>> querySysDictionaryByTypeStd = sysDictionaryService.querySysDictionaryByTypeStd("00000073");
+		Map<String, Object> dic = new HashMap<String, Object>();
+		dic.put(Constant.DIC_DIC_OBJECT, querySysDictionaryByTypeStd);
+		dic.put(Constant.DIC_CHECKED_VALS, brandInterview.getNetworkCondition()==null? emptyList:Arrays.asList(brandInterview.getNetworkCondition()));
+		brandInterview.setDicNetworkCondition(dic);
+	}
+	private void setDicNetworkSpeed(MktBrandInterviewVO brandInterview) {
+		List<Map<String, Object>> querySysDictionaryByTypeStd = sysDictionaryService.querySysDictionaryByTypeStd("00000099");
+		Map<String, Object> dic = new HashMap<String, Object>();
+		dic.put(Constant.DIC_DIC_OBJECT, querySysDictionaryByTypeStd);
+		dic.put(Constant.DIC_CHECKED_VALS, brandInterview.getNetworkSpeed()==null? emptyList:Arrays.asList(brandInterview.getNetworkSpeed()));
+		brandInterview.setDicNetworkSpeed(dic);
+	}
+	public int saveMktBrandInterview (MktBrandInterviewVO mktBrandInterview, HttpServletRequest request) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("merchantId", mktBrandInterview.getMerchantId());
+		paramMap.put("moduleType", mktBrandInterview.getModuleType());
+		paramMap.put("userId", mktBrandInterview.getInsertBy());
+		// 有传图片的时候即改上传图片
+		if (judgeEmpty(mktBrandInterview.getOriginalFileName()) && judgeEmpty(mktBrandInterview.getFileName()) && mktBrandInterview.getFileSize()!=null) {
+			paramMap.put("originalFileName", mktBrandInterview.getOriginalFileName());// 实际文件名
+			paramMap.put("fileSize", mktBrandInterview.getFileSize()); // 文件大小
+			paramMap.put("fileName", mktBrandInterview.getFileName());// ERP生成的文件名
+			// 保存上传的logo图片
+			synMerchantService.saveLogo(paramMap, request);
+		}
+		//保存商户信息
+		return mktBrandInterviewDao.saveMktBrandInterview(mktBrandInterview);
+	}
+	public int batchInsertMktBrandInterviews (Map<String, Object> map){
+		return mktBrandInterviewDao.batchInsertMktBrandInterviews(map);
+	}
+	public int updateMktBrandInterview (MktBrandInterviewVO mktBrandInterview, HttpServletRequest request){
+//		System.out.println(JsonResult.getJsonString(mktBrandInterview));
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("merchantId", mktBrandInterview.getMerchantId());
+		paramMap.put("moduleType", mktBrandInterview.getModuleType());
+		paramMap.put("userId", mktBrandInterview.getUpdateBy());
+		
+		SynMerchantVO synMerchantById = this.synMerchantService.getSynMerchantById(mktBrandInterview.getMerchantId());
+		Integer attachmentId = synMerchantById.getAttachmentId();
+		paramMap.put("attachmentId",attachmentId);
+		// 有传图片的时候即改上传图片
+		if (judgeEmpty(mktBrandInterview.getOriginalFileName()) && judgeEmpty(mktBrandInterview.getFileName()) && mktBrandInterview.getFileSize()!=null) {
+			// 已上传的图片
+			SysAttachmentVO attachment = sysAttachmentDao.getSysAttachmentById(attachmentId);
+			if (attachment !=null && !attachment.getOriginalFileName().equals(mktBrandInterview.getOriginalFileName())) {
+				paramMap.put("originalFileName", mktBrandInterview.getOriginalFileName());// 实际文件名
+				paramMap.put("fileSize", mktBrandInterview.getFileSize()); // 文件大小
+				paramMap.put("fileName", mktBrandInterview.getFileName());// ERP生成的文件名
+				// 修改图片上传
+				synMerchantService.updateLogo(paramMap, request);
+			} 
+//			else {
+//				paramMap.put("originalFileName", mktBrandInterview.getOriginalFileName());// 实际文件名
+//				paramMap.put("fileSize", mktBrandInterview.getFileSize()); // 文件大小
+//				paramMap.put("fileName", mktBrandInterview.getFileName());// ERP生成的文件名
+//				// 保存上传的logo图片
+//				synMerchantService.saveLogo(paramMap, request);
+//			}
+		}
+		//修改商户信息
+		return mktBrandInterviewDao.updateMktBrandInterview(mktBrandInterview);
+	}
+	
+	private boolean judgeEmpty (String str) {
+		if (!StringUtil.isNullOrEmpty(str)) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public SysAttachmentVO uploadAttachment(MultipartFile myfile, String basePath, SysUserVO user){
+		JsonResult fileInfo =null;
+		try {
+			//文件路径加入到map中: note: 为了解决static 类型不能用@value的问题
+			fileInfo = FileUploaderUtil.uploadFile(myfile, basePath+"/"+mktAttachmentDocumentPath, null,0L);	
+			Map<String, Object> file = (Map<String, Object>)fileInfo.getData();
+//			file.put("fileFullPath", mktAttachmentDocumentPath+"/"+file.get("attachmentName"));
+			//保存电子文档信息
+			SysAttachmentVO sysAttachment = new SysAttachmentVO();	
+			sysAttachment.setAttachmentName(file.get("attachmentName").toString());
+			sysAttachment.setOriginalFileName(file.get("originalFileName").toString());
+			sysAttachment.setAttachmentType("3");// 文件类型
+			sysAttachment.setAttachmentSuffix(file.get("fileSuffix").toString());
+			sysAttachment.setModuleType("mkt");
+			sysAttachment.setIsEnable(Constant.IS_ENABLE);
+			sysAttachment.setIsDownloadable("1");
+			Object fileSizeObject = file.get("fileSize");
+			if(fileSizeObject instanceof Long){
+				Long fileSize = (Long)fileSizeObject;
+				sysAttachment.setAttachmentSize(Long.toString(fileSize));
+			}else{
+				Integer fileSize = (Integer)fileSizeObject;
+				sysAttachment.setAttachmentSize(fileSize.toString());
+			}
+			Object attachmentPath = file.get("attachmentPath");
+			sysAttachment.setAttachmentPath(attachmentPath==null? null: attachmentPath.toString());
+			Integer userId = user.getId();
+			sysAttachment.setInsertBy(userId);
+			sysAttachment.setUpdateBy(userId);
+			sysAttachment.setInsertTime(new Date());
+			sysAttachment.setUpdateTime(new Date());
+			int row = this.sysAttachmentService.saveSysAttachment(sysAttachment);
+			sysAttachment.setFileFullPath(mktAttachmentDocumentPath+"/"+file.get("attachmentName"));
+			return sysAttachment;
+		} catch (IOException e) {
+			throw new FesBizException("文件读写错误"+e);
+		}
+	}
+	public int batchUpdateMktBrandInterviewsToDiffVals (Map<String, Object> map){
+		return mktBrandInterviewDao.batchUpdateMktBrandInterviewsToDiffVals(map);
+	}
+	public int batchUpdateMktBrandInterviewsToSameVals (Map<String, Object> map){
+		return mktBrandInterviewDao.batchUpdateMktBrandInterviewsToSameVals(map);
+	}
+	public int deleteMktBrandInterviewById (Integer id){
+		return mktBrandInterviewDao.deleteMktBrandInterviewById(id);
+	}
+	public int batchDeleteMktBrandInterviewByIds (List<Integer> ids){
+		return mktBrandInterviewDao.batchDeleteMktBrandInterviewByIds(ids);
+	}
+	public MktBrandInterviewVO getMktBrandInterviewById(Integer id){
+		return mktBrandInterviewDao.getMktBrandInterviewById(id);
+	}
+	public List<MktBrandInterviewVO> getMktBrandInterviews (MktBrandInterviewVO mktBrandInterview){
+		return mktBrandInterviewDao.getMktBrandInterviews(mktBrandInterview);
+	}
+	public List<Map<String, Object>>  getMktBrandInterviewsMap (MktBrandInterviewVO mktBrandInterview){
+		return mktBrandInterviewDao.getMktBrandInterviewsMap(mktBrandInterview);
+	}
+	
+	@Resource MktBusinessTypeService mktBusinessTypeService;
+	@Resource MktContactService mktContactService;
+	@Resource SysSalesmanMerchantService sysSalesmanMerchantService;
+	@SuppressWarnings("serial")
+	@Override
+	public JsonResult loadMerchantInfo(SynMerchantVO synMerchant) {
+		final Integer merchantId = synMerchant.getMerchantId();
+		SynMerchantVO synMerchantById = this.synMerchantService.getSynMerchantById(merchantId);
+		List<MktBrandInterviewVO> mktBrandInterviews = this.getMktBrandInterviews(new MktBrandInterviewVO(){{setMerchantId(merchantId);}});
+		String[] formats = null;
+		MktBrandInterviewVO mktBrandInterview = new MktBrandInterviewVO();
+		if(mktBrandInterviews.size()>0){
+		    mktBrandInterview = mktBrandInterviews.get(0);
+			formats = mktBrandInterview.getFormat();
+		}else{
+			LOG.info("商户不存在门店调研单信息!");
+		}
+		final MktBrandInterviewVO mktBrandInterviewVO  = mktBrandInterview;
+		final List<TreeVO> dicFormat = this.mktBusinessTypeService.getAllNode(formats);
+		//设置销售负责人
+		this.sysSalesmanMerchantService.setStdSales(synMerchant, mktBrandInterviewVO,  "dicSales"); 
+		//附件
+		SysAttachmentVO sysAttachement = sysAttachmentDao.getSysAttachmentById(synMerchantById.getAttachmentId());
+		if(sysAttachement==null){
+			sysAttachement = new SysAttachmentVO();
+		}
+		String fileFullPath =  merchantLogoPath + "/"+sysAttachement.getAttachmentName();
+		sysAttachement.setFileFullPath(fileFullPath);
+		final SysAttachmentVO sysAttachementVO = sysAttachement;
+		//设置联系人
+		this.mktContactService.setStdContacts(synMerchantById, mktBrandInterviewVO, 
+				MktBrandInterviewVO.COLUMN_CONTACT_ID, "contact");
+		final SysSalesmanMerchantVO sysSalesman = this.sysSalesmanMerchantService.getSysSalesmanMerchantByMerchantId(merchantId);
+		return new JsonResult(new HashMap<String, Object>() {
+			{
+				put("dicFormat", dicFormat);
+				put(mktBrandInterviewVO.COLUMN_STORE_NUMBER, mktBrandInterviewVO.getStoreNumber());
+				put(mktBrandInterviewVO.COLUMN_PER_CAPITA, mktBrandInterviewVO.getPerCapita());
+				put(mktBrandInterviewVO.COLUMN_PER_ORDER, mktBrandInterviewVO.getPerOrder());
+				put("dicsales", mktBrandInterviewVO.getDicSales());//销售负责人
+				put("attachDocument", sysAttachementVO);//附件
+				put("salesId", sysSalesman.getUserId());//销售负责人ID
+				put("contact", mktBrandInterviewVO.getContact());//商户负责人,alais联系人
+				put("contactId", mktBrandInterviewVO.getContactId());//商户负责人,alais联系人
+				put(MktBrandInterviewVO.COLUMN_ATTACHMENT_ID, sysAttachementVO==null? "": sysAttachementVO.getId());//附件ID
+				put(MktBrandInterviewVO.COLUMN_FORMAT, new String[]{});//业态
+			}
+		}, true);
+	}
+	
+
+	private static final Log LOG = LogFactory.getLog(MktBrandInterviewServiceImpl.class);
+	@Resource MktFormerSalesMerchantService mktFormerSalesMerchantService;
+	@Resource SynMerchantDao synMerchantDao;
+	
+	@SuppressWarnings("serial")
+	@Override
+	public Object updateSynMerchantAndBrandInfo(MktBrandInterviewVO mktBrandInterview, final SysUserVO user) {
+		final Integer merchantId = mktBrandInterview.getMerchantId();
+		final Integer salesId = mktBrandInterview.getSalesId();
+		final Integer attachmentId = mktBrandInterview.getAttachmentId();
+		synMerchantDao.updateSynMerchant(new SynMerchantVO(){{setMerchantId(merchantId); setAttachmentId(attachmentId);}});
+		List<MktBrandInterviewVO> mktBrandInterviews = this.getMktBrandInterviews(new MktBrandInterviewVO() {
+			{
+				setMerchantId(merchantId);
+			}
+		});
+		if(CollectionUtils.isNotEmpty(mktBrandInterviews)){
+			final MktBrandInterviewVO mktBrandInterviewVO = mktBrandInterviews.get(0);
+			mktBrandInterview.setId(mktBrandInterviewVO.getId());
+			// 保存历史销售负责人
+			final SysSalesmanMerchantVO salesMan = this.sysSalesmanMerchantService.getSysSalesmanMerchantByMerchantId(merchantId);
+			if (salesMan != null && !salesMan.getUserId().equals(salesId)) { 
+				saveSalesMan(user, merchantId, salesId, salesMan);
+			} 
+			if (salesMan == null) {
+				LOG.info("原销售负责人为空");
+			}
+			//修改访谈单
+			mktBrandInterview.setUpdateBy(user.getId());
+			mktBrandInterview.setUpdateTime(new Date());
+			this.mktBrandInterviewDao.updateMktBrandInterview(mktBrandInterview);
+		}else{
+			mktBrandInterview.setIsEnable("1");
+			mktBrandInterview.setInsertBy(user.getId());
+			mktBrandInterview.setInsertTime(new Date());
+			mktBrandInterview.setUpdateBy(user.getId());
+			mktBrandInterview.setUpdateTime(new Date());
+			mktBrandInterviewDao.saveMktBrandInterview(mktBrandInterview);
+		}
+		mktBrandInterview.setSalesId(salesId);
+		return mktBrandInterview;
+	}
+	/**保存历史销售负责人*/
+	private void saveSalesMan(final SysUserVO user, final Integer merchantId, final Integer salesId,
+			final SysSalesmanMerchantVO salesMan) {
+		//原销售不责任不为空且新改过的销售负责人不是同一个人
+			final Integer userId = salesMan.getId();
+			List<MktFormerSalesMerchantVO> mktFormerSalesMerchants = mktFormerSalesMerchantService
+					.getMktFormerSalesMerchants(new MktFormerSalesMerchantVO() {
+						{
+							setMerchantId(merchantId);
+							setIsEnable("1");
+							setSortColumns("begin_time desc");
+						}
+					});
+			if (mktFormerSalesMerchants.size() > 0) {
+				//更新历史销售负责人结束时间
+				MktFormerSalesMerchantVO mktFormerSalesMerchant = mktFormerSalesMerchants.get(0);
+				if(!mktFormerSalesMerchant.getUserId().equals(userId)){//如果修改的销售负责人也原来历史销售负责人不是同一个人
+					mktFormerSalesMerchant.setUpdateTime(new Date());
+					mktFormerSalesMerchant.setEndTime(new Date());
+					mktFormerSalesMerchant.setUpdateBy(user.getId());
+					this.mktFormerSalesMerchantService.updateMktFormerSalesMerchant(mktFormerSalesMerchant);
+				}
+			}
+			//新增一条历史销售负责人
+			this.mktFormerSalesMerchantService.saveMktFormerSalesMerchant(new MktFormerSalesMerchantVO() {
+				{
+					setUserId(salesId);
+					setMerchantId(merchantId);
+					setInsertBy(user.getId());
+					setInsertTime(new Date());
+					setBeginTime(new Date());
+					setUpdateTime(new Date());
+					setUpdateBy(user.getId());
+					setIsEnable("1");
+				}
+			});
+			//修改当前销售负责人
+			this.sysSalesmanMerchantService.updateSysSalesmanMerchant(new SysSalesmanMerchantVO() {
+				{
+					setId(salesMan.getId());
+					setUserId(salesId);
+				}
+			});
+	}
+}

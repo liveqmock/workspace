@@ -1,0 +1,47 @@
+<!-- 设备配送 start -->
+<div class="module-equipment-distribution" ms-widget="dialog,$,$equipmentdistributionOpts">
+    <div class="f-body">
+        <div class="content">
+            <div class="model">
+                <table class="outer1">
+                    <tr class="f-field ff-value">
+                        <td class="table-let"><span class="warn">*</span>设备名称：</td>
+                        <td class="inner1">
+                            <div>
+                                <span class="schedule" ms-widget="select,$,$selectProcessOpts"></span><input class="input-text card-number" ms-duplex="requestData[0].fesStowageDtls[0].amount" placeholder="数量" data-rules="empty&number" data-tips="数量不能为空！&数量只能为数字！" isrule=true><span class="unit unit0">个</span><b type="button" class="card-add" data-num="1" data-outer-index="0" ms-click="addInner">+</b>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="f-field ff-value">
+                        <td class="table-let"><span class="warn">*</span>快递公司：</td>
+                        <td><span class="schedule width-select" ms-widget="select,$,$selectExpressOpts"></span></td>
+                    </tr>
+                    <tr class="f-field ff-value">
+                        <td class="table-let"><span class="warn">*</span>快递单号：</td>
+                        <td><input type="text" ms-duplex="requestData[0].logisticsNum" data-rules="empty" data-tips="快递单号不能为空！" isrule=true class="input-text width-select"><div class="ff-value-tip"></div></td>
+
+                    </tr>
+                    <tr class="f-field ff-value">
+                        <td class="table-let"><span class="warn">*</span>收件人：</td>
+                        <td><span class="schedule width-select" ms-widget="select,$,$selectSeizeOpts"></span></td>
+                    </tr>
+                    <tr class="f-field ff-value">
+                        <td class="table-let"><span class="warn">*</span>短信通知：</td>
+                        <td><span class="schedule width-select" ms-widget="select,$,$selectMessOpts"></span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="fn-clear"><div class="fn-right"><button class="simple-btn addOuter" ms-click="addOuter">添加明细</button></div></div>
+    </div>
+</div>
+<!-- 设备配送 end -->
+<!--通讯录-->
+<div ms-module="address,$,$addressOpts"></div>
+<!--通讯录-end-->
+
+
+
+
+

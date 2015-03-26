@@ -1,0 +1,7 @@
+INDEX VERSION 1.3+/home/song/workspace/yazuo/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+180032739.index
+373775638.index
+2990776032.index
+1233517249.index
+3158567282.index
+2239130236.index

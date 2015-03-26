@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysDocumentDao">
+	<resultMap id="SysDocument" type="com.yazuo.erp.system.vo.SysDocumentVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="documentType" column="document_type"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="optionContent" column="option_content"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysdocumentColumns">
+	    <![CDATA[
+		id,merchant_id,document_type,attachment_id,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysDocument" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： document_type,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_document (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="documentType!=null and documentType!=''">document_type,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="documentType!=null and documentType!=''">#{documentType},</if>
+       	    <if test="attachmentId!=null ">#{attachmentId},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysDocuments" parameterType="map">
+	 <!--不允许为空的字段： document_type,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_document (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="documentType!=null and documentType!=''">document_type,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="documentType!=null and documentType!=''">#{t.documentType},</if>
+          <if test="attachmentId!=null ">#{t.attachmentId},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysDocument">
+        UPDATE sys.sys_document 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="documentType!=null and documentType!=''">document_type = #{documentType} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysDocumentsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_document 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="documentType!=null and documentType!=''">document_type = #{t.documentType} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{t.attachmentId} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysDocumentsToSameVals" parameterType="map">
+        UPDATE sys.sys_document 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="documentType!=null and documentType!=''">document_type = #{documentType} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysDocumentById">
+    <![CDATA[
+        DELETE FROM sys.sys_document WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysDocumentByIds" parameterType="list">
+        DELETE FROM sys.sys_document WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysDocumentById" resultMap="SysDocument">
+		SELECT <include refid="sysdocumentColumns" />
+		    FROM sys.sys_document 
+	        WHERE id = #{id}     
+	</select>
+	
+    <select id="getOptionContentByMerchantId" resultMap="SysDocument">
+		select sys.sys_document_dtl_option.option_content 
+		  from sys.sys_document, sys.sys_document_dtl, sys.sys_document_dtl_option
+		  where sys.sys_document.id =  sys.sys_document_dtl.document_id and sys.sys_document_dtl.id = sys.sys_document_dtl_option.document_dtl_id
+		  and merchant_id = #{merchantId} and sys.sys_document_dtl.question_id = 5  and  sys.sys_document_dtl_option.is_selected = '1'   
+	</select>
+
+	<select id="getSysDocuments" resultMap="SysDocument">
+		SELECT <include refid="sysdocumentColumns" />
+		    FROM sys.sys_document  
+	    <include refid="sysdocument_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysDocumentsMap" resultType="map">
+		SELECT document_type as documentType, <include refid="sysdocumentColumns" />
+	    <![CDATA[
+		    FROM sys.sys_document  
+	    ]]>
+	    <include refid="sysdocument_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysdocument_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="documentType!=null and documentType!=''">AND document_type = #{documentType}</if>
+	       <if test="attachmentId!=null ">AND attachment_id = #{attachmentId}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="beginInsertTime!=null ">AND insert_time >= #{beginInsertTime}</if>
+		   <if test="endInsertTime!=null ">AND insert_time &lt;= #{endInsertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysDocumentCount" resultType="long">
+        SELECT count(*) FROM sys.sys_document 
+		<include refid="sysdocument_findPage_where"/>    
+    </select>
+    
+</mapper>

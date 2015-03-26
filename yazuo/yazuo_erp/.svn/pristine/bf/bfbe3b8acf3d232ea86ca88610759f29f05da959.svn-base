@@ -1,0 +1,103 @@
+.ui-itemselector-inner {
+    position: relative;
+}
+.ui-itemselector-left,
+.ui-itemselector-right {
+    width: 50%;
+}
+.ui-itemselector-left-inner {
+    padding-right: 28px;
+}
+.ui-itemselector-right-inner {
+    padding-left: 28px;
+}
+.ui-itemselector-panel {
+    border: 1px solid #e9e9e9;
+}
+.ui-itemselector-list-wrapper {
+    height: 338px;
+    overflow: auto;
+}
+.ui-itemselector-action {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 56px;
+    height: 100%;
+    margin-left: -28px;
+    text-align: center;
+    background: #ffffff;
+    border: none;
+}
+.ui-itemselector-filter-input {
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    padding: 0 4px;
+    vertical-align: middle;
+}
+.ui-itemselector-filter-box {
+    border: 1px solid #66ccb5;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    background: #ffffff;
+}
+.ui-itemselector-filter-wrapper {
+    padding: 10px;
+    background: #eff3f6;
+}
+.ui-itemselector-panel-title {
+    height: 50px;
+    line-height: 50px;
+    background: #eff3f6;
+    border-bottom: 1px solid #e9e9e9;
+    font-size: 14px;
+    color: #666666;
+    padding: 0 10px;
+}
+.ui-itemselector-filter-box .ui-icon {
+    font-size: 24px;
+    background: #ffffff;
+    line-height: 30px;
+    vertical-align: middle;
+    color: #cdcdcd;
+}
+.ui-itemselector-action-inner {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -28px;
+}
+.ui-itemselector-action .move-right-h {
+    color: #eeeeee;
+    font-size: 56px;
+    line-height: 1em;
+    cursor: pointer;
+}
+.ui-itemselector-item {
+    position: relative;
+    color: #666666;
+    font-size: 14px;
+    padding: 4px 10px;
+}
+.ui-itemselector-item .item-text {
+    padding-right: 20px;
+}
+.ui-itemselector-item .item-remove-h {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-style: normal;
+    line-height: 1em;
+    cursor: pointer;
+}
+.ui-itemselector-list .item-hover,
+.ui-itemselector-list .item-selected {
+    background: #f3f3f3;
+    color: #76a9e0;
+}
+.ui-itemselector-list .item-hover .item-remove-h {
+    display: block;
+}

@@ -1,0 +1,41 @@
+.page-backend-joballocation .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-joballocation .title {
+    width: 100%;
+    overflow: hidden;
+    padding:2px 0 20px;
+}
+.page-backend-joballocation .title p {
+    float: left;
+    margin-right: 15px;
+}
+.page-backend-joballocation .schedule {
+    width: 100px;
+}
+.page-backend-joballocation .max-tab-con {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+    overflow-x: auto;
+}
+.page-backend-joballocation .end {
+    color: #999;
+}
+.page-backend-joballocation .ui-grid-search {
+    padding-bottom: 20px;
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

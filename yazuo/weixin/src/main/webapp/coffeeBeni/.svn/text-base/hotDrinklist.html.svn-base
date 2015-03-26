@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0"/> 
+<link href="style/typeList.css" type="text/css" rel="stylesheet" />
+<title>热饮类</title>
+</head>
+
+<body>
+	<header>陪你菜单</header>
+    <img src="foodImg/hotDrink/typeLogo.jpg" class="typeLogoImg" />
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">热饮系列<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/浓缩咖啡.jpg" class="oneItemImg" />
+        	<p class="foodName">浓缩咖啡<br/>에스프레소<br/>Espresso</p>
+            <p class="foodInfo">
+            	为喜爱浓郁咖啡味道的人士准备的咖啡原液<br />
+				价格：标杯<em>22</em>元 / 大杯<em>25</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/美式.jpg" class="oneItemImg" />
+        	<p class="foodName">美式咖啡<br/>아메리카노<br/>Americano</p>
+            <p class="foodInfo">
+            	将浓缩咖啡用水调和，使浓缩咖啡的浓郁苦味变得更加柔和的饮品<br />
+				价格：标杯<em>24</em>元 / 大杯<em>26</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>   
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/咖啡拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">咖啡拿铁<br/>카페라떼<br/>Latte</p>
+            <p class="foodInfo">
+            	浓缩咖啡与香浓牛奶混合制成的混合咖啡<br />
+				价格：标杯<em>30</em>元 / 大杯<em>32</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/卡布奇诺.jpg" class="oneItemImg" />
+        	<p class="foodName">卡布奇诺<br/>카푸치노<br/>Cappuccino</p>
+            <p class="foodInfo">
+            	浓缩咖啡与香浓牛奶，上面配以丰富牛奶泡沫，奶香浓郁。<br />
+				价格：标杯<em>30</em>元 / 大杯<em>32</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/焦糖玛奇朵.jpg" class="oneItemImg" />
+        	<p class="foodName">焦糖玛奇朵<br/>카라멜마끼아또<br/>Caramel Macchiato</p>
+            <p class="foodInfo">
+            	浓缩咖啡与香浓的牛奶和香草糖浆混合，加上润滑的牛奶泡沫，最后淋上纯正的焦糖酱，味道香甜，耐人寻味。<br />
+				价格：标杯<em>32</em>元 / 大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/香草拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">香草拿铁<br/>바닐라라떼<br/>Vanilla Latte </p>
+            <p class="foodInfo">
+            	香浓的牛奶与浓缩咖啡充分调和之后，加入香草糖浆，口感柔和、香甜。<br />
+				价格：标杯<em>32</em>元 / 大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>   
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/奶油焦糖拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">奶油焦糖拿铁<br />크림카라멜라떼<br />Cream Caramel Latte</p>
+            <p class="foodInfo">
+            	香浓的牛奶与浓缩咖啡充分调和之后，加入纯正的焦糖糖浆，甜香更加浓郁<br />
+				价格：标杯<em>32</em>元 / 大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/摩卡.jpg" class="oneItemImg" />
+        	<p class="foodName">咖啡摩卡<br />카페모카<br />Coffee Mocha</p>
+            <p class="foodInfo">
+            	可以同时体会到黑巧克力的香浓与浓缩咖啡的浓郁<br />
+				价格：标杯<em>32</em>元 / 大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/白摩卡.jpg" class="oneItemImg" />
+        	<p class="foodName">白摩卡<br />화이트모카<br />White Mocha</p>
+            <p class="foodInfo">
+            	可以同时体会到白巧克力的柔和与浓缩咖啡的浓郁<br />
+				价格：标杯<em>32</em>元 / 大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem last">
+        	<img src="foodImg/hotDrink/cofe/冰淇淋咖啡.jpg" class="oneItemImg" />
+        	<p class="foodName">冰淇淋咖啡<br />아포가또<br />Affogato</p>
+            <p class="foodInfo">
+            	正宗意式冰淇淋和纯正意式浓缩咖啡的梦幻组合<br />
+				价格：大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>                 
+    </div>
+    
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">特别拿铁系列 Special Latte<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/绿茶拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">绿茶拿铁<br/>녹차라떼<br/>Green Tea Latte</p>
+            <p class="foodInfo">
+            	香滑牛奶与绿茶混合制成，不甜腻却绿茶味浓郁的饮品<br />
+				价格：标杯<em>32</em>元 / 大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/五谷拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">五谷拿铁<br/>오곡라떼<br/>Grain Latte</p>
+            <p class="foodInfo">
+            	咖啡陪你特制的健康饮品，多种谷物与香滑牛奶混合制成的饮品<br />
+				价格：标杯<em>32</em>元 / 大杯<em>35</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/双重巧克力拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">双重巧克力拿铁<br/>더블초코라떼<br/>Double Chocolate Latte</p>
+            <p class="foodInfo">
+            	香滑牛奶与醇香巧克力酱混合制成，满足巧克力一族的甜品<br />
+				价格：标杯<em>30</em>元 / 大杯<em>33</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/双重香草拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">双重香草拿铁<br/>더블바닐라라떼<br/>Double Vanilla Latte</p>
+            <p class="foodInfo">
+            	香滑牛奶与甜蜜香草糖浆混合制成的甜品<br />
+				价格：标杯<em>30</em>元 / 大杯<em>33</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/cofe/奶茶拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">奶茶拿铁<br/>밀크티라떼<br/>Milk Tea Latte</p>
+            <p class="foodInfo">
+            	茶的馨香和牛奶的润滑完美结合在一起的奶茶拿铁<br />
+				价格：标杯<em>30</em>元 / 大杯<em>33</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem last">
+        	<img src="foodImg/hotDrink/cofe/奶茶拿铁.jpg" class="oneItemImg" />
+        	<p class="foodName">香芋拿铁<br/>바닐라 라떼<br/>Vanilla Latte</p>
+            <p class="foodInfo">
+            	香浓润滑的牛奶,搭配营养价值丰富的香芋，口感浓郁<br />
+				价格：标杯<em>30</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+    </div>    
+
+
+	<div class="typeItemList">
+    	<h3 class="typeTitle">茶系列 Tea<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/tea/日本经典.jpg" class="oneItemImg" />
+        	<p class="foodName">日本经典<br/>재팬클래식<br/>Japan Classic</p>
+            <p class="foodInfo">
+            	日本经典，可以感受到浓郁的绿茶清香<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/tea/英国早茶.jpg" class="oneItemImg" />
+        	<p class="foodName">英国早茶<br/>잉글리쉬블랙퍼스트<br/>English Breakfast</p>
+            <p class="foodInfo">
+            	英国早茶，优质的锡兰和印度产Assam相结合的传统红茶<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/tea/伯爵茶.jpg" class="oneItemImg" />
+        	<p class="foodName">伯爵茶<br/>얼그레이<br/>Earl Gary</p>
+            <p class="foodInfo">
+            	锡兰、乌龙茶、大吉岭等初次采摘嫩叶混合制成的红茶<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/tea/洋甘菊.jpg" class="oneItemImg" />
+        	<p class="foodName">洋甘菊<br/>캐모마일<br/>Camomile</p>
+            <p class="foodInfo">
+            	一款能美容肌肤还可以舒缓情绪的神奇花茶<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/tea/薄荷茶.jpg" class="oneItemImg" />
+        	<p class="foodName">薄荷<br/>민트<br/>Mint Tea</p>
+            <p class="foodInfo">
+            	一款清爽的草本茶<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/tea/红莓茶.jpg" class="oneItemImg" />
+        	<p class="foodName">红莓茶<br/>레드베리<br/>Red Berry</p>
+            <p class="foodInfo">
+            	洋溢着甜美草莓香的一款柔和的水果红茶<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/hotDrink/tea/柚子茶.jpg" class="oneItemImg" />
+        	<p class="foodName">柚子茶<br/>유자차<br/>Tea</p>
+            <p class="foodInfo">
+            	具有恢复疲劳、预防和治疗感冒、促进食欲等多种益处的清爽柚子茶<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem last">
+        	<img src="foodImg/hotDrink/tea/维他命茶.jpg" class="oneItemImg" />
+        	<p class="foodName">维他命茶<br/>리얼 비타티<br/>real vita tea</p>
+            <p class="foodInfo">
+            	富含丰富维生素的维他命果茶<br />
+				价格：标杯<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>         
+    </div>    
+
+<script language="javascript" src="js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="js/typeList.js"></script>
+</body>
+</html>

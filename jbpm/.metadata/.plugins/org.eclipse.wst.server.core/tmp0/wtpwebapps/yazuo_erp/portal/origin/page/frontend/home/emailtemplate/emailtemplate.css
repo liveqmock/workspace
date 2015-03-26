@@ -1,0 +1,74 @@
+.page-fbs-mailtemplate .add-question-btn {
+    padding:15px;
+}
+
+.page-fbs-mailtemplate .search {
+    background: #eee;
+    padding:7px 15px;
+}
+.page-fbs-mailtemplate .coursewareName {
+    width:200px;
+}
+.page-fbs-mailtemplate .search .page-filter button{
+    vertical-align: 0;
+}
+.page-fbs-mailtemplate .question-list {
+    padding-top:15px;
+}
+.page-fbs-mailtemplate .question-list-inner {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    padding:5px 0;
+}
+.page-fbs-mailtemplate .question-list-inner-bg {
+    background:#d9edf7;
+}
+.page-fbs-mailtemplate .qusetion-list-style-main {
+    float: left;
+    display: inline;
+    width: 930px;
+    padding-left: 15px;
+}
+.page-fbs-mailtemplate .qusetion-list-style-main h2 {
+    font-size:16px;
+    color:#777;
+    margin-bottom:5px;
+}
+.page-frontend-home-emailtemplate-email-dialog .ff-label {
+    width: 90px;
+    text-align: right;
+}
+.page-frontend-home-emailtemplate-email-dialog .ff-value {
+    margin-left: 90px;
+}
+.page-frontend-home-emailtemplate-email-dialog .issendsms {
+    font-size: 14px;
+    color: #666;
+    padding-top: 5px;
+}
+.page-frontend-home-emailtemplate-email-dialog .mail-merchant-name {
+    font-size: 14px;
+    color: #666;
+    padding-bottom: 5px;
+}
+.page-frontend-home-emailtemplate-email-dialog .mail-merchant-name .agv-left {
+    float: left;
+    width: 75px;
+    overflow: hidden;
+    line-height: 23px;
+}
+.page-frontend-home-emailtemplate-email-dialog .mail-merchant-name .agv-right {
+    float: left;
+    width: 570px;
+    overflow: hidden;
+    line-height: 23px;
+}
+.page-frontend-home-emailtemplate-email-dialog .mail-merchant-name .agv-right a {
+    margin-right: 10px;
+}
+.page-frontend-home-emailtemplate-email-dialog .mail-merchant-name .tips {
+    font-size: 12px;
+    color: #999;
+    padding-left: 75px;
+}

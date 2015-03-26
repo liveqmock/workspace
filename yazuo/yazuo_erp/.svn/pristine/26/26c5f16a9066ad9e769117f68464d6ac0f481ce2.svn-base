@@ -1,0 +1,20 @@
+package com.yazuo.erp.api.dao;
+
+import java.util.Date;
+
+/**
+ */
+public interface ReportDataDao {
+    int getOpenNumPercent(Integer brandId, Date month);
+
+    double getMarketingIncome(Integer merchantId, Date from, Date to);
+
+    /**
+     * 计算存储沉淀
+     *
+     * @param merchantId
+     * @param lastDay
+     * @return
+     */
+    double getReportBeginning(Integer merchantId, Date lastDay);
+}

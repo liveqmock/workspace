@@ -1,0 +1,61 @@
+.page-fbs-communication .add-question-btn {
+    padding:15px;
+}
+.page-fbs-communication .top_button {
+    padding: 15px;
+}
+
+.page-fbs-communication .search {
+    background: #eee;
+    padding:7px 15px;
+}
+.page-fbs-communication .coursewareName {
+    width:200px;
+}
+.page-fbs-communication .search .page-filter button{
+    vertical-align: 0px;
+}
+.page-fbs-communication .question-list {
+    padding-top:15px;
+}
+.page-fbs-communication .question-list-inner {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    padding:5px 0;
+}
+.page-fbs-communication .question-list-inner-bg {
+    background:#d9edf7;
+}
+.page-fbs-communication .qusetion-list-style-main {
+    float: left;
+    display: inline;
+    width: 930px;
+    padding-left: 15px;
+}
+.page-fbs-communication .qusetion-list-style-main h2 {
+    font-size:16px;
+    color:#777;
+    margin-bottom:5px;
+}
+.page-fbs-communication .name-merchant {
+    padding-left: 10px;
+    text-align: left;
+}
+.page-fbs-communication .name-left {
+    padding-left: 10px;
+    text-align: left;
+}
+.page-fbs-communication .fixed-width {
+    width: 100px;
+}
+.page-sales-mycommunication-dialog input.input-text {
+    width:320px;
+}
+.page-sales-mycommunication-dialog .valid-error {
+    padding-left:80px;
+}
+.page-sales-mycommunication-dialog label {
+    width:80px;
+    text-align: right;
+}

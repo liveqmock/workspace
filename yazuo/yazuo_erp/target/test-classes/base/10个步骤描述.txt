@@ -1,0 +1,195 @@
+﻿
+/*********************************************************************
+     *                 返回所有的上线流程步骤接口说明                               *
+**********************************************************************/
+Fri Aug 15 18:10:18 CST 2014
+
+接口描述：  返回所有的上线流程信息
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/listFesOnlineProcesss
+
+case1: 我的主页显示十个步骤
+	 测试参数: {"merchantId":4, "userId": ""} 
+	 说明 : 如果userId为空是查询是十个步骤页面
+	 
+case2: 查询某一个上线流程
+	测试参数: {"processId":4} 
+	
+case3:  点击用户的待办事项我的详情页面
+       测试参数: {"merchantId":4, "userId": 0, "resourceRemark":"end_custom_service"} 
+       userId: 登录用户的Id
+       resourceRemark: 可选值
+		"fes_card_and_materials";//制卡/物料
+		"end_custom_service";//后端客服
+		"end_delivery_service";//设备配送
+	  如果是其他角色，不需要传这个属性	
+ 
+返回值： 10个步骤
+[ {
+  "id" : 23,
+  "programId" : 4, 
+  "stepId" : 1,  【步骤id】
+  "planEndTime" : null, 【这是由我调用日历接口计算得出。 需要手动拼写如：　预计在２０１４－８－１９完成方案洽谈】
+  "endTime" : null,    【？？？？这个得找高珊确认】
+  "onlineProcessStatus" : "04", 【每一个步骤对应的状态代码】
+  "remark" : null,
+  "insertBy" : null,
+  "insertTime" : null,
+  "updateBy" : null,
+  "updateTime" : null,
+  "listAttachmentAndOperateLog": [] 【包含流水和附件】
+  "sysDictionary" : { 【肯定只有一个】
+    "id" : 340,
+    "dictionaryType" : null,
+    "dictionaryName" : null,
+    "dictionaryKey" : "04",【每一个步骤对应的状态代码】
+    "dictionaryValue" : "已完成",【每一个步骤对应的状态中文描述】   
+    "remark" : null,
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : null
+  },
+  "planEndTimeStatus" : false,【TRUE： 超时； false：没有超时】
+  "onlineFinalConfirmStatus" : false,  【上线流程的总状态; 当所有步骤都完成的时候，这个状态自动变为 true， 第十个步骤按钮先是可点】
+  "fesSysAttachments" : [ {   【所有上传下载文件相关的信息都在这里】【注意： 只有某些步骤是有附件的，具体查需求】
+    "id" : 187,
+    "attachmentName" : "f94a4156-19a6-4977-9161-f238d851cc50.txt", 【参照文件下载 接口描述】
+    "originalFileName" : "test.txt",
+    "attachmentType" : "3",
+    "attachmentSize" : "10",
+    "attachmentPath" : null,  【参照文件下载 接口描述】
+    "attachmentSuffix" : "txt",
+    "moduleType" : "fes",
+    "isEnable" : null,
+    "isDownloadable" : "1",
+    "hours" : null,
+    "remark" : null,
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : 1408091662941,
+    "merchantName" : null,
+    "processAttachmentType" : "1",
+    "sortColumns" : null,
+    "fesMarketingActivitys" : [ ],
+    "fesProcessAttachments" : [ ],
+    "fesPlanAttachments" : [ ]
+  } ],
+  "resourceRemark" : null,   【参数： 更改状态updateFesOnlineProcessStatus接口调用的时候需要穿给我； 此为 资源remark的中文描述 如：human_mark】
+  "fileConfigPath" : null,   【参照文件下载 接口描述】
+  "sortColumns" : null,
+  "fesTrainPlans" : [ {  【培训计划，第9个步骤用到】
+    "id" : 31,
+    "processId" : 31,
+    "beginTime" : 1407859200000,
+    "endTime" : 1411660800000,
+    "address" : "北京北京",
+    "trainer" : "张三12",
+    "content" : "三中全会asdfasd",
+    "isEnable" : null,
+    "remark" : null,
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : null,
+    "sortColumns" : null,
+    "fesOnlineProcess" : null
+  } ],
+  "fesRemarks" : [ { 【第2个步骤微信用到】
+    "id" : 2,
+    "processId" : null,
+    "remark" : "松岛枫",
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : 1407315260000,
+    "sortColumns" : null,
+    "fesOnlineProcess" : null
+  }, {
+    "id" : 1,
+    "processId" : null,
+    "remark" : "老气",
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : 1407315233000,
+    "sortColumns" : null,
+    "fesOnlineProcess" : null
+  } ],
+  "fesOpenCardApplications" : [ { 【第6个步骤实体卡制作】
+    "id" : null,
+    "processId" : null,
+    "merchantId" : 2318,
+    "openCardApplicationStatus" : null,   【？？？待确认】
+    "isEnable" : null,
+    "remark" : null,
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : null,
+    "sortColumns" : null,
+    "fesOpenCardApplicationDtls" : [ ],
+    "synMerchant" : null,
+    "fesOnlineProcess" : null
+  } ],
+  "fesStowages" : [{    【第8步设备配送】
+  	 id; //"ID";
+	 processId; //"流程ID";
+	logisticsCompany; //"物流公司";
+	 logisticsNum; //"物流单号";
+	 remark; //"备注"; 
+	 insertTime// 时间
+    }
+	 ],  
+  "fesProcessAttachments" : [ ],
+  "fesOnlineProgram" : {
+    "id" : 4,
+    "merchantId" : 2318,  
+    "beginTime" : 1406196803000,
+    "planOnlineTime" : 1411035207000,  【????】
+    "onlineTime" : null,
+    "onlineProgramStatus" : "0",
+    "remark" : null,
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : null,
+    "contractId" : null,
+    "sortColumns" : null
+  },
+  "fesStep" : {    
+    "id" : 1,
+    "stepNum" : "research", 【步骤标识】
+    "stepName" : "调研",  【步骤名称】
+    "tip" : "还没有调研信息。",
+    "mainPageStatus": 0 【流程状态】 （{0:[未开始];  1:[已开始]}）
+    "sort" : 1,
+    "isEnable" : null,
+    "remark" : null,
+    "insertBy" : null,
+    "insertTime" : null,
+    "updateBy" : null,
+    "updateTime" : null,
+    "sortColumns" : null,
+    "fesOnlineProcesss" : [ ]
+  },
+  "sysOperationLogVOs" : [ {  【此为操作流水】
+    "id" : 3,
+    "merchantId" : 2318,
+    "moduleType" : "fes",
+    "fesLogType" : "5",
+    "operatingTime" : 1408526416066, 【流水时间】
+    "description" : "确认完成",  【描述】
+    "remark" : null,
+    "insertBy" : 1,
+    "insertTime" : 1408526416066,
+    "sortColumns" : null
+  },
+  "tradeCardtypes":[],  【卡类型】
+  "tradeMessageTemplates":【交易短信】,
+  listUsers" : [ {  【前端负责人】
+    "id" : 147,
+    "userName" : "2014-9-2前端服务",
+    "tel" : "13500000001"} ],
+} ]

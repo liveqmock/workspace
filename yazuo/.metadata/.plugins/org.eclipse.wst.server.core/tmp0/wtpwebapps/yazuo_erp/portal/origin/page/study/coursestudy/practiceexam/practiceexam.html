@@ -1,0 +1,19 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item"
+            ms-repeat="navCrumbs"><a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a><span class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <h3 class="page-section-title">请在{{duration}}分内，完成下列产品实操考试。</h3>
+    <ul class="question-list"
+        ms-repeat="questionList">
+        <li class="question-item fn-clear">
+            <div class="item-index fn-left">{{$index + 1}}、</div>
+            <div class="item-content">{{el.content}}</div>
+        </li>
+    </ul>
+    <div class="page-action">
+        <button type="button" class="enter-exam-btn main-btn" ms-click="jumpFirstExam">开始考试</button>
+    </div>
+</div>

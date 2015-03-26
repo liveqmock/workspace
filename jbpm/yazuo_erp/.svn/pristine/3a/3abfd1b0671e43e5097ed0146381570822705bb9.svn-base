@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysOperationLogDao">
+	<resultMap id="SysOperationLog" type="com.yazuo.erp.system.vo.SysOperationLogVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="moduleType" column="module_type"/>
+    	<result property="fesLogType" column="fes_log_type"/>
+    	<result property="operatingTime" column="operating_time"/>
+    	<result property="description" column="description"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysoperationlogColumns">
+	    <![CDATA[
+		id,merchant_id,module_type,fes_log_type,operating_time,description,remark,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysOperationLog" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： module_type,operating_time,description,insert_by,insert_time,--> 
+        INSERT INTO sys.sys_operation_log (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="moduleType!=null and moduleType!=''">module_type,</if>
+        	 <if test="fesLogType!=null and fesLogType!=''">fes_log_type,</if>
+        	 <if test="operatingTime!=null ">operating_time,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="moduleType!=null and moduleType!=''">#{moduleType},</if>
+       	    <if test="fesLogType!=null and fesLogType!=''">#{fesLogType},</if>
+       	    <if test="operatingTime!=null ">now(),</if>
+       	    <if test="description!=null and description!=''">#{description},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysOperationLogs" parameterType="map">
+	 <!--不允许为空的字段： module_type,operating_time,description,insert_by,insert_time,--> 
+        INSERT INTO sys.sys_operation_log (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="moduleType!=null and moduleType!=''">module_type,</if>
+        	 <if test="fesLogType!=null and fesLogType!=''">fes_log_type,</if>
+        	 <if test="operatingTime!=null ">operating_time,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="moduleType!=null and moduleType!=''">#{t.moduleType},</if>
+          <if test="fesLogType!=null and fesLogType!=''">#{t.fesLogType},</if>
+          <if test="operatingTime!=null ">#{t.operatingTime},</if>
+          <if test="description!=null and description!=''">#{t.description},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysOperationLog">
+        UPDATE sys.sys_operation_log 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="moduleType!=null and moduleType!=''">module_type = #{moduleType} ,</if>
+	        <if test="fesLogType!=null and fesLogType!=''">fes_log_type = #{fesLogType} ,</if>
+	        <if test="operatingTime!=null ">operating_time = #{operatingTime} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysOperationLogsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_operation_log 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="moduleType!=null and moduleType!=''">module_type = #{t.moduleType} ,</if>
+	        <if test="fesLogType!=null and fesLogType!=''">fes_log_type = #{t.fesLogType} ,</if>
+	        <if test="operatingTime!=null ">operating_time = #{t.operatingTime} ,</if>
+	        <if test="description!=null and description!=''">description = #{t.description} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysOperationLogsToSameVals" parameterType="map">
+        UPDATE sys.sys_operation_log 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="moduleType!=null and moduleType!=''">module_type = #{moduleType} ,</if>
+	        <if test="fesLogType!=null and fesLogType!=''">fes_log_type = #{fesLogType} ,</if>
+	        <if test="operatingTime!=null ">operating_time = #{operatingTime} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysOperationLogById">
+    <![CDATA[
+        DELETE FROM sys.sys_operation_log WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysOperationLogByIds" parameterType="list">
+        DELETE FROM sys.sys_operation_log WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysOperationLogById" resultMap="SysOperationLog">
+		SELECT <include refid="sysoperationlogColumns" />
+		    FROM sys.sys_operation_log 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysOperationLogs" resultMap="SysOperationLog">
+		SELECT <include refid="sysoperationlogColumns" />
+		    FROM sys.sys_operation_log  
+	    <include refid="sysoperationlog_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysOperationLogsMap" resultType="map">
+		SELECT <include refid="sysoperationlogColumns" />
+	    <![CDATA[
+		    FROM sys.sys_operation_log  
+	    ]]>
+	    <include refid="sysoperationlog_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysoperationlog_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null and merchantId!=''">AND merchant_id = #{merchantId}</if>
+	       <if test="moduleType!=null and moduleType!=''">AND module_type = #{moduleType}</if>
+	       <if test="fesLogType!=null and fesLogType!=''">AND fes_log_type = #{fesLogType}</if>
+		   <if test="operatingTime!=null ">AND operating_time >= #{operatingTime}</if>
+		   <if test="operatingTime!=null ">AND operating_time &lt;= #{operatingTime}</if>
+	       <if test="description!=null and description!=''">AND description = #{description}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+		   
+		   <if test="fesLogTypes!=null ">
+		   	and fes_log_type  in  
+		   	  <foreach collection="fesLogTypes" item="id" open="(" close=")" separator=",">#{id}</foreach>     
+		   </if>
+		   
+		   <if test="beginTime!=null ">AND insert_time >= '${beginTime}'</if>
+		   <if test="endTime!=null ">AND insert_time &lt;= '${endTime}'</if>
+		</where>
+	</sql>
+		
+    <select id="getSysOperationLogCount" resultType="long">
+        SELECT count(*) FROM sys.sys_operation_log 
+		<include refid="sysoperationlog_findPage_where"/>    
+    </select>
+    
+</mapper>

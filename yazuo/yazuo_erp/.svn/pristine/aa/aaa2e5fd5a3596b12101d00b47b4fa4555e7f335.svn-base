@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.bes.dao.BesMonthlyReportDao">
+	<resultMap id="BesMonthlyReport" type="com.yazuo.erp.bes.vo.BesMonthlyReportVO">
+    	<id property="id" column="id"/>
+    	<result property="accessFactor" column="access_factor"/>
+    	<result property="operatorTime" column="operator_time"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="status" column="status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="besmonthlyreportColumns">
+	    <![CDATA[
+		id,access_factor,operator_time,merchant_id,status,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveBesMonthlyReport" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： access_factor,operator_time,merchant_id,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO bes.bes_monthly_report (
+        	 <if test="accessFactor!=null and accessFactor!=''">access_factor,</if>
+        	 <if test="operatorTime!=null ">operator_time,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="status!=null and status!=''">status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="accessFactor!=null and accessFactor!=''">#{accessFactor},</if>
+       	    <if test="operatorTime!=null ">#{operatorTime},</if>
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="status!=null and status!=''">#{status},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertBesMonthlyReports" parameterType="map">
+	 <!--不允许为空的字段： access_factor,operator_time,merchant_id,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO bes.bes_monthly_report (
+        	 <if test="accessFactor!=null and accessFactor!=''">access_factor,</if>
+        	 <if test="operatorTime!=null ">operator_time,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="status!=null and status!=''">status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="accessFactor!=null and accessFactor!=''">#{t.accessFactor},</if>
+          <if test="operatorTime!=null ">#{t.operatorTime},</if>
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="status!=null and status!=''">#{t.status},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateBesMonthlyReport">
+        UPDATE bes.bes_monthly_report 
+ 		  <set>
+	        <if test="accessFactor!=null and accessFactor!=''">access_factor = #{accessFactor} ,</if>
+	        <if test="operatorTime!=null ">operator_time = #{operatorTime} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="status!=null and status!=''">status = #{status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateBesMonthlyReportsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE bes.bes_monthly_report 
+ 		  <set>
+	        <if test="accessFactor!=null and accessFactor!=''">access_factor = #{t.accessFactor} ,</if>
+	        <if test="operatorTime!=null ">operator_time = #{t.operatorTime} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="status!=null and status!=''">status = #{t.status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateBesMonthlyReportsToSameVals" parameterType="map">
+        UPDATE bes.bes_monthly_report 
+ 		  <set>
+	        <if test="accessFactor!=null and accessFactor!=''">access_factor = #{accessFactor} ,</if>
+	        <if test="operatorTime!=null ">operator_time = #{operatorTime} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="status!=null and status!=''">status = #{status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteBesMonthlyReportById">
+    <![CDATA[
+        DELETE FROM bes.bes_monthly_report WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteBesMonthlyReportByIds" parameterType="list">
+        DELETE FROM bes.bes_monthly_report WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getBesMonthlyReportById" resultMap="BesMonthlyReport">
+		SELECT <include refid="besmonthlyreportColumns" />
+		    FROM bes.bes_monthly_report 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getBesMonthlyReports" resultMap="BesMonthlyReport">
+		SELECT <include refid="besmonthlyreportColumns" />
+		    FROM bes.bes_monthly_report  
+	    <include refid="besmonthlyreport_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getBesMonthlyReportsMap" resultType="map">
+		SELECT <include refid="besmonthlyreportColumns" />
+	    <![CDATA[
+		    FROM bes.bes_monthly_report  
+	    ]]>
+	    <include refid="besmonthlyreport_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	<select id="getMonthlyReports" resultType="map">
+        SELECT
+          ssm.merchant_id as merchantId,
+          MAX(ssm.merchant_name) merchantName,
+          MAX(CASE WHEN bbm.access_factor='1' THEN bbm.status END) as satisfied,
+          MAX(CASE WHEN bbm.access_factor='2' THEN bbm.status END) as called,
+          MAX(CASE WHEN bbm.access_factor='2' AND bbm.status='1' THEN bbm.operator_time END) as calledTime,
+          MAX(CASE WHEN bbm.access_factor='4' THEN bbm.status END) as explained,
+          MAX(CASE WHEN bbm.access_factor='4' AND (bbm.status='1' OR bbm.status='2') THEN bbm.operator_time END) as explainedTime,
+          MAX(CASE WHEN bbm.access_factor='3' THEN bbm.status END) as sent
+        FROM  syn.syn_merchant ssm
+           LEFT JOIN  bes.bes_monthly_report bbm ON bbm.merchant_id = ssm.merchant_id
+        <where>
+            ssm.merchant_id in <foreach item="merchantId" open="(" close=")" collection="merchantIds" separator=",">#{merchantId}</foreach>
+        </where>
+        GROUP BY ssm.merchant_id
+	</select>
+    <select id="getMerchantIds" resultType="int">
+        SELECT DISTINCT bm.merchant_id as alais_id
+        FROM (<include refid="monthly_report_view"/>) bm LEFT JOIN syn.syn_merchant sm ON sm.merchant_id = bm.merchant_id
+        <where>
+			<if test="conditions.size!=0" >
+                <foreach collection="conditions" item="con" separator=" AND ">
+                    exists(
+                        SELECT bmm.id
+                        FROM (<include refid="monthly_report_view"/>) bmm
+                        WHERE bmm.access_factor=#{con.accessFactor} AND bmm.status=#{con.status} and bmm.merchant_id = bm.merchant_id
+                    )
+                </foreach>
+            </if>
+            <if test="merchantName!=null and merchantName!=''"> AND sm.merchant_name like '%'||#{merchantName}||'%' </if>
+			AND sm.status = '1'
+        </where>
+        ORDER BY bm.merchant_id DESC
+        @@
+    </select>
+
+    <select id="getMerchantContact" resultType="map">
+        SELECT DISTINCT fp.merchant_id as merchantId, mc.name
+        FROM fes.fes_plan fp
+        LEFT JOIN mkt.mkt_contact mc on mc.id = fp.contact_id
+        WHERE fp.start_time BETWEEN #{from} AND #{to}
+         AND fp.merchant_id IS NOT NULL
+     </select>
+
+    <!-- 工作计划查询视图 -->
+    <sql id="monthly_report_view">
+        SELECT DISTINCT fp.merchant_id,bmr.id, bmr.access_factor, bmr.operator_time, bmr.is_enable,
+         CASE WHEN bmr.access_factor='4' and bmr.status='1' and EXTRACT(day from bmr.operator_time) > #{checkDate} THEN  '3' ELSE bmr.status END AS status
+        FROM fes.fes_plan fp LEFT JOIN bes.bes_monthly_report bmr ON fp.merchant_id=bmr.merchant_id
+        WHERE fp.start_time BETWEEN #{beginTime} AND #{endTime}
+        AND  fp.plan_item_type='1'
+        AND fp.is_enable='1'
+        AND (bmr.operator_time BETWEEN #{beginTime} AND #{endTime} or bmr.operator_time is null) and fp.merchant_id is not null
+    </sql>
+	<sql id="besmonthlyreport_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="accessFactor!=null and accessFactor!=''">AND access_factor = #{accessFactor}</if>
+		   <if test="operatorTime!=null ">AND operator_time >= #{operatorTime}</if>
+		   <if test="operatorTime!=null ">AND operator_time &lt;= #{operatorTime}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="status!=null and status!=''">AND status = #{status}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		   <!-- others filter -->
+		   <if test="beginTime!=null ">AND operator_time >= #{beginTime}</if>
+		   <if test="endTime!=null ">AND operator_time &lt;= #{endTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getBesMonthlyReportCount" resultType="long">
+        SELECT count(*) FROM bes.bes_monthly_report 
+		<include refid="besmonthlyreport_findPage_where"/>    
+    </select>
+    
+</mapper>

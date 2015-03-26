@@ -1,0 +1,86 @@
+[{ALLOW view All}]
+[{ALLOW edit erp_weixin}]
+[{ReferringPagesPlugin}]
+[{TableOfContents}]
+!!!功能描述
+
+加载门店调研单
+
+
+!!!请求示例
+%%prettify 
+{{{
+var mydata = JSON.stringify(
+        {
+            "merchantId": 2339//商户ID //不能为空
+        }
+    );
+$.ajax({
+    type: "POST",
+    contentType : 'application/json',
+    url:'http://192.168.232.141:8080/yazuo_erp/mktShopSurvey/loadMktShopSurvey.do',
+    data: mydata,
+    dataType:"json",
+    success:function(data){
+        console.log(JSON.stringify(data, null, '\t'));
+    }
+
+}}}
+/%
+!!!返回数据
+%%prettify 
+{{{
+{
+ "flag": 1,//1: '成功', 2:'失败' 
+ "message": "",
+ "data": 
+    {
+     "id" :"", //"ID";
+     "merchantId" :"", //"商户ID";
+     "storeId" :"", //"门店ID";
+     "contactId" :"", //"门店负责人ID";
+     "format" :"", //"业态";
+     "near" :"", //"附近";
+     "businessArea" :"", //"营业面积";
+     "dailyPassengerFlow" :"", //"日均客流量";
+     "tableAverage" :"", //"桌均消费";
+     "mealsNumber" :"", //"餐台数";
+     "roomsNumber" :"", //"包间数";
+     "attendanceRatio" :"", //"上座比例";
+     "networkCondition" :"", //"门店网络条件";
+     "networkSpeed" :"", //"门店网络速度 ";
+     "publicityMaterial" :"", //"现有宣传物料";
+     "isEnable" :"", //"是否有效";
+     "remark" :"", //"备注";
+     "insertBy" :"", //"创建人";
+     "insertTime" :"", //"创建时间";
+     "updateBy" :"", //"最后修改人";
+     "updateTime" :"", //"最后修改时间";
+     "networkRemark" :"", //"网络条件备注";
+     "materRemark" :"", //"宣传物料备注";
+     "merchantName" :"", //商户名称
+     "processId" :"", // 流程id
+     "moduleType" :"", // 模块类型
+     "storeName" :"", //"门店名称";
+     "Object" :"", //选择门店下拉列表
+     "Object" :"", //商户负责人
+     "dicFormat" :[ //业态 
+          {
+            "value" :"", //文本值
+            "text" :"", //显示文本
+            "isSelected" :"", //是否选中 1:选中，0:不选中
+            "remark" :"", //描述
+            "children" :"", //子节点
+          }
+         ]
+     "Object" :"", //附近
+     "Object" :"", //网络条件
+     "Object" :"", //网络速度
+     "Object" :"", //现有宣传物料
+    }
+  
+}
+
+}}}
+/%
+[{ReferringUndefinedPagesPlugin}]

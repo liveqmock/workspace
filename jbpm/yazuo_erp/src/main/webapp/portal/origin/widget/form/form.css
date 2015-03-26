@@ -1,0 +1,73 @@
+.ui-select-header {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    border: 1px solid #2CC78F;
+    font-size: 14px;
+    color:#646464;
+    line-height: normal;
+    vertical-align: top;
+}
+.ui-select-header-active {
+    border: 1px solid #65ebcd;
+}
+.ui-select-header-disabled {
+    border: 1px solid #bbbbbb;
+}
+.ui-select-header .select-header-text {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+    border: none;
+    vertical-align: middle;
+    color: #646464;
+}
+.ui-select-header .icon-select {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 8px;
+    width: 26px;
+    text-align: center;
+    line-height: 30px;
+    color: #66ccb5;
+    vertical-align: middle;
+    background: #e5f8f1;
+    cursor: pointer;
+}
+.ui-select-header-disabled .icon-select {
+    color: #bbbbbb;
+    cursor: default;
+}
+.ui-select-panel {
+    display: none;
+    position: absolute;
+    border: 1px solid #65ebcd;
+    z-index: 10000;
+    font-size: 14px;
+    color:#646464;
+    background: #ffffff;
+    box-shadow: 2px 2px 2px #dddddd;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.ui-select-panel .select-item {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+    border-bottom: 1px solid #efefef;
+    overflow: hidden;
+}
+.ui-select-panel .state-selected {
+    background: #E5F8F1;
+}
+.ui-select-panel .last-item {
+    border-bottom: none;
+}
+.ui-select-panel .state-hover {
+    background: #b2eed8;
+}
+.ui-select-panel .state-disabled {
+    background: #dddddd;
+}
+

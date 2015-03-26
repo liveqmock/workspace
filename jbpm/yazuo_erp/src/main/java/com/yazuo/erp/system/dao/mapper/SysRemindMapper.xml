@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysRemindDao">
+	<resultMap id="SysRemind" type="com.yazuo.erp.system.vo.SysRemindVO">
+    	<id property="id" column="id"/>
+    	<result property="userId" column="user_id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="priorityLevelType" column="priority_level_type"/>
+    	<result property="itemType" column="item_type"/>
+    	<result property="itemContent" column="item_content"/>
+    	<result property="itemStatus" column="item_status"/>
+    	<result property="processId" column="process_id"/>
+    	<result property="remark" column="remark"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="merchantName" column="merchant_name"/>
+    	<result property="itemTypeName" column="item_type_name"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysremindColumns">
+	    <![CDATA[
+		id,user_id,merchant_id,priority_level_type,item_type,item_content,item_status,process_id,remark,is_enable,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysRemind" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： user_id,priority_level_type,item_type,item_content,item_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_remind (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type,</if>
+        	 <if test="itemType!=null and itemType!=''">item_type,</if>
+        	 <if test="itemContent!=null and itemContent!=''">item_content,</if>
+        	 <if test="itemStatus!=null and itemStatus!=''">item_status,</if>
+        	 <if test="processId!=null ">process_id,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="userId!=null ">#{userId},</if>
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="priorityLevelType!=null and priorityLevelType!=''">#{priorityLevelType},</if>
+       	    <if test="itemType!=null and itemType!=''">#{itemType},</if>
+       	    <if test="itemContent!=null and itemContent!=''">#{itemContent},</if>
+       	    <if test="itemStatus!=null and itemStatus!=''">#{itemStatus},</if>
+       	    <if test="processId!=null ">#{processId},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysReminds" parameterType="map">
+	 <!--不允许为空的字段： user_id,priority_level_type,item_type,item_content,item_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_remind (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type,</if>
+        	 <if test="itemType!=null and itemType!=''">item_type,</if>
+        	 <if test="itemContent!=null and itemContent!=''">item_content,</if>
+        	 <if test="itemStatus!=null and itemStatus!=''">item_status,</if>
+        	 <if test="processId!=null ">process_id,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="userId!=null ">#{t.userId},</if>
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="priorityLevelType!=null and priorityLevelType!=''">#{t.priorityLevelType},</if>
+          <if test="itemType!=null and itemType!=''">#{t.itemType},</if>
+          <if test="itemContent!=null and itemContent!=''">#{t.itemContent},</if>
+          <if test="itemStatus!=null and itemStatus!=''">#{t.itemStatus},</if>
+          <if test="processId!=null ">#{t.processId},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysRemind">
+        UPDATE sys.sys_remind 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type = #{priorityLevelType} ,</if>
+	        <if test="itemType!=null and itemType!=''">item_type = #{itemType} ,</if>
+	        <if test="itemContent!=null and itemContent!=''">item_content = #{itemContent} ,</if>
+	        <if test="itemStatus!=null and itemStatus!=''">item_status = #{itemStatus} ,</if>
+	        <if test="processId!=null ">process_id = #{processId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysRemindsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_remind 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{t.userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type = #{t.priorityLevelType} ,</if>
+	        <if test="itemType!=null and itemType!=''">item_type = #{t.itemType} ,</if>
+	        <if test="itemContent!=null and itemContent!=''">item_content = #{t.itemContent} ,</if>
+	        <if test="itemStatus!=null and itemStatus!=''">item_status = #{t.itemStatus} ,</if>
+	        <if test="processId!=null ">process_id = #{t.processId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysRemindsToSameVals" parameterType="map">
+        UPDATE sys.sys_remind 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type = #{priorityLevelType} ,</if>
+	        <if test="itemType!=null and itemType!=''">item_type = #{itemType} ,</if>
+	        <if test="itemContent!=null and itemContent!=''">item_content = #{itemContent} ,</if>
+	        <if test="itemStatus!=null and itemStatus!=''">item_status = #{itemStatus} ,</if>
+	        <if test="processId!=null ">process_id = #{processId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysRemindById">
+    <![CDATA[
+        DELETE FROM sys.sys_remind WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysRemindByIds" parameterType="list">
+        DELETE FROM sys.sys_remind WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysRemindById" resultMap="SysRemind">
+		SELECT <include refid="sysremindColumns" />
+		    FROM sys.sys_remind 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysReminds" resultMap="SysRemind">
+		SELECT r.*,m.merchant_name,d.dictionary_value item_type_name		    
+		FROM sys.sys_remind r left join syn.syn_merchant m on (r.merchant_id = m.merchant_id)
+		LEFT JOIN (select dictionary_value,dictionary_key FROM sys.sys_dictionary where dictionary_type='00000057') d
+		on (d.dictionary_key = r.item_type) 
+	    <include refid="remind_order" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="remind_order">
+		<where>
+			<if test="1==1">is_enable ='1'</if>
+			<if test="merchantName !=null and merchantName!=''"> and m.merchant_name like '%'||#{merchantName}||'%'</if>
+			<if test="itemStatus!=null and itemStatus!=''"> and r.item_status=#{itemStatus}</if>
+		</where>
+	</sql>
+	
+	<select id="getRemindsByMerchantIdAndUserId" resultMap="SysRemind">
+		select <include refid="sysremindColumns" /> 
+		from sys.sys_remind where user_id =#{userId} and merchant_id=#{merchantId} and item_status=#{itemStatus} and is_enable='1'
+	</select>
+	
+	
+	
+	<select id="getSysRemindsMap" resultType="map">
+		SELECT <include refid="sysremindColumns" />
+	    <![CDATA[
+		    FROM sys.sys_remind  
+	    ]]>
+	    <include refid="sysremind_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysremind_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="userId!=null ">AND user_id = #{userId}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="priorityLevelType!=null and priorityLevelType!=''">AND priority_level_type = #{priorityLevelType}</if>
+	       <if test="itemType!=null and itemType!=''">AND item_type = #{itemType}</if>
+	       <if test="itemContent!=null and itemContent!=''">AND item_content = #{itemContent}</if>
+	       <if test="itemStatus!=null and itemStatus!=''">AND item_status = #{itemStatus}</if>
+	       <if test="processId!=null ">AND process_id = #{processId}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysRemindCount" resultType="long">
+        SELECT count(*) FROM sys.sys_remind 
+		<include refid="sysremind_findPage_where"/>    
+    </select>
+    
+</mapper>

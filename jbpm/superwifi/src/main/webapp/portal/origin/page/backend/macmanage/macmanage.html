@@ -1,0 +1,40 @@
+<ul class="page-nav-crumbs" xmlns="http://www.w3.org/1999/html">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd bd-macmanage">
+    <div class="page-filter">
+        <input type="text" class="keyword input-text" placeholder="门店名称"
+                                  ms-duplex="keyword"/>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="query-btn main-btn" ms-click="query">搜 索</button>
+    </div>
+    <div class="order-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 添加修改MAC start -->
+<div class="page-mac-add-edit-dialog ui-hidden"
+     ms-widget="dialog,$,$macAddEditDialogOpts">
+    <div class="f-body">
+        <div class="f-field fn-clear">
+            <label class="ff-label fn-left">门店名称：</label>
+            <div class="ff-value">
+                <div class="ff-value-box">{{merchantName}}</div>
+                <div class="ff-value-tip"></div>
+            </div>
+        </div>
+        <div class="f-field fn-clear">
+            <label class="ff-label fn-left">MAC地址：</label>
+            <div class="ff-value" ms-repeat="macList">
+                <div class="ff-value-box">
+                    <input type="text" class="input-text" ms-data-id="el.id" name="" ms-value="el.mac" />&nbsp;&nbsp;
+                    <button type="button" class="edit-mac-btn main-btn" ms-click="addMac" ms-visible="$index==0">添加更多</button>
+                    <button type="button" class="edit-mac-btn main-btn" ms-data-id="el.id" ms-click="delMac($index)" ms-visible="$index>0">删除</button>
+                </div>
+                <div class="ff-value-tip"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加修改MAC end -->

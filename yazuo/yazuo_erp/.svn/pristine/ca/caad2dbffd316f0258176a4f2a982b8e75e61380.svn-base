@@ -1,0 +1,17 @@
+<div class="page-bd page-bd-form">
+    <!--button-->
+    <div class="permission_type" ms-if="permission.create_oper_info">
+        <button type="button" class="main-btn" ms-click="localHref('#/productoperad/list/addedit/1')">创建运营信息</button>
+    </div>
+    <!--button-->
+    <div class="max-tab-con">
+        <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+    </div>
+
+</div>
+<!--新功能管理弹层-->
+<div class="backend-product-import ui-hidden" ms-widget="dialog,$,$popConOpts">
+    <div class="pop-con">{{popCon|html}}</div>
+</div>
+<!--新功能管理弹层-end-->
+

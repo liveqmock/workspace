@@ -1,0 +1,147 @@
+/**
+ * Copyright Copyright (c) 2014 
+ * Company 雅座在线（北京）科技发展有限公司
+ * 
+ * 		author		date		description
+ * —————————————————————————————————————————————
+ * 
+ * 
+ */
+
+package com.yazuo.erp.syn.service;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
+
+import java.util.*;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.yazuo.erp.base.Constant;
+import com.yazuo.erp.base.JsonResult;
+import com.yazuo.erp.bes.vo.BesRequirementVO;
+import com.yazuo.erp.syn.vo.*;
+import com.yazuo.erp.syn.dao.*;
+import com.yazuo.erp.system.vo.SysUserVO;
+
+/**
+ * @author erp team
+ * @date
+ */
+public interface SynMerchantService {
+
+	/**
+	 * 新增对象 @return : 新增加的主键id
+	 */
+	int saveSynMerchant(Map<String, Object> map);
+
+	/**
+	 * 新增多个对象 @return : //TODO
+	 */
+	int batchInsertSynMerchants(Map<String, Object> map);
+
+	/**
+	 * 修改对象 @return : 影响的行数
+	 */
+	int updateSynMerchant(Map<String, Object> map) throws ParseException;
+
+	/**
+	 * 修改多个对象（每一条记录可以不同） @return : 影响的行数
+	 */
+	int batchUpdateSynMerchantsToDiffVals(Map<String, Object> map);
+
+	/**
+	 * 修改多个对象（每一条记录都相同） @return : 影响的行数
+	 */
+	int batchUpdateSynMerchantsToSameVals(Map<String, Object> map);
+
+	/**
+	 * 按ID删除对象
+	 */
+	int deleteSynMerchantById(Integer id);
+
+	/**
+	 * 按IDs删除多个对象
+	 */
+	int batchDeleteSynMerchantByIds(List<Integer> ids);
+
+	/**
+	 * 通过主键查找对象
+	 */
+	SynMerchantVO getSynMerchantById(Integer id);
+
+	/**
+	 * 返回所有返回所有满足条件的Object对象的List
+	 */
+	List<SynMerchantVO> getSynMerchants(SynMerchantVO synMerchant);
+
+	/**
+	 * 返回所有返回所有满足条件的Map对象的List
+	 */
+	List<Map<String, Object>> getSynMerchantsMap(SynMerchantVO synMerchant);
+
+	/**
+	 * @Description 根据用户ID查询自己所管理的商户的列表（前端咨询人员-商户）
+	 * @param userId
+	 * @return
+	 * @throws
+	 */
+	List<Map<String, Object>> getSynMerchantByUserId(Integer userId);
+
+	/**
+	 * 查询商户表记录数
+	 */
+	long getSynMerchantCount();
+
+	List<Map<String, Object>> getSynMerchantInfo(String merchantName);
+
+	/**
+	 * 返回前端我的主页查询出来的所有商户信息
+	 */
+	List<ComplexSynMerchantVO> getComplexSynMerchants(Map<String, Object> inputMap, SysUserVO sessionUser);
+
+	/** 取某用户负责的商户 */
+	List<Map<String, Object>> getSynMerchantInfoByUserId(Map<String, Object> map);
+
+	boolean saveSynMerchantForOnlineBefore(Map<String, Object> map, HttpServletRequest request) throws Exception;
+
+	/** 商户看版上商户及相关信息 */
+	ExternalMerchantInfoVO getMerchantInfoByOrder(Map<String, Object> paramMap);
+
+	/** 上传商户Logo */
+	public Object uploadLogo(MultipartFile[] myfiles, Integer merchantId, HttpServletRequest request) throws IOException;
+
+	/** 保存商户Logo */
+	boolean saveLogo(Map<String, Object> paramMap, HttpServletRequest request);
+
+	/** 修改商户Logo */
+	boolean updateLogo(Map<String, Object> paramMap, HttpServletRequest request);
+
+	Map<String, Object> getMerchantLogo(Integer merchantId);
+
+	/** 商户录入，从ERP录入 */
+	boolean saveSynMerchantExtend(Map<String, Object> map, HttpServletRequest request) throws Exception;
+
+	Map<String, Object> saveTestMerchant();
+	List<Object> getCascateSelectMerchants(BesRequirementVO besRequirementVO);
+	/**软删除商户*/
+	JsonResult deleteMerchantAndCloseToDo(SynMerchantVO synMerchantVO, SysUserVO sessionUser);
+
+	JsonResult uploadCommonMethod(MultipartFile myfile, String realPath, Object object, String flag, Integer merchantId, SysUserVO sessionUser);
+
+	List<ComplexSynMerchantVO> getComplexSynMerchantsForCache(Map<String, Object> inputMap, SysUserVO sessionUser);
+
+	void getComplexSynMerchantsForCache(Integer userId);
+
+	Map<Integer, String> getMerchantNames(List<Integer> merchantIds);
+
+	public Map<Integer, String> getMerchantNamesFromErp(List<Integer> merchantIds);
+
+	List<Integer> getAllAvailMerchantIds();
+}

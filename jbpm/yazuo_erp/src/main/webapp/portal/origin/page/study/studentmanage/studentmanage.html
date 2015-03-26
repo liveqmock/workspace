@@ -1,0 +1,74 @@
+<div class="page-tbar">
+    <div class="page-tip" ms-if="!permission.charge">
+        你有待办事项：<a ms-href="'#/study/studentmanage/todolist/'+ loginUserId" class="edit-l"><span class="num">{{todoNum}}</span>个</a>
+    </div>
+    <div class="page-action" ms-if="!permission.charge">
+        <button type="button" class="add-btn main-btn" ms-if="permission.addStudent" ms-click="openBindDialog">添加学员</button>
+    </div>
+    <div class="page-filter">
+        <input type="text" class="user-name input-text" ms-duplex="userName" placeholder="姓名" />&nbsp;<input type="text" class="mobile input-text" ms-duplex="tel" placeholder="手机号" />&nbsp;<span class="student-type" ms-if="permission.charge" ms-widget="select,$,$allocateOpts"></span>&nbsp;<span class="schedule" ms-widget="select,$,$scheduleOpts" ms-visible="scheduleIsVisible"></span>&nbsp;<span class="position" ms-widget="select,$,$positionOpts"></span>&nbsp;&nbsp;<button type="button" class="query-btn main-btn"  ms-click="search">搜索</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="grid-wrapper">
+        <div class="summary">共<span class="num">{{gridTotalSize}}</span>名用户
+        </div>
+        <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="check-cell" ms-visible="!permission.charge"><input type="checkbox" class="check-all" ms-checked="gridAllChecked" ms-click="gridCheckAll" /></th>
+                    <th class="name-cell">姓名</th>
+                    <th class="mobile-cell">手机号</th>
+                    <th class="position-cell">职位</th>
+                    <th class="own-teacher-cell" ms-if="permission.charge">归属老师</th>
+                    <th class="schedule-cell">学习进度</th>
+                    <th class="operation-cell">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ms-repeat="gridData" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="check-cell" ms-visible="!permission.charge"><input type="checkbox" ms-value="el.studentId" ms-duplex="gridSelected" /></td>
+                    <td class="name-cell">{{el.studentName}}</td>
+                    <td class="mobile-cell">{{el.tel}}</td>
+                    <td class="mobile-cell">{{el.positionName}}</td>
+                    <td class="own-teacher-cell" ms-if="permission.charge">{{el.teacherName}}</td>
+                    <td class="schedule-cell">
+                        <!--<span class="" ms-if="el.courseStatus == 0 || el.courseStatus == 2">{{el.courseStatusName}}</span>
+                        <span class="overtime" ms-if="el.courseStatus == 1 && el.progressType == 0">{{el.progressTypeName}}&nbsp;{{el.coursewareName}}&nbsp;课件<span ms-if="el.coursewareStatus == 0">(课件已超时)</span></span>
+                        <span class="overtime" ms-if="el.courseStatus == 1 && el.progressType == 1">{{el.progressTypeName}}&nbsp;{{el.coursewareName}}&nbsp;考试<span ms-if="el.coursewareStatus == 0">(课件已超时)</span></span>
+                        <span class="overtime" ms-if="el.courseStatus == 3">{{el.progressTypeName}}&nbsp;{{el.coursewareName}}&nbsp;<span class="" ms-if="el.progressType == 0">课件</span>
+                        <span class="overtime" ms-if="el.progressType == 1">考试(课程已超时)</span>-->
+                        <ul class="progress-list fn-clear">
+                            <li class="progress-item fn-left"
+                                ms-repeat="el.progressList"
+                                ms-mouseenter="showProgressTip"
+                                ms-mouseleave="hideProgressTip"
+                                ms-class-1="is-studied: el.isStudied"
+                                ms-class-2="is-current: el.isCurrent"
+                                ms-class-3="is-timeout: el.isTimeout">{{$index + 1}}</li>
+                        </ul>
+                    </td>
+                    <td class="operation-cell">
+                        <span ms-if="permission.viewStudentDetail"><a ms-href="#/study/studentmanage/detail/{{el.studentId}}" class="edit-l" ms-data-student-id="el.studentId">查看详情</a></span><span ms-if="permission.unbindTSRel && el.teacherId">&nbsp;&nbsp;<a href="javascript:;" class="remove-l is-teacher"
+                            ms-click="removeGridItem"
+                            ms-data-student-id="el.studentId"
+                            ms-data-teacher-id="el.teacherId">解除师生关系</a></span><span ms-if="permission.allocateT && !el.teacherId">&nbsp;&nbsp;<a href="javascript:;" class="remove-l" ms-click="openBindDialog"
+                            ms-data-student-id="el.studentId"
+                            ms-data-teacher-id="el.teacherId">分配老师</a></span><span ms-if="permission.cDelay && el.courseStatus == '3'">&nbsp;&nbsp;<a href="javascript:;" class="remove-l" ms-click="delayCourse"
+                            ms-data-student-id="el.studentId"
+                            ms-data-teacher-id="el.teacherId">课程延时</a></span>
+                     </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="grid-bbar fn-clear">
+            <div class="grid-action fn-left"  ms-visible="!permission.charge">
+                <button type="button" class="check-all-btn main-btn" ms-click="scCheckAll">全选</button>
+                &nbsp;
+                <button type="button" class="batch-remove-btn main-btn" ms-click="batchRemoveGridItem">批量删除</button>
+            </div>
+            <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+        </div>
+    </div>
+</div>
+<div class="allocation-teacher ui-hidden" ms-module="bindselector,$,$allocationOpts"></div>

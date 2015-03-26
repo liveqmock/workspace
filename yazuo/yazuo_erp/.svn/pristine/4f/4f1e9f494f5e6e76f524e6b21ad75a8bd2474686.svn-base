@@ -1,0 +1,35 @@
+.page-sysmanage-merchantinput .merchantinput-form {
+    padding: 0 54px;
+}
+.page-sysmanage-merchantinput .input-text {
+    width: 180px;
+}
+.page-sysmanage-merchantinput .ff-label {
+    width: 160px;
+    text-align: right;
+}
+.page-sysmanage-merchantinput .ff-value {
+    margin-left: 160px;
+}
+.page-sysmanage-merchantinput .logo-uploader {
+    width: 120px;
+    height: 32px;
+}
+.page-sysmanage-merchantinput .merchant-logo {
+    padding: 4px;
+    box-shadow: 0px 2px 2px #cccccc;
+}
+.page-sysmanage-merchantinput .merchant-logo img {
+    width: 80px;
+    height: 80px;
+    vertical-align: middle;
+}
+.page-sysmanage-merchantinput .logo-action {
+    margin-left: 20px;
+    padding-top: 4px;
+}
+.page-sysmanage-merchantinput .logo-summary {
+    margin-top: 10px;
+    color: #646464;
+    font-size: 14px;
+}

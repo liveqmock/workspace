@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>calendar</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+    <link rel="stylesheet" href="../../asset/base.css">
+    <script src="../../asset/third/jquery-1.11.1.js"></script>
+    <script src="../../asset/third/underscore/underscore.js"></script>
+    <script src="../../asset/third/avalon/avalon.js"></script>
+    <script>
+        var VERSION = "0.0.0.0.0"; //版本号设置规则:all.asset.module.page.widget
+        var BASE_PATH = "http://localhost:8080/yazuo_erp/";  //web根目录地址
+        var WIDGET_BASE_PATH = "http://localhost:8080/yazuo_erp/portal/origin/widget/";  //widget根目录地址
+        avalon.adjustWidgetCssUrl = function (cssText) {
+            return cssText;
+        }
+    </script>
+    <script src="../../asset/boot.js"></script>
+    <style>
+
+    </style>
+</head>
+<body class="ms-controller" ms-controller="demo">
+<div class="calendar" ms-widget="calendar,$,$calendaOpts"></div>
+<script>
+    require("../../../widget/calendar/calendar", function (avalon) {
+        var model = avalon.define("demo", function (vm) {
+            vm.$calendaOpts = {
+
+            };
+        });
+        avalon.scan();
+    });
+</script>
+</body>
+</html>
+

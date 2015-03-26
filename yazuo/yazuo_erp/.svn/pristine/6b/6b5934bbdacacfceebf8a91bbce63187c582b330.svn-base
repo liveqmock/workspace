@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.trade.dao.TradeSmsTmpFieldDao">
+	<resultMap id="TradeAwardRule" type="com.yazuo.erp.trade.vo.TradeSmsTmpFieldVO">
+    	<id property="id" column="id"/>
+    	<result property="fieldName" column="field_name"/>
+    	<result property="fieldType" column="field_type"/>
+    	<result property="description" column="description"/>
+    	<result property="transCode" column="trans_code"/>
+	</resultMap>
+
+    <select id="getSmsTmpFields" resultMap="TradeAwardRule">
+        SELECT tst.id,tst.field_name,tst.field_type,tst.description,tts.trans_code
+        FROM trade.trade_trans_sms_tmp_feild tts LEFT JOIN trade.trade_sms_tmp_feild tst ON tts.sms_tmp_feild_id=tst.id
+        WHERE tts.trans_code IN
+        <foreach collection="list" open="(" close=")" item="transCode" separator=",">#{transCode}</foreach>
+    </select>
+    
+    <select id="getTradeSmsTmpFeilds" resultMap="TradeAwardRule">
+        SELECT stf.id,stf.field_name,stf.field_type,stf.description,'' as transCode
+        FROM trade.trade_sms_tmp_feild stf order by stf.id
+    </select>
+    
+    
+</mapper>

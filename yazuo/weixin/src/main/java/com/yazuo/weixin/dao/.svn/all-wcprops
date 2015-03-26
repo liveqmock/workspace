@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/crmapi/!svn/ver/25398/code/weixin/src/main/java/com/yazuo/weixin/dao
+END
+WeixinPayDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/25398/code/weixin/src/main/java/com/yazuo/weixin/dao/WeixinPayDao.java
+END
+BrandAndKeyRelativeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/crmapi/!svn/ver/21024/code/weixin/src/main/java/com/yazuo/weixin/dao/BrandAndKeyRelativeDao.java
+END
+PreferenceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/crmapi/!svn/ver/20518/code/weixin/src/main/java/com/yazuo/weixin/dao/PreferenceDao.java
+END
+DishesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/22648/code/weixin/src/main/java/com/yazuo/weixin/dao/DishesDao.java
+END
+TestDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/crmapi/!svn/ver/18740/code/weixin/src/main/java/com/yazuo/weixin/dao/TestDao.java
+END
+MerchantWifiDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/crmapi/!svn/ver/21875/code/weixin/src/main/java/com/yazuo/weixin/dao/MerchantWifiDao.java
+END
+EventRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/crmapi/!svn/ver/22839/code/weixin/src/main/java/com/yazuo/weixin/dao/EventRecordDao.java
+END
+StoryDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/crmapi/!svn/ver/20953/code/weixin/src/main/java/com/yazuo/weixin/dao/StoryDao.java
+END
+LotteryItemDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/crmapi/!svn/ver/14259/code/weixin/src/main/java/com/yazuo/weixin/dao/LotteryItemDao.java
+END
+AutoreplyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/25241/code/weixin/src/main/java/com/yazuo/weixin/dao/AutoreplyDao.java
+END
+BusinessManagerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/crmapi/!svn/ver/7426/code/weixin/src/main/java/com/yazuo/weixin/dao/BusinessManagerDao.java
+END
+ServiceConfigDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/crmapi/!svn/ver/15606/code/weixin/src/main/java/com/yazuo/weixin/dao/ServiceConfigDao.java
+END
+CreateMenuDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/crmapi/!svn/ver/18671/code/weixin/src/main/java/com/yazuo/weixin/dao/CreateMenuDao.java
+END
+LotteryRuleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/crmapi/!svn/ver/24011/code/weixin/src/main/java/com/yazuo/weixin/dao/LotteryRuleDao.java
+END
+BusinessDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/24948/code/weixin/src/main/java/com/yazuo/weixin/dao/BusinessDao.java
+END
+ActivityDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/crmapi/!svn/ver/9406/code/weixin/src/main/java/com/yazuo/weixin/dao/ActivityDao.java
+END
+MerchantDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/23258/code/weixin/src/main/java/com/yazuo/weixin/dao/MerchantDao.java
+END
+LotteryRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/crmapi/!svn/ver/22756/code/weixin/src/main/java/com/yazuo/weixin/dao/LotteryRecordDao.java
+END
+LotteryItemCouponDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/crmapi/!svn/ver/14292/code/weixin/src/main/java/com/yazuo/weixin/dao/LotteryItemCouponDao.java
+END
+WeixinLogDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/22257/code/weixin/src/main/java/com/yazuo/weixin/dao/WeixinLogDao.java
+END
+WeixinExternalDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/crmapi/!svn/ver/20949/code/weixin/src/main/java/com/yazuo/weixin/dao/WeixinExternalDao.java
+END
+MemberDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/24011/code/weixin/src/main/java/com/yazuo/weixin/dao/MemberDao.java
+END
+SubbranchDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/7426/code/weixin/src/main/java/com/yazuo/weixin/dao/SubbranchDao.java
+END
+ImageConfigDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/crmapi/!svn/ver/9588/code/weixin/src/main/java/com/yazuo/weixin/dao/ImageConfigDao.java
+END
+WeixinCoffeeBeniDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/crmapi/!svn/ver/25398/code/weixin/src/main/java/com/yazuo/weixin/dao/WeixinCoffeeBeniDao.java
+END

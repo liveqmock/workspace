@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="StorageLoginDialogNew">
+		<item value="550" key="DIALOG_WIDTH"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
+		<item value="263" key="DIALOG_HEIGHT"/>
+		<item value="0" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Liberation Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="StorageLoginDialogOld">
+		<item value="529" key="DIALOG_WIDTH"/>
+		<item value="162" key="DIALOG_Y_ORIGIN"/>
+		<item value="422" key="DIALOG_X_ORIGIN"/>
+		<item value="329" key="DIALOG_HEIGHT"/>
+		<item value="1|微软雅黑|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

@@ -1,0 +1,112 @@
+username=admin
+password=admin
+imageLocationPath=user-upload-image
+#weixin adress  
+serverIp=http://124.42.38.70
+caFileIp=http://192.168.236.41:8000/
+#registerMircoMessageMembership=http://192.168.236.30:8083/crmapi/membership/registerMircoMessageMembership.do
+smsAddress=tcp://192.168.236.20:61616
+smsUsername=lihu-test
+reportAddress=http://mobilecrm.yazuosoft.com
+queryCard=http://192.168.236.41:8083/crmapi/card/queryCard.do
+poiCompanyStore=http://food.weibo.com/soap/poi.companyStore
+getCouponForWeiXin=http://192.168.236.41:8083/crmapi/coupon/getCouponForWeiXin.do
+voteMembership=http://192.168.236.41:8083/crmapi/membership/voteMembership.do
+posCheck=http://devfood.appsina.com/soap/pos.check
+
+saveOrUpdateMerchantTag=http://192.168.236.41:8083/crmapi/merchantTag/saveOrUpdateMerchantTag.do
+saveMembershipTag=http://192.168.236.41:8083/crmapi/membershipTag/saveMembershipTag.do
+registerMircoMessageMembership=http://192.168.236.41:8083/crmapi/membership/registerMircoMessageMembership.do
+modifyMemberMessage=http://192.168.236.41:8083/crmapi/membership/modifyMemberMessage.do
+bindingMemberAndCard=http://192.168.236.41:8083/crmapi/cardnew/bindingMemberAndCard.do
+
+getTransWaterSumByCardNo=http://192.168.236.41:8083/crmapi/transwaternew/getTransWaterSumByCardNo.do
+addEvaluate=http://192.168.236.41:8083/crmapi/evaluate/addEvaluate.do
+modifyEvaluate=http://192.168.236.41:8083/crmapi/evaluate/modifyEvaluate.do
+#\u6295\u7968\u7ed3\u675f\u7684\u65e5\u671f,\u683c\u5f0f\u5fc5\u987b\u5982yyyy-MM-dd
+voteEndDate=2014-01-01
+#\u4e2d\u5956\u4fdd\u5b58\u5238\u63a5\u53e3
+#lottery_url=http://192.168.236.30:8083/crmapi/coupon/donateCouponByWeixin.do
+lottery_url=http://192.168.236.41:8083/crmapi/coupon/donateCouponByWeixin.do
+#\u56fe\u7247url\u5730\u5740
+#lottery_pic=http://192.168.236.30:8083
+#lottery_pic=http://test.crm.yazuo.com
+lottery_pic=http://192.168.236.41/
+
+buli_brandid=3500
+#buli_brandid=15
+quanjude_brandid=7098
+
+#\u9690\u85cf\u83dc\u54c1\u548c\u95e8\u5e97
+hide_brand_id=9355
+
+#\u767b\u5f55\u6821\u9a8c
+login.username=yazuo
+login.password=yazuov5
+#-------------\u83dc\u54c1 dishes-----------
+dishesListUrl =http://192.168.236.41:8083/crmapi/dishesNew/getDishesListByMerchantId.do
+dishesDetailUrl =http://192.168.236.41:8083/crmapi/dishesNew/getDishesByMerchantIdAndId.do
+dishesPrasieUrl =http://192.168.236.41:8083/crmapi/dishesNew/addDishesPraiseById.do
+#------------\u95e8\u5e97 bussiness----------
+memchantListUrl =http://192.168.236.41:8083/crmapi/merchantNew/getMerchantChildListByMerchantId.do
+zoneListUrl =http://192.168.236.41:8083/crmapi/areaNew/getAreaListByMerchantId.do
+#----------------dishes picture path----------- product  http://image.yazuo.com/ 
+dishesPicPAth=http://192.168.236.84:8080/group1/
+
+#---------------\u63d0\u4f9b\u7ed9\u7b2c\u4e09\u65b9\u8c03\u7528\u7684key--------------
+merchantKey=700029
+
+registerMircoMessageMembershipTest=http://192.168.236.41:8083/crmapi/newmembership/addMembershipOnly.do
+ 
+#merchant sort
+merchantSortUrl=http://192.168.236.41:8083/crmapi/merchant/getMerchantByIDAndArea.do
+#merchant \u6309\u7ecf\u7eac\u5ea6\u67e5\u8be2
+merchantSortByCoordinatesUrl=http://192.168.236.41:8083/crmapi/merchant/getMerchantByLongLaitude.do
+
+getMemAndCardMobileAndmerchantId=http://192.168.236.41:8083/crmapi/newmembership/getMemAndCardMobileAndMerchantId.do
+getCouponByCardNoAndMerchantId=http://192.168.236.41:8083/crmapi/couponnew/getCouponByCardNoAndMerchantId.do
+mailUrl=http://192.168.236.41:8083/crmapi/mail/sendMail.do
+consumeIntegral=http://192.168.236.41:8083/crmapi/integral/consumeIntegralPos.do
+checkCardTrade=http://192.168.236.41:8083/crmapi/cardnew/checkCardTrade.do
+getValidLotteryCountPath=http://192.168.236.41:8083/crmapi/membershipLottery/getOrUpdateMemLotteryByMemId.do
+queryCouponListByIdList=http://192.168.236.41:8083/crmapi/couponnew/queryCouponListByIdList.do
+memUrl=192.168.232.201:11111
+judgeCardNeedWritePwd =http://192.168.236.41:8083/crmapi/cardtype/checkCardType.do
+queryMemberByPhoneNo =http://192.168.236.41:8083/crmapi/newmembership/getMembershipByMobileAndBrandId.do
+getMemberByMembershipId=http://192.168.236.41:8083/crmapi/newmembership/getMemById.do
+updateCouponByIdAndMerchantId=http://192.168.236.41:8083/crmapi/couponnew/updateCouponByIdAndMerchantId.do
+activeCard=http://192.168.236.41:8083/crmapi/cardnew/activeCard.do
+executeCrmActive=http://192.168.236.41:8083/crmapi/activity/executeCrmActive.do
+updateCardPassword=http://192.168.236.41:8083/crmapi/cardnew/updateCardPassword.do
+resetCardPassword=http://192.168.236.41:8083/crmapi/cardnew/resetCardPassword.do
+url_long=http://api.weibo.com/2/short_url/shorten.json?source=1751316174&url_long=
+GiveCouponInto=http://192.168.236.41:8083/crmapi/couponnew/giveCouponInto.do
+#\u6587\u4ef6\u670d\u52a1\u5668\u5730\u5740
+imageFileUrl=http://192.168.236.84:8080/
+#es\u641c\u7d22\u5f15\u64ce\u670d\u52a1\u5668\u5730\u5740
+esurl=http://192.168.236.73:9200/
+getMerchantByMerchantId=http://192.168.236.41:8083/crmapi/merchant/getMerchantByMerchantId.do
+selectCardType=http://192.168.236.41:8083/crmapi/cardtype/selectCardType.do
+getCardPictureByCardType=http://192.168.236.41:8083/crmapi/cardtype/getIcon.do
+saveMemberFamilyBirthDay=http://192.168.236.41:8083/crmapi/membership/saveOrUpdateMembershipBirthdayFamilyList.do
+selectEvaluate=http://192.168.236.41:8083/crmapi/evaluate/selectEvaluate.do
+getMerchant=http://192.168.236.41:8083/crmapi/merchant/getMerchant.do
+getMemberFamilyBirthDay=http://192.168.236.41:8083/crmapi/family/getMembershipBirthdayFamilyListById.do
+#\u8c03\u7528wifi\u63a5\u53e3\u53d6cardTypeIds\u503c
+getProtalSettingCardTypeId=http://192.168.236.41:8086/controller/merchant/getCardTypeIds.do
+#\u53d6wifi\u8bbe\u7f6e\u7684\u81ea\u5b9a\u4e49\u5e7f\u544a\u9875
+getWifiCustomAdvertUrl=http://192.168.236.41:8086/controller/merchant/getCustomizeHomepage.do
+getCardType=http://192.168.236.41:8083/crmapi/cardtype/getCardType.do
+#newPictureUrl=http://192.168.236.84:8080/group1/
+newPictureUrl=http://192.168.236.84:8080/group1/
+wxrefundUrlv2=https://mch.tenpay.com/refundapi/gateway/refund.xml
+wxrefundUrlv3=https://api.mch.weixin.qq.com/secapi/pay/refund
+wxrefundquery=https://gw.tenpay.com/gateway/normalrefundquery.xml
+wxrefundqueryv3=https://api.mch.weixin.qq.com/pay/refundquery
+dfs.server.ip=192.168.236.84
+dfs.server.port=22122
+dfs.tracker.http.port=8080
+dfsFilePath=http://192.168.236.84:8080/
+addOrUpdateWeixinScope=http://192.168.236.41:8083/crmapi/weixinScopeNew/addOrUpdateWeixinScopeForWeiXin.do
+updateAvailableWeixinScope=http://192.168.236.41:8083/crmapi/weixinScopeNew/notAvailableWeixinScope.do
+certificateKeyUrl=http://192.168.236.84:8080/group1/

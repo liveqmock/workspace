@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/crmapi/!svn/ver/25632/code/weixin/src/main/java/com/yazuo/weixin/service/impl
+END
+LotteryMessageVerifyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/crmapi/!svn/ver/25379/code/weixin/src/main/java/com/yazuo/weixin/service/impl/LotteryMessageVerifyServiceImpl.java
+END
+TestImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/crmapi/!svn/ver/18740/code/weixin/src/main/java/com/yazuo/weixin/service/impl/TestImpl.java
+END
+BrandManageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/crmapi/!svn/ver/20953/code/weixin/src/main/java/com/yazuo/weixin/service/impl/BrandManageServiceImpl.java
+END
+LotteryRecordServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/crmapi/!svn/ver/23258/code/weixin/src/main/java/com/yazuo/weixin/service/impl/LotteryRecordServiceImpl.java
+END
+AdministratorInterfaceServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/svn/crmapi/!svn/ver/11956/code/weixin/src/main/java/com/yazuo/weixin/service/impl/AdministratorInterfaceServiceImpl.java
+END
+LotteryServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/crmapi/!svn/ver/24754/code/weixin/src/main/java/com/yazuo/weixin/service/impl/LotteryServiceImpl.java
+END
+LotteryItemCouponServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/crmapi/!svn/ver/14292/code/weixin/src/main/java/com/yazuo/weixin/service/impl/LotteryItemCouponServiceImpl.java
+END
+WeixinExternalServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/crmapi/!svn/ver/17681/code/weixin/src/main/java/com/yazuo/weixin/service/impl/WeixinExternalServiceImpl.java
+END
+ActivityService.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/java/com/yazuo/weixin/service/impl/ActivityService.java
+END
+AutoreplyData.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/crmapi/!svn/ver/21661/code/weixin/src/main/java/com/yazuo/weixin/service/impl/AutoreplyData.java
+END
+NewLotteryServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/crmapi/!svn/ver/24754/code/weixin/src/main/java/com/yazuo/weixin/service/impl/NewLotteryServiceImpl.java
+END
+CreateManageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/19194/code/weixin/src/main/java/com/yazuo/weixin/service/impl/CreateManageServiceImpl.java
+END
+ConsumerInterfaceServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/java/com/yazuo/weixin/service/impl/ConsumerInterfaceServiceImpl.java
+END
+WeixinManageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/java/com/yazuo/weixin/service/impl/WeixinManageServiceImpl.java
+END
+WeixinPayServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/crmapi/!svn/ver/20462/code/weixin/src/main/java/com/yazuo/weixin/service/impl/WeixinPayServiceImpl.java
+END
+MessageClickVerifyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/crmapi/!svn/ver/15609/code/weixin/src/main/java/com/yazuo/weixin/service/impl/MessageClickVerifyServiceImpl.java
+END
+BindingMemberAndCardServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/crmapi/!svn/ver/23548/code/weixin/src/main/java/com/yazuo/weixin/service/impl/BindingMemberAndCardServiceImpl.java
+END
+SaveOrModifyMembershipTagServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/crmapi/!svn/ver/24969/code/weixin/src/main/java/com/yazuo/weixin/service/impl/SaveOrModifyMembershipTagServiceImpl.java
+END
+SaveOrUpdateMerchantTagServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/crmapi/!svn/ver/18943/code/weixin/src/main/java/com/yazuo/weixin/service/impl/SaveOrUpdateMerchantTagServiceImpl.java
+END
+LotteryItemServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/crmapi/!svn/ver/14230/code/weixin/src/main/java/com/yazuo/weixin/service/impl/LotteryItemServiceImpl.java
+END
+RegisterPageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/25632/code/weixin/src/main/java/com/yazuo/weixin/service/impl/RegisterPageServiceImpl.java
+END
+ExternalServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/crmapi/!svn/ver/15536/code/weixin/src/main/java/com/yazuo/weixin/service/impl/ExternalServiceImpl.java
+END
+ServiceConfigServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/crmapi/!svn/ver/15606/code/weixin/src/main/java/com/yazuo/weixin/service/impl/ServiceConfigServiceImpl.java
+END
+WeixinLogAnalysisImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/crmapi/!svn/ver/22149/code/weixin/src/main/java/com/yazuo/weixin/service/impl/WeixinLogAnalysisImpl.java
+END
+QueryBrandIdServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/16009/code/weixin/src/main/java/com/yazuo/weixin/service/impl/QueryBrandIdServiceImpl.java
+END
+LotteryRuleServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/crmapi/!svn/ver/24011/code/weixin/src/main/java/com/yazuo/weixin/service/impl/LotteryRuleServiceImpl.java
+END
+WeixinPhonePageServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/crmapi/!svn/ver/25241/code/weixin/src/main/java/com/yazuo/weixin/service/impl/WeixinPhonePageServiceImpl.java
+END

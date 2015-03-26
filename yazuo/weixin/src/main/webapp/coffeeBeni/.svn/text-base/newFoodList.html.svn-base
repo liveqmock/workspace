@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0"/> 
+<link href="style/typeList.css" type="text/css" rel="stylesheet" />
+<title>新品上市</title>
+</head>
+
+<body>
+	<div class="artTitle">
+    	<h3>新品上市</h3>
+		2014-06-19 &nbsp;&nbsp; 咖啡陪你
+    </div>
+    
+    <div class="artInfo">
+    	<img src="foodImg/newFood/0.jpg" class="newFoodImg" />        
+        <p class="paddingInfo">前段时间的"<em>里约狂欢</em>"节仍然记忆犹新，"<em>激情桑巴</em>"舞出了巴西人的热情，如今世界杯也要掀开它神秘的面纱登上6月的舞台。让咖啡陪你玩转"<em>足球刨冰</em>"，奔向"<em>胜利之门</em>"，共享"<em>香芒福满</em>"，品尝胜利的喜悦，为世界杯加油。</p>
+        
+       
+        <img src="foodImg/newFood/1.jpg" class="newFoodImg" />
+        <p class="paddingInfo foodDetailTop"> <strong>Go! Brazil ! </strong> <br /> <strong>Go！Worldcup</strong></p>
+        
+        
+        <div class="oneItem">
+        	<img src="foodImg/newFood/2.jpg" class="newFoodImg" />
+        	<p class="foodName">benezuca足球刨冰<br/>베네주카</p>
+            <p class="foodInfo">
+            	咖啡陪你将温润绵密的巧克力布朗尼与酷爽细腻的gelato相容，头顶着一对可爱赤诚的小犄角，就好似足球明星闪耀在咖啡陪你。<br />
+				价格：<em>59</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        
+        <div class="oneItem">
+        	<img src="foodImg/newFood/3.jpg" class="newFoodImg" />
+        	<p class="foodName">胜利之门<br/>승리의 그라운드</p>
+            <p class="foodInfo">
+            	咖啡陪你打造出了可以吃的足球场哦！香醇的抹茶涂在松软可口的蛋糕上，巧克力球门矗立在青绿的足球场地，仿佛那漂亮的一球就在眼前。<br />
+				价格：<em>23</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        
+        <div class="oneItem">
+        	<img src="foodImg/newFood/4.jpg" class="newFoodImg" />
+        	<p class="foodName">香芒福满<br/>망고빙수</p>
+            <p class="foodInfo">
+            	用新鲜芒果层层叠加的清爽刨冰，在激情四射的足球季散发出浓浓的香芒味道，让我们的足球梦因清爽而愈加炽热。<br />
+				价格：<em>57</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/newFood/5.jpg" class="newFoodImg" />
+        	<p class="foodName">激情桑巴<br/>열정의 삼바</p>
+            <p class="foodInfo">
+            	仿若女孩的纯真与女人的妩媚自然相融。酝酿出夏天海滩派对时"激情桑巴"的味道，赋予了巴西足球无限的魅力。<br />
+				价格：<em>32</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        
+         <div class="oneItem last">
+        	<img src="foodImg/newFood/6.jpg" class="newFoodImg" />
+        	<p class="foodName">里约狂欢<br/>리오 카니발</p>
+            <p class="foodInfo">
+            	这款冰饮透出清脆的颜色为炎热的夏天带来几分凉爽，轻轻品尝巧克力的香浓又让人沉醉。<br />
+				价格：<em>32</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        
+        <p class="paddingInfo">精美的饮食让人垂涎欲滴，惊喜连连的活动也在等你来哦！</p>
+        
+        <div class="discountInfo">
+        	<h3>2014年6月10日-7月15日期间</h3>
+			<p>每日中午12:00前，凭当日消费美式咖啡小票，可享美式咖啡<strong>免费续杯</strong></p>
+        </div>
+        
+        <div class="discountInfo">
+        	<h3>2014年6月10日-7月15日期间</h3>
+			<p>单笔消费满78元（需包含任意一款世界杯新品）可参与微信抽奖，有机会抽取<strong>阿尔贝蒂尼或皮耶罗签名足球</strong>一个（共100个，送完即止）。</p>
+        </div>
+        
+        <div class="discountInfo">
+        	<h3>2014年6月10日-9月30日期间</h3>
+			<p>凭一个招商银行信用卡9积分兑换码+39元=benezuca足球刨冰一个</p>
+            <p>凭一个招商银行信用卡9积分兑换码+39元=激情桑巴/里约狂欢一杯+胜利之门蛋糕一个
+伴随众多新品纷纭上市，caffebene与您共同享受"世界杯"！圆你我共同的足球梦。</p>
+        </div>
+        <div class="discountInfo">
+        <p>
+        	咖啡陪你（Caffebene）作为韩国本土咖啡连锁品牌，从品牌创建至今，短时间内成为消费者最佳信任的品牌，获得了女性消费者品质满足奖，与韩国代表品牌大奖 。2012年咖啡陪你登陆中国，创造出更多适合中国人口味的产品，深得中国消费者的喜爱。还荣获了年度十大投资潜力品牌、 最佳特许连锁品牌、 优秀连锁加盟品牌等多种奖项。
+        </p>
+        </div>        
+    </div> 
+<script language="javascript" src="js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="js/typeList.js"></script>   
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>弹框</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+        <link rel="stylesheet" href="../asset/base.css">
+        <link rel="stylesheet" href="../asset/common.css">
+        <script src="../asset/third/underscore/underscore.js"></script>
+        <script src="../asset/third/underscore/underscore.string.js"></script>
+        <script src="../asset/third/jquery-1.11.1.js"></script>
+        <script src="../asset/third/avalon/avalon.js"></script>
+        <script>
+            var VERSION="0.0.0.0.0"; //版本号设置规则:all.asset.module.page.widget
+            var BASE_PATH="http://localhost:8080/yazuo_erp/";  //web根目录地址
+        </script>
+        <script src="../asset/boot.js"></script>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <script>
+            require(["util"], function(util) {
+                util.alert({
+                    "content": "test",
+                    "onSubmit": function () {
+                        alert('haha');
+                    }
+                });
+                util.alert({
+                    "content": "test2",
+                    "onSubmit": function () {
+                        alert('haha');
+                    }
+                });
+                util.confirm({
+                    "content": "test",
+                    "onSubmit": function () {
+                        alert('haha');
+                    }
+                });
+            })
+
+        </script>
+    </body>
+</html>

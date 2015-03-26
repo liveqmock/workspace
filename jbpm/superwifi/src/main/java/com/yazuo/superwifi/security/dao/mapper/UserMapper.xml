@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.superwifi.security.dao.UserDao">
+	<resultMap id="BaseResultMap" type="com.yazuo.superwifi.security.dto.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="temp_pwd" property="tempPwd" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="BOOLEAN"/>
+		<result column="open_id" property="openId" jdbcType="VARCHAR" />
+		<result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+		<result column="mobile_number" property="mobileNumber"
+			jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="SMALLINT" />
+		<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="user_position" property="userPosition"
+			jdbcType="VARCHAR" />
+		<result column="user_source" property="userSource" jdbcType="INTEGER" />
+		<result column="merchant_id" property="merchantId" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_name, password, status, open_id, insert_time, mobile_number,
+		user_type,
+		brand_id, user_position, user_source
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.yazuo.superwifi.security.dto.User">
+		insert into user (id, user_name, password,
+		status, open_id, insert_time,
+		mobile_number, user_type, brand_id,
+		user_position, user_source)
+		values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{status,jdbcType=SMALLINT}, #{openId,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP},
+		#{mobileNumber,jdbcType=VARCHAR}, #{userType,jdbcType=SMALLINT},
+		#{brandId,jdbcType=INTEGER},
+		#{userPosition,jdbcType=VARCHAR}, #{userSource,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.yazuo.superwifi.security.dto.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="openId != null">
+				open_id,
+			</if>
+			<if test="insertTime != null">
+				insert_time,
+			</if>
+			<if test="mobileNumber != null">
+				mobile_number,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+			<if test="brandId != null">
+				brand_id,
+			</if>
+			<if test="userPosition != null">
+				user_position,
+			</if>
+			<if test="userSource != null">
+				user_source,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=SMALLINT},
+			</if>
+			<if test="openId != null">
+				#{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mobileNumber != null">
+				#{mobileNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=SMALLINT},
+			</if>
+			<if test="brandId != null">
+				#{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="userPosition != null">
+				#{userPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="userSource != null">
+				#{userSource,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yazuo.superwifi.security.dto.User">
+		update user
+		<set>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=SMALLINT},
+			</if>
+			<if test="openId != null">
+				open_id = #{openId,jdbcType=VARCHAR},
+			</if>
+			<if test="insertTime != null">
+				insert_time = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mobileNumber != null">
+				mobile_number = #{mobileNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=SMALLINT},
+			</if>
+			<if test="brandId != null">
+				brand_id = #{brandId,jdbcType=INTEGER},
+			</if>
+			<if test="userPosition != null">
+				user_position = #{userPosition,jdbcType=VARCHAR},
+			</if>
+			<if test="userSource != null">
+				user_source = #{userSource,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yazuo.superwifi.security.dto.User">
+		update user
+		set user_name = #{userName,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		status = #{status,jdbcType=SMALLINT},
+		open_id = #{openId,jdbcType=VARCHAR},
+		insert_time = #{insertTime,jdbcType=TIMESTAMP},
+		mobile_number = #{mobileNumber,jdbcType=VARCHAR},
+		user_type = #{userType,jdbcType=SMALLINT},
+		brand_id = #{brandId,jdbcType=INTEGER},
+		user_position = #{userPosition,jdbcType=VARCHAR},
+		user_source = #{userSource,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="loadUserByMobileNumber" resultMap="BaseResultMap"
+		parameterType="string">
+		SELECT
+		user_info_id AS ID,
+		user_info_name AS user_name,
+		mobile AS mobile_number,
+		available_flag AS status,
+		"password",
+	    temp_pwd,
+	    cipher_passwd AS "cipherPasswd",
+	    temp_pwd_expire_time AS "tempPwdExpireTime",
+		merchant_id
+		FROM
+		account.user_info
+		WHERE
+		mobile =#{mobileNumber}
+		AND available_flag IS TRUE;
+	</select>
+	<select id="getUsersByTerm" resultType="map">
+		SELECT
+		u.user_info_id as "userInfoId",
+		u.user_info_name as "userInfoName",
+		u.mobile,
+		u.merchant_id as "merchantId",
+		(
+		SELECT
+		COUNT (au.authority_id)
+		FROM
+		account.user_role AS ur,
+		account.role_authority AS ra,
+		account.authority AS au
+		WHERE
+		ur.role_id = ra.role_id
+		AND ra.authority_id = au.authority_id
+		AND ur.user_info_id
+		= u.user_info_id
+		AND au.product_id IN (
+		WITH RECURSIVE r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = #{productId}
+		UNION ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id = account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+		) AS authority_count
+		FROM
+		account.user_info as u
+		WHERE
+		u.available_flag IS TRUE
+		AND u.merchant_id IN
+		<foreach collection="list" item="item" index="index"
+			separator="," open="(" close=")">
+			#{item}
+		</foreach>
+		<if test="userInfoName != null and userInfoName !=''">
+			AND u.user_info_name like '%'||#{userInfoName,jdbcType=VARCHAR}||'%'
+		</if>
+		<if test="mobileNumber != null and mobileNumber !=''">
+			AND u.mobile_number =#{mobileNumber,jdbcType=VARCHAR}
+		</if>
+		ORDER BY u.user_info_id DESC
+	</select>
+	<select id="getMerchantProductByMerchantIdAndProId" resultType="map">
+		SELECT * FROM account.merchant_product WHERE merchant_id =#{merchantId} AND product_id = #{productId}
+	</select>
+	
+	<select id="getAuthByUserId" resultType="String">
+		SELECT
+		authority_code
+		FROM
+		account.authority
+		WHERE
+		authority_id IN (
+		SELECT
+		ra.authority_id
+		FROM
+		account.user_role AS ur,
+		account.role_authority AS ra
+		WHERE
+		ur.role_id = ra.role_id
+		AND ur.user_info_id = #{userId}
+		)
+		AND product_id IN (
+		WITH RECURSIVE r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = #{productId}
+		UNION ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id = account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+		ORDER BY
+		authority_id
+	</select>
+	<select id="loadUserByUserId" resultMap="BaseResultMap"
+		parameterType="int">
+		SELECT
+		user_info_id AS ID,
+		user_info_name AS user_name,
+		mobile AS mobile_number,
+		available_flag AS status,
+		"password",
+	    temp_pwd,
+	    cipher_passwd AS "cipherPasswd",
+	    temp_pwd_expire_time AS "tempPwdExpireTime",
+		merchant_id
+		FROM
+		account.user_info
+		WHERE
+		user_info_id =#{userId}
+		AND available_flag IS TRUE;
+	</select>
+</mapper>

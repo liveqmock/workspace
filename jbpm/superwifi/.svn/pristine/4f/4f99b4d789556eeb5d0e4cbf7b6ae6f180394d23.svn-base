@@ -1,0 +1,106 @@
+.page-backend-macmanage .bd-macmanage {
+    background-color: #f6fafd;
+    border-top: solid #eaeaea 1px;
+}
+
+.page-backend-macmanage .page-filter {
+    padding: 15px;
+    background-color: #EFF3F6;
+}
+
+.page-backend-macmanage .page-filter label {
+    line-height: 30px;
+}
+
+.page-backend-macmanage .page-filter label,
+.page-backend-macmanage .page-filter span,
+.page-backend-macmanage .page-filter input {
+    vertical-align: middle;
+}
+
+.page-backend-macmanage .page-h2 {
+    height: 45px;
+    padding: 0 14px;
+}
+
+.page-backend-macmanage .page-h2 .num {
+    color: #ff0000;
+    padding: 0 5px;
+}
+
+.page-backend-macmanage .page-h2 span {
+    line-height: 45px;
+    float: left;
+    font-size: 16px;
+    color: #171a1f;
+}
+
+.page-backend-macmanage .add-btn {
+    float: right;
+    margin-top: 8px;
+    line-height: 30px;
+    color: #646464;
+}
+
+.page-backend-macmanage .format-a a {
+    padding: 0 8px;
+}
+
+.page-backend-macmanage .keyword {
+    width: 230px;
+}
+
+.page-mac-add-edit-dialog .ff-value-box {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.page-mac-add-edit-dialog .ff-value-tip {
+    color: #f00000;
+    padding-bottom: 10px;
+}
+
+.page-mac-add-edit-dialog .border-red {
+    border: solid #f00000 1px;
+}
+
+.page-mac-add-edit-dialog .ui-dialog-content {
+    padding-bottom: 0;
+}
+
+.page-mac-add-edit-dialog .ff-value {
+    margin-left: 80px;
+}
+
+.page-mac-add-edit-dialog .input-text {
+    width: 260px;
+}
+
+.page-mac-add-edit-dialog .edit-mac-btn {
+    width: 80px;
+}
+
+.ff-value-box ins, .warning-type {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+.warning-type {
+    vertical-align: middle;
+}
+
+.ff-value-box ins {
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.original-price-show {
+    margin-left: 10px;
+}
+
+.card-text-style {
+    line-height: 30px;
+    font-size: 14px;
+}

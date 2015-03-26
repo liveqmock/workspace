@@ -1,0 +1,162 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="page-padding">
+        <h2 class="addedit-title">{{pageTitle}}</h2>
+        <div class="add-edit-create-query">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>商户：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box customer-title auto-complete-blur-event" >
+                            <span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span>
+                        </div>
+                        <input type="hidden" class="hidden-merchantId" ms-value="merchantId"
+                               data-rules="empty"
+                               data-tips="商户不能为空！"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star"></span>域/门店：</label>
+                    <div class="ff-value">
+                        <input type="text" ms-value="storeName" ms-click="treeShow" class="input-text input-text-store" readonly>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>联系人：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="schedule create-select-small" ms-widget="select,$,$contactSelectOpts1"></span>
+                            <span class="schedule create-select-small" ms-widget="select,$,$contactSelectOpts2"></span>
+                            <span ms-visible="hide2" class="input-text create-span-small">{{mobile}}</span>
+                        </div>
+                        <input type="hidden" class="hidden-contactId" ms-value="contactId>0?1:''"
+                               data-rules="empty"
+                               data-tips="请选择联系人！"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>来源：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="schedule create-select-small" ms-widget="select,$,$sourceCatSelectOpts"></span>
+                            <span class="schedule create-select-small" ms-widget="select,$,$sourceSelectOpts"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>类型：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="schedule create-select-small" ms-widget="select,$,$typeSelectOpts1"></span>
+                            <span ms-visible="hide3" class="schedule create-select-small" ms-widget="select,$,$typeSelectOpts2"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>标题：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text"
+                                   class="input-text"
+                                   ms-duplex="title"
+                                   data-rules="empty"
+                                   data-tips="标题不能为空！"
+                                   isrule=true>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star"></span>内容：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <textarea class="input-textarea" ms-duplex="content"></textarea>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star"></span>附件：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <div ms-widget="uploader,$,$AttachUploaderOpts">
+                                <button class="simple-btn" ms-if="!uping">上传附件</button>&nbsp;&nbsp;<span class="tips-color">只能上传一个，后上传的覆盖之前上传的</span>
+                            </div>
+                            <div class="upfile-create"></div>
+                            <div class="attachment-box">
+                                <span class="attachments-style-- tips-color" ms-if="attachments.originalFileName">{{attachments.originalFileName}}&nbsp;
+                                    <!--i class="iconfont" ms-attr-data-index="$index" ms-click="removeAttachments">&#xe616;</i-->
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>处理人：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box" ms-if="permission.assign_141">
+                            <span class="schedule" ms-widget="select,$,$handlerSelectOpts"></span>
+                        </div>
+                        <div class="ff-value-box" ms-if="!permission.assign_141">
+                            <input type="text" class="input-text handler-person-name" ms-duplex="handlerPerson" readonly>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>处理时间：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span ms-visible="handledTime != 0"><input type="text" class="input-text date-input" withemptyicon="no" readonly="readonly" ms-value="handledTime" ms-click="openDateCalendar"/></span>
+                            <!--a ms-visible="handledTime == 0" href="javascript:;" class="font14" ms-click="openDateCalendar">设置时间</a>
+                            <a ms-visible="handledTime != 0" href="javascript:;" class="font14" ms-click="removeHandlerDate">取消时间</a-->
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>提醒：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <div class="remind-trigger fn-left" ms-class-1="state-remind-open:isRemind"><span class="icon-remind "></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="remind-text" ms-visible="!isRemind" data-id="1" ms-click="setRemind">打开提醒</span>
+                                <span class="remind-text" ms-visible="isRemind" data-id="0" ms-click="setRemind">关闭提醒</span></div>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+
+                </div>
+                <div ><input type="button" ms-click="saveData" class="save-button main-btn" value="保存"></div>
+            </div>
+            <!--门店、域树结构-->
+            <div class="create-merchant-tree" ms-visible="displayTree">
+                <div ms-visible="treeList" ms-widget="tree,$,$ztreeOpts"></div>
+                <div ms-visible="!treeList" class="create-merchant-tree-default">请先选择商户</div>
+            </div>
+            <!--门店、域树结构-end-->
+        </div>
+    </div>
+</div>
+<!-- 联系人 start-->
+<div ms-module="address,$,$addressOpts"></div>
+<!-- 联系人 end-->
+<!--指派需求-->
+<div ms-module="persontree,$,$treeOpts"></div>
+<!--指派需求-end-->
+

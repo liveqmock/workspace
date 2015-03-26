@@ -1,0 +1,473 @@
+.page-backend-customerservice-linewaiting {
+    color:#777;
+}
+/*page-top*/
+.page-backend-customerservice-linewaiting .index {
+    padding: 0 15px;
+}
+.page-backend-customerservice-linewaiting .page-head{
+    padding:20px 0;
+    overflow:hidden;
+}
+.page-backend-customerservice-linewaiting .page-head-left {
+    float:left;
+    display:inline;
+    width: 600px;
+    overflow:hidden;
+}
+.page-backend-customerservice-linewaiting .page-head-left-logo {
+    float:left;
+    display:inline;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #eee;
+}
+.page-backend-customerservice-linewaiting .page-head-left-logo img {
+    width: 100px;
+    height: 100px;
+}
+.page-backend-customerservice-linewaiting .page-head-left-text {
+    float: left;
+    display: inline;
+    width: 450px;
+    padding-left: 30px;
+    padding-top:15px;
+}
+.page-backend-customerservice-linewaiting .page-head-left-text h2 {
+    font-size: 24px;
+    line-height:30px;
+    padding-bottom:10px;
+}
+.page-backend-customerservice-linewaiting .page-head-left-text ul {
+    width: 100%;
+    overflow:hidden;
+}
+.page-backend-customerservice-linewaiting .page-head-left-text ul li {
+    width: 170px;
+    margin-right: 30px;
+    float:left;
+    display: inline;
+    line-height: 25px;
+}
+.page-backend-customerservice-linewaiting .page_head_right {
+    float:right;
+    display: inline;
+}
+.page-backend-customerservice-linewaiting .page_head_right button {
+    margin-right:20px;
+}
+/*page-top-end*/
+/*page-tabs*/
+.page-backend-customerservice-linewaiting .max-tabs-nav {
+    height:40px;
+    position: relative;
+}
+.page-backend-customerservice-linewaiting .tips-number {
+    width:20px;
+    height:20px;
+    background:#FE561A;
+    border-radius: 10px;
+    color:#fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 12px;
+    right:5px;
+    top:2px;
+}
+.page-backend-customerservice-linewaiting .max-tabs-nav p {
+    float: left;
+    display: inline;
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+
+.page-backend-customerservice-linewaiting .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-backend-customerservice-linewaiting .max-tabs-nav div {
+    position:absolute;
+    right:20px;
+    top:10px;
+}
+.page-backend-customerservice-linewaiting .max-tabs-nav div span {
+    margin: 0 5px;
+    font-size: 14px;
+}
+.page-backend-customerservice-linewaiting .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+    margin-bottom:20px;
+}
+.page-backend-customerservice-linewaiting .waiting-head-list li {
+    float: left;
+    display: inline;
+    width: 30%;
+    padding-left:3%;
+    line-height: 30px;
+    font-size: 14px;
+}
+.page-backend-customerservice-linewaiting .waiting-head-product p {
+    padding-left:3%;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.page-backend-customerservice-linewaiting .card-grid td {
+    border-right:1px solid #ccc;
+}
+.page-backend-customerservice-linewaiting .card-grid .name-left {
+    padding-left:10px;
+    text-align:left;
+}
+.page-backend-customerservice-linewaiting .card-grid .name-center {
+    padding:0 10px;
+    text-align:center;
+}
+.page-backend-customerservice-linewaiting .card-grid th {
+    padding: 8px;
+}
+.page-backend-customerservice-linewaiting .card-grid .name-right {
+    padding-right:10px;
+    text-align:right;
+}
+.page-backend-customerservice-linewaiting span.warn {
+    color : red;
+}
+/*page-tabs-end*/
+/*waiting*/
+.page-backend-customerservice-linewaiting .waiting-step {
+    padding: 20px 0;
+}
+.page-backend-customerservice-linewaiting .waiting-box {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    margin-bottom: 15px;
+    border: 1px solid #E1E1E1;
+}
+.page-backend-customerservice-linewaiting .waiting-box .number {
+    width: 55px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    font-size: 28px;
+    height: 100%;
+    border: none;
+    background: #D5D2CD;
+    color: #fff;
+}
+.page-backend-customerservice-linewaiting .waiting-box .content {
+    position: relative;
+    margin-left: 70px;
+    margin-right: 300px;
+    padding: 10px 0;
+    font-size: 14px;
+}
+.page-backend-customerservice-linewaiting .waiting-box .content h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.page-backend-customerservice-linewaiting .waiting-box .operation {
+    width: 280px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -17px;
+    text-align: right;
+    padding-right: 10px;
+}
+.page-backend-customerservice-linewaiting .waiting-box .operation  div {
+    display: inline-block;
+    position: relative;
+}
+.page-backend-customerservice-linewaiting .waiting-box .type-box {
+    padding: 5px;
+}
+.page-backend-customerservice-linewaiting .waiting-box .box-model {
+    width: 100%;
+    overflow:hidden;
+    margin-bottom:10px;
+}
+.page-backend-customerservice-linewaiting .waiting-box .box-model span{
+    display: inline-block;
+    padding: 1px 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    cursor:pointer;
+}
+
+.page-backend-customerservice-linewaiting .waiting-begin {
+    border:1px solid #0099CC;
+    background: #f4fdff;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .number {
+    background: #0099CC;
+}
+
+/*waiting-end*/
+/*dialog*/
+.linewaiting-access-dialog {
+    font-size: 14px;
+    color: #666;
+}
+.linewaiting-access-dialog .ui-dialog-content {
+    padding: 0;
+}
+.linewaiting-access-dialog .f-body {
+
+}
+.linewaiting-access-dialog table.linewaiting-nav {
+    width: 100%;
+    height:45px;
+    text-align: center;
+}
+
+.linewaiting-access-dialog table.linewaiting-nav div {
+    border-bottom: 1px solid #CAE5FA;
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    background: #ECF6FF;
+    cursor:pointer;
+}
+.linewaiting-access-dialog table.linewaiting-nav .cur{
+    background: #fff;
+    border-left:1px solid #CAE5FA;
+    border-right:1px solid #CAE5FA;
+    border-bottom:none;
+    color:#5EA9E0;
+}
+.linewaiting-access-dialog .linewaiting-con {
+    padding:20px;
+    height: 400px;
+    overflow-y: auto;
+    position: relative;
+}
+.linewaiting-access-dialog .waiting-box {
+    border-bottom:1px dashed #ccc;
+    padding:15px;
+}
+.linewaiting-access-dialog .f-field {
+    margin: 0;
+}
+.linewaiting-access-dialog .waiting-box-title {
+    line-height: 23px;
+    font-size: 14px;
+}
+.linewaiting-access-dialog .waiting-box-con {
+    padding: 10px;
+    padding-left:35px;
+}
+.linewaiting-access-dialog .waiting-box-con label {
+    margin-right:15px;
+    display: inline-block;
+    padding: 5px 0;
+    font-size: 14px;
+}
+.linewaiting-access-dialog .waiting-box-con textarea {
+    width:95%;
+}
+
+.question-manage-dialog-ul .reason {
+    width:420px;
+    height:130px;
+
+}
+.linewaiting-access-dialog .warn {
+    color: red;
+}
+/*dialog-end*/
+
+
+/*未开始*/
+.page-backend-customerservice-linewaiting .status-ready {
+    border:1px solid #E1E1E1;
+}
+.page-backend-customerservice-linewaiting .status-ready .number {
+    background:#E1E1E1;
+}
+.page-backend-customerservice-linewaiting .status-ready .status-style {
+    background:#fff;
+    border:1px solid #E1E1E1;
+}
+/*已经开始*/
+.page-backend-customerservice-linewaiting .waiting-begin {
+    border:1px solid #0099CC;
+    background: #f4fdff;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .number {
+    background: #0099CC;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .content h2 {
+    color:#0099CC;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .status-style {
+    background:#fff;
+    border:1px solid #0099CC;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .box-list-outer li{
+    width: 635px;
+    overflow: hidden;
+    margin: 3px 0;
+    background: #fff;
+    padding: 3px 0;
+    border:1px solid #0099CC;
+    font-size: 12px;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .box-list-outer li .left-title {
+    float: left;
+    display:inline;
+    width:130px;
+    text-indent: 5px;
+    line-height: 23px;
+
+}
+.page-backend-customerservice-linewaiting .waiting-begin .box-list-outer li .left-con {
+    float: left;
+    display:inline;
+    width:500px;
+    line-height: 23px;
+    padding-left: 5px;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .box-list-outer li.waiting-box-title-button {
+    position: relative;
+    border:1px solid #0099CC;
+    float: left;
+    display: inline;
+    width: 160px;
+    height: 26px;
+    overflow: hidden;
+    padding: 0 3px;
+    cursor: pointer;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .box-list-outer li.waiting-box-title-button p.text {
+    width: 140px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    color: #0099CC;
+    overflow: hidden;
+}
+.page-backend-customerservice-linewaiting .waiting-begin .box-list-outer li.waiting-box-title-button p.choice {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    text-align: center;
+    height: 26px;
+    border-left: 1px solid #0099CC;
+}
+
+/*已经结束*/
+.page-backend-customerservice-linewaiting .status-end {
+    border:1px solid #2CC78F;
+    background: #eafff1;
+}
+.page-backend-customerservice-linewaiting .status-end .number {
+    background: #2CC78F;
+}
+.page-backend-customerservice-linewaiting .status-end .content h2 {
+    color:#2CC78F;
+}
+.page-backend-customerservice-linewaiting .status-end .status-style {
+    background:#fff;
+    border:1px solid #2CC78F;
+}
+.page-backend-customerservice-linewaiting .status-end .box-list-outer li{
+    width: 635px;
+    overflow: hidden;
+    margin: 3px 0;
+    background: #fff;
+    padding: 3px 0;
+    border:1px solid #2CC78F;
+    font-size: 12px;
+}
+.page-backend-customerservice-linewaiting .status-end .box-list-outer li .left-title {
+    float: left;
+    display:inline;
+    width:130px;
+    text-indent: 5px;
+    line-height: 23px;
+
+}
+.page-backend-customerservice-linewaiting .status-end .box-list-outer li .left-con {
+    float: left;
+    display:inline;
+    width:500px;
+    line-height: 23px;
+    padding-left: 5px;
+}
+.page-backend-customerservice-linewaiting .status-end .box-list-outer li.waiting-box-title-button {
+    position: relative;
+    border:1px solid #2CC78F;
+    float: left;
+    display: inline;
+    width: 160px;
+    height: 26px;
+    overflow: hidden;
+    padding: 0 3px;
+    cursor: pointer;
+}
+.page-backend-customerservice-linewaiting .status-end .box-list-outer li.waiting-box-title-button p.text {
+    width: 140px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    color: #2CC78F;
+    overflow: hidden;
+}
+.page-backend-customerservice-linewaiting .status-end .box-list-outer li.waiting-box-title-button p.choice {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20px;
+    text-align: center;
+    height: 26px;
+    border-left: 1px solid #2CC78F;
+}
+/*已超时*/
+.page-backend-customerservice-linewaiting .status-past {
+    border:1px solid #FF7800;
+    background: #ffeeea;
+}
+.page-backend-customerservice-linewaiting .status-past .number {
+    background: #FF7800;
+}
+.page-backend-customerservice-linewaiting .status-past .content h2 {
+    color:#FF7800;
+}
+.page-backend-customerservice-linewaiting .status-past .status-style {
+    background:#fff;
+    border:1px solid #FF7800;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

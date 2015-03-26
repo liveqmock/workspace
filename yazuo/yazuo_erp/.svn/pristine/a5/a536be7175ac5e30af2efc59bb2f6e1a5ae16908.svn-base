@@ -1,0 +1,38 @@
+.page-study-studentmanage .page-tip .num {
+    color :#ff7800;
+}
+.page-study-studentmanage .page-filter .input-text {
+    width: 168px;
+}
+.page-study-studentmanage .page-filter .ui-select-header {
+    width: 120px;
+}
+.page-study-studentmanage .page-bd .ui-grid .overtime {
+    color: #ff0000;
+    font-style:normal;
+}
+.page-study-studentmanage .progress-item {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    font-size: 14px;
+    color: #d3cecc;
+    margin-left: -1px;
+}
+.page-study-studentmanage .progress-list .is-current {
+    border: 1px solid #548bc6;
+    background: #76a9e0;
+    color: #ffffff;
+}
+.page-study-studentmanage .progress-list .is-studied {
+    border: 1px solid #45b79d;
+    background: #66ccb5;
+    color: #ffffff;
+}
+.page-study-studentmanage .progress-list .is-timeout {
+    border: 1px solid #c4170e;
+    background: #e81130;
+    color: #ffffff;
+}

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.mkt.dao.MktBusinessTypeDao">
+	<resultMap id="MktBusinessType" type="com.yazuo.erp.mkt.vo.MktBusinessTypeVO">
+    	<id property="id" column="id"/>
+    	<result property="parentId" column="parent_id"/>
+    	<result property="typeText" column="type_text"/>
+    	<result property="isVisible" column="is_visible"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="mktbusinesstypeColumns">
+	    <![CDATA[
+		id,parent_id,type_text,is_visible,remark,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveMktBusinessType" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： parent_id,type_text,is_visible,insert_by,insert_time,--> 
+        INSERT INTO mkt.mkt_business_type (
+        	 <if test="parentId!=null ">parent_id,</if>
+        	 <if test="typeText!=null and typeText!=''">type_text,</if>
+        	 <if test="isVisible!=null and isVisible!=''">is_visible,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES (
+       	    <if test="parentId!=null ">#{parentId},</if>
+       	    <if test="typeText!=null and typeText!=''">#{typeText},</if>
+       	    <if test="isVisible!=null and isVisible!=''">#{isVisible},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertMktBusinessTypes" parameterType="map">
+	 <!--不允许为空的字段： parent_id,type_text,is_visible,insert_by,insert_time,--> 
+        INSERT INTO mkt.mkt_business_type (
+        	 <if test="parentId!=null ">parent_id,</if>
+        	 <if test="typeText!=null and typeText!=''">type_text,</if>
+        	 <if test="isVisible!=null and isVisible!=''">is_visible,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="parentId!=null ">#{t.parentId},</if>
+          <if test="typeText!=null and typeText!=''">#{t.typeText},</if>
+          <if test="isVisible!=null and isVisible!=''">#{t.isVisible},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateMktBusinessType">
+        UPDATE mkt.mkt_business_type 
+ 		  <set>
+	        <if test="parentId!=null ">parent_id = #{parentId} ,</if>
+	        <if test="typeText!=null and typeText!=''">type_text = #{typeText} ,</if>
+	        <if test="isVisible!=null and isVisible!=''">is_visible = #{isVisible} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateMktBusinessTypesToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE mkt.mkt_business_type 
+ 		  <set>
+	        <if test="parentId!=null ">parent_id = #{t.parentId} ,</if>
+	        <if test="typeText!=null and typeText!=''">type_text = #{t.typeText} ,</if>
+	        <if test="isVisible!=null and isVisible!=''">is_visible = #{t.isVisible} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateMktBusinessTypesToSameVals" parameterType="map">
+        UPDATE mkt.mkt_business_type 
+ 		  <set>
+	        <if test="parentId!=null ">parent_id = #{parentId} ,</if>
+	        <if test="typeText!=null and typeText!=''">type_text = #{typeText} ,</if>
+	        <if test="isVisible!=null and isVisible!=''">is_visible = #{isVisible} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteMktBusinessTypeById">
+    <![CDATA[
+        DELETE FROM mkt.mkt_business_type WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteMktBusinessTypeByIds" parameterType="list">
+        DELETE FROM mkt.mkt_business_type WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getMktBusinessTypeById" resultMap="MktBusinessType">
+		SELECT <include refid="mktbusinesstypeColumns" />
+		    FROM mkt.mkt_business_type 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getMktBusinessTypes" resultMap="MktBusinessType">
+		SELECT <include refid="mktbusinesstypeColumns" />
+		    FROM mkt.mkt_business_type  
+	    <include refid="mktbusinesstype_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getMktBusinessTypesMap" resultType="map">
+		SELECT <include refid="mktbusinesstypeColumns" />
+	    <![CDATA[
+		    FROM mkt.mkt_business_type  
+	    ]]>
+	    <include refid="mktbusinesstype_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+    <select id="getAllTopMktBusinessTypes" resultMap="MktBusinessType">
+        SELECT *
+        FROM mkt.mkt_business_type
+        WHERE parent_id=0
+    </select>
+
+	
+	<sql id="mktbusinesstype_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="parentId!=null ">AND parent_id = #{parentId}</if>
+	       <if test="typeText!=null and typeText!=''">AND type_text = #{typeText}</if>
+	       <if test="isVisible!=null and isVisible!=''">AND is_visible = #{isVisible}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getMktBusinessTypeCount" resultType="long">
+        SELECT count(*) FROM mkt.mkt_business_type 
+		<include refid="mktbusinesstype_findPage_where"/>    
+    </select>
+    
+</mapper>

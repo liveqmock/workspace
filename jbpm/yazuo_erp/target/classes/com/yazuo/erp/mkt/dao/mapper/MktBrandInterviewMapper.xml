@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.mkt.dao.MktBrandInterviewDao">
+	<resultMap id="MktBrandInterview" type="com.yazuo.erp.mkt.vo.MktBrandInterviewVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="contactId" column="contact_id"/>
+    	<result property="format" column="format" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="storeNumber" column="store_number"/>
+    	<result property="joinType" column="join_type"/>
+    	<result property="businessArea" column="business_area"/>
+    	<result property="customerType" column="customer_type"/>
+    	<result property="dailyTurnover" column="daily_turnover"/>
+    	<result property="cashCountPerDay" column="cash_count_per_day"/>
+    	<result property="perOrder" column="per_order"/>
+    	<result property="perCapita" column="per_capita"/>
+    	<result property="groupPurchase" column="group_purchase"/>
+    	<result property="coupon" column="coupon"/>
+    	<result property="bankCardOffer" column="bank_card_offer"/>
+    	<result property="otherShopDiscount" column="other_shop_discount"/>
+    	<result property="cardType" column="card_type" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="managementSystem" column="management_system" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="memberRight" column="member_right" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="sendCardNumber" column="send_card_number"/>
+    	<result property="potentialCustomerSource" column="potential_customer_source"/>
+    	<result property="potentialCustomerNum" column="potential_customer_num"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="networkCondition" column="network_condition"/>
+    	<result property="networkSpeed" column="network_speed"/>
+    	<result property="confirmTime" column="confirm_time"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="networkRemark" column="network_remark"/>
+    	<result property="confirmTime" column="confirm_time"/>
+    	<result property="merchantName" column="merchant_name"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="attachmentPath" column="attachment_path"/>
+    	<result property="fileName" column="file_name"/>
+    	<result property="originalFileName" column="original_file_name"/>
+    	<result property="fileSize" column="file_size"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="mktbrandinterviewColumns">
+	    <![CDATA[
+		id,merchant_id,contact_id,format,store_number,join_type,business_area,customer_type,daily_turnover,cash_count_per_day,per_order,per_capita,group_purchase,coupon,bank_card_offer,other_shop_discount,card_type,management_system,member_right,send_card_number,potential_customer_source,potential_customer_num,attachment_id,network_condition,network_speed,confirm_time,is_enable,remark,insert_by,insert_time,update_by,update_time,network_remark
+	    ]]>
+	</sql>
+
+	<insert id="saveMktBrandInterview" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,contact_id,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_brand_interview (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="format!=null ">format,</if>
+        	 <if test="storeNumber!=null and storeNumber!=''">store_number,</if>
+        	 <if test="joinType!=null and joinType!=''">join_type,</if>
+        	 <if test="businessArea!=null and businessArea!=''">business_area,</if>
+        	 <if test="customerType!=null and customerType!=''">customer_type,</if>
+        	 <if test="dailyTurnover!=null and dailyTurnover!=''">daily_turnover,</if>
+        	 <if test="cashCountPerDay!=null ">cash_count_per_day,</if>
+        	 <if test="perOrder!=null and perOrder!=''">per_order,</if>
+        	 <if test="perCapita!=null and perCapita!=''">per_capita,</if>
+        	 <if test="groupPurchase!=null and groupPurchase!=''">group_purchase,</if>
+        	 <if test="coupon!=null and coupon!=''">coupon,</if>
+        	 <if test="bankCardOffer!=null and bankCardOffer!=''">bank_card_offer,</if>
+        	 <if test="otherShopDiscount!=null and otherShopDiscount!=''">other_shop_discount,</if>
+        	 <if test="cardType!=null ">card_type,</if>
+        	 <if test="managementSystem!=null ">management_system,</if>
+        	 <if test="memberRight!=null ">member_right,</if>
+        	 <if test="sendCardNumber!=null and sendCardNumber!=''">send_card_number,</if>
+        	 <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">potential_customer_source,</if>
+        	 <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">potential_customer_num,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="networkCondition!=null and networkCondition!=''">network_condition,</if>
+        	 <if test="networkSpeed!=null and networkSpeed!=''">network_speed,</if>
+        	 <if test="confirmTime!=null ">confirm_time,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="networkRemark!=null and networkRemark!=''">network_remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="contactId!=null ">#{contactId},</if>
+       	    <if test="format!=null">
+	        	#{format, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+       	    <if test="storeNumber!=null and storeNumber!=''">#{storeNumber},</if>
+       	    <if test="joinType!=null and joinType!=''">#{joinType},</if>
+       	    <if test="businessArea!=null and businessArea!=''">#{businessArea},</if>
+       	    <if test="customerType!=null and customerType!=''">#{customerType},</if>
+       	    <if test="dailyTurnover!=null and dailyTurnover!=''">#{dailyTurnover},</if>
+       	    <if test="cashCountPerDay!=null ">#{cashCountPerDay},</if>
+       	    <if test="perOrder!=null and perOrder!=''">#{perOrder},</if>
+       	    <if test="perCapita!=null and perCapita!=''">#{perCapita},</if>
+       	    <if test="groupPurchase!=null and groupPurchase!=''">#{groupPurchase},</if>
+       	    <if test="coupon!=null and coupon!=''">#{coupon},</if>
+       	    <if test="bankCardOffer!=null and bankCardOffer!=''">#{bankCardOffer},</if>
+       	    <if test="otherShopDiscount!=null and otherShopDiscount!=''">#{otherShopDiscount},</if>
+       	    <if test="cardType!=null and cardType!=''">
+	        	#{cardType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+	        <if test="managementSystem!=null and managementSystem!=''">
+	        	#{managementSystem, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+	        <if test="memberRight!=null and memberRight!=''">
+	        	#{memberRight, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+       	    <if test="sendCardNumber!=null and sendCardNumber!=''">#{sendCardNumber},</if>
+       	    <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">#{potentialCustomerSource},</if>
+       	    <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">#{potentialCustomerNum},</if>
+       	    <if test="attachmentId!=null ">#{attachmentId},</if>
+       	    <if test="networkCondition!=null and networkCondition!=''">#{networkCondition},</if>
+       	    <if test="networkSpeed!=null and networkSpeed!=''">#{networkSpeed},</if>
+       	    <if test="confirmTime!=null ">#{confirmTime},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="networkRemark!=null and networkRemark!=''">#{networkRemark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertMktBrandInterviews" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,contact_id,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_brand_interview (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="format!=null ">format,</if>
+        	 <if test="storeNumber!=null and storeNumber!=''">store_number,</if>
+        	 <if test="joinType!=null and joinType!=''">join_type,</if>
+        	 <if test="businessArea!=null and businessArea!=''">business_area,</if>
+        	 <if test="customerType!=null and customerType!=''">customer_type,</if>
+        	 <if test="dailyTurnover!=null and dailyTurnover!=''">daily_turnover,</if>
+        	 <if test="cashCountPerDay!=null ">cash_count_per_day,</if>
+        	 <if test="perOrder!=null and perOrder!=''">per_order,</if>
+        	 <if test="perCapita!=null and perCapita!=''">per_capita,</if>
+        	 <if test="groupPurchase!=null and groupPurchase!=''">group_purchase,</if>
+        	 <if test="coupon!=null and coupon!=''">coupon,</if>
+        	 <if test="bankCardOffer!=null and bankCardOffer!=''">bank_card_offer,</if>
+        	 <if test="otherShopDiscount!=null and otherShopDiscount!=''">other_shop_discount,</if>
+        	 <if test="cardType!=null ">card_type,</if>
+        	 <if test="managementSystem!=null ">management_system,</if>
+        	 <if test="memberRight!=null ">member_right,</if>
+        	 <if test="sendCardNumber!=null and sendCardNumber!=''">send_card_number,</if>
+        	 <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">potential_customer_source,</if>
+        	 <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">potential_customer_num,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="networkCondition!=null and networkCondition!=''">network_condition,</if>
+        	 <if test="networkSpeed!=null and networkSpeed!=''">network_speed,</if>
+        	 <if test="confirmTime!=null ">confirm_time,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="contactId!=null ">#{t.contactId},</if>
+          <if test="format!=null ">#{t.format},</if>
+          <if test="storeNumber!=null and storeNumber!=''">#{t.storeNumber},</if>
+          <if test="joinType!=null and joinType!=''">#{t.joinType},</if>
+          <if test="businessArea!=null and businessArea!=''">#{t.businessArea},</if>
+          <if test="customerType!=null and customerType!=''">#{t.customerType},</if>
+          <if test="dailyTurnover!=null and dailyTurnover!=''">#{t.dailyTurnover},</if>
+          <if test="cashCountPerDay!=null ">#{t.cashCountPerDay},</if>
+          <if test="perOrder!=null and perOrder!=''">#{t.perOrder},</if>
+          <if test="perCapita!=null and perCapita!=''">#{t.perCapita},</if>
+          <if test="groupPurchase!=null and groupPurchase!=''">#{t.groupPurchase},</if>
+          <if test="coupon!=null and coupon!=''">#{t.coupon},</if>
+          <if test="bankCardOffer!=null and bankCardOffer!=''">#{t.bankCardOffer},</if>
+          <if test="otherShopDiscount!=null and otherShopDiscount!=''">#{t.otherShopDiscount},</if>
+          <if test="cardType!=null ">#{t.cardType},</if>
+          <if test="managementSystem!=null ">#{t.managementSystem},</if>
+          <if test="memberRight!=null ">#{t.memberRight},</if>
+          <if test="sendCardNumber!=null and sendCardNumber!=''">#{t.sendCardNumber},</if>
+          <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">#{t.potentialCustomerSource},</if>
+          <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">#{t.potentialCustomerNum},</if>
+          <if test="attachmentId!=null ">#{t.attachmentId},</if>
+          <if test="networkCondition!=null and networkCondition!=''">#{t.networkCondition},</if>
+          <if test="networkSpeed!=null and networkSpeed!=''">#{t.networkSpeed},</if>
+          <if test="confirmTime!=null ">#{t.confirmTime},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateMktBrandInterview">
+        UPDATE mkt.mkt_brand_interview 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="contactId!=null ">contact_id = #{contactId} ,</if>
+       	    <if test="format!=null">
+	        	format =  #{format, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+	        <if test="storeNumber!=null and storeNumber!=''">store_number = #{storeNumber} ,</if>
+	        <if test="joinType!=null and joinType!=''">join_type = #{joinType} ,</if>
+	        <if test="businessArea!=null and businessArea!=''">business_area = #{businessArea} ,</if>
+	        <if test="customerType!=null and customerType!=''">customer_type = #{customerType} ,</if>
+	        <if test="dailyTurnover!=null and dailyTurnover!=''">daily_turnover = #{dailyTurnover} ,</if>
+	        <if test="cashCountPerDay!=null ">cash_count_per_day = #{cashCountPerDay} ,</if>
+	        <if test="perOrder!=null and perOrder!=''">per_order = #{perOrder} ,</if>
+	        <if test="perCapita!=null and perCapita!=''">per_capita = #{perCapita} ,</if>
+	        <if test="groupPurchase!=null and groupPurchase!=''">group_purchase = #{groupPurchase} ,</if>
+	        <if test="coupon!=null and coupon!=''">coupon = #{coupon} ,</if>
+	        <if test="bankCardOffer!=null and bankCardOffer!=''">bank_card_offer = #{bankCardOffer} ,</if>
+	        <if test="otherShopDiscount!=null and otherShopDiscount!=''">other_shop_discount = #{otherShopDiscount} ,</if>
+
+       	    <if test="cardType!=null and cardType!=''">
+	        	card_type = #{cardType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+	        <if test="managementSystem!=null and managementSystem!=''">
+	        	management_system = #{managementSystem, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+	        <if test="memberRight!=null and memberRight!=''">
+	        	member_right = #{memberRight, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	         </if>
+	        <if test="sendCardNumber!=null and sendCardNumber!=''">send_card_number = #{sendCardNumber} ,</if>
+	        <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">potential_customer_source = #{potentialCustomerSource} ,</if>
+	        <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">potential_customer_num = #{potentialCustomerNum} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="networkCondition!=null and networkCondition!=''">network_condition = #{networkCondition} ,</if>
+	        <if test="networkSpeed!=null and networkSpeed!=''">network_speed = #{networkSpeed} ,</if>
+	        <if test="confirmTime!=null ">confirm_time = #{confirmTime} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	         <if test="networkRemark!=null and networkRemark!=''">network_remark = #{networkRemark}, </if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateMktBrandInterviewsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE mkt.mkt_brand_interview 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="contactId!=null ">contact_id = #{t.contactId} ,</if>
+	        <if test="format!=null ">format = #{t.format} ,</if>
+	        <if test="storeNumber!=null and storeNumber!=''">store_number = #{t.storeNumber} ,</if>
+	        <if test="joinType!=null and joinType!=''">join_type = #{t.joinType} ,</if>
+	        <if test="businessArea!=null and businessArea!=''">business_area = #{t.businessArea} ,</if>
+	        <if test="customerType!=null and customerType!=''">customer_type = #{t.customerType} ,</if>
+	        <if test="dailyTurnover!=null and dailyTurnover!=''">daily_turnover = #{t.dailyTurnover} ,</if>
+	        <if test="cashCountPerDay!=null ">cash_count_per_day = #{t.cashCountPerDay} ,</if>
+	        <if test="perOrder!=null and perOrder!=''">per_order = #{t.perOrder} ,</if>
+	        <if test="perCapita!=null and perCapita!=''">per_capita = #{t.perCapita} ,</if>
+	        <if test="groupPurchase!=null and groupPurchase!=''">group_purchase = #{t.groupPurchase} ,</if>
+	        <if test="coupon!=null and coupon!=''">coupon = #{t.coupon} ,</if>
+	        <if test="bankCardOffer!=null and bankCardOffer!=''">bank_card_offer = #{t.bankCardOffer} ,</if>
+	        <if test="otherShopDiscount!=null and otherShopDiscount!=''">other_shop_discount = #{t.otherShopDiscount} ,</if>
+	        <if test="cardType!=null ">card_type = #{t.cardType} ,</if>
+	        <if test="managementSystem!=null ">management_system = #{t.managementSystem} ,</if>
+	        <if test="memberRight!=null ">member_right = #{t.memberRight} ,</if>
+	        <if test="sendCardNumber!=null and sendCardNumber!=''">send_card_number = #{t.sendCardNumber} ,</if>
+	        <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">potential_customer_source = #{t.potentialCustomerSource} ,</if>
+	        <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">potential_customer_num = #{t.potentialCustomerNum} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{t.attachmentId} ,</if>
+	        <if test="networkCondition!=null and networkCondition!=''">network_condition = #{t.networkCondition} ,</if>
+	        <if test="networkSpeed!=null and networkSpeed!=''">network_speed = #{t.networkSpeed} ,</if>
+	        <if test="confirmTime!=null ">confirm_time = #{t.confirmTime} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateMktBrandInterviewsToSameVals" parameterType="map">
+        UPDATE mkt.mkt_brand_interview 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="contactId!=null ">contact_id = #{contactId} ,</if>
+	        <if test="format!=null ">format = #{format} ,</if>
+	        <if test="storeNumber!=null and storeNumber!=''">store_number = #{storeNumber} ,</if>
+	        <if test="joinType!=null and joinType!=''">join_type = #{joinType} ,</if>
+	        <if test="businessArea!=null and businessArea!=''">business_area = #{businessArea} ,</if>
+	        <if test="customerType!=null and customerType!=''">customer_type = #{customerType} ,</if>
+	        <if test="dailyTurnover!=null and dailyTurnover!=''">daily_turnover = #{dailyTurnover} ,</if>
+	        <if test="cashCountPerDay!=null ">cash_count_per_day = #{cashCountPerDay} ,</if>
+	        <if test="perOrder!=null and perOrder!=''">per_order = #{perOrder} ,</if>
+	        <if test="perCapita!=null and perCapita!=''">per_capita = #{perCapita} ,</if>
+	        <if test="groupPurchase!=null and groupPurchase!=''">group_purchase = #{groupPurchase} ,</if>
+	        <if test="coupon!=null and coupon!=''">coupon = #{coupon} ,</if>
+	        <if test="bankCardOffer!=null and bankCardOffer!=''">bank_card_offer = #{bankCardOffer} ,</if>
+	        <if test="otherShopDiscount!=null and otherShopDiscount!=''">other_shop_discount = #{otherShopDiscount} ,</if>
+	        <if test="cardType!=null ">card_type = #{cardType} ,</if>
+	        <if test="managementSystem!=null ">management_system = #{managementSystem} ,</if>
+	        <if test="memberRight!=null ">member_right = #{memberRight} ,</if>
+	        <if test="sendCardNumber!=null and sendCardNumber!=''">send_card_number = #{sendCardNumber} ,</if>
+	        <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">potential_customer_source = #{potentialCustomerSource} ,</if>
+	        <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">potential_customer_num = #{potentialCustomerNum} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="networkCondition!=null and networkCondition!=''">network_condition = #{networkCondition} ,</if>
+	        <if test="networkSpeed!=null and networkSpeed!=''">network_speed = #{networkSpeed} ,</if>
+	        <if test="confirmTime!=null ">confirm_time = #{confirmTime} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteMktBrandInterviewById">
+    <![CDATA[
+        DELETE FROM mkt.mkt_brand_interview WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteMktBrandInterviewByIds" parameterType="list">
+        DELETE FROM mkt.mkt_brand_interview WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getMktBrandInterviewById" resultMap="MktBrandInterview">
+		SELECT <include refid="mktbrandinterviewColumns" />
+		    FROM mkt.mkt_brand_interview 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getMktBrandInterviews" resultMap="MktBrandInterview">
+		SELECT brand.*, m.merchant_name, m.attachment_id,attach.attachment_name file_name, attach.attachment_path
+		,attach.original_file_name, attach.attachment_size file_size 
+		FROM mkt.mkt_brand_interview brand inner join syn.syn_merchant m on (brand.merchant_id = m.merchant_id)
+		LEFT JOIN sys.sys_attachment attach on (attach.id = m.attachment_id)
+		WHERE brand.is_enable='1' and m.status='1' and brand.merchant_id=#{merchantId}
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="mktbrandinterview_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="contactId!=null ">AND contact_id = #{contactId}</if>
+	       <if test="format!=null ">AND format = #{format}</if>
+	       <if test="storeNumber!=null and storeNumber!=''">AND store_number = #{storeNumber}</if>
+	       <if test="joinType!=null and joinType!=''">AND join_type = #{joinType}</if>
+	       <if test="businessArea!=null and businessArea!=''">AND business_area = #{businessArea}</if>
+	       <if test="customerType!=null and customerType!=''">AND customer_type = #{customerType}</if>
+	       <if test="dailyTurnover!=null and dailyTurnover!=''">AND daily_turnover = #{dailyTurnover}</if>
+	       <if test="cashCountPerDay!=null ">AND cash_count_per_day = #{cashCountPerDay}</if>
+	       <if test="perOrder!=null and perOrder!=''">AND per_order = #{perOrder}</if>
+	       <if test="perCapita!=null and perCapita!=''">AND per_capita = #{perCapita}</if>
+	       <if test="groupPurchase!=null and groupPurchase!=''">AND group_purchase = #{groupPurchase}</if>
+	       <if test="coupon!=null and coupon!=''">AND coupon = #{coupon}</if>
+	       <if test="bankCardOffer!=null and bankCardOffer!=''">AND bank_card_offer = #{bankCardOffer}</if>
+	       <if test="otherShopDiscount!=null and otherShopDiscount!=''">AND other_shop_discount = #{otherShopDiscount}</if>
+	       <if test="cardType!=null ">AND card_type = #{cardType}</if>
+	       <if test="managementSystem!=null ">AND management_system = #{managementSystem}</if>
+	       <if test="memberRight!=null ">AND member_right = #{memberRight}</if>
+	       <if test="sendCardNumber!=null and sendCardNumber!=''">AND send_card_number = #{sendCardNumber}</if>
+	       <if test="potentialCustomerSource!=null and potentialCustomerSource!=''">AND potential_customer_source = #{potentialCustomerSource}</if>
+	       <if test="potentialCustomerNum!=null and potentialCustomerNum!=''">AND potential_customer_num = #{potentialCustomerNum}</if>
+	       <if test="attachmentId!=null ">AND attachment_id = #{attachmentId}</if>
+	       <if test="networkCondition!=null and networkCondition!=''">AND network_condition = #{networkCondition}</if>
+	       <if test="networkSpeed!=null and networkSpeed!=''">AND network_speed = #{networkSpeed}</if>
+		   <if test="confirmTime!=null ">AND confirm_time >= #{confirmTime}</if>
+		   <if test="confirmTime!=null ">AND confirm_time &lt;= #{confirmTime}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		<if test="networkRemark!=null and networkRemark!=''">AND network_remark = #{networkRemark}</if>
+		</where>
+	</sql>
+		
+    <select id="getMktBrandInterviewCount" resultType="long">
+        SELECT count(*) FROM mkt.mkt_brand_interview 
+		<include refid="mktbrandinterview_findPage_where"/>    
+    </select>
+    
+</mapper>

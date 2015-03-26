@@ -1,0 +1,21 @@
+.page-study-studentmanage-todolist .todo-item .icon-circle {
+    color: #66ccb5;
+}
+.page-study-studentmanage-todolist .todo-item {
+    border-left: 4px solid #66ccb5 ! important;
+    padding-bottom: 30px ! important;
+}
+.page-study-studentmanage-todolist .line-item-last {
+    border: 4px solid #ffffff ! important;
+}
+
+.page-study-studentmanage-todolist-dialog .ff-label {
+    width: 60px;
+}
+.page-study-studentmanage-todolist-dialog .ff-value {
+    margin-left: 60px;
+}
+.page-study-studentmanage-todolist-dialog input,
+.page-study-studentmanage-todolist-dialog textarea {
+    width: 340px;
+}

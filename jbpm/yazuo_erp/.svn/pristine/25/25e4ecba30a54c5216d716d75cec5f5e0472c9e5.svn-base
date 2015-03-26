@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysMailTemplateDao">
+	<resultMap id="SysMailTemplate" type="com.yazuo.erp.system.vo.SysMailTemplateVO">
+    	<id property="id" column="id"/>
+    	<result property="mailTemplateType" column="mail_template_type"/>
+    	<result property="name" column="name"/>
+    	<result property="title" column="title"/>
+    	<result property="content" column="content"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="isSendSMS" column="is_send_sms"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysmailtemplateColumns">
+	    <![CDATA[
+		id,mail_template_type,name,title,content,is_enable,remark,insert_by,insert_time,update_by,update_time,is_send_sms
+	    ]]>
+	</sql>
+
+	<insert id="saveSysMailTemplate" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： mail_template_type,name,title,content,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_mail_template (
+        	 <if test="mailTemplateType!=null and mailTemplateType!=''">mail_template_type,</if>
+        	 <if test="name!=null and name!=''">name,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="content!=null ">content,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="isSendSMS!=null and isSendSMS!=''">is_send_sms,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="mailTemplateType!=null and mailTemplateType!=''">#{mailTemplateType},</if>
+       	    <if test="name!=null and name!=''">#{name},</if>
+       	    <if test="title!=null and title!=''">#{title},</if>
+       	    <if test="content!=null ">#{content},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="isSendSMS!=null and isSendSMS!=''">#{isSendSMS},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysMailTemplates" parameterType="map">
+	 <!--不允许为空的字段： mail_template_type,name,title,content,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_mail_template (
+        	 <if test="mailTemplateType!=null and mailTemplateType!=''">mail_template_type,</if>
+        	 <if test="name!=null and name!=''">name,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="content!=null ">content,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="isSendSMS!=null and isSendSMS!=''">is_send_sms,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="mailTemplateType!=null and mailTemplateType!=''">#{t.mailTemplateType},</if>
+          <if test="name!=null and name!=''">#{t.name},</if>
+          <if test="title!=null and title!=''">#{t.title},</if>
+          <if test="content!=null ">#{t.content},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="isSendSMS!=null and isSendSMS!=''">#{t.isSendSMS},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysMailTemplate">
+        UPDATE sys.sys_mail_template 
+ 		  <set>
+	        <if test="mailTemplateType!=null and mailTemplateType!=''">mail_template_type = #{mailTemplateType} ,</if>
+	        <if test="name!=null and name!=''">name = #{name} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="content!=null ">content = #{content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="isSendSMS!=null and isSendSMS!=''">is_send_sms = #{isSendSMS}, </if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysMailTemplatesToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_mail_template 
+ 		  <set>
+	        <if test="mailTemplateType!=null and mailTemplateType!=''">mail_template_type = #{t.mailTemplateType} ,</if>
+	        <if test="name!=null and name!=''">name = #{t.name} ,</if>
+	        <if test="title!=null and title!=''">title = #{t.title} ,</if>
+	        <if test="content!=null ">content = #{t.content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="isSendSMS!=null and isSendSMS!=''">is_send_sms = #{t.isSendSMS}, </if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysMailTemplatesToSameVals" parameterType="map">
+        UPDATE sys.sys_mail_template 
+ 		  <set>
+	        <if test="mailTemplateType!=null and mailTemplateType!=''">mail_template_type = #{mailTemplateType} ,</if>
+	        <if test="name!=null and name!=''">name = #{name} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="content!=null ">content = #{content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="isSendSMS!=null and isSendSMS!=''">is_send_sms = #{isSendSMS}, </if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysMailTemplateById">
+    <![CDATA[
+        DELETE FROM sys.sys_mail_template WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysMailTemplateByIds" parameterType="list">
+        DELETE FROM sys.sys_mail_template WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysMailTemplateById" resultMap="SysMailTemplate">
+		SELECT <include refid="sysmailtemplateColumns" />
+		    FROM sys.sys_mail_template 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysMailTemplates" resultMap="SysMailTemplate">
+		SELECT <include refid="sysmailtemplateColumns" />
+		    FROM sys.sys_mail_template  
+	    <include refid="sysmailtemplate_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysMailTemplatesMap" resultType="map">
+		SELECT <include refid="sysmailtemplateColumns" />
+	    <![CDATA[
+		    FROM sys.sys_mail_template  
+	    ]]>
+	    <include refid="sysmailtemplate_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysmailtemplate_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="mailTemplateType!=null and mailTemplateType!=''">AND mail_template_type = #{mailTemplateType}</if>
+	       <if test="name!=null and name!=''">AND name = #{name}</if>
+	       <if test="title!=null and title!=''">AND title = #{title}</if>
+	       <if test="content!=null ">AND content = #{content}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+	       <if test="isSendSMS!=null and isSendSMS!=''">AND is_send_sms = #{isSendSMS}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysMailTemplateCount" resultType="long">
+        SELECT count(*) FROM sys.sys_mail_template 
+		<include refid="sysmailtemplate_findPage_where"/>    
+    </select>
+    
+</mapper>

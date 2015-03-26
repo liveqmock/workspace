@@ -1,0 +1,233 @@
+<#include "/macro.include"/>
+<#assign className = table.className>
+<#assign classEntity = table.className+"VO">   
+<#assign classNameFirstLower = table.classNameFirstLower>   
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<#macro mapperEl value>${r"#{"}${value}}</#macro>
+<#macro namespace>${className}.</#macro>
+<#assign lowerClassName = "${className}"?lower_case>
+	<#if "${lowerClassName}"?index_of('sys')!=-1>
+		<#macro database>sys.</#macro>
+		<#macro namespacePrefix>com.yazuo.erp.system.dao.</#macro>
+	<#elseif "${lowerClassName}"?index_of('tra')!=-1>
+		<#macro database>train.</#macro>
+		<#macro namespacePrefix>com.yazuo.erp.train.dao.</#macro>
+	<#else>
+		<#macro database>minierp.</#macro>
+		<#macro namespacePrefix>com.yazuo.erp.minierp.dao.</#macro>
+	</#if>
+<#macro database>${modelname}.</#macro>
+<#macro namespacePrefix>com.yazuo.erp.${modelname}.dao.</#macro>
+
+<mapper namespace="<@namespacePrefix/>${className}Dao">
+	<resultMap id="${className}" type="${basepackage}.vo.${classEntity}">
+     <#list table.columns as column>
+        <#if column.pk>
+    	<id property="${column.columnNameLower}" column="${column.sqlName}"/>
+    	<#else>
+    	<result property="${column.columnNameLower}" column="${column.sqlName}"/>
+    	</#if>
+	</#list>	
+	</resultMap>
+	
+	<resultMap id="Complex${className}" type="${basepackage}.vo.${classEntity}">
+     <#list table.columns as column>
+        <#if column.pk>
+    	<id property="${column.columnNameLower}" column="${column.sqlName}"/>
+    	<#else>
+    	<result property="${column.columnNameLower}" column="${column.sqlName}"/>
+    	</#if>
+	</#list>	
+	<@generateHibernateManyToOne/>
+	<@generateHibernateOneToMany/>
+	</resultMap>
+			
+	<#macro generateHibernateOneToMany>
+		<#list table.exportedKeys.associatedTables?values as foreignKey>
+		<#assign fkSqlTable = foreignKey.sqlTable>
+		<#assign fkTable    = fkSqlTable.className>
+		<#assign fkPojoClass = fkSqlTable.className>
+		<#assign fkPojoClassVar = fkPojoClass?uncap_first>
+		<#list foreignKey.columns?values as fkColumn>
+     	<collection  property="${fkPojoClassVar}s" column="fk_id" ofType="${basepackage}.vo.${fkPojoClass}VO">
+	        <#list fkSqlTable.columns as column>
+	        <#if column.pk>
+	       	<id property="${column.columnNameLower}" column="${column.sqlName}"/>
+	       	<#else>
+	       	<result property="${column.columnNameLower}" column="${column.sqlName}"/>
+	       	</#if>
+			</#list>	
+		</collection>
+       	</#list>
+		</#list>
+	</#macro>
+	
+	<#macro generateHibernateManyToOne>
+		<#list table.importedKeys.associatedTables?values as foreignKey>
+		<#assign fkSqlTable = foreignKey.sqlTable>
+		<#assign fkTable    = fkSqlTable.className>
+		<#assign fkPojoClass = fkSqlTable.className>
+		<#assign fkPojoClassVar = fkPojoClass?uncap_first>
+		<#list foreignKey.columns?values as fkColumn>
+      	<association  property="${fkPojoClassVar}" javaType="${basepackage}.vo.${fkPojoClass}VO">
+	        <#list fkSqlTable.columns as column>
+            <#if column.pk>
+        	<id property="${column.columnNameLower}" column="${column.sqlName}"/>
+        	<#else>
+        	<result property="${column.columnNameLower}" column="${column.sqlName}"/>
+        	</#if>
+			</#list>	
+		</association>
+       	</#list>
+		</#list>
+	</#macro>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="${lowerClassName}Columns">
+	    <![CDATA[
+		<#list table.columns as column>${column.sqlName}<#if column_has_next>,</#if></#list>
+	    ]]>
+	</sql>
+
+	<insert id="save${className}" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： <#list table.columns as column><#if !column.unique && !column.pk && !column.nullable>${column.sqlName},</#if></#list>--> 
+        INSERT INTO <@database/>${table.sqlName} (
+        <#list table.columns as column>
+        	<#if !column.unique && !column.pk>
+        	 <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">${column.sqlName}<#if column_has_next>,</#if></if>
+        	</#if>
+        </#list>
+        ) VALUES (
+        <#list table.columns as column>
+       	  <#if !column.unique && !column.pk>
+       	    <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>"><#if column.isDateTimeColumn>now()<#else><@mapperEl column.columnNameFirstLower/></#if><#if column_has_next>,</#if></if>
+          </#if>
+        </#list>  
+        )
+	</insert>
+	
+	<insert id="batchInsert${className}s" parameterType="map">
+	 <!--不允许为空的字段： <#list table.columns as column><#if !column.unique && !column.pk && !column.nullable>${column.sqlName},</#if></#list>--> 
+        INSERT INTO <@database/>${table.sqlName} (
+        <#list table.columns as column>
+        	<#if !column.unique && !column.pk>
+        	 <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">${column.sqlName}<#if column_has_next>,</#if></if>
+        	</#if>
+        </#list>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (<#list table.columns as column><#if !column.unique && !column.pk>  <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>"><#if column.isDateTimeColumn>now()<#else><@mapperEl "t."+column.columnNameFirstLower/></#if><#if column_has_next>,</#if></if></#if>
+        </#list> )
+        </foreach>
+	</insert>
+	
+	<update id="update${className}">
+        UPDATE <@database/>${table.sqlName} 
+ 		  <set>
+	        <#list table.notPkColumns as column>
+	        <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">${column.sqlName} = <@mapperEl column.columnNameFirstLower/> <#if column_has_next>,</#if></if>
+	        </#list>
+	      </set>  
+        WHERE 
+        	<#list table.compositeIdColumns as column>
+	        ${column.sqlName} = <@mapperEl column.columnNameLower/> <#if column_has_next>,</#if>
+	        </#list>	        
+	</update>
+	
+	<update id="batchUpdate${className}sToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE <@database/>${table.sqlName} 
+ 		  <set>
+	        <#list table.notPkColumns as column>
+	        <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">${column.sqlName} = <@mapperEl "t."+column.columnNameFirstLower/> <#if column_has_next>,</#if></if>
+	        </#list>
+	      </set>  
+        WHERE 
+        	<#list table.compositeIdColumns as column>
+	        ${column.sqlName} = <@mapperEl "t."+column.columnNameLower/> <#if column_has_next>,</#if>
+	        </#list>	 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdate${className}sToSameVals" parameterType="map">
+        UPDATE <@database/>${table.sqlName} 
+ 		  <set>
+	        <#list table.notPkColumns as column>
+	        <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">${column.sqlName} = <@mapperEl column.columnNameFirstLower/> <#if column_has_next>,</#if></if>
+	        </#list>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=","><@mapperEl "id"/></foreach>       
+	</update>
+	
+    <delete id="delete${className}ById">
+    <![CDATA[
+        DELETE FROM <@database/>${table.sqlName} WHERE
+        <#list table.compositeIdColumns as column>${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next>,</#if></#list>
+    ]]>
+    </delete>
+    
+    <delete id="batchDelete${className}ByIds" parameterType="list">
+        DELETE FROM <@database/>${table.sqlName} WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=","><@mapperEl "id"/></foreach>   
+    </delete>
+    
+    <select id="get${className}ById" resultMap="${className}">
+		SELECT <include refid="${lowerClassName}Columns" />
+		    FROM <@database/>${table.sqlName} 
+	        WHERE <#list table.compositeIdColumns as column>${column.sqlName} = <@mapperEl 'id'/> <#if column_has_next>,</#if></#list>    
+	</select>
+
+	<select id="get${className}s" resultMap="${className}">
+		SELECT <include refid="${lowerClassName}Columns" />
+		    FROM <@database/>${table.sqlName}  
+	    <include refid="${lowerClassName}_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY <@jspEl 'sortColumns'/>
+		</if>
+	</select>
+	
+	<select id="get${className}sMap" resultType="map">
+		SELECT <include refid="${lowerClassName}Columns" />
+	    <![CDATA[
+		    FROM <@database/>${table.sqlName}  
+	    ]]>
+	    <include refid="${lowerClassName}_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY <@jspEl 'sortColumns'/>
+		</if>
+	</select>
+	
+	<sql id="${lowerClassName}_findPage_where">
+		<where>	      				
+	       <#list table.columns as column>
+	       <#if column.isDateTimeColumn>
+		   <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">AND ${column.sqlName} >= <@mapperEl column.columnNameFirstLower/></if>
+		   <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">AND ${column.sqlName} &lt;= <@mapperEl column.columnNameFirstLower/></if>
+	       <#else>
+	       <if test="${column.columnNameFirstLower}!=null <#if column.javaType!='java.lang.Integer' &&  column.javaType!='java.util.Date'>and ${column.columnNameFirstLower}!=''</#if>">AND ${column.sqlName} = <@mapperEl column.columnNameFirstLower/></if>
+	       </#if>
+	       </#list>			
+		</where>
+	</sql>
+		
+    <select id="get${className}Count" resultType="long">
+        SELECT count(*) FROM <@database/>${table.sqlName} 
+		<include refid="${lowerClassName}_findPage_where"/>    
+    </select>
+    
+    <#list table.columns as column>
+    <#if column.unique && !column.pk>
+    <select id="get${className}By${column.columnName}" resultMap="${className}" parameterType="${column.javaType}">
+	    SELECT <include refid="${lowerClassName}Columns"/>
+	    <![CDATA[
+	        FROM <@database/>${table.sqlName} where ${column.sqlName} = <@mapperEl column.columnNameLower/>
+	    ]]>
+    </select>
+    </#if>
+	</#list>
+</mapper>

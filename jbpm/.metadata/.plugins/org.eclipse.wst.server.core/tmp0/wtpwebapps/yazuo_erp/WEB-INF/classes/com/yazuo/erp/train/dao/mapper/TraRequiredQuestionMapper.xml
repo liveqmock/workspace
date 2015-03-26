@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraRequiredQuestionDao">
+
+	<resultMap id="TraRequiredQuestion" type="com.yazuo.erp.train.vo.TraRequiredQuestionVO">
+		<result property="id" column="id" />
+		<result property="ruleId" column="rule_id" />
+		<result property="questionId" column="question_id" />
+		<result property="insertBy" column="insert_by" />
+		<result property="insertTime" column="insert_time" />
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="trarequiredquestionColumns">
+	    <![CDATA[
+		id,rule_id,question_id,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveTraRequiredQuestion" useGeneratedKeys="true"
+		keyProperty="id">
+    <![CDATA[
+        INSERT INTO train.tra_required_question (
+        		rule_id ,
+        		question_id ,
+        		insert_by ,
+        		insert_time 
+        ) VALUES (
+        	#{ruleId} ,
+        	#{questionId} ,
+        	#{insertBy} ,
+        	#{insertTime} 
+        )
+    ]]>
+	</insert>
+
+	<update id="updateTraRequiredQuestion">
+    <![CDATA[
+        UPDATE train.tra_required_question SET
+	        rule_id = #{ruleId} ,
+	        question_id = #{questionId} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+	<delete id="deleteTraRequiredQuestion">
+    <![CDATA[
+        DELETE FROM train.tra_required_question WHERE
+        id = #{id} 
+    ]]>
+	</delete>
+
+	<select id="getTraRequiredQuestionById" resultMap="TraRequiredQuestion">
+		SELECT
+		<include refid="trarequiredquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_required_question 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraRequiredQuestions" resultMap="TraRequiredQuestion"
+		parameterType="map">
+		SELECT
+		<include refid="trarequiredquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_required_question  
+	    ]]>
+		<include refid="trarequiredquestion_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraRequiredQuestionsMap" resultType="map"
+		parameterType="map">
+		SELECT
+		<include refid="trarequiredquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_required_question  
+	    ]]>
+		<include refid="trarequiredquestion_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+
+	<select id="getAllTraRequiredQuestions" resultType="map"
+		parameterType="map">
+		SELECT
+		<include refid="trarequiredquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_required_question  
+	    ]]>
+		<include refid="trarequiredquestion_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="trarequiredquestion_findPage_where">
+		<where>
+			<if test="id!=null">
+				AND id = #{id}
+			</if>
+			<if test="ruleId!=null">
+				AND rule_id = #{ruleId}
+			</if>
+			<if test="questionId!=null">
+				AND question_id = #{questionId}
+			</if>
+			<if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+			<if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+			</if>
+			<if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+			</if>
+		</where>
+	</sql>
+
+	<select id="getTraRequiredQuestionCount" resultType="long">
+		SELECT count(*) FROM train.tra_required_question
+		<include refid="trarequiredquestion_findPage_where" />
+	</select>
+
+	<!-- 分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页 因为分页查询将传 offset,pageSize,lastRows 
+		三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现 -->
+	<select id="findTraRequiredQuestionPage" resultMap="TraRequiredQuestion">
+		SELECT
+		<include refid="trarequiredquestionColumns" />
+		FROM train.tra_required_question
+		<include refid="trarequiredquestion_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<insert id="batchSaveTraRequiredQuestion" parameterType="list">
+		INSERT INTO train.tra_required_question (
+		rule_id ,
+		question_id ,
+		insert_by ,
+		insert_time
+		) VALUES
+		<foreach collection="list" item="t" index="index" open=""
+			close="" separator=",">
+			(#{t.ruleId},#{t.questionId},#{t.insertBy},now())
+		</foreach>
+
+	</insert>
+
+	<select id="getQuestionIdsByCoursewareId" parameterType="int"
+		resultType="int">
+		SELECT question_id
+		FROM train.tra_required_question
+		WHERE
+		rule_id IN (
+		SELECT id
+		FROM train.tra_rule
+		WHERE
+		courseware_id=#{coursewareId}
+		)
+	</select>
+
+	<select id="getOneQuestionIdByCoursewareId" parameterType="int"
+		resultMap="TraRequiredQuestion">
+		SELECT
+		<include refid="trarequiredquestionColumns" />
+		FROM train.tra_required_question
+		WHERE rule_id IN (
+		SELECT id
+		FROM train.tra_rule
+		WHERE courseware_id=#{coursewareId}
+		)
+	</select>
+
+	<select id="getTraRequiredQuestionByRuleId" resultType="map"
+		parameterType="map">
+		SELECT
+		rq.rule_id,
+		rq.question_id,
+		q.question,
+		q.question_type
+		FROM
+		train.tra_rule AS rules,
+		train.tra_required_question AS rq,
+		train.tra_question AS q
+		WHERE
+		rq.rule_id = rules. ID
+		AND rq.question_id = q. ID
+		AND q.is_enable = '1'
+		AND rq.rule_id = #{ ruleId }
+		ORDER BY
+		rq. ID
+	</select>
+
+	<delete id="deleteTraRequiredQuestionByRuleId">
+    <![CDATA[
+        DELETE FROM train.tra_required_question WHERE
+        rule_id = #{ruleId} 
+    ]]>
+	</delete>
+
+	<select id="getTraRequiredQuestionPptByRuleId" resultType="map"
+		parameterType="map">
+		SELECT
+		rq.rule_id,
+		rq.question_id,
+		q.question,
+		q.question_type,
+		q.ppt_id,
+		ppt.ppt_name
+		FROM
+		train.tra_rule AS rules,
+		train.tra_required_question AS rq,
+		train.tra_question AS q,
+		train.tra_ppt AS ppt
+		WHERE
+		rq.rule_id = rules. ID
+		AND rq.question_id = q.
+		ID
+		AND q.is_enable = '1'
+		AND q.ppt_id = ppt."id"
+		AND rq.rule_id=#{ruleId}
+		ORDER BY
+		rq. ID
+	</select>
+
+	<!-- 根据课件ID批量删除 tra_required_question 考卷必考题 -->
+	<delete id="batchDeleteTraRequiredQuestionByCoursewareId"
+		parameterType="list">
+		<foreach collection="list" item="t" index="index" open=""
+			close="" separator=";">
+			delete from train.tra_required_question r
+			where
+			r.rule_id in (
+			select t.id from train.tra_rule t
+			where t.courseware_id=#{t,jdbcType=INTEGER}
+			)
+		</foreach>
+	</delete>
+
+	<delete id="deleteTraRequiredQuestionByRuleIdAndQuestionId">
+		DELETE
+		FROM
+		train.tra_required_question AS rq
+		WHERE
+		rq.question_id = #{questionId}
+		AND rq.rule_id =(
+		SELECT
+		r.id
+		FROM
+		train.tra_rule AS r
+		WHERE
+		r.courseware_id = #{coursewareId}
+		)
+	</delete>
+	
+	<!-- 根据试题ID列表批量删除 tra_required_question 考卷必考题 -->
+	<delete id="batchDeleteTraRequiredQuestionByQuestionIdList" parameterType="list">
+		delete from train.tra_required_question r
+		where r.question_id in
+		<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+			#{t,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+</mapper>
+

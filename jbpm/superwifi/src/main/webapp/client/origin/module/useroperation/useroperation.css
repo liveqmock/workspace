@@ -1,0 +1,28 @@
+.module-use-operation{
+    width: 150px;
+    background-color: #3e3e3e;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.module-use-operation li a{
+    display: block;
+    text-align: center;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    color: #ffffff;
+}
+.module-use-operation li a:hover{
+    background-color: #3280a4;
+    text-decoration: none;
+}
+.module-useroperation-dialog .input-text,.module-useroperation-retrieve-dialog .input-text{
+    width: 97%;
+}
+.module-useroperation-dialog .retrieve-pas{
+    float: right;
+    cursor: pointer;
+}

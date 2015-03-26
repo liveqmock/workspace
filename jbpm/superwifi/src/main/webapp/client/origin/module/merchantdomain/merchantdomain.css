@@ -1,0 +1,56 @@
+.module-merchantdomain {
+    display: inline-block;
+}
+.module-merchantdomain .module-merchantdomain-autocomplete {
+     width: 240px;
+}
+.module-merchantdomain .ui-autocomplete-select {
+    vertical-align: middle;
+    margin-top: -4px;
+}
+.module-merchantdomain .icon-search {
+    color: #646464;
+}
+.module-merchantdomain-tree-panel {
+    padding: 0 8px 8px 8px;
+}
+.module-merchantdomain-tree-panel .ztree li span {
+    color: #333333;
+}
+.module-merchantdomain-tree-panel .ztree li span.button.root_open,
+.module-merchantdomain-tree-panel .ztree li span.button.center_open,
+.module-merchantdomain-tree-panel .ztree li span.button.bottom_open {
+    background: url(../../asset/image/icon-open.png) no-repeat center center;
+}
+.module-merchantdomain-tree-panel .ztree li span.button.root_close,
+.module-merchantdomain-tree-panel .ztree li span.button.center_close,
+.module-merchantdomain-tree-panel .ztree li span.button.bottom_close {
+    background: url(../../asset/image/icon-close.png) no-repeat center center;
+}
+.module-merchantdomain-tree-panel .ztree .level0 .ico_open,
+.module-merchantdomain-tree-panel .ztree .level0 .ico_close,
+.module-merchantdomain-tree-panel .ztree .level0 .ico_docu {
+    background: url(../../asset/image/icon-merchant-level-0.png) no-repeat center center;
+    width: 20px;
+    height: 20px;
+}
+.module-merchantdomain-tree-panel .ztree .level1 .ico_open,
+.module-merchantdomain-tree-panel .ztree .level1 .ico_close,
+.module-merchantdomain-tree-panel .ztree .level1 .ico_docu {
+    background: url(../../asset/image/icon-merchant-level-1.png) no-repeat center center;
+    width: 20px;
+    height: 20px;
+}
+.module-merchantdomain-tree-panel .ztree .level2 .ico_open,
+.module-merchantdomain-tree-panel .ztree .level2 .ico_close,
+.module-merchantdomain-tree-panel .ztree .level2 .ico_docu {
+    background: url(../../asset/image/icon-merchant-level-2.png) no-repeat center center;
+    width: 20px;
+    height: 20px;
+}
+.module-merchantdomain-tree-panel .ztree li a,
+.module-merchantdomain-tree-panel .ztree li a.curSelectedNode {
+    height: 26px;
+    line-height: 26px;
+    vertical-align: top;
+}

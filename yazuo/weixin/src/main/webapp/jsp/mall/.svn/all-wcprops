@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/crmapi/!svn/ver/25236/code/weixin/src/main/webapp/jsp/mall
+END
+wx-mallMartBuy.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/crmapi/!svn/ver/25236/code/weixin/src/main/webapp/jsp/mall/wx-mallMartBuy.jsp
+END
+wx-mallLogAnalysis.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/crmapi/!svn/ver/22185/code/weixin/src/main/webapp/jsp/mall/wx-mallLogAnalysis.jsp
+END
+wx-mallMartPaySuccess.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/crmapi/!svn/ver/22018/code/weixin/src/main/webapp/jsp/mall/wx-mallMartPaySuccess.jsp
+END
+wx-mallMartGoodInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/crmapi/!svn/ver/24759/code/weixin/src/main/webapp/jsp/mall/wx-mallMartGoodInfo.jsp
+END
+wx-mallMartIndex.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/crmapi/!svn/ver/24759/code/weixin/src/main/webapp/jsp/mall/wx-mallMartIndex.jsp
+END
+wx-mallMartIntegralPayErr.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/crmapi/!svn/ver/20597/code/weixin/src/main/webapp/jsp/mall/wx-mallMartIntegralPayErr.jsp
+END
+wx-mallMartEachOrder.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/25236/code/weixin/src/main/webapp/jsp/mall/wx-mallMartEachOrder.jsp
+END
+wx-mallMartOrderHistory.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/25236/code/weixin/src/main/webapp/jsp/mall/wx-mallMartOrderHistory.jsp
+END

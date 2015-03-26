@@ -1,0 +1,61 @@
+.page-productoperad-list-addedit .page-bd {
+    padding: 20px 15px;
+}
+.page-productoperad-list-addedit .addedit-title {
+    font-size: 26px;
+    color: #777;
+    padding: 15px 5px;
+}
+.page-productoperad-list-addedit .add-edit-content {
+    padding: 20px;
+}
+.page-productoperad-list-addedit .ff-label {
+    width: 150px;
+    text-align: right;
+}
+.page-productoperad-list-addedit .input-text {
+    width:400px;
+}
+.page-productoperad-list-addedit .input-textarea {
+    width:400px;
+    height:150px;
+}
+
+.page-productoperad-list-addedit .used-list {
+    margin-right: 25px;
+}
+
+.page-productoperad-list-addedit .save-button {
+    width: 300px;
+    margin-left: 150px;
+}
+.page-productoperad-list-addedit .valid-error {
+    padding-left: 150px;
+}
+.page-productoperad-list-addedit .upload-box {
+    float: left;
+    display: inline;
+    height: 27px;
+    line-height:27px;
+    padding: 0 10px;
+    margin-right: 15px;
+}
+.page-productoperad-list-addedit .ff-value-box {
+
+}
+.page-productoperad-list-addedit .ff-value-box .tips{
+    float: left;
+    display: inline;
+    margin-right: 15px;
+    line-height: 16px;
+    color: #777;
+}
+.page-productoperad-list-addedit .date-input {
+    width: 150px;
+}
+.page-productoperad-list-addedit .edit {
+    width: 550px;margin-left:150px;margin-bottom: 10px;
+}
+.page-productoperad-list-addedit #edui1_toolbarbox{
+    z-index: 100;
+}

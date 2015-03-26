@@ -1,0 +1,187 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="main">
+        <div class="head">
+            <h2>{{title}}</h2>
+            <div class="con-info" ms-class-1="fixed:showHide=='hide'">
+                <span>({{titleStatus}})&nbsp;</span>
+                {{titleCon}}
+                <i ms-visible="showHide=='hide'" ms-click=selectShowHide('show') class="iconfont">&#xe609;</i>
+                <i ms-visible="showHide=='show'" ms-click=selectShowHide('hide') class="iconfont">&#xe60a;</i>
+            </div>
+            <p ms-repeat="attachments">附件：{{el.fileName}}（{{el.attachmentSize/1024}}K）<a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{el.fileFullPath}}">下载</a></p>
+        </div>
+        <div class="content">
+            <div class="content-left">
+                <!--one-->
+                <div class="context-left-list" ms-repeat="operstionLogs">
+                    <button class="begin" ms-if="el.iconCat == 1||el.iconCat == 2">
+                        <i class="iconfont">&#xe628;</i>
+                    </button>
+                    <button class="active" ms-if="el.iconCat == 3">
+                        <i class="iconfont">&#xe627;</i>
+                    </button>
+                    <button class="end" ms-if="el.iconCat == 4">
+                        <i class="iconfont">&#xe61e;</i>
+                    </button>
+                    <div class="content" ms-if="el.iconCat == 1 || el.iconCat == 2">
+                        <ul class="box">
+                            <li class="box-left">{{el.operatingTime|date("yyyy-MM-dd HH:mm")}}</li>
+                            <li class="box-right">{{el.description}}</li>
+                        </ul>
+                        <ul ms-repeat="el.tips" class="attachment">
+                            <span>{{el.text}}</span>
+                            <a ms-if="el.path" ms-href="el.path">&nbsp;下载</a>
+                        </ul>
+                    </div>
+                    <div class="content" ms-if="el.iconCat == 3">
+                        <ul class="box-active">
+                            <li class="active-style">{{el.description}}
+                                <span ms-repeat="el.buttons">
+                                    <input class="simple-btn" ms-data-type="el.type" ms-data-text="el.text" type="button" ms-click="addVisit" ms-value="el.text">
+                                </span>
+                            </li>
+                            <li ms-repeat="el.tips" class="active-description">
+                                <span>{{el.text}}</span>
+                                <a ms-if="el.path" ms-href="el.path">&nbsp;下载</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="content" ms-if="el.iconCat == 4">
+                        <ul class="box-active">
+                            <li class="active-style">{{el.description}}
+                                <span ms-repeat="el.buttons">
+                                    <input class="simple-btn" ms-data-type="el.type" ms-data-text="el.text" type="button" ms-click="addVisit" ms-value="el.text">
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--one-end-->
+            </div>
+            <div class="content-right">
+                <div class="content-right-box">
+                    <h2 class="title">需求信息</h2>
+                    <ul class="con">
+                        <li class="list">
+                            <label>需求创建时间：</label>
+                            <p>{{insertTime|date("MM.dd HH:mm")}}</p>
+                        </li>
+                        <li class="list">
+                            <label>商户：</label>
+                            <p>{{merchantName}}</p>
+                        </li>
+                        <!--li class="list">
+                            <label>区域：</label>
+                            <p>金百万餐饮有限公司</p>
+                        </li>
+                        <li class="list">
+                            <label>门店：</label>
+                            <p>金百万餐饮有限公司</p>
+                        </li-->
+                        <li class="list">
+                            <label>联系人：</label>
+                            <p>{{contactName}}<span ms-if="linkType">（{{linkType}}）</span><br>{{mobilePhone}}</p>
+                        </li>
+                        <li class="list">
+                            <label>来源：</label>
+                            <p>{{dicRowSourceCat}}</p>
+                        </li>
+                        <li class="list">
+                            <label>业务类型：</label>
+                            <p>{{resourceName}}<span ms-if="resourceType">（{{resourceType}}）</span></p>
+                        </li>
+                        <li class="list">
+                            <label>处理人：</label>
+                            <p ms-if="!dicRowHandler"><a ms-if="pageStatus!=3&&permission.assign_141" href="javascript:;" ms-click="assign">指派</a></p>
+                            <p ms-if="dicRowHandler">{{dicRowHandler}}&nbsp;&nbsp;&nbsp;&nbsp;<a ms-if="pageStatus!=3&&permission.assign_141" href="javascript:;" ms-click="assign">修改</a></p>
+                        </li>
+                        <li class="list">
+                            <label>前端负责人：</label>
+                            <p>{{fesUserName}}<span ms-if="fesUserTel">（{{fesUserTel}}）</span></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--放弃-->
+<div class=" ui-hidden"
+     ms-widget="dialog,$,$quitDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$quitFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="quit-description" ms-duplex="remark" placeholder="请说明放弃原因"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--放弃 end-->
+<!-- 查看回访单 -->
+<div class="monthly-dialog-input-class ui-hidden" ms-widget="dialog,$,$questionsDialogOpts">
+    <div class="f-body con-center-main">
+        <div class="f-field fn-clear">
+            <ul>
+                <li class="question-list" ms-repeat="readQuestions"  ms-class-1="question{{$index}}">
+                    <div class="question-title">{{$index+1}}、{{el.title}}<p class="tip">{{el.tip}}</p></div><!--问题标题-->
+                    <div class="question-con f-field ff-value"><!--问题内容-->
+                        <label ms-repeat="el.sysDocumentDtlOptionList">
+                            <input type="radio" disabled
+                                   ms-attr-data-class="hid-input{{$outer.$index}}"
+                                   ms-if="$outer.el.questionType == '1'"
+                                   ms-checked="el.isSelected == '1'"
+                                   ms-click=radioBox($outer.el);
+                                   ms-attr-data-val="{{$outer.$index}}"
+                                   ms-attr-name="{{$outer.$index}}{{$outer.el.questionId}}">
+                            <input type="checkbox" disabled
+                                   ms-attr-data-class="hid-input{{$outer.$index}}"
+                                   ms-if="$outer.el.questionType == '2'"
+                                   ms-checked="el.isSelected == '1'"
+                                   ms-click=checkBox($outer.el);
+                                   ms-attr-name="{{$outer.$index}}{{$outer.el.questionId}}">
+                            {{el.optionContent}}
+                        </label>
+                        <div ms-if="el.questionType != '3'" class="ff-value-tip"></div>
+                        <div class="f-field ff-value" ms-if="el.sysDocumentDtlOptionList" ms-each="el.sysDocumentDtlOptionList">
+                            <textarea ms-if="el.isOpenTextarea == '1'&&el.isSelected == '1'"
+                                      ms-attr-placeholder="el.tip"
+                                      ms-duplex="el.comment" readonly="readonly"></textarea>
+                            <div ms-if="el.isOpenTextarea == '1'&&el.isSelected == '1'" class="ff-value-tip"></div>
+                        </div>
+                        <div class="f-field ff-value" ms-if="el.questionType == '3'">
+                            <textarea ms-attr-placeholder="el.tip"
+                                      ms-duplex="el.comment" readonly="readonly"></textarea>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 查看回访单-end -->
+<!--回访记录-->
+<div ms-module="visit,$,$visitOpts"></div>
+<!--回访记录-->
+<!--回访记录-详细-->
+<div ms-module="visitinfo,$,$visitInfoOpts"></div>
+<!--回访记录-详细-end-->
+<!--指派需求-->
+<div ms-module="persontree,$,$treeOpts"></div>
+<!--指派需求-end-->
+

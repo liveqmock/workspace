@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+	
+<mapper namespace="com.yazuo.erp.system.dao.SysCustomerComplaintDao">
+	<resultMap id="SysCustomerComplaintMap" type="com.yazuo.erp.system.vo.SysCustomerComplaintMap">
+    	<result property="customer_complaint_type" column="customer_complaint_type" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+	</resultMap>
+	<resultMap id="SysCustomerComplaint" type="com.yazuo.erp.system.vo.SysCustomerComplaintVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="customerComplaintType" column="customer_complaint_type" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="complaintTitle" column="complaint_title"/>
+    	<result property="complaintContent" column="complaint_content"/>
+    	<result property="complaintTime" column="complaint_time"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="handledBy" column="handled_by"/>
+    	<result property="handledTime" column="handled_time"/>
+    	<result property="handledDescription" column="handled_description"/>
+    	<result property="customerComplaintStatus" column="customer_complaint_status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="syscustomercomplaintColumns">
+	    <![CDATA[
+		id,merchant_id,customer_complaint_type,complaint_title,complaint_content,complaint_time,attachment_id,handled_by,handled_time,handled_description,customer_complaint_status,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysCustomerComplaint" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,customer_complaint_type,complaint_title,complaint_time,customer_complaint_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_customer_complaint (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="customerComplaintType!=null and customerComplaintType!=''">customer_complaint_type,</if>
+        	 <if test="complaintTitle!=null and complaintTitle!=''">complaint_title,</if>
+        	 <if test="complaintContent!=null and complaintContent!=''">complaint_content,</if>
+        	 <if test="complaintTime!=null ">complaint_time,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="handledBy!=null ">handled_by,</if>
+        	 <if test="handledTime!=null ">handled_time,</if>
+        	 <if test="handledDescription!=null and handledDescription!=''">handled_description,</if>
+        	 <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">customer_complaint_status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="customerComplaintType!=null and customerComplaintType!=''">
+       	   	 #{customerComplaintType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+       	    <if test="complaintTitle!=null and complaintTitle!=''">#{complaintTitle},</if>
+       	    <if test="complaintContent!=null and complaintContent!=''">#{complaintContent},</if>
+       	    <if test="complaintTime!=null ">#{complaintTime},</if>
+       	    <if test="attachmentId!=null ">#{attachmentId},</if>
+       	    <if test="handledBy!=null ">#{handledBy},</if>
+       	    <if test="handledTime!=null ">#{handledTime},</if>
+       	    <if test="handledDescription!=null and handledDescription!=''">#{handledDescription},</if>
+       	    <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">#{customerComplaintStatus},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysCustomerComplaints" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,customer_complaint_type,complaint_title,complaint_time,customer_complaint_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_customer_complaint (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="customerComplaintType!=null and customerComplaintType!=''">customer_complaint_type,</if>
+        	 <if test="complaintTitle!=null and complaintTitle!=''">complaint_title,</if>
+        	 <if test="complaintContent!=null and complaintContent!=''">complaint_content,</if>
+        	 <if test="complaintTime!=null ">complaint_time,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="handledBy!=null ">handled_by,</if>
+        	 <if test="handledTime!=null ">handled_time,</if>
+        	 <if test="handledDescription!=null and handledDescription!=''">handled_description,</if>
+        	 <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">customer_complaint_status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="customerComplaintType!=null and customerComplaintType!=''"> 
+            #{customerComplaintType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+          <if test="complaintTitle!=null and complaintTitle!=''">#{t.complaintTitle},</if>
+          <if test="complaintContent!=null and complaintContent!=''">#{t.complaintContent},</if>
+          <if test="complaintTime!=null ">#{t.complaintTime},</if>
+          <if test="attachmentId!=null ">#{t.attachmentId},</if>
+          <if test="handledBy!=null ">#{t.handledBy},</if>
+          <if test="handledTime!=null ">#{t.handledTime},</if>
+          <if test="handledDescription!=null and handledDescription!=''">#{t.handledDescription},</if>
+          <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">#{t.customerComplaintStatus},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysCustomerComplaint">
+        UPDATE sys.sys_customer_complaint 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="customerComplaintType!=null and customerComplaintType!=''">
+	         customer_complaint_type = #{customerComplaintType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+	        <if test="complaintTitle!=null and complaintTitle!=''">complaint_title = #{complaintTitle} ,</if>
+	        <if test="complaintContent!=null and complaintContent!=''">complaint_content = #{complaintContent} ,</if>
+	        <if test="complaintTime!=null ">complaint_time = #{complaintTime} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="handledBy!=null ">handled_by = #{handledBy} ,</if>
+	        <if test="handledTime!=null ">handled_time = #{handledTime} ,</if>
+	        <if test="handledDescription!=null and handledDescription!=''">handled_description = #{handledDescription} ,</if>
+	        <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">customer_complaint_status = #{customerComplaintStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysCustomerComplaintsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_customer_complaint 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="customerComplaintType!=null and customerComplaintType!=''">
+	        	customer_complaint_type = #{customerComplaintType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+	        <if test="complaintTitle!=null and complaintTitle!=''">complaint_title = #{t.complaintTitle} ,</if>
+	        <if test="complaintContent!=null and complaintContent!=''">complaint_content = #{t.complaintContent} ,</if>
+	        <if test="complaintTime!=null ">complaint_time = #{t.complaintTime} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{t.attachmentId} ,</if>
+	        <if test="handledBy!=null ">handled_by = #{t.handledBy} ,</if>
+	        <if test="handledTime!=null ">handled_time = #{t.handledTime} ,</if>
+	        <if test="handledDescription!=null and handledDescription!=''">handled_description = #{t.handledDescription} ,</if>
+	        <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">customer_complaint_status = #{t.customerComplaintStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysCustomerComplaintsToSameVals" parameterType="map">
+        UPDATE sys.sys_customer_complaint 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="customerComplaintType!=null and customerComplaintType!=''">
+	        	customer_complaint_type = #{customerComplaintType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+	        <if test="complaintTitle!=null and complaintTitle!=''">complaint_title = #{complaintTitle} ,</if>
+	        <if test="complaintContent!=null and complaintContent!=''">complaint_content = #{complaintContent} ,</if>
+	        <if test="complaintTime!=null ">complaint_time = #{complaintTime} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="handledBy!=null ">handled_by = #{handledBy} ,</if>
+	        <if test="handledTime!=null ">handled_time = #{handledTime} ,</if>
+	        <if test="handledDescription!=null and handledDescription!=''">handled_description = #{handledDescription} ,</if>
+	        <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">customer_complaint_status = #{customerComplaintStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysCustomerComplaintById">
+    <![CDATA[
+        DELETE FROM sys.sys_customer_complaint WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysCustomerComplaintByIds" parameterType="list">
+        DELETE FROM sys.sys_customer_complaint WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysCustomerComplaintById" resultMap="SysCustomerComplaint">
+		SELECT <include refid="syscustomercomplaintColumns" />
+		    FROM sys.sys_customer_complaint 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysCustomerComplaints" resultMap="SysCustomerComplaint">
+		SELECT <include refid="syscustomercomplaintColumns" />
+		    FROM sys.sys_customer_complaint  
+	    <include refid="syscustomercomplaint_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysCustomerComplaintsMap" resultType="map">
+		SELECT <include refid="syscustomercomplaintColumns" />
+	    <![CDATA[
+		    FROM sys.sys_customer_complaint  
+	    ]]>
+	    <include refid="syscustomercomplaint_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="syscustomercomplaint_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="customerComplaintType!=null and customerComplaintType!=''">AND customer_complaint_type = #{customerComplaintType}</if>
+	       <if test="complaintTitle!=null and complaintTitle!=''">AND complaint_title = #{complaintTitle}</if>
+	       <if test="complaintContent!=null and complaintContent!=''">AND complaint_content = #{complaintContent}</if>
+		   <if test="complaintTime!=null ">AND complaint_time >= #{complaintTime}</if>
+		   <if test="complaintTime!=null ">AND complaint_time &lt;= #{complaintTime}</if>
+	       <if test="attachmentId!=null ">AND attachment_id = #{attachmentId}</if>
+	       <if test="handledBy!=null ">AND handled_by = #{handledBy}</if>
+		   <if test="handledTime!=null ">AND handled_time >= #{handledTime}</if>
+		   <if test="handledTime!=null ">AND handled_time &lt;= #{handledTime}</if>
+	       <if test="handledDescription!=null and handledDescription!=''">AND handled_description = #{handledDescription}</if>
+	       <if test="customerComplaintStatus!=null and customerComplaintStatus!=''">AND customer_complaint_status = #{customerComplaintStatus}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysCustomerComplaintCount" resultType="long">
+        SELECT count(*) FROM sys.sys_customer_complaint 
+		<include refid="syscustomercomplaint_findPage_where"/>    
+    </select>
+    
+    <!-- 通过主键查找客户投诉 -->
+    <select id="querySysCustomerComplaintById" resultMap="SysCustomerComplaintMap">
+		SELECT
+			C . ID,
+			C .merchant_id,
+			M .merchant_name,
+			M .brand,
+			M .merchant_status,
+			C .customer_complaint_type,
+			C .complaint_title,
+			COALESCE(C .complaint_content, '')AS complaint_content,
+			C .complaint_time,
+			COALESCE(C .attachment_id, 0)AS attachment_id,
+			COALESCE(C .handled_by, 0)AS handled_by,
+			COALESCE(u.user_name, '')AS handled_by_name,
+			C .handled_time,
+			COALESCE(C .handled_description, '')AS handled_description,
+			C .customer_complaint_status,
+			s.dictionary_value AS customer_complaint_status_name,
+			C .is_enable,
+			C .remark,
+			C .insert_by,
+			C .insert_time,
+			C .update_by,
+			C .update_time
+		FROM
+			sys.sys_customer_complaint C
+		LEFT JOIN sys.sys_user u ON C .handled_by = u. ID
+		LEFT JOIN syn.syn_merchant M ON C .merchant_id = M .merchant_id
+		LEFT JOIN sys.sys_dictionary s ON C .customer_complaint_status = s.dictionary_key
+		AND s.dictionary_type = '00000050'
+		WHERE
+			1 = 1
+		AND C .is_enable = '1'
+		AND C . ID = #{id} 
+	</select>
+	
+	<!-- 返回所有返回所有满足条件的Map客户投诉的List -->
+    <select id="querySysCustomerComplaintList" resultMap="SysCustomerComplaintMap">
+		SELECT
+			C . ID,
+			C .merchant_id,
+			M .merchant_name,
+			M .brand,
+			M .merchant_status,
+			C .customer_complaint_type,
+			C .complaint_title,
+			COALESCE(C .complaint_content, '')AS complaint_content,
+			C .complaint_time,
+			COALESCE(C .attachment_id, 0)AS attachment_id,
+			COALESCE(C .handled_by, 0)AS handled_by,
+			COALESCE(u.user_name, '')AS handled_by_name,
+			C .handled_time,
+			COALESCE(C .handled_description, '')AS handled_description,
+			C .customer_complaint_status,
+			s.dictionary_value AS customer_complaint_status_name,
+			C .is_enable,
+			C .remark,
+			C .insert_by,
+			C .insert_time,
+			C .update_by,
+			C .update_time
+		FROM
+			sys.sys_customer_complaint C
+		LEFT JOIN sys.sys_user u ON C .handled_by = u. ID
+		LEFT JOIN syn.syn_merchant M ON C .merchant_id = M .merchant_id
+		LEFT JOIN sys.sys_dictionary s ON C .customer_complaint_status = s.dictionary_key
+		AND s.dictionary_type = '00000050'
+		WHERE
+			1 = 1
+		AND C .is_enable = '1'
+
+		<if test="id!=null ">AND c.id = #{id}</if>
+		<if test="merchantId!=null ">AND c.merchant_id = #{merchantId}</if>
+		<if test="complaintTitle!=null and complaintTitle!=''">AND c.complaint_title = #{complaintTitle}</if>
+		<if test="complaintContent!=null and complaintContent!=''">AND c.complaint_content = #{complaintContent}</if>
+		<if test="complaintTime!=null ">AND c.complaint_time >= #{complaintTime}</if>
+		<if test="complaintTime!=null ">AND c.complaint_time &lt;= #{complaintTime}</if>
+		<if test="handledBy!=null ">AND c.handled_by = #{handledBy}</if>
+		<if test="handledTime!=null ">AND c.handled_time >= #{handledTime}</if>
+		<if test="handledTime!=null ">AND c.handled_time &lt;= #{handledTime}</if>
+		<if test="customerComplaintStatus!=null and customerComplaintStatus!=''">AND c.customer_complaint_status = #{customerComplaintStatus}</if>
+		<if test="merchantName!=null and merchantName!=''">AND m.merchant_name LIKE '%'||#{merchantName,jdbcType=VARCHAR}||'%'</if>
+	</select>
+    
+</mapper>

@@ -1,0 +1,225 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <!--client-header-->
+    <div class="client-head">
+        <!--client-left-->
+        <div class="client-head-left">
+            <div class="client-head-left-logo"><img ms-src="{{merchantData.imgUrl}}"></div>
+            <div class="client-head-left-text pt20">
+                <h2>{{merchantData.merchant_name}}</h2>
+                <ul>
+                    <li>启动日期：{{merchantData.begin_time | date("yyyy-MM-dd")}}</li>
+                    <li>销售负责人：{{merchantData.sale_user_name}}</li>
+                    <li>计划上线：{{merchantData.plan_online_time | date("yyyy-MM-dd")}}</li>
+                    <li>前端负责人：{{merchantData.front_user_name}}</li>
+                </ul>
+            </div>
+        </div>
+        <!--client-left-end-->
+        <!--client-right-->
+        <div class="client_head_right">
+            <div class="fn-right">
+                <button class="simple-btn mr5" ms-click="localHref('#/frontend/home/mycommunication')"><i class="iconfont icon-blue f26">&#xe612; </i>通讯录</button>
+                <button ms-click="openAdd" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe60f; </i>添加问题</button>
+                <!--button ms-click="createActive" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe611; </i>活动申请</button>
+                <button ms-click="onLineMail" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe614; </i>发送月报</button-->
+            </div>
+        </div>
+        <!--client-right-end-->
+    </div>
+    <!--client-header-end-->
+    <!--table-->
+    <div class="marketactivitie-sales-div">
+        <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="text-left">商户名称</th>
+                <th class="text-left">类型</th>
+                <th class="text-center">创建日期</th>
+                <th class="text-center">终止日期</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ms-repeat="responseSalesData" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-class-3="not-read:el.itemStatus=='1'">
+                <td class="text-left">{{el.active_name}}</td>
+                <td class="text-left">{{el.type_name}}</td>
+                <td class="text-center">{{el.active_begin|date("yyyy-MM-dd")}}</td>
+                <td class="text-center">{{el.active_end|date("yyyy-MM-dd")}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--table-end-->
+</div>
+
+
+<!-- 添加问题 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$addQuestionDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addQuestionFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>商户名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box customer-title" >
+                        <p class="merchantName">{{merchantData.merchant_name}}</p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 title" name="title" ms-value="title" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$scheduleOptss"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题描述：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text w310 description" name="description" ms-text="description"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加问题 end -->
+<!-- 创建营销活动申请 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$createActiveDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$createActiveFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>商户名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box customer-title">
+                        <p class="merchantName">{{merchantData.merchant_name}}</p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 activityTitle" name="activityTitle" ms-value="activityTitle" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$activeOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动说明：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text w310 description" name="description" ms-text="description"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left">上传活动表：</label>
+                <div class="ff-value">
+                    <span ms-widget="uploader,$,$activeUploaderOpts">
+                    <button class="simple-btn" >选择文件</button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 创建营销活动申请 end -->
+
+<!--发送启动通知涵-->
+<div class="common-mail" ms-widget="dialog,$,$onLineMailDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$onLineMailFormOpts"
+          action="javascript:;">
+        <table class="common-mail-table-max f-field">
+            <tr>
+                <td width="90" align="right">收件人：</td>
+                <td>
+                    <div class="common-mail-box">
+                        <input class="mail-to" ms-duplex="mailTo">
+                        <p ms-click="addLinkman" id="addLinkMan">通讯录</p>
+                    </div>
+                    <div class="mail-name" ms-if="linkMan.flag">
+                        <table class="mail-name-table">
+                            <tr><th width="35%">姓名</th><th>角色</th></tr>
+                            <tr ms-repeat = 'linkMan.data' ms-click="addPut"><td>{{el.name}}</td><td>{{el.roleType}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" align="right">邮件标题：</td>
+                <td>
+                    <div class="common-mail-box">
+                        <input class="mail-subject" ms-duplex="mailRequestData.subject">
+                        <p ms-click="addMailModel" id="addMailModel">选择模板</p>
+                    </div>
+                    <div class="mail-title" ms-if="mailModel.flag">
+                        <p ms-repeat = "mailModel.data" ms-click="addPutEmailModel">项目上线模板</p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" align="right">正文：</td>
+                <td width="500">
+                    <div class="email-content" ms-widget="editor,$,$editorOpts"></div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" align="right">发件人：</td>
+                <td>
+                    <input class="input-text mail-name-fa" ms-duplex="mailRequestData.sendAddress">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!--发送启动通知涵-end-->

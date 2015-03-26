@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+	<http pattern="/js/**" security="none" />
+	<http pattern="/images/**" security="none" />
+	<http pattern="/pic/**" security="none" />
+	<http pattern="/aristo/**" security="none" />
+	<http pattern="/css/**" security="none" />
+	<http pattern="/jsp/login.jsp" security="none" />
+	<http pattern="/login.jsp" security="none" />
+	<http pattern="/index.jsp" security="none" />
+	<http pattern="/controller/merchant/updatePortal.do" security="none" />
+	<http pattern="/controller/merchant/addOrUpdateWifiProductForOldBrand.do" security="none" />
+	<http pattern="/controller/merchant/addOrUpdateWifiProductForNewBrand.do" security="none" />
+	<http pattern="/controller/merchant/getPortalPicByMerchantId.do" security="none" />
+	<http pattern="/controller/device/getMacList.do" security="none" />
+	<http pattern="/controller/merchant/getWifiProductInfomation.do" security="none" />
+	<http pattern="/controller/login/*.do" security="none" />
+	<http pattern="/controller/merchant/getCardTypeIds.do" security="none" />
+	<http pattern="/controller/user/resetUserPasswd.do" security="none" />
+	<http pattern="/controller/merchant/getCustomizeHomepage.do" security="none" />
+	<http pattern="/mobile/*.jsp" security="none" />
+	<http pattern="/controller/merchant/addWifiInfoForERP.do" security="none" />
+	<http pattern="/controller/merchant/formManager.do" security="none" />
+	<http pattern="/controller/merchant/updateWifiInfoForERP.do" security="none" />
+	<http pattern="/jsp/protocol.jsp" security="none" />
+	<http pattern="/jsp/mobile/report-push.jsp" security="none" /> 
+	<http pattern="/controller/member/memberAddStatic.do" security="none" /> 
+	<http pattern="/controller/merchant/upLoadPortalPic.do" security="none" /> 
+	<http pattern="/controller/device/importUnactivatedDevice.do" security="none" /> 
+	<http pattern="/controller/merchant/formManagerAjax.do" security="none" /> 
+
+	<http use-expressions="true" auto-config="false"
+		access-denied-page="/login.jsp" entry-point-ref="authenticationProcessingFilterEntryPoint">
+		<form-login login-page="/login.jsp"
+			authentication-failure-handler-ref="failureHandler"
+			authentication-success-handler-ref="successHandler" />
+		<logout logout-url="/logout" logout-success-url="/login.jsp" />
+		<session-management session-fixation-protection="migrateSession" session-authentication-error-url="/login.jsp?flag=2"> 
+            <concurrency-control max-sessions="100000" error-if-maximum-exceeded="true" expired-url="/login.jsp?flag=3" session-registry-alias="sessionRegistry"/>
+        </session-management>
+        <!-- 此处注释放开后可以实现更为复杂的登录场景，目前默认的登录方式可用，
+        <custom-filter ref="myUsernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
+        -->
+		<custom-filter ref="mySecurityFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+		<custom-filter ref="switchUserFilter" before="SWITCH_USER_FILTER" />
+		<anonymous enabled="true" />
+		<!-- <remember-me data-source-ref="dataSource" token-validity-seconds="5184000"/> -->
+	</http>
+	
+	<!-- 此处注释放开后可以实现更为复杂的登录场景，目前默认的登录方式可用，
+	<beans:bean id="myUsernamePasswordAuthenticationFilter" class="com.yazuo.superwifi.security.service.spring.MyUsernamePasswordAuthenticationFilter">
+	    <beans:property name="authenticationManager" ref="authManager" />
+	    <beans:property name="authenticationFailureHandler" ref="failureHandler" />
+	    <beans:property name="authenticationSuccessHandler" ref="successHandler" />
+	    <beans:property name="filterProcessesUrl" value="/j_spring_security_check" />
+	    <beans:property name="postOnly" value="true" />
+	</beans:bean>
+	-->
+	<beans:bean id="accessDecisionManager" class="com.yazuo.superwifi.security.service.spring.MyAccessDecisionManager"></beans:bean>
+	<beans:bean id="securityMetadataSource" class="com.yazuo.superwifi.security.service.spring.MySecurityMetadataSource">
+  		<beans:constructor-arg name="resourceDao" ref="resourceDao"></beans:constructor-arg>
+ 	</beans:bean>
+	<authentication-manager alias="authManager" erase-credentials="false">
+		<authentication-provider ref="myAuthenticationProvider">
+		</authentication-provider>
+	</authentication-manager>
+	
+	<beans:bean id="myAuthenticationProvider"
+		class="com.yazuo.superwifi.security.service.spring.MyAuthenticationProvider">
+		<beans:property name="userDetailsService" ref="userServiceDetail"></beans:property>
+		<beans:property name="passwordEncoder" ref="myPasswordEncode"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="myPasswordEncode" class="com.yazuo.superwifi.security.service.spring.MyPasswordEncode">
+		<beans:constructor-arg value="md5" type="String">
+		</beans:constructor-arg>
+	</beans:bean>
+	 <!-- 自定义过滤器  -->
+  <beans:bean id="mySecurityFilter" class="com.yazuo.superwifi.security.service.spring.MyFilterSecurityInterceptor">
+  	<beans:property name="accessDecisionManager" ref="accessDecisionManager"></beans:property>
+  	<beans:property name="fisMetadataSource" ref="securityMetadataSource"></beans:property>
+  	<beans:property name="authenticationManager" ref="authManager"></beans:property>
+  </beans:bean>
+  
+  <beans:bean id="userServiceDetail" class="com.yazuo.superwifi.security.service.spring.MyUserDetailServiceImpl"/>
+  <!-- 登录失败后业务处理 -->
+  <beans:bean id="failureHandler" class="com.yazuo.superwifi.security.service.spring.LoginAuthenticationFailureHandler"/>
+  <!-- 登录成功业务处理 -->
+  <beans:bean id="successHandler" class="com.yazuo.superwifi.security.service.spring.LoginAuthenticationSuccesssHandler"/>
+  <!-- session注册表 -->
+  <beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl"/>
+  
+  <beans:bean id="switchUserFilter" class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter">
+        <beans:property name="userDetailsService" ref="userServiceDetail"/>
+        <beans:property name="usernameParameter" value="username"/>
+        <beans:property name="targetUrl" value="/client.jsp"/>
+        <beans:property name="switchUserUrl" value="/switch"/>
+        <beans:property name="exitUserUrl" value="/exit"/>
+        <beans:property name="sessionRegistry" ref="sessionRegistry"/>
+  </beans:bean>
+  <beans:bean id="authenticationProcessingFilterEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">  
+        <beans:property name="loginFormUrl" value="/login.jsp"></beans:property>  
+  </beans:bean> 
+</beans:beans>

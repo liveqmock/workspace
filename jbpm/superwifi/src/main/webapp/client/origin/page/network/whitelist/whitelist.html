@@ -1,0 +1,36 @@
+<div class="page-bd">
+    <a href="#/network" class="go-back">返回</a>
+    <div class="device-t">
+        <p class="main-t">超级WIFI白名单用户管理</p>
+        <p>加入白名单的用户将不受黑名单条件限制</p>
+        <div class="page-filter">
+            <input type="text" class="keyword input-text" placeholder="在这里输入手机号"
+                   ms-duplex="keyword"/>&nbsp;&nbsp;
+            <button type="button" class="query-btn main-btn-blue" ms-click="query">搜 索</button>
+        </div>
+    </div>
+    <div class="device-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 添加白名单 start -->
+<div class="page-network-white-add-dialog ui-hidden"
+     ms-widget="dialog,$,$addWhiteDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addWhiteFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear" ms-visible="operType=='add'">
+                <label class="ff-label">请输入要添加的手机号：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="在这里输入手机号" class="input-text phone-num" name="phoneNum" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="password" placeholder="6位主管密码" class="input-text manager-psd" name="managerPsd" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加白名单 end -->

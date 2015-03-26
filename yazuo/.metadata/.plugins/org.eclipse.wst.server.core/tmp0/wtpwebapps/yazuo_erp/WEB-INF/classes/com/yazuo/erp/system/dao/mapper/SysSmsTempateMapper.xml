@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.erp.system.dao.SysSmsTemplateDao">
+    <resultMap id="SysSmsTemplateMap" type="com.yazuo.erp.system.vo.SysSmsTemplateVO">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="tpl_type" property="tplType" />
+        <result column="role_types" property="roleTypes" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+        <result column="user_types" property="userTypes" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+        <result column="group_ids" property="groupIds" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+        <result column="user_ids" property="userIds" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+        <result column="position_ids" property="positionIds" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    </resultMap>
+
+    <insert id="saveSmsTemplate" useGeneratedKeys="true" keyProperty="id">
+         INSERT INTO sys.sys_sms_template (title, content, created_time, tpl_type, role_types, user_types, group_ids, user_ids, position_ids)
+         VALUES (#{title}, #{content}, #{createdTime}, #{tplType},
+          #{roleTypes,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+          #{userTypes,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+          #{groupIds,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+          #{userIds,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+          #{positionIds,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler})
+    </insert>
+
+    <update id="updateSmsTemplate">
+        UPDATE sys.sys_sms_template
+        SET title = #{title}, content = #{content}, tpl_type = #{tplType}
+          , role_types = #{roleTypes,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler}
+          , user_types = #{userTypes,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler}
+          , group_ids = #{groupIds,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler}
+          , user_ids = #{userIds,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler}
+          , position_ids = #{positionIds,jdbcType=ARRAY,typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteSmsTemplate" parameterType="int">
+        DELETE FROM sys.sys_sms_template
+        WHERE id = #{id}
+    </delete>
+
+    <select id="getSmsTemplate" resultMap="SysSmsTemplateMap">
+        SELECT *
+        FROM sys.sys_sms_template
+        WHERE id=#{id}
+    </select>
+    
+    <select id="getLastSmsTemplateByType" resultMap="SysSmsTemplateMap">
+        SELECT *
+        FROM sys.sys_sms_template
+        WHERE tpl_type=#{tplType}
+        ORDER BY id DESC
+        LIMIT 1
+    </select>
+
+    <select id="getAllTemplateVOs" resultMap="SysSmsTemplateMap">
+        SELECT id as alais_id ,*
+        FROM sys.sys_sms_template
+        WHERE title like '%${templateVO.content}%'
+        ORDER BY id DESC
+        @@
+    </select>
+</mapper>

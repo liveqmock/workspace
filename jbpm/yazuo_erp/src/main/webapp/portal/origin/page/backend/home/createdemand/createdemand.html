@@ -1,0 +1,135 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="page-padding">
+        <h2 class="addedit-title">创建需求</h2>
+        <div class="add-edit-content">
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>商户：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box customer-title" >
+                                <span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>域/门店：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="schedule" ms-widget="select,$,$daySelectOpts"></span>
+                                <span class="schedule" ms-widget="select,$,$daySelectOpts"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>联系人：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="schedule create-select-small" ms-widget="select,$,$contactSelectOpts"></span>
+                                <span class="schedule create-select-small" ms-widget="select,$,$contactSelectOpts2"></span>
+                                <input type="text" class="input-text create-input-small">
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>来源：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="schedule create-select-small" ms-widget="select,$,$sourceSelectOpts"></span>
+                                <span class="schedule create-select-small" ms-widget="select,$,$sourceSelectOpts2"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>类型：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="schedule create-select-small" ms-widget="select,$,$typeSelectOpts1"></span>
+                                <span class="schedule create-select-small" ms-widget="select,$,$typeSelectOpts2"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>标题：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text">
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>内容：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="input-textarea"></textarea>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>附件：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <div class="tips" ms-widget="uploader,$,$dataUploaderOpts">
+                                    <button class="simple-btn">上传附件</button>
+                                    {{progressData}}
+                                </div>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>处理人：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="schedule create-select-small" ms-widget="select,$,$daySelectOpts"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>处理时间：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <a href="javascript:;" class="font14">设置时间</a>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>提醒：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <a href="javascript:;" class="font14">设置时间</a>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="ff-value-box"><input type="button" ms-click="saveData" class="save-button main-btn" value="保存"></div>
+                </div>
+        </div>
+    </div>
+
+</div>
+

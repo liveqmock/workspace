@@ -1,0 +1,110 @@
+.module-cardrulesetting-dialog .ui-dialog-content {
+    padding: 0;
+    border-top: 5px solid #C7D4E3;
+    border-bottom: 1px solid #cde2f9;
+}
+.module-cardrulesetting-nav-list {
+    border-bottom: 1px solid #cde2f9;
+    background: #edf6ff;
+}
+.module-cardrulesetting-nav-item {
+    width: 25%;
+}
+.module-cardrulesetting-nav-item a {
+    display: block;
+    line-height: 34px;
+    height: 34px;
+    border-top: 4px solid #edf6ff;
+    border-bottom: 1px solid #cde2f9;
+    text-align: center;
+    margin-bottom: -1px;
+    color: #666666;
+    text-decoration: none;
+    font-size: 14px;
+}
+.module-cardrulesetting-nav-list .state-active a {
+    border-top: 4px solid #76a9e0;
+    border-bottom: 1px solid #ffffff;
+    border-left: 1px solid #cde2f9;
+    border-right: 1px solid #cde2f9;
+    background: #ffffff;
+    color: #76a9e0;
+    font-family: \65B0\5B8B\4F53, \5b8b\4f53;
+}
+.module-cardrulesetting-nav-list .state-error a {
+    background: #F56152;
+}
+.module-cardrulesetting-panel-item {
+    height: 380px;
+    overflow: auto;
+    padding: 20px;
+}
+.module-cardrulesetting-panel-item .card-item {
+    background: #f3f3f3;
+    position: relative;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+.module-cardrulesetting-panel-item .card-item-close-h {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    line-height: 1em;
+}
+.module-cardrulesetting-panel-item .panel-action {
+    text-align: right;
+}
+.module-cardrulesetting-panel-item .card-list-empty-tip {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666666;
+}
+.module-cardrulesetting-panel-item .ff-label {
+    width: 80px;
+    text-align: right;
+}
+.module-cardrulesetting-panel-item .ff-value {
+    margin-left: 80px;
+}
+.module-cardrulesetting-panel-item .card-name,
+.module-cardrulesetting-panel-item .rebate-type,
+.module-cardrulesetting-panel-item .rebate-setting,
+.module-cardrulesetting-panel-item .rebate-unit {
+    width: 148px;
+}
+.module-cardrulesetting-panel-item .card-num,
+.module-cardrulesetting-panel-item .card-price,
+.module-cardrulesetting-panel-item .begin-amount,
+.module-cardrulesetting-panel-item .end-amount,
+.module-cardrulesetting-panel-item .rebate-value {
+    width: 78px;
+}
+.module-cardrulesetting-panel-item .card-rebate-item {
+    position: relative;
+    padding: 8px;
+    margin-bottom: 8px;
+    background: #ffffff;
+}
+.module-cardrulesetting-panel-item .card-rebate-item .close-h {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    line-height: 1em;
+}
+.module-cardrulesetting-panel-item .card-rebate-item .rebate-type-field {
+    margin-bottom: 8px;
+}
+.module-cardrulesetting-panel-item .add-more-rebate-h {
+    display: block;
+    margin-top: 8px;
+    width: 130px;
+}
+.module-cardrulesetting-dialog .amount-range-wrapper,
+.module-cardrulesetting-dialog .amount-fixed-wrapper {
+    margin-top: 8px;
+}
+.module-cardrulesetting-dialog .amount-fixed-inner {
+    padding: 8px;
+    background: #ffffff;
+}

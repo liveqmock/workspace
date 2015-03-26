@@ -1,0 +1,13 @@
+{
+    "flag": 1,
+    "data": [{
+        "id": 1,
+        "groupName": "北京分公司"
+    }, {
+        "id": 1,
+        "groupName": "上海分公司"
+    }, {
+        "id": 1,
+        "groupName": "无锡分公司"
+    }]
+}

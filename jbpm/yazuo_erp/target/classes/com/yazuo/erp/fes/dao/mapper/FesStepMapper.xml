@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesStepDao">
+	<resultMap id="FesStep" type="com.yazuo.erp.fes.vo.FesStepVO">
+    	<id property="id" column="id"/>
+    	<result property="stepNum" column="step_num"/>
+    	<result property="stepName" column="step_name"/>
+    	<result property="tip" column="tip"/>
+    	<result property="sort" column="sort"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="fesstepColumns">
+	    <![CDATA[
+		id,step_num,step_name,tip,sort,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveFesStep" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： step_num,step_name,tip,sort,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_step (
+        	 <if test="stepNum!=null and stepNum!=''">step_num,</if>
+        	 <if test="stepName!=null and stepName!=''">step_name,</if>
+        	 <if test="tip!=null and tip!=''">tip,</if>
+        	 <if test="sort!=null ">sort,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="stepNum!=null and stepNum!=''">#{stepNum},</if>
+       	    <if test="stepName!=null and stepName!=''">#{stepName},</if>
+       	    <if test="tip!=null and tip!=''">#{tip},</if>
+       	    <if test="sort!=null ">#{sort},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertFesSteps" parameterType="map">
+	 <!--不允许为空的字段： step_num,step_name,tip,sort,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_step (
+        	 <if test="stepNum!=null and stepNum!=''">step_num,</if>
+        	 <if test="stepName!=null and stepName!=''">step_name,</if>
+        	 <if test="tip!=null and tip!=''">tip,</if>
+        	 <if test="sort!=null ">sort,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="stepNum!=null and stepNum!=''">#{t.stepNum},</if>
+          <if test="stepName!=null and stepName!=''">#{t.stepName},</if>
+          <if test="tip!=null and tip!=''">#{t.tip},</if>
+          <if test="sort!=null ">#{t.sort},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesStep">
+        UPDATE fes.fes_step 
+ 		  <set>
+	        <if test="stepNum!=null and stepNum!=''">step_num = #{stepNum} ,</if>
+	        <if test="stepName!=null and stepName!=''">step_name = #{stepName} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{tip} ,</if>
+	        <if test="sort!=null ">sort = #{sort} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesStepsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_step 
+ 		  <set>
+	        <if test="stepNum!=null and stepNum!=''">step_num = #{t.stepNum} ,</if>
+	        <if test="stepName!=null and stepName!=''">step_name = #{t.stepName} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{t.tip} ,</if>
+	        <if test="sort!=null ">sort = #{t.sort} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesStepsToSameVals" parameterType="map">
+        UPDATE fes.fes_step 
+ 		  <set>
+	        <if test="stepNum!=null and stepNum!=''">step_num = #{stepNum} ,</if>
+	        <if test="stepName!=null and stepName!=''">step_name = #{stepName} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{tip} ,</if>
+	        <if test="sort!=null ">sort = #{sort} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesStepById">
+    <![CDATA[
+        DELETE FROM fes.fes_step WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesStepByIds" parameterType="list">
+        DELETE FROM fes.fes_step WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesStepById" resultMap="FesStep">
+		SELECT <include refid="fesstepColumns" />
+		    FROM fes.fes_step 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getFesSteps" resultMap="FesStep">
+		SELECT <include refid="fesstepColumns" />
+		    FROM fes.fes_step  
+	    <include refid="fesstep_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getFesStepsMap" resultType="map">
+		SELECT <include refid="fesstepColumns" />
+	    <![CDATA[
+		    FROM fes.fes_step  
+	    ]]>
+	    <include refid="fesstep_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="fesstep_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="stepNum!=null and stepNum!=''">AND step_num = #{stepNum}</if>
+	       <if test="stepName!=null and stepName!=''">AND step_name = #{stepName}</if>
+	       <if test="tip!=null and tip!=''">AND tip = #{tip}</if>
+	       <if test="sort!=null ">AND sort = #{sort}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getFesStepCount" resultType="long">
+        SELECT count(*) FROM fes.fes_step 
+		<include refid="fesstep_findPage_where"/>    
+    </select>
+    
+</mapper>

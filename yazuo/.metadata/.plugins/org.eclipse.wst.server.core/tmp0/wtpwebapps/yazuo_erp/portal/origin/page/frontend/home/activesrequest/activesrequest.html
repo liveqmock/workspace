@@ -1,0 +1,138 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="add-question-btn">
+        <button class="main-btn" ms-click="createActive">营销活动申请</button>
+    </div>
+    <!--tabs-类型-->
+    <div class="cate-list-wrapper">
+        <ul class="cate-list fn-clear">
+            <li class="cate-item" ms-class-1="cur:requestData.status == ''" ms-click="changeStatus('')">全部</li>
+            <li class="cate-item" ms-repeat="pageDataStatus" ms-class-1="cur:el.dictionary_key == requestData.status" ms-click="changeStatus(el.dictionary_key)">{{el.dictionary_value}}</li>
+        </ul>
+    </div>
+    <!--tabs-类型-end-->
+    <!--search-->
+    <div class="search">
+        <div class="page-filter">
+            <input type="text" class="coursewareName input-text" ms-duplex="requestData.merchantName" placeholder="请输入商户名称">&nbsp;
+            <button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+        </div>
+    </div>
+    <!--search-end-->
+    <!--table-->
+    <div class="question-list">
+        <div class="question-list-inner" ms-repeat="pageData" ms-class="question-list-inner-bg:$index%2==0">
+            <div class="qusetion-list-style-main">
+                <h2>({{el.merchantName}}) {{el.activityTitle}} <span>- {{el.activityTypeName}}</span></h2>
+                <ul>
+                    <li class="qusetion-tit1">
+                        <span>申请日期：{{el.insertTime|date("yyyy-MM-dd")}}</span>
+                        <span>申建人：{{el.applicantByName}}</span>
+                    </li>
+                    <li class="qusetion-con">{{el.description}}</li>
+                    <li class="qusetion-con">下载活动申请表：<a ms-href="url+'fesOnlineProcess/download.do?relPath='+el.filePath+el.attachmentName">{{el.originalFileName}}</a></li>
+
+                    <li class="qusetion-tit2" ms-if="el.marketingActivityStatus == 1">
+                        <span>状态：待创建</span>
+                    </li>
+                    <li class="qusetion-tit2" ms-if="el.marketingActivityStatus == 2">
+                        <span>状态：已创建</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <span>创建时间：{{el.insertTime|date("yyyy-MM-dd")}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <span>创建人：{{el.insertBy}}</span>
+                    </li>
+                    <li class="qusetion-tit2" ms-if="el.marketingActivityStatus == 3">
+                        <span>状态：已关闭</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <span>关闭时间：{{el.updateTime|date("yyyy-MM-dd")}}</span>&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <span>操作人：{{el.updateBy}}</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--table-end-->
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+
+
+</div>
+<!--content-end-->
+
+<!-- 创建营销活动申请 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$createActiveDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$createActiveFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>商户名称：</label>
+                <div class="ff-value">
+                    <!--<div class="ff-value-box customer-title"  ms-module="autocomplete,$,$searchOpts">
+                        &lt;!&ndash;input type="text" class="input-text time-limit w310 merchantId" name="merchantId" ms-value="merchantId" /&ndash;&gt;
+                    </div>-->
+                    <div class="ff-value-box customer-title">
+                        <span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 activityTitle" name="activityTitle" ms-value="activityTitle" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$scheduleOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动说明：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text w310 description" name="description" ms-text="description"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left">上传活动表：</label>
+                <div class="ff-value" style="padding-left: 75px;">
+                    <p ms-if="upfile" class="actives-upfile">{{upfile}}</p>
+                    <span ms-widget="uploader,$,$attachUploaderOpts">
+                        <button ms-if="!uploading" class="simple-btn">选择文件</button>
+                        <button ms-if="uploading" class="simple-btn-disabled">正在上传&#8230;</button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 创建营销活动申请 end -->
+
+
+
+

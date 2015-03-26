@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysDocumentDtlDao">
+	<resultMap id="SysDocumentDtl" type="com.yazuo.erp.system.vo.SysDocumentDtlVO">
+    	<id property="id" column="id"/>
+    	<result property="documentId" column="document_id"/>
+    	<result property="questionId" column="question_id"/>
+    	<result property="questionType" column="question_type"/>
+    	<result property="title" column="title"/>
+    	<result property="tip" column="tip"/>
+    	<result property="comment" column="comment"/>
+    	<result property="remark" column="remark"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysdocumentdtlColumns">
+	    <![CDATA[
+		id,document_id,question_id,question_type,title,tip,comment,remark,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysDocumentDtl" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： document_id,question_id,question_type,title,update_by,update_time,--> 
+        INSERT INTO sys.sys_document_dtl (
+        	 <if test="documentId!=null ">document_id,</if>
+        	 <if test="questionId!=null ">question_id,</if>
+        	 <if test="questionType!=null and questionType!=''">question_type,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="tip!=null and tip!=''">tip,</if>
+        	 <if test="comment!=null and comment!=''">comment,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="documentId!=null ">#{documentId},</if>
+       	    <if test="questionId!=null ">#{questionId},</if>
+       	    <if test="questionType!=null and questionType!=''">#{questionType},</if>
+       	    <if test="title!=null and title!=''">#{title},</if>
+       	    <if test="tip!=null and tip!=''">#{tip},</if>
+       	    <if test="comment!=null and comment!=''">#{comment},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysDocumentDtls" parameterType="map">
+	 <!--不允许为空的字段： document_id,question_id,question_type,title,update_by,update_time,--> 
+        INSERT INTO sys.sys_document_dtl (
+        	 <if test="documentId!=null ">document_id,</if>
+        	 <if test="questionId!=null ">question_id,</if>
+        	 <if test="questionType!=null and questionType!=''">question_type,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="tip!=null and tip!=''">tip,</if>
+        	 <if test="comment!=null and comment!=''">comment,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="documentId!=null ">#{t.documentId},</if>
+          <if test="questionId!=null ">#{t.questionId},</if>
+          <if test="questionType!=null and questionType!=''">#{t.questionType},</if>
+          <if test="title!=null and title!=''">#{t.title},</if>
+          <if test="tip!=null and tip!=''">#{t.tip},</if>
+          <if test="comment!=null and comment!=''">#{t.comment},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysDocumentDtl">
+        UPDATE sys.sys_document_dtl 
+ 		  <set>
+	        <if test="documentId!=null ">document_id = #{documentId} ,</if>
+	        <if test="questionId!=null ">question_id = #{questionId} ,</if>
+	        <if test="questionType!=null and questionType!=''">question_type = #{questionType} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{tip} ,</if>
+	        <if test="comment!=null and comment!=''">comment = #{comment} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysDocumentDtlsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_document_dtl 
+ 		  <set>
+	        <if test="documentId!=null ">document_id = #{t.documentId} ,</if>
+	        <if test="questionId!=null ">question_id = #{t.questionId} ,</if>
+	        <if test="questionType!=null and questionType!=''">question_type = #{t.questionType} ,</if>
+	        <if test="title!=null and title!=''">title = #{t.title} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{t.tip} ,</if>
+	        <if test="comment!=null and comment!=''">comment = #{t.comment} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysDocumentDtlsToSameVals" parameterType="map">
+        UPDATE sys.sys_document_dtl 
+ 		  <set>
+	        <if test="documentId!=null ">document_id = #{documentId} ,</if>
+	        <if test="questionId!=null ">question_id = #{questionId} ,</if>
+	        <if test="questionType!=null and questionType!=''">question_type = #{questionType} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{tip} ,</if>
+	        <if test="comment!=null and comment!=''">comment = #{comment} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysDocumentDtlById">
+    <![CDATA[
+        DELETE FROM sys.sys_document_dtl WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysDocumentDtlByIds" parameterType="list">
+        DELETE FROM sys.sys_document_dtl WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysDocumentDtlById" resultMap="SysDocumentDtl">
+		SELECT <include refid="sysdocumentdtlColumns" />
+		    FROM sys.sys_document_dtl 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysDocumentDtls" resultMap="SysDocumentDtl">
+		SELECT <include refid="sysdocumentdtlColumns" />
+		    FROM sys.sys_document_dtl  
+	    <include refid="sysdocumentdtl_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysDocumentDtlsMap" resultType="map">
+		SELECT <include refid="sysdocumentdtlColumns" />
+	    <![CDATA[
+		    FROM sys.sys_document_dtl  
+	    ]]>
+	    <include refid="sysdocumentdtl_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysdocumentdtl_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="documentId!=null ">AND document_id = #{documentId}</if>
+	       <if test="questionId!=null ">AND question_id = #{questionId}</if>
+	       <if test="questionType!=null and questionType!=''">AND question_type = #{questionType}</if>
+	       <if test="title!=null and title!=''">AND title = #{title}</if>
+	       <if test="tip!=null and tip!=''">AND tip = #{tip}</if>
+	       <if test="comment!=null and comment!=''">AND comment = #{comment}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysDocumentDtlCount" resultType="long">
+        SELECT count(*) FROM sys.sys_document_dtl 
+		<include refid="sysdocumentdtl_findPage_where"/>    
+    </select>
+    
+    <!-- 根据填单ID删除原有填单明细信息 -->
+    <delete id="deleteSysDocumentDtlByDocumentId">
+       delete from sys.sys_document_dtl d where d.document_id = #{documentId} 
+    </delete>
+    
+</mapper>

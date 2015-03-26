@@ -1,0 +1,11 @@
+.page-productoperad-list-info .page-bd {
+    padding: 20px 15px;
+}
+.page-productoperad-list-info .info-content {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+}
+.page-productoperad-list-info .ui-grid-search button {
+    margin-left: 10px;
+}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.yazuo.erp.system.dao.SysWebkitDao">
+	<resultMap id="SysWebkit" type="com.yazuo.erp.system.vo.SysWebkitVO">
+        <result property="id" column="id"/>
+        <result property="versionNum" column="version_num"/>
+        <result property="description" column="description"/>
+        <result property="attachmentId" column="attachment_id"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="fileSize" column="file_size"/>
+        <result property="isForcedUpgrade" column="is_forced_upgrade"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="SysWebkit_columns">
+	    <![CDATA[
+		id,version_num,description,attachment_id,is_enable,remark,insert_by,insert_time,update_by,update_time,is_forced_upgrade
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveSysWebkit" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO sys.sys_webkit (
+        		version_num ,
+        		description ,
+        		attachment_id ,
+        		is_forced_upgrade,
+        		is_enable ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{versionNum} ,
+        	#{description} ,
+        	#{attachmentId} ,
+        	#{isForcedUpgrade},
+        	#{isEnable} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+
+    <delete id="deleteSysWebkit">
+    <![CDATA[
+        DELETE FROM sys.sys_webkit WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getSysWebkitById" resultMap="SysWebkit">
+		SELECT <include refid="SysWebkit_columns" />
+		    FROM sys.sys_webkit 
+	        WHERE id = #{id}     
+	</select>
+    
+    <select id="getWebKitManager" resultMap="SysWebkit">
+		SELECT k.*,a.attachment_size file_size, a.attachment_name fileName FROM sys.sys_webkit k  INNER JOIN sys.sys_attachment a on (k.attachment_id = a.id)  
+	 <include refid="SysWebkit_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	 <select id="getWebKitMaxVersion" resultMap="SysWebkit">
+		SELECT k.version_num,k.description,k.is_forced_upgrade,a.attachment_size file_size, a.attachment_name fileName FROM sys.sys_webkit k  INNER JOIN sys.sys_attachment a on (k.attachment_id = a.id) 
+	 <include refid="SysWebkit_findPage_where" />
+		ORDER BY k.version_num DESC limit 1
+	</select>
+	
+	<select id="getWebKitManagerByVersion" resultType="long">
+		select count(*) from sys.sys_webkit
+		<include refid="SysWebkit_findPage_where" />
+	</select>
+	
+	<select id="getWebKitManagerMap" resultType="map">
+		SELECT <include refid="SysWebkit_columns" />
+	    <![CDATA[
+		    FROM sys.sys_webkit  
+	    ]]>
+	    <include refid="SysWebkit_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="SysWebkit_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="versionNum!=null">
+				AND version_num = #{versionNum}
+			</if>
+	       <if test="description!=null">
+				AND description = #{description}
+			</if>
+	       <if test="attachmentId!=null">
+				AND attachment_id = #{attachmentId}
+			</if>
+	       <if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+			<if test="isForcedUpgrade!=null">
+				AND is_forced_upgrade = #{isForcedUpgrade}
+			</if>
+		</where>
+	</sql>
+    
+</mapper>
+

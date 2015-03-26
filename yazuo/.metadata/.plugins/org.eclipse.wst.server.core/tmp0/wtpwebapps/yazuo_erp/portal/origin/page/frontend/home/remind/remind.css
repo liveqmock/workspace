@@ -1,0 +1,67 @@
+.page-fbs-remind .add-question-btn {
+    padding:15px;
+}
+
+.page-fbs-remind .cate-list-wrapper {
+    padding-left:15px;
+    margin-bottom:10px;
+}
+.page-fbs-remind .cate-list .cate-item {
+    height:36px;
+    line-height: 36px;
+    margin-right:10px;
+    float: left;
+    display: inline;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+    cursor: pointer;
+}
+.page-fbs-remind .cate-list .cur {
+    background: #b2eed8;
+}
+.page-fbs-remind .search {
+    background: #eee;
+    padding:7px 15px;
+}
+.page-fbs-remind .coursewareName {
+    width:200px;
+}
+.page-fbs-remind .search .page-filter button{
+    vertical-align: 0px;
+}
+.page-fbs-remind .question-list {
+    padding-top:15px;
+}
+.page-fbs-remind .question-list-inner {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    padding:5px 0;
+}
+.page-fbs-remind .question-list-inner-bg {
+    background:#d9edf7;
+}
+.page-fbs-remind .qusetion-list-style-main {
+    float: left;
+    display: inline;
+    width: 930px;
+    padding-left: 15px;
+}
+.page-fbs-remind .qusetion-list-style-main h2 {
+    font-size:16px;
+    color:#777;
+    margin-bottom:5px;
+}
+.page-fbs-remind table td{
+    color:#999;
+    font-weight: 100;
+}
+.page-fbs-remind table .not-read td{
+    color:#333;
+    font-weight: 900;
+}
+.page-fbs-remind .remid-content {
+    text-align: left;
+}

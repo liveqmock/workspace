@@ -1,0 +1,133 @@
+.module-survey {
+    font-size: 14px;
+    color: #777;
+}
+.module-survey .f-body {
+    max-height: 400px;
+    overflow-y: auto;
+    position: relative;
+}
+.module-survey table {
+    width: 100%;
+}
+.module-survey table td {
+    vertical-align: top;
+}
+.module-survey .survey-select {
+    width: 400px;
+}
+
+.module-survey .ui-dialog-content {
+    padding: 0;
+}
+.module-survey .survey-head {
+    padding: 15px 0;
+}
+.module-survey .survey-head table th {
+    padding: 5px 0;
+}
+
+.module-survey .research-tabs {
+    width: 100%;
+    height:45px;
+    background: #ECF6FF;
+}
+.module-survey .research-tabs td {
+    position: relative;
+}
+.module-survey .research-tabs p {
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+.module-survey .research-tabs p.cur {
+    border-top: 4px solid #5EA9E0;
+    border-left: 1px solid #CAE5FA;
+    border-right: 1px solid #CAE5FA;
+    color: #5EA9E0;
+    background: #fff;
+    height: 42px;
+    line-height: 40px;
+}
+.module-survey .warn-bg {
+    background : red;
+}
+
+.module-survey .research-con {
+    padding: 20px 5px;
+}
+.module-survey .research-con td {
+    padding-bottom: 10px;
+}
+.module-survey .research-left {
+    padding-left: 10px;
+    width: 130px;
+}
+.module-survey .label-check-radio {
+    margin: 0 15px 10px 0;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.module-survey .warn {
+    color: red;
+}
+.module-survey .research-input {
+    width: 390px;
+}
+.module-survey .f-body {
+    overflow-x: hidden;
+}
+.module-survey .survey-format {
+    position: relative;
+}
+.module-survey .survey-format-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #2cc78f;
+    padding: 0 10px 10px 10px;
+    width: 550px;
+    background: #fff;
+    display: none;
+    z-index: 10000;
+}
+.module-survey .format-box-info {
+    width: 100%;
+    overflow: hidden;
+}
+.module-survey .format-box-info .format-left {
+    float: left;
+    display: inline;
+    width: 60%;
+    padding-top: 6px;
+}
+.module-survey .format-box-info .format-left label {
+    display: inline-block;
+    _display:inline;
+    _zoom:1;
+    min-width: 80px;
+    margin:0 0 10px 10px;
+}
+.module-survey .format-box-info .format-right {
+    float: right;
+    display: inline;
+    width: 38%;
+    border-left:1px solid #2cc78f;
+    padding-bottom: 1000px;
+    margin-bottom: -1000px;
+}
+
+.module-survey .format-box-button {
+    text-align: center;
+    padding-top: 15px;
+}
+.module-survey .format-right p {
+    padding: 5px;
+}

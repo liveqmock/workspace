@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraCoursewareAttachmentDao">
+
+	<resultMap id="TraCoursewareAttachment" type="com.yazuo.erp.train.vo.TraCoursewareAttachmentVO">
+        <result property="id" column="id"/>
+        <result property="coursewareId" column="courseware_id"/>
+        <result property="attachmentId" column="attachment_id"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="tracoursewareattachmentColumns">
+	    <![CDATA[
+		id,courseware_id,attachment_id,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraCoursewareAttachment">
+    <![CDATA[
+        INSERT INTO train.tra_courseware_attachment (
+        		courseware_id ,
+        		attachment_id ,
+        		insert_by ,
+        		insert_time 
+        ) VALUES (
+        	#{coursewareId} ,
+        	#{attachmentId} ,
+        	#{insertBy} ,
+        	now() 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraCoursewareAttachment" >
+    <![CDATA[
+        UPDATE train.tra_courseware_attachment SET
+	        courseware_id = #{coursewareId} ,
+	        attachment_id = #{attachmentId} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraCoursewareAttachment">
+    <![CDATA[
+        DELETE FROM train.tra_courseware_attachment WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraCoursewareAttachmentById" resultMap="TraCoursewareAttachment">
+		SELECT <include refid="tracoursewareattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware_attachment 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraCoursewareAttachments" resultMap="TraCoursewareAttachment" parameterType="map">
+		SELECT <include refid="tracoursewareattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware_attachment  
+	    ]]>
+	    <include refid="tracoursewareattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraCoursewareAttachmentsMap" resultType="map" parameterType="map">
+		SELECT <include refid="tracoursewareattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware_attachment  
+	    ]]>
+	    <include refid="tracoursewareattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getAllTraCoursewareAttachments" resultType="map" parameterType="map">
+		SELECT <include refid="tracoursewareattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware_attachment  
+	    ]]>
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="tracoursewareattachment_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="coursewareId!=null">
+				AND courseware_id = #{coursewareId}
+			</if>
+	       <if test="attachmentId!=null">
+				AND attachment_id = #{attachmentId}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraCoursewareAttachmentCount" resultType="long">
+        SELECT count(*) FROM train.tra_courseware_attachment 
+		<include refid="tracoursewareattachment_findPage_where"/>    
+    </select>
+    
+    <!-- 根据课件ID批量删除 tra_courseware_attachment 课件-附件关系表 -->
+	<delete id="batchDeleteTraCoursewareAttachmentByCoursewareId" parameterType="list">
+		<foreach collection="list" item="t" index="index" open="" close="" separator=";">
+		  	delete from train.tra_courseware_attachment ca
+			where ca.courseware_id = #{t,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+</mapper>
+

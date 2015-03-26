@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.system.dao.SysRoleDao">
+
+	<resultMap id="SysRole" type="com.yazuo.erp.system.vo.SysRoleVO">
+        <result property="id" column="id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysroleColumns">
+	    <![CDATA[
+		id,role_name,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveSysRole" useGeneratedKeys="true" keyProperty="id" >
+    <![CDATA[
+        INSERT INTO sys.sys_role (
+        		role_name ,
+        		is_enable ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{roleName} ,
+        	#{isEnable} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateSysRole" >
+    <![CDATA[
+        UPDATE sys.sys_role SET
+	        role_name = #{roleName} ,
+	        is_enable = #{isEnable} ,
+	        remark = #{remark} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteSysRole">
+    <![CDATA[
+        DELETE FROM sys.sys_role WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getSysRoleById" resultMap="SysRole">
+		SELECT <include refid="sysroleColumns" />
+	    <![CDATA[
+		    FROM sys.sys_role 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getSysRoles" resultMap="SysRole" parameterType="map">
+		SELECT <include refid="sysroleColumns" />
+	    <![CDATA[
+		    FROM sys.sys_role  
+	    ]]>
+	    <include refid="SysRole_findPage_where" />
+			ORDER BY id desc
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getSysRolesMap" resultType="map" parameterType="map">
+		SELECT <include refid="sysroleColumns" />
+	    <![CDATA[
+		    FROM sys.sys_role  
+	    ]]>
+	    <include refid="SysRole_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<select id="getAllSysRoles" resultType="map" parameterType="map">
+		SELECT <include refid="sysroleColumns" />
+	    <![CDATA[
+		    FROM sys.sys_role  
+	    ]]>
+	    <include refid="SysRole_findPage_where" />
+			ORDER BY id desc
+	</select>
+	
+	<sql id="SysRole_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="roleName!=null">
+				AND role_name = #{roleName}
+			</if>
+	       <if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getSysRoleCount" resultType="long">
+        SELECT count(*) FROM sys.sys_role 
+		<include refid="SysRole_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findSysRolePage" resultMap="SysRole">
+    	SELECT <include refid="sysroleColumns" />
+	    FROM sys.sys_role 
+		<include refid="SysRole_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+    
+ 	<select id="getCountByRoleName" resultType="long" parameterType="string">	
+		SELECT count(*)
+	    <![CDATA[
+		    FROM sys.sys_role 
+	        WHERE 
+		       role_name = #{roleName}
+	    ]]>
+	</select>
+	
+	<select id="getUserCountByRoleId" resultType="long" parameterType="Integer">	
+	    SELECT sum(count) 
+	    <![CDATA[
+	     from (SELECT count(*) FROM sys.sys_user_role ur inner join sys.sys_user su on (ur.user_id = su.id)
+			WHERE 1=1 AND role_id =#{roleId} and is_enable='1'
+			UNION
+			SELECT count(*) FROM sys.sys_role r where 1=1 AND r.id=#{roleId} AND (r.role_name ='班主任' OR r.role_name ='老师')) as t
+		]]>
+	</select>
+	
+	 <select id="getSysResourceByParentId" resultType="map">
+		SELECT id,resource_name,resource_url,tree_code,remark
+	    <![CDATA[
+		    FROM sys.sys_resource 
+	        WHERE 
+		        parent_id = #{parent_id} and is_visible ='1' 
+		        order by sys.sys_resource.sort 
+	    ]]>
+	</select>
+	
+	 <select id="getCheckedSysResource" resultType="map">
+		SELECT resource_id
+	    <![CDATA[
+		    FROM sys.sys_role_resource WHERE role_id = #{roleId}
+	    ]]>
+	</select>
+	
+	<delete id="deleteMany" parameterType="java.util.List">
+        DELETE FROM sys.sys_role WHERE id in 
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">   
+       		#{item.id}   
+  		</foreach> 
+	    
+    </delete>
+    <delete id="deleteResoucerByRoleId" parameterType="map">
+        DELETE FROM sys.sys_role_resource WHERE role_id in 
+         <foreach collection="list" index="index" item="item" open="(" separator="," close=")">   
+       		#{item.id}   
+  		</foreach> 
+    </delete>
+    
+	<insert id="saveSysRoleResource" parameterType="java.util.List">
+        INSERT INTO sys.sys_role_resource (
+        		role_id ,
+        		resource_id ,
+        		insert_by ,
+        		insert_time 
+        ) VALUES
+	    <foreach collection="list" index="index" item="item"  separator=",">
+	    	 (#{item.roleId} ,#{item.resourceId} ,#{item.insertBy} ,#{item.insertTime} )
+	    </foreach>
+	</insert>
+</mapper>
+

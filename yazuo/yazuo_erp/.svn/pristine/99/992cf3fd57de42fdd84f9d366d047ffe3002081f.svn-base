@@ -1,0 +1,19 @@
+{
+    "config":{
+        "remote":"http://192.168.232.141:8080",
+        "localPort":9092,
+        "localMaps":[{
+            "remotePath":"/yazuo_erp/portal",
+            "localPath":"../src/main/webapp/portal"
+        }],
+        "remoteRootPath":"/yazuo_apps/servicePlatform/releases/20140827014514",
+        "localRootPath":"/var/local/www/java/sop/yazuo-crmapi-parent/yazuo-crmapi-sop/src/main/webapp",
+        "hotFiles":["WEB-INF/jsp/**/*.jsp"],
+        "ssh":{
+            "host": "192.168.232.202",
+            "port": 22,
+            "username": "webadmin",
+            "password": "webadmin"
+        }
+    }
+}

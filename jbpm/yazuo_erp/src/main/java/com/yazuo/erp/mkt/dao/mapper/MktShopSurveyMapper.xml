@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.mkt.dao.MktShopSurveyDao">
+	<resultMap id="MktShopSurvey" type="com.yazuo.erp.mkt.vo.MktShopSurveyVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="storeId" column="store_id"/>
+    	<result property="contactId" column="contact_id"/>
+    	<result property="format" column="format" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="near" column="near"/>
+    	<result property="businessArea" column="business_area"/>
+    	<result property="dailyPassengerFlow" column="daily_passenger_flow"/>
+    	<result property="tableAverage" column="table_average"/>
+    	<result property="mealsNumber" column="meals_number"/>
+    	<result property="roomsNumber" column="rooms_number"/>
+    	<result property="attendanceRatio" column="attendance_ratio"/>
+    	<result property="networkCondition" column="network_condition"/>
+    	<result property="networkSpeed" column="network_speed"/>
+    	<result property="publicityMaterial" column="publicity_material" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="networkRemark" column="network_remark"/>
+    	<result property="materRemark" column="mater_remark"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="mktshopsurveyColumns">
+	    <![CDATA[
+		id,merchant_id,store_id,contact_id,format,near,business_area,daily_passenger_flow,table_average,meals_number,rooms_number,attendance_ratio,network_condition,network_speed,publicity_material,is_enable,remark,insert_by,insert_time,update_by,update_time,network_remark,mater_remark
+	    ]]>
+	</sql>
+
+	<insert id="saveMktShopSurvey" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,store_id,contact_id,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_shop_survey (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="storeId!=null ">store_id,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="format!=null ">format,</if>
+        	 <if test="near!=null and near!=''">near,</if>
+        	 <if test="businessArea!=null and businessArea!=''">business_area,</if>
+        	 <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">daily_passenger_flow,</if>
+        	 <if test="tableAverage!=null and tableAverage!=''">table_average,</if>
+        	 <if test="mealsNumber!=null and mealsNumber!=''">meals_number,</if>
+        	 <if test="roomsNumber!=null and roomsNumber!=''">rooms_number,</if>
+        	 <if test="attendanceRatio!=null and attendanceRatio!=''">attendance_ratio,</if>
+        	 <if test="networkCondition!=null and networkCondition!=''">network_condition,</if>
+        	 <if test="networkSpeed!=null and networkSpeed!=''">network_speed,</if>
+        	 <if test="publicityMaterial!=null ">publicity_material,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="networkRemark!=null and networkRemark!=''">network_remark,</if>
+        	 <if test="materRemark!=null and materRemark!=''">mater_remark,</if>
+        	 
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="storeId!=null ">#{storeId},</if>
+       	    <if test="contactId!=null ">#{contactId},</if>
+       	    <if test="format!=null">
+       	    #{format, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+       	    <if test="near!=null and near!=''">#{near},</if>
+       	    <if test="businessArea!=null and businessArea!=''">#{businessArea},</if>
+       	    <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">#{dailyPassengerFlow},</if>
+       	    <if test="tableAverage!=null and tableAverage!=''">#{tableAverage},</if>
+       	    <if test="mealsNumber!=null and mealsNumber!=''">#{mealsNumber},</if>
+       	    <if test="roomsNumber!=null and roomsNumber!=''">#{roomsNumber},</if>
+       	    <if test="attendanceRatio!=null and attendanceRatio!=''">#{attendanceRatio},</if>
+       	    <if test="networkCondition!=null and networkCondition!=''">#{networkCondition},</if>
+       	    <if test="networkSpeed!=null and networkSpeed!=''">#{networkSpeed},</if>
+       	     <if test="publicityMaterial!=null">
+       	    #{publicityMaterial, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="networkRemark!=null and networkRemark!=''">#{networkRemark},</if>
+       	    <if test="materRemark!=null and materRemark!=''">#{materRemark},</if>
+      
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertMktShopSurveys" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,store_id,contact_id,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_shop_survey (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="storeId!=null ">store_id,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="format!=null ">format,</if>
+        	 <if test="near!=null and near!=''">near,</if>
+        	 <if test="businessArea!=null and businessArea!=''">business_area,</if>
+        	 <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">daily_passenger_flow,</if>
+        	 <if test="tableAverage!=null and tableAverage!=''">table_average,</if>
+        	 <if test="mealsNumber!=null and mealsNumber!=''">meals_number,</if>
+        	 <if test="roomsNumber!=null and roomsNumber!=''">rooms_number,</if>
+        	 <if test="attendanceRatio!=null and attendanceRatio!=''">attendance_ratio,</if>
+        	 <if test="networkCondition!=null and networkCondition!=''">network_condition,</if>
+        	 <if test="networkSpeed!=null and networkSpeed!=''">network_speed,</if>
+        	 <if test="publicityMaterial!=null ">publicity_material,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="storeId!=null ">#{t.storeId},</if>
+          <if test="contactId!=null ">#{t.contactId},</if>
+          <if test="format!=null ">#{t.format},</if>
+          <if test="near!=null and near!=''">#{t.near},</if>
+          <if test="businessArea!=null and businessArea!=''">#{t.businessArea},</if>
+          <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">#{t.dailyPassengerFlow},</if>
+          <if test="tableAverage!=null and tableAverage!=''">#{t.tableAverage},</if>
+          <if test="mealsNumber!=null and mealsNumber!=''">#{t.mealsNumber},</if>
+          <if test="roomsNumber!=null and roomsNumber!=''">#{t.roomsNumber},</if>
+          <if test="attendanceRatio!=null and attendanceRatio!=''">#{t.attendanceRatio},</if>
+          <if test="networkCondition!=null and networkCondition!=''">#{t.networkCondition},</if>
+          <if test="networkSpeed!=null and networkSpeed!=''">#{t.networkSpeed},</if>
+          <if test="publicityMaterial!=null ">#{t.publicityMaterial},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateMktShopSurvey">
+        UPDATE mkt.mkt_shop_survey 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="storeId!=null ">store_id = #{storeId} ,</if>
+	        <if test="contactId!=null ">contact_id = #{contactId} ,</if>
+	        <if test="format!=null">
+	        	format = #{format, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	        </if>
+	        <if test="near!=null and near!=''">near = #{near} ,</if>
+	        <if test="businessArea!=null and businessArea!=''">business_area = #{businessArea} ,</if>
+	        <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">daily_passenger_flow = #{dailyPassengerFlow} ,</if>
+	        <if test="tableAverage!=null and tableAverage!=''">table_average = #{tableAverage} ,</if>
+	        <if test="mealsNumber!=null and mealsNumber!=''">meals_number = #{mealsNumber} ,</if>
+	        <if test="roomsNumber!=null and roomsNumber!=''">rooms_number = #{roomsNumber} ,</if>
+	        <if test="attendanceRatio!=null and attendanceRatio!=''">attendance_ratio = #{attendanceRatio} ,</if>
+	        <if test="networkCondition!=null and networkCondition!=''">network_condition = #{networkCondition} ,</if>
+	        <if test="networkSpeed!=null and networkSpeed!=''">network_speed = #{networkSpeed} ,</if>
+	        <if test="publicityMaterial!=null and publicityMaterial!=''">
+	        	publicity_material = #{publicityMaterial, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},
+	        </if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	         <if test="networkRemark!=null and networkRemark!=''">network_remark = #{networkRemark} ,</if>
+	        <if test="materRemark!=null and materRemark!=''">mater_remark = #{materRemark}, </if>
+	        
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateMktShopSurveysToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE mkt.mkt_shop_survey 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="storeId!=null ">store_id = #{t.storeId} ,</if>
+	        <if test="contactId!=null ">contact_id = #{t.contactId} ,</if>
+	        <if test="format!=null ">format = #{t.format} ,</if>
+	        <if test="near!=null and near!=''">near = #{t.near} ,</if>
+	        <if test="businessArea!=null and businessArea!=''">business_area = #{t.businessArea} ,</if>
+	        <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">daily_passenger_flow = #{t.dailyPassengerFlow} ,</if>
+	        <if test="tableAverage!=null and tableAverage!=''">table_average = #{t.tableAverage} ,</if>
+	        <if test="mealsNumber!=null and mealsNumber!=''">meals_number = #{t.mealsNumber} ,</if>
+	        <if test="roomsNumber!=null and roomsNumber!=''">rooms_number = #{t.roomsNumber} ,</if>
+	        <if test="attendanceRatio!=null and attendanceRatio!=''">attendance_ratio = #{t.attendanceRatio} ,</if>
+	        <if test="networkCondition!=null and networkCondition!=''">network_condition = #{t.networkCondition} ,</if>
+	        <if test="networkSpeed!=null and networkSpeed!=''">network_speed = #{t.networkSpeed} ,</if>
+	        <if test="publicityMaterial!=null ">publicity_material = #{t.publicityMaterial} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateMktShopSurveysToSameVals" parameterType="map">
+        UPDATE mkt.mkt_shop_survey 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="storeId!=null ">store_id = #{storeId} ,</if>
+	        <if test="contactId!=null ">contact_id = #{contactId} ,</if>
+	        <if test="format!=null ">format = #{format} ,</if>
+	        <if test="near!=null and near!=''">near = #{near} ,</if>
+	        <if test="businessArea!=null and businessArea!=''">business_area = #{businessArea} ,</if>
+	        <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">daily_passenger_flow = #{dailyPassengerFlow} ,</if>
+	        <if test="tableAverage!=null and tableAverage!=''">table_average = #{tableAverage} ,</if>
+	        <if test="mealsNumber!=null and mealsNumber!=''">meals_number = #{mealsNumber} ,</if>
+	        <if test="roomsNumber!=null and roomsNumber!=''">rooms_number = #{roomsNumber} ,</if>
+	        <if test="attendanceRatio!=null and attendanceRatio!=''">attendance_ratio = #{attendanceRatio} ,</if>
+	        <if test="networkCondition!=null and networkCondition!=''">network_condition = #{networkCondition} ,</if>
+	        <if test="networkSpeed!=null and networkSpeed!=''">network_speed = #{networkSpeed} ,</if>
+	        <if test="publicityMaterial!=null ">publicity_material = #{publicityMaterial} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteMktShopSurveyById">
+    <![CDATA[
+        DELETE FROM mkt.mkt_shop_survey WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteMktShopSurveyByIds" parameterType="list">
+        DELETE FROM mkt.mkt_shop_survey WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+   <select id="getMktShopSurveyById" resultMap="MktShopSurvey">
+		SELECT shop.*,m.merchant_name FROM mkt.mkt_shop_survey shop inner join syn.syn_merchant m on (shop.merchant_id = m.merchant_id) 
+	        WHERE id = #{id} and is_enable='1'   
+	</select>
+
+	<select id="getMktShopSurveys" resultMap="MktShopSurvey">
+		SELECT m.merchant_name, shop.*
+		    FROM mkt.mkt_shop_survey  shop inner join syn.syn_merchant m on (shop.merchant_id = m.merchant_id)
+	    where shop.merchant_id=#{merchantId} and shop.is_enable=#{isEnable}
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getMktShopSurveysMap" resultType="map">
+		SELECT <include refid="mktshopsurveyColumns" />
+	    <![CDATA[
+		    FROM mkt.mkt_shop_survey  
+	    ]]>
+	    <include refid="mktshopsurvey_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="mktshopsurvey_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="storeId!=null ">AND store_id = #{storeId}</if>
+	       <if test="contactId!=null ">AND contact_id = #{contactId}</if>
+	       <if test="format!=null ">AND format = #{format}</if>
+	       <if test="near!=null and near!=''">AND near = #{near}</if>
+	       <if test="businessArea!=null and businessArea!=''">AND business_area = #{businessArea}</if>
+	       <if test="dailyPassengerFlow!=null and dailyPassengerFlow!=''">AND daily_passenger_flow = #{dailyPassengerFlow}</if>
+	       <if test="tableAverage!=null and tableAverage!=''">AND table_average = #{tableAverage}</if>
+	       <if test="mealsNumber!=null and mealsNumber!=''">AND meals_number = #{mealsNumber}</if>
+	       <if test="roomsNumber!=null and roomsNumber!=''">AND rooms_number = #{roomsNumber}</if>
+	       <if test="attendanceRatio!=null and attendanceRatio!=''">AND attendance_ratio = #{attendanceRatio}</if>
+	       <if test="networkCondition!=null and networkCondition!=''">AND network_condition = #{networkCondition}</if>
+	       <if test="networkSpeed!=null and networkSpeed!=''">AND network_speed = #{networkSpeed}</if>
+	       <if test="publicityMaterial!=null ">AND publicity_material = #{publicityMaterial}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if> 
+	       <if test="networkRemark!=null and networkRemark!=''">AND network_remark = #{networkRemark}</if>
+	       <if test="materRemark!=null and materRemark!=''">AND mater_remark = #{materRemark}</if>
+	       
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getMktShopSurveyCount" resultType="long">
+        SELECT count(*) FROM mkt.mkt_shop_survey 
+		<include refid="mktshopsurvey_findPage_where"/>    
+    </select>
+    
+</mapper>

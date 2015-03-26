@@ -1,0 +1,24 @@
+
+.module-address {
+    font-size: 14px;
+    color: #777;
+}
+.module-address .f-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+.module-address table td {
+    vertical-align: top;
+    padding: 5px 0 5px 5px;
+    min-height: 35px;
+}
+.module-address .warn {
+    color: red;
+}
+.module-address .address-input {
+    width: 300px;
+}
+.module-address label.label-check-radio {
+    display: inline-block;
+    width: 60px;
+}

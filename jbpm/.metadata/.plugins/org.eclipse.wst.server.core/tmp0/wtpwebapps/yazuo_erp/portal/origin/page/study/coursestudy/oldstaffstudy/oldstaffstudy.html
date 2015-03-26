@@ -1,0 +1,45 @@
+<div class="page-bd page-bd-form">
+    <div class="study-list-section">
+        <h3 class="page-section-title"><span class="title-text">学习目录</span></h3>
+        <div class="list-wrapper">
+            <ul class="courseware-list"
+                ms-if="studyList.length">
+                <li class="courseware-item fn-clear"
+                    ms-repeat="studyList">
+                    <div class="cell-index item-cell fn-left">
+                        <span class="index-num">{{el.indexNum}}</span>
+                    </div>
+                    <div class="cell-operation item-cell fn-right">
+                        <button type="button" class="start-study-btn simple-btn" ms-click="clickStartStudy">开始学习</button><span ms-if="el.isTest == '1' && el.studied">&nbsp;&nbsp;<button type="button" class="start-exam-btn simple-btn" ms-click="clickStartExam">开始考试</button></span>
+                    </div>
+                    <div class="cell-end-time item-cell fn-right">学习截止：{{el.coursewareEndTimeText}}</div>
+                    <div class="cell-speaker item-cell fn-right">主讲人：{{el.speaker}}</div>
+                    <div class="cell-hour item-cell fn-right">课时：{{el.courseHours}}</div>
+                    <div class="cell-title item-cell" ms-title="{{el.coursewareName}}"><div class="title-wrapper"><div class="title-inner"><div class="title-content">{{el.coursewareName}}</div></div></div></div>
+                </li>
+            </ul>
+            <div class="empty-list-tip" ms-if="!studyList.length">暂无课件信息。</div>
+        </div>
+    </div>
+    <div class="history-list-section">
+        <h3 class="page-section-title"><span class="title-text">历史课件</span></h3>
+        <div class="list-wrapper">
+            <ul class="courseware-list"
+                ms-if="historyList.length">
+                <li class="courseware-item"
+                    ms-repeat="historyList">
+                    <div class="cell-index item-cell fn-left">
+                        <span class="index-num">{{el.indexNum}}</span>
+                    </div>
+                    <div class="cell-operation item-cell fn-right">
+                        <button type="button" class="start-study-btn simple-btn" ms-click="clickStartStudy">再次学习</button><span ms-if="el.isTest == '1' && el.studied">&nbsp;&nbsp;<button type="button" class="start-exam-btn simple-btn" ms-click="clickStartExam">开始考试</button></span>
+                    </div>
+                    <div class="cell-speaker item-cell fn-right">主讲人：{{el.speaker}}</div>
+                    <div class="cell-hour item-cell fn-right">课时：{{el.courseHours}}</div>
+                    <div class="cell-title item-cell" ms-title="{{el.coursewareName}}"><div class="title-wrapper"><div class="title-inner"><div class="title-content"></div>{{el.coursewareName}}</div></div></div></div>
+                </li>
+            </ul>
+            <div class="empty-list-tip" ms-if="!historyList.length">暂无课件信息。</div>
+        </div>
+    </div>
+</div>

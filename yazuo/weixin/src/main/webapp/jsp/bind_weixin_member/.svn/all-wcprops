@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/crmapi/!svn/ver/24179/code/weixin/src/main/webapp/jsp/bind_weixin_member
+END
+verify_member_new.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/crmapi/!svn/ver/24179/code/weixin/src/main/webapp/jsp/bind_weixin_member/verify_member_new.jsp
+END
+verify_member.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/crmapi/!svn/ver/22142/code/weixin/src/main/webapp/jsp/bind_weixin_member/verify_member.jsp
+END
+bound_success.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/crmapi/!svn/ver/22142/code/weixin/src/main/webapp/jsp/bind_weixin_member/bound_success.jsp
+END
+bound_fail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/crmapi/!svn/ver/22142/code/weixin/src/main/webapp/jsp/bind_weixin_member/bound_fail.jsp
+END

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>select</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+    <link rel="stylesheet" href="../../asset/base.css">
+    <script src="../../asset/third/jquery-1.11.1.js"></script>
+    <script src="../../asset/third/underscore/underscore.js"></script>
+    <script src="../../asset/third/avalon/avalon.js"></script>
+    <script src="../../asset/avalon-ext.js"></script>
+    <script>
+        var WIDGET_BASE_PATH = "../"; 
+    </script>
+    <style>
+    </style>
+</head>
+<body class="ms-controller" ms-controller="demo">
+    <div ms-widget="tree,$,$treeOpts"></div>
+    <script>
+        require("../../../widget/tree/tree", function(avalon) {
+            var model = avalon.define("demo", function(vm) {
+                vm.$treeOpts = {
+                    "treeId": "demo-tree",
+                    "ztreeOptions": {
+                        "setting": {
+                            "check":{
+                                "enable":true,
+                                "chkboxType" : { 
+                                    "Y" : "ps",
+                                    "N" : "ps" 
+                                }
+                            },
+                            "callback": {
+                                "onClick": function (evt, treeId, node) {    //点击节点触发
+                                }
+                            }
+                        },
+                        "treeData": [{
+                            name: "父节点1",
+                            children: [{
+                                name: "子节点1"
+                            },{
+                                name: "子节点2"
+                            }]
+                        }]
+                    }
+                };
+            });
+            avalon.scan();
+        });
+    </script>
+</body>
+</html>
+

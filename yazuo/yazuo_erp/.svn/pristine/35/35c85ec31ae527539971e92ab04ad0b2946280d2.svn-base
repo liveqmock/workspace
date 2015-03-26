@@ -1,0 +1,526 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form page-padding">
+    <!--client-header-->
+    <div class="client-head">
+        <!--client-left-->
+        <div class="client-head-left">
+            <div class="client-head-left-logo">
+                <img ms-src="{{merchantData.imgUrl}}"
+                     ms-alt="merchantData.merchant_name">
+            </div>
+            <div class="client-head-left-text pt20">
+                <h2>{{merchantData.merchant_name}}</h2>
+            </div>
+        </div>
+        <!--client-left-end-->
+        <!--client-right-->
+        <div class="client_head_right">
+            <div class="fn-left pt25">
+                <button type="button" ms-click="localHref('#/sales/home/mycommunication/'+merchantData.merchant_id+'/')" class="simple-btn mr5"><i class="iconfont icon-blue">&#xe612; </i>通讯录</button>
+                <button type="button" ms-click="openAdd" class="simple-btn mr5"><i class="iconfont icon-blue">&#xe60f; </i>添加问题</button>
+                <button ms-click="addInterval">访谈单</button>
+                <button ms-click="addSurvey">调研单</button>
+            </div>
+        </div>
+        <!--client-right-end-->
+    </div>
+    <!--client-header-end-->
+    <!--list-->
+    <div class="client-step" >
+        <!--style-->
+        <div class="status-box status-ready">
+            <button class="number">1</button>
+            <div class="content f14">
+                <h2 class="mb5">商户创建</h2>
+                <div ms-if="!pageData.brandInterviewName">请添加商户访谈单及门店调研单。</div>
+                <div class="type-step1-table-list">
+                    <p ms-if="pageData.brandInterviewName" ms-click="editInterview(merchantId)">{{pageData.brandInterviewName}}</p>
+                    <p class="shopSurvey"
+                       ms-repeat="pageData.shopSurveyList" ><span ms-click="editShop(el.id)">{{el.storeName}}</span><i class="iconfont" ms-if="pageData.isDisabled != 3" ms-click="removeResearch(el.id)">&#xe616;</i></p>
+                </div>
+                <div class="type-box" ms-repeat="pageData.operationLogList"><span>{{el.operatingTime|date("yyyy-MM-dd HH:mm")}}&nbsp;&nbsp;</span>{{el.description}}<span ms-if="el.fesLogType == '2'">，点击<a href="javascript:;" ms-click="showCommunication(el.remark)">查看通讯录</a></span></div>
+            </div>
+            <div class="operation" >
+                <button class="simple-btn"
+                        ms-if="!pageData.brandInterviewName && pageData.isDisabled == 1"
+                        ms-click="addInterview"><i class="iconfont icon-blue f26">&#xe60f;</i> 访谈单</button>&nbsp;
+                <button class="simple-btn"
+                        ms-if="pageData.isDisabled == 1||pageData.isDisabled == 2"
+                        ms-click="addResearch"><i class="iconfont icon-blue f26">&#xe60f;</i> 调研单</button>&nbsp;
+                <button class="simple-btn"
+                        ms-if="pageData.isDisabled == 1||pageData.isDisabled == 2"
+                        ms-click="addCommunication('add')"><i class="iconfont icon-blue f26">&#xe60f;</i> 联系人</button>&nbsp;
+                <button class="simple-btn"
+                        ms-if="pageData.isDisabled == 2"
+                        ms-click="stepEnd"><i class="iconfont icon-blue f26">&#xe610;</i> 确认完成</button>
+            </div>
+        </div>
+        <!--style-end-->
+    </div>
+    <!--list-end-->
+</div>
+<!-- 添加问题 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$addQuestionDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addQuestionFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>商户名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box customer-title" >
+                        <p class="merchantName">{{merchantData.merchant_name}}</p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 title" name="title" ms-value="title" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$scheduleOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>问题描述：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text w310 description" name="description" ms-text="description"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加问题 end -->
+<!-- 商户访谈单 start -->
+<div class="add-edit-course-dialog add-research-ui page-sales-home-waiting"
+     ms-widget="dialog,$,$addInterviewOpts">
+<form class="add-edit-form"
+      ms-widget="form,$,$addInterviewFormOpts"
+      action="javascript:;">
+<div class="f-body">
+    <div class="research-name fn-clear">
+        <table class="merchant-title">
+            <tr>
+                <td width="100" align="right">商户名称：</td>
+                <td><input type="text" class="input-text" name="merchantName" style="width:240px" readonly ms-value="merchantName"></td>
+                <td width="100" align="right">商户负责人：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text contact" ms-duplex="interRequestData.contact">
+                    <div class="ff-value-tip fn-clear" style="text-align:right;padding-right:80px;"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-tabs">
+        <table class="page-sales-home-waiting-Interview-tabs">
+            <tr>
+                <td><p ms-class="cur:interviewTabs==1" ms-click="changeInterviewTabs(1)">商家信息</p></td>
+                <td><p ms-class="cur:interviewTabs==2" ms-click="changeInterviewTabs(2)">商户现有优惠活动</p></td>
+                <td><p ms-class="cur:interviewTabs==3" ms-click="changeInterviewTabs(3)">会员权益方案</p></td>
+                <td><p ms-class="cur:interviewTabs==4" ms-click="changeInterviewTabs(4)">门店基础设施</p></td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con" ms-visible="interviewTabs==1">
+        <table class="research-table">
+            <tr>
+                <td align="right">门店数：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text storeNumber" placeholder="例：1" ms-duplex="interRequestData.storeNumber">
+                    <div class="ff-value-tip"></div>
+                </td>
+                <td align="right">直营/加盟：</td>
+                <td><span style = "width:190px" class="schedule" ms-widget="select,$,$addInterviewTypeSelectOpts"></span></td>
+            </tr>
+            <tr>
+                <td align="right">附近：</td>
+                <td><span style = "width:190px" class="schedule" ms-widget="select,$,$addInterviewNearSelectOpts"></span></td>
+                <td align="right">主要顾客类型：</td>
+                <td><span style = "width:190px" class="schedule" ms-widget="select,$,$addInterviewUserSelectOpts"></span></td>
+            </tr>
+            <tr>
+                <td align="right">营业面积：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text businessArea" placeholder="例：400平方米" ms-duplex="interRequestData.businessArea">
+                    <div class="ff-value-tip"></div>
+                </td>
+                <td align="right">午晚市客流：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text passengerFlow" placeholder="例：19" ms-duplex="interRequestData.passengerFlow">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">日均营业额：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text dailyTurnover" placeholder="例：商户未告知" ms-duplex="interRequestData.dailyTurnover">
+                    <div class="ff-value-tip"></div>
+                </td>
+                <td align="right">单均消费：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text perOrder" placeholder="例：300" ms-duplex="interRequestData.perOrder">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">人均消费：</td>
+                <td  class="f-field ff-value">
+                    <input type="text" class="input-text perCapita" placeholder="例：100" ms-duplex="interRequestData.perCapita">
+                    <div class="ff-value-tip"></div>
+                </td>
+                <td align="right">日收银笔数：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text dailyCashierNumber" placeholder="例：35" ms-duplex="interRequestData.dailyCashierNumber">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">上传logo：</td>
+                <td colspan="3">
+                    <div class="merchant-logo">
+                        <img ms-src="{{imgUrl}}">
+                    </div>
+                    <div class="merchant-logo-select" ms-widget="uploader,$,$UploaderImgOpts">
+                        <button class="simple-btn">选择图片</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con" ms-visible="interviewTabs==2">
+        <table class="research-table">
+            <tr>
+                <td colspan="2" align="center">列出正在开展或即将开展的团购名称、活动门店，活动有效期，参与人数</td>
+            </tr>
+            <tr>
+                <td align="right">团购：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text input-text-400 groupPurchase" placeholder="例：暂无" ms-duplex="interRequestData.groupPurchase">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">优惠券：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text input-text-400 coupon" placeholder="例：丁丁优惠7.9" ms-duplex="interRequestData.coupon">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">银行卡优惠：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text input-text-400 bankCardOffer" placeholder="例：银行卡，交通银行菜品8.5折" ms-duplex="interRequestData.bankCardOffer">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">其他店内优惠：</td>
+                <td class="f-field ff-value">
+                    <input type="text" class="input-text input-text-400 otherShopDiscount" placeholder="例：点评电子会员卡88折" ms-duplex="interRequestData.otherShopDiscount">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con" ms-visible="interviewTabs==3">
+        <table class="research-table">
+            <tr>
+                <td align="right" valign="top" width="120">会员卡类型：</td>
+                <td>
+                    <p class="checkbox-list" ms-repeat="interCheckboxCardType">
+                        <label><input type="checkbox" ms-checked="el.isChecked" ms-click="addCheckboxVipType(el.value)"> {{el.text}}</label>
+                    </p>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">会员卡管理系统：</td>
+                <td>
+                    <p class="checkbox-list" ms-repeat="interCheckboxManagementSystem">
+                        <label><input type="checkbox" ms-checked="el.isChecked" ms-click="addCheckboxVipSys(el.value)"> {{el.text}}</label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">会员权益：</td>
+                <td>
+                    <p class="checkbox-list" ms-repeat="interCheckboxMemberRight">
+                        <label><input type="checkbox" ms-checked="el.isChecked" ms-click="addCheckboxVipRight(el.value)"> {{el.text}}</label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">已发卡数量：</td>
+                <td class="f-field">
+                    <input type="text" class="input-text input-text-400 sendCardNumber" placeholder="例：12" ms-duplex="interRequestData.sendCardNumberStr">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">白名单来源：</td>
+                <td class="f-field">
+                    <input type="text" class="input-text input-text-400 whiteListSource" ms-duplex="interRequestData.whiteListSource">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">白名单数量：</td>
+                <td class="f-field">
+                    <input type="text" class="input-text input-text-400 whiteListNumber" placeholder="例：12" ms-duplex="interRequestData.whiteListNumberStr">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <span><label><input type="checkbox" ms-click="isElectronicFiles" ms-checked="interRequestData.isElectronicFiles == '1'"> 是否可提供电子档</label></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con"  ms-visible="interviewTabs==4">
+        <table class="research-table">
+            <tr>
+                <td align="right">门店网络条件：</td>
+                <td>
+                    <span style = "width:190px" class="schedule" ms-widget="select,$,$addInterviewNetSelectOpts"></span>
+                </td>
+                <td align="right">门店实施培训：</td>
+                <td>
+                    <span style = "width:190px" class="schedule" ms-widget="select,$,$addInterviewTrainSelectOpts"></span>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
+</form>
+</div>
+<!-- 商户访谈单 end -->
+<!-- 添加调研单 start -->
+<div class="add-edit-course-dialog add-research-ui page-sales-home-waiting"
+     ms-widget="dialog,$,$addResearchOpts">
+    <form class="add-edit-form"
+          ms-widget="form,$,$addResearchFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="research-name fn-clear">
+                <table class="merchant-title">
+                    <tr>
+                        <td width="100" align="right">门店名称：</td>
+                        <td class="f-field">
+                            <input type="text" style="width:240px;" class="input-text storeName" ms-duplex="researchRequestData.storeName">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                        <td width="100" align="right">门店负责人：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text contact" ms-duplex="researchRequestData.contact">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="research-tabs">
+                <ul>
+                    <li ms-class="cur:researchTabs==1" ms-click="changeResearch(1)">基本信息</li>
+                    <li ms-class="cur:researchTabs==2" ms-click="changeResearch(2)">基础设施、宣传物料</li>
+                </ul>
+            </div>
+            <div class="research-con" ms-visible="researchTabs==1">
+                <table class="research-table">
+                    <tr>
+                        <td align="right">业态：</td>
+                        <td><span style = "width:190px" class="schedule" ms-widget="select,$,$addResearchSelectOpts"></span></td>
+                        <td align="right">营业面积：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text businessArea" placeholder="例：300平米" ms-duplex="researchRequestData.businessArea">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">日均客流量：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text dailyPassengerFlow" placeholder="例：75人" ms-duplex="researchRequestData.dailyPassengerFlow">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                        <td align="right">上客集中时间：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text boardingTime" placeholder="例：晚上8:00" ms-duplex="researchRequestData.boardingTime">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">桌均消费：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text tableAverage" placeholder="例：120元" ms-duplex="researchRequestData.tableAverage">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                        <td align="right">餐台数：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text mealsNumber" placeholder="例：19" ms-duplex="researchRequestData.mealsNumber">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">包间数：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text roomsNumber" placeholder="例：3" ms-duplex="researchRequestData.roomsNumber">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                        <td align="right">上座比例：</td>
+                        <td class="f-field">
+                            <input type="text" class="input-text attendanceRatio" placeholder="例：35%" ms-duplex="researchRequestData.attendanceRatio">
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="research-con" ms-visible="researchTabs==2">
+                <table class="research-table">
+                    <tr>
+                        <td>门店网络条件：</td>
+                        <td>
+                            <span><label ms-click="isAccess('0')"><input type="radio" name="sales1" ms-checked="researchRequestData.isAccessInternet == '0'"> 不可以上网</label></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><label ms-click="isAccess('1')"><input type="radio" name="sales1" ms-checked="researchRequestData.isAccessInternet == '1'"> 可以上网</label></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="120" valign="top">现有宣传物料：</td>
+                        <td>
+                            <p class="checkbox-list" ms-repeat="researchCheckboxPublicity">
+                                <label><input type="checkbox" ms-checked="el.isChecked" ms-click="addCheckboxPublicity(el.value)"> {{el.text}}</label>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </form>
+</div>
+<!-- 添加调研单 end -->
+<!-- 通讯录 start -->
+<div class="add-edit-course-dialog page-sales-home-waiting"
+     ms-widget="dialog,$,$addCommunicationOpts">
+    <form class="add-edit-form"
+          ms-widget="form,$,$addCommunicationFormOpts"
+          action="javascript:;">
+        <div class="f-body communication">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>姓名：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text name" ms-duplex="communicationRequestData.name"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>性别：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <p class="sex-position">
+                            <label><input type="radio" name="sales2" ms-checked="communicationRequestData.genderType == '1'" ms-click="changeSex('1')"> 男</label>&nbsp;&nbsp;&nbsp;
+                            <label><input type="radio" name="sales2" ms-checked="communicationRequestData.genderType == '0'" ms-click="changeSex('0')"> 女</label>
+                        </p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>生日：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text beginTime" data-name="beginTime" style="width:178px;" ms-duplex="{{communicationRequestData.birthday | date('yyyy-MM-dd')}}" readonly="readonly" name="beginTime" ms-value="beginTime" ms-click="openStartDateCalendar"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>职位：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text position" ms-duplex="communicationRequestData.position"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>角色：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$communicationOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>手机：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text mobilePhone"  ms-duplex="communicationRequestData.mobilePhone"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>座机：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text telephone"  ms-duplex="communicationRequestData.telephone"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>邮箱：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text email" ms-duplex="communicationRequestData.mail" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+</div>
+<!-- 通讯录 end -->
+
+<!--测试-可删除 start-->
+<div class="interview-rule-setting" ms-module="interview,$,$interviewOpts"></div>
+<div class="interview-rule-setting" ms-module="survey,$,$surveyOpts"></div>
+<!--测试-可删除 end-->

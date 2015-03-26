@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="backtype.storm.StormSubmitter"/>
+<fullyQualifiedTypeName name="backtype.storm.tuple.Values"/>
+<fullyQualifiedTypeName name="backtype.storm.Config"/>
+<fullyQualifiedTypeName name="backtype.storm.tuple.Fields"/>
+<fullyQualifiedTypeName name="backtype.storm.utils.Utils"/>
+<fullyQualifiedTypeName name="com.yazuo.redisSpout.RedisStormBolt"/>
+<fullyQualifiedTypeName name="org.elasticsearch.storm.EsBolt"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.elasticsearch.client.Client"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.elasticsearch.node.Node"/>
+<fullyQualifiedTypeName name="org.elasticsearch.search.aggregations.AggregationBuilders"/>
+</qualifiedTypeNameHistroy>

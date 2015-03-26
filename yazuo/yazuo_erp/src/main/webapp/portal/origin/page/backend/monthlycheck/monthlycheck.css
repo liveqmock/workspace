@@ -1,0 +1,43 @@
+.page-backend-monthlycheck .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-monthlycheck .title {
+    width: 100%;
+    overflow: hidden;
+    padding:2px 0 20px;
+}
+.page-backend-monthlycheck .title p {
+    float: left;
+    margin-right: 15px;
+}
+.page-backend-monthlycheck .schedule {
+    width: 100px;
+}
+.page-backend-monthlycheck .max-tab-con {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+    overflow-x: auto;
+}
+.page-backend-monthlycheck .end {
+    color: #999;
+}
+.page-backend-monthlycheck .warn {
+    color: red;
+}
+.page-backend-monthlycheck .through {
+    color: green;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

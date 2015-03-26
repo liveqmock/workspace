@@ -1,0 +1,60 @@
+.module-person-tree {
+    color: #777;
+}
+.module-person-tree .content {
+    border:1px solid #ccc;
+    height: 360px;
+    overflow: hidden;
+}
+.module-person-tree .con-left {
+    float: left;
+    display: inline;
+    width: 180px;
+    height: 340px;
+    padding: 10px;
+    overflow: auto;
+    border-right: 1px solid #ccc;
+}
+.module-person-tree .all-person {
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #777;
+}
+.module-person-tree .con-right {
+    float: right;
+    display: inline;
+    width: 305px;
+    height: 360px;
+    padding: 10px;
+    overflow: hidden;
+}
+.module-person-tree .person-search {
+    width: 220px;
+    margin-right: 10px;
+}
+.module-person-tree .con-right-search-title {
+    margin-bottom: 15px;
+}
+.module-person-tree .con-right-table {
+    height: 290px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.module-person-tree .con-right-table table {
+    width: 100%;
+}
+.module-person-tree .con-right-table table tr {
+    border-bottom: 1px dashed #eee;
+    cursor: pointer;
+}
+.module-person-tree .con-right-table table td {
+    padding: 6px;
+}
+.module-person-tree .state-hover {
+    background: #f5fbfe;
+}
+.module-person-tree .cur {
+    color:#66CCB5
+}

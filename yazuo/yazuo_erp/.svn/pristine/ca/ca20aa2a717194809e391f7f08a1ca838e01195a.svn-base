@@ -1,0 +1,13 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="info-content">
+        <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+    </div>
+</div>
+

@@ -1,0 +1,58 @@
+2015-02-26 10:42:15,663 [http-bio-8080-exec-4] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/login/verifyMac.do**********
+	参数名getParameter：tel,参数值：15000000000
+
+2015-02-26 10:42:16,137 [http-bio-8080-exec-5] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/login/loginSubmit.do**********
+
+2015-02-26 10:42:18,572 [http-bio-8080-exec-8] [erp] [INFO] - sessionId: DE5B3B03CDCB33D03CF28CC4842CEA6F
+2015-02-26 10:42:18,572 [http-bio-8080-exec-8] [erp] [INFO] - userId: 1
+2015-02-26 10:42:18,572 [http-bio-8080-exec-8] [erp] [INFO] - userName: admin
+2015-02-26 10:42:18,574 [http-bio-8080-exec-8] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/sysProductOperation/listSysProductOperations.do**********
+
+2015-02-26 11:10:55,394 [http-bio-8080-exec-9] [erp] [INFO] - sessionId: DE5B3B03CDCB33D03CF28CC4842CEA6F
+2015-02-26 11:10:55,394 [http-bio-8080-exec-9] [erp] [INFO] - userId: 1
+2015-02-26 11:10:55,394 [http-bio-8080-exec-9] [erp] [INFO] - userName: admin
+2015-02-26 11:10:55,394 [http-bio-8080-exec-9] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/myHomePage/getComplexSynMerchants.do**********
+
+2015-02-26 11:10:55,408 [http-bio-8080-exec-10] [erp] [INFO] - sessionId: DE5B3B03CDCB33D03CF28CC4842CEA6F
+2015-02-26 11:10:55,408 [http-bio-8080-exec-10] [erp] [INFO] - userId: 1
+2015-02-26 11:10:55,408 [http-bio-8080-exec-10] [erp] [INFO] - userName: admin
+2015-02-26 11:10:55,408 [http-bio-8080-exec-10] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/myHomePage/getComplexSysToDoLists.do**********
+
+2015-02-26 11:10:56,740 [http-bio-8080-exec-2] [erp] [INFO] - sessionId: DE5B3B03CDCB33D03CF28CC4842CEA6F
+2015-02-26 11:10:56,740 [http-bio-8080-exec-2] [erp] [INFO] - userId: 1
+2015-02-26 11:10:56,740 [http-bio-8080-exec-2] [erp] [INFO] - userName: admin
+2015-02-26 11:10:56,740 [http-bio-8080-exec-2] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/myHomePage/getComplexSynMerchants.do**********
+
+2015-02-26 11:24:02,946 [http-bio-8080-exec-3] [erp] [INFO] - sessionId: DE5B3B03CDCB33D03CF28CC4842CEA6F
+2015-02-26 11:24:02,946 [http-bio-8080-exec-3] [erp] [INFO] - userId: 1
+2015-02-26 11:24:02,946 [http-bio-8080-exec-3] [erp] [INFO] - userName: admin
+2015-02-26 11:24:02,946 [http-bio-8080-exec-3] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/role/list.do**********
+	参数名getParameter：pageSize,参数值：10
+	参数名getParameter：pageNumber,参数值：1
+
+2015-02-26 11:24:04,763 [http-bio-8080-exec-4] [erp] [INFO] - sessionId: DE5B3B03CDCB33D03CF28CC4842CEA6F
+2015-02-26 11:24:04,763 [http-bio-8080-exec-4] [erp] [INFO] - userId: 1
+2015-02-26 11:24:04,763 [http-bio-8080-exec-4] [erp] [INFO] - userName: admin
+2015-02-26 11:24:04,763 [http-bio-8080-exec-4] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/role/initTree.do**********
+
+2015-02-26 15:19:49,764 [http-bio-8080-exec-5] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/login/verifyMac.do**********
+	参数名getParameter：tel,参数值：15000000000
+
+2015-02-26 15:19:50,379 [http-bio-8080-exec-6] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/login/loginSubmit.do**********
+
+2015-02-26 15:19:52,501 [http-bio-8080-exec-8] [erp] [INFO] - sessionId: FD1C3D5C4C76C7AFBE31B45A0AF58005
+2015-02-26 15:19:52,501 [http-bio-8080-exec-8] [erp] [INFO] - userId: 1
+2015-02-26 15:19:52,501 [http-bio-8080-exec-8] [erp] [INFO] - userName: admin
+2015-02-26 15:19:52,501 [http-bio-8080-exec-8] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp/sysProductOperation/listSysProductOperations.do**********
+

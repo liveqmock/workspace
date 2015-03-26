@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/crmapi/!svn/ver/25455/code/weixin/src/main/java/com/yazuo/weixin/external
+END
+WeixinBrandParamController.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/crmapi/!svn/ver/24987/code/weixin/src/main/java/com/yazuo/weixin/external/WeixinBrandParamController.java
+END
+WeixinForMerchantController.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/java/com/yazuo/weixin/external/WeixinForMerchantController.java
+END
+WeixinTemplateController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/crmapi/!svn/ver/24987/code/weixin/src/main/java/com/yazuo/weixin/external/WeixinTemplateController.java
+END
+WeixinOauthController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/crmapi/!svn/ver/23360/code/weixin/src/main/java/com/yazuo/weixin/external/WeixinOauthController.java
+END
+WeixinExternalController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/crmapi/!svn/ver/25455/code/weixin/src/main/java/com/yazuo/weixin/external/WeixinExternalController.java
+END

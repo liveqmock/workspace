@@ -1,0 +1,183 @@
+/* 添加和编辑页 start */
+.page-plan-add-edit .f-body {
+    padding: 0 14px;
+}
+.page-plan-add-edit .f-body .ff-label {
+    width: 120px;
+    text-align: right;
+}
+.page-plan-add-edit .f-body .ff-value {
+    margin-left: 120px;
+}
+.page-plan-add-edit .start-hour,
+.page-plan-add-edit .start-minute {
+    width: 80px;
+}
+.page-plan-add-edit .project,
+.page-plan-add-edit .plan-item-type,
+.page-plan-add-edit .contact,
+.page-plan-add-edit .communication-form-type {
+    width: 174px;
+}
+.page-plan-add-edit .title {
+    width: 364px;
+}
+.page-plan-add-edit .desc {
+    width: 588px;
+}
+.page-plan-add-edit .remind-trigger-time-wrapper {
+    font-size: 14px;
+    color: #666666;
+    line-height: 30px;
+    margin-right: 8px;
+}
+.page-plan-add-edit .remind-trigger {
+    padding: 6px 20px 6px 8px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 14px;
+    color: #66ccb5;
+    border-radius: 16px;
+    border: 1px solid #2CC78F;
+    cursor: pointer;
+}
+.page-plan-add-edit .icon-remind {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 14px;
+    width: 24px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #2CC78F;
+}
+.page-plan-add-edit .icon-remind,
+.page-plan-add-edit .remind-text {
+    vertical-align: top;
+}
+.page-plan-add-edit .state-remind-open .icon-remind {
+    background: #2CC78F;
+}
+.page-plan-add-edit .upload-info {
+    padding-top: 8px;
+}
+.page-plan-add-edit .upload-info .upload-item {
+    border: 1px solid #eaeaea;
+    line-height: 28px;
+    padding: 0 0.4em;
+    background: #ffffff;
+    margin-right: 8px;
+    margin-bottom:8px;
+}
+.page-plan-add-edit .upload-info .remove-h {
+    cursor: pointer;
+}
+.page-plan-add-edit .page-action .page-nav-crumbs {
+    padding: 0;
+    padding-top: 8px;
+}
+
+.page-work-plan-remind-dialog .sub-title {
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #666666;
+}
+.page-work-plan-remind-dialog .ff-label {
+    width: 90px;
+    text-align: right;
+}
+.page-work-plan-remind-dialog .ff-value {
+    margin-left: 90px;
+}
+.page-work-plan-remind-dialog .remind-time {
+    width: 100px;
+}
+
+.page-work-plan-reason-dialog .reason-label {
+    margin-bottom: 8px;
+}
+.page-work-plan-reason-dialog .reason {
+    width: 420px;
+}
+.page-work-plan-reason-dialog .delay-field .ff-label {
+    width: 80px;
+}
+.page-work-plan-reason-dialog .delay-field .ff-value {
+    margin-left: 80px;
+}
+/* 添加和编辑页 end */
+
+/* 工作指派 start */
+.page-plan-add-edit .assign-form {
+    padding-top: 30px;
+}
+/* 工作指派 end */
+
+/* 工作列表 start */
+.page-plan-list .page-action .nav-l,
+.page-plan-list .page-action .nav-r,
+.page-plan-list .page-action .current-date-view {
+     display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height:32px;
+    line-height: 32px;
+    padding: 0 12px;
+    cursor: pointer;
+    background: #66ccb5;
+    color: #ffffff;
+    font-size: 14px;
+    vertical-align: top;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+}
+.page-plan-list .page-action .nav-l,
+.page-plan-list .page-action .nav-r {
+    font-family: "宋体";
+    font-size: 16px;
+    font-weight: bold;
+}
+.page-plan-list .plan-list {
+    padding: 20px;
+}
+.page-plan-list .plan-list .page-line-title {
+    margin: 0;
+}
+.page-plan-list .plan-list .page-line-title .title-text,
+.page-plan-list .plan-list .page-line-title .status-text {
+    background: #F6FAFD;
+}
+.page-plan-list .f-body {
+    padding: 20px 0;
+}
+.page-plan-list .f-field {
+    margin-bottom: 0;
+}
+.page-plan-list .ff-label {
+    width: 108px;
+    text-align: right;
+}
+.page-plan-list .ff-value {
+    margin-left: 108px;
+}
+.page-plan-list .page-tip {
+    text-align: center;
+    line-height: 60px;
+    font-size: 14px;
+    color: #666666;
+}
+.page-plan-list .page-line-title .state-status-1 {
+    color: #e67e96;
+}
+.page-plan-list .page-line-title .state-status-2 {
+    color: #e67e96;
+}
+.page-plan-list .page-line-title .state-status-3 {
+    color: #cccccc;
+}
+.page-plan-list .page-line-title .state-status-4 {
+    color: #8bbf43;
+}
+.page-plan-list .page-line-title .state-status-5 {
+    color: #0099cc;
+}
+/* 工作列表 end */

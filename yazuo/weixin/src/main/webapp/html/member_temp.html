@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0"/> 
+<title>会员中心</title>
+<style>
+*{ margin:0px; padding:0px;}
+a, img {-webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */}
+html, body {-webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */ user-select: none;}
+img{ display:block; width:100%;}
+#JS_memberCenterPage2{ position:relative;}
+#JS_gotoPrevPageLink{ position:absolute; left:0px; top:0px; width:60px; height:40px; display:block; outline:none}
+</style>
+</head>
+
+<body>
+<div id="JS_memberCenterPage1">
+	<img src="../imageTemp/1_1.jpg" />
+    <img src="../imageTemp/1_2.jpg" />
+    <img src="../imageTemp/1_3.jpg" />    
+    <a href="javascript:;" id="JS_gotoNextPageLink"><img src="../imageTemp/1_4.jpg" /></a>	
+</div> 
+
+<div id="JS_memberCenterPage2" style="display:none">
+	<img src="../imageTemp/2_1.jpg" /> <a href="javascript:;" id="JS_gotoPrevPageLink"></a>
+    <img src="../imageTemp/2_2.jpg" />
+    <img src="../imageTemp/2_3.jpg" />
+    <img src="../imageTemp/2_4.jpg" />
+    <img src="../imageTemp/2_5.jpg" />
+    <img src="../imageTemp/2_6.jpg" /> 
+    <img src="../imageTemp/2_7.jpg" />  
+</div> 
+
+<script>
+document.getElementById("JS_gotoNextPageLink").onclick=function(){
+	document.getElementById("JS_memberCenterPage1").style.display='none';
+	document.getElementById("JS_memberCenterPage2").style.display='block';
+};
+document.getElementById("JS_gotoPrevPageLink").onclick=function(){
+	document.getElementById("JS_memberCenterPage2").style.display='none';
+	document.getElementById("JS_memberCenterPage1").style.display='block';
+};
+</script>   
+</body>
+</html>
+ 

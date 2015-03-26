@@ -1,0 +1,36 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <button type="button" class="add-btn main-btn" ms-click="jumpAddPage">添加权限组</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="grid-wrapper">
+        <div class="summary">共<span class="num">{{gridTotalSize}}</span>个权限组</div>
+        <table class="position-grid ui-grid" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="check-cell"><input type="checkbox" class="check-all" ms-checked="gridAllChecked" ms-click="gridCheckAll" /></th>
+                    <th class="name-cell">权限组名称</th>
+                    <th class="operation-cell">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ms-repeat="gridData"
+                    ms-class-1="odd:!($index % 2)"
+                    ms-class-2="even:$index % 2"
+                    ms-hover="state-hover">
+                    <td class="check-cell"><input type="checkbox" ms-value="el.id" ms-duplex="gridSelected"/></td>
+                    <td class="name-cell">{{el.role_name}}</td>
+                    <td class="operation-cell"><a ms-href="'#/sysmanage/role/edit/' + el.id + '/' + encodeURIComponent(el.role_name)" class="edit-l" ms-data-role-id="el.id">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:;" class="remove-l" ms-visible="el.role_name!='班主任'&& el.role_name!='老师'" ms-click="removeGridItem" ms-data-role-id="el.id">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="grid-bbar fn-clear">
+            <div class="grid-action fn-left">
+                <button type="button" class="check-all-btn main-btn" ms-click="scCheckAll">全选</button>&nbsp;<button type="button" class="batch-remove-btn main-btn" ms-click="batchRemoveGridItem">批量删除</button>
+            </div>
+            <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+        </div>
+    </div>
+</div>

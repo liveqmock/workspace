@@ -1,0 +1,3 @@
+<div class="page-bd">
+    <iframe ms-src="externalLink" frameborder="0" scrolling="no" class="page-iframe" ms-attr-height="iframeHeight" ms-on-load="onIframeLoad"></iframe>
+</div>

@@ -1,0 +1,227 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/crmapi/!svn/ver/25459/code/weixin/src/main/java/com/yazuo/weixin/vo
+END
+ActivityRecordVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/crmapi/!svn/ver/7263/code/weixin/src/main/java/com/yazuo/weixin/vo/ActivityRecordVO.java
+END
+AwardVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/crmapi/!svn/ver/19892/code/weixin/src/main/java/com/yazuo/weixin/vo/AwardVO.java
+END
+CouponDescribeVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/crmapi/!svn/ver/12890/code/weixin/src/main/java/com/yazuo/weixin/vo/CouponDescribeVO.java
+END
+FunctionMenu.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/18671/code/weixin/src/main/java/com/yazuo/weixin/vo/FunctionMenu.java
+END
+SubbranchVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/7400/code/weixin/src/main/java/com/yazuo/weixin/vo/SubbranchVO.java
+END
+MemberVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/java/com/yazuo/weixin/vo/MemberVO.java
+END
+SummaryDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/7227/code/weixin/src/main/java/com/yazuo/weixin/vo/SummaryDetail.java
+END
+Story.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/crmapi/!svn/ver/7445/code/weixin/src/main/java/com/yazuo/weixin/vo/Story.java
+END
+PageVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/crmapi/!svn/ver/15842/code/weixin/src/main/java/com/yazuo/weixin/vo/PageVO.java
+END
+BrandAndKeyRelativeVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/crmapi/!svn/ver/20953/code/weixin/src/main/java/com/yazuo/weixin/vo/BrandAndKeyRelativeVO.java
+END
+CouponNewDescribeVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/crmapi/!svn/ver/16009/code/weixin/src/main/java/com/yazuo/weixin/vo/CouponNewDescribeVO.java
+END
+Message.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/crmapi/!svn/ver/20670/code/weixin/src/main/java/com/yazuo/weixin/vo/Message.java
+END
+AutoreplyVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/crmapi/!svn/ver/25459/code/weixin/src/main/java/com/yazuo/weixin/vo/AutoreplyVO.java
+END
+IdentifyinginfoVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/crmapi/!svn/ver/7177/code/weixin/src/main/java/com/yazuo/weixin/vo/IdentifyinginfoVO.java
+END
+WxOrder.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/crmapi/!svn/ver/17548/code/weixin/src/main/java/com/yazuo/weixin/vo/WxOrder.java
+END
+ServiceConfigVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/crmapi/!svn/ver/15604/code/weixin/src/main/java/com/yazuo/weixin/vo/ServiceConfigVO.java
+END
+BusinessManagerVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/crmapi/!svn/ver/7209/code/weixin/src/main/java/com/yazuo/weixin/vo/BusinessManagerVO.java
+END
+Report1.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/crmapi/!svn/ver/7213/code/weixin/src/main/java/com/yazuo/weixin/vo/Report1.java
+END
+WxPayCouponState.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/crmapi/!svn/ver/17071/code/weixin/src/main/java/com/yazuo/weixin/vo/WxPayCouponState.java
+END
+WxcoffeeCzFlag.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/crmapi/!svn/ver/20245/code/weixin/src/main/java/com/yazuo/weixin/vo/WxcoffeeCzFlag.java
+END
+BusinessVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/24957/code/weixin/src/main/java/com/yazuo/weixin/vo/BusinessVO.java
+END
+WxPayCard.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/crmapi/!svn/ver/17071/code/weixin/src/main/java/com/yazuo/weixin/vo/WxPayCard.java
+END
+WxCardInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/17071/code/weixin/src/main/java/com/yazuo/weixin/vo/WxCardInfo.java
+END
+MerchantVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/crmapi/!svn/ver/7462/code/weixin/src/main/java/com/yazuo/weixin/vo/MerchantVO.java
+END
+MemberCardVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/22621/code/weixin/src/main/java/com/yazuo/weixin/vo/MemberCardVO.java
+END
+CouponVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/crmapi/!svn/ver/11374/code/weixin/src/main/java/com/yazuo/weixin/vo/CouponVO.java
+END
+ImageConfigVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/9588/code/weixin/src/main/java/com/yazuo/weixin/vo/ImageConfigVO.java
+END
+CardVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/crmapi/!svn/ver/7263/code/weixin/src/main/java/com/yazuo/weixin/vo/CardVO.java
+END
+PreferenceVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/crmapi/!svn/ver/20518/code/weixin/src/main/java/com/yazuo/weixin/vo/PreferenceVO.java
+END
+DishesVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/crmapi/!svn/ver/7177/code/weixin/src/main/java/com/yazuo/weixin/vo/DishesVO.java
+END
+EventRecordVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/22839/code/weixin/src/main/java/com/yazuo/weixin/vo/EventRecordVO.java
+END
+TransWaterPage.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/crmapi/!svn/ver/24028/code/weixin/src/main/java/com/yazuo/weixin/vo/TransWaterPage.java
+END
+ActivityConfigVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/crmapi/!svn/ver/11824/code/weixin/src/main/java/com/yazuo/weixin/vo/ActivityConfigVO.java
+END
+WxPayDeliverStateVo.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/crmapi/!svn/ver/17306/code/weixin/src/main/java/com/yazuo/weixin/vo/WxPayDeliverStateVo.java
+END
+CouponVO2.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/crmapi/!svn/ver/20261/code/weixin/src/main/java/com/yazuo/weixin/vo/CouponVO2.java
+END
+ParamConfigVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/15604/code/weixin/src/main/java/com/yazuo/weixin/vo/ParamConfigVO.java
+END
+MemberAwardVO.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/19892/code/weixin/src/main/java/com/yazuo/weixin/vo/MemberAwardVO.java
+END

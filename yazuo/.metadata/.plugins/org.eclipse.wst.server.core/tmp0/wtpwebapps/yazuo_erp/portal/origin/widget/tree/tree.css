@@ -1,0 +1,56 @@
+.ui-tree .ztree {
+    padding: 0;
+}
+.ui-tree .ztree * {
+    font-size: 14px;
+    font-family: inherit;
+}
+.ui-tree .ztree li{
+    line-height: 30px;
+}
+.ui-tree .ztree li a,
+.ui-tree .ztree li a.curSelectedNode {
+    height: 30px;
+    vertical-align: middle;
+}
+.ui-tree .ztree li span {
+    line-height: 30px;
+    color: #646464;
+    vertical-align: middle;
+}
+.ui-tree .ztree li a.curSelectedNode {
+    border: none;
+    background: transparent;
+    color: #66CCB5;
+    opacity: 1;
+}
+.ui-tree .ztree li a.curSelectedNode span {
+    color: #66CCB5;
+}
+.ui-tree .ztree li span.button.ico_open,
+.ui-tree .ztree li span.button.ico_docu,
+.ui-tree .ztree li span.button.ico_close{
+    vertical-align: middle;
+}
+.ui-tree .ztree li a:hover {
+    text-decoration: none;
+}
+.ui-tree .ztree li span.button.center_docu,
+.ui-tree .ztree li span.button.bottom_docu {
+    visibility: hidden;
+}
+.ui-tree .ztree li ul.line {
+    background: transparent;
+}
+.ui-tree .ztree li span.button.root_open,
+.ui-tree .ztree li span.button.roots_open,
+.ui-tree .ztree li span.button.center_open,
+.ui-tree .ztree li span.button.bottom_open {
+    background: url(image/icon-open.png) no-repeat center center;
+}
+.ui-tree .ztree li span.button.root_close,
+.ui-tree .ztree li span.button.roots_close,
+.ui-tree .ztree li span.button.center_close,
+.ui-tree .ztree li span.button.bottom_close {
+    background: url(image/icon-close.png) no-repeat center center;
+}

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraExamPaperDao">
+
+	<resultMap id="TraExamPaper" type="com.yazuo.erp.train.vo.TraExamPaperVO">
+        <result property="id" column="id"/>
+        <result property="learningProgressId" column="learning_progress_id"/>
+        <result property="examPaperType" column="exam_paper_type"/>
+        <result property="coursewareId" column="courseware_id"/>
+        <result property="paperName" column="paper_name"/>
+        <result property="studentId" column="student_id"/>
+        <result property="teacherId" column="teacher_id"/>
+        <result property="beginTime" column="begin_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="totalScore" column="total_score"/>
+        <result property="mark" column="mark"/>
+        <result property="comment" column="comment"/>
+        <result property="paperStatus" column="paper_status"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="traexampaperColumns">
+	    <![CDATA[
+		id,learning_progress_id,exam_paper_type,courseware_id,paper_name,student_id,teacher_id,begin_time,end_time,total_score,mark,comment,paper_status,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveTraExamPaper" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+    <![CDATA[
+        INSERT INTO train.tra_exam_paper (
+                learning_progress_id,
+                exam_paper_type,
+        		courseware_id ,
+        		paper_name ,
+        		student_id ,
+        		teacher_id ,
+        		begin_time ,
+        		end_time ,
+        		total_score ,
+        		mark ,
+        		comment ,
+        		paper_status ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+            #{learningProgressId},
+            #{examPaperType},
+        	#{coursewareId} ,
+        	#{paperName} ,
+        	#{studentId} ,
+        	#{teacherId} ,
+        	#{beginTime} ,
+        	#{endTime} ,
+        	#{totalScore} ,
+        	#{mark} ,
+        	#{comment} ,
+        	#{paperStatus} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraExamPaper" >
+    <![CDATA[
+        UPDATE train.tra_exam_paper SET
+            learning_progress_id=#{learningProgressId},
+            exam_paper_type=#{examPaperType},
+	        courseware_id = #{coursewareId} ,
+	        paper_name = #{paperName} ,
+	        student_id = #{studentId} ,
+	        teacher_id = #{teacherId} ,
+	        begin_time = #{beginTime} ,
+	        end_time = #{endTime} ,
+	        total_score = #{totalScore} ,
+	        mark = #{mark} ,
+	        comment = #{comment} ,
+	        paper_status = #{paperStatus} ,
+	        remark = #{remark} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraExamPaper">
+    <![CDATA[
+        DELETE FROM train.tra_exam_paper WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraExamPaperById" resultMap="TraExamPaper">
+		SELECT <include refid="traexampaperColumns" />
+	    <![CDATA[
+		    FROM train.tra_exam_paper 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraExamPapers" resultMap="TraExamPaper" parameterType="map">
+		SELECT <include refid="traexampaperColumns" />
+	    <![CDATA[
+		    FROM train.tra_exam_paper  
+	    ]]>
+	    <include refid="traexampaper_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraExamPapersMap" resultType="map" parameterType="map">
+		SELECT <include refid="traexampaperColumns" />
+	    <![CDATA[
+		    FROM train.tra_exam_paper  
+	    ]]>
+	    <include refid="traexampaper_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<select id="getAllTraExamPapers" resultType="map" parameterType="map">
+		SELECT <include refid="traexampaperColumns" />
+	    <![CDATA[
+		    FROM train.tra_exam_paper  
+	    ]]>
+	    <include refid="traexampaper_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+    <select id="getTraExamPapersByCoursewareIds" parameterType="list" resultMap="TraExamPaper">
+        SELECT <include refid="traexampaperColumns" />
+        FROM train.tra_exam_paper
+        WHERE 1=1 
+        
+        <if test="param2!=null">
+	        and courseware_id in
+	        <foreach collection="param2" item="list" open="(" close=")" separator=",">
+	            ${list}
+	        </foreach> 
+        </if>
+        
+        AND student_id=#{param1}
+        AND learning_progress_id=#{learningProgressId}
+    </select>
+
+    <select id="getExamPapersForPassed" resultMap="TraExamPaper">
+        SELECT tp.id,tp.learning_progress_id,tp.exam_paper_type,tp.courseware_id,tp.paper_name,tp.student_id,tp.teacher_id,
+        tp.begin_time,tp.end_time,tp.total_score,tp.mark,tp.comment,tp.paper_status,
+        tp.remark,tp.insert_by,tp.insert_time,tp.update_by,tp.update_time
+        FROM train.tra_exam_paper tp
+        LEFT JOIN train.tra_learning_progress tl ON tp.learning_progress_id = tl.id
+        WHERE tp.courseware_id=#{coursewareId}
+        AND tl.course_id=#{courseId}
+        AND tp.student_id=#{studentId}
+        AND tp.paper_status='3'
+    </select>
+
+	<select id="getExamPaperVOsByIds" resultMap="TraExamPaper" parameterType="list">
+        SELECT <include refid="traexampaperColumns"/>
+        FROM train.tra_exam_paper
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+	</select>
+
+    <select id="getExamPapersForPassedForFinalExam" resultMap="TraExamPaper">
+        SELECT tp.id,tp.learning_progress_id,tp.exam_paper_type,tp.courseware_id,tp.paper_name,tp.student_id,tp.teacher_id,
+        tp.begin_time,tp.end_time,tp.total_score,tp.mark,tp.comment,tp.paper_status,
+        tp.remark,tp.insert_by,tp.insert_time,tp.update_by,tp.update_time
+        FROM train.tra_exam_paper tp
+        LEFT JOIN train.tra_learning_progress tl ON tp.learning_progress_id = tl.id
+        WHERE tl.course_id=#{courseId}
+        AND tp.student_id=#{studentId}
+        AND tp.exam_paper_type='5'
+        AND tp.paper_status IN ('1','3')
+        AND tp.learning_progress_id=#{learningProgressId}
+    </select>
+
+	<sql id="traexampaper_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+            <if test="learningProgressId!=null">
+                AND learning_progress_id = #{learningProgressId}
+            </if>
+            <if test="examPaperType!=null">
+                AND exam_paper_type = #{examPaperType}
+            </if>
+	       <if test="coursewareId!=null">
+				AND courseware_id = #{coursewareId}
+			</if>
+	       <if test="paperName!=null">
+				AND paper_name = #{paperName}
+			</if>
+	       <if test="studentId!=null">
+				AND student_id = #{studentId}
+			</if>
+	       <if test="teacherId!=null">
+				AND teacher_id = #{teacherId}
+			</if>
+	       <if test="beginTimeBegin!=null">
+				AND begin_time >= #{beginTimeBegin}
+		   </if>
+		   <if test="beginTimeEnd!=null">
+				AND begin_time &lt;= #{beginTimeEnd}
+		   </if>
+	       <if test="endTimeBegin!=null">
+				AND end_time >= #{endTimeBegin}
+		   </if>
+		   <if test="endTimeEnd!=null">
+				AND end_time &lt;= #{endTimeEnd}
+		   </if>
+	       <if test="totalScore!=null">
+				AND total_score = #{totalScore}
+			</if>
+	       <if test="mark!=null">
+				AND mark = #{mark}
+			</if>
+	       <if test="comment!=null">
+				AND comment = #{comment}
+			</if>
+	       <if test="paperStatus!=null">
+				AND paper_status = #{paperStatus}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraExamPaperCount" resultType="long">
+        SELECT count(*) FROM train.tra_exam_paper 
+		<include refid="traexampaper_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraExamPaperPage" resultMap="TraExamPaper">
+    	SELECT <include refid="traexampaperColumns" />
+	    FROM train.tra_exam_paper 
+		<include refid="traexampaper_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+
+	<!-- 根据试卷ID查询试卷信息 -->
+    <select id="queryTraExamPaperById" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			P . ID,
+			P .learning_progress_id,
+			P .exam_paper_type,
+			P .courseware_id,
+			P .paper_name,
+			P .student_id,
+			P .teacher_id,
+			P .begin_time,
+			P .end_time,
+			COALESCE(P .total_score, 0)AS total_score,
+			COALESCE(P .mark, 0)AS mark,
+			COALESCE(P . COMMENT, '')AS COMMENT,
+			P .paper_status,
+			P .remark,
+			P .insert_by,
+			P .insert_time,
+			P .update_by,
+			P .update_time
+		FROM
+			train.tra_exam_paper P
+		WHERE
+			1 = 1
+		AND P . ID = #{paperId,jdbcType=INTEGER}
+	</select>
+	
+</mapper>
+

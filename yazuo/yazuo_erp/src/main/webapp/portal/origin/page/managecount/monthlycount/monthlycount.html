@@ -1,0 +1,34 @@
+<div class="page-bd page-bd-form">
+    <div class="search-head">
+        <span  class="schedule" ms-widget="select,$,$yearSelectOpts"></span>
+        <span  class="schedule" ms-widget="select,$,$monthSelectOpts"></span>
+        <input type="text" ms-duplex="keyword" placeholder="请输入商户名称" class="input-text input-search">
+        <input type="button" value="查询" class="main-btn" ms-click="search">
+    </div>
+    <div class="select-con">
+        <table>
+            <tr ms-repeat="conditions">
+                <th>{{el.title}}</th>
+                <td>
+                    <p ms-repeat="el.values">
+                        <button ms-if='el.enable=="1"' ms-data-value="el.value" class="main-btn">{{el.title}}</button>
+                        <button ms-if='el.enable=="2"' ms-data-value="el.value" ms-data-type="$outer.el.type" class="button-order" ms-click="sendSelected">{{el.title}}</button>
+                        <span ms-if='el.enable=="0"' ms-data-value="el.value">{{el.title}}</span>
+                    </p>
+
+                </td>
+            </tr>
+        </table>
+        <p class="choice">
+            <span ms-if="side" data-id = 1 ms-click="selectShowHide">精简选项<i class="iconfont">&#xe60a;</i></span>
+            <span ms-if="!side" data-id = 0 ms-click="selectShowHide">全部选项<i class="iconfont">&#xe609;</i></span>
+        </p>
+    </div>
+    <div class="grid-con">
+        <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,48 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+ <div class="line-list-wrapper">
+        <ul class="todo-list line-list">
+            <li class="todo-item line-item"
+                ms-class-1="line-item-last: $last && isComplete"
+                ms-repeat="todoList">
+                <i class="icon-circle iconfont">&#xe602;</i>
+                <div class="item-content">
+                    {{el.beginTime}}&nbsp;&nbsp;{{el.studentName}}&nbsp;&nbsp;{{el.description}}&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" ms-click="openDoScore" ms-data-paper-id="el.paperId" ms-if="permission.humanMark && el.examPaperType==5">真人互动评分</a>&nbsp;&nbsp;<a href="#" ms-click="openDoScore" ms-data-paper-id="el.paperId" ms-if="permission.markTheRecord && el.examPaperType==1">进行评分</a>&nbsp;&nbsp;<a ms-href="'#/study/studentmanage/detail/review/'+el.paperId" ms-if="el.examPaperType==3">批阅考卷</a>&nbsp;&nbsp;<a ms-href="'#/study/studentmanage/detail/audition/'+el.paperId" ms-if="permission.tryToLRecord && el.examPaperType==1">试听录音</a>
+                </div>
+            </li>
+        </ul>
+ </div>
+<!-- 评分 start -->
+<div class="page-study-studentmanage-todolist-dialog ui-hidden" ms-widget="dialog,$,$doScoreDialogOpts">
+    <form class="do-score-form" ms-widget="form,$,$doScoreFormOpts" action="javascript:;">
+        <div class="f-body">
+             <h3 class="page-section-title" ></h3>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>得分：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text score" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>评语：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                         <textarea class="comment"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 评分 end -->

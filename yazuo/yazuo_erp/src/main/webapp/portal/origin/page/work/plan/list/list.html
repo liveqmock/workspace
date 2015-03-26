@@ -1,0 +1,68 @@
+<div class="page-plan-list">
+    <div class="page-tbar fn-clear">
+        <ul class="page-nav-crumbs fn-left">
+            <li class="nav-item" ms-repeat="navCrumbs"><a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a><span
+                class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+        </ul>
+        <div class="page-action fn-right" ms-if="viewType == 'list'">
+            <button type="button" class="today-btn main-btn" ms-click="navToday">今天</button>&nbsp;&nbsp;<span class="nav-l" ms-click="navPrev"><</span>&nbsp;&nbsp;<span class="current-date-view" ms-click="openCurrentDateCalendar">{{currentDate | date("yyyy-MM-dd")}}</span>&nbsp;&nbsp;<span class="nav-r" ms-click="navNext">></span>
+        </div>
+    </div>
+    <div class="page-bd page-bd-form">
+        <ul class="plan-list" ms-if="planList.length">
+            <li class="plan-item" ms-repeat="planList">
+                <h3 class="page-line-title"><span class="status-text"
+                                                  ms-class-1="state-status-1: el.status == '1'"
+                                                  ms-class-2="state-status-2: el.status == '2'"
+                                                  ms-class-3="state-status-3: el.status == '3'"
+                                                  ms-class-4="state-status-4: el.status == '4'"
+                                                  ms-class-5="state-status-5: el.status == '5'">{{el.statusText}}&nbsp;&nbsp;</span><span class="title-text">{{el.dateIndex}}&nbsp;&nbsp;</span></h3>
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">发起人：</label>
+                        <div class="ff-value ff-value-text">
+                            {{el.sponsor}}
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">项目：</label>
+                        <div class="ff-value ff-value-text">
+                            {{el.merchantName}}
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">商户联系人：</label>
+                        <div class="ff-value ff-value-text">
+                            {{el.contactName}}
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">标题：</label>
+                        <div class="ff-value ff-value-text">
+                            {{el.title}}
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">说明：</label>
+                        <div class="ff-value ff-value-text">
+                            {{el.description}}
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">原因说明：</label>
+                        <div class="ff-value ff-value-text">
+                            {{el.explanation}}
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">附件：</label>
+                        <div class="ff-value ff-value-text">
+                            <span ms-repeat="el.attachmentList"><a ms-href="el.downloadUrl" target="_blank">{{el.original_file_name}}</a>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="page-tip" ms-if="!planList.length">未查询到计划信息</div>
+    </div>
+</div>

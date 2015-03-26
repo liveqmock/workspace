@@ -1,0 +1,22 @@
+.page-welcome .page-bd {
+    /*padding: 20px 0;*/
+}
+.page-welcome .page-bd-inner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -200px;
+}
+.page-welcome .welcome-title {
+    text-align: center;
+    font-size: 36px;
+    color: #666666;
+    /*font-weight: bold;*/
+}
+.page-welcome .tip-content {
+    padding: 8px 0;
+    text-align: center;
+    color: #666666;
+    font-size: 14px;
+}

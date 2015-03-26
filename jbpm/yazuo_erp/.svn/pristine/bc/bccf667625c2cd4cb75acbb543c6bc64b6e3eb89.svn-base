@@ -1,0 +1,243 @@
+<!-- 商户调研单 start -->
+<div class="module-survey" ms-widget="dialog,$,$surveyOpts">
+<form ms-widget="form,$,$surveyFormOpts" action="javascript:;">
+    <div class="f-body survey-position-scroll">
+<div class="survey-head fn-clear">
+    <table>
+        <tr>
+            <td width="100" align="right">门店名称：</td>
+            <td class="f-field ff-value">
+                <p ms-visible="displayType == 'read'" class="survey-merchant-name-text"></p>
+                <p ms-visible="displayType == 'add'||displayType == 'edit'"><span style = "width:190px" class="schedule" ms-widget="select,$,$doorNameOpts"></span></p>
+                <input type="hidden" value="first"
+                       class="storeId"
+                       data-rules="empty"
+                       data-tips="请选择门店名称！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+            <td width="100" align="right">门店负责人：</td>
+            <td width="200" class="f-field ff-value">
+                <p ms-visible="displayType == 'read'" class="survey-merchant-person-text"></p>
+                <p ms-visible="displayType == 'add'||displayType == 'edit'"><span style = "width:190px" class="schedule" ms-widget="select,$,$doorDutyOpts"></span></p>
+                <input type="hidden" value="first"
+                       class="contactId"
+                       data-rules="empty"
+                       data-tips="请选择门店负责人！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="research-tabs">
+    <table width = "100%">
+        <tr>
+            <td width="50%"><p class="tabs1" ms-class-1="cur:surveyTabs==1" ms-click="changeSurveyTabs(1)">基本信息</p></td>
+            <td width="50%"><p class="tabs2" ms-class-1="cur:surveyTabs==2" ms-click="changeSurveyTabs(2)">基础设施、宣传物料</p></td>
+        </tr>
+    </table>
+</div>
+<div class="research-con con1" ms-visible="surveyTabs==1">
+    <table class="research-table">
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>业态：</td>
+            <td class="f-field ff-value">
+                <div class="survey-format">
+                    <p ms-visible="displayType == 'read'">{{dicforChildrenText}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" ms-value="{{dicforParentText}}{{dicforChildrenText}}" class="input-text research-input survey-format-choose" ms-click="_showFormat" readonly>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="hidden" ms-value="{{dicforChildrenText}}" data-rules="empty" data-tips="业态子内容不能为空！" isrule=true class="survey-format-testing">
+                    <div class="ff-value-tip"></div>
+
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>附近：</td>
+            <td class="f-field ff-value">
+                <p ms-visible="displayType == 'read'" class="survey-near-text">{{data.storeNumber}}</p>
+                <p ms-visible="displayType == 'add'||displayType == 'edit'"><span class="survey-select" ms-widget="select,$,$NearSelectOpts"></span></p>
+                <input type="hidden" value="first"
+                       class="near"
+                       data-rules="empty"
+                       data-tips="附近不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>营业面积：</td>
+            <td class="f-field ff-value">
+                <p ms-visible="displayType == 'read'">{{data.businessArea}}</p>
+                <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：400平方米"
+                       ms-duplex="data.businessArea"
+                       data-rules="empty"
+                       data-tips="营业面积不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>日均客流量：</td>
+            <td class="f-field ff-value">
+                <p ms-visible="displayType == 'read'">{{data.dailyPassengerFlow}}</p>
+                <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：75人"
+                       ms-duplex="data.dailyPassengerFlow"
+                       data-rules="empty"
+                       data-tips="日均客流量不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>桌均消费：</td>
+            <td  class="f-field ff-value">
+                <p ms-visible="displayType == 'read'">{{data.tableAverage}}</p>
+                <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：100"
+                       ms-duplex="data.tableAverage"
+                       data-rules="empty"
+                       data-tips="桌均消费不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>餐台数：</td>
+            <td  class="f-field ff-value">
+                <p ms-visible="displayType == 'read'">{{data.mealsNumber}}</p>
+                <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：100"
+                       ms-duplex="data.mealsNumber"
+                       data-rules="empty"
+                       data-tips="餐台数不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>包间数：</td>
+            <td  class="f-field ff-value">
+                <p ms-visible="displayType == 'read'">{{data.roomsNumber}}</p>
+                <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：100"
+                       ms-duplex="data.roomsNumber"
+                       data-rules="empty"
+                       data-tips="包间数不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>上座比例：</td>
+            <td  class="f-field ff-value">
+                <p ms-visible="displayType == 'read'">{{data.attendanceRatio}}</p>
+                <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：10%"
+                       ms-duplex="data.attendanceRatio"
+                       data-rules="empty"
+                       data-tips="上座比例不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+
+    </table>
+</div>
+<div class="research-con con2" ms-visible="surveyTabs==2">
+    <table class="research-table">
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>门店网络条件：</td>
+            <td class="f-field ff-value">
+                <p ms-visible="displayType == 'read'"><label ms-repeat="dicNetworkCondition"><span ms-if="el.isSelect == 1">{{el.text}}<span ms-if="el.text=='备注'">({{data.networkRemark}})</span></span></label></p>
+                <div ms-visible="displayType == 'add'||displayType == 'edit'">
+                    <p ms-repeat="dicNetworkCondition" class="label-check-radio">
+                        <label>
+                        <input type="radio"
+                               ms-click=isChecked('networkCondition',"radio",'dicNetworkCondition')
+                               name="dicNetworkCondition"
+                               ms-value="el.value"
+                               ms-checked ="el.isSelect == 1">&nbsp;{{el.text}}
+                        </label>
+                        <span ms-if="el.text == '备注'">
+                           <input ms-if="data.networkCondition == 4"
+                                  type="text"
+                                  class="input-text"
+                                  ms-duplex="data.networkRemark">
+                        </span>
+                    </p>
+                </div>
+                <input type="hidden"
+                       class="dicNetworkCondition"
+                       data-rules="empty"
+                       data-tips="门店网络条件不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>门店网络速度：</td>
+            <td class="f-field ff-value">
+                <p ms-visible="displayType == 'read'"><label ms-repeat="dicNetworkSpeed"><span ms-if="el.isSelect == 1">{{el.text}}</span></label></p>
+                <p ms-visible="displayType == 'add'||displayType == 'edit'">
+                    <label ms-repeat="dicNetworkSpeed" class="label-check-radio">
+                        <input type="radio"
+                               ms-click=isChecked('networkSpeed',"radio",'dicNetworkSpeed')
+                               name="dicNetworkSpeed"
+                               ms-value="el.value"
+                               ms-checked ="el.isSelect == 1">&nbsp;{{el.text}}
+                    </label>
+                </p>
+                <input type="hidden"
+                       class="dicNetworkSpeed"
+                       data-rules="empty"
+                       data-tips="门店网络速度不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="research-left"><span class="warn">*</span>现有宣传物料：</td>
+            <td class="f-field ff-value">
+                <p ms-visible="displayType == 'read'"><label ms-repeat="dicPublicityMaterial"><span ms-if="el.isSelect == 1">{{el.text}}<span ms-if="el.text=='备注'">({{data.materRemark}})</span></span></label></p>
+                <div ms-visible="displayType == 'add'||displayType == 'edit'">
+                    <p ms-repeat="dicPublicityMaterial" class="label-check-radio">
+                        <label>
+                        <input type="checkbox"
+                               ms-click=isChecked('publicityMaterial',"checkbox",'dicPublicityMaterial')
+                               ms-value="el.value"
+                               ms-checked ="el.isSelect == 1"> {{el.text}}
+                        </label>
+                        <span ms-if="el.text == '备注'">
+                            <input ms-if="isRemark"
+                                  type="text"
+                                  class="input-text"
+                                  ms-duplex="data.materRemark">
+                        </span>
+                    </p>
+                </div>
+                <input type="hidden"
+                       class="dicPublicityMaterial"
+                       data-rules="empty"
+                       data-tips="现有宣传物料不能为空！"
+                       isrule=true>
+                <div class="ff-value-tip"></div>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+</form>
+</div>
+<!-- 商户调研单 end -->
+<div class="survey-format-box">
+    <ul class="format-box-info">
+        <li class="format-left">
+            <label ms-repeat="dicFormat"><input type="radio" ms-attr-data-value="el.value" ms-attr-data-text="el.text" ms-checked="el.isSelected == 1" ms-click="showFormatChildren" name="outer" ms-value="formatChildId">&nbsp;{{el.text}}</label>
+        </li>
+        <li class="format-right">
+            <p ms-repeat="formatChild"><label><input type="checkbox" name="inner" ms-attr-data-text="el.text" ms-attr-data-value="el.value" ms-checked="el.isSelected == 1" ms-click="selectedFormatChildren">&nbsp;{{el.text}}</label></p>
+        </li>
+    </ul>
+    <ul class="format-box-button"><button class="simple-btn close-survey-format">确定</button></ul>
+</div>
+<!--通讯录-->
+<div ms-module="address,$,$addressOpts"></div>
+<!--通讯录-end-->

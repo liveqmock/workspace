@@ -1,0 +1,27 @@
+.page-study-coursewaremanage .check-all-cell {
+    width: 40px;
+}
+.page-study-coursewaremanage .grid-bbar {
+    padding: 16px 14px;
+}
+.page-study-coursewaremanage .coursewarename {
+    width: 280px;
+}
+.page-study-coursewaremanage .course-count {
+    cursor: pointer;
+}
+
+#page-study-coursewaremanage-course-list-tip {
+    position: absolute;
+    z-index: 10000;
+    border: 1px solid #e9e9e9;
+    background: #ffffff;
+}
+#page-study-coursewaremanage-course-list-tip .course-item {
+    padding: 0 0.4em;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #e9e9e9;
+    font-size: 14px;
+    color: #646464;
+}

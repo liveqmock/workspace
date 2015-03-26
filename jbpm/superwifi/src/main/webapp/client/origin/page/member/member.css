@@ -1,0 +1,106 @@
+.page-member .page-bd {
+    padding: 20px;
+}
+.page-member .panel-title {
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 16px;
+    line-height: 1em;
+}
+.page-member .panel-box {
+    border: 1px solid #e0e1e1;
+    padding: 14px;
+    background: #ffffff;
+}
+.page-member .real-time-panel{
+    position: relative;
+}
+.page-member .real-time-panel .panel-content {
+    position: relative;
+}
+.page-member .add-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: #444444;
+}
+.page-member .adv-l-block{
+    border: solid #e0e1e1 1px;
+    background-color: #FFFFFF;
+    padding:10px 20px 20px 20px;
+    margin-top: 20px;
+}
+.page-member .adv-l-title{
+    font-size: 16px;
+    color: #333333;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+}
+.page-member .adv-l-bt{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.page-member-export-dialog .start-date,.page-member-export-dialog .end-date{
+    width: 165px;
+}
+.page-member .home-set{
+    padding-top: 20px;
+    font-size: 14px;
+}
+.page-member .home-set p{
+    color: #444444;
+}
+.page-member .home-set .font-grey{
+    color: #888888;
+}
+.page-member .link-type-tab{
+    margin: 15px 0;
+}
+.page-member .link-type-tab li{
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-right: 35px;
+    padding-left: 30px;
+}
+.page-member .select-style{
+    width: 18px;
+    height: 18px;
+    border: solid #c8c8c8 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.page-member .checked-st{
+    background: url("../../asset/image/icon-select.png") center center no-repeat;
+}
+.page-member .message-tip{
+    position: relative;
+    padding-left:35px;
+    margin-bottom: 10px;
+}
+.page-member .page-selection{
+    font-size: 16px;
+    color: #333333;
+    padding-bottom: 5px;
+}
+.page-member .add-member{
+    font-size: 16px;
+    color: #333333;
+    padding-bottom: 15px;
+}
+.page-member .add-member span{
+    color: #FF0000;
+    padding: 0 5px;
+}
+.page-member .fu-title{
+    color: #888888;
+    font-size: 14px;
+}
+.page-member .fu-title ins{
+    color: #444444;
+}

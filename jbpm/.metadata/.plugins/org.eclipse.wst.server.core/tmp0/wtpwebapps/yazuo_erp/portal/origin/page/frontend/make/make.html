@@ -1,0 +1,54 @@
+<div class="page-bd page-bd-form">
+    <!--max-tabs-nav-->
+    <div class="max-tabs-nav fn-clear">
+        <p class="cur">待办事项<span class="tips-number" ms-if="backlogNumber">{{backlogNumber}}</span></p>
+    </div>
+    <!--max-tabs-nav-end-->
+    <!--max-tabs-con-->
+    <div class="max-tab-con">
+        <!--代办事项-->
+        <div>
+            <!--tabs-类型-->
+            <div class="cate-list-wrapper">
+                <ul class="cate-list fn-clear mb20">
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:backlog.inputItemTypes = '01'" ms-click="doToStatus(['01'])">全部</a>
+                    </li>
+                    <li class="cate-item fn-left" style="display: none;">
+                        <a href="javascript:;" ms-class="cur:backlog.inputItemTypes == '01'" ms-click="doToStatus(['01'])">上线流程</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!--tabs-类型-end-->
+            <!--table-->
+            <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="name-center" width="200">时间</th>
+                    <th class="name-left">商户名称</th>
+                    <th class="name-center">类型</th>
+                    <th class="name-left" width="200">待办内容</th>
+                    <th class="name-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-repeat="pageData" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="name-center">{{el.insertTime|date("yyyy-MM-dd HH:mm")}}</td>
+                    <td class="name-left">{{el.merchantName}}</td>
+                    <td class="name-center">{{el.itemTypeText}}</td>
+                    <td class="name-left">{{el.itemContent}}</td>
+                    <td class="name-center"><a ms-href="#/frontend/make/waiting/{{el.merchantId}}">查看详情</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--代办事项-end-->
+    </div>
+    <!--max-tabs-con-end-->
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+</div>
+

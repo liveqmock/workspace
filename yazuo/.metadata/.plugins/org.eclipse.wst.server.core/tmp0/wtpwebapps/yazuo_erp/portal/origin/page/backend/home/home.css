@@ -1,0 +1,75 @@
+.page-backend-home .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-home .permission_type {
+    margin-bottom:30px;
+}
+.page-backend-home .permission_type a {
+    color:#fff;
+}
+.page-backend-home .max-tabs-nav p {
+    float:left;
+    display:inline;
+    cursor: pointer;
+    width:120px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+
+.page-backend-home .max-tabs-nav {
+    height:40px;
+}
+.page-backend-home .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-backend-home .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+}
+.page-backend-home .ui-grid-search {
+    padding: 10px 14px;
+    background: #f3f4f6;
+    margin-bottom: 15px;
+    text-align: right;
+}
+.page-backend-home .ui-grid-search .search ,
+.page-backend-home .ui-grid-search span{
+    margin-right: 15px;
+}
+
+.page-backend-home .ui-select-header {
+    width: 100px;
+}
+.page-backend-home .grid-list-width {
+    width: 320px;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+}
+.page-backend-home .grid-status-width {
+    width: 120px;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+}
+/*放弃*/
+.backend-monthly-quit .quit-description {
+    width: 420px;
+    height: 140px;
+}

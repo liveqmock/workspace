@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.bes.dao.BesTalkingSkillsDao">
+	<resultMap id="BesTalkingSkills" type="com.yazuo.erp.bes.vo.BesTalkingSkillsVO">
+    	<id property="id" column="id"/>
+    	<result property="resourceRemark" column="resource_remark"/>
+    	<result property="resourceExtraRemark" column="resource_extra_remark"/>
+    	<result property="title" column="title"/>
+    	<result property="content" column="content"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	
+		<!-- sql字段名字与VO相同可以自动映射
+        <result property="firstResource" column="firstResource"/>
+    	<result property="secondResource" column="secondResource"/> -->
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="bestalkingskillsColumns">
+	    <![CDATA[
+		id,resource_remark,resource_extra_remark,title,content,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveBesTalkingSkills" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： resource_remark,resource_extra_remark,title,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO bes.bes_talking_skills (
+        	 <if test="resourceRemark!=null and resourceRemark!=''">resource_remark,</if>
+        	 <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="resourceRemark!=null and resourceRemark!=''">#{resourceRemark},</if>
+       	    <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">#{resourceExtraRemark},</if>
+       	    <if test="title!=null and title!=''">#{title},</if>
+       	    <if test="content!=null and content!=''">#{content},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertBesTalkingSkillss" parameterType="map">
+	 <!--不允许为空的字段： resource_remark,resource_extra_remark,title,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO bes.bes_talking_skills (
+        	 <if test="resourceRemark!=null and resourceRemark!=''">resource_remark,</if>
+        	 <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="resourceRemark!=null and resourceRemark!=''">#{t.resourceRemark},</if>
+          <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">#{t.resourceExtraRemark},</if>
+          <if test="title!=null and title!=''">#{t.title},</if>
+          <if test="content!=null and content!=''">#{t.content},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateBesTalkingSkills">
+        UPDATE bes.bes_talking_skills 
+ 		  <set>
+	        <if test="resourceRemark!=null and resourceRemark!=''">resource_remark = #{resourceRemark} ,</if>
+	        <if test="resourceExtraRemark!=null">resource_extra_remark = #{resourceExtraRemark} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateBesTalkingSkillssToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE bes.bes_talking_skills 
+ 		  <set>
+	        <if test="resourceRemark!=null and resourceRemark!=''">resource_remark = #{t.resourceRemark} ,</if>
+	        <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark = #{t.resourceExtraRemark} ,</if>
+	        <if test="title!=null and title!=''">title = #{t.title} ,</if>
+	        <if test="content!=null and content!=''">content = #{t.content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateBesTalkingSkillssToSameVals" parameterType="map">
+        UPDATE bes.bes_talking_skills 
+ 		  <set>
+	        <if test="resourceRemark!=null and resourceRemark!=''">resource_remark = #{resourceRemark} ,</if>
+	        <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark = #{resourceExtraRemark} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteBesTalkingSkillsById">
+    <![CDATA[
+        DELETE FROM bes.bes_talking_skills WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteBesTalkingSkillsByIds" parameterType="list">
+        DELETE FROM bes.bes_talking_skills WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getBesTalkingSkillsById" resultMap="BesTalkingSkills">
+		SELECT <include refid="bestalkingskillsColumns" />
+		    FROM bes.bes_talking_skills 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getBesTalkingSkillss" resultMap="BesTalkingSkills">
+		SELECT talk.*, resource1.resource_name as firstResource, resource2.resource_name as secondResource 
+			from bes.bes_talking_skills talk 
+		left JOIN sys.sys_resource resource1 on talk.resource_remark = resource1.remark 
+		left JOIN sys.sys_resource resource2 on talk.resource_extra_remark = resource2.remark 
+	    <include refid="bestalkingskills_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getBesTalkingSkillssMap" resultType="map">
+		SELECT <include refid="bestalkingskillsColumns" />
+	    <![CDATA[
+		    FROM bes.bes_talking_skills  
+	    ]]>
+	    <include refid="bestalkingskills_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="bestalkingskills_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="resourceRemark!=null and resourceRemark!=''">AND resource_remark = #{resourceRemark}</if>
+	       <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">AND resource_extra_remark = #{resourceExtraRemark}</if>
+	       <if test="title!=null and title!=''">
+	         AND title like '%'||#{title}||'%'
+	       </if>
+	       <if test="content!=null and content!=''">AND content = #{content}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getBesTalkingSkillsCount" resultType="long">
+        SELECT count(*) FROM bes.bes_talking_skills 
+		<include refid="bestalkingskills_findPage_where"/>    
+    </select>
+    
+</mapper>

@@ -1,0 +1,55 @@
+/**
+ * @Description TODO
+ * Copyright Copyright (c) 2014 
+ * Company 雅座在线（北京）科技发展有限公司
+ * 
+ * 		author		date		description
+ * —————————————————————————————————————————————
+ * 
+ * 
+ */
+package com.yazuo.erp.syn.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import com.yazuo.erp.base.BaseDAO;
+
+/**
+ * @Description TODO
+ * @author zhaohuaqin
+ * @date 2014-8-6 下午5:36:42
+ */
+@Repository
+public class MerchantProductDao extends BaseDAO {
+	
+	public List<Map<String, Object>> getProductsAllMerchant() {
+		StringBuffer sql = new StringBuffer("");
+		sql.append("SELECT                                       ");
+		sql.append("	mp.merchant_id,                          ");
+		sql.append("	mp.product_id,                           ");
+		sql.append("	P .product_name AS product_name           ");
+		sql.append("FROM                                         ");
+		sql.append("	account.merchant_product AS mp,          ");
+		sql.append("	account.product AS P			 ");
+		sql.append("WHERE					 ");
+		sql.append("1=1						 ");
+		sql.append("AND P .product_id = mp.product_id		 ");
+		sql.append("AND EXISTS(                                  ");
+		sql.append("	SELECT					 ");
+		sql.append("		*				 ");
+		sql.append("FROM					 ");
+		sql.append("		trade.merchant AS mer1		 ");
+		sql.append("	WHERE                                    ");
+		sql.append("		status = 1			 ");
+		sql.append("	AND mer1.merchant_id = mer1.brand_id	 ");
+		sql.append("	AND mp.merchant_id in  " +this.getExistsTradeMerchantList());
+		sql.append(")						 ");
+		sql.append("ORDER BY                                     ");
+		sql.append("	merchant_id,product_id			 ");
+
+		return jdbcTemplateCrm.queryForList(sql.toString());
+	}
+}

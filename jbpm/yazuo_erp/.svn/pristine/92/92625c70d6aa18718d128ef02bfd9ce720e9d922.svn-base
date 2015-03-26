@@ -1,0 +1,183 @@
+.page-sysmange-role-add-edit .ff-label {
+    width: 100px;
+}
+.page-sysmange-role-add-edit .ff-value {
+    margin-left: 100px;
+}
+.page-sysmange-role-add-edit .role-name {
+    width: 300px;
+}
+.page-sysmange-role-add-edit .permission-box {
+    background: #ffffff;
+    border: 1px solid #EAEAEA;
+    padding: 10px;
+    /*color: #666666;*/
+}
+.page-sysmange-role-add-edit .permission-box .visible-h {
+    cursor: pointer;
+}
+.page-sysmange-role-add-edit .permission-item .permission-list {
+    padding-left: 3em;
+}
+.page-sysmange-role-add-edit .leaf-item {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-right: 2em;
+}
+.page-sysmange-role-add-edit .leaf-item .visible-h {
+    display: none;
+}
+.page-sysmange-usermanage .page-filter .input-text {
+    width: 168px;
+}
+.page-sysmange-usermanage .page-filter .ui-select-header {
+    width: 120px;
+}
+/* 用户的添加和编辑 */
+
+.page-sysmanage-usermanage-add-edit .ff-label {
+    width: 100px;
+    text-align: right;
+}
+.page-sysmanage-usermanage-add-edit .ff-value {
+    margin-left: 100px;
+}
+.page-sysmanage-usermanage-add-edit .input-text {
+    width: 300px;
+}
+.page-sysmanage-usermanage-add-edit .avatar-uploader {
+    width: 90px;
+    height: 32px;
+}
+.page-sysmanage-usermanage-add-edit .user-avatar {
+    padding: 4px;
+    box-shadow: 0px 2px 2px #cccccc;
+}
+.page-sysmanage-usermanage-add-edit .user-avatar img {
+    width: 80px;
+    height: 80px;
+    vertical-align: middle;
+}
+.page-sysmanage-usermanage-add-edit .avatar-action {
+    margin-left: 20px;
+    padding-top: 4px;
+}
+.page-sysmanage-usermanage-add-edit .avatar-summary {
+    margin-top: 10px;
+    color: #646464;
+    font-size: 14px;
+}
+.page-sysmanage-usermanage-add-edit .control-range-wrapper,
+.page-sysmanage-usermanage-add-edit .role-list-wrapper {
+    color: #666666;
+    font-size: 14px;
+    border: 1px solid #e9e9e9;
+    /*width: 188px;*/
+    width: 600px;
+    height: 400px;
+    /*height: 248px;*/
+    padding: 10px;
+    overflow: auto;
+    background: #ffffff;
+}
+.organization-list-dialog .ui-dialog-content .group-wrapper {
+    color: #666666;
+    font-size: 14px;
+    border: 1px solid #e9e9e9;
+    height: 248px;
+    padding: 10px;
+    overflow: auto;
+    background: #ffffff;
+}
+.page-sysmanage-usermanage-add-edit .control-range-wrapper .node-list,
+.organization-list-dialog .node-list {
+    margin-left: 2em;
+}
+.page-sysmanage-usermanage-add-edit .control-range-wrapper .node-item {
+    /*margin-bottom: 2px;*/
+}
+.page-sysmanage-usermanage-add-edit .control-range-wrapper .node-text,
+.organization-list-dialog .node-text {
+    width: 130px;
+}
+.page-sysmanage-usermanage-add-edit .control-range-wrapper .visible-h,
+.organization-list-dialog .visible-h,
+.organization-list-dialog .text-content {
+    cursor: pointer;
+}
+.page-sysmanage-usermanage-add-edit .control-range-wrapper .leaf-node-text .visible-h,
+.organization-list-dialog .leaf-node-text .visible-h {
+    visibility: hidden;
+}
+.organization-list-dialog .state-selected {
+    background: #B2EED8;
+}
+.page-sysmanage-usermanage-add-edit .role-list-wrapper .role-item {
+    margin-bottom: 2px;
+}
+.page-sysmanage-usermanage-add-edit .mac-wrapper {
+    position: relative;
+    width: 480px;
+}
+.page-sysmanage-usermanage-add-edit .mac-wrapper .add-more-btn {
+    position: absolute;
+    bottom: 1px;
+    left: 384px;
+}
+.page-sysmanage-usermanage-add-edit .only-one-mac .add-more-btn {
+    left: 318px;
+}
+.page-sysmanage-usermanage-add-edit .mac-wrapper .mac-item {
+    margin-bottom: 4px;
+}
+/* 管辖范围的用户列表 */
+
+.page-sysmanage-usermanage-add-edit .user-list-wrapper {
+    margin-left: 20px;
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+}
+.page-sysmanage-usermanage-add-edit .user-list-wrapper table {
+    width: 500px;
+    font-family: \65B0\5B8B\4F53, \5b8b\4f53;
+}
+.page-sysmanage-usermanage-add-edit .user-list-wrapper .list-head {
+    position: relative;
+}
+.page-sysmanage-usermanage-add-edit .user-list-wrapper .close-btn {
+    position: absolute;
+    top: 4px;
+    right: 10px;
+    color: #8d8d8d;
+    font-size: 14px;
+    cursor: pointer;
+}
+.page-sysmanage-usermanage-add-edit .user-list-wrapper .list-body {
+    height: 208px;
+    overflow: auto;
+}
+.page-sysmanage-usermanage-add-edit .user-list-wrapper th,
+.page-sysmanage-usermanage-add-edit .user-list-wrapper td {
+    height: 34px;
+    line-height: 34px;
+    color: #646464;
+    font-size: 14px;
+    padding: 0 1em;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+}
+.page-sysmanage-usermanage-add-edit .user-list-wrapper th {
+    background: #cde2f9;
+}
+.page-sysmanage-usermanage-add-edit .user-list-wrapper .even td {
+    background: #eef6ff;
+}
+.page-sysmanage-usermanage-add-edit .control-range-field .root-node-text,
+.organization-list-dialog .root-node-text {
+    display: none;
+}
+.page-sysmanage-usermanage-add-edit .control-range-field .root-node-list,
+.organization-list-dialog .root-node-list {
+    margin-left: 0;
+}

@@ -1,0 +1,25 @@
+2015-02-28 18:50:16,905 [http-8080-3] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/login/verifyMac.do**********
+	参数名getParameter：tel,参数值：15000000000
+
+2015-02-28 18:50:17,868 [http-8080-3] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/login/loginSubmit.do**********
+
+2015-02-28 18:50:20,186 [http-8080-1] [erp] [INFO] - sessionId: 96C850412D0003FCA662412ACE213FB0
+2015-02-28 18:50:20,187 [http-8080-1] [erp] [INFO] - userId: 1
+2015-02-28 18:50:20,187 [http-8080-1] [erp] [INFO] - userName: admin
+2015-02-28 18:50:20,187 [http-8080-1] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/sysProductOperation/listSysProductOperations.do**********
+
+2015-02-28 18:50:41,416 [http-8080-1] [erp] [INFO] - sessionId: 96C850412D0003FCA662412ACE213FB0
+2015-02-28 18:50:41,416 [http-8080-1] [erp] [INFO] - userId: 1
+2015-02-28 18:50:41,417 [http-8080-1] [erp] [INFO] - userName: admin
+2015-02-28 18:50:41,417 [http-8080-1] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/myHomePage/getComplexSynMerchants.do**********
+
+2015-02-28 18:50:41,431 [http-8080-5] [erp] [INFO] - sessionId: 96C850412D0003FCA662412ACE213FB0
+2015-02-28 18:50:41,432 [http-8080-5] [erp] [INFO] - userId: 1
+2015-02-28 18:50:41,432 [http-8080-5] [erp] [INFO] - userName: admin
+2015-02-28 18:50:41,432 [http-8080-5] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/myHomePage/getComplexSysToDoLists.do**********
+

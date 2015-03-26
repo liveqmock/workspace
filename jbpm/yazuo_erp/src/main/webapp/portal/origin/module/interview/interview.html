@@ -1,0 +1,389 @@
+<!-- 商户访谈单 start -->
+<div class="module-interview" ms-widget="dialog,$,$interviewOpts">
+<form ms-widget="form,$,$interviewFormOpts" action="javascript:;">
+<div class="f-body interview-position-scroll">
+    <div class="interview-head fn-clear">
+        <table>
+            <tr>
+                <td width="100" align="right">商户名称：</td>
+                <td><p>{{data.merchantName}}</p></td>
+                <td width="100" align="right">商户负责人：</td>
+                <td width="200" class="f-field ff-value">
+                    <p ms-visible="displayType == 'add'||displayType == 'edit'"><span style = "width:190px" class="schedule" ms-widget="select,$,$merchantDutyOpts"></span></p>
+                    <p ms-visible="displayType == 'read'" class="interview-merchant-person-text"></p>
+                    <input type="hidden" value="first"
+                           class="inter-contactId"
+                           data-rules="empty"
+                           data-tips="请选择商户负责人！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-tabs">
+        <table>
+            <tr>
+                <td width="25%"><p class="inter-tabs1" ms-class-1="cur:interviewTabs==1" ms-click="changeInterviewTabs(1)">商家信息</p></td>
+                <td width="25%"><p class="inter-tabs2" ms-class-1="cur:interviewTabs==2" ms-click="changeInterviewTabs(2)">商户现有优惠活动</p></td>
+                <td width="25%"><p class="inter-tabs3" ms-class-1="cur:interviewTabs==3" ms-click="changeInterviewTabs(3)">会员权益方案</p></td>
+                <td width="25%"><p class="inter-tabs4" ms-class-1="cur:interviewTabs==4" ms-click="changeInterviewTabs(4)">门店基础设施</p></td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con inter-con1" ms-visible="interviewTabs==1">
+        <table class="research-table">
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>业态：</td>
+                <td class="f-field ff-value">
+                    <div class="interview-format">
+                        <p ms-visible="displayType == 'read'">{{dicforParentText}}{{dicforChildrenText}}</p>
+                        <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" ms-value="{{dicforParentText}}{{dicforChildrenText}}" class="input-text research-input interview-format-choose" ms-click="_showFormat" readonly>
+                        <input ms-if="displayType == 'add'||displayType == 'edit'" type="hidden" class="format-testing interview-format-testing" ms-value="{{dicforChildrenText}}" data-rules="empty" data-tips="业态子内容不能为空！" isrule=true >
+                        <div class="ff-value-tip"></div>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>门店数：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.storeNumber}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input"
+                           ms-duplex="data.storeNumber"
+                           data-rules="empty&number"
+                           data-tips="门店数不能为空！&门店数只能是数字！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>直营/加盟：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'" class="interview-join-text"></p>
+                    <div ms-visible="displayType == 'add'||displayType == 'edit'"><span class="interview-select" ms-widget="select,$,$interviewJoinSelectOpts"></span></div>
+                    <input type="hidden" value="first"
+                           class="inter-join"
+                           data-rules="empty"
+                           data-tips="请选择直营/加盟！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>主要客户类型：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'" class="interview-customer-text"></p>
+                    <div ms-visible="displayType == 'add'||displayType == 'edit'"><span class="interview-select schedule" ms-widget="select,$,$interviewCustomerSelectOpts"></span></div>
+                    <input type="hidden" value="first"
+                           class="inter-customer"
+                           data-rules="empty"
+                           data-tips="请选择主要客户类型！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>日均营业额：</td>
+                <td  class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.dailyTurnover}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：商户未告知"
+                           ms-duplex="data.dailyTurnover"
+                           data-rules="empty"
+                           data-tips="日均营业额不能为空！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>门店日均收银笔数：</td>
+                <td  class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.cashCountPerDay}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：100"
+                           ms-duplex="data.cashCountPerDay"
+                           data-rules="empty&number"
+                           data-tips="门店日均收银笔数不能为空！&门店日均收银笔数只能是数字！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>桌均消费：</td>
+                <td  class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.perOrder}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'"  type="text" class="input-text research-input" placeholder="例：100"
+                           ms-duplex="data.perOrder"
+                           data-rules="empty&number"
+                           data-tips="桌均消费不能为空！&桌均消费只能是数字！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>人均消费：</td>
+                <td  class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.perCapita}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'"  type="text" class="input-text research-input" placeholder="例：100"
+                           ms-duplex="data.perCapita"
+                           data-rules="empty&number"
+                           data-tips="人均消费不能为空！&人均消费只能是数字！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>上传logo：</td>
+                <td class="f-field ff-value">
+                    <div class="merchant-logo">
+                        <p><img ms-src="data.relativePath"></p>
+                        <p ms-visible="displayType == 'add'||displayType == 'edit'">图片大小：180*180,100K以内。</p>
+                    </div>
+                    <div ms-visible="displayType == 'add'||displayType == 'edit'" class="merchant-logo-select" ms-widget="uploader,$,$uploadLogOpts">
+                        <button ms-if="!uploading" class="simple-btn">选择图片</button>
+                        <button ms-if="uploading" class="simple-btn-disabled">正在上传&#8230;</button>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con inter-con2" ms-visible="interviewTabs==2">
+        <table class="research-table">
+            <tr>
+                <td colspan="2" align="center">列出正在开展或即将开展的优惠活动、活动门店，活动有效期，参与人数</td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>团购：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.groupPurchase}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：暂无"
+                           ms-duplex="data.groupPurchase"
+                           data-rules="empty"
+                           data-tips="团购不能为空！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>优惠券：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.coupon}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：丁丁优惠7.9"
+                           ms-duplex="data.coupon"
+                           data-rules="empty"
+                           data-tips="优惠券不能为空！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>银行卡优惠：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.bankCardOffer}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：银行卡，交通银行菜品8.5折"
+                           ms-duplex="data.bankCardOffer"
+                           data-rules="empty"
+                           data-tips="银行卡优惠不能为空！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>其他店内优惠：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.otherShopDiscount}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：点评电子会员卡88折"
+                           ms-duplex="data.otherShopDiscount"
+                           data-rules="empty"
+                           data-tips="其他店内优惠不能为空！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con inter-con3" ms-visible="interviewTabs==3">
+        <table class="research-table">
+            <tr>
+                <td align="right" class="research-left"><div style="width: 140px;"><span class="warn">*</span>原有会员卡各类：</div></td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'"><label ms-repeat="dicCardType"><span ms-if="el.isSelect == 1">{{el.text}}</span></label></p>
+                    <p ms-visible="displayType == 'add'||displayType == 'edit'">
+                        <label ms-repeat="dicCardType" class="label-check-radio" >
+                            <input type="checkbox"
+                                   ms-click=isChecked('cardType',"checkbox",'inter-diccardtype')
+                                   ms-value="el.value"
+                                   ms-checked ="el.isSelect == 1"> {{el.text}}
+                        </label>
+                    </p>
+                    <input type="hidden"
+                           class="inter-diccardtype"
+                           data-rules="empty"
+                           data-tips="请选择原有会员卡各类！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>会员卡管理系统：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'"><label ms-repeat="dicMemberSys"><span ms-if="el.isSelect == 1">{{el.text}}</span></label></p>
+                    <p ms-visible="displayType == 'add'||displayType == 'edit'">
+                        <label ms-repeat="dicMemberSys" class="label-check-radio" >
+                            <input type="checkbox"
+                                   ms-click=isChecked('managementSystem',"checkbox",'inter-membersys')
+                                   ms-value="el.value"
+                                   ms-checked ="el.isSelect == 1"> {{el.text}}
+                        </label>
+                    </p>
+                    <input type="hidden"
+                           class="inter-membersys"
+                           data-rules="empty"
+                           data-tips="请选择会员卡管理系统！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>会员权益：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'"><label ms-repeat="dicNetworkSpeedMemberRight"><span ms-if="el.isSelect == 1">{{el.text}}</span></label></p>
+                    <p ms-visible="displayType == 'add'||displayType == 'edit'">
+                        <label ms-repeat="dicNetworkSpeedMemberRight" class="label-check-radio" >
+                            <input type="checkbox"
+                                   ms-click=isChecked('memberRight',"checkbox",'inter-right')
+                                   ms-value="el.value"
+                                   ms-checked ="el.isSelect == 1"> {{el.text}}
+                        </label>
+                    </p>
+                    <input type="hidden"
+                           class="inter-right"
+                           data-rules="empty"
+                           data-tips="请选择会员权益！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>已发卡数量：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.sendCardNumber}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：12"
+                           ms-duplex="data.sendCardNumber"
+                           data-rules="empty&number"
+                           data-tips="已发卡数量不能为空！&已发卡数量只能是数字"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>潜客来源：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'">{{data.potentialCustomerSource}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：团购"
+                           ms-duplex="data.potentialCustomerSource"
+                           data-rules="empty"
+                           data-tips="潜客来源不能为空！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>潜客数量：</td>
+                <td class="f-field">
+                    <p ms-visible="displayType == 'read'">{{data.potentialCustomerNum}}</p>
+                    <input ms-visible="displayType == 'add'||displayType == 'edit'" type="text" class="input-text research-input" placeholder="例：12"
+                           ms-duplex="data.potentialCustomerNum"
+                           data-rules="empty&number"
+                           data-tips="潜客数量不能为空！&潜客数量只能是数字"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr ms-visible="displayType == 'add'||displayType == 'edit'">
+                <td align="right" class="research-left"><span class="warn"></span>上传电子文档：</td>
+                <td class="f-field ff-value">
+                    <div>
+                        <span class="inter-upfile" ms-if="data.attachDocument.originalFileName">{{data.attachDocument.originalFileName}}</span>
+                    </div>
+                    <div  class="merchant-logo-select" ms-widget="uploader,$,$uploadFile">
+                        <button ms-if="!uploading" class="simple-btn">选择文件</button>
+                        <button ms-if="uploading" class="simple-btn-disabled">正在上传&#8230;</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="research-con inter-con4"  ms-visible="interviewTabs==4">
+        <table class="research-table">
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>门店网络条件：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'"><label ms-repeat="dicNetworkCondition"><span ms-if="el.isSelect == 1">{{el.text}}<span ms-if="el.text=='备注'">({{data.networkRemark}})</span></span></label></p>
+                    <div ms-visible="displayType == 'add'||displayType == 'edit'">
+                        <p ms-repeat="dicNetworkCondition" class="label-check-radio">
+                            <label>
+                                <input type="radio"
+                                   name="networkCondition"
+                                   ms-click=isChecked('networkCondition',"radio",'inter-dicNetworkCondition')
+                                   ms-value="el.value"
+                                   ms-checked ="el.isSelect == 1">&nbsp;{{el.text}}
+                            </label>
+                            <span ms-if="el.text == '备注'">
+                               <input ms-if="data.networkCondition == 4"
+                                      type="text"
+                                      class="input-text"
+                                      ms-duplex="data.networkRemark">
+                            </span>
+                        </p>
+                    </div>
+                    <input type="hidden"
+                           class="inter-dicNetworkCondition"
+                           data-rules="empty"
+                           data-tips="请选择门店网络条件！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="research-left"><span class="warn">*</span>门店网络速度：</td>
+                <td class="f-field ff-value">
+                    <p ms-visible="displayType == 'read'"><label ms-repeat="dicNetworkSpeed"><span ms-if="el.isSelect == 1">{{el.text}}</span></label></p>
+                    <p ms-visible="displayType == 'add'||displayType == 'edit'">
+                        <label ms-repeat="dicNetworkSpeed" class="label-check-radio" >
+                            <input type="radio"
+                                   name="networkSpeed"
+                                   ms-click=isChecked('networkSpeed',"radio",'inter-dicNetworkSpeed')
+                                   ms-value="el.value"
+                                   ms-checked ="el.isSelect == 1"> {{el.text}}
+                        </label>
+                    </p>
+                    <input type="hidden"
+                           class="inter-dicNetworkSpeed"
+                           data-rules="empty"
+                           data-tips="请选择门店网络速度！"
+                           isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</form>
+
+</div>
+<!-- 商户访谈单 end -->
+<div class="interview-format-box">
+    <ul class="format-box-info">
+        <li class="format-left">
+            <label ms-repeat="dicFormat"><input type="radio" ms-attr-data-value="el.value" ms-attr-data-text="el.text" ms-checked="el.isSelected == 1" ms-click="showFormatChildren" name="outer" ms-value="formatChildId">&nbsp;{{el.text}}</label>
+        </li>
+        <li class="format-right">
+            <p ms-repeat="formatChild"><label><input type="checkbox" name="inner" ms-attr-data-text="el.text" ms-attr-data-value="el.value" ms-checked="el.isSelected == 1" ms-click="selectedFormatChildren">&nbsp;{{el.text}}</label></p>
+        </li>
+    </ul>
+    <ul class="format-box-button"><button class="simple-btn close-interview-format">确定</button></ul>
+</div>
+<!--通讯录-->
+<div ms-module="address,$,$addressOpts"></div>
+<!--通讯录-end-->

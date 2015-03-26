@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0"/> 
+<link href="style/typeList.css" type="text/css" rel="stylesheet" />
+<title>周边产品</title>
+</head>
+
+<body>
+	<header>陪你菜单</header>
+    <img src="foodImg/ambitus/typeLogo.jpg" class="typeLogoImg" />
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">Befy系列<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/大befy.jpg" class="oneItemImg" />
+        	<p class="foodName">大号befy：120cm<br/>캐릭터인형（대）</p>
+            <p class="foodInfo">价格：<em>350</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/中号befy.jpg" class="oneItemImg" />
+        	<p class="foodName">中号befy：45cm<br/>캐릭터인형（중）</p>
+            <p class="foodInfo">价格：<em>168</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/小befy.jpg" class="oneItemImg" />
+        	<p class="foodName">小号befy：28cm <br/>캐릭터인형（소）</p>
+            <p class="foodInfo">价格：<em>108</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem last">
+        	<img src="foodImg/ambitus/minibefy.jpg" class="oneItemImg" />
+        	<p class="foodName">mini befy： 15cm<br/>캐릭터인형（미니）</p>
+            <p class="foodInfo">价格：<em>35</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>        
+    </div>
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">马克杯系列<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/小马克杯.jpg" class="oneItemImg" />
+        	<p class="foodName">马克杯（小）<br/>머그（소）</p>
+            <p class="foodInfo">价格：<em>32</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/新版马克杯粉色.jpg" class="oneItemImg" />
+        	<p class="foodName">新版马克杯（粉色）<br/>머그（핑크）</p>
+            <p class="foodInfo">价格：<em>37</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem last">
+        	<img src="foodImg/ambitus/新马克杯棕色.jpg" class="oneItemImg" />
+        	<p class="foodName">新版马克杯（咖啡色）<br/>머그（커피）</p>
+            <p class="foodInfo">价格：<em>37</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+    </div> 
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">旅行杯系列<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/蓝色旅行杯.jpg" class="oneItemImg" />
+        	<p class="foodName">旅行杯（蓝色）<br/>텀블러-Fresco(블루)</p>
+            <p class="foodInfo">价格：<em>145</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/粉色旅行杯.jpg" class="oneItemImg" />
+        	<p class="foodName">旅行杯（粉色）<br/>텀블러-Dolce(핑크)</p>
+            <p class="foodInfo">价格：<em>145</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/麦色旅行杯.jpg" class="oneItemImg" />
+        	<p class="foodName">旅行杯（麦色）<br/>텀블러-Ricco(아이보리)</p>
+            <p class="foodInfo">价格：<em>145</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem last">
+        	<img src="foodImg/ambitus/不锈钢色旅行杯.jpg" class="oneItemImg" />
+        	<p class="foodName">旅行杯（不锈钢色）<br/>텀블러-Puro(스텐)</p>
+            <p class="foodInfo">价格：<em>145</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+    </div>  
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">保温杯系列<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/保温杯红.jpg" class="oneItemImg" />
+        	<p class="foodName">保温杯（红色) <br/>텀블러（레드）</p>
+            <p class="foodInfo">价格：<em>158</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/保温杯绿.jpg" class="oneItemImg" />
+        	<p class="foodName">保温杯（绿) <br/>텀블러（그린）</p>
+            <p class="foodInfo">价格：<em>158</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/保温杯紫.jpg" class="oneItemImg" />
+        	<p class="foodName">保温杯（紫色) <br/>텀블러（퍼플）</p>
+            <p class="foodInfo">价格：<em>158</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem last">
+        	<img src="foodImg/ambitus/保温杯白.jpg" class="oneItemImg" />
+        	<p class="foodName">保温杯（白色) <br/>텀블러（화이트）</p>
+            <p class="foodInfo">价格：<em>158</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+    </div>  
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">玻璃杯系列<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/玻璃杯.jpg" class="oneItemImg" />
+        	<p class="foodName">玻璃杯<br/>유리머그</p>
+            <p class="foodInfo">价格：<em>82</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem last">
+        	<img src="foodImg/ambitus/玻璃茶杯.png" class="oneItemImg" />
+        	<p class="foodName">玻璃茶杯<br/>유리티머그</p>
+            <p class="foodInfo">价格：<em>82</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+    </div>
+    
+     <div class="typeItemList">
+    	<h3 class="typeTitle">其他周边<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/伞.jpg" class="oneItemImg" />
+        	<p class="foodName">雨伞<br/>우산</p>
+            <p class="foodInfo">价格：<em>102</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/过滤杯套装.png" class="oneItemImg" />
+        	<p class="foodName">咖啡过滤杯套装<br/>드리퍼선물세트</p>
+            <p class="foodInfo">价格：<em>401</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/ambitus/磨豆杯.png" class="oneItemImg" />
+        	<p class="foodName">磨豆杯<br/>커피분쇄기</p>
+            <p class="foodInfo">价格：<em>306</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem last">
+        	<img src="foodImg/ambitus/笔记本.jpg" class="oneItemImg" />
+        	<p class="foodName">陪你笔记本（咖色\红色）<br/>베네 다이어리 （갈색\레드）</p>
+            <p class="foodInfo">价格：<em>68</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+    </div>  
+<script language="javascript" src="js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="js/typeList.js"></script>
+</body>
+</html>

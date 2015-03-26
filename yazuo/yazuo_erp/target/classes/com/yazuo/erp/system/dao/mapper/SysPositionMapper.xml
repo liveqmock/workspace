@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.system.dao.SysPositionDao">
+
+	<resultMap id="SysPosition" type="com.yazuo.erp.system.vo.SysPositionVO">
+		<result property="id" column="id" />
+		<result property="positionName" column="position_name" />
+		<result property="description" column="description" />
+		<result property="isEnable" column="is_enable" />
+		<result property="remark" column="remark" />
+		<result property="insertBy" column="insert_by" />
+		<result property="insertTime" column="insert_time" />
+		<result property="updateBy" column="update_by" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+	    <![CDATA[
+		id,position_name,description,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="savePosition">
+    <![CDATA[
+        INSERT INTO sys.sys_position (
+        		position_name ,
+        		description ,
+        		is_enable ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{positionName} ,
+        	#{description} ,
+        	#{isEnable} ,
+        	#{remark} ,
+        	#{insertBy},
+        	#{insertTime},
+        	#{updateBy},
+        	#{updateTime}
+        )
+    ]]>
+		<!-- oracle: order="BEFORE" SELECT sequenceName.nextval AS ID FROM DUAL 
+			DB2: order="BEFORE"" values nextval for sequenceName <selectKey resultType="java.lang.Long" 
+			order="BEFORE" keyProperty="userId"> SELECT sequenceName.nextval AS ID FROM 
+			DUAL </selectKey> -->
+	</insert>
+
+	<update id="update">
+		UPDATE sys.sys_position
+		<set>
+			<if test="positionName != null">position_name = #{positionName} ,</if>
+			<if test="description != null">description=#{description},</if>
+			<if test="isEnable != null">is_enable=#{isEnable},</if>
+			<if test="remark != null">remark=#{remark},</if>
+			<if test="insertBy != null">insert_by=#{insertBy},</if>
+			<if test="insertTime != null">insert_time=#{insertTime},</if>
+			<if test="updateBy != null">update_by=#{updateBy},</if>
+			<if test="updateTime != null">update_time=#{updateTime}</if>
+		</set>
+		WHERE
+		id = #{id}
+	</update>
+
+	<delete id="delete">
+    <![CDATA[
+        DELETE FROM sys.sys_position WHERE
+        id = #{id} 
+    ]]>
+	</delete>
+
+	<select id="getById" resultMap="SysPosition">
+		SELECT
+		<include refid="columns" />
+	    <![CDATA[
+		    FROM sys.sys_position 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getSysPositionsPage" resultType="map">
+		SELECT
+		<include refid="columns" />
+	    <![CDATA[
+		    FROM sys.sys_position where is_enable ='1' 
+	    ]]>
+		order by id desc
+	</select>
+
+	<sql id="whereOrder">
+		<where>
+			<if test="id!=null">
+				AND id = #{id}
+			</if>
+			<if test="positionName!=null">
+				AND position_name like '%'||#{positionName}||'%'
+			</if>
+			<if test="description!=null">
+				AND description = #{description}
+			</if>
+			<if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+			<if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+			<if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+			<if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+			</if>
+			<if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+			</if>
+			<if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+			<if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+			</if>
+			<if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+			</if>
+		</where>
+	</sql>
+
+	<select id="findCount" resultType="long">
+		SELECT count(*) FROM sys.sys_position where is_enable = '1'
+		<include refid="whereOrder" />
+	</select>
+
+	<!-- 分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页 因为分页查询将传 offset,pageSize,lastRows 
+		三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现 -->
+	<select id="findPage" resultMap="SysPosition">
+		SELECT
+		<include refid="columns" />
+		FROM sys.sys_position
+		<include refid="whereOrder" />
+
+		<if test="@Ognl@isNotEmpty(sortColumns)">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<select id="isExistsUser" resultType="map">
+		SELECT id
+	    <![CDATA[
+		    FROM sys.sys_user 
+	        WHERE 
+		        position_id = #{id} and is_enable='1'
+	    ]]>
+	</select>
+
+	<delete id="deleteMany" parameterType="java.util.List">
+		DELETE FROM sys.sys_position WHERE id in
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item.id}
+		</foreach>
+	</delete>
+
+	<!-- 根据课程ID查询有效的职位信息 -->
+	<select id="queryPosition" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			CASE
+		WHEN pc.course_id > 0 THEN
+			1
+		ELSE
+			0
+		END AS is_choosed,
+		 COALESCE(pc.course_id, 0)AS course_id,
+		 P . ID,
+		 P .position_name,
+		 P .description,
+		 P .is_enable,
+		 P .remark
+		FROM
+			sys.sys_position P
+		LEFT JOIN(
+			SELECT
+				*
+			FROM
+				train.tra_position_course P
+			WHERE
+				1 = 1
+
+		<if test="courseId != null">
+			and P .course_id = #{courseId,jdbcType=INTEGER}
+		</if>
+
+		)pc ON pc.position_id = P . ID
+		WHERE
+		P .is_enable = '1'
+		order by p.id desc
+	</select>
+	
+	<!-- 查询有效的职位信息 -->
+	<select id="queryPositionList" resultMap="SysPosition">
+		SELECT
+		 P . ID,
+		 P .position_name,
+		 P .description,
+		 P .is_enable,
+		 P .remark
+		FROM
+			sys.sys_position P
+		WHERE 1=1
+		and P .is_enable = '1'
+		order by p.id desc
+	</select>
+</mapper>
+

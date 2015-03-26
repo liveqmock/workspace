@@ -1,0 +1,73 @@
+/**
+ * @Description TODO
+ * Copyright Copyright (c) 2014 
+ * Company 雅座在线（北京）科技发展有限公司
+ * 
+ * 		author		date		description
+ * —————————————————————————————————————————————
+ * 
+ * 
+ */
+
+package com.yazuo.erp.system.service;
+
+import java.util.Map;
+
+import java.util.*;
+
+import com.yazuo.erp.interceptors.Page;
+import com.yazuo.erp.system.vo.*;
+import com.yazuo.erp.system.dao.*;
+
+/**
+ * @Description TODO
+ * @author erp team
+ * @date 
+ */
+public interface SysRemindService{
+	
+   /**
+	 * 新增对象 @return : 新增加的主键id
+	 */
+	int saveSysRemind (SysRemindVO sysRemind);
+	/**
+	 * 新增多个对象 @return : //TODO
+	 */
+	int batchInsertSysReminds (Map<String, Object> map);
+	/**
+	 * 修改对象 @return : 影响的行数
+	 */
+	int updateSysRemind (SysRemindVO sysRemind);
+	/**
+	 * 修改多个对象（每一条记录可以不同） @return : 影响的行数
+	 */
+	int batchUpdateSysRemindsToDiffVals (Map<String, Object> map);
+	/**
+	 * 修改多个对象（每一条记录都相同） @return : 影响的行数
+	 */
+	int batchUpdateSysRemindsToSameVals (Map<String, Object> map);
+	/**
+	 * 按ID删除对象
+	 */
+	int deleteSysRemindById (Integer id);
+	/**
+	 * 按IDs删除多个对象
+	 */
+	int batchDeleteSysRemindByIds (List<Integer> ids);
+	/**
+	 * 通过主键查找对象
+	 */
+	SysRemindVO getSysRemindById(Integer id);
+	/**
+	 * 返回所有返回所有满足条件的Object对象的List
+	 */
+	Page<SysRemindVO> getSysReminds (SysRemindVO sysRemind);
+	/**
+	 * 返回所有返回所有满足条件的Map对象的List
+	 */
+	List<Map<String, Object>>  getSysRemindsMap (SysRemindVO sysRemind);
+	
+	/**根据用户id和门店id取未读的提醒记录*/
+	List<SysRemindVO> getRemindsByMerchantIdAndUserId (SysRemindVO sysRemind, SysUserVO user);
+
+}

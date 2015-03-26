@@ -1,0 +1,1578 @@
+{
+    "rows": [
+        {
+            "route": "/welcome",
+            "isCache": true,
+            "css": true,
+            "js": true,
+            "belongToPermission": "all",
+            "isHidden": true
+        },{
+            "title": "武林大会",
+            "navTitle": "武林大会",
+            "belongToPermission": [
+                "wulin"
+            ],
+            "children": [
+                {
+                    "route": "/wldh/setting",
+                    "title": "武林大会设置",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "wulin_assembly_config"
+                    ]
+                },
+                {
+                    "route": "/wldh/show",
+                    "title": "武林大会",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "wulin_assembly"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "前端服务",
+            "navTitle": "前端服务",
+            "belongToPermission": [
+                "front_end_service"
+            ],
+            "children": [
+                {
+                    "route": "/frontend/home(/:info)",
+                    "path": "#/frontend/home",
+                    "title": "我的主页",
+                    "navTitle": "我的主页",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "fes_my_main_page"
+                    ],
+                    "children": [
+                        {
+                            "route": "/frontend/home/customer/:id(/:info)",
+                            "title": "客户服务看板",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_my_mechant",
+                                "fes_all_mechant"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/customerline/:id(/:type)(/:info)",
+                            "title": "客户服务看板",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_my_mechant",
+                                "fes_all_mechant"
+                            ],
+                            "children": [
+                                {
+                                    "route": "/frontend/home/customerline/plan/add/:date",
+                                    "title": "添加计划",
+                                    "isCache": false,
+                                    "css": "page/work/plan/plan.css",
+                                    "js": "page/work/plan/plan-add-edit.js",
+                                    "html": "page/work/plan/add/add.html",
+                                    "belongToPermission": [
+                                        "fes_my_mechant",
+                                        "fes_all_mechant",
+                                        "fes_subordinate_merchant"
+                                    ],
+                                    "phref": "#/frontend/home",
+                                    "isHidden": true
+                                },
+                                {
+                                    "route": "/frontend/home/customerline/plan/edit/:date/:id",
+                                    "title": "修改计划",
+                                    "isCache": false,
+                                    "css": "page/work/plan/plan.css",
+                                    "js": "page/work/plan/plan-add-edit.js",
+                                    "html": "page/work/plan/edit/edit.html",
+                                    "belongToPermission": [
+                                        "fes_my_mechant",
+                                        "fes_all_mechant",
+                                        "fes_subordinate_merchant"
+                                    ],
+                                    "phref": "#/frontend/home",
+                                    "isHidden": true
+                                },
+                                {
+                                    "route": "/frontend/home/customerline/plan/list/:date(/:id)",
+                                    "title": "查看工作计划",
+                                    "isCache": false,
+                                    "css": "page/work/plan/plan.css",
+                                    "js": "page/work/plan/list/list.js",
+                                    "html": "page/work/plan/list/list.html",
+                                    "belongToPermission": [
+                                        "fes_subordinate_workplan",
+                                        "fes_my_mechant",
+                                        "fes_all_mechant",
+                                        "fes_subordinate_merchant"
+                                    ],
+                                    "phref": "#/frontend/home",
+                                    "isHidden": true
+                                }
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/questionmanage",
+                            "title": "问题管理",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_question_mag"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/activesrequest",
+                            "title": "活动申请",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_act_require"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/remind",
+                            "title": "提醒",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["fes_remaind"],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/mycommunication(/:mid)",
+                            "title": "我的通讯录",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_address",
+                                "sales_address"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/attachmentmanage",
+                            "title": "附件管理",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_attach_mag"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/emailtemplate",
+                            "title": "邮件模板",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_email_temp"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/complaintsmanage",
+                            "title": "投诉管理",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_complain"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/rewardspunishments",
+                            "title": "绩效奖惩",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_performance"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/subordinates/:id",
+                            "title": "我的下属",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_my_subordinate"
+                            ],
+                            "children": [{
+                                "route": "/frontend/home/subordinates/plan/list/:date(/:id)",
+                                "title": "查看工作计划",
+                                "isCache": false,
+                                "css": "page/work/plan/plan.css",
+                                "js": "page/work/plan/list/list.js",
+                                "html": "page/work/plan/list/list.html",
+                                "belongToPermission": [
+                                    "fes_my_subordinate"
+                                ],
+                                "phref": "#/frontend/home",
+                                "isHidden": true
+                            }, {
+                                "route": "/frontend/home/subordinates/assign",
+                                "title": "工作指派",
+                                "isCache": false,
+                                "css": "page/work/plan/plan.css",
+                                "js": "page/work/assign/assign.js",
+                                "html": "page/work/assign/assign.html",
+                                "belongToPermission": [
+                                    "fes_subordinate_workplan",
+                                    "fes_my_mechant",
+                                    "fes_all_mechant",
+                                    "fes_subordinate_merchant"
+                                ],
+                                "phref": "#/frontend/home",
+                                "isHidden": true
+                            }],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/waiting/:id/:status",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_homepage_todolist"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/frontend/home/marketactivitie/:id",
+                            "title": "营销活动",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_promote_act_require"
+                            ],
+                            "phref": "#/frontend/home",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/frontend/make",
+                    "title": "制卡/物料",
+                    "navTitle": "制卡/物料",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "fes_card_and_materials"
+                    ],
+                    "children": [
+                        {
+                            "route": "/frontend/make/waiting/:id/:status",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "fes_card_todolist"
+                            ],
+                            "phref": "#/frontend/make",
+                            "isHidden": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "后端服务",
+            "navTitle": "后端服务",
+            "belongToPermission": [
+                "end_service"
+            ],
+            "children": [
+                {
+		            "route": "/backend/home",
+                    "title": "我的主页",
+                    "navTitle": "我的主页",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["my_home_page_133"],
+                    "children": [
+                        {
+                            "route": "/backend/home/monthly/:id",
+                            "title": "月报讲解",
+                            "navTitle": "月报回访",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": "all",
+                            "phref": "#/backend/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/backend/home/createdemand/:type/(:id)",
+                            "title": "创建需求",
+                            "navTitle": "创建需求",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["create_reqs_140"],
+                            "phref": "#/backend/home",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/backend/joballocation",
+                    "title": "业务分配",
+                    "navTitle": "业务分配",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [],
+                    "children": [
+                        {
+                            "route": "/backend/joballocation/edit/:str",
+                            "title": "修改业务",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": "all",
+                            "phref": "#/backend/joballocation",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/backend/monthlycheck",
+                    "title": "月报检查",
+                    "navTitle": "月报检查",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["monthly_check"],
+                    "children": []
+                },
+                {
+                    "route": "/backend/renewcardmanage",
+                    "title": "续卡管理",
+                    "navTitle": "续卡管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["lay_over_card_175"],
+                    "children": []
+                },
+                {
+                    "route": "/backend/smsmanage",
+                    "title": "短信管理",
+                    "navTitle": "短信管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": "[]",
+                    "children": []
+                },
+                {
+                    "route": "/backend/languagemanage",
+                    "title": "话术管理",
+                    "navTitle": "话术管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["tel_skills_mag_135"],
+                    "children": [
+                        {
+                            "route": "/backend/languagemanage/addedit/:type",
+                            "title": "添加话术",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["add_tel_skills_145"],
+                            "phref": "#/backend/languagemanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/backend/languagemanage/addedit/:type/:id",
+                            "title": "修改话术",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["modify_146"],
+                            "phref": "#/backend/languagemanage",
+                            "isHidden": true
+                        }
+                    ]
+                },
+
+                {
+                    "route": "/backend/distribution",
+                    "title": "设备配送",
+                    "navTitle": "设备配送",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "end_delivery_service"
+                    ],
+                    "children": [
+                        {
+                            "route": "/backend/distribution/waiting/:id/:status",
+                            "title": "设备配送",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "end_delivery_service"
+                            ],
+                            "phref": "#/backend/distribution",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/backend/customerservice",
+                    "title": "后端客服",
+                    "navTitle": "后端客服",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "end_custom_service"
+                    ],
+                    "children": [
+                        {
+                            "route": "/backend/customerservice/waiting/:id/:status",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "end_custom_service"
+                            ],
+                            "phref": "#/backend/customerservice",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/backend/customerservice/linewaiting/:id/:status",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": "all",
+                            "phref": "#/backend/customerservice",
+                            "isHidden": true
+
+                        },
+                        {
+                            "route": "/backend/customerservice/waitingbefor/:id/:type/:status",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "css": "page/sales/home/waiting/waiting.css",
+                            "js": "page/sales/home/waiting/waiting.js",
+                            "html": "page/sales/home/waiting/waiting.html",
+                            "belongToPermission": [
+                                "end_custom_service"
+                            ],
+                            "phref": "#/backend/customerservice",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/backend/attachmentmanage",
+                    "title": "附件管理",
+                    "isCache": false,
+                    "css": "page/frontend/home/attachmentmanage/attachmentmanage.css",
+                    "js": "page/frontend/home/attachmentmanage/attachmentmanage.js",
+                    "html": "page/frontend/home/attachmentmanage/attachmentmanage.html",
+                    "belongToPermission": [
+                        "end_attachment_mag"
+                    ],
+                    "phref": "#/backend/customerservice",
+                    "isHidden": true
+                },
+                {
+                    "route": "/backend/emailtemplate",
+                    "title": "邮件模板",
+                    "isCache": false,
+                    "css": "page/frontend/home/emailtemplate/emailtemplate.css",
+                    "js": "page/frontend/home/emailtemplate/emailtemplate.js",
+                    "html": "page/frontend/home/emailtemplate/emailtemplate.html",
+                    "belongToPermission": [
+                        "end_attachment_mag"
+                    ],
+                    "phref": "#/backend/customerservice",
+                    "isHidden": true
+                },
+                {
+                    "route": "/backend/complaintsmanage",
+                    "title": "投诉管理",
+                    "isCache": false,
+                    "css": "page/frontend/home/complaintsmanage/complaintsmanage.css",
+                    "js": "page/frontend/home/complaintsmanage/complaintsmanage.js",
+                    "html": "page/frontend/home/complaintsmanage/complaintsmanage.html",
+                    "belongToPermission": [
+                        "end_complaint_mag"
+                    ],
+                    "phref": "#/backend/customerservice",
+                    "isHidden": true
+                }
+            ]
+        },
+        {
+            "title": "销售服务",
+            "navTitle": "销售服务",
+            "belongToPermission": [
+                "sales_service"
+            ],
+            "children": [
+                {
+                    "route": "/sales/home(/:info)",
+                    "path": "#/sales/home",
+                    "title": "我的主页",
+                    "navTitle": "我的主页",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "sales_my_home_page"
+                    ],
+                    "children": [
+                        {
+                            "route": "/sales/home/customer/:id/:type(/:info)",
+                            "title": "客户服务看板",
+                            "isCache": false,
+                            "css": "page/frontend/home/customer/customer.css",
+                            "js": "page/frontend/home/customer/customer.js",
+                            "html": "page/frontend/home/customer/customer.html",
+                            "belongToPermission": [
+                                "sales_my_merchant"
+                            ],
+                            "phref": "#/sales/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sales/home/customerline/:id/:type(/:info)",
+                            "title": "客户服务看板",
+                            "isCache": false,
+                            "css": "page/frontend/home/customerline/customerline.css",
+                            "js": "page/frontend/home/customerline/customerline.js",
+                            "html": "page/frontend/home/customerline/customerline.html",
+                            "belongToPermission": [
+                                "sales_my_merchant"
+                            ],
+                            "children": [
+                                {
+                                    "route": "/sales/home/customerline/plan/add/:date",
+                                    "title": "添加计划",
+                                    "isCache": false,
+                                    "css": "page/work/plan/plan.css",
+                                    "js": "page/work/plan/plan-add-edit.js",
+                                    "html": "page/work/plan/add/add.html",
+                                    "belongToPermission": [
+                                        "sales_my_merchant"
+                                    ],
+                                    "phref": "#/sales/home",
+                                    "isHidden": true
+                                },
+                                {
+                                    "route": "/sales/home/customerline/plan/edit/:date/:id",
+                                    "title": "修改计划",
+                                    "isCache": false,
+                                    "css": "page/work/plan/plan.css",
+                                    "js": "page/work/plan/plan-add-edit.js",
+                                    "html": "page/work/plan/edit/edit.html",
+                                    "belongToPermission": [
+                                        "sales_my_merchant"
+                                    ],
+                                    "phref": "#/sales/home",
+                                    "isHidden": true
+                                },
+                                {
+                                    "route": "/sales/home/customerline/plan/list/:date(/:id)",
+                                    "title": "查看工作计划",
+                                    "isCache": false,
+                                    "css": "page/work/plan/plan.css",
+                                    "js": "page/work/plan/list/list.js",
+                                    "html": "page/work/plan/list/list.html",
+                                    "belongToPermission": [
+                                        "sales_my_merchant"
+                                    ],
+                                    "phref": "#/sales/home",
+                                    "isHidden": true
+                                }
+                            ],
+                            "phref": "#/sales/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sales/home/waiting/:id",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "sales_todolist"
+                            ],
+                            "phref": "#/sales/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sales/home/remind",
+                            "title": "提醒",
+                            "isCache": false,
+                            "css": "page/frontend/home/remind/remind.css",
+                            "js": "page/frontend/home/remind/remind.js",
+                            "html" : "page/frontend/home/remind/remind.html",
+                            "belongToPermission": ["sales_remaind"],
+                            "phref": "#/sales/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sales/home/questionmanage",
+                            "title": "问题管理",
+                            "isCache": false,
+                            "css": "page/frontend/home/questionmanage/questionmanage.css",
+                            "js": "page/frontend/home/questionmanage/questionmanage.js",
+                            "html" : "page/frontend/home/questionmanage/questionmanage.html",
+                            "belongToPermission": [
+                                "sales_ques_mag"
+                            ],
+                            "phref": "#/sales/home",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sales/home/mycommunication(/:mid)",
+                            "title": "我的通讯录",
+                            "isCache": false,
+                            "css": "page/frontend/home/mycommunication/mycommunication.css",
+                            "js": "page/frontend/home/mycommunication/mycommunication.js",
+                            "html": "page/frontend/home/mycommunication/mycommunication.html",
+                            "belongToPermission": [
+                                "sales_address"
+                            ],
+                            "phref": "#/sales/home",
+                            "isHidden": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "培训考试",
+            "navTitle": "培训考试",
+            "belongToPermission": [
+                "train_exam"
+            ],
+            "children": [
+                {
+                    "route": "/study/coursemanage",
+                    "title": "课程管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "course_manage"
+                    ],
+                    "children": [
+                        {
+                            "route": "/study/coursemanage/coursedetail/:id/:courseName",
+                            "title": "课程详情",
+                            "isCache": false,
+                            "css": "page/study/coursemanage/coursemanage.css",
+                            "js": "page/study/coursemanage/coursedetail/coursedetail.js",
+                            "belongToPermission": [
+                                "view_course"
+                            ],
+                            "phref": "#/study/coursemanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursemanage/examrule/:id/:courseName",
+                            "title": "期末考试规则",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "final_exam_rule"
+                            ],
+                            "phref": "#/study/coursemanage",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/study/coursewaremanage",
+                    "title": "课件管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "ware_manage"
+                    ],
+                    "children": [
+                        {
+                            "route": "/study/coursewaremanage/add",
+                            "title": "添加课件",
+                            "isCache": false,
+                            "css": "page/study/coursewaremanage/courseware-add-edit.css",
+                            "js": "page/study/coursewaremanage/courseware-add-edit.js",
+                            "belongToPermission": [
+                                "mag_course_ware"
+                            ],
+                            "phref": "#/study/coursewaremanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursewaremanage/edit/:id",
+                            "title": "修改课件",
+                            "isCache": false,
+                            "css": "page/study/coursewaremanage/courseware-add-edit.css",
+                            "js": "page/study/coursewaremanage/courseware-add-edit.js",
+                            "belongToPermission": [
+                                "mag_course_ware"
+                            ],
+                            "phref": "#/study/coursewaremanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursewaremanage/examrule/:id/:coursewareName",
+                            "title": "考卷规则",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "paper_rule"
+                            ],
+                            "phref": "#/study/coursewaremanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursewaremanage/qasetting",
+                            "title": "问答题设置",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [],
+                            "phref": "#/study/coursewaremanage",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/study/questionmanage(/:coursewareName)",
+                    "path": "#/study/questionmanage",
+                    "title": "试题管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "paper_manage"
+                    ],
+                    "children": [
+                        {
+                            "route": "/study/questionmanage/add(/:id/:coursewareName)",
+                            "title": "添加试题",
+                            "isCache": false,
+                            "css": "page/study/questionmanage/question-add-edit.css",
+                            "js": "page/study/questionmanage/question-add-edit.js",
+                            "belongToPermission": [
+                                "mag_question"
+                            ],
+                            "phref": "#/study/questionmanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/questionmanage/edit/:id",
+                            "title": "修改试题",
+                            "isCache": false,
+                            "css": "page/study/questionmanage/question-add-edit.css",
+                            "js": "page/study/questionmanage/question-add-edit.js",
+                            "belongToPermission": [
+                                "mag_question"
+                            ],
+                            "phref": "#/study/questionmanage",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/study/coursestudy",
+                    "title": "课程学习",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "course_sty_his_review"
+                    ],
+                    "children": [
+                        {
+                            "route": "/study/coursestudy/oldstaffstudy",
+                            "title": "老员工课件学习",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "course_sty_his_review"
+                            ],
+                            "phref": "#/study/coursestudy",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursestudy/process/:learningProgressId/:courseId/:id",
+                            "title": "学习界面",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "course_sty_his_review"
+                            ],
+                            "phref": "#/study/coursestudy",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursestudy/plainexam/:learningProgressId/:courseId/:id",
+                            "title": "考试界面-单选/多选/判断题",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "course_sty_his_review"
+                            ],
+                            "phref": "#/study/coursestudy",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursestudy/recordexam/:learningProgressId/:courseId/:id",
+                            "title": "考试界面-PPT录音考试",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "course_sty_his_review"
+                            ],
+                            "phref": "#/study/coursestudy",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/study/coursestudy/practiceexam/:learningProgressId/:courseId/:id",
+                            "title": "考试界面-实操题考试",
+                            "isCache": true,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "course_sty_his_review"
+                            ],
+                            "phref": "#/study/coursestudy",
+                            "isHidden": true,
+                            "children": [{
+                                "route": "/study/coursestudy/practiceexam/softpos/createintegralcard",
+                                "title": "办理积分卡考试",
+                                "isCache": false,
+                                "css": "page/study/coursestudy/practiceexam/softpos/softpos.css",
+                                "js": true,
+                                "belongToPermission": [
+                                    "course_sty_his_review"
+                                ],
+                                "phref": "#/study/coursestudy",
+                                "isHidden": true
+                            }]
+                        },
+                        {
+                            "route": "/study/coursestudy/qaexam",
+                            "title": "考试界面-问答考试",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [],
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/study/history",
+                    "title": "历史回顾",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "course_sty_his_review"
+                    ],
+                    "children": [
+                        {
+                            "route": "/study/history/audition/:id(/:action)",
+                            "title": "历史回顾-PPT录音试听",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "course_sty_his_review"
+                            ],
+                            "phref": "#/study/history",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/study/studentmanage",
+                    "title": "学员管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "std_manage"
+                    ],
+                    "children": [
+                        {
+                            "route": "/study/studentmanage/detail/:id",
+                            "title": "查看详情",
+                            "isCache": false,
+                            "css": "page/study/studentmanage/detail/detail.css",
+                            "js": "page/study/studentmanage/detail/detail.js",
+                            "belongToPermission": [
+                                "view_student_detail"
+                            ],
+                            "phref": "#/study/studentmanage",
+                            "isHidden": true,
+                            "children": [
+                                {
+                                    "route": "/study/studentmanage/detail/audition/:id",
+                                    "title": "学员-PPT录音试听",
+                                    "isCache": false,
+                                    "css": true,
+                                    "js": true,
+                                    "belongToPermission": [
+                                        "try_to_l_record"
+                                    ],
+                                    "phref": "#/study/studentmanage",
+                                    "isHidden": true
+                                },
+                                {
+                                    "route": "/study/studentmanage/detail/review",
+                                    "title": "批阅答题考卷",
+                                    "isCache": false,
+                                    "css": true,
+                                    "js": true,
+                                    "belongToPermission": [],
+                                    "phref": "#/study/studentmanage",
+                                    "isHidden": true
+                                }
+                            ]
+                        },
+                        {
+                            "route": "/study/studentmanage/todolist/:id",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": [
+                                "teacher_item"
+                            ],
+                            "phref": "#/study/studentmanage",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/study/casemanage",
+                    "title": "案例库管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "project_mag"
+                    ],
+                    "forceRefresh": true
+                },
+                {
+                    "route": "/study/videomanage",
+                    "title": "视频库管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "video_mag"
+                    ],
+                    "forceRefresh": true
+                }, {
+                    "route": "/study/seniorstudy",
+                    "navTitle": "老员工学习",
+                    "title": "老员工学习",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["the_old_staff_learning_management"],
+                    "children":[
+                        {
+                            "route": "/study/seniorstudy/manage/:id/:name",
+                            "navTitle": "学员管理",
+                            "title": "学员管理",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["the_student_management"],
+                            "phref": "#/study/seniorstudy",
+                            "isHidden":true
+                        },
+                        {
+                            "route": "/study/seniorstudy/todolist/:id",
+                            "title": "待办事项",
+                            "isCache": false,
+                            "html": "page/study/studentmanage/todolist/todolist.html",
+                            "css": "page/study/studentmanage/todolist/todolist.css",
+                            "js": "page/study/studentmanage/todolist/todolist.js",
+                            "belongToPermission": [
+                                "the_old_staff_learning_management"
+                            ],
+                            "phref": "#/study/seniorstudy",
+                            "isHidden": true
+                        }
+                    ]
+                }
+                , {
+                    "route": "/study/membermanage",
+                    "navTitle": "组员管理",
+                    "title": "组员管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["team_management"],
+                    "children":[
+                        {
+                            "route": "/study/membermanage/viewstudy/:id",
+                            "navTitle": "查看学习情况",
+                            "title": "查看学习情况",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["check_the_students"],
+                            "phref": "#/study/membermanage",
+                            "isHidden":true
+                        }, {
+                            "route": "/study/membermanage/history/:id",
+                            "navTitle": "查看历史",
+                            "title": "查看历史",
+                            "isCache": false,
+                            "html": "page/study/history/history.html",
+                            "css": "page/study/history/history.css",
+                            "js": "page/study/history/history.js",
+                            "belongToPermission": ["view_of_history"],
+                            "phref": "#/study/membermanage",
+                            "isHidden":true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "数据统计",
+            "navTitle": "数据统计",
+            "belongToPermission": [
+                "statistics"
+            ],
+            "children": [
+                {
+                    "route": "/datamonitor/allstatistics",
+                    "title": "综合数据",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "statistics"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "系统管理",
+            "navTitle": "系统管理",
+            "belongToPermission": [
+                "sys_manage"
+            ],
+            "children": [
+                {
+                    "route": "/sysmanage/usermanage",
+                    "title": "用户管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "user_manage"
+                    ],
+                    "children": [
+                        {
+                            "route": "/sysmanage/usermanage/add",
+                            "title": "添加用户",
+                            "isCache": false,
+                            "css": "page/sysmanage/usermanage/usermanage.css",
+                            "js": "page/sysmanage/usermanage/user-add-edit.js",
+                            "belongToPermission": [
+                                "user_manage"
+                            ],
+                            "phref": "#/sysmanage/usermanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sysmanage/usermanage/edit/:id",
+                            "title": "编辑用户",
+                            "isCache": false,
+                            "css": "page/sysmanage/usermanage/usermanage.css",
+                            "js": "page/sysmanage/usermanage/user-add-edit.js",
+                            "belongToPermission": [
+                                "user_manage"
+                            ],
+                            "phref": "#/sysmanage/usermanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sysmanage/usermanage/settingrole/:id/:userName",
+                            "title": "设置权限组",
+                            "isCache": false,
+                            "css": "page/sysmanage/usermanage/usermanage.css",
+                            "js": true,
+                            "belongToPermission": [
+                                "user_manage"
+                            ],
+                            "phref": "#/sysmanage/usermanage",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sysmanage/usermanage/settingrange/:id/:userName",
+                            "title": "设置管辖范围",
+                            "isCache": false,
+                            "css": "page/sysmanage/usermanage/usermanage.css",
+                            "js": true,
+                            "belongToPermission": [
+                                "user_manage"
+                            ],
+                            "phref": "#/sysmanage/usermanage",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/sysmanage/position",
+                    "title": "职位管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "dept_manage"
+                    ],
+                    "isHidden": false
+                },
+                {
+                    "route": "/sysmanage/orgmanage",
+                    "title": "公司组织架构管理",
+                    "isCache": true,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "yazuo_arc"
+                    ]
+                },
+                {
+                    "route": "/sysmanage/role",
+                    "title": "权限组管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "role_manage"
+                    ],
+                    "children": [
+                        {
+                            "route": "/sysmanage/role/add",
+                            "title": "添加权限组",
+                            "isCache": false,
+                            "css": "page/sysmanage/role/role.css",
+                            "js": "page/sysmanage/role/role-common.js",
+                            "belongToPermission": [
+                                "role_manage"
+                            ],
+                            "phref": "#/sysmanage/role",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/sysmanage/role/edit/:id/:rolename",
+                            "title": "修改权限组",
+                            "isCache": false,
+                            "css": "page/sysmanage/role/role.css",
+                            "js": "page/sysmanage/role/role-common.js",
+                            "belongToPermission": [
+                                "role_manage"
+                            ],
+                            "phref": "#/sysmanage/role",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/sysmanage/resource",
+                    "title": "资源管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "forceRefresh": true,
+                    "belongToPermission": [
+                        "resource_mag"
+                    ]
+                },
+                {
+                    "route": "/sysmanage/holidaymanage",
+                    "title": "假期管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": []
+                },
+                {
+                    "route": "/sysmanage/migration",
+                    "title": "miniERP数据迁移",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "minierp"
+                    ]
+                },
+                {
+                    "route": "/sysmanage/merchantinput",
+                    "title": "商户录入",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["create_brand"]
+                },
+        {
+                    "route": "/sysmanage/webkit",
+                    "title": "Webkit版本管理",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["webkit"]
+                },
+        {
+                    "route": "/sysmanage/smstmpl",
+                    "title": "短信模板",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["sms_template_188"]
+                }
+            ]
+        },
+        {
+            "title": "工作管理",
+            "navTitle": "工作管理",
+            "belongToPermission": [
+                "work_mag"
+            ],
+            "children": [
+                {
+                    "route": "/work/plan",
+                    "title": "工作计划",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "work_plan"
+                    ],
+                    "children": [
+                        {
+                            "route": "/work/plan/add/:date",
+                            "title": "添加计划",
+                            "isCache": false,
+                            "css": "page/work/plan/plan.css",
+                            "js": "page/work/plan/plan-add-edit.js",
+                            "belongToPermission": [
+                                "work_plan"
+                            ],
+                            "phref": "#/work/plan",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/work/plan/edit/:date/:id",
+                            "title": "修改计划",
+                            "isCache": false,
+                            "css": "page/work/plan/plan.css",
+                            "js": "page/work/plan/plan-add-edit.js",
+                            "belongToPermission": [
+                                "work_plan"
+                            ],
+                            "phref": "#/work/plan",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/work/plan/list/:date(/:id)",
+                            "title": "查看工作计划",
+                            "isCache": false,
+                            "css": "page/work/plan/plan.css",
+                            "js": true,
+                            "belongToPermission": [
+                                "work_plan"
+                            ],
+                            "phref": "#/work/plan",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/work/assign",
+                    "title": "工作指派",
+                    "isCache": false,
+                    "css": "page/work/plan/plan.css",
+                    "js": true,
+                    "belongToPermission": [
+                        "work_assign"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "需求管理",
+            "navTitle": "需求管理",
+            "belongToPermission": [
+                "requirement_management"
+            ],
+            "children": [
+                {
+                    "route": "/demand/demandboard",
+                    "title": "需求看板",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": [
+                        "requirement_panel"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "个人信息",
+            "navTitle": "个人信息",
+            "belongToPermission": "all",
+            "children": [{
+                "route": "/profile/edit/:id",
+                "title": "个人信息编辑",
+                "isCache": false,
+                "html": "page/sysmanage/usermanage/edit/edit.html",
+                "css": "page/sysmanage/usermanage/usermanage.css",
+                "js": "page/sysmanage/usermanage/user-add-edit.js",
+                "belongToPermission": "all",
+                "isHidden": true
+            }],
+            "isHidden": true
+        },
+        {
+            "title": "资料库",
+            "navTitle": "资料库",
+            "belongToPermission": ["sys_database"],
+            "children": [
+                {
+                    "route": "/databank/list",
+                    "title": "资料库",
+                    "navTitle": "资料库",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["database"],
+                    "children": [
+                        {
+                            "route": "/databank/list/addedit/:type",
+                            "title": "上传资料",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["data_upload"],
+                            "phref": "#/databank/list",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/databank/list/addedit/:type/:id",
+                            "title": "修改资料",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["data_update"],
+                            "phref": "#/databank/list",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/databank/list/info/:id",
+                            "title": "资料详情",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["data_review"],
+                            "phref": "#/databank/list",
+                            "isHidden": true
+                        }
+                    ]
+                }, {
+                    "route": "/databank/knowledgebank",
+                    "title": "知识库",
+                    "navTitle": "知识库",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["knowledge_181"],
+                    "children": [
+                        {
+                            "route": "/databank/knowledgebank/addedit/:type/:flag/:classId",
+                            "title": "创建知识",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": "all",
+                            "phref": "#/databank/knowledgebank",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/databank/knowledgebank/addedit/:type/:id",
+                            "title": "编辑知识",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": "all",
+                            "phref": "#/databank/knowledgebank",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/databank/knowledgebank/info/:id",
+                            "title": "知识详情",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": "all",
+                            "phref": "#/databank/knowledgebank",
+                            "isHidden": true
+                        }
+                    ]
+                }, {
+                    "route": "/databank/knowledgecate",
+                    "title": "知识分类",
+                    "navTitle": "知识分类",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["knowledge_kind_180"],
+                    "children": []
+                }
+            ]
+        },
+        {
+            "title": "产品运营",
+            "navTitle": "产品运营",
+            "belongToPermission": ["product_operation"],
+            "children": [
+                {
+                    "route": "/productoperad/list",
+                    "title": "产品运营",
+                    "navTitle": "产品运营",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["sub_product_operation"],
+                    "children": [
+                        {
+                            "route": "/productoperad/list/addedit/:type",
+                            "title": "创建运营信息",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["create_oper_info"],
+                            "phref": "#/productoperad/list",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/productoperad/list/addedit/:type/:id",
+                            "title": "修改运营信息",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["modify_oper_info"],
+                            "phref": "#/productoperad/list",
+                            "isHidden": true
+                        },
+                        {
+                            "route": "/productoperad/list/info/:id",
+                            "title": "需求详情",
+                            "isCache": false,
+                            "css": true,
+                            "js": true,
+                            "belongToPermission": ["user_req_items"],
+                            "phref": "#/productoperad/list",
+                            "isHidden": true
+                        }
+                    ]
+                },
+                {
+                    "route": "/productoperad/questionmanage",
+                    "title": "问题管理",
+                    "isCache": false,
+                    "css": "page/frontend/home/questionmanage/questionmanage.css",
+                    "js": "page/frontend/home/questionmanage/questionmanage.js",
+                    "html" : "page/frontend/home/questionmanage/questionmanage.html",
+                    "belongToPermission": ["fes_question_mag"]
+                }
+            ]
+        },
+        {
+            "title": "管理统计",
+            "navTitle": "管理统计",
+            "belongToPermission": ["mag_statistics_164"],
+            "children": [
+                {
+                    "route": "/managecount/monthlycount",
+                    "title": "月报统计",
+                    "navTitle": "月报讲解统计",
+                    "isCache": false,
+                    "css": true,
+                    "js": true,
+                    "belongToPermission": ["rpt_teach_statics_165"],
+                    "children": []
+                }
+            ]
+        }
+    ]
+}
+
+
+

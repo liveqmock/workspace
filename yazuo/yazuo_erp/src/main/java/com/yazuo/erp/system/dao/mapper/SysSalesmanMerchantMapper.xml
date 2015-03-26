@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysSalesmanMerchantDao">
+	<resultMap id="SysSalesmanMerchant" type="com.yazuo.erp.system.vo.SysSalesmanMerchantVO">
+    	<id property="id" column="id"/>
+    	<result property="userId" column="user_id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="syssalesmanmerchantColumns">
+	    <![CDATA[
+		id,user_id,merchant_id,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysSalesmanMerchant" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： user_id,merchant_id,insert_by,insert_time,--> 
+        INSERT INTO sys.sys_salesman_merchant (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES (
+       	    <if test="userId!=null ">#{userId},</if>
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysSalesmanMerchants" parameterType="map">
+	 <!--不允许为空的字段： user_id,merchant_id,insert_by,insert_time,--> 
+        INSERT INTO sys.sys_salesman_merchant (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="userId!=null ">#{t.userId},</if>
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysSalesmanMerchant">
+        UPDATE sys.sys_salesman_merchant 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysSalesmanMerchantsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_salesman_merchant 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{t.userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysSalesmanMerchantsToSameVals" parameterType="map">
+        UPDATE sys.sys_salesman_merchant 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysSalesmanMerchantById">
+    <![CDATA[
+        DELETE FROM sys.sys_salesman_merchant WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysSalesmanMerchantByIds" parameterType="list">
+        DELETE FROM sys.sys_salesman_merchant WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysSalesmanMerchantById" resultMap="SysSalesmanMerchant">
+		SELECT <include refid="syssalesmanmerchantColumns" />
+		    FROM sys.sys_salesman_merchant 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysSalesmanMerchants" resultMap="SysSalesmanMerchant">
+		SELECT <include refid="syssalesmanmerchantColumns" />
+		    FROM sys.sys_salesman_merchant  
+	    <include refid="syssalesmanmerchant_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysSalesmanMerchantsMap" resultType="map">
+		SELECT <include refid="syssalesmanmerchantColumns" />
+	    <![CDATA[
+		    FROM sys.sys_salesman_merchant  
+	    ]]>
+	    <include refid="syssalesmanmerchant_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="syssalesmanmerchant_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="userId!=null ">AND user_id = #{userId}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysSalesmanMerchantCount" resultType="long">
+        SELECT count(*) FROM sys.sys_salesman_merchant 
+		<include refid="syssalesmanmerchant_findPage_where"/>    
+    </select>
+    
+</mapper>

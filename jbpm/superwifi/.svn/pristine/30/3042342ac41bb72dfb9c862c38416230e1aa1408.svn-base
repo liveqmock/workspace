@@ -1,0 +1,5 @@
+mongo.host=192.168.236.62
+mongo.port=50000
+mongo.dbname=superwifi
+mongo.username=superwifi
+mongo.password=superwifi

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.erp.api.dao.SysReportParamsDao">
+    <resultMap id="SysReportParamsMap" type="com.yazuo.erp.api.vo.SysReportParams">
+        <id column="key" property="key"/>
+        <result column="merchant_id" property="merchantId"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="report_time" property="reportTime"/>
+        <result column="is_expired" property="isExpired"/>
+        <result column="short_link" property="shortLink"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.yazuo.erp.api.vo.SysReportParams" >
+        INSERT INTO sys.sys_report_params ("key", merchant_id, created_time, report_time, is_expired, short_link )
+        VALUES (#{key}, #{merchantId}, #{createdTime}, #{reportTime}, #{isExpired}, #{shortLink} )
+    </insert>
+
+    <delete id="delete" parameterType="java.lang.String" >
+        DELETE FROM sys.sys_report_params
+        WHERE KEY = #{key}
+    </delete>
+
+    <update id="update" parameterType="com.yazuo.erp.api.vo.SysReportParams" >
+        UPDATE sys.sys_report_params
+        SET merchant_id = #{merchantId},
+            created_time = #{createdTime},
+            report_time = #{reportTime},
+            is_expired = #{isExpired},
+            short_link = #{shortLink}
+        WHERE KEY = #{key}
+    </update>
+
+    <select id="get" resultMap="SysReportParamsMap" parameterType="java.lang.String" >
+        SELECT *
+        FROM sys.sys_report_params
+        WHERE key = #{key}
+    </select>
+</mapper>

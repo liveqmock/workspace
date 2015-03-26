@@ -1,0 +1,68 @@
+<div class="page-tbar">
+    <div class="page-tbar">
+        <ul class="page-nav-crumbs">
+            <li class="nav-item"
+                ms-repeat="navCrumbs"><a ms-href="el.href"
+                                         class="nav-l"
+                                         ms-if="el.href"
+                                         ms-click="clickPageNav"
+                                         ms-data-resource-id="el.id">{{el.text}}</a><span class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+        </ul>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="grid-wrapper">
+        <div class="summary">共<span class="num">{{gridTotalSize}}</span>个资源</div>
+        <table class="resource-grid ui-grid" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="check-cell"><input type="checkbox" class="check-all" ms-checked="gridAllChecked" ms-click="gridCheckAll" /></th>
+                    <th class="name-cell">名称</th>
+                    <th class="name-cell">说明</th>
+                    <th class="name-cell">状态</th>
+                    <th class="operation-cell">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ms-repeat="gridData"
+                    ms-class-1="odd:!($index % 2)"
+                    ms-class-2="even:$index % 2"
+                    ms-hover="state-hover">
+                    <td class="check-cell"><input type="checkbox" ms-value="el.id" ms-duplex="gridSelected"/></td>
+                    <td class="name-cell">{{el.resource_name}}</td>
+                    <td class="name-cell">{{el.remark}}</td>
+                    <td class="name-cell">{{el.is_visible_text}}</td>
+                    <td class="operation-cell">
+         <a href="javascript:;" class="edit-l" ms-click="triggerOnOrOff" ms-data-resource-id="el.id" >{{el.control_is_visible}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="javascript:;" class="edit-l" ms-click="openEdit" ms-data-resource-id="el.id" ms-data-resource-name="el.resource_name">修改名称</a>&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="javascript:;" class="remove-l" ms-click="viewChildren" ms-data-resource-id="el.id">查看子类</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="grid-bbar fn-clear">
+            <div class="grid-action fn-left">
+                <button type="button" class="check-all-btn main-btn" ms-click="scCheckAll">全选</button>&nbsp;
+                <button type="button" class="batch-on-btn main-btn" ms-click="batchTriggerOnGridItem">批量启用</button>
+                <button type="button" class="batch-of-btn main-btn" ms-click="batchTriggerOffGridItem">批量禁用</button>
+            </div>
+            <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+        </div>
+    </div>
+</div>
+<!-- 添加资源 start -->
+<div class="add-edit-resource-dialog ui-hidden" ms-widget="dialog,$,$addEditDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addEditFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>资源名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text resource-name" name="resourceName" ms-value="resourceName" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加资源 end -->

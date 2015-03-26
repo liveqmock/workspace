@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraCoursewareDao">
+
+	<resultMap id="TraCourseware" type="com.yazuo.erp.train.vo.TraCoursewareVO">
+        <result property="id" column="id"/>
+        <result property="coursewareName" column="courseware_name"/>
+        <result property="speaker" column="speaker"/>
+        <result property="attachmentId" column="attachment_id"/>
+        <result property="hours" column="hours"/>
+        <result property="timeLimit" column="time_limit"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+
+    <resultMap id="CoursewareProgress" type="com.yazuo.erp.train.vo.CoursewareProgressVO" extends="TraCourseware">
+        <result property="required" column="is_required"/>
+        <result property="sort" column="sort"/>
+        <result property="paperType" column="paper_type"/>
+        <result property="learningProgressId" column="learning_progress_id"/>
+        <result property="coursewareEndTime" column="courseware_end_time"/>
+        <result property="courseStatus" column="course_status"/>
+        <result property="isTest" column="is_test"/>
+    </resultMap>
+
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="tracoursewareColumns">
+	    <![CDATA[
+		id,courseware_name,speaker,attachment_id,hours,time_limit,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraCourseware" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO train.tra_courseware (
+        		courseware_name ,
+        		speaker ,
+        		attachment_id ,
+        		hours ,
+        		time_limit ,
+        		is_enable ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{coursewareName} ,
+        	#{speaker} ,
+        	#{attachmentId} ,
+        	#{hours} ,
+        	#{timeLimit} ,
+        	#{isEnable} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	now() ,
+        	#{updateBy} ,
+        	now() 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraCourseware" >
+    <![CDATA[
+        UPDATE train.tra_courseware SET
+	        courseware_name = #{coursewareName} ,
+	        speaker = #{speaker} ,
+	        hours = #{hours} ,
+	        time_limit = #{timeLimit} ,
+	        update_by = #{updateBy} ,
+	        update_time =now()
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraCourseware">
+    <![CDATA[
+        DELETE FROM train.tra_courseware WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraCoursewareById" resultMap="TraCourseware">
+		SELECT <include refid="tracoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+    <select id="getTraCoursewaresByCourseId" resultMap="CoursewareProgress" parameterType="int">
+        SELECT  tc.id,
+                tc.courseware_name,
+                tc.speaker,
+                tc.attachment_id,
+                tc.hours,
+                tc.time_limit,
+                tc.is_enable,
+                tc.remark,
+                tc.insert_by,
+                tc.insert_time,
+                tc.update_by,
+                tc.update_time,
+                cc.sort,
+                cc.is_required,
+                tr.paper_type
+        FROM train.tra_courseware tc
+        LEFT JOIN train.tra_course_courseware cc ON tc.id=cc.courseware_id
+        LEFT JOIN train.tra_rule tr on tr.courseware_id=tc.id
+        WHERE course_id=#{course_id} AND is_enable='1'
+    </select>
+    
+    <select id="getTraCoursewaresByIds" resultMap="TraCourseware" parameterType="list" resultType="list" fetchSize="100">
+        SELEcT <include refid="tracoursewareColumns"/>
+        FROM train.tra_courseware
+        where id in
+        <foreach collection="list" item="t" open="(" close=")" separator=",">
+            #{t}
+        </foreach>
+    </select>
+
+
+	<select id="getTraCoursewares" resultMap="TraCourseware" parameterType="map">
+		SELECT <include refid="tracoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware  
+	    ]]>
+	    <include refid="tracourseware_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraCoursewaresMap" resultType="map" parameterType="map">
+		SELECT <include refid="tracoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware  
+	    ]]>
+	    <include refid="tracourseware_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	   
+	</select>
+	
+	<select id="getAllTraCoursewares" resultType="map" parameterType="map">
+		SELECT <include refid="tracoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_courseware  
+	    ]]>
+	    <include refid="tracourseware_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="tracourseware_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="coursewareName!=null">
+				AND courseware_name  like '%'||#{coursewareName}||'%'
+			</if>
+	       <if test="speaker!=null">
+				AND speaker = #{speaker}
+			</if>
+	       <if test="attachmentId!=null">
+				AND attachment_id = #{attachmentId}
+			</if>
+	       <if test="hours!=null">
+				AND hours = #{hours}
+			</if>
+	       <if test="timeLimit!=null">
+				AND time_limit = #{timeLimit}
+			</if>
+	       <if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraCoursewareCount" resultType="long">
+        SELECT count(*) FROM train.tra_courseware 
+		<include refid="tracourseware_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraCoursewarePage" resultMap="TraCourseware">
+    	SELECT <include refid="tracoursewareColumns" />
+	    FROM train.tra_courseware 
+		<include refid="tracourseware_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+
+    <update id="batchUpdateTraCourseware" parameterType="list">
+       <foreach collection="list" item="t" index="index" open="" close="" separator=";">
+            UPDATE train.tra_courseware
+            SET 
+               is_enable = #{t.isEnable} ,
+               update_by = #{t.updateBy} ,
+               update_time = now()
+            WHERE
+               id = #{t.id}
+	    </foreach>
+	</update>
+	
+	<select id="getCourseByCoursewareId" resultType="map" parameterType="map">
+		SELECT train.tra_course.id,train.tra_course.course_name
+	    <![CDATA[
+		    FROM train.tra_courseware, train.tra_course,train.tra_course_courseware
+	    ]]>
+	    WHERE train.tra_courseware.id = train.tra_course_courseware.courseware_id
+        AND train.tra_course_courseware.course_id = train.tra_course.id
+        AND train. tra_course.is_enable = '1'
+        AND train.tra_courseware.is_enable = '1'
+        AND train.tra_courseware.id = #{id}
+	   
+	</select>
+	
+	<!-- 查询课程的第一个有效课件 -->
+	<select id="queryFirstCourseware" resultType="map">
+		SELECT
+			C .id
+		FROM
+			train.tra_courseware C,
+			train.tra_course_courseware cc
+		WHERE
+			1 = 1
+		AND cc.courseware_id = C . ID
+		AND cc.course_id = #{courseId,jdbcType=INTEGER}
+		AND C .is_enable = '1'
+		ORDER BY
+			cc.sort
+		LIMIT 1
+    </select>
+    
+    <select id="getCoursewareInfoByCoursewareId" resultType="map">
+		SELECT
+			tcw.id,tcw.courseware_name,
+			tcw.speaker,
+			round(tcw.time_limit/60,1) as time_limit,
+			tcw.attachment_id,
+			ta.attachment_name,
+			COALESCE(ta.hours, 0)AS hours,
+			ta.remark
+		FROM
+			train.tra_courseware tcw,
+			train.tra_attachment ta,
+			train.tra_courseware_attachment tca
+		WHERE
+		 tca.courseware_id = tcw.id
+		AND tca.attachment_id = ta.id
+		AND tcw.id = #{coursewareId}
+		AND tcw .is_enable = '1'
+		AND ta .is_enable = '1'
+    </select>
+    
+    <!-- 学生列表中，学生的学习进度展现 -->
+    <select id="getTraCoursewaresListByCourseId" resultType="map">
+    	<![CDATA[
+		SELECT
+			tc.id,
+			tc.courseware_name,
+			cc.sort,
+			case when cc.sort < t.sort then true else false end as is_studied,
+			case when tc.id = t.courseware_id then true else false end as is_current
+		FROM
+			train.tra_courseware tc,
+			train.tra_course_courseware cc,
+			(
+				SELECT
+					cc.sort,
+					cc.courseware_id
+				FROM
+					train.tra_courseware tc,
+					train.tra_course_courseware cc
+				WHERE
+					1 = 1
+				AND tc. ID = cc.courseware_id
+				AND tc.is_enable = '1'
+				AND cc.is_required = '1'
+				AND cc.course_id = #{courseId,jdbcType=INTEGER}
+				AND cc.courseware_id = #{coursewareId,jdbcType=INTEGER}
+			)T
+		WHERE
+			1 = 1
+		AND tc. ID = cc.courseware_id
+		AND tc.is_enable = '1'
+		AND cc.is_required = '1'
+		AND course_id = #{courseId,jdbcType=INTEGER}
+		ORDER BY
+			cc.sort
+		]]>
+	</select>
+	
+	<!-- 查询有效的课件信息 -->
+	<select id="getTraCoursewareList" resultType="map" parameterType="map">
+		SELECT
+			C . ID,
+			C .courseware_name,
+			C .speaker,
+			C .attachment_id,
+			C .hours,
+			round(C .time_limit / 60, 1) AS time_limit,
+			C .is_enable,
+			C .remark,
+			C .insert_by,
+			C .insert_time,
+			C .update_by,
+			C .update_time
+		FROM
+			train.tra_courseware C
+		WHERE
+			1 = 1
+		and c.is_enable='1'
+		order by c.id desc
+	</select>
+	
+	<!-- 根据课件名称模糊查询有效的课件 -->
+	<select id="queryCoursewareList" resultType="map" parameterType="map">
+		SELECT
+			COALESCE(T .num, 0)AS num,
+			C . ID,
+			C .courseware_name,
+			C .speaker,
+			C .attachment_id,
+			COALESCE(C .hours, 0)AS hours,
+			C .time_limit,
+			C .is_enable,
+			C .remark,
+			C .insert_by,
+			C .insert_time,
+			C .update_by,
+			C .update_time
+		FROM
+			train.tra_courseware C
+		LEFT JOIN(
+			SELECT
+				lp.courseware_id,
+				COUNT(lp.*)AS num
+			FROM
+				train.tra_learning_progress lp
+			WHERE
+				1 = 1
+			AND lp.course_status IN('0', '1', '3')
+			AND lp.learning_progress_type = '1'
+			GROUP BY
+				lp.courseware_id
+		)T ON T .courseware_id = C . ID
+		WHERE
+			1 = 1
+		AND C .is_enable = '1'
+		
+		<if test="coursewareName!=null and coursewareName!='' ">
+			AND C.courseware_name  like '%'||#{coursewareName}||'%'
+		</if>
+	   order by c.id desc
+	</select>
+	
+	<!-- 根据老员工ID查询课件列表（正在学习的课件） -->
+	<select id="getTraCoursewaresByOldStaffId" resultMap="CoursewareProgress" parameterType="int">
+		SELECT
+			C . ID,
+			C .courseware_name,
+			C .speaker,
+			C .attachment_id,
+			C .hours,
+			C .time_limit,
+			C .is_enable,
+			C .remark,
+			C .insert_by,
+			C .insert_time,
+			C .update_by,
+			C .update_time,
+			l. ID AS learning_progress_id,
+			l.course_status,
+			l.courseware_end_time,
+			r.paper_type,
+			r.is_test
+		FROM
+			train.tra_learning_progress l
+		LEFT JOIN train.tra_courseware C ON C . ID = l.courseware_id
+		LEFT JOIN sys.sys_attachment A ON A . ID = C .attachment_id
+		LEFT JOIN train.tra_rule r ON r.courseware_id = C . ID
+		WHERE
+			1 = 1	
+		AND l .course_status IN('0', '1', '3')
+		and l.student_id =#{studentId,jdbcType=INTEGER}
+		and l.learning_progress_type='1'
+		order by c.id desc
+    </select>
+    
+    <!-- 查询老员工的课件（历史课件） -->
+    <select id="getHistoryCoursewareByOldStaffId" resultMap="CoursewareProgress" parameterType="int">
+		SELECT
+			C . ID,
+			C .courseware_name,
+			C .speaker,
+			C .attachment_id,
+			C .hours,
+			C .time_limit,
+			C .is_enable,
+			C .remark,
+			C .insert_by,
+			C .insert_time,
+			C .update_by,
+			C .update_time,
+			l. ID AS learning_progress_id,
+			l.course_status,
+			l.courseware_end_time,
+			r.paper_type,
+			r.is_test
+		FROM
+			train.tra_learning_progress l
+		LEFT JOIN train.tra_courseware C ON C . ID = l.courseware_id
+		LEFT JOIN train.tra_rule r ON r.courseware_id = C . ID
+		WHERE
+			1 = 1
+		AND l. ID IN(
+			SELECT
+				MAX(P . ID)ID
+			FROM
+				train.tra_learning_progress P
+			WHERE
+				1 = 1
+			AND P .course_status = '2'
+			AND P .student_id =#{studentId,jdbcType = INTEGER}
+			AND P .learning_progress_type = '1'
+			GROUP BY
+				P .courseware_id
+		)
+		order by c.id desc
+    </select>
+</mapper>
+

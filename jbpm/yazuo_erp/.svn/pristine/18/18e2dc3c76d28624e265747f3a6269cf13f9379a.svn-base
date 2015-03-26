@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysUserRequirementDao">
+	<resultMap id="SysUserRequirement" type="com.yazuo.erp.system.vo.SysUserRequirementVO">
+    	<id property="id" column="id"/>
+    	<result property="promotionPlatform" column="promotion_platform"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="merchantName" column="merchant_name"/>
+    	<result property="shopId" column="shop_id"/>
+    	<result property="storeName" column="store_name"/>
+    	<result property="userId" column="user_id"/>
+    	<result property="userName" column="user_name"/>
+    	<result property="tel" column="tel"/>
+    	<result property="position" column="position"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="productOperationId" column="product_operation_id"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysuserrequirementColumns">
+	    <![CDATA[
+		id,promotion_platform,merchant_id,merchant_name,shop_id,store_name,user_id,user_name,tel,position,is_enable,remark,insert_by,insert_time,update_by,update_time,product_operation_id
+	    ]]>
+	</sql>
+
+	<insert id="saveSysUserRequirement" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： promotion_platform,user_name,tel,is_enable,insert_by,insert_time,update_by,update_time,product_operation_id,--> 
+        INSERT INTO sys.sys_user_requirement (
+        	 <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="merchantName!=null and merchantName!=''">merchant_name,</if>
+        	 <if test="shopId!=null ">shop_id,</if>
+        	 <if test="storeName!=null and storeName!=''">store_name,</if>
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="userName!=null and userName!=''">user_name,</if>
+        	 <if test="tel!=null and tel!=''">tel,</if>
+        	 <if test="position!=null and position!=''">position,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time,</if>
+        	 <if test="productOperationId!=null ">product_operation_id</if>
+        ) VALUES (
+       	    <if test="promotionPlatform!=null and promotionPlatform!=''">#{promotionPlatform},</if>
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="merchantName!=null and merchantName!=''">#{merchantName},</if>
+       	    <if test="shopId!=null ">#{shopId},</if>
+       	    <if test="storeName!=null and storeName!=''">#{storeName},</if>
+       	    <if test="userId!=null ">#{userId},</if>
+       	    <if test="userName!=null and userName!=''">#{userName},</if>
+       	    <if test="tel!=null and tel!=''">#{tel},</if>
+       	    <if test="position!=null and position!=''">#{position},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now(),</if>
+       	    <if test="productOperationId!=null ">#{productOperationId}</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysUserRequirements" parameterType="map">
+	 <!--不允许为空的字段： promotion_platform,user_name,tel,is_enable,insert_by,insert_time,update_by,update_time,product_operation_id,--> 
+        INSERT INTO sys.sys_user_requirement (
+        	 <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="merchantName!=null and merchantName!=''">merchant_name,</if>
+        	 <if test="shopId!=null ">shop_id,</if>
+        	 <if test="storeName!=null and storeName!=''">store_name,</if>
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="userName!=null and userName!=''">user_name,</if>
+        	 <if test="tel!=null and tel!=''">tel,</if>
+        	 <if test="position!=null and position!=''">position,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time,</if>
+        	 <if test="productOperationId!=null ">product_operation_id</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="promotionPlatform!=null and promotionPlatform!=''">#{t.promotionPlatform},</if>
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="merchantName!=null and merchantName!=''">#{t.merchantName},</if>
+          <if test="shopId!=null ">#{t.shopId},</if>
+          <if test="storeName!=null and storeName!=''">#{t.storeName},</if>
+          <if test="userId!=null ">#{t.userId},</if>
+          <if test="userName!=null and userName!=''">#{t.userName},</if>
+          <if test="tel!=null and tel!=''">#{t.tel},</if>
+          <if test="position!=null and position!=''">#{t.position},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now(),</if>
+          <if test="productOperationId!=null ">#{t.productOperationId}</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysUserRequirement">
+        UPDATE sys.sys_user_requirement 
+ 		  <set>
+	        <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform = #{promotionPlatform} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="merchantName!=null and merchantName!=''">merchant_name = #{merchantName} ,</if>
+	        <if test="shopId!=null ">shop_id = #{shopId} ,</if>
+	        <if test="storeName!=null and storeName!=''">store_name = #{storeName} ,</if>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="userName!=null and userName!=''">user_name = #{userName} ,</if>
+	        <if test="tel!=null and tel!=''">tel = #{tel} ,</if>
+	        <if test="position!=null and position!=''">position = #{position} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = #{updateTime} ,</if>
+	        <if test="productOperationId!=null ">product_operation_id = #{productOperationId} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysUserRequirementsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_user_requirement 
+ 		  <set>
+	        <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform = #{t.promotionPlatform} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="merchantName!=null and merchantName!=''">merchant_name = #{t.merchantName} ,</if>
+	        <if test="shopId!=null ">shop_id = #{t.shopId} ,</if>
+	        <if test="storeName!=null and storeName!=''">store_name = #{t.storeName} ,</if>
+	        <if test="userId!=null ">user_id = #{t.userId} ,</if>
+	        <if test="userName!=null and userName!=''">user_name = #{t.userName} ,</if>
+	        <if test="tel!=null and tel!=''">tel = #{t.tel} ,</if>
+	        <if test="position!=null and position!=''">position = #{t.position} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = #{t.updateTime} ,</if>
+	        <if test="productOperationId!=null ">product_operation_id = #{t.productOperationId} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysUserRequirementsToSameVals" parameterType="map">
+        UPDATE sys.sys_user_requirement 
+ 		  <set>
+	        <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform = #{promotionPlatform} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="merchantName!=null and merchantName!=''">merchant_name = #{merchantName} ,</if>
+	        <if test="shopId!=null ">shop_id = #{shopId} ,</if>
+	        <if test="storeName!=null and storeName!=''">store_name = #{storeName} ,</if>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="userName!=null and userName!=''">user_name = #{userName} ,</if>
+	        <if test="tel!=null and tel!=''">tel = #{tel} ,</if>
+	        <if test="position!=null and position!=''">position = #{position} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = #{updateTime} ,</if>
+	        <if test="productOperationId!=null ">product_operation_id = #{productOperationId} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysUserRequirementById">
+    <![CDATA[
+        DELETE FROM sys.sys_user_requirement WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysUserRequirementByIds" parameterType="list">
+        DELETE FROM sys.sys_user_requirement WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysUserRequirementById" resultMap="SysUserRequirement">
+		SELECT <include refid="sysuserrequirementColumns" />
+		    FROM sys.sys_user_requirement 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysUserRequirements" resultMap="SysUserRequirement">
+		SELECT <include refid="sysuserrequirementColumns" />
+		    FROM sys.sys_user_requirement  
+	    <include refid="sysuserrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysUserRequirementsMap" resultType="map">
+		SELECT <include refid="sysuserrequirementColumns" />
+	    <![CDATA[
+		    FROM sys.sys_user_requirement  
+	    ]]>
+	    <include refid="sysuserrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysuserrequirement_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="promotionPlatform!=null and promotionPlatform!=''">AND promotion_platform = #{promotionPlatform}</if>
+	       <if test="arrayPromotionPlatform!=null">
+	           AND promotion_platform in  
+		   	  <foreach collection="arrayPromotionPlatform" item="id" open="(" close=")" separator=",">#{id}</foreach>     
+		    </if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="merchantName!=null and merchantName!=''">AND merchant_name like '%'||#{merchantName}||'%'</if>
+	       <if test="shopId!=null ">AND shop_id = #{shopId}</if>
+	       <if test="storeName!=null and storeName!=''">AND store_name = #{storeName}</if>
+	       <if test="userId!=null ">AND user_id = #{userId}</if>
+	       <if test="userName!=null and userName!=''">AND user_name = #{userName}</if>
+	       <if test="tel!=null and tel!=''">AND tel = #{tel}</if>
+	       <if test="position!=null and position!=''">AND position = #{position}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+	       <!-- 按产品运营时间范围过滤 用户需求 -->
+		   <if test="beginTime!=null and endTime!=null">AND '${beginTime}' &lt;= insert_time and insert_time &lt;='${endTime}' </if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		   <if test="productOperationId!=null ">AND product_operation_id = #{productOperationId}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysUserRequirementCount" resultType="long">
+        SELECT count(*) FROM sys.sys_user_requirement 
+		<include refid="sysuserrequirement_findPage_where"/>    
+    </select>
+    
+</mapper>

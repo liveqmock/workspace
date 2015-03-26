@@ -1,0 +1,158 @@
+<div class="page-sysmanage-usermanage-add-edit">
+    <div class="page-tbar" ms-if="mainRouteName == 'sysmanage'">
+        <ul class="page-nav-crumbs">
+            <li class="nav-item"
+                ms-repeat="navCrumbs"><a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a><span class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+        </ul>
+    </div>
+    <div class="page-bd page-bd-form">
+        <div class="page-section">
+            <h3 class="page-section-title">修改用户<span class="summary">（<span class="star">*</span>号为必填项）</span></h3>
+            <form class="page-section-form" action="javascript:;" ms-widget="form,$,$formOpts">
+                <div class="f-body">
+                    <div class="f-field fn-clear" ms-if="mainRouteName == 'sysmanage'">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>用户类型：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="user-type mn-radio"
+                                      ms-class="mn-radio-state-selected: userType == 'new'"
+                                      data-user-type="0">新员工</span><span class="user-type mn-radio"
+                                                                           ms-class="mn-radio-state-selected: userType == 'old'"
+                                                                           data-user-type="1">老员工</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>姓名：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text user-name" name="userName" ms-value="userName" />
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>性别：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="label-for"><input type="radio" class="sex" name="sex" ms-checked="sex == 1" value="1" /><label>男</label></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label-for"><input type="radio" class="sex" name="sex" ms-checked="sex == 0" value="0" /><label>女</label></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>生日：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text birthday" name="birthday" ms-value="birthday" readonly="readonly" ms-click="openBirthdayPanel" />
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear" ms-if="mainRouteName == 'sysmanage'">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>MAC地址：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <div class="mac-wrapper"
+                                     ms-class-1="only-one-mac: macList.size() == 1">
+                                    <ul class="mac-list">
+                                        <li class="mac-item"
+                                            ms-repeat="macList">
+                                            <input type="text" class="input-text mac" name="mac" ms-duplex="el.value" />&nbsp;&nbsp;<button type="button" class="remove-btn main-btn" ms-if="$index != 0" ms-click="removeMacItem">删除</button>
+                                        </li>
+                                    </ul>
+                                    <button type="button" class="add-more-btn main-btn" ms-click="addMoreMac" ms-if="true">添加更多</button> <!-- 需求调整，隐藏添加更新mac功能 -->
+                                </div>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>手机号：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text mobile" name="mobile" ms-value="mobile" />
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">头像：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box fn-clear">
+                                <div class="user-avatar fn-left">
+                                    <img ms-src="userAvatar" alt="avatar" />
+                                </div>
+                                <div class="avatar-action fn-left">
+                                    <div class="avatar-uploader"
+                                         ms-widget="uploader,$,$uploaderOpts">
+                                        <button type="button" class="upload-btn simple-btn"  ms-if="!uploading">上传头像</button><button type="button" class="simple-btn-disabled" ms-if="uploading">正在上传&#8230;</button>
+                                    </div>
+                                    <div class="avatar-summary">图片最大支持2MB（80 x 80）px，仅支持.jpg .bmp .png 图片格式<br>头像尺寸为80px*80px</div>
+                                </div>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear" ms-if="mainRouteName == 'sysmanage'">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>部门：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <!--<span class="organization" ms-widget="select,$,$organizationOpts"></span>-->
+                                <input type="text" class="organization input-text"
+                                       readonly="readonly"
+                                       ms-click="openOrganizationDialog"
+                                       ms-duplex="belongToGroupName"
+                                       ms-value="belongToGroupName" />
+                                <div class="organization-list-dialog ui-hidden" ms-widget="dialog,$,$organizationOpts"></div>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear" ms-if="mainRouteName == 'sysmanage'">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>职位：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="position" ms-widget="select,$,$positionOpts"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="password-field-wrapper" ms-if="mainRouteName == 'profile'">
+                        <div class="f-field fn-clear">
+                            <label class="ff-label fn-left">旧密码：</label>
+                            <div class="ff-value">
+                                <div class="ff-value-box">
+                                    <input type="password" name="oldPassword" class="input-text old-pwd" />
+                                </div>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </div>
+                        <div class="f-field fn-clear">
+                            <label class="ff-label fn-left">新密码：</label>
+                            <div class="ff-value">
+                                <div class="ff-value-box">
+                                    <input type="password" class="input-text new-pwd" />
+                                </div>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </div>
+                        <div class="f-field fn-clear">
+                            <label class="ff-label fn-left">确认密码：</label>
+                            <div class="ff-value">
+                                <div class="ff-value-box">
+                                    <input type="password"  name="newPassword" class="input-text confirm-pwd" />
+                                </div>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-action">
+                        <button type="button" class="f-submit main-btn">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

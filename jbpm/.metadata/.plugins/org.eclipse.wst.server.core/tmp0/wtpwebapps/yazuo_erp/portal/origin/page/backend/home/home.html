@@ -1,0 +1,40 @@
+<div class="page-bd page-bd-form">
+    <!--创建需求-->
+    <div class="permission_type" style="display: none;">
+        <button type="button" ms-click="localHref('#/backend/home/createdemand')"  class="main-btn">创建需求</button>
+    </div>
+    <!--创建需求-end-->
+    <!--max-tabs-nav-->
+    <div class="max-tabs-nav fn-clear">
+        <p ms-if="permission.unassigned_137" ms-class="cur:pageStatus == 1" ms-click="changePageStatus(1)">未指派</p>
+        <p ms-if="permission.incomplete_138" ms-class="cur:pageStatus == 2" ms-click="changePageStatus(2)">未完成</p>
+        <p ms-if="permission.complete_139" ms-class="cur:pageStatus == 3" ms-click="changePageStatus(3)">已完成</p>
+    </div>
+    <!--max-tabs-nav-end-->
+    <!--max-tabs-con-->
+    <div class="max-tab-con">
+        <!--未指派-->
+        <div ms-visible="pageStatus == 1 ">
+            <div class="course-grid" ms-widget="grid,$,$grid1Opts"></div>
+        </div>
+        <!--未指派-end-->
+        <!--未完成-->
+        <div ms-visible="pageStatus == 2">
+            <div class="course-grid" ms-widget="grid,$,$grid2Opts"></div>
+        </div>
+        <!--未完成-end-->
+        <!--已完成-->
+        <div ms-visible="pageStatus == 3">
+            <div class="course-grid" ms-widget="grid,$,$grid3Opts"></div>
+        </div>
+        <!--已完成-end-->
+    </div>
+    <!--max-tabs-con-end-->
+</div>
+<!--指派需求-->
+<div ms-module="persontree,$,$treeOpts"></div>
+<!--指派需求-end-->
+
+
+
+

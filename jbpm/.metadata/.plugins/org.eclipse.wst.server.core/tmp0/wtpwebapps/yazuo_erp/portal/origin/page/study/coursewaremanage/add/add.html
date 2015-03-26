@@ -1,0 +1,70 @@
+<div class="page-study-courseware-add-edit">
+    <div class="page-tbar">
+        <ul class="page-nav-crumbs">
+            <li class="nav-item"
+                ms-repeat="navCrumbs"><a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a><span class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+        </ul>
+    </div>
+    <div class="page-bd page-bd-form">
+        <div class="page-section">
+            <h3 class="page-section-title">添加课件<span class="summary">（<span class="star">*</span>号为必填项）</span></h3>
+            <form class="page-section-form" action="javascript:;" ms-widget="form,$,$formOpts">
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>课件名称：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text courseware-name" name="coursewareName" maxlength="20" ms-value="coursewareName" />
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>主讲人：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text speaker" name="speaker" ms-value="speaker" maxlength="20" />
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>选择视频：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box fn-clear">
+                                <div class="upload-info ff-value-text fn-left" ms-if="attachName">{{attachName}}</div>
+                                <div class="video-uploader fn-left"
+                                     ms-widget="uploader,$,$uploaderOpts">
+                                    <button type="button" class="upload-btn simple-btn"  ms-if="!uploading">上传新的视频</button><button type="button" class="simple-btn-disabled" ms-if="uploading">正在上传&#8230;</button>
+                                </div>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>视频时长：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box ff-value-text">
+                                <input type="text" class="input-text hours" name="hours" ms-value="hours" /> 分钟
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>规定学习时限：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box ff-value-text">
+                                <input type="text" class="input-text time-limit" name="timeLimit" ms-value="timeLimit" /> 小时
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-action">
+                        <button type="button" class="f-submit main-btn">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

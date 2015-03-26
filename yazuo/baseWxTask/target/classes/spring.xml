@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 载入属性文件 -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--PropertiesFactoryBean，能够用注解直接注入配置项-->
+    <bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--注解bean扫描范围-->
+    <context:component-scan base-package="com.yazuo.*"/>
+
+    <!--单例模式的定时任务加载器-->
+    <bean name="customTaskGenerator" class="com.yazuo.CustomTaskGenerator" scope="singleton"></bean>
+
+    <!--自定义任务加载器，第一次执行初始化任务，此后定时执行以检测配置变更-->
+    <bean id="taskGenerator" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="customTaskGenerator"/>
+        <property name="targetMethod" value="initTask"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="taskGeneratorTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+        <property name="jobDetail" ref="taskGenerator"/>
+        <property name="startDelay" value="1000" />
+        <property name="repeatInterval" value="30000" />
+    </bean>
+
+
+    <!-- 启动Spring定时器  -->
+    <bean id="scheduleJmsReceiveFactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="taskGeneratorTrigger"/>
+            </list>
+        </property>
+    </bean>
+	<!-- 加载数据源 -->
+    <import resource="classpath:spring-datasource.xml"/>
+
+</beans>

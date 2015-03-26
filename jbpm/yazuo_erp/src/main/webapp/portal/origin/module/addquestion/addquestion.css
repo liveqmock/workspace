@@ -1,0 +1,18 @@
+.module-add-question {
+    font-size: 14px;
+    color: #777;
+}
+.module-add-question .input-text {
+    width: 310px;
+}
+.module-add-question .ff-value-tip {
+    margin-left: 85px;
+    clear: both;
+}
+.module-add-question .ff-label {
+    width: 85px;
+    text-align: right;
+}
+.module-add-question .warn {
+    color: red;
+}

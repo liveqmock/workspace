@@ -1,0 +1,47 @@
+<div class="page-bd">
+    <a href="#/network" class="go-back">返回</a>
+    <div class="device-t">
+        <p class="main-t">超级WIFI店员名单用户管理</p>
+        <p>连接用户WIFI超过驻店时长的限制时，将被自动加入店员名单中。店员名单中的用户将只能使用店员WIFI连接网络。</p>
+        <div class="main-t-right">
+            <button type="button" class="query-btn main-btn" data-type="setTime" ms-click="openAddUser">驻店时长设置</button>
+        </div>
+    </div>
+    <div class="page-filter">
+        <input type="text" class="keyword input-text" placeholder="在这里输入手机号"
+               ms-duplex="keyword"/>&nbsp;&nbsp;
+        <button type="button" class="query-btn main-btn-blue" data-type="search" ms-click="query">搜 索</button>&nbsp;&nbsp;
+        <button type="button" class="query-btn main-btn sb-border" data-type="all" ms-click="query">全部用户</button>&nbsp;&nbsp;
+        <button type="button" class="query-btn main-btn" data-type="out" ms-click="query">近期超时用户</button>
+    </div>
+    <div class="device-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 添加白名单 start -->
+<div class="page-network-black-add-dialog ui-hidden"
+     ms-widget="dialog,$,$addBlackDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addBlackFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear" ms-visible="operType=='add'">
+                <label class="ff-label">请输入要添加的手机号：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="在这里输入手机号" class="input-text phone-num" name="phoneNum" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear" ms-visible="operType!='setTime'">
+                <label class="ff-label">请输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="password" placeholder="6位主管密码" class="input-text manager-psd" name="managerPsd" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear" ms-visible="operType=='setTime'">
+                <div class="ff-value">
+                    <div class="ff-value-box">当连接超过<input type="text" class="input-text time" name="time" ms-value="time" />小时，将用户自动加入店员名单</div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加白名单 end -->

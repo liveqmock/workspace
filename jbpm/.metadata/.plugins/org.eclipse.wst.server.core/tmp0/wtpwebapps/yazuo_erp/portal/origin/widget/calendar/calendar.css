@@ -1,0 +1,163 @@
+.ui-calendar {
+    width: 300px;
+    border: 1px solid #76a9e0;
+    background: #f8f8f8;
+}
+
+.ui-calendar .ui-calendar-tbar {
+    position: relative;
+}
+
+.ui-calendar .ui-calendar-tbar .ui-calendar-nav-prev,
+.ui-calendar .ui-calendar-tbar .ui-calendar-nav-next {
+    position: absolute;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.ui-calendar .ui-calendar-tbar .ui-calendar-nav-prev {
+    top: 4px;
+    left: 16px;
+}
+
+.ui-calendar .ui-calendar-tbar .ui-calendar-nav-next {
+    top: 4px;
+    right: 16px;
+}
+
+.ui-calendar .ui-calendar-tbar .ui-calendar-title {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    background: #76a9e0;
+}
+
+.ui-calendar .ui-calendar-date-panel table {
+    width: 100%;
+}
+
+.ui-calendar .ui-calendar-date-panel th,
+.ui-calendar .ui-calendar-date-panel td {
+    text-align: center;
+    line-height: 1.8em;
+}
+
+.ui-calendar .ui-calendar-date-panel span,
+.ui-calendar .ui-calendar-date-panel span {
+    display: block;
+    border: 1px solid #f8f8f8;
+}
+
+.ui-calendar .ui-calendar-date-panel .day-title th {
+    color: #76a9e0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.ui-calendar .ui-calendar-date-panel td.current-month-date {
+    cursor: pointer;
+}
+
+.ui-calendar .ui-calendar-inactive {
+    color: #969696;
+    font-size: 14px;
+}
+
+.ui-calendar .ui-calendar-active {
+    color: #76a9e0;
+    font-size: 14px;
+}
+
+.ui-calendar .is-today span {
+    border: 1px solid #76a9e0;
+}
+
+.ui-calendar .is-focus-date span {
+    background: #cae4ff;
+    border: 1px solid #76a9e0;
+}
+
+.ui-calendar .is-out-date {
+    color: #969696;
+    font-size: 14px;
+    cursor: default ! important;
+}
+
+.ui-calendar .ui-calendar-month-panel .month-item {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 50%;
+}
+
+.ui-calendar .ui-calendar-year-panel .year-item,
+.ui-calendar .ui-calendar-month-panel .month-item,
+.ui-calendar .ui-calendar-year-panel .year-nav-prev,
+.ui-calendar .ui-calendar-year-panel .year-nav-next {
+    color: #76a9e0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.ui-calendar .ui-calendar-month-panel .is-focus-month,
+.ui-calendar .ui-calendar-year-panel .is-focus-year {
+    background: #cae4ff;
+    color: #393939;
+    border-top: 1px solid #76a9e0;
+    border-bottom: 1px solid #76a9e0;
+}
+.ui-calendar-bbar {
+    padding: 8px;
+    border-top: 1px solid #E2E2E2;
+    background: #ffffff;
+    box-shadow: 0px -1px 2px #e2e2e2;
+}
+.ui-calendar-bbar-l {
+    width: 60%;
+}
+.ui-calendar-bbar-r {
+    width: 40%;
+    text-align: right;
+}
+.ui-calendar-bbar-l .separator,
+.ui-calendar-bbar-l input {
+    vertical-align: middle;
+}
+.ui-calendar-bbar-l .hour,
+.ui-calendar-bbar-l .minute,
+.ui-calendar-bbar-l .second {
+    width: 2em;
+    padding: 0.2em;
+    height: 1.3em;
+    line-height: 1.3em;
+    font-size: 14px;
+    border: 1px solid #2CC78F;
+    color: #646464;
+}
+.ui-calendar-bbar-r button {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 0 6px;
+    height: 28px;
+    line-height: normal;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+    vertical-align: top;
+}
+.ui-calendar-bbar-r .submit-btn {
+    background: #66ccb5;
+}
+.ui-calendar-bbar-r .cancel-btn {
+    background: #dad7d7;
+}

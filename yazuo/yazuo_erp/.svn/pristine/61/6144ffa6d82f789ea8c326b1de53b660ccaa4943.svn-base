@@ -1,0 +1,28 @@
+.page-study-courseware-add-edit .ff-label {
+    width: 120px;
+    text-align: right;
+}
+.page-study-courseware-add-edit .ff-value {
+    margin-left: 120px;
+}
+.page-study-courseware-add-edit input {
+    width: 280px;
+}
+.page-study-courseware-add-edit .time-limit {
+    width: 80px;
+}
+.page-study-courseware-add-edit .hours {
+    width: 80px;
+}
+.page-study-courseware-add-edit .upload-info {
+    margin-right: 8px;
+}
+
+.page-study-courseware-add-edit .course-item {
+    padding: 0 0.4em;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #cccccc;
+    margin-right: 8px;
+    background: #ffffff;
+}

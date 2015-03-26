@@ -1,0 +1,90 @@
+.page-study-seniorstudy .keyword {
+    width: 230px;
+}
+.page-study-seniorstudy .page-tip .num {
+    color :#ff7800;
+}
+.page-study-seniorstudy-create-study-dialog .study-type-title{
+    height: 40px;
+    background-color: #f2f2f2;
+    border: solid #e4e4e4 1px;
+    position: relative;
+}
+.page-study-seniorstudy-create-study-dialog .study-type-box{
+    width: 111px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 111;
+}
+.page-study-seniorstudy-create-study-dialog .study-type-text{
+    background-color: #fff;
+    height: 41px;
+    width: 110px;
+    border-right: solid #e4e4e4 1px;
+    line-height: 41px;
+    text-align: center;
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+.page-study-seniorstudy-create-study-dialog .study-type-box li{
+    background-color: #fff;
+    height: 40px;
+    border-right: solid #e4e4e4 1px;
+    border-bottom: solid #e4e4e4 1px;
+    line-height: 41px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+.page-study-seniorstudy-create-study-dialog .study-list{
+    border-left: solid #e4e4e4 1px;
+    border-bottom: solid #e4e4e4 1px;
+    border-right: solid #e4e4e4 1px;
+    padding: 13px;
+}
+.page-study-seniorstudy-create-study-dialog .study-list-content{
+
+}
+.page-study-seniorstudy-create-study-dialog .type-text-r{
+    text-align: right;
+    padding: 11px 15px 0 0;
+}
+.page-study-seniorstudy-create-study-dialog .type-text-r input{
+    vertical-align: middle;
+}
+.page-study-seniorstudy-create-study-dialog .position-list li,.page-study-seniorstudy-create-study-dialog .employee-list li{
+    border-bottom: dotted #e4e4e4 1px;
+    line-height: 32px;
+    cursor: pointer;
+    padding: 0 15px 2px 15px;
+    margin-top: 2px;
+}
+.page-study-seniorstudy-create-study-dialog .tree-box,.page-study-seniorstudy-create-study-dialog .employee-list,.page-study-seniorstudy-create-study-dialog .position-list{
+    height: 255px;
+    overflow-y:auto;
+}
+.page-study-seniorstudy-create-study-dialog .employee-list li span{
+    display: inline-block;
+    zoom: 1;
+    width: 150px;
+}
+.page-study-seniorstudy-create-study-dialog .employee-name{
+    width: 300px;
+}
+.page-study-seniorstudy-create-study-dialog .employee-search{
+    padding-bottom: 15px;
+}
+.page-study-seniorstudy-create-study-dialog .employee-list li:hover,.page-study-seniorstudy-create-study-dialog .position-list li:hover{
+    background-color: #f5fbfe;
+}
+.page-study-seniorstudy-create-study-dialog .employee-list li.hover-bg:hover,.page-study-seniorstudy-create-study-dialog .position-list li.hover-bg:hover{
+    background-color: #deecf8;
+}
+.page-study-seniorstudy-create-study-dialog .choose-bg{
+    background-color: #deecf8;
+}

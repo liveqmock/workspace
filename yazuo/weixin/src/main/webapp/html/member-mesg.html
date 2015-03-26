@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+<link type="text/css" rel="stylesheet" href="../css/crm.css" />
+<script src="../js/jquery/1.8.3/jquery-1.8.3.min.js" type="text/javascript" language="javascript"></script>
+<title>完善会员资料</title>
+<script>
+$(document).ready(function{
+		var a=1;
+		var b=2;
+		var c=3;
+		var d=""+a+b+c;
+		alert(d);
+		
+});
+$(function(){
+	$(".mem-submit").live('click',function(){
+		if($(".mem-name").val()==''){//姓名
+			$(".error-mesg").text("名字不能为空");
+		}else if(!(vad_sub('.mem-phone'))){//手机
+			$(".error-mesg").text("手机号输入错误");
+		}else if($(".mem-vadm").val()==''){//验证码
+			$(".error-mesg").text("验证码输入错误");
+		}else{
+			$(".error-mesg").text("");
+		}
+	})
+})
+function vad_sub(id) {
+	var reg = /^[1][3-8]+\d{9}/;// 手机号码验证
+	if (!reg.test($(id).val()) || $(id).val() == '') {// 为空或错误时提示错误信
+		return false;
+	} else {
+		return true;
+	}
+}
+</script>
+</head>
+<body>
+<div class="w">
+	<section class="mem-main">
+    	<h1>完善会员资料</h1>
+        <p><span>姓 名：</span><span><input type="text" class="text mem-name" /></span></p>
+        <p><span>性 别：</span><span class="padR20"><input type="checkbox" class="checkbox" />男</span><span><input type="checkbox" class="checkbox" />女</span></p>
+        <p><span>生 日：</span>
+          <select name="select" id="select" class="select">
+            <option>2001</option>
+            <option>2002</option>
+          </select>
+          <select name="select" id="select" class="select">
+            <option>1</option>
+            <option>2</option>
+          </select>
+          <select name="select" id="select" class="select">
+            <option>11</option>
+            <option>12</option>
+          </select>
+        </p>
+        <p><span>手 机：</span><span><input type="text" class="text mem-phone" /></span></p>
+        <div class="clear_wrap"><p class="yzm left"><span>验证码：</span><span><input type="text" class="text mem-vadm" placeholder="请输入验证码" /></span></p><a href="javascript:void(0);" class="yz_btn right">获取验证码</a></div>
+        <div class="sub-div">
+        	<span class="error-mesg"></span>
+        	<a href="javascript:void(0);" class="mem-sub mem-submit">提&nbsp;&nbsp;&nbsp;交</a>
+        </div>
+    </section>
+    <!--提交成功-->
+    <section class="mem-main">
+    	<div class="mem-succ"><img src="../images/suc1.png" width="40" /><span>您已成功成为会员</span></div>
+        <div class="sub-div">
+        	<a href="#" class="mem-sub">确&nbsp;&nbsp;&nbsp;定</a>
+        </div>
+    </section>
+</div>
+</body>
+</html>

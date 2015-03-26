@@ -1,0 +1,442 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form page-padding">
+<!--client-header-->
+<div class="client-head">
+    <!--client-left-->
+    <div class="client-head-left">
+        <div class="client-head-left-logo"><img ms-src="{{merchantData.imgUrl}}"></div>
+        <div class="client-head-left-text pt20">
+            <h2>{{merchantData.merchant_name}}</h2>
+            <ul>
+                <li>启动日期：{{merchantData.begin_time|date("yyyy-MM-dd")}}</li>
+                <li>计划上线：{{merchantData.plan_online_time|date("yyyy-MM-dd")}}</li>
+            </ul>
+        </div>
+    </div>
+    <!--client-left-end-->
+    <!--client-right-->
+    <div class="client_head_right">
+        <div class="fn-left pt25">
+            <button ms-click="addQuestions" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe60f; </i>添加问题
+            </button>
+
+        </div>
+    </div>
+    <!--client-right-end-->
+</div>
+<!--client-header-end-->
+<!--client-data-->
+<div class="client-top fn-clear mb20">
+    <ul class="fn-left client-info-left fn-clear">
+        <li>销售负责人：{{merchantData.sale_user_name}}</li>
+        <li>业态：{{merchantData.format_name}}</li>
+        <li>前端负责人：{{merchantData.front_user_name}}</li>
+        <li>门店：{{merchantData.store_number}}家</li>
+        <li>人均：{{merchantData.person_avg}}元</li>
+        <li>桌均：{{merchantData.desk_avg}}元</li>
+    </ul>
+    <ul class="fn-right client-info-right">
+        <li>开通的产品</li>
+        <li>
+            <p ms-repeat="merchantData.productList">{{el}}</p>
+        </li>
+    </ul>
+</div>
+<!--client-data-end-->
+<!--list-->
+<div class="client-step" ms-repeat="pageData">
+<!--微信申请-->
+<div ms-if="el.stepNum == 'micro_message'">
+    <div class="status-box"
+         ms-class-1="status-ready:el.onlineProcessStatus =='02'"
+         ms-class-2="status-bging:el.onlineProcessStatus =='03'"
+         ms-class-3="status-end:el.onlineProcessStatus =='04'"
+         ms-class-4="status-past:el.planEndTimeStatus">
+        <button class="number">{{$index+1}}</button>
+        <div class="content f14">
+            <h2 class="mb5">{{el.fesStep.stepName}}</h2>
+
+            <div ms-if="el.stepNum == 'micro_message' && el.fesRemarks.length == 0">{{el.fesStep.tip}}</div>
+            <div class="type-box">
+                <div class="update-time status-style" ms-repeat-el="el.fesRemarks">
+                    <p class="fn-left-time">{{el.updateTime | date("yyyy-MM-dd HH:mm")}}</p>
+
+                    <p class="fn-left-text">{{el.remark}}</p>
+                    <i class="iconfont" ms-if="$outer.el.onlineProcessStatus != '04'"
+                       ms-click="removeWeixin($outer.el.id,el.id)">&#xe616;</i>
+                </div>
+                <div class="update-time status-style" ms-repeat="el.sysOperationLogVOs">
+                    <p class="fn-left-time">{{el.operatingTime |date("yyyy-MM-dd HH:mm")}}</p>
+
+                    <p class="fn-left-text">{{el.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="operation" ms-if="el.stepNum == 'micro_message'">
+            <p ms-if="el.onlineProcessStatus != '04'">
+                        <span>
+                        <button class="simple-btn" ms-click="addWeixin"><i class="iconfont icon-blue f26">&#xe60f;</i>
+                            备注
+                        </button>
+                        </span>
+            </p>
+            <p ms-if="el.onlineProcessStatus == '03'">
+                        <span>
+                        <button class="simple-btn" ms-click="stepEnd(el.id,'04','你确定微信已经申请了吗？','micro_message')"><i
+                                class="iconfont icon-blue f26">&#xe610;</i> 确认完成
+                        </button>
+                        </span>
+            </p>
+        </div>
+    </div>
+</div>
+<!--微信申请-end-->
+<!--营销活动创建-->
+<div ms-if="el.stepNum == 'final_program'">
+    <div class="status-box"
+         ms-class-1="status-ready:el.onlineProcessStatus =='02'"
+         ms-class-2="status-bging:el.onlineProcessStatus =='05'||el.onlineProcessStatus =='06'"
+         ms-class-3="status-end:el.onlineProcessStatus =='04'"
+         ms-class-4="status-past:el.planEndTimeStatus">
+        <button class="number">{{$index+1}}</button>
+        <div class="content f14">
+            <h2>营销活动创建</h2>
+            <div ms-if="el.listAttachmentAndOperateLog.length == 0">{{el.fesStep.tip}}</div>
+            <div class="type-box">
+                <div class="update-time status-style" ms-repeat-el="el.listAttachmentAndOperateLog">
+                    <p class="fn-left-time">{{el.insertTime | date("yyyy-MM-dd HH:mm")}}</p>
+                    <p class="fn-left-text" ms-if="el.processAttachmentType == '2'">
+                        上传了上传会员营销方案，点击<a
+                            ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">下载会员营销方案</a>
+                    </p>
+                    <p class="fn-left-text">{{el.description}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="operation">
+            <p ms-if="el.onlineProcessStatus == '06'">
+                        <span>
+                        <button class="simple-btn" ms-click="stepEnd(el.id,'04','你确定活动已创建了吗？','final_program')"><i
+                                class="iconfont icon-blue f26">&#xe610;</i> 活动已创建
+                        </button>
+                        </span>
+            </p>
+        </div>
+    </div>
+</div>
+<!--营销活动创建-->
+<!--后台设置-->
+<div ms-if="el.stepNum == 'background_set'">
+    <div class="status-box"
+         ms-class-1="status-ready:el.onlineProcessStatus =='02'"
+         ms-class-2="status-bging:el.onlineProcessStatus =='03'"
+         ms-class-3="status-end:el.onlineProcessStatus =='04'"
+         ms-class-4="status-past:el.planEndTimeStatus">
+        <button class="number">{{$index+1}}</button>
+        <div class="content f14">
+            <h2 class="mb5">后台设置</h2>
+
+            <div ms-if="el.listAttachmentAndOperateLog.length == 0">{{el.fesStep.tip}}</div>
+            <div class="type-box">
+                <div class="type-box">
+                    <div class="update-time status-style" ms-repeat="el.listAttachmentAndOperateLog">
+                        <p class="fn-left-time">{{el.insertTime | date("yyyy-MM-dd HH:mm")}}</p>
+
+                        <p class="fn-left-text">{{el.description}}</p>
+                        <i class="iconfont" ms-if="$outer.el.onlineProcessStatus != '04'"
+                           ms-click="removeAfter($outer.el.id,el.id)">&#xe616;</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="operation">
+            <p ms-if="el.onlineProcessStatus != '04'">
+                        <span>
+                        <button class="simple-btn" ms-click="addAfter"><i class="iconfont icon-blue f26">&#xe60f;</i>
+                            备注
+                        </button>
+                        </span>
+            </p>
+            <p ms-if="el.onlineProcessStatus == '03'">
+                        <span>
+                        <button class="simple-btn" ms-click="stepEnd(el.id,'04','你确定完成后台设置了吗？','background_set')"><i
+                                class="iconfont icon-blue f26">&#xe610;</i> 确认完成
+                        </button>
+                        </span>
+            </p>
+        </div>
+    </div>
+</div>
+<!--后台设置-end-->
+<!--实体卡制作-->
+<div ms-if="el.stepNum == 'entity_cards'">
+    <div class="status-box"
+         ms-class-1="status-ready:el.onlineProcessStatus =='07'"
+         ms-class-2="status-bging:el.onlineProcessStatus =='08'||el.onlineProcessStatus =='09'||el.onlineProcessStatus =='10'||el.onlineProcessStatus =='11'||el.onlineProcessStatus =='12'||el.onlineProcessStatus =='13'"
+         ms-class-3="status-end:el.onlineProcessStatus =='04'"
+         ms-class-4="status-past:el.planEndTimeStatus">
+        <button class="number">{{$index+1}}</button>
+        <div class="content f14">
+            <h2 class="mb5" ms-if="el.stepNum == 'entity_cards'">{{el.fesStep.stepName}}</h2>
+
+            <div ms-if="!el.listAttachmentAndOperateLog.length">{{el.fesStep.tip}}</div>
+            <div class="type-box step6-upfile-list">
+                <div class="update-time status-style" ms-repeat="el.listAttachmentAndOperateLog">
+                    <div class="position-div">
+                        <p class="left-title">{{el.insertTime | date("yyyy-MM-dd HH:mm")}}</p>
+                        <p class="left-con"
+                           ms-if="el.processAttachmentType == '3'">上传卡样源文件 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，
+                            <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载卡样源文件</a>
+                        </p>
+                        <p class="left-con"
+                           ms-if="el.processAttachmentType == '4'">上传卡样确认单 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，
+                            <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载卡样确认单</a>
+                        </p>
+                        <p class="left-con"
+                           ms-if="el.processAttachmentType == '12'">上传开卡数据 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，
+                            <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载开卡数据</a>
+                            <i ms-click="removeAttach($outer.el.id,el.id)"
+                               ms-if="$outer.el.onlineProcessStatus == '11'" class="iconfont">&#xe616;</i>
+                        </p>
+                        <p class="left-con"
+                           ms-if="el.fesLogType == '14'">{{el.description}}，<a href="javascript:;"
+                                                                               ms-click="openCard($outer.el.id,1)">点击查看开卡申请单</a>
+                        </p>
+                        <p class="left-con"
+                           ms-if="el.processAttachmentType != '3' &&
+                                      el.processAttachmentType != '4' &&
+                                      el.processAttachmentType != '12' &&
+                                      el.fesLogType != '14'">{{el.description}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="operation" ms-if="el.stepNum == 'entity_cards'">
+            <p ms-if="el.onlineProcessStatus == '10'||el.onlineProcessStatus == '11'">
+                        <span ms-widget="uploader,$,$step63UploaderOpts">
+                        <button class="simple-btn make-step6-id"
+                                ms-data-step6-id="el.id"
+                                ><i class="iconfont icon-blue f26">&#xe611;</i> 开卡数据
+                        </button>
+                        </span>
+            </p>
+            <p ms-if="el.onlineProcessStatus == '11'">
+                        <span>
+                        <button class="simple-btn"
+                                ms-click="stepEnd(el.id,'12','你确认已经开卡了吗？','entity_cards')"
+                                ><i class="iconfont icon-blue f26">&#xe610;</i> 确认已开卡
+                        </button>
+                        </span>
+            </p>
+        </div>
+    </div>
+</div>
+<!--实体卡制作-end-->
+<!--实施培训回访-->
+<div ms-if="el.stepNum == 'train'">
+    <div class="status-box"
+         ms-class-1="status-ready:el.onlineProcessStatus =='02'"
+         ms-class-2="status-bging:el.onlineProcessStatus =='03'||el.onlineProcessStatus =='16'||el.onlineProcessStatus =='17'"
+         ms-class-3="status-end:el.onlineProcessStatus =='04'"
+         ms-class-4="status-past:el.planEndTimeStatus">
+        <button class="number">{{$index+1}}</button>
+        <div class="content f14 step9-upfile-list">
+            <h2 class="mb5">{{el.fesStep.stepName}}</h2>
+            <div ms-if="!el.listAttachmentAndOperateLog.length">{{el.fesStep.tip}}</div>
+            <div class="fn-clear type-box">
+                <div class="page-button status-style"
+                     ms-if="el.visiterState == 1 ||el.visiterState == 3 "
+                     ms-repeat ="el.listSysDocumentVO">
+                    <p class="text" ms-click="step9Access('read',el.id,$outer.el.onlineProcessStatus)">{{el.documentTypeText}}</p>
+                    <p class="choice" ms-if="$outer.el.onlineProcessStatus !='04'"  ms-click="step9Access('edit',el.id,$outer.el.onlineProcessStatus)">
+                        <i class="iconfont">&#xe60f;</i>
+                    </p>
+                </div>
+            </div>
+            <div class="type-box">
+                <div class="update-time status-style" ms-if="el.fesTrainPlans.length">
+                    <div class="fn-clear">
+                        <p class="fn-left-tit">培训时间：</p>
+                        <p class="fn-left-content">{{el.fesTrainPlans[0].beginTime|date("yyyy-MM-dd")}} ~ {{el.fesTrainPlans[0].endTime|date("yyyy-MM-dd")}}</p>
+                    </div>
+                    <div class="fn-clear">
+                        <p class="fn-left-tit">培训地点：</p>
+                        <p class="fn-left-content">{{el.fesTrainPlans[0].address}}</p>
+                    </div>
+                    <div class="fn-clear">
+                        <p class="fn-left-tit">参与人员：</p>
+                        <p class="fn-left-content">{{el.fesTrainPlans[0].trainer}}</p>
+                    </div>
+                    <div class="fn-clear">
+                        <p class="fn-left-tit">培训内容：</p>
+                        <p class="fn-left-content">{{el.fesTrainPlans[0].content}}</p>
+                    </div>
+                </div>
+                <div ms-repeat="el.listAttachmentAndOperateLog">
+                    <div class="update-time status-style" >
+                        <p class="fn-left-time">{{el.insertTime|date("yyyy-MM-dd HH:mm")}}</p>
+                        <p class="fn-left-text"
+                           ms-if="el.processAttachmentType == '5'">上传培训材料 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>,
+                            <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">下载{{el.originalFileName}}</a>
+                        </p>
+                        <p class="fn-left-text"
+                           ms-if="el.processAttachmentType == '14'">上传回访录音 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>,
+                            <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{el.documentFilePath}}">下载{{el.originalFileName}}</a
+                        ></p>
+                        <p class="fn-left-text"
+                           ms-if="el.processAttachmentType != '14'&&el.processAttachmentType != '5'">{{el.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="operation">
+            <p ms-if="el.visiterState == 2 ||el.visiterState == 4">
+                <span>
+                <button class="simple-btn"
+                        ms-click="step9Access('add')"
+                        ><i class="iconfont icon-blue f26">&#xe610;</i> 填写回访单
+                </button>
+                </span>
+            </p>
+            <p ms-if="el.onlineProcessStatus == '16'||el.onlineProcessStatus == '17'">
+                <span ms-widget="uploader,$,$step9AttachUploaderOpts">
+                <button class="simple-btn"><i class="iconfont icon-blue f26">&#xe60f;</i> 回访录音
+                </button>
+                </span>
+            </p>
+            <p ms-if="el.onlineProcessStatus == '17'">
+                <span>
+                <button class="simple-btn"
+                        ms-click="stepEnd(el.id,'04','你确定已经回访了吗？','train')"
+                        ><i class="iconfont icon-blue f26">&#xe610;</i> 确认已经回访
+                </button>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+<!--实施培训回访-end-->
+
+</div>
+<!--list-end-->
+
+
+</div>
+
+<!--微信备注-->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$addWeixinDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addWeixinFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <div class="ff-value">
+                    <div class="ff-value-box" style="text-align:center">
+                        <textarea class="description" style="width:400px;height:120px;"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!--微信备注-end-->
+<!--后台设置-->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$addSetDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addSetFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <div class="ff-value">
+                    <div class="ff-value-box" style="text-align:center">
+                        <textarea class="set-description" style="width:400px;height:120px;"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--后台设置-end-->
+<!--回访单-->
+<div class="add-edit-course-dialog ui-hidden page-backend-customerservice-waiting-dialog"
+     ms-widget="dialog,$,$addAccessDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addAccessFormOpts"
+          action="javascript:;">
+        <div class="f-body huifangdan-con">
+            <div class="f-field fn-clear" ms-repeat="acessRequestData">
+                <div class="ff-value" ms-class="huiFang{{$index}}">
+                    <ul class="page-backend-customerservice-waiting-box">
+                        <li class="page-backend-customerservice-waiting-box-title">
+                            Q{{$index+1}}：{{el.title}}
+                        </li>
+                        <li class="page-backend-customerservice-waiting-box-con" ms-if="huiFShowType == 'add' || huiFShowType == 'edit'">
+                            <label ms-repeat="el.sysDocumentDtlOptionList">
+                                <input type="radio"
+                                       ms-if="$outer.el.questionType == '1'"
+                                       ms-checked="el.isSelected == '1'"
+                                       ms-click=radioBox
+                                       ms-attr-name="{{$outer.$index}}{{$outer.el.questionId}}">
+                                <input type="checkbox"
+                                       ms-if="$outer.el.questionType == '2'"
+                                       ms-checked="el.isSelected == '1'"
+                                       ms-click=checkBox
+                                       ms-attr-name="{{$outer.$index}}{{$outer.el.questionId}}">
+                                {{el.optionContent}}
+                            </label>
+                            <input ms-if="$index != 3" ms-class="input-hidden-{{$index}}" type="hidden" data-rules="empty" data-tips="内容不能为空！" isrule=true>
+                            <div class="ff-value-tip"></div>
+                            <div ms-if="el.sysDocumentDtlOptionList" ms-each="el.sysDocumentDtlOptionList">
+                                <textarea ms-if="el.isOpenTextarea == '1'&&el.isSelected == '1'"
+                                          ms-attr-placeholder="el.tip"
+                                          ms-duplex="el.comment"
+                                          data-rules="empty"
+                                          data-tips="内容不能为空！"
+                                          isrule=true
+                                          class="questions"></textarea>
+                                <div ms-if="el.isOpenTextarea == '1'&&el.isSelected == '1'" class="ff-value-tip"></div>
+                            </div>
+                            <div ms-if="el.questionType == '3'">
+                                <textarea ms-attr-placeholder="el.tip"
+                                          ms-duplex="el.comment"
+                                          data-rules="empty"
+                                          data-tips="内容不能为空！"
+                                          isrule=true
+                                          class="questions"></textarea>
+                                <div ms-if="el.questionType == '3'" class="ff-value-tip"></div>
+                            </div>
+                        </li>
+                        <li class="page-backend-customerservice-waiting-box-con" ms-if="huiFShowType == 'read'">
+                            <div ms-if="el.questionType == '1' || el.questionType == '2'">
+                                <ul ms-repeat="el.sysDocumentDtlOptionList">
+                                    <li ms-if="el.isSelected == '1'">{{el.optionContent}}<span ms-if="el.comment">({{el.comment}})</span></li>
+                                </ul>
+                            </div>
+                            <div ms-if="el.questionType == '3'">
+                                {{el.comment}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--回访单-end-->
+<!--申请开卡-->
+<div ms-module="opencard,$,$opencardOpts"></div>
+<!--申请开卡-end-->
+<!--添加问题-->
+<div ms-module="addquestion,$,$addquestionOpts"></div>
+<!--添加问题-end-->

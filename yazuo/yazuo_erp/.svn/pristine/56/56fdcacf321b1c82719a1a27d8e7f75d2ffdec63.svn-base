@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraCourseCoursewareDao">
+
+	<resultMap id="TraCourseCourseware" type="com.yazuo.erp.train.vo.TraCourseCoursewareVO">
+		<result property="id" column="id" />
+		<result property="courseId" column="course_id" />
+		<result property="coursewareId" column="courseware_id" />
+		<result property="sort" column="sort" />
+		<result property="isRequired" column="is_required" />
+		<result property="remark" column="remark" />
+		<result property="insertBy" column="insert_by" />
+		<result property="insertTime" column="insert_time" />
+		<result property="updateBy" column="update_by" />
+		<result property="updateTime" column="update_time" />
+
+	</resultMap>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="tracoursecoursewareColumns">
+	    <![CDATA[
+		id,course_id,courseware_id,sort,is_required,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraCourseCourseware">
+    <![CDATA[
+        INSERT INTO train.tra_course_courseware (
+        		course_id ,
+        		courseware_id ,
+        		sort ,
+        		is_required ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{courseId} ,
+        	#{coursewareId} ,
+        	#{sort} ,
+        	#{isRequired} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+
+	<update id="updateTraCourseCourseware">
+    <![CDATA[
+        UPDATE train.tra_course_courseware SET
+	        course_id = #{courseId} ,
+	        courseware_id = #{coursewareId} ,
+	        sort = #{sort} ,
+	        is_required = #{isRequired} ,
+	        remark = #{remark} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+	<delete id="deleteTraCourseCourseware">
+    <![CDATA[
+        DELETE FROM train.tra_course_courseware WHERE
+        id = #{id} 
+    ]]>
+	</delete>
+
+	<select id="getTraCourseCoursewareById" resultMap="TraCourseCourseware">
+		SELECT
+		<include refid="tracoursecoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_course_courseware 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraCourseCoursewares" resultMap="TraCourseCourseware"
+		parameterType="map">
+		SELECT
+		<include refid="tracoursecoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_course_courseware  
+	    ]]>
+		<include refid="tracoursecourseware_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraCourseCoursewaresMap" resultType="map"
+		parameterType="map">
+		SELECT
+		<include refid="tracoursecoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_course_courseware  
+	    ]]>
+		<include refid="tracoursecourseware_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+
+	<select id="getAllTraCourseCoursewares" resultType="map"
+		parameterType="map">
+		SELECT
+		<include refid="tracoursecoursewareColumns" />
+	    <![CDATA[
+		    FROM train.tra_course_courseware  
+	    ]]>
+		<include refid="tracoursecourseware_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="tracoursecourseware_findPage_where">
+		<where>
+			<if test="id!=null">
+				AND id = #{id}
+			</if>
+			<if test="courseId!=null">
+				AND course_id = #{courseId}
+			</if>
+			<if test="coursewareId!=null">
+				AND courseware_id = #{coursewareId}
+			</if>
+			<if test="sort!=null">
+				AND sort = #{sort}
+			</if>
+			<if test="isRequired!=null">
+				AND is_required = #{isRequired}
+			</if>
+			<if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+			<if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+			<if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+			</if>
+			<if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+			</if>
+			<if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+			<if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+			</if>
+			<if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+			</if>
+
+		</where>
+	</sql>
+
+	<select id="getTraCourseCoursewareCount" resultType="int" parameterType="map">
+		SELECT count(*) FROM train.tra_course_courseware
+		<include refid="tracoursecourseware_findPage_where" />
+	</select>
+
+	<select id="getTraCourseCoursewareCountByCourseId" resultType="long">
+		SELECT count(*) FROM train.tra_course_courseware
+		where course_id =
+		#{courseId} and is_required = #{isRequired}
+	</select>
+
+	<!-- 分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页 因为分页查询将传 offset,pageSize,lastRows 
+		三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现 -->
+	<select id="findTraCourseCoursewarePage" resultMap="TraCourseCourseware">
+		SELECT
+		<include refid="tracoursecoursewareColumns" />
+		FROM train.tra_course_courseware
+		<include refid="tracoursecourseware_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<select id="getTraCourseCoursewaresMapByCourseName" resultType="map"
+		parameterType="map">
+		SELECT train.tra_courseware.id,train.tra_courseware.courseware_name,tra_courseware.speaker,tmp.courseCount from 
+       (SELECT t_c_c.courseware_id, count(1) as courseCount
+       FROM train.tra_course_courseware t_c_c
+       WHERE EXISTS (select 1
+       FROM (SELECT t_c_c1.courseware_id
+       FROM train.tra_course, train.tra_course_courseware t_c_c1
+       WHERE t_c_c1.course_id = train.tra_course.id
+       AND train.tra_course.is_enable = '1'
+       AND train.tra_course.course_name like '%'||#{courseName}||'%'
+        ) temp_courseware_id
+       WHERE temp_courseware_id.courseware_id = t_c_c.courseware_id)
+       AND EXISTS (SELECT 1
+       FROM train.tra_courseware
+       WHERE t_c_c.courseware_id = train.tra_courseware."id"
+       AND train.tra_courseware.is_enable = '1')
+       AND EXISTS (SELECT 1
+       FROM train.tra_course
+       WHERE t_c_c.course_id = train.tra_course."id"
+       AND train.tra_course.is_enable = '1')
+       GROUP BY t_c_c.courseware_id) as tmp,train.tra_courseware
+       WHERE train.tra_courseware."id" = tmp.courseware_id
+       ORDER BY train.tra_courseware."id" DESC 
+	</select>
+
+	<select id="getTraCourseCoursewaresByName" resultType="map"
+		parameterType="map">
+		SELECT train.tra_courseware.id,train.tra_courseware.courseware_name,tra_courseware.speaker,tmp.courseCount from 
+       (SELECT t_c_c.courseware_id, count(1) as courseCount
+       FROM train.tra_course_courseware t_c_c
+       WHERE EXISTS (select 1
+       FROM (SELECT t_c_c1.courseware_id
+       FROM train.tra_course, train.tra_course_courseware t_c_c1,train.tra_courseware
+       WHERE t_c_c1.course_id = train.tra_course.id
+       AND train.tra_courseware.id = t_c_c1.courseware_id
+       AND train.tra_course.is_enable = '1'
+       AND train.tra_course.course_name like '%'||#{courseName}||'%'
+       AND train.tra_courseware.courseware_name like '%'||#{coursewareName}||'%'
+        ) temp_courseware_id
+       WHERE temp_courseware_id.courseware_id = t_c_c.courseware_id)
+       AND EXISTS (SELECT 1
+       FROM train.tra_courseware
+       WHERE t_c_c.courseware_id = train.tra_courseware."id"
+       AND train.tra_courseware.is_enable = '1')
+       AND EXISTS (SELECT 1
+       FROM train.tra_course
+       WHERE t_c_c.course_id = train.tra_course."id"
+       AND train.tra_course.is_enable = '1')
+       GROUP BY t_c_c.courseware_id) as tmp,train.tra_courseware
+       WHERE train.tra_courseware."id" = tmp.courseware_id
+       ORDER BY train.tra_courseware."id"  DESC
+	</select>
+	
+	<select id="getTraCourseCoursewaresByCoursewareName" resultType="map"
+		parameterType="map">
+		SELECT
+       (SELECT count(1)
+       FROM train.tra_course_courseware,train.tra_course  
+       WHERE train.tra_course.id = train.tra_course_courseware.course_id
+       AND train.tra_courseware."id" = train.tra_course_courseware.courseware_id
+       AND train.tra_course.is_enable = '1'       
+        ) courseCount,
+       train.tra_courseware."id",train.tra_courseware.courseware_name,train.tra_courseware.speaker
+       FROM train.tra_courseware
+       WHERE train.tra_courseware.is_enable = '1'
+       AND train.tra_courseware.courseware_name like '%'||#{coursewareName}||'%'
+       ORDER BY train.tra_courseware."id" DESC
+		
+	</select>
+	
+	<select id="getTraCourseCoursewaresAll" resultType="map"
+		parameterType="map">
+		SELECT
+       (SELECT count(1)
+       FROM train.tra_course_courseware,train.tra_course  
+       WHERE train.tra_course.id = train.tra_course_courseware.course_id
+       AND train.tra_courseware."id" = train.tra_course_courseware.courseware_id
+       AND train.tra_course.is_enable = '1'       
+        ) courseCount,
+       train.tra_courseware."id",train.tra_courseware.courseware_name,train.tra_courseware.speaker
+       FROM train.tra_courseware
+       WHERE train.tra_courseware.is_enable = '1'
+       ORDER BY train.tra_courseware."id" desc
+	</select>
+	
+	<delete id="deleteCourseCoursewareByCourseId">
+    <![CDATA[
+        DELETE FROM train.tra_course_courseware WHERE
+        course_id = #{courseId} 
+    ]]>
+	</delete>
+	
+	<delete id="deleteCourseCoursewareByCoursewareId">
+    <![CDATA[
+        DELETE FROM train.tra_course_courseware WHERE
+        courseware_id = #{coursewareId} 
+    ]]>
+	</delete>
+	
+	<delete id="deleteCourseCoursewareByCourseIdAndCoursewareId">
+    <![CDATA[
+        DELETE FROM train.tra_course_courseware WHERE
+        courseware_id = #{coursewareId} and course_id = #{courseId} 
+    ]]>
+	</delete>
+	
+	<select id="getTraCourseCoursewaresInfo" resultType="map"
+		parameterType="map">
+		SELECT
+		coursecourseware.id,
+		coursecourseware.courseware_id,
+		courseware.courseware_name,
+		round(courseware.time_limit/60,1) as time_limit,
+		coursecourseware.sort
+	    <![CDATA[
+		    FROM train.tra_course_courseware as coursecourseware,train.tra_courseware as courseware
+	    ]]>
+		WHERE courseware.id = coursecourseware.courseware_id
+		AND coursecourseware.course_id  = #{courseId }
+		AND coursecourseware.is_required = #{isRequired}
+		AND courseware.is_enable = '1'
+		order by coursecourseware.sort
+	</select>
+	
+	<delete id="batchDeleteCourseCoursewareByCourseId" parameterType="list">
+        <foreach collection="list" item="t" index="index" open="" close="" separator=";">
+	         DELETE FROM train.tra_course_courseware WHERE
+		        course_id = #{t.courseId,jdbcType=INTEGER}
+	     </foreach>
+	</delete>
+	
+	<delete id="batchDeleteCourseCoursewareByCoursewareId" parameterType="list">
+        <foreach collection="list" item="t" index="index" open="" close="" separator=";">
+	         DELETE FROM train.tra_course_courseware WHERE
+		        courseware_id = #{t,jdbcType=INTEGER}
+	     </foreach>
+	</delete>
+	
+	 <insert id="batchSaveCourseCourseware" parameterType="list" useGeneratedKeys="true">
+       INSERT INTO train.tra_course_courseware (
+        		course_id ,
+        		courseware_id ,
+        		sort ,
+        		is_required ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES
+      <foreach collection="list" item="t" index="index" open="" close="" separator=",">
+	       (#{t.courseId},#{t.coursewareId},#{t.sort},#{t.isRequired},#{t.remark},#{t.insertBy},now(),#{t.updateBy},now())
+	    </foreach>
+	</insert>
+	
+	 <update id="batchUpdateTraCourseCoursewareSort" parameterType="list">
+       <foreach collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE train.tra_course_courseware SET
+	        sort = #{t.sort},
+	        update_by = #{t.updateBy} ,
+	        update_time = now() 
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>
+	</update>
+	
+	<select id="getCoursewareByCourseId" resultType="map"
+		parameterType="map">
+		SELECT train.tra_course_courseware.courseware_id
+	    <![CDATA[
+		    FROM train.tra_course_courseware,train.tra_courseware
+	    ]]>
+		WHERE train.tra_course_courseware.course_id = #{courseId}
+		AND train.tra_courseware.is_enable = '1'
+		AND train.tra_courseware.id = train.tra_course_courseware.courseware_id 
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+    <select id="getCourseCoursewareByCourseId" resultMap="TraCourseCourseware"
+            parameterType="int">
+        SELECT <include refid="tracoursecoursewareColumns"/>
+        FROM train.tra_course_courseware
+        WHERE course_id =#{courseId} AND is_enable='1'
+    </select>
+
+    <select id="getCourseCoursewareVO" resultMap="TraCourseCourseware">
+        SELECT
+        tc.id,tc.course_id,tc.courseware_id,tc.sort,tc.is_required,tc.remark
+        FROM train.tra_course_courseware tc
+        LEFT JOIN train.tra_courseware cc on cc.id=tc.courseware_id
+        WHERE tc.course_id =#{courseId} AND tc.courseware_id=#{coursewareId} AND cc.is_enable='1'
+    </select>
+
+    <select id="nextCourseCoursewareVOForOptional" resultMap="TraCourseCourseware">
+         SELECT tc.id,tc.course_id,tc.courseware_id,tc.sort,tc.is_required,tc.remark
+         FROM train.tra_course_courseware tc
+         LEFT JOIN train.tra_courseware cc ON tc.courseware_id = cc.id
+         WHERE tc.course_id=#{courseId} AND cc.is_enable='1' AND tc.is_required='0'
+         AND sort > (
+             SELECT sort FROM train.tra_course_courseware WHERE course_id=${courseId} AND courseware_id=#{coursewareId}
+         )
+         ORDER BY sort
+         LIMIT 1
+    </select>
+
+    <select id="nextCourseCoursewareVO" resultMap="TraCourseCourseware">
+         SELECT tc.id,tc.course_id,tc.courseware_id,tc.sort,tc.is_required,tc.remark
+         FROM train.tra_course_courseware tc
+         LEFT JOIN train.tra_courseware cc ON tc.courseware_id = cc.id
+         WHERE tc.course_id=#{courseId} AND cc.is_enable='1' AND tc.is_required='1'
+         AND sort > (
+             SELECT sort FROM train.tra_course_courseware WHERE course_id=${courseId} AND courseware_id=#{coursewareId}
+         )
+         ORDER BY sort
+         LIMIT 1
+    </select>
+    <select id="preCourseCoursewareVO" resultMap="TraCourseCourseware">
+         SELECT tc.id,tc.course_id,tc.courseware_id,tc.sort,tc.is_required,tc.remark
+         FROM train.tra_course_courseware tc
+         LEFT JOIN train.tra_courseware cc ON tc.courseware_id = cc.id
+         WHERE tc.course_id=#{courseId} AND cc.is_enable='1' AND tc.is_required='1'
+         AND sort &lt; (
+             SELECT sort FROM train.tra_course_courseware WHERE course_id=${courseId} AND courseware_id=#{coursewareId}
+         )
+         ORDER BY sort desc
+         LIMIT 1
+    </select>
+
+    <select id="isFirstForCourse" resultType="boolean">
+        SELECT count(1)=1
+         FROM train.tra_course_courseware tc
+         LEFT JOIN train.tra_courseware cc ON tc.courseware_id = cc.id
+         WHERE tc.course_id=#{courseId} AND cc.is_enable='1' AND tc.is_required='1'
+         AND sort &lt; (
+             SELECT sort FROM train.tra_course_courseware WHERE course_id=${courseId} AND courseware_id=#{coursewareId}
+         )
+    </select>
+
+    <select id="isLastForCourse" resultType="boolean">
+        SELECT count(1)=1
+         FROM train.tra_course_courseware tc
+         LEFT JOIN train.tra_courseware cc ON tc.courseware_id = cc.id
+         WHERE tc.course_id=#{courseId} AND cc.is_enable='1' AND tc.is_required='1'
+         AND sort >= (
+             SELECT sort FROM train.tra_course_courseware WHERE course_id=${courseId} AND courseware_id=#{coursewareId}
+         )
+    </select>
+    
+    <select id="getCoursewareIdByCourseId"  resultType="int">
+		SELECT
+		tcc.courseware_id
+		FROM
+		train.tra_course_courseware tcc
+		WHERE
+		tcc.course_id = #{courseId}
+	</select>
+	
+	 <select id="getCourseIdByCoursewareId"  resultType="int">
+		SELECT
+		tcc.course_id
+		FROM
+		train.tra_course_courseware tcc
+		WHERE
+		tcc.courseware_id = #{coursewareId}
+	</select>
+
+</mapper>
+

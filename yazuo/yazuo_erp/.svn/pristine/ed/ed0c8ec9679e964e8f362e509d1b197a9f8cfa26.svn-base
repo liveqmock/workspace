@@ -1,0 +1,68 @@
+.page-backend-languagemanage .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-languagemanage .permission_type {
+    margin-bottom:30px;
+}
+.page-backend-languagemanage .max-tab-con {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+}
+.page-backend-languagemanage .ui-grid-search input {
+    margin-left: 10px;
+}
+.page-backend-languagemanage .ui-grid-search button {
+    margin-left: 10px;
+}
+.page-backend-languagemanage .choose a {
+    margin: 0 3px;
+}
+.page-backend-languagemanage .language-title {
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+    width: 150px;
+}
+.page-backend-languagemanage .language-con {
+    width: 400px;
+    overflow: hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+}
+.page-backend-languagemanage .language-time {
+    text-align: left;
+    width: 130px;
+}
+.page-backend-languagemanage .language-type {
+    width: 100px;
+}
+.page-backend-languagemanage .choose {
+    width: 130px;
+}
+.language-read-dialog .ui-dialog-content {
+    color: #666;
+    padding: 10px;
+}
+.language-read-dialog .ff-body{
+    padding: 15px;
+    *height: 360px;
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+

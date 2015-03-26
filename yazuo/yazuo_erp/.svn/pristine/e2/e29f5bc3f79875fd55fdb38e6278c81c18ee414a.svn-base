@@ -1,0 +1,475 @@
+/**
+ * Copyright Copyright (c) 2014 
+ * Company 雅座在线（北京）科技发展有限公司
+ * 
+ * 		author		date		description
+ * —————————————————————————————————————————————
+ * 
+ * 
+ */
+
+package com.yazuo.erp.syn.controller;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import com.yazuo.erp.syn.vo.SynMerchantVO;
+import com.yazuo.erp.system.service.*;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.junit.Assert;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.yazuo.erp.base.Constant;
+import com.yazuo.erp.base.Encrypt;
+import com.yazuo.erp.base.JsonResult;
+import com.yazuo.erp.mkt.service.MktBrandInterviewService;
+import com.yazuo.erp.mkt.service.MktShopSurveyService;
+import com.yazuo.erp.mkt.vo.MktBrandInterviewVO;
+import com.yazuo.erp.syn.service.SynMembershipCardService;
+import com.yazuo.erp.syn.service.SynMerchantProductService;
+import com.yazuo.erp.syn.service.SynMerchantService;
+import com.yazuo.erp.syn.vo.ExternalMerchantInfoVO;
+import com.yazuo.erp.system.vo.SysAssistantMerchantVO;
+import com.yazuo.erp.system.vo.SysResourceVO;
+import com.yazuo.erp.system.vo.SysSalesmanMerchantVO;
+import com.yazuo.erp.system.vo.SysUserMerchantVO;
+import com.yazuo.erp.system.vo.SysUserVO;
+import com.yazuo.external.active.service.ActiveCrmService;
+import com.yazuo.external.statictics.service.MerchantSMSCountStatisticsService;
+import com.yazuo.util.DeviceTokenUtil;
+
+/**
+ * @author erp team
+ * @date 
+ */
+
+/**
+ * 商户 相关业务操作
+ * 
+ * @author
+ */
+@Controller
+@RequestMapping("synMerchant")
+@SessionAttributes(Constant.SESSION_USER)
+public class SynMerchantController {
+
+	private static final Log LOG = LogFactory.getLog(SynMerchantController.class);
+	@Resource
+	private SynMerchantService synMerchantService;
+
+	@Resource
+    private SysUserService sysUserService;
+
+    @Resource
+	private MerchantSMSCountStatisticsService merchantSMSCountStatisticsService;
+	@Resource
+	private SysProblemService sysProblemService;
+	@Resource
+	private SynMerchantProductService synMerchantProductService;
+	@Resource
+	private ActiveCrmService activeCrmService;
+	@Resource
+	private MktShopSurveyService mtkMktShopSurveyService;
+	@Resource
+	private SynMembershipCardService synMembershipCardService;
+	@Resource
+	private SysUserMerchantService sysUserMerchantService;
+	@Resource
+	private SysSalesmanMerchantService sysSalesmanMerchantService;
+	@Resource
+	private SysAssistantMerchantService sysAssistantMerchantService;
+	@Resource	private SysToDoListService sysToDoListService;
+	@Resource	private ResourceService resourceService;
+	
+	@RequestMapping(value = "getSynMerchantById", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult getSynMerchantById(@RequestBody SynMerchantVO synMerchantVO) {
+		SynMerchantVO synMerchantById = this.synMerchantService.getSynMerchantById(synMerchantVO.getMerchantId());
+        //查找销售用户
+        List<SysUserVO> salesUsers1 = 
+        	resourceService.getAllUsersByResourceCode(new SysResourceVO(){{setRemark("sales_service");}});
+        //查询前端用户
+        List<SysUserVO> frontEndUsers1 = 
+        		resourceService.getAllUsersByResourceCode(new SysResourceVO(){{setRemark("front_end_service");}});
+        
+
+    	List<Map<String, Object>> salesUsers = new ArrayList<Map<String,Object>>();//销售负责人列表
+    	List<Map<String, Object>> frontEndUsers = new ArrayList<Map<String,Object>>();//前端负责人列表
+        for (SysUserVO sysUserVO : salesUsers1) {
+        	Map<String, Object> map = new HashMap<String, Object>();
+        	map.put("value", sysUserVO.getId());
+        	map.put("text", sysUserVO.getUserName());
+        	salesUsers.add(map);
+		}
+        for (SysUserVO sysUserVO : frontEndUsers1) {
+        	Map<String, Object> map = new HashMap<String, Object>();
+        	map.put("value", sysUserVO.getId());
+        	map.put("text", sysUserVO.getUserName());
+        	frontEndUsers.add(map);
+        }
+        synMerchantById.setSalesUsers(salesUsers);
+        synMerchantById.setFrontEndUsers(frontEndUsers);
+		return new JsonResult(synMerchantById, true);
+	}
+	/**
+	 * 1.已上线的商户只能修改，服务开始时间、服务年限、门店赠送月份、上线状态
+	 * 2-未上线 不显示一键上线的按钮
+	 * 3.对于状态为 ： 2-商户调研 3-待分配前端顾问，
+	 *  上线，服务开始时间、服务年限、门店赠送月份、上线状态、销售人员、前端顾问。这些信息都必填。
+	 */
+	@RequestMapping(value = "updateSynMerchantForOnline", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult updateSynMerchantForOnline(@RequestBody SynMerchantVO synMerchantVO,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO sessionUser) {
+		Integer merchantId = synMerchantVO.getMerchantId();
+		SynMerchantVO synMerchantById = this.synMerchantService.getSynMerchantById(merchantId);
+		if ("1".equals(synMerchantById.getMerchantStatus())) { // 已上线
+			return this.updateMerchant(synMerchantVO);
+		} else {
+			//保存销售或前端负责人
+			this.sysUserMerchantService.saveSalesAndFrontEndPersion(synMerchantVO, sessionUser);
+			synMerchantVO.setMerchantStatus("1");
+			JsonResult updateMerchant = this.updateMerchant(synMerchantVO);
+			this.sysToDoListService.saveToDoListForClickOnline(merchantId, sessionUser);
+			return updateMerchant;
+		}
+	}
+
+	private JsonResult updateMerchant(SynMerchantVO synMerchantVO) {
+		synMerchantVO.setUpdateTime(new Date());
+		//计算服务结束时间
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR)+synMerchantVO.getServiceYear().intValue();
+		int month = calendar.get(Calendar.MONTH)+synMerchantVO.getFreeMonth().intValue(); //赠送月份取值范围0-5
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		if(month>=11){
+			year = year+1;
+			month = month%12;
+		}
+		calendar.set(year, month, day);
+		synMerchantVO.setServiceEndTime(calendar.getTime());
+		int count = synMerchantService.updateSynMerchant(synMerchantVO);
+		return new JsonResult(count > 0).setMessage(count > 0 ? "保存成功!" : "保存失败!");
+	}
+	
+	/**
+	 * 保存商户
+	 * [运营平台添加商户的时候会调用]
+	 */
+	@RequestMapping(value = "saveSynMerchant", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult saveSynMerchant(@RequestBody Map<String, Object> paramMap) {
+        String ciphertext = (String) paramMap.get("ciphertext");
+		String decrypt = Encrypt.getInstance().decrypt(ciphertext);
+		Map<String, Object> map = this.readValue(decrypt, Map.class);
+		int count = synMerchantService.saveSynMerchant(map);
+		return new JsonResult(count > 0).setMessage(count > 0 ? "保存成功!" : "保存失败!");
+	}
+
+    @RequestMapping(value = "getMerchantInfo", method = { RequestMethod.POST, RequestMethod.GET })
+    @ResponseBody
+    public JsonResult getMerchantInfo(Integer merchantId) {
+        SysSalesmanMerchantVO sysSalesmanMerchantVO = this.sysSalesmanMerchantService.getSysSalesmanMerchantByMerchantId(merchantId);
+        if (sysSalesmanMerchantVO != null) {
+            SysUserVO userVO = this.sysUserService.getSysUserById(sysSalesmanMerchantVO.getUserId());
+            SynMerchantVO synMerchantVO = synMerchantService.getSynMerchantById(merchantId);
+            if (userVO != null && synMerchantVO != null) {
+                return new JsonResult(true, "查询完成")
+                        .putData("merchantId", merchantId)
+                        .putData("salesman", userVO.getUserName())
+                        .putData("freeMonth", synMerchantVO.getFreeMonth())
+                        .putData("serviceYear", synMerchantVO.getServiceYear());
+            }
+        }
+        return new JsonResult(false, "不存在销售人员");
+    }
+
+	protected <E> E readValue(String json, Class clazz) {
+		ObjectMapper objectMapper = new ObjectMapper();
+		Object result = null;
+		try {
+			result = objectMapper.readValue(json.getBytes(), clazz);
+		} catch (IOException e) {
+			LOG.error("json解析错误,返回类型：" + clazz + ",json:" + json);
+			e.printStackTrace();
+		}
+		return (E) result;
+	}
+
+	/**
+	 * 上线前桥接，保存商户
+	 * 
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "saveSynMerchantForOnlineBefore", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult saveSynMerchantForOnlineBefore(@RequestBody Map<String, Object> map,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO user, HttpServletRequest request) throws Exception {
+		map.put("userId", user.getId());
+		map.put("moduleType", "syn");
+		boolean flag = synMerchantService.saveSynMerchantForOnlineBefore(map, request);
+		return new JsonResult(flag).setMessage(flag ? "保存成功!" : "保存失败!");
+	}
+	
+	/**
+	 * 保存商户信息
+	 * 
+	 */
+	@RequestMapping(value = "updateSynMerchantInfo", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult updateSynMerchantInfo(@RequestBody MktBrandInterviewVO mktBrandInterview,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO user, HttpServletRequest request) {
+		Assert.assertNotNull("商户ID不能为空", mktBrandInterview.getMerchantId());
+		return new JsonResult(this.mktBrandInterviewService.updateSynMerchantAndBrandInfo(mktBrandInterview, user), true);
+	}
+
+	/**
+	 * 修改商户
+	 * 
+	 */
+	@RequestMapping(value = "updateSynMerchant", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult updateSynMerchant(@RequestBody Map<String, Object> map,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO user) throws ParseException {
+		int count = synMerchantService.updateSynMerchant(map);
+		return new JsonResult(count > 0).setMessage(count > 0 ? "保存成功!" : "保存失败!");
+	}
+
+	/**
+	 * 列表显示 商户
+	 */
+	@RequestMapping(value = "listSynMerchants/{pageNumber}/{pageSize}", method = { RequestMethod.GET })
+	@ResponseBody
+	public JsonResult listSynMerchants(@PathVariable int pageNumber, @PathVariable int pageSize) {
+		Map<String, Object> paramerMap = new HashMap<String, Object>();
+		paramerMap.put("pageNumber", pageNumber);
+		paramerMap.put("pageSize", pageSize);
+		// Page<Map<String, Object>> pageList =
+		// synMerchantService.getSynMerchants(paramerMap);
+		// Map<String, Object> dataMap = new HashMap<String, Object>();
+		// dataMap.put(Constant.TOTAL_SIZE, pageList.getTotal());
+		// dataMap.put(Constant.ROWS, pageList.getResult());
+		// return new JsonResult(true).setData(dataMap);
+		return null;
+	}
+
+	/**
+	 * 删除 商户
+	 */
+	@RequestMapping(value = "deleteSynMerchant", method = {RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult deleteSynMerchant(@RequestBody SynMerchantVO synMerchantVO, HttpSession session) {
+		SysUserVO sessionUser = (SysUserVO)session.getAttribute(Constant.SESSION_USER);
+		junit.framework.Assert.assertNotNull("商户ID不能为空!", synMerchantVO.getMerchantId());
+		return this.synMerchantService.deleteMerchantAndCloseToDo(synMerchantVO, sessionUser);
+	}
+
+	/**
+	 * 根据用户ID查询自己所管理的商户的列表（前端咨询人员-商户、销售人员-商户、客服助理-商户）
+	 */
+	@RequestMapping(value = "getSynMerchantByUserId", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult getSynMerchantByUserId(@RequestParam(value = "userId", required = true) Integer userId) {
+		List<Map<String, Object>> list = synMerchantService.getSynMerchantByUserId(userId);
+		return new JsonResult(true).setMessage("查询成功").setData(list);
+	}
+
+	/**
+	 * 
+	 * @Description 查询商户
+	 * @return
+	 * @return JsonResult
+	 * @throws
+	 */
+	@RequestMapping(value = "getSynMerchantInfo", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult getSynMerchantInfo(@RequestParam(value = "merchantName", required = false) String merchantName) {
+		List<Map<String, Object>> merchantInfo = synMerchantService.getSynMerchantInfo(merchantName);
+		return new JsonResult(true).setMessage("查询成功").setData(merchantInfo);
+	}
+
+	// 查询当前登录用户所负责的商户
+	@RequestMapping(value = "getSynMerchantInfoByUserId", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult getSynMerchantInfoByUserId(@RequestParam(value = "merchantName", required = false) String merchantName,
+			HttpServletRequest request) {
+		SysUserVO user = (SysUserVO) request.getSession().getAttribute(Constant.SESSION_USER);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("merchantName", merchantName);
+		map.put("userId", user.getId());
+		List<Map<String, Object>> merchantInfo = synMerchantService.getSynMerchantInfoByUserId(map);
+		return new JsonResult(true).setMessage("查询成功").setData(merchantInfo);
+	}
+
+	// 查询当前登录用户所负责的商户
+	@RequestMapping(value = "getMerchantInfoByOrder", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult getMerchantInfoByOrder(@RequestBody Map<String, Object> paramMap) {
+		// TODO dictionary_type需要修改
+		paramMap.put("formatType", "00000001");// 业态类型编码
+		Integer merchantId = Integer.parseInt(paramMap.get("merchantId").toString());
+
+		boolean isInterview = mtkMktShopSurveyService.brandInterviewExists(merchantId);
+
+		// 看版上用户信息
+		ExternalMerchantInfoVO info = null;
+		if (isInterview) { // 存在
+			paramMap.put("isRelateInterview", true);
+		} else {
+			paramMap.put("isRelateInterview", false);
+		}
+		info = synMerchantService.getMerchantInfoByOrder(paramMap);
+		// 该商户开通的产品
+		JsonResult result = new JsonResult(true);
+		result.putData("filePath", DeviceTokenUtil.getPropertiesValue("merchantLogoPath"));
+		result.putData("merchantInfo", info == null ? new ExternalMerchantInfoVO() : info);
+		result.putData("productList", synMerchantProductService.getProdectsByMerchantId(merchantId));
+		if (info != null && !info.getMerchant_status().equals("0")) { // 商户未上线后的状态
+			// 商户短信余量查询
+			Map<String, Object> map = merchantSMSCountStatisticsService.getMerchantSMSCount(merchantId);
+			// 问题数量
+			long problemCount = sysProblemService.getSysProblemsCount(merchantId);
+			// 营销活动数量
+			List<Map<String, Object>> activityList = activeCrmService.getActiveExecutiving(merchantId);
+			// 卡余量
+			long cardCount = synMembershipCardService.getSynMembershipCardCount(merchantId);
+			// 负责该商户的用户
+			SysUserMerchantVO sysUserMerchant = new SysUserMerchantVO();
+			sysUserMerchant.setMerchantId(merchantId);
+			List<SysUserMerchantVO> userMerchantList = sysUserMerchantService.getSysUserMerchants(sysUserMerchant);
+			// 销售服务人
+			SysSalesmanMerchantVO sale = new SysSalesmanMerchantVO();
+			sale.setMerchantId(merchantId);
+			List<SysSalesmanMerchantVO> saleList = sysSalesmanMerchantService.getSysSalesmanMerchants(sale);
+			// 前端服务人
+			SysAssistantMerchantVO assist = new SysAssistantMerchantVO();
+			assist.setMerchantId(merchantId);
+			List<SysAssistantMerchantVO> assistList = sysAssistantMerchantService.getSysAssistantMerchants(assist);
+
+			result.putData("smsCount", map != null && map.size() > 0 ? map.get("smsbalance") : 0);
+			result.putData("problemCount", problemCount);
+			result.putData("activityCount", activityList != null && activityList.size() > 0 ? activityList.size() : 0);
+			result.putData("cardCount", cardCount);
+			result.putData("userMerchantList", userMerchantList);
+			result.putData("saleMerchantList", saleList);
+			result.putData("assistMerchantList", assistList);
+		}
+		return result;
+	}
+	/**
+	 * 上传通用接口
+	 * @flag 1: 商户logo
+	 */
+	@RequestMapping(value = "uploadCommonMethod", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult uploadCommonMethod(@RequestParam MultipartFile myfile, String flag,
+				 @RequestParam(required=false) Integer merchantId,
+				 HttpServletRequest request) throws IOException {
+		
+		String realPath = request.getSession().getServletContext().getRealPath("/");
+		//在拦截器中调用request存储sessionUser
+		SysUserVO sessionUser = (SysUserVO)request.getAttribute(Constant.SESSION_USER);//falsh 方式上传
+		if (sessionUser == null) {
+			sessionUser = (SysUserVO) request.getSession().getAttribute(Constant.SESSION_USER);
+		}
+		return this.synMerchantService.uploadCommonMethod(myfile, realPath, null, flag, merchantId, sessionUser);
+	}
+	
+	@RequestMapping(value = "uploadLogo", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public Object uploadLogo(@RequestParam(value = "myfiles", required = false) MultipartFile[] myfiles, Integer merchantId,
+			HttpServletRequest request) throws IOException {
+		return synMerchantService.uploadLogo(myfiles, merchantId, request);
+	}
+
+	@RequestMapping(value = "saveLogo", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public Object saveLogo(@RequestBody Map<String, Object> paramMap, HttpServletRequest request,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO user) throws IOException {
+		paramMap.put("userId", user.getId());
+		paramMap.put("moduleType", "syn");
+		return synMerchantService.saveLogo(paramMap, request);
+	}
+
+	@RequestMapping(value = "updateLogo", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public Object updateLogo(@RequestBody Map<String, Object> paramMap, HttpServletRequest request,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO user) throws IOException {
+		paramMap.put("userId", user.getId());
+		return synMerchantService.updateLogo(paramMap, request);
+	}
+
+	@RequestMapping(value = "getMerchantLogo", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult getMerchantLogo(Integer merchantId) throws IOException {
+		Map<String, Object> map = synMerchantService.getMerchantLogo(merchantId);
+		return new JsonResult(true).setMessage("查询成功").setData(map);
+	}
+
+	/**
+	 * 上线后，商户录入（非运营平台同步的）
+	 * 
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "saveSynMerchantExtend", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult saveSynMerchantExtend(@RequestBody Map<String, Object> map,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO user, HttpServletRequest request) throws Exception {
+		map.put("userId", user.getId());
+		map.put("moduleType", "syn");
+		boolean flag = false;
+		try {
+			flag = synMerchantService.saveSynMerchantExtend(map, request);
+		} catch (IllegalArgumentException e) {
+			return new JsonResult(flag).setMessage(e.getMessage());
+		}
+		return new JsonResult(flag).setMessage(flag ? "保存成功!" : "保存失败!");
+	}
+	
+	/**
+	 * 测试方法 从运营平台同步一条数据
+	 * 需要更改  MerchantDaoImpl类中的方法 getMerchantsForSurvey() ， 得到门店的数据
+	 * 
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "saveTestMerchant", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult saveTestMerchant(@RequestBody Map<String, Object> map) {
+		Map<String, Object> saveTestMerchant = this.synMerchantService.saveTestMerchant();
+		return new JsonResult(saveTestMerchant, true);
+	}
+	
+	@Resource MktBrandInterviewService mktBrandInterviewService;
+	/**
+	 * 上线后服务看板 修改商户信息加载弹层
+	 * 
+	 * @throws ParseException
+	 */
+	@RequestMapping(value = "loadMerchantInfo", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public JsonResult loadMerchantInfo(@RequestBody SynMerchantVO synMerchant) {
+		return this.mktBrandInterviewService.loadMerchantInfo(synMerchant);
+	}
+}

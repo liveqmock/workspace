@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesTrainPlanDao">
+	<resultMap id="FesTrainPlan" type="com.yazuo.erp.fes.vo.FesTrainPlanVO">
+    	<id property="id" column="id"/>
+    	<result property="processId" column="process_id"/>
+    	<result property="beginTime" column="begin_time"/>
+    	<result property="endTime" column="end_time"/>
+    	<result property="address" column="address"/>
+    	<result property="trainer" column="trainer"/>
+    	<result property="content" column="content"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="festrainplanColumns">
+	    <![CDATA[
+		id,process_id,begin_time,end_time,address,trainer,content,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveFesTrainPlan" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： process_id,begin_time,end_time,address,trainer,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_train_plan (
+        	 <if test="processId!=null ">process_id,</if>
+        	 <if test="beginTime!=null ">begin_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="address!=null and address!=''">address,</if>
+        	 <if test="trainer!=null and trainer!=''">trainer,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="processId!=null ">#{processId},</if>
+       	    <if test="beginTime!=null ">#{beginTime},</if>
+       	    <if test="endTime!=null ">#{endTime},</if>
+       	    <if test="address!=null and address!=''">#{address},</if>
+       	    <if test="trainer!=null and trainer!=''">#{trainer},</if>
+       	    <if test="content!=null and content!=''">#{content},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertFesTrainPlans" parameterType="map">
+	 <!--不允许为空的字段： process_id,begin_time,end_time,address,trainer,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_train_plan (
+        	 <if test="processId!=null ">process_id,</if>
+        	 <if test="beginTime!=null ">begin_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="address!=null and address!=''">address,</if>
+        	 <if test="trainer!=null and trainer!=''">trainer,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="processId!=null ">#{t.processId},</if>
+          <if test="beginTime!=null ">#{t.beginTime},</if>
+          <if test="endTime!=null ">#{t.endTime},</if>
+          <if test="address!=null and address!=''">#{t.address},</if>
+          <if test="trainer!=null and trainer!=''">#{t.trainer},</if>
+          <if test="content!=null and content!=''">#{t.content},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesTrainPlan">
+        UPDATE fes.fes_train_plan 
+ 		  <set>
+	        <if test="processId!=null ">process_id = #{processId} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="address!=null and address!=''">address = #{address} ,</if>
+	        <if test="trainer!=null and trainer!=''">trainer = #{trainer} ,</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesTrainPlansToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_train_plan 
+ 		  <set>
+	        <if test="processId!=null ">process_id = #{t.processId} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{t.beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{t.endTime} ,</if>
+	        <if test="address!=null and address!=''">address = #{t.address} ,</if>
+	        <if test="trainer!=null and trainer!=''">trainer = #{t.trainer} ,</if>
+	        <if test="content!=null and content!=''">content = #{t.content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesTrainPlansToSameVals" parameterType="map">
+        UPDATE fes.fes_train_plan 
+ 		  <set>
+	        <if test="processId!=null ">process_id = #{processId} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="address!=null and address!=''">address = #{address} ,</if>
+	        <if test="trainer!=null and trainer!=''">trainer = #{trainer} ,</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesTrainPlanById">
+    <![CDATA[
+        DELETE FROM fes.fes_train_plan WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesTrainPlanByIds" parameterType="list">
+        DELETE FROM fes.fes_train_plan WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesTrainPlanById" resultMap="FesTrainPlan">
+		SELECT <include refid="festrainplanColumns" />
+		    FROM fes.fes_train_plan 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getFesTrainPlans" resultMap="FesTrainPlan">
+		SELECT <include refid="festrainplanColumns" />
+		    FROM fes.fes_train_plan  
+	    <include refid="festrainplan_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getFesTrainPlansMap" resultType="map">
+		SELECT <include refid="festrainplanColumns" />
+	    <![CDATA[
+		    FROM fes.fes_train_plan  
+	    ]]>
+	    <include refid="festrainplan_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="festrainplan_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="processId!=null ">AND process_id = #{processId}</if>
+		   <if test="beginTime!=null ">AND begin_time >= #{beginTime}</if>
+		   <if test="beginTime!=null ">AND begin_time &lt;= #{beginTime}</if>
+		   <if test="endTime!=null ">AND end_time >= #{endTime}</if>
+		   <if test="endTime!=null ">AND end_time &lt;= #{endTime}</if>
+	       <if test="address!=null and address!=''">AND address = #{address}</if>
+	       <if test="trainer!=null and trainer!=''">AND trainer = #{trainer}</if>
+	       <if test="content!=null and content!=''">AND content = #{content}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getFesTrainPlanCount" resultType="long">
+        SELECT count(*) FROM fes.fes_train_plan 
+		<include refid="festrainplan_findPage_where"/>    
+    </select>
+    
+</mapper>

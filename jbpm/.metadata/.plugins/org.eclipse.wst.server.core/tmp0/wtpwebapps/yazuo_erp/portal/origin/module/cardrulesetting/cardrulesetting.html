@@ -1,0 +1,238 @@
+<div class="module-cardrulesetting-dialog" ms-widget="dialog,$,$settingDialogOpts">
+    <form action="javascript:;" ms-widget="form,$,$settingFormOpts">
+        <ul class="module-cardrulesetting-nav-list fn-clear">
+            <li class="module-cardrulesetting-nav-item fn-left"
+                data-panel-name="fans"
+                ms-class-1="state-active:activePanel == 'fans'"
+                ms-click="switchPanel"><a href="javascript:;">粉丝会员</a></li>
+            <li class="module-cardrulesetting-nav-item fn-left"
+                data-panel-name="integral"
+                ms-class-1="state-active:activePanel == 'integral'"
+                ms-click="switchPanel"><a href="javascript:;">积分会员</a></li>
+            <li class="module-cardrulesetting-nav-item fn-left"
+                data-panel-name="store"
+                ms-class-1="state-active:activePanel == 'store'"
+                ms-click="switchPanel"><a href="javascript:;">储值会员</a></li>
+            <li class="module-cardrulesetting-nav-item fn-left"
+                data-panel-name="integralStore"
+                ms-class-1="state-active:activePanel == 'integralStore'"
+                ms-click="switchPanel"><a href="javascript:;">积分储值会员</a></li>
+        </ul>
+        <ul class="module-cardrulesetting-panel-list">
+            <!-- 粉丝会员 -->
+            <li class="fans-panel-item module-cardrulesetting-panel-item" ms-visible="activePanel == 'fans'">
+                <div class="card-list-wrapper" ms-visible="fansCardList.length">
+                    <ul class="fans-card-list">
+                        <li class="fans-card-item card-item" ms-repeat="fansCardList" ms-data-card-id="el.id">
+                            <div class="f-field f-field-last fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>卡名称：</label>
+                                <div class="ff-value">
+                                    <div class="ff-value-box ff-value-text">
+                                        <input type="text" class="card-name input-text" placeholder="如：电子卡" ms-value="el.cardName" />
+                                    </div>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </div>
+                            <span class="card-item-close-h icon-close iconfont" ms-click="removeCardItem" data-panel-name="fans">&#10005;</span>
+                        </li>
+                    </ul>
+                    <div class="panel-action">
+                        <button type="button" class="add-more-card-btn simple-btn" ms-click="_clickAddCard" data-panel-name="fans">增加粉丝会员卡</button>
+                    </div>
+                </div>
+                <div class="card-list-empty-tip" ms-visible="!fansCardList.length">
+                    还没有粉丝会员卡，点击<a href="javascript:;" ms-click="_clickAddCard" data-panel-name="fans">添加粉丝会员卡</a>
+                </div>
+            </li>
+            <!-- 积分会员 -->
+            <li class="module-cardrulesetting-panel-item" ms-visible="activePanel == 'integral'">
+                <div class="card-list-wrapper" ms-visible="integralCardList.length">
+                    <ul class="integral-card-list">
+                        <li class="integral-card-item card-item" ms-repeat="integralCardList" ms-data-card-id="el.id">
+                            <div class="card-info-field f-field fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>卡名称：</label>
+                                <div class="ff-value">
+                                    <div class="ff-value-box ff-value-text">
+                                        <input type="text" class="card-name input-text" placeholder="如：积分卡" ms-value="el.cardName" />，每张&nbsp;<input type="text" class="card-price input-text" ms-value="el.cardPrice" />&nbsp;元
+                                    </div>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </div>
+                            <div class="rebate-info-field f-field fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>消费返点：</label>
+                                <div class="ff-value">
+                                    <div class="ff-value-box ff-value-text">
+                                        <input type="text" class="consume-rebate input-text" placeholder="请输入现金消费返点率" ms-value="el.consumeRebate" ms-data-consume-rebate-id="el.consumeRebateId" />&nbsp;%积分
+                                    </div>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </div>
+                            <span class="card-item-close-h icon-close" ms-click="removeCardItem" data-panel-name="integral">&#10005;</span>
+                        </li>
+                    </ul>
+                    <div class="panel-action">
+                        <button type="button" class="add-more-card-btn simple-btn" ms-click="_clickAddCard" data-panel-name="integral">增加积分会员卡</button>
+                    </div>
+                </div>
+                <div class="card-list-empty-tip" ms-visible="!integralCardList.length">
+                    还没有积分会员卡，点击<a href="javascript:;" ms-click="_clickAddCard" data-panel-name="integral">添加积分会员卡</a>
+                </div>
+            </li>
+            <!-- 储值会员 -->
+            <li class="module-cardrulesetting-panel-item" ms-visible="activePanel == 'store'">
+                <div class="card-list-wrapper" ms-visible="storeCardList.length">
+                    <ul class="store-card-list">
+                        <li class="store-card-item card-item" ms-repeat="storeCardList" ms-data-card-id="el.id">
+                            <div class="card-info-field f-field fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>卡名称：</label>
+                                <div class="ff-value">
+                                    <div class="ff-value-box ff-value-text">
+                                        <input type="text" class="card-name input-text" placeholder="如：积分卡" ms-value="el.cardName" />
+                                    </div>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </div>
+                            <div class="rebate-info-field f-field fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>储值返点：</label>
+                                <div class="ff-value ff-value-text">
+                                    <!-- 返点类型 start -->
+                                    <div class="rebate-type-wrapper" ms-attr-id="el.$assistId">
+                                        <div class="rebate-type-inner fn-hide" ms-skip="1">
+                                             <span class="rebate-type" ms-widget="select,$,$rebateTypeOpts"></span>
+                                        </div>
+                                    </div>
+                                    <!-- 返点类型 end -->
+                                    <!-- 金额段 start -->
+                                    <div class="amount-range-wrapper" ms-visible="el.showAmountRange">
+                                        <ul class="card-rebate-list">
+                                            <li class="card-rebate-item"
+                                                ms-repeat="el.rangeRebate"
+                                                ms-attr-id="el.$assistId"
+                                                ms-data-rule-id="el.id">
+                                                <div class="card-rebate-item-inner fn-hide" ms-skip="1">
+                                                    <div class="rebate-type-field">
+                                                        <input type="text" class="begin-amount input-text" ms-value="beginAmount" />&nbsp;-&nbsp;<input type="text" class="end-amount input-text" ms-value="endAmount" />&nbsp;元
+                                                    </div>
+                                                    <div class="rebate-setting-field">
+                                                        <span class="rebate-setting" ms-widget="select,$,$rebateSettingOpts"></span>&nbsp;返&nbsp;<input type="text" class="rebate-value input-text" ms-value="rebateValue" />&nbsp;<span class="rebate-unit" ms-widget="select,$,$rebateUnitOpts"></span>
+                                                    </div>
+                                                </div>
+                                                <span class="close-h icon-close iconfont"
+                                                      data-panel-name="store"
+                                                      ms-visible="$index != 0"
+                                                      ms-click="_clickRemoveRebate">&#10005;</span>
+                                            </li>
+                                        </ul>
+                                        <a href="javascript:;" class="add-more-rebate-h" ms-click="_clickAddRebate" data-panel-name="store">增加储值返点规则</a>
+                                    </div>
+                                    <!-- 金额段 end -->
+                                    <!-- 固定返点 start -->
+                                    <div class="amount-fixed-wrapper"
+                                         ms-attr-id="el.fixedRebate.$assistId"
+                                         ms-data-rule-id="el.fixedRebate.id"
+                                         ms-visible="!el.showAmountRange">
+                                        <div class="amount-fixed-inner fn-hide" ms-skip="1">
+                                            <span class="rebate-setting" ms-widget="select,$,$rebateSettingOpts"></span>&nbsp;返&nbsp;<input type="text" class="rebate-value input-text" ms-duplex="rebateValue" />&nbsp;<span class="rebate-unit" ms-widget="select,$,$rebateUnitOpts"></span>
+                                        </div>
+                                    </div>
+                                    <!-- 固定返点 end -->
+                                    <div class="ff-value-tip"></div>
+
+                                </div>
+                            </div>
+                            <span class="card-item-close-h icon-close iconfont" ms-click="removeCardItem" data-panel-name="store">&#10005;</span>
+                        </li>
+                    </ul>
+                    <div class="panel-action">
+                        <button type="button" class="add-more-card-btn simple-btn" ms-click="_clickAddCard" data-panel-name="store">增加积分会员卡</button>
+                    </div>
+                </div>
+                <div class="card-list-empty-tip" ms-visible="!storeCardList.length">
+                    还没有储值会员卡，点击<a href="javascript:;" ms-click="_clickAddCard" data-panel-name="store">添加储值会员卡</a>
+                </div>
+            </li>
+            <!-- 积分储值会员 -->
+            <li class="module-cardrulesetting-panel-item" ms-visible="activePanel == 'integralStore'">
+                <div class="card-list-wrapper" ms-visible="integralStoreCardList.length">
+                    <ul class="integral-store-card-list">
+                        <li class="integral-store-card-item card-item" ms-repeat="integralStoreCardList" ms-data-card-id="el.id">
+                            <div class="card-info-field f-field fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>卡名称：</label>
+                                <div class="ff-value">
+                                    <div class="ff-value-box ff-value-text">
+                                        <input type="text" class="card-name input-text" placeholder="如：积分卡" ms-value="el.cardName" />，每张&nbsp;<input type="text" class="card-price input-text" ms-value="el.cardPrice" />&nbsp;元
+                                    </div>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </div>
+                            <div class="consume-info-field f-field fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>消费返点：</label>
+                                <div class="ff-value">
+                                    <div class="ff-value-box ff-value-text">
+                                        <input type="text" class="consume-rebate input-text" placeholder="请输入现金消费返点率" ms-value="el.consumeRebate" ms-data-consume-rebate-id="el.consumeRebateId" />&nbsp;%积分
+                                    </div>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </div>
+                            <div class="rebate-info-field f-field fn-clear">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>储值返点：</label>
+                                <div class="ff-value ff-value-text">
+                                    <!-- 返点类型 start -->
+                                    <div class="rebate-type-wrapper" ms-attr-id="el.$assistId">
+                                        <div class="rebate-type-inner fn-hide" ms-skip="1">
+                                             <span class="rebate-type" ms-widget="select,$,$rebateTypeOpts"></span>
+                                        </div>
+                                    </div>
+                                    <!-- 返点类型 end -->
+                                    <!-- 金额段 start -->
+                                    <div class="amount-range-wrapper" ms-visible="el.showAmountRange">
+                                        <ul class="card-rebate-list">
+                                            <li class="card-rebate-item"
+                                                ms-repeat="el.rangeRebate"
+                                                ms-attr-id="el.$assistId"
+                                                ms-data-rule-id="el.id">
+                                                <div class="card-rebate-item-inner fn-hide" ms-skip="1">
+                                                    <div class="rebate-type-field">
+                                                        <input type="text" class="begin-amount input-text" ms-value="beginAmount" />&nbsp;-&nbsp;<input type="text" class="end-amount input-text" ms-value="endAmount" />&nbsp;元
+                                                    </div>
+                                                    <div class="rebate-setting-field">
+                                                        <span class="rebate-setting" ms-widget="select,$,$rebateSettingOpts"></span>&nbsp;返&nbsp;<input type="text" class="rebate-value input-text" ms-value="rebateValue" />&nbsp;<span class="rebate-unit" ms-widget="select,$,$rebateUnitOpts"></span>
+                                                    </div>
+                                                </div>
+                                                <span class="close-h icon-close iconfont"
+                                                      data-panel-name="integralStore"
+                                                      ms-visible="$index != 0"
+                                                      ms-click="_clickRemoveRebate">&#10005;</span>
+                                            </li>
+                                        </ul>
+                                        <a href="javascript:;" class="add-more-rebate-h" ms-click="_clickAddRebate" data-panel-name="integralStore">增加储值返点规则</a>
+                                    </div>
+                                    <!-- 金额段 end -->
+                                    <!-- 固定返点 start -->
+                                    <div class="amount-fixed-wrapper"
+                                         ms-attr-id="el.fixedRebate.$assistId"
+                                         ms-data-rule-id="el.fixedRebate.id"
+                                         ms-visible="!el.showAmountRange">
+                                        <div class="amount-fixed-inner fn-hide" ms-skip="1">
+                                            <span class="rebate-setting" ms-widget="select,$,$rebateSettingOpts"></span>&nbsp;返&nbsp;<input type="text" class="rebate-value input-text" ms-duplex="rebateValue" />&nbsp;<span class="rebate-unit" ms-widget="select,$,$rebateUnitOpts"></span>
+                                        </div>
+                                    </div>
+                                    <!-- 固定返点 end -->
+                                    <div class="ff-value-tip"></div>
+
+                                </div>
+                            </div>
+                            <span class="card-item-close-h icon-close iconfont" ms-click="removeCardItem" data-panel-name="integralStore">&#10005;</span>
+                        </li>
+                    </ul>
+                    <div class="panel-action">
+                        <button type="button" class="add-more-card-btn simple-btn" ms-click="_clickAddCard" data-panel-name="integralStore">增加积分会员卡</button>
+                    </div>
+                </div>
+                <div class="card-list-empty-tip" ms-visible="!integralStoreCardList.length">
+                    还没有积分储值会员卡，点击<a href="javascript:;" ms-click="_clickAddCard" data-panel-name="integralStore">添加积分储值会员卡</a>
+                </div>
+            </li>
+        </ul>
+    </form>
+</div>

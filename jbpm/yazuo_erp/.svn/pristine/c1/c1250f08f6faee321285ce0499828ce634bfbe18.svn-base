@@ -1,0 +1,15 @@
+<div class="page-bd page-bd-form">
+    <div class="title">
+        <p><span class="schedule" ms-widget="select,$,$yearSelectOpts"></span></p>
+        <p><span class="schedule" ms-widget="select,$,$monthSelectOpts"></span></p>
+        <p><input type="text" ms-duplex="keyword" placeholder="请输入商户名称" class="input-text"></p>
+        <p><span style="width: 180px;" class="schedule" ms-widget="select,$,$fdSelectOpts"></span></p>
+        <p><span style="width: 180px;" class="schedule" ms-widget="select,$,$checkSelectOpts"></span></p>
+        <p><span class="schedule" ms-widget="select,$,$statusSelectOpts"></span></p>
+        <p><input type="button" value="查询" class="main-btn" ms-click="search"></p>
+    </div>
+    <div class="max-tab-con">
+        <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+    </div>
+</div>
+

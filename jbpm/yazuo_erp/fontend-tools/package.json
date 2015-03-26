@@ -1,0 +1,15 @@
+{
+    "name": "erp",
+    "version": "0.0.0",
+    "description": "development",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+        "glob":"latest",
+        "watch": "latest"
+    },
+    "author": "13",
+    "license": "ISC"
+}

@@ -1,0 +1,107 @@
+<!-- 发送对象选择框 start -->
+<div class="module-targetselector-dialog select-list-dialog ui-hidden"
+    ms-widget="dialog,$,$dialogOpts">
+    <form class="tmpl-form" ms-widget="form,$,$formOpts"
+        action="javascript:;">
+        <div class="f-body">
+            <div class="field-box">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left">选择目标群体：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="mn-radio target-type"
+                                data-name="merchantContacter"
+                                ms-click="switchTargetType"
+                                ms-class="mn-radio-state-selected: currentTargetType == 'merchantContacter'">商户联系人<i class="icon-tip" ms-visible="merchantContacterSelected">&#xe604;</i></span>&nbsp;&nbsp;<span 
+                                data-name="merchantManager"
+                                ms-click="switchTargetType"
+                                ms-class="mn-radio-state-selected: currentTargetType == 'merchantManager'"
+                                class="mn-radio target-type">商户负责人<i class="icon-tip" ms-visible="merchantManagerSelected">&#xe604;</i></span>&nbsp;&nbsp;<span class="mn-radio target-type"
+                                data-name="employee"
+                                ms-click="switchTargetType"
+                                ms-class="mn-radio-state-selected: currentTargetType == 'employee'">雅座员工<i class="icon-tip" ms-visible="employeeSelected">&#xe604;</i></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="target-box ff-value-text">
+                    <div class="merchant-contacter" ms-visible="currentTargetType === 'merchantContacter'">
+                        <ul class="contacter-list">
+                            <li class="contacter-item"
+                                ms-repeat="contacterList">
+                                <span class="label-for"><input type="checkbox" name="contacter" ms-value="el.value" ms-duplex-radio="el.isSelected" ms-click="changeContacter" />&nbsp;<label>{{el.text}}</label></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="merchant-manager" ms-visible="currentTargetType === 'merchantManager'">
+                        <ul class="manager-list">
+                            <li class="manager-item"
+                                ms-repeat="managerList">
+                                <span class="label-for"><input type="checkbox" name="manager" ms-value="el.value" ms-duplex-radio="el.isSelected" ms-click="changeManager" />&nbsp;<label>{{el.text}}</label></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="employee" ms-visible="currentTargetType === 'employee'">
+                        <div class="employee-tbar"><span class="employee-type" ms-widget="select,$,$employeeTypeOpts"></span></div>
+                        <div class="employee-body">
+                            <div class="employee-department" ms-visible="currentEmployeeType === 'department'">
+                                <div class="department-tree" ms-widget="tree,$,$departmentOpts"></div>
+                            </div>
+                            <div class="employee-position" ms-visible="currentEmployeeType === 'position'">
+                                <div class="employee-sub-tbar">
+                                    <input type="text" class="input-text search-position" placeholder="请输入职位名称" ms-duplex="searchPositionText"/>&nbsp;&nbsp;<button type="button" class="main-btn search-btn" ms-click="filterPosition">搜索</button>
+                                </div>
+                                <div class="list-wrapper">
+                                    <ul class="position-list">
+                                        <li class="position-item select-item fn-clear"
+                                        ms-click="clickPositionItem"
+                                        ms-data-value="el.value"
+                                        ms-repeat="positionList"
+                                        ms-class-1="even: $index % 2 === 0"
+                                        ms-class-2="odd: $index % 2 !== 0"
+                                        ms-if-loop="el.isVisible">
+                                        <span class="position-name item-cell fn-left">{{el.text}}</span>
+                                        <i class="is-selected fn-right" ms-if="el.isSelected">&#xe604;</i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="employee-user" ms-visible="currentEmployeeType === 'user'">
+                                <div class="employee-sub-tbar">
+                                    <input type="text" class="input-text search-user" placeholder="请输入员工姓名或手机号" ms-duplex="searchUserText"/>&nbsp;&nbsp;<button type="button" class="main-btn search-btn" ms-click="filterUser">搜索</button>
+                                </div>
+                                <div class="list-wrapper">
+                                    <ul class="user-list">
+                                        <li class="user-item select-item fn-clear"
+                                        ms-click="clickUserItem"
+                                        ms-data-value="el.value"
+                                        ms-repeat="userList"
+                                        ms-class-1="even: $index % 2 === 0"
+                                        ms-class-2="odd: $index % 2 !== 0"
+                                        ms-if-loop="el.isVisible">
+                                        <span class="user-name item-cell fn-left">{{el.text}}</span>
+                                        <span class="user-tel item-cell fn-left">{{el.tel}}</span>
+                                        <i class="is-selected fn-right" ms-if="el.isSelected">&#xe604;</i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field-box">
+                <div class="f-field">
+                    <label class="target-selected-label ff-label">选择结果：</label>
+                    <div class="target-selected-value ff-value">
+                        <div class="ff-value-box">
+                            <textarea class="target-selected" readonly="readonly" ms-value="targetSelectedText"></textarea>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 发送对象选择框 end -->

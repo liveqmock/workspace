@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraPptDtlDao">
+
+	<resultMap id="TraPptDtl" type="com.yazuo.erp.train.vo.TraPptDtlVO">
+        <result property="id" column="id"/>
+        <result property="pptId" column="ppt_id"/>
+        <result property="sort" column="sort"/>
+        <result property="pptDtlName" column="ppt_dtl_name"/>
+        <result property="originalFileName" column="original_file_name"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="trapptdtlColumns">
+	    <![CDATA[
+		id,ppt_id,sort,ppt_dtl_name,original_file_name,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraPptDtl">
+    <![CDATA[
+        INSERT INTO train.tra_ppt_dtl (
+        		ppt_id ,
+        		sort ,
+        		ppt_dtl_name ,
+        		original_file_name,
+        		insert_by ,
+        		insert_time 
+        ) VALUES (
+        	#{pptId} ,
+        	#{sort} ,
+        	#{pptDtlName} ,
+        	#{originalFileName},
+        	#{insertBy} ,
+        	#{insertTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraPptDtl" >
+    <![CDATA[
+        UPDATE train.tra_ppt_dtl SET
+	        ppt_id = #{pptId} ,
+	        sort = #{sort} ,
+	        ppt_dtl_name = #{pptDtlName} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraPptDtl">
+    <![CDATA[
+        DELETE FROM train.tra_ppt_dtl WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraPptDtlById" resultMap="TraPptDtl">
+		SELECT <include refid="trapptdtlColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt_dtl 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraPptDtls" resultMap="TraPptDtl" parameterType="map">
+		SELECT <include refid="trapptdtlColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt_dtl  
+	    ]]>
+	    <include refid="trapptdtl_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraPptDtlsMap" resultType="map" parameterType="map">
+		SELECT <include refid="trapptdtlColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt_dtl  
+	    ]]>
+	    <include refid="trapptdtl_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<select id="getAllTraPptDtls" resultType="map" parameterType="map">
+		SELECT <include refid="trapptdtlColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt_dtl  
+	    ]]>
+	    <include refid="trapptdtl_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="trapptdtl_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="pptId!=null">
+				AND ppt_id = #{pptId}
+			</if>
+	       <if test="sort!=null">
+				AND sort = #{sort}
+			</if>
+	       <if test="pptDtlName!=null">
+				AND ppt_dtl_name = #{pptDtlName}
+			</if>
+			<if test="originalFileName!=null">
+				AND original_file_name = #{originalFileName}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraPptDtlCount" resultType="long">
+        SELECT count(*) FROM train.tra_ppt_dtl 
+		<include refid="trapptdtl_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraPptDtlPage" resultMap="TraPptDtl">
+    	SELECT <include refid="trapptdtlColumns" />
+	    FROM train.tra_ppt_dtl 
+		<include refid="trapptdtl_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+
+	<!-- 根据试卷ID查找PPT的详情信息 -->
+    <select id="queryPptDtlByPaperId" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			pd. ID,
+			pd.ppt_id,
+			pd.sort,
+			pd.ppt_dtl_name,
+			pd.original_file_name,
+			pd.insert_by,
+			pd.insert_time
+		FROM
+			train.tra_ppt_dtl pd
+		WHERE
+			pd.ppt_id =(SELECT ed.ppt_id FROM train.tra_exam_dtl ed WHERE ed.paper_id = #{paperId,jdbcType=INTEGER})
+    </select>
+    
+    <insert id="batchSaveTraPptDtl" parameterType="list" useGeneratedKeys="true">
+       INSERT INTO train.tra_ppt_dtl (
+        		ppt_id ,
+        		sort ,
+        		ppt_dtl_name ,
+        		original_file_name,
+        		insert_by ,
+        		insert_time 
+        )VALUES
+      <foreach collection="list" item="t" index="index" open="" close="" separator=",">
+	       (#{t.pptId},#{t.sort},#{t.pptDtlName},#{t.originalFileName},#{t.insertBy},now())
+	    </foreach>
+	</insert>
+	
+	<delete id="batchDeleteTraPptDtlByPptIdAndPptDtlName" parameterType="list">
+        <foreach collection="list" item="t" index="index" open="" close="" separator=";">
+	         DELETE FROM train.tra_ppt_dtl WHERE
+		        ppt_id = #{t.pptId,jdbcType=INTEGER}
+		        AND ppt_dtl_name =  #{t.pptDtlName}
+	     </foreach>
+	</delete>
+	
+	<!-- 根据试卷ID查找PPT的详情信息 -->
+    <select id="getPptDtlByPptId" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			pd. ID,
+			pd.ppt_id,
+			pd.sort,
+			pd.ppt_dtl_name,
+			pd.original_file_name,
+			pd.insert_by,
+			pd.insert_time
+		FROM
+			train.tra_ppt_dtl pd
+		WHERE
+			pd.ppt_id = #{pptId,jdbcType=INTEGER}
+    </select>
+
+    <select id="getPptDtlVOsByPptId" resultMap="TraPptDtl" parameterType="int">
+        SELECT <include refid="trapptdtlColumns"/>
+        FROM train.tra_ppt_dtl
+        WHERE ppt_id=#{pptId}
+    </select>
+    
+    <!-- 根据课件ID批量删除 tra_ppt_dtl PPT详情 -->
+	<delete id="batchDeleteTraPptDtlByCoursewareId" parameterType="list">
+		DELETE from train.tra_ppt_dtl p
+		where p.ppt_id in (
+			select q.ppt_id from train.tra_question q
+			where q.courseware_id in 
+				<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+					#{t,jdbcType=INTEGER}
+				</foreach>
+			and q.question_type='3'
+		)
+	</delete>
+	
+	<!-- 根据试题ID列表批量删除 tra_ppt_dtl PPT详情 -->
+	<delete id="batchDeleteTraPptDtlByQuestionIdList" parameterType="list">
+		DELETE
+		FROM
+			train.tra_ppt_dtl P
+		WHERE
+			P .ppt_id IN(
+				SELECT q.ppt_id 
+				FROM train.tra_question q 
+				WHERE 1=1 
+				AND q. ID IN
+				<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+					#{t,jdbcType=INTEGER}
+				</foreach>
+				AND q.question_type = '3'
+			)
+	</delete>
+	
+	<!-- 根据课件ID列表查询PPT图片集 -->
+    <select id="queryPptDtlByCoursewareIdlist" resultType="map" parameterType="list">
+		SELECT
+			p.id,
+			p.ppt_id,
+			p.sort,
+			p.ppt_dtl_name,
+			p.original_file_name
+		FROM
+			train.tra_ppt_dtl P
+		WHERE
+			P .ppt_id IN(
+				SELECT q.ppt_id FROM train.tra_question q WHERE q.courseware_id IN
+				<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+		         	#{t,jdbcType=INTEGER}
+		     	</foreach>
+				AND q.question_type = '3'
+			)
+    </select>
+    
+	<!-- 根据试题ID列表查询PPT图片集 -->
+    <select id="queryPptDtlByQuestionIdList" resultType="map" parameterType="list">
+		SELECT
+			p.id,
+			p.ppt_id,
+			p.sort,
+			p.ppt_dtl_name,
+			p.original_file_name
+		FROM
+			train.tra_ppt_dtl P
+		WHERE
+			P .ppt_id IN(
+				SELECT q.ppt_id FROM train.tra_question q WHERE q.id IN
+				<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+		         	#{t,jdbcType=INTEGER}
+		     	</foreach>
+				AND q.question_type = '3'
+			)
+    </select>	
+</mapper>
+

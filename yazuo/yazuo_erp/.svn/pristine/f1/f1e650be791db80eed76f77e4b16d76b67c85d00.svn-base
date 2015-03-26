@@ -1,0 +1,34 @@
+<div class="node-tree fn-clear">
+    <div class="module-knowledgecate-action-dialog ui-hidden" ms-widget="dialog,$,$dialogOpts">
+        <form class="action-form" ms-widget="form,$,$formOpts" action="javascript:;">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>分类名称：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text knowledgecate-name" name="group_name" ms-value="knowledgecateName" />
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+MS_OPTION_MODULE
+<div class="MS_VAR_NODE_TEXT_CLS node-text fn-left" ms-mousedown="showContextMenu" data-knowledgecate-id="MS_VAR_NODE_ID"
+    data-knowledgecate-name="MS_VAR_NODE_NAME">
+    <div class="node-text-inner">
+        <span class="icon-point"></span><span class="icon-frag-0"></span><span class="icon-frag-1"></span><span class="connect-line-left"></span><i class="visible-h iconfont" ms-click="clickNode">&#xe601;</i>&nbsp;<span class="text-name">MS_VAR_GROUP_NAME</span><span
+            class="connect-line-right"></span>
+    </div>
+</div>
+        
+MS_OPTION_CONTEXT_MENU
+<ul class="module-knowledgecate-context-menu">
+    <li ms-if="permission.knowledgeAdd" class="add-same-level-item context-item" data-action-type="addSameLevel">添加同级分类</li>
+    <li ms-if="permission.knowledgeAdd" class="context-item" data-action-type="addNextLevel">添加子级分类</li>
+    <li ms-if="permission.knowledgeUpdate" class="rename-node-item context-item" data-action-type="renameNode">重命名</li>
+    <li ms-if="permission.knowledgeDelete" class="remove-node-item context-item" data-action-type="removeNode">删除分类</li>
+</ul>
+

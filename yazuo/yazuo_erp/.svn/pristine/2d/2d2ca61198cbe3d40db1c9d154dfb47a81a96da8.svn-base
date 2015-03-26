@@ -1,0 +1,28 @@
+<!-- 指派需求 start -->
+<div class="module-person-tree" ms-widget="dialog,$,$persontreeOpts">
+    <div class="f-body">
+        <div class="content">
+            <div class="con-left">
+                <h2 class="all-person" ms-class="cur:!find" ms-click="findAll">查看全部成员</h2>
+                <div ms-widget="tree,$,$ztreeOpts"></div>
+            </div>
+            <div class="con-right">
+                <div class="con-right-search-title"><input type="text" ms-duplex="key" class="input-text person-search" placeholder="姓名"><input type="button" class="main-btn" value="搜索" ms-click="searchPer"></div>
+                <div class="con-right-table">
+                    <table>
+                        <tr ms-repeat="personArr" ms-hover="state-hover" ms-data-userName="el.user_name" ms-data-id="el.id" ms-click="selectedPerId">
+                            <td>{{el.user_name}}</td>
+                            <td>{{el.group_name}}</td>
+                            <td>{{el.position_name}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 指派需求 end -->
+
+
+
+

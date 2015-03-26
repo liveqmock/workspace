@@ -1,0 +1,334 @@
+<div class="page-tbar">
+    <div class="page-action fn-clear">
+        <div class="action-l fn-left">
+            <button type="button" class="today-btn main-btn" ms-click="switchToToday">今天</button>&nbsp;&nbsp;<div class="date-range-selector">
+                <span class="selector-input"
+                      ms-click="showRangeCalendar">
+                    <input type="text"
+                       class="select-header-text"
+                       ms-value="selectedRangeDateStr"
+                       placeholder="选择时间段"
+                       readonly="readonly"/><i class="icon-select iconfont">&#xe60b;</i>
+                </span>
+                <div class="selector-panel fn-hide">
+                    <div class="range-date-calendar fn-clear">
+                        <div class="date-nav date-nav-l fn-left">
+                            <div class="year-nav iconfont"
+                                 ms-click="navToPrevYear">&#xe60d;</div>
+                            <div class="month-nav"
+                                 ms-click="navToPrevMonth"><</div>
+                        </div>
+                        <div class="calendar-1 date-calendar fn-left" ms-widget="calendar,$,$calendar1Opts"></div>
+                        <div class="calendar-2 date-calendar fn-left" ms-widget="calendar,$,$calendar2Opts"></div>
+                        <div class="calendar-3 date-calendar fn-left" ms-widget="calendar,$,$calendar3Opts"></div>
+                        <div class="date-nav date-nav-r fn-left">
+                            <div class="year-nav iconfont"
+                                 ms-class-1="is-current-date: isCurrentDate"
+                                 ms-click="navToNextYear">&#xe60c;</div>
+                            <div class="month-nav"
+                                 ms-class-1="is-current-date: isCurrentDate"
+                                 ms-click="navToNextMonth">></div>
+                        </div>
+                    </div>
+                    <div class="panel-action fn-clear">
+                        <div class="action-l fn-left">
+                            <label>自定义</label>&nbsp;<input type="text" class="start-date input-text" placeholder="开始时间，例2014-06-13" ms-duplex="startDateStr" />&nbsp;至&nbsp;<input type="text" class="end-date input-text" placeholder="结束时间，例2014-07-13" ms-duplex="endDateStr" />
+                        </div>
+                        <div class="action-r fn-right">
+                            <button type="button" class="submit-btn main-btn" ms-click="confirmRangeDate">确定</button>&nbsp;&nbsp;<button type="button" class="close-btn minor-btn" ms-click="closeCalendarPanel">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="action-r fn-right">
+            <!--<button type="button" class="export-btn main-btn">导出报表</button>-->
+        </div>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="ub-section page-section">
+        <h3 class="page-line-title"><span class="title-text">用户和商户数据统计</span></h3>
+        <div class="statistics-box">
+            <div class="statistics-nav fn-clear">
+                <div class="user-nav statistics-nav-item fn-left"
+                     ms-class-1="statistics-nav-active: ubState == 'user'"
+                     data-ub-state="user"
+                     ms-click="switchUbState">
+                    <ul class="user-nav-list fn-clear">
+                        <li class="user-nav-item sub-nav-item fn-left" ms-if="statisticsState == 'dot'">
+                            <div class="nav-label">总用户</div>
+                            <div class="nav-data">{{totalUserNum}}&nbsp;人</div>
+                        </li>
+                        <li class="user-nav-item sub-nav-item sub-nav-last-item fn-left">
+                            <div class="nav-label">新增用户</div>
+                            <div class="nav-data">{{addedUserNum}}&nbsp;人</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="business-nav statistics-nav-item fn-left"
+                     ms-class-1="statistics-nav-active: ubState == 'business'"
+                     data-ub-state="business"
+                     ms-click="switchUbState">
+                    <ul class="business-nav-list fn-clear">
+                        <li class="business-nav-item sub-nav-item fn-left" ms-if="statisticsState == 'dot'">
+                            <div class="nav-label">总品牌</div>
+                            <div class="nav-data">{{totalBrandNum}}&nbsp;家</div>
+                        </li>
+                        <li class="business-nav-item sub-nav-item sub-nav-separation fn-left">
+                            <div class="nav-label">新增品牌</div>
+                            <div class="nav-data">{{addedBrandNum}}&nbsp;家</div>
+                        </li>
+                        <li class="business-nav-item sub-nav-item fn-left" ms-if="statisticsState == 'dot'">
+                            <div class="nav-label">总门店</div>
+                            <div class="nav-data">{{totalMerchantNum}}&nbsp;家</div>
+                        </li>
+                        <li class="business-nav-item sub-nav-item sub-nav-last-item fn-left">
+                            <div class="nav-label">新增门店</div>
+                            <div class="nav-data">{{addedMerchantNum}}&nbsp;家</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="statistics-panel">
+                <table class="statistics-user-grid ui-grid" cellpadding="0" cellspacing="0" ms-visible="ubState == 'user'">
+                    <thead>
+                        <tr>
+                            <th class="cate-cell">&nbsp;</th>
+                            <th class="total-num-cell" ms-if="statisticsState == 'dot'">总用户</th>
+                            <th class="new-num-cell">新增用户</th>
+                            <th class="login-num-cell">登录人数</th>
+                            <th class="login-times-cell">登录人次</th>
+                            <th class="active-ratio-cell" ms-if="statisticsState == 'dot'">活跃用户比</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-repeat="userStatisticsData"
+                            ms-class-1="odd:!($index % 2)"
+                            ms-class-2="even:$index % 2"
+                            ms-hover="state-hover">
+                            <td class="cate-cell">{{el.cateName}}</td>
+                            <td class="total-num-cell" ms-if="statisticsState == 'dot'">{{el.totalNum}}</td>
+                            <td class="new-num-cell">{{el.newNum}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.newNumHisMaxDate}})</span></span></td>
+                            <td class="login-num-cell">{{el.loginNum}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.loginNumHisMaxDate}})</span></span></td>
+                            <td class="login-times-cell">{{el.loginTimes}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.loginTimesHisMaxDate}})</span></span></td>
+                            <td class="active-ratio-cell" ms-if="statisticsState == 'dot'">{{el.activeRatio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="statistics-business-grid ui-grid" cellpadding="0" cellspacing="0" ms-visible="ubState == 'business'">
+                    <thead>
+                        <tr>
+                            <th class="cate-cell">&nbsp;</th>
+                            <th class="total-brand-cell" ms-if="statisticsState == 'dot'">总品牌</th>
+                            <th class="new-brand-cell">新增品牌</th>
+                            <th class="active-brand-num-cell">活跃品牌数</th>
+                            <th class="active-brand-ratio-cell" ms-if="statisticsState == 'dot'">活跃品牌占比</th>
+                            <th class="total-merchant-cell" ms-if="statisticsState == 'dot'">总门店</th>
+                            <th class="new-merchant-cell">新增门店</th>
+                            <th class="active-merchant-num-cell">活跃门店数</th>
+                            <th class="active-merchant-ratio-cell" ms-if="statisticsState == 'dot'">活跃门店占比</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-repeat="businessStatisticsData"
+                            ms-class-1="odd:!($index % 2)"
+                            ms-class-2="even:$index % 2"
+                            ms-hover="state-hover">
+                            <td class="cate-cell">{{el.cateName}}</td>
+                            <td class="total-brand-cell" ms-if="statisticsState == 'dot'">{{el.totalBrand}}</td>
+                            <td class="new-brand-cell">{{el.newBrand}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.newBrandHisMaxDate}})</span></span></td>
+                            <td class="active-brand-num-cell">{{el.activeBrandNum}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.activeBrandNumHisMaxDate}})</span></span></td>
+                            <td class="active-brand-ratio-cell" ms-if="statisticsState == 'dot'">{{el.activeBrandRatio}}</td>
+                            <td class="total-merchant-cell" ms-if="statisticsState == 'dot'">{{el.totalMerchant}}</td>
+                            <td class="new-merchant-cell">{{el.newMerchant}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.newMerchantHisMaxDate}})</span></span></td>
+                            <td class="active-merchant-num-cell">{{el.activeMerchantNum}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.activeMerchantNumHisMaxDate}})</span></span></td>
+                            <td class="active-merchant-ratio-cell" ms-if="statisticsState == 'dot'">{{el.activeMerchantRatio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4 class="chart-box-title">{{ubChartBoxTitle}}</h4>
+                <div class="chart-box-filter">
+                    <span class="dot-user-selector"
+                          ms-visible="statisticsState == 'dot' && ubState == 'user'"
+                          ms-widget="select,$,$ubDotUserOpts"></span>
+                    <span class="dot-brand-selector"
+                          ms-visible="statisticsState == 'dot' && ubState == 'business'"
+                          ms-widget="select,$,$ubDotBrandOpts"></span>
+                    <span class="range-user-selector"
+                          ms-visible="statisticsState == 'range' && ubState == 'user'"
+                          ms-widget="select,$,$ubRangeUserOpts"></span>
+                    <span class="range-rd-selector"
+                          ms-visible="statisticsState == 'range' && ubState == 'user'"
+                          ms-widget="select,$,$ubRangeRdOpts"></span>
+                </div>
+                <div class="chart-box">
+                    <div class="chart-legend"></div>
+                    <div class="chart-panel"></div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end of ub-section -->
+    <div class="fun-section page-section">
+        <h3 class="page-line-title"><span class="title-text">功能使用统计</span></h3>
+        <div class="statistics-box">
+            <div class="statistics-nav fn-clear">
+                <div class="user-nav statistics-nav-item fn-left"
+                     ms-class-1="statistics-nav-active: funState == 'user'"
+                     data-fun-state="user"
+                     ms-click="switchFunState">
+                    <div class="nav-data">人数</div>
+                </div>
+                <div class="times-nav statistics-nav-item fn-left"
+                     ms-class-1="statistics-nav-active: funState == 'times'"
+                     data-fun-state="times"
+                     ms-click="switchFunState">
+                    <div class="nav-data">次数</div>
+                </div>
+                <div class="clicks-nav statistics-nav-item fn-left"
+                     ms-class-1="statistics-nav-active: funState == 'clicks'"
+                     data-fun-state="clicks"
+                     ms-click="switchFunState">
+                    <div class="nav-data">图表点击数</div>
+                </div>
+                <div class="sending-nav statistics-nav-item fn-left"
+                     ms-class-1="statistics-nav-active: funState == 'sending'"
+                     data-fun-state="sending"
+                     ms-click="switchFunState">
+                    <div class="nav-data">发送数据量</div>
+                </div>
+            </div>
+            <div class="statistics-panel">
+                <table class="statistics-user-grid ui-grid" cellpadding="0" cellspacing="0" ms-if="funState == 'user'">
+                    <thead>
+                        <tr>
+                            <th class="cate-cell">&nbsp;</th>
+                            <th class="fsrb-cell">发送日报</th>
+                            <th class="ckrb-cell">查看日报</th>
+                            <th class="ckyb-cell">查看月报</th>
+                            <th class="ybdc-cell">月报导出</th>
+                            <th class="sjtj-cell">数据统计</th>
+                            <th class="fspl-cell">发送评论</th>
+                            <th class="ckpl-cell">查看评论</th>
+                            <th class="fstz-cell">发送通知</th>
+                            <th class="cktz-cell">查看通知</th>
+                            <th class="mark-cell">标注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-repeat="funStatisticsData"
+                            ms-class-1="odd:!($index % 2)"
+                            ms-class-2="even:$index % 2"
+                            ms-hover="state-hover">
+                            <td class="cate-cell">{{el.cateName}}</td>
+                            <td class="fsrb-cell">{{el.sendReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendReportCountHisMaxDate}})</span></span></td>
+                            <td class="ckrb-cell">{{el.viewReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewReportCountHisMaxDate}})</span></span></td>
+                            <td class="ckyb-cell">{{el.viewMonthReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewMonthReportCountHisMaxDate}})</span></span></td>
+                            <td class="ybdc-cell">{{el.exportReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.exportReportCountHisMaxDate}})</span></span></td>
+                            <td class="sjtj-cell">{{el.viewStatisticsCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewStatisticsCountHisMaxDate}})</span></span></td>
+                            <td class="fspl-cell">{{el.sendCommentCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendCommentCountHisMaxDate}})</span></span></td>
+                            <td class="ckpl-cell">{{el.viewCommentCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewCommentCountHisMaxDate}})</span></span></td>
+                            <td class="fstz-cell">{{el.sendNoticeCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendNoticeCountHisMaxDate}})</span></span></td>
+                            <td class="cktz-cell">{{el.viewNoticeCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewNoticeCountHisMaxDate}})</span></span></td>
+                            <td class="mark-cell">{{el.viewMarkCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewMarkCountHisMaxDate}})</span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="statistics-times-grid ui-grid" cellpadding="0" cellspacing="0" ms-if="funState == 'times'">
+                    <thead>
+                        <tr>
+                            <th class="cate-cell">&nbsp;</th>
+                            <th class="fsrb-cell">发送日报</th>
+                            <th class="ckrb-cell">查看日报</th>
+                            <th class="ckyb-cell">查看月报</th>
+                            <th class="ybdc-cell">月报导出</th>
+                            <th class="sjtj-cell">数据统计</th>
+                            <th class="fspl-cell">发送评论</th>
+                            <th class="ckpl-cell">查看评论</th>
+                            <th class="fstz-cell">发送通知</th>
+                            <th class="cktz-cell">查看通知</th>
+                            <th class="mark-cell">标注</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-repeat="funStatisticsData"
+                            ms-class-1="odd:!($index % 2)"
+                            ms-class-2="even:$index % 2"
+                            ms-hover="state-hover">
+                            <td class="cate-cell">{{el.cateName}}</td>
+                            <td class="fsrb-cell">{{el.sendReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendReportCountHisMaxDate}})</span></span></td>
+                            <td class="ckrb-cell">{{el.viewReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewReportCountHisMaxDate}})</span></span></td>
+                            <td class="ckyb-cell">{{el.viewMonthReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewMonthReportCountHisMaxDate}})</span></span></td>
+                            <td class="ybdc-cell">{{el.exportReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.exportReportCountHisMaxDate}})</span></span></td>
+                            <td class="sjtj-cell">{{el.viewStatisticsCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewStatisticsCountHisMaxDate}})</span></span></td>
+                            <td class="fspl-cell">{{el.sendCommentCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendCommentCountHisMaxDate}})</span></span></td>
+                            <td class="ckpl-cell">{{el.viewCommentCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewCommentCountHisMaxDate}})</span></span></td>
+                            <td class="fstz-cell">{{el.sendNoticeCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendNoticeCountHisMaxDate}})</span></span></td>
+                            <td class="cktz-cell">{{el.viewNoticeCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewNoticeCountHisMaxDate}})</span></span></td>
+                            <td class="mark-cell">{{el.viewMarkCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.viewMarkCountHisMaxDate}})</span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="statistics-clicks-grid ui-grid" cellpadding="0" cellspacing="0" ms-if="funState == 'clicks'">
+                    <thead>
+                        <tr>
+                            <th class="cate-cell">&nbsp;</th>
+                            <th class="rhb-cell">日环比图</th>
+                            <th class="yhb-cell">月同比图</th>
+                            <!--<th class="pk-cell">PK</th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-repeat="funStatisticsData"
+                            ms-class-1="odd:!($index % 2)"
+                            ms-class-2="even:$index % 2"
+                            ms-hover="state-hover">
+                            <td class="cate-cell">{{el.cateName}}</td>
+                            <td class="rhb-cell">{{el.chartDayCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.chartDayCountHisMaxDate}})</span></span></td>
+                            <td class="yhb-cell">{{el.chartMonthCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.chartMonthCountHisMaxDate}})</span></span></td>
+                            <!--<td class="pk-cell">PK</td>-->
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="statistics-sending-grid ui-grid" cellpadding="0" cellspacing="0" ms-if="funState == 'sending'">
+                    <thead>
+                        <tr>
+                            <th class="cate-cell">&nbsp;</th>
+                            <th class="fstz-cell">发送通知数</th>
+                            <th class="fsrb-cell">发送日报数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ms-repeat="funStatisticsData"
+                            ms-class-1="odd:!($index % 2)"
+                            ms-class-2="even:$index % 2"
+                            ms-hover="state-hover">
+                            <td class="cate-cell">{{el.cateName}}</td>
+                            <td class="fstz-cell">{{el.sendNoticeCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendNoticeCountHisMaxDate}})</span></span></td>
+                            <td class="fsrb-cell">{{el.sendReportCount}}<span ms-if="el.cate == 'hisMax'" class="his-max-date-field-wrapper"><br/><span class="his-max-date-field">({{el.sendReportCountHisMaxDate}})</span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4 class="chart-box-title">功能使用统计图表</h4>
+                <div class="chart-box-filter">
+                    <span class="fun-cate-selector"
+                          ms-visible="funState == 'user' || funState == 'times'"
+                          ms-widget="select,$,$funCateOpts"></span>
+                    <span class="fun-hb-selector"
+                          ms-visible="funState == 'clicks'"
+                          ms-widget="select,$,$funHbOpts"></span>
+                    <span class="fun-send-selector"
+                          ms-visible="funState == 'sending'"
+                          ms-widget="select,$,$funSendOpts"></span>
+                    <span class="fun-gt-selector"
+                          ms-visible="statisticsState == 'range'"
+                          ms-widget="select,$,$funGtOpts"></span>
+                </div>
+                <div class="chart-box">
+                    <div class="chart-legend"></div>
+                    <div class="chart-panel"></div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end of fun-section -->
+</div>

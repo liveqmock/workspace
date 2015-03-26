@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0"/>
+    <title></title>
+   <link type="text/css" rel="stylesheet" href="../../css/wx_card.css" />
+</head>
+<body>
+   <div data-role="page">
+    <div data-role="content" class="card-content">
+    	<section class="buy-success">
+        	<div class="success-word"><img src="../../imageCoffee/icon05.png" width="24" />
+        		<span>您现在可以正常使用WIFI了~</span>
+        	</div>
+        </section>
+      </div>
+     </div>
+</body>
+</html>

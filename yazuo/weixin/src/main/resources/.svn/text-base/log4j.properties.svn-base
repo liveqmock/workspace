@@ -1,0 +1,156 @@
+log4j.rootLogger=INFO,console,infolog,errorlog,
+
+####################
+# Console Appender
+####################
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+#\u8868\u793a\u8f93\u51faDEBUG\u7ea7\u522b\u4ee5\u4e0a\u7684\u65e5\u5fd7
+#log4j.appender.console.Threshold=DEBUG
+log4j.appender.console.Target=System.out
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=[%-5p] %d %-3r %l [%t,%x] %n  - %m%n
+
+####################
+# File Appender
+####################
+log4j.appender.infolog=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.infolog.File=${weixin.root}/log/infolog.log
+log4j.appender.infolog.Threshold=INFO
+log4j.appender.infolog.Append=true
+log4j.appender.infolog.layout=org.apache.log4j.PatternLayout
+log4j.appender.infolog.layout.ConversionPattern=[%-5p] %d %-3r %l [%t,%x] - %m%n
+
+####################
+# Rolling File Appender
+####################
+log4j.appender.errorlog=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.errorlog.File=${weixin.root}/log/errorlog.log
+log4j.appender.errorlog.Threshold=ERROR
+log4j.appender.errorlog.Append=true
+log4j.appender.errorlog.layout=org.apache.log4j.PatternLayout
+log4j.appender.errorlog.layout.ConversionPattern=[%-5p] %d %-3r %l [%t,%x] - %m%n
+
+
+####################
+# Third Part Support
+####################
+log4j.category.org.springframework=WARN
+log4j.category.org.springframework.beans=WARN
+log4j.category.org.springframework.jdbc.core.JdbcTemplate=WARN
+log4j.category.org.springframework.transaction=WARN
+log4j.category.org.springframework.web=WARN
+
+
+
+#erp
+log4j.logger.lottery = INFO,lottery
+log4j.appender.lottery =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.lottery.layout=org.apache.log4j.PatternLayout
+log4j.appender.lottery.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+log4j.appender.lottery.File=${catalina.base}/logs/lottery/lottery.log
+log4j.appender.lottery.DatePattern='.'yyyy-MM-dd'.log'
+
+
+#yonghutongji
+log4j.logger.statistical = INFO,statistical
+log4j.appender.statistical =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.statistical.layout=org.apache.log4j.PatternLayout
+#log4j.appender.statistical.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+log4j.appender.statistical.File=${catalina.base}/logs/statistical/statistical.log
+log4j.appender.statistical.DatePattern='.'yyyy-MM-dd'.log'
+
+
+#--------------------weixin----pay-------------
+log4j.logger.wxpay = INFO,wxpay
+log4j.appender.wxpay =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.wxpay.layout=org.apache.log4j.PatternLayout
+log4j.appender.wxpay.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+log4j.appender.wxpay.File=${catalina.base}/logs/wxpay/wxpay.log
+log4j.appender.wxpay.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----mall-------------
+log4j.logger.mall = INFO,mall
+log4j.appender.mall =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.mall.layout=org.apache.log4j.PatternLayout
+log4j.appender.mall.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+log4j.appender.mall.File=${catalina.base}/logs/mall/mall.log
+log4j.appender.mall.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----feedback-------------
+log4j.logger.feedback = INFO,feedback
+log4j.appender.feedback =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.feedback.layout=org.apache.log4j.PatternLayout
+log4j.appender.feedback.File=${catalina.base}/logs/feedback/feedback.log
+log4j.appender.feedback.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----pay---log---analysis-------------
+log4j.logger.payanalysis = INFO,payanalysis
+log4j.appender.payanalysis =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.payanalysis.layout=org.apache.log4j.PatternLayout
+log4j.appender.payanalysis.File=${catalina.base}/logs/payanalysis/payanalysis.log
+log4j.appender.payanalysis.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----coffee---log----------------
+log4j.logger.coffee = INFO,coffee
+log4j.appender.coffee =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.coffee.layout=org.apache.log4j.PatternLayout
+log4j.appender.coffee.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%L] [%p] - %m%n
+log4j.appender.coffee.File=${catalina.base}/logs/coffee/coffee.log
+log4j.appender.coffee.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----external---log----------------
+log4j.logger.external = INFO,external
+log4j.appender.external =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.external.layout=org.apache.log4j.PatternLayout
+log4j.appender.external.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%L] [%p] - %m%n
+log4j.appender.external.File=${catalina.base}/logs/external/external.log
+log4j.appender.external.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----logfilter---log-------------
+log4j.logger.logfilter = INFO,logfilter
+log4j.appender.logfilter =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.logfilter.layout=org.apache.log4j.PatternLayout
+log4j.appender.logfilter.File=${catalina.base}/logs/logfilter/logfilter.log
+log4j.appender.logfilter.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----coffee---log---analysis-------------
+log4j.logger.coffeeLogAnalysis = INFO,coffeeLogAnalysis
+log4j.appender.coffeeLogAnalysis =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.coffeeLogAnalysis.layout=org.apache.log4j.PatternLayout
+log4j.appender.coffeeLogAnalysis.File=${catalina.base}/logs/coffeeLogAnalysis/coffeeLogAnalysis.log
+log4j.appender.coffeeLogAnalysis.DatePattern='.'yyyy-MM-dd'.log'
+#--------------------weixin----martlog---log---analysis-------------
+log4j.logger.martlog = INFO,martlog
+log4j.appender.martlog =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.martlog.layout=org.apache.log4j.PatternLayout
+log4j.appender.martlog.File=${catalina.base}/logs/martlog/martlog.log
+log4j.appender.martlog.DatePattern='.'yyyy-MM-dd'.log'
+
+#---------------------weixin---merchant---coordinates---sort------------------
+log4j.logger.coordinatesOrderLog = INFO,coordinatesOrderLog
+log4j.appender.coordinatesOrderLog =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.coordinatesOrderLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.coordinatesOrderLog.File=${catalina.base}/logs/merchantSort/coordinatesOrderLog.log
+log4j.appender.coordinatesOrderLog.DatePattern='.'yyyy-MM-dd'.log'
+#---------------------weixin---template---message-----------------
+log4j.logger.templateLog = INFO,templateLog
+log4j.appender.templateLog =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.templateLog.layout=org.apache.log4j.PatternLayout
+log4j.appender.templateLog.File=${catalina.base}/logs/templateLog/templateLog.log
+log4j.appender.templateLog.DatePattern='.'yyyy-MM-dd'.log'
+
+#weixinlog
+log4j.logger.weixin = INFO,weixin
+log4j.appender.weixin =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.weixin.layout=org.apache.log4j.PatternLayout
+log4j.appender.weixin.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+log4j.appender.weixin.File=${catalina.base}/logs/weixin/weixin.log
+log4j.appender.weixin.DatePattern='.'yyyy-MM-dd'.log'
+
+#eventReocrdlog
+log4j.logger.eventRecord = INFO,eventRecord
+log4j.appender.eventRecord =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.eventRecord.layout=org.apache.log4j.PatternLayout
+log4j.appender.eventRecord.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+log4j.appender.eventRecord.File=${catalina.base}/logs/eventRecord/eventRecord.log
+log4j.appender.eventRecord.DatePattern='.'yyyy-MM-dd'.log'
+#backstageOperatelog
+log4j.logger.backstageOperate = INFO,backstageOperate
+log4j.appender.backstageOperate =org.apache.log4j.DailyRollingFileAppender
+log4j.appender.backstageOperate.layout=org.apache.log4j.PatternLayout
+log4j.appender.backstageOperate.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS} [%t] [%c] [%p] - %m%n
+log4j.appender.backstageOperate.File=${catalina.base}/logs/backstageOperate/backstageOperate.log
+log4j.appender.backstageOperate.DatePattern='.'yyyy-MM-dd'.log'

@@ -1,0 +1,43 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="info-content">
+        <ul class="data-head">
+            <li class="data-head-left">
+                <p class="iconfont img" ms-if="responseData.sysAttachment.attachmentSuffix == 'zip'||responseData.sysAttachment.attachmentSuffix == 'rar'">&#xe623;</p>
+                <p class="iconfont img" ms-if="responseData.sysAttachment.attachmentSuffix == 'xls'||responseData.sysAttachment.attachmentSuffix == 'xlsx'">&#xe622;</p>
+                <p class="iconfont img" ms-if="responseData.sysAttachment.attachmentSuffix == 'ppt'||responseData.sysAttachment.attachmentSuffix == 'pptx'">&#xe621;</p>
+                <p class="iconfont img" ms-if="responseData.sysAttachment.attachmentSuffix == 'pdf'">&#xe620;</p>
+                <p class="iconfont img" ms-if="responseData.sysAttachment.attachmentSuffix == 'doc'||responseData.sysAttachment.attachmentSuffix == 'docx'">&#xe61f;</p>
+
+                <p class="down" ms-click="downFile(responseData.attachment_id)"><a href="javascript:;" class="main-btn">下载</a></p>
+            </li>
+            <li class="data-head-right">
+                <h2>{{responseData.title}}<a ms-href="#/databank/list/addedit/0/{{responseData.id}}">修改</a></h2>
+                <div class="doc-info">
+                    <p>大小：{{responseData.sysAttachment.attachmentSizeKB}}k</p>
+                    <p>格式：{{responseData.sysAttachment.attachmentSuffix}}</p>
+                    <p>更新：{{responseData.insert_time|date("yyyy-MM-dd HH:mm")}}</p>
+                    <p>类型：{{responseData.data_type_name}}</p>
+                    <p>适用：{{responseData.apply_crowd_type_name}}</p>
+                </div>
+                <div class="doc-descirption">
+                    简介：{{responseData.description}}
+                </div>
+            </li>
+        </ul>
+        <ul class="data-sum">下载记录 <span>{{responseData.sysAttachmentUserList.totalSize}}次</span></ul>
+        <ul class="data-list">
+            <li ms-repeat="responseData.sysAttachmentUserList.rows" >
+                <p class="data-list-img" ms-title="下载时间：{{el.insert_time}}"><img ms-src="{{userImgPath}}/{{el.user_image}}"></p>
+                <p class="data-list-name">{{el.user_name}}</p>
+            </li>
+        </ul>
+    </div>
+</div>
+

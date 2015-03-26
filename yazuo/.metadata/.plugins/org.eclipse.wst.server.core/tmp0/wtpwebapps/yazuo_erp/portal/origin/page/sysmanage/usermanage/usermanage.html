@@ -1,0 +1,60 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <button type="button" class="add-btn main-btn" ms-click="jumpAddPage">添加用户</button>
+    </div>
+    <div class="page-filter">
+        <input type="text" class="user-name input-text"  placeholder="姓名" ms-duplex="name" />&nbsp;
+        <input type="text" class="mobile input-text" placeholder="手机号" ms-duplex="phone"/>&nbsp;
+        <span class="position" ms-widget="select,$,$positionOpts"></span>&nbsp;&nbsp;
+        <button type="button" class="query-btn main-btn" ms-click = "search">搜索</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="grid-wrapper">
+        <div class="summary">共<span class="num">{{gridTotalSize}}</span>名用户</div>
+        <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="check-cell"><input type="checkbox" class="check-all" ms-checked="gridAllChecked" ms-click="gridCheckAll" /></th>
+                    <th class="name-cell">姓名</th>
+                    <th class="tel-cell">手机号</th>
+                    <th class="group-cell">组织名</th>
+                    <th class="position-cell">职位</th>
+                    <th class="role-cell">权限组</th>
+                    <th class="operation-cell">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ms-repeat="gridData"
+                    ms-class-1="odd:!($index % 2)"
+                    ms-class-2="even:$index % 2"
+                    ms-hover="state-hover">
+                    <td class="check-cell"><input type="checkbox" ms-value="el.id" ms-duplex="gridSelected"/></td>
+                    <td class="name-cell">{{el.userName}}</td>
+                    <td class="tel-cell">{{el.tel}}</td>
+                    <td class="group-cell">{{el.groupName}}</td>
+                    <td class="position-cell">{{el.positionName}}</td>
+                    <td class="role-cell">{{el.patchedRoleNames}}</td>
+                    <td class="operation-cell">
+                        <a ms-href="'#/sysmanage/usermanage/settingrole/' + el.id + '/' + encodeURIComponent(el.userName)" class="edit-l"  ms-data-user-id="el.id" ms-data-user-name="el.userName">
+                                权限组设置
+                        </a>&nbsp;&nbsp;
+                        <a ms-href="'#/sysmanage/usermanage/settingrange/' + el.id + '/' + encodeURIComponent(el.userName)" class="edit-l" ms-data-user-id="el.id" ms-data-user-name="el.userName">
+                                管辖范围设置
+                        </a>&nbsp;&nbsp;
+                        <a ms-href="'#/sysmanage/usermanage/edit/'+ el.id " class="edit-l"  ms-data-user-id="el.id" ms-data-user-name="el.userName">
+                                个人信息修改
+                        </a>&nbsp;&nbsp;
+                        <a href="javascript:;" class="remove-l" ms-click="removeGridItem" ms-data-user-id="el.id">删除</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="grid-bbar fn-clear">
+            <div class="grid-action fn-left">
+                <button type="button" class="check-all-btn main-btn" ms-click="scCheckAll">全选</button>&nbsp;<button type="button" class="batch-remove-btn main-btn" ms-click="batchRemoveGridItem">批量删除</button>
+            </div>
+            <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+        </div>
+    </div>
+</div>

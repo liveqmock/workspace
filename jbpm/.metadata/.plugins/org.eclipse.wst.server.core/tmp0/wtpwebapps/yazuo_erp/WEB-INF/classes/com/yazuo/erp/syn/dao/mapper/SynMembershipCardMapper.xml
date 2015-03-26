@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.syn.dao.SynMembershipCardDao">
+	<resultMap id="SynMembershipCard" type="com.yazuo.erp.syn.vo.SynMembershipCardVO">
+		<id property="id" column="id" />
+		<result property="merchantId" column="merchant_id" />
+		<result property="merchantName" column="merchant_name" />
+		<result property="brandId" column="brand_id" />
+		<result property="merchantType" column="merchant_type" />
+		<result property="cardtypeId" column="cardtype_id" />
+		<result property="cardCount" column="card_count" />
+		<result property="cardPrice" column="card_price" />
+		<result property="isSoldCard" column="is_sold_card" />
+		<result property="cardName" column="card_name" />
+		<result property="cardType" column="card_type" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="synmembershipcardColumns">
+	    <![CDATA[
+		id,merchant_id,merchant_name,brand_id,merchant_type,cardtype_id,card_count,card_price,is_sold_card,card_name,card_type,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSynMembershipCard" useGeneratedKeys="true"
+		keyProperty="id">
+		<!--不允许为空的字段： merchant_id,update_time, -->
+		INSERT INTO syn.syn_membership_card (
+		<if test="merchantId!=null ">merchant_id,</if>
+		<if test="merchantName!=null and merchantName!=''">merchant_name,</if>
+		<if test="brandId!=null ">brand_id,</if>
+		<if test="merchantType!=null and merchantType!=''">merchant_type,</if>
+		<if test="cardtypeId!=null ">cardtype_id,</if>
+		<if test="cardCount!=null and cardCount!=''">card_count,</if>
+		<if test="cardPrice!=null and cardPrice!=''">card_price,</if>
+		<if test="isSoldCard!=null ">is_sold_card,</if>
+		<if test="cardName!=null and cardName!=''">card_name,</if>
+		<if test="cardType!=null and cardType!=''">card_type,</if>
+		<if test="updateTime!=null ">update_time</if>
+		) VALUES (
+		<if test="merchantId!=null ">#{merchantId},</if>
+		<if test="merchantName!=null and merchantName!=''">#{merchantName},</if>
+		<if test="brandId!=null ">#{brandId},</if>
+		<if test="merchantType!=null and merchantType!=''">#{merchantType},</if>
+		<if test="cardtypeId!=null ">#{cardtypeId},</if>
+		<if test="cardCount!=null and cardCount!=''">#{cardCount},</if>
+		<if test="cardPrice!=null and cardPrice!=''">#{cardPrice},</if>
+		<if test="isSoldCard!=null ">#{isSoldCard},</if>
+		<if test="cardName!=null and cardName!=''">#{cardName},</if>
+		<if test="cardType!=null and cardType!=''">#{cardType},</if>
+		<if test="updateTime!=null ">now()</if>
+		)
+	</insert>
+
+	<insert id="batchInsertSynMembershipCards" parameterType="map">
+		<!--不允许为空的字段： merchant_id,update_time, -->
+		INSERT INTO syn.syn_membership_card (
+		<if test="merchantId!=null ">merchant_id,</if>
+		<if test="merchantName!=null and merchantName!=''">merchant_name,</if>
+		<if test="brandId!=null ">brand_id,</if>
+		<if test="merchantType!=null and merchantType!=''">merchant_type,</if>
+		<if test="cardtypeId!=null ">cardtype_id,</if>
+		<if test="cardCount!=null and cardCount!=''">card_count,</if>
+		<if test="cardPrice!=null and cardPrice!=''">card_price,</if>
+		<if test="isSoldCard!=null ">is_sold_card,</if>
+		<if test="cardName!=null and cardName!=''">card_name,</if>
+		<if test="cardType!=null and cardType!=''">card_type,</if>
+		<if test="updateTime!=null ">update_time</if>
+		) VALUES
+		<foreach collection="list" item="t" separator=",">
+			(
+			<if test="merchantId!=null ">#{t.merchantId},</if>
+			<if test="merchantName!=null and merchantName!=''">#{t.merchantName},</if>
+			<if test="brandId!=null ">#{t.brandId},</if>
+			<if test="merchantType!=null and merchantType!=''">#{t.merchantType},</if>
+			<if test="cardtypeId!=null ">#{t.cardtypeId},</if>
+			<if test="cardCount!=null and cardCount!=''">#{t.cardCount},</if>
+			<if test="cardPrice!=null and cardPrice!=''">#{t.cardPrice},</if>
+			<if test="isSoldCard!=null ">#{t.isSoldCard},</if>
+			<if test="cardName!=null and cardName!=''">#{t.cardName},</if>
+			<if test="cardType!=null and cardType!=''">#{t.cardType},</if>
+			<if test="updateTime!=null ">now()</if>
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateSynMembershipCard">
+		UPDATE syn.syn_membership_card
+		<set>
+			<if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+			<if test="merchantName!=null and merchantName!=''">merchant_name = #{merchantName} ,</if>
+			<if test="brandId!=null ">brand_id = #{brandId} ,</if>
+			<if test="merchantType!=null and merchantType!=''">merchant_type = #{merchantType} ,</if>
+			<if test="cardtypeId!=null ">cardtype_id = #{cardtypeId} ,</if>
+			<if test="cardCount!=null and cardCount!=''">card_count = #{cardCount} ,</if>
+			<if test="cardPrice!=null and cardPrice!=''">card_price = #{cardPrice} ,</if>
+			<if test="isSoldCard!=null ">is_sold_card = #{isSoldCard} ,</if>
+			<if test="cardName!=null and cardName!=''">card_name = #{cardName} ,</if>
+			<if test="cardType!=null and cardType!=''">card_type = #{cardType} ,</if>
+			<if test="updateTime!=null ">update_time = now() </if>
+		</set>
+		WHERE
+		id = #{id}
+	</update>
+
+	<update id="batchUpdateSynMembershipCardsToDiffVals"
+		parameterType="map">
+		<foreach collection="list" item="t" index="index" open=""
+			close="" separator=";">
+			UPDATE syn.syn_membership_card
+			<set>
+				<if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+				<if test="merchantName!=null and merchantName!=''">merchant_name = #{t.merchantName} ,</if>
+				<if test="brandId!=null ">brand_id = #{t.brandId} ,</if>
+				<if test="merchantType!=null and merchantType!=''">merchant_type = #{t.merchantType} ,</if>
+				<if test="cardtypeId!=null ">cardtype_id = #{t.cardtypeId} ,</if>
+				<if test="cardCount!=null and cardCount!=''">card_count = #{t.cardCount} ,</if>
+				<if test="cardPrice!=null and cardPrice!=''">card_price = #{t.cardPrice} ,</if>
+				<if test="isSoldCard!=null ">is_sold_card = #{t.isSoldCard} ,</if>
+				<if test="cardName!=null and cardName!=''">card_name = #{t.cardName} ,</if>
+				<if test="cardType!=null and cardType!=''">card_type = #{t.cardType} ,</if>
+				<if test="updateTime!=null ">update_time = now() </if>
+			</set>
+			WHERE
+			id = #{t.id}
+		</foreach>
+	</update>
+
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSynMembershipCardsToSameVals"
+		parameterType="map">
+		UPDATE syn.syn_membership_card
+		<set>
+			<if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+			<if test="merchantName!=null and merchantName!=''">merchant_name = #{merchantName} ,</if>
+			<if test="brandId!=null ">brand_id = #{brandId} ,</if>
+			<if test="merchantType!=null and merchantType!=''">merchant_type = #{merchantType} ,</if>
+			<if test="cardtypeId!=null ">cardtype_id = #{cardtypeId} ,</if>
+			<if test="cardCount!=null and cardCount!=''">card_count = #{cardCount} ,</if>
+			<if test="cardPrice!=null and cardPrice!=''">card_price = #{cardPrice} ,</if>
+			<if test="isSoldCard!=null ">is_sold_card = #{isSoldCard} ,</if>
+			<if test="cardName!=null and cardName!=''">card_name = #{cardName} ,</if>
+			<if test="cardType!=null and cardType!=''">card_type = #{cardType} ,</if>
+			<if test="updateTime!=null ">update_time = now() </if>
+		</set>
+		WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</update>
+
+	<delete id="deleteSynMembershipCardById">
+    <![CDATA[
+        DELETE FROM syn.syn_membership_card WHERE
+        id = #{id} 
+    ]]>
+	</delete>
+
+	<delete id="batchDeleteSynMembershipCardByIds" parameterType="list">
+		DELETE FROM syn.syn_membership_card WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</delete>
+
+	<select id="getSynMembershipCardById" resultMap="SynMembershipCard">
+		SELECT
+		<include refid="synmembershipcardColumns" />
+		FROM syn.syn_membership_card
+		WHERE id = #{id}
+	</select>
+
+	<select id="getSynMembershipCards" resultMap="SynMembershipCard">
+		SELECT
+		<include refid="synmembershipcardColumns" />
+		FROM syn.syn_membership_card
+		<include refid="synmembershipcard_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<select id="getSynMembershipCardsMap" resultType="map">
+		SELECT
+		<include refid="synmembershipcardColumns" />
+	    <![CDATA[
+		    FROM syn.syn_membership_card  
+	    ]]>
+		<include refid="synmembershipcard_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="synmembershipcard_findPage_where">
+		<where>
+			<if test="id!=null ">AND id = #{id}</if>
+			<if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+			<if test="merchantName!=null and merchantName!=''">AND merchant_name = #{merchantName}</if>
+			<if test="brandId!=null ">AND brand_id = #{brandId}</if>
+			<if test="merchantType!=null and merchantType!=''">AND merchant_type = #{merchantType}</if>
+			<if test="cardtypeId!=null ">AND cardtype_id = #{cardtypeId}</if>
+			<if test="cardCount!=null and cardCount!=''">AND card_count = #{cardCount}</if>
+			<if test="cardPrice!=null and cardPrice!=''">AND card_price = #{cardPrice}</if>
+			<if test="isSoldCard!=null ">AND is_sold_card = #{isSoldCard}</if>
+			<if test="cardName!=null and cardName!=''">AND card_name = #{cardName}</if>
+			<if test="cardType!=null and cardType!=''">AND card_type = #{cardType}</if>
+			<if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+			<if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+
+	<select id="getSynMembershipCardCount" resultType="long">
+		SELECT count(*) FROM
+			syn.syn_membership_card
+		WHERE
+			brand_id =  #{brandId} AND card_count IS NOT NULL AND card_count &lt; 1000; 
+	</select>
+
+	<select id="getSynMembershipCardInfo" resultType="map">
+		SELECT
+		merchant_id,
+		merchant_name,
+		merchant_type,
+		cardtype_id,
+		COALESCE(card_name, '')AS card_name,
+		COALESCE(card_type, '')AS card_type,
+		card_price,
+		COALESCE(card_count, 0)AS card_count,
+		(
+		CASE
+		WHEN is_sold_card IS TRUE THEN
+		'是'
+		WHEN is_sold_card IS FALSE THEN
+		'否'
+		ELSE
+		''
+		END
+		)AS is_sold_card
+		FROM
+		syn.syn_membership_card
+		WHERE
+		brand_id = #{brandId}
+	</select>
+</mapper>

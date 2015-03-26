@@ -1,0 +1,59 @@
+<div class="page-wldh">
+    <!--select-date-->
+    <div class="page-wldh-data fn-clear">
+        <span ms-widget="select,$,$yearOpts"></span>&nbsp;&nbsp;<span ms-widget="select,$,$monthOpts"></span>
+    </div>
+    <!--select-date-end-->
+    <div class="wldh-body">
+        <div class="wldh-content">
+            <ul class="wldh-content-main">
+                <!--ond-->
+                <li class="wldh-list" ms-repeat="pageData">
+                    <div class="wldh-list-title">
+                       <p><img ms-src="{{erp.BASE_PATH}}portal/origin/asset/image/wldh/order-{{$index+1}}.png"></p>
+                       <p><img ms-src="{{erp.BASE_PATH}}portal/origin/asset/image/wldh/name-{{el.id}}.png"></p>
+                    </div>
+                    <div class="wldh-list-middle fn-clear">
+                        <div class="wldh-list-middle-head"><img ms-src="{{erp.BASE_PATH}}{{el.leaderImage}}"></div>
+                        <div class="wldh-list-middle-con">
+                            <ul>
+                                <li class="wldh-list-middle-con-info-highlight">
+                                    <p class="wldh-list-middle-con-info-left">组&nbsp;&nbsp;长：</p>
+                                    <p class="wldh-list-middle-con-info-right">{{el.leaderName}}</p>
+                                </li>
+                                <li class="wldh-list-middle-con-info">
+                                    <p class="wldh-list-middle-con-info-left">组&nbsp;&nbsp;员：</p>
+                                    <p class="wldh-list-middle-con-info-right">{{el.teamMember}}</p>
+                                </li>
+                                <li class="wldh-list-middle-con-info">
+                                    <div class="wldh-list-middle-con-info-img"><img  ms-src="{{erp.BASE_PATH}}portal/origin/asset/image/wldh/icon-1.png"></div>
+                                    <div class="wldh-list-middle-con-info-rule">
+                                        <ul>
+                                            <li>
+                                                <p class="wldh-rule-left">赔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;率：</p>
+                                                <p class="wldh-rule-right">{{el.teamOdds}}</p>
+                                            </li>
+                                            <li>
+                                                <p class="wldh-rule-left">到账银两：</p>
+                                                <p class="wldh-rule-right"><span>{{el.salesDegrees}}</span> 元</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="wldh-hide-info" ms-if="el.lold == 'show'">
+                        <div ms-class-1="wldh-sccess:$index == 0" ms-class-2="wldh-failure:$index > 0" ms-class-3="wldh-fendou:$index == 1||$index == 2"></div>
+                        <div class="wldh-support" ms-repeat="el.supporters">
+                            <p ms-repeat="el">{{el}}</p>
+                        </div>
+                    </div>
+                    <div ms-class-1="wldh-lold-show:el.lold == 'show'" ms-class-2="wldh-lold-hide:el.lold == 'hide'" ms-click="loldStatus($index)"></div>
+                </li>
+                <!--one-->
+            </ul>
+            <p class="wldh-bottom-bg"></p>
+        </div>
+    </div>
+</div>

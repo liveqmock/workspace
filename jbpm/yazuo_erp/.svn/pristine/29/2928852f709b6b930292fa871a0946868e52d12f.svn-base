@@ -1,0 +1,39 @@
+.page-backend-languagemanage-addedit .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-languagemanage-addedit .addedit-title {
+    font-size: 26px;
+    color: #777;
+    padding: 15px 5px;
+}
+.page-backend-languagemanage-addedit .add-edit-content {
+    padding: 20px;
+}
+.page-backend-languagemanage-addedit .ff-label {
+    width: 150px;
+    text-align: right;
+}
+.page-backend-languagemanage-addedit .input-text {
+    width:400px;
+}
+.page-backend-languagemanage-addedit textarea {
+    width:400px;
+    height:150px;
+}
+
+.page-backend-languagemanage-addedit .used-list {
+    margin-right: 25px;
+}
+
+.page-backend-languagemanage-addedit .save-button {
+    width: 300px;
+    margin-left: 150px;
+}
+.page-backend-languagemanage-addedit .valid-error {
+    padding-left: 150px;
+}
+.page-backend-languagemanage-addedit .email-content {
+    margin-left: 150px;
+    width: 600px;
+
+}

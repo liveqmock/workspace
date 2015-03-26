@@ -1,0 +1,131 @@
+<!-- 回访记录-详细 start -->
+<div class="module-visitinfo" ms-widget="dialog,$,$visitinfoOpts">
+    <div class="f-body">
+        <div class="content">
+            <div class="con-left">
+                <div class="title"><p>回访话术</p></div>
+                <div class="con-left-main">
+                    <ul>
+                        <li class="con-left-main-repeat" ms-repeat="language">
+                            <h3 class="tab-title" ms-data-id="$index+1" ms-click="changeLanguageTab">
+                                <span>{{el.title}}</span>
+                                <i class="iconfont" ms-visible="languageTab==$index+1">&#xe60a;</i>
+                                <i class="iconfont" ms-visible="languageTab!=$index+1">&#xe609;</i>
+                            </h3>
+                            <p class="con-left-main-select" ms-visible="languageTab==$index+1">{{el.content|html}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="con-center">
+                <div class="title">
+                    <p class="tab1" ms-class-1="cur:maxTab == 1" ms-data-id="1" ms-click="changeMaxTab">回访表单</p>
+                    <p class="tab2" ms-class-1="cur:maxTab == 2" ms-data-id="2" ms-click="changeMaxTab">变更联系人</p>
+                </div>
+                <div class="con-center-main">
+                    <ul ms-visible="maxTab == 1">
+                        <li class="question-list" ms-repeat="questions"  ms-class-1="question{{$index}}">
+                            <div class="question-title">{{$index+1}}、{{el.title}}<p class="tip">{{el.tip}}</p></div><!--问题标题-->
+                            <div class="question-con f-field ff-value"><!--问题内容-->
+                                <label ms-repeat="el.sysDocumentDtlOptionList">
+                                    <input type="radio"
+                                           ms-attr-data-class="hid-input{{$outer.$index}}"
+                                           ms-if="$outer.el.questionType == '1'"
+                                           ms-checked="el.isSelected == '1'"
+                                           ms-click=radioBox($outer.el);
+                                           ms-attr-data-val="{{$outer.$index}}"
+                                           ms-attr-name="{{$outer.$index}}{{$outer.el.questionId}}">
+                                    <input type="checkbox"
+                                           ms-attr-data-class="hid-input{{$outer.$index}}"
+                                           ms-if="$outer.el.questionType == '2'"
+                                           ms-checked="el.isSelected == '1'"
+                                           ms-click=checkBox($outer.el);
+                                           ms-attr-name="{{$outer.$index}}{{$outer.el.questionId}}">
+                                    {{el.optionContent}}
+                                </label>
+                                <!--input type="hidden"
+                                       ms-class="hid-input{{$index}}"
+                                       ms-if="el.questionType != '3'"
+                                       ms-duplex="el.comment"
+                                       data-rules="empty"
+                                       data-tips="请选择答案！"
+                                       isrule=true-->
+                                <div ms-if="el.questionType != '3'" class="ff-value-tip"></div>
+                                <div class="f-field ff-value" ms-if="el.sysDocumentDtlOptionList" ms-each="el.sysDocumentDtlOptionList">
+                                    <textarea ms-if="el.isOpenTextarea == '1'&&el.isSelected == '1'"
+                                              ms-attr-placeholder="el.tip"
+                                              ms-duplex="el.comment"></textarea>
+                                    <div ms-if="el.isOpenTextarea == '1'&&el.isSelected == '1'" class="ff-value-tip"></div>
+                                </div>
+                                <div class="f-field ff-value" ms-if="el.questionType == '3'">
+                                    <textarea ms-attr-placeholder="el.tip"
+                                              ms-duplex="el.comment"></textarea>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul ms-visible="maxTab == 2">
+                        <table class="changeLink">
+                            <tr ms-visible="false">
+                                <td class="left">联系人所属：</td>
+                                <td class="f-field ff-value">
+                                    <div><span class="survey-select" ms-widget="select,$,$type1SelectOpts"></span></div>
+                                    <div class="ff-value-tip"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">联系人：</td>
+                                <td class="f-field ff-value">
+                                    <div><span class="survey-select" ms-widget="select,$,$type2SelectOpts"></span></div>
+                                    <div class="ff-value-tip"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="left">联系电话：</td>
+                                <td class="f-field ff-value">
+                                    <div class="input-text" style="width: 178px;">{{mobilePhone}}</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><button class="simple-btn" ms-click="changeLog">确定</button></td>
+                            </tr>
+                        </table>
+                    </ul>
+                </div>
+            </div>
+            <div class="con-right">
+                <div class="title"><p>回访记录</p></div>
+                <div class="con-right-main">
+                    <ul class="list">
+                        <li>
+                            <p class="left">联系人：</p>
+                            <p class="right">{{logName}}</p>
+                        </li>
+                        <li>
+                            <p class="left">电话：</p>
+                            <p class="right">{{logMobilePhone}}</p>
+                        </li>
+                        <li>
+                            <p class="left">通话时间：</p>
+                            <p class="right">{{startTime}}</p>
+                        </li>
+                        <li>
+                            <p class="left">通话时长：</p>
+                            <p class="right"><span ms-if="hours">{{hours}}:</span>{{min}}:{{seconds}}</p>
+                        </li>
+                    </ul>
+                    <ul class="button">
+                        <li ms-visible="isEnd==0" ms-click="changeEnd"><button class="end-btn">通话结束</button></li>
+                        <li ms-visible="isEnd==1" ms-click="submit"><button class="main-btn">保存通话记录</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 回访记录-详细 end -->
+<!-- 联系人 start-->
+<div ms-module="address,$,$addressOpts"></div>
+<!-- 联系人 end-->
+

@@ -1,0 +1,318 @@
+@charset "utf-8";
+/*base*/
+body{background:#f3f3f3;font-family:"微软雅黑",Microsoft YaHei,Helvetica,Tahoma,sans-serif;color:#333;}
+body {
+	-webkit-user-select:none;
+    -webkit-text-size-adjust:none;
+/*	padding-bottom:44px;	/*	This prevents the scroller to lock if the user swipes down outside of the screen.
+							 	NOT needed if in home screen mode and on Android. */
+}
+a, img {
+    -webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */
+}
+html, body {
+    -webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */
+    user-select: none;
+}
+h1,h2,h3,div,li,p{margin:0;padding:0;font-size:100%;font-weight:normal;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body,button,input,select,textarea{font:12px/1.125 Arial,Helvetica,sans-serif;_font-family:"宋体";}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0; padding:0;-webkit-text-size-adjust:none;font-family:"微软雅黑",YaHei,Helvetica,Tahoma,sans-serif;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+fieldset,img{border:0;}
+q:before,q:after{content:'';}
+input,textarea{outline-style:none;}
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;font-family:"微软雅黑",Microsoft YaHei,Helvetica,Tahoma,sans-serif;
+    /*-webkit-tap-highlight-color:rgba(0,0,0,0);*/
+    -webkit-user-modify:read-write-plaintext-only;}
+textarea{resize:none}
+a:focus,input:focus{
+    /*-webkit-tap-highlight-color:rgba(0,0,0,0);*/
+    -webkit-user-modify:read-write-plaintext-only;
+}
+address,caption,cite,code,dfn,em,i,th,var{font-style:normal;font-weight:normal;}
+legend{color:#000;}
+abbr,acronym {border:0;font-variant:normal;}
+a{text-decoration:none;color:#666;}
+a:hover,a:visited{text-decoration:none;}
+.left{float:left;}
+.right{float:right;}
+.block{display:block;}
+img{ vertical-align:middle;}
+.gray999{color:#999;}
+.text-center{ text-align:center;}
+.red{color:#d52828;}
+.marT10{margin-top:10px;}
+.marR5{margin-right:5px;}
+.padL10{padding-left:10px;}
+.padR10{padding-right:10px;}
+.hide{display:none;}
+.blue{color:#409bfb;}
+.orange{color:#ff7300;}
+/*文字截取*/
+.overflow_text{text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+/*两种清浮动方法*/
+.clear-wrap:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clear-wrap {display:block;_display:inline-block;}
+/*btn*/
+.shop-btn,.shop-cancle-btn{border-radius:0.3125em;display:block;text-align:center;width:98%;border:none;padding:0 10px;height:40px;line-height:36px;margin:10px auto 0;font-weight:bold;color:#fff;font-size:1.6em;
+	-moz-box-shadow:0 1px 1px #aaa;
+	-webkit-box-shadow:0 1px 1px #aaa;
+	box-shadow:0 1px 1px #aaa;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,#ffb023),color-stop(1,#f59a1b));
+	background-image: -webkit-linear-gradient( #ffb023,#f59a1b );
+	background-image:    -moz-linear-gradient( #ffb023,#f59a1b );
+	background-image:     -ms-linear-gradient( #ffb023,#f59a1b );
+	background-image:      -o-linear-gradient( #ffb023,#f59a1b );
+	background-image:         linear-gradient( #ffb023,#f59a1b );
+}
+.gray-shop-btn{border-radius:0.3125em;display:block;text-align:center;border:none;padding:0 10px;height:36px;line-height:36px;margin:10px auto 0;font-weight:bold;color:#ffffff;font-size:16px;
+	box-shadow:0 1px 1px #aaa;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,#C9CDCD),color-stop(1,#ADADAD));
+	background-image: -webkit-linear-gradient( #C9CDCD,#ADADAD );
+	background-image:    -moz-linear-gradient( #C9CDCD,#ADADAD );
+	background-image:     -ms-linear-gradient( #C9CDCD,#ADADAD );
+	background-image:      -o-linear-gradient( #C9CDCD,#ADADAD );
+	background-image:         linear-gradient( #C9CDCD,#ADADAD );
+}
+.shop-cancle-btn{background:#b5b5b5;}
+
+.shop-btn2,.shop-btn3{background:#eb2b34;border:none;padding:5px 30px;height:40px;font-align:center;font-size:20px;color:#fff;font-weight:bold;}
+.shop-btn2{font-size:16px;background:#fe5724;}
+.shop-btn3{background:#b6b5b5;font-size:16px;}
+.pop_sub{margin:15px 0; text-align:center;}
+#cofirm_cancle{margin-right:10px;}
+/*icon*/
+.reduce-icon,.reduce-disable-icon,.add-icon,.add-disable-icon{display:inline-block;content:'';background:url(../imageMall/icon01.png) no-repeat;background-size:contain;width:31px;height:30px;}
+.add-icon{background:url(../imageMall/icon02.png) no-repeat;;background-size:contain;}
+.reduce-disable-icon{background:url(../imageMall/icon03.png) no-repeat;background-size:contain;}
+.add-disable-icon{background:url(../imageMall/icon04.png) no-repeat;background-size:contain;}
+.icon-arrow-r{display:inline-block;content:'';background:url(../imageMall/icon07.png) no-repeat;background-size:contain;width:7px;height:10px;position:absolute;right:3px;top:34%;}
+.error-message{color:#d52828;font-size:1.3em;padding:0.5em;}
+/*header*/
+.mobile_popBg{background-color:#777777;position:absolute;height:100%;display:inline;top:0;left:0;opacity:0.3;width:100%;filter:Alpha(opacity=30);z-index:999;zoom:1;}
+.pop-div{position:absolute;z-index:9999;background:#fff;padding:10px;border-radius:10px;}
+.pop-div h1{font-size:1.5em;margin:10px 0;}
+.pop-text{text-align:center;font-size:1.1em;margin:20px 0 40px;width:240px;}
+.pop-div .error-message{font-size:1.1em;}
+.index-bg{background:#fff;}
+.shop-header{position:relative;z-index:9;background:#ff5900;color:#fff;height:20px;padding:0.8em 0;text-align:center;-moz-box-shadow:0 0px 1px #bbb;-webkit-box-shadow:0 0px 1px #bbb;box-shadow:0 0px 1px #bbb;}
+.shop-header h1{font-size:1.5em;}
+.shop-header span{font-size:1.5em;}
+.ui-btn-left img{ vertical-align:-3px;}
+.shop-header .ui-btn-right{color:#fff;font-size:1.2em;top:0.7em;right:1em;}
+/*ad*/
+.shop-content{position:relative;z-index:8;}
+.shop-content .shop-ad{text-align:center;margin-bottom:10px;}
+/*index*/
+.shop-content .shop-item{margin-bottom:10px;}
+.shop-content .shop-item h1{background:#f3f3f3;border-left:5px solid #ff5900;padding:0.3em 0.5em;font-size:1.5em;}
+.shop-content .shop-item .shop-item-name{font-size:1.3em;padding:10px 10px 5px;border-bottom:1px solid #e0e0df;color:#646464;}
+.shop-content .shop-item .shop-item-list li{border-bottom:1px solid #e0e0df;padding:8px 10px;position:relative;}
+.shop-item-list .item-img{width:100px; margin-right:5px; position:relative;}
+/*增加售罄 提示*/
+.soldOutBg{position:absolute; left:0px; top:0px; z-index:100; width:100%; height:100%; background:#000000; opacity:0.3; filter:alpha(opacity=30);}
+.soldOutIco{position:absolute; right:-6px; bottom:-1px; z-index:101; display:block;}
+.shop-item-list .item-content{width:65%;}
+.item-content .item-menu-name{font-size:1.3em;display:inline-block;width:150px;}
+.integral-icon{background:#d22c2c;display:inline-block;padding:1px 2px 2px 2px;color:#fff;font-size:0.8em;font-weight:bold;position:absolute;}
+.item-content .item-money-group{padding:5px 0;}
+.grey98{font-size:1em;color:#989898;}
+.num-red{font-size:1.5em;font-weight:bold;color:#ff7300;}
+.item-content .item-sy-num{margin-top:5px;}
+.shop-content .shop-item-other h1{border-left:5px solid #8dba1f;}
+.old-money{text-decoration:line-through;padding-left:5px;}
+/*buy*/
+.ui-btn-left{color:#fff;font-size:1.3em}
+.shop-content .buy-module h1{padding:0.5em 0.5em;font-size:1.3em;border-bottom:1px solid #ddd;line-height:26px;}
+.shop-content .buy-module h1 .buy-sm{font-size:0.9em;}
+.shop-content .buy-module ul{background:#fff;}
+.shop-content .buy-module li{padding:0.5em 0.5em;font-size:1.3em;border-bottom:1px solid #ddd;line-height:26px;}
+.shop-content .buy-module li .shop-buy-num{float:left;margin-right:5px;}
+.shop-content .buy-module .shop-buy-num-input{border:1px solid #dadada;height:28px;line-height:28px;border-radius:3px;width:50px;text-align:center;font-size:1.3em;}
+.shop-content .buy-module .ui-input-text{float:left;margin-right:5px;}
+.shop-content .buy-module .buy-balance{background:#fef5d2;}
+.shop-content .buy-module .ui-select{display:inline-block;}
+.ui-select{background-color: 			#f6f6f6 /*{a-bup-background-color}*/;
+	border:1px solid #ddd /*{a-bup-border}*/;
+	color: 					#333 /*{a-bup-color}*/;
+	border-radius:3px;padding:3px;
+	text-shadow: 0 /*{a-bup-shadow-x}*/ 1px /*{a-bup-shadow-y}*/ 0 /*{a-bup-shadow-radius}*/ #f3f3f3 /*{a-bup-shadow-color}*/;}
+.card-password{text-align:center;}
+.card-password h1{font-size:1.3em;margin-bottom:10px;}
+.card-password .pay-ingNum{font-size:1.1em;}
+.card-password .pay-ingNum p{padding:0 0 5px;}
+.card-password .pay-ingNum .pay-num{font-size:2em;}
+.card-password .paw-input input{width:230px;height:40px;padding:0 5px;letter-spacing:1em;font-size:1.5em;}
+/*success*/
+.buy-success{padding:0.5em;}
+.buy-success .success-word{border-bottom:1px solid #d4d4d4;text-align:center;font-size:2em;padding:2.5em 0 2.5em;}
+.buy-success .buy-list{border-top:1px solid #fff;padding:0.5em 0 1.5em;font-size:1.2em;}
+.buy-success .buy-list li{padding:0.5em;}
+/*goods*/
+.goods-pic{padding:0.5em 1em;}
+.goods-pic .goods-images{text-align:center;}
+.goods-pic .goods-images .goods-time{padding:5px 0;border-bottom:1px solid #dfdfdf;}
+.goods-pic .goods-images .goods-time span{color:#969696;font-size:1.1em;}
+.goods-pic .goods-money{position:relative;padding:0.5em 0;}
+.goods-pic .goods-money .money-tag{font-size:1.5em;position:absolute;top:0.5em;}
+.goods-pic .goods-money .money-num{font-size:2.5em;padding-left:14px;}
+.goods-pic .goods-money img{position:absolute;top:1em;}
+.goods-pic .goods-money .ing-num{padding-left:10px;color:#646464;font-size:1.1em;}
+.goods-pic .goods-money .ing-num i{color:#ff7300;}
+.goods-pic .goods-money .shop-btn{margin:0;width:auto;padding:0 20px;}
+.goods-message{margin:0.5em 0.3em;border:1px solid #ddd;background:#fff;padding:1em;font-size:1.2em;}
+.goods-message h1{border-bottom:1px solid #dfdfdf;padding-bottom:0.5em;font-size:1.3em;}
+.goods-message .message-content{color:#969696;padding:0.5em 0;line-height:150%;}
+/*order manage*/
+.order-cont,.order-details{width:100%;float:left;}
+.order-cont .order-zt{float:left;width:105px;font-size:1.1em;margin-top:21px;}
+.order-cont .order-button{float:left;width:65%;}
+.order-cont .order-button .shop-btn,.order-details .details-button .shop-btn{width:90px;padding:0;margin-right:5px;display:inline-block;height:36px;font-size:1.3em;}
+.order-details .details-button .shop-btn{margin-top:0;margin-right:0;}
+.order-details .details-word{font-size:1.1em;padding:5px 0;color:#989898;line-height:150%;}
+.order-sm-list p{padding:5px;color:#989898;font-size:1.1em;}
+.refund-content h1{font-size:1.5em;margin:10px 0;}
+.refund-content .refund-cause{font-size:1.1em;}
+.refund-content textarea{width:240px;height:100px;margin:5px 0;}
+/*ui style*/
+.ui-icon-carat-d:after {
+	background-image: url("data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22iso-8859-1%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11.dtd%22%3E%3Csvg%20version%3D%221.1%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20%20width%3D%2214px%22%20height%3D%2214px%22%20viewBox%3D%220%200%2014%2014%22%20style%3D%22enable-background%3Anew%200%200%2014%2014%3B%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20style%3D%22fill%3A%23FFFFFF%3B%22%20points%3D%2211.949%2C3.404%207%2C8.354%202.05%2C3.404%20-0.071%2C5.525%207%2C12.596%2014.07%2C5.525%20%22%2F%3E%3C%2Fsvg%3E");
+}
+.ui-li-count {
+	-webkit-border-radius: 				.3125em /*{global-radii-buttons}*/;
+	border-radius: 						.3125em /*{global-radii-buttons}*/;
+}
+.ui-btn-icon-left:after,
+.ui-btn-icon-right:after,
+.ui-btn-icon-top:after,
+.ui-btn-icon-bottom:after,
+.ui-btn-icon-notext:after {
+	background-color: 					#666 /*{global-icon-color}*/;
+	background-color: 					rgba(0,0,0,.3) /*{global-icon-disc}*/;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+}
+.ui-btn-icon-right {
+	padding-right: 2.5em;
+}
+.ui-btn-left,.ui-btn-right{position:absolute;top:0.5em}.ui-btn-left{left:.4em}.ui-btn-right{right:.4em}.ui-loading .ui-loader{display:block}.ui-loader{display:none;z-index:9999999;position:fixed;top:50%;left:50%;border:0}.ui-loader-default{background:0;filter:Alpha(Opacity=18);opacity:.18;width:2.875em;height:2.875em;margin-left:-1.4375em;margin-top:-1.4375em}.ui-loader-verbose{width:12.5em;filter:Alpha(Opacity=88);opacity:.88;box-shadow:0 1px 1px -1px #fff;height:auto;margin-left:-6.875em;margin-top:-2.6875em;padding:.625em}.ui-loader-default h1{font-size:0;width:0;height:0;overflow:hidden}.ui-loader-verbose h1{font-size:1em;margin:0;text-align:center}.ui-loader .ui-icon-loading{background-color:#000;display:block;margin:0;width:2.75em;height:2.75em;padding:.0625em;-webkit-border-radius:2.25em;border-radius:2.25em}.ui-loader-verbose .ui-icon-loading{margin:0 auto .625em;filter:Alpha(Opacity=75);opacity:.75}.ui-loader-textonly{padding:.9375em;margin-left:-7.1875em}.ui-loader-textonly .ui-icon-loading{display:none}.ui-loader-fakefix{position:absolute}
+.ui-btn-icon-left:after,
+.ui-btn-icon-right:after,
+.ui-btn-icon-top:after,
+.ui-btn-icon-bottom:after,
+.ui-btn-icon-notext:after {
+	content: "";
+	position: absolute;
+	display: block;
+	width: 22px;
+	height: 22px;
+}
+.ui-btn-icon-notext:after,
+.ui-btn-icon-left:after,
+.ui-btn-icon-right:after {
+	top: 50%;
+	margin-top: -11px;
+}
+.ui-btn-icon-right:after{right:0.5625em;}
+.ui-select {
+	margin-top: .5em;
+	margin-bottom: .5em; /* no shorthand for margin because it would override margin-right for inline selects */
+	position: relative;
+}
+.ui-select > select {
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px,1px,1px,1px);
+}
+.ui-select .ui-btn {
+	margin: 0;
+	opacity: 1; /* Fixes #2588: When Windows Phone 7.5 (Mango) tries to calculate a numeric opacity for a select (including "inherit") without explicitly specifying an opacity on the parent to give it context, a bug appears where clicking elsewhere on the page after opening the select will open the select again. */
+}
+.ui-select .ui-btn select {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	min-height: 1.5em;
+	min-height: 100%;
+	height: 3em;
+	max-height: 100%;
+	outline: 0;
+	-webkit-border-radius: inherit;
+	border-radius: inherit;	
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	filter: Alpha(Opacity=0);
+	opacity: 0;
+	z-index: 2;
+}
+/* Display none because of issues with IE/WP's filter alpha opacity */
+.ui-select .ui-state-disabled select {
+	display: none;
+}
+/* Because we add all classes of the select and option elements to the span... */ 
+.ui-select span.ui-state-disabled {
+	filter: Alpha(Opacity=100);
+	opacity: 1;
+}
+.ui-select .ui-btn.ui-select-nativeonly {
+	border-radius: 0;
+	border: 0;
+}
+.ui-select .ui-btn.ui-select-nativeonly select {
+	opacity: 1;
+	text-indent: 0;
+	display: block;
+}
+/* ui-li-count is styled in the listview CSS. We set padding and offset here because select supports icon position while listview doesn't. */
+.ui-select .ui-li-has-count.ui-btn {
+	padding-right: 2.8125em;
+}
+.ui-select .ui-li-has-count.ui-btn-icon-right {
+	padding-right: 4.6875em;
+}
+.ui-select .ui-btn-icon-right .ui-li-count {
+	right: 3.2em;
+}
+/* We set the rules for the span as well to fix an issue on Chrome with text-overflow ellipsis for the button in combination with text-align center. */
+.ui-select .ui-btn > span:not(.ui-li-count) {
+	display: block;
+	text-overflow: ellipsis;
+	overflow: hidden !important;
+	white-space: nowrap;
+}
+.fail-word{padding:20px 10px 40px;font-size:16px;line-height:20px;}
+
+.refund-number{background:#fff;border:1px solid #ccc;padding:5px 10px;font-size:1.1em;}
+.refund-select-num{padding:10px 0;font-size:1.1em;}
+.refund-select-num .ui-select{width:100px;}
+/*退款记录*/
+.order-refund-list .refund-tit{
+	float:left;
+	padding:5px;
+	font-size:1.1em;
+}
+.order-refund-list .refund-cont{
+	font-size:1.1em;
+	float:left;
+	color:#989898;
+	width:70%;
+}
+.refund-cont .refund-module{
+	padding:10px 0 0;
+	border-top:1px dashed #e0e0df;
+}
+.refund-cont .refund-module:nth-child(1){
+	padding:5px 0 0;
+	border-top:none;
+}
+.order-refund-list .refund-cont p{
+	padding:0 0 10px;
+}

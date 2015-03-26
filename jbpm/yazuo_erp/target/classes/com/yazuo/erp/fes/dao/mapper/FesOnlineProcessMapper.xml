@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesOnlineProcessDao">
+	<!-- 自定义对象 -->
+	<resultMap id="ComplexFesOnlineProcess" type="com.yazuo.erp.fes.vo.FesOnlineProcessVO">
+    	<id property="id" column="f_process_id"/>
+    	<result property="processId" column="f_process_id"/>
+    	<result property="programId" column="program_id"/>
+    	<result property="planEndTime" column="plan_end_time"/>
+    	<result property="planEndTimeStatus" column="plan_end_time_status"/>
+    	<result property="endTime" column="end_time"/>
+    	<result property="onlineProcessStatus" column="process_online_process_status"/>
+    	<result property="remark" column="process_remark"/>
+    	<result property="delAvailable" column="del_available"/>
+    	<result property="stepId" column="step_id"/>
+    	<result property="stepNum" column="step_num"/>
+    	<association  property="fesOnlineProgram" javaType="com.yazuo.erp.fes.vo.FesOnlineProgramVO">
+        	<id property="id" column="fes_online_program_id"/>
+        	<result property="merchantId" column="merchant_id"/>
+        	<result property="contractId" column="contract_id"/>
+        	<result property="beginTime" column="begin_time"/>
+        	<result property="planOnlineTime" column="plan_online_time"/>
+        	<result property="onlineTime" column="online_time"/>
+        	<result property="onlineProgramStatus" column="online_program_status"/>
+        	<result property="remark" column="remark"/>
+		</association>
+		<association  property="fesStep" javaType="com.yazuo.erp.fes.vo.FesStepVO">
+        	<id property="id" column="fes_step_id"/>
+        	<result property="stepNum" column="step_num"/>
+        	<result property="stepName" column="step_name"/>
+        	<result property="tip" column="tip"/>
+        	<result property="sort" column="sort"/>
+        	<result property="remark" column="remark"/>
+        	<result property="mainPageStatus" column="porcess_status"/>
+		</association>
+		<association  property="sysDictionary" javaType="com.yazuo.erp.system.vo.SysDictionaryVO">
+	        <id property="id" column="s_dictionary_id"/>
+	        <result property="dictionaryType" column="dictionary_type"/>
+	        <result property="dictionaryName" column="dictionary_name"/>
+	        <result property="dictionaryKey" column="dictionary_key"/>
+	        <result property="dictionaryValue" column="dictionary_value"/>
+	        <result property="remark" column="remark"/>
+	    </association>
+		<collection  property="mktBrandInterViews" column="fk_id" ofType="com.yazuo.erp.mkt.vo.MktBrandInterviewThin">
+	       	<id property="id" column="m_brand_interview_id"/>
+	    	<result property="merchantId" column="m_brand_interview_merchant_id"/>
+	    	<result property="contact" column="contact"/>
+		</collection>
+		<collection  property="mktShopSurveys" column="fk_id" ofType="com.yazuo.erp.mkt.vo.MktShopSurveyVO">
+	       	<id property="id" column="m_shop_survey_id"/>
+	       	<result property="merchantId" column="m_shop_survey_merchant_id"/>
+	    	<result property="storeId" column="store_id"/>
+	    	<result property="storeName" column="store_name"/>
+	    	<result property="updateTime" column="m_shop_survey_update_time"/>
+		</collection>
+		<collection  property="fesTrainPlans" column="fk_id" ofType="com.yazuo.erp.fes.vo.FesTrainPlanVO">
+	       	<id property="id" column="fes_train_plan_id"/>
+	       	<result property="processId" column="process_id"/>
+	       	<result property="beginTime" column="fes_begin_time"/>
+	       	<result property="endTime" column="fes_end_time"/>
+	       	<result property="address" column="train_plan_address"/>
+	       	<result property="trainer" column="trainer"/>
+	       	<result property="content" column="content"/>
+	       	<result property="remark" column="remark"/>
+	       	<result property="updateTime" column="fes_train_update_time"/>
+		</collection>
+		<collection  property="fesRemarks" column="fk_id" ofType="com.yazuo.erp.fes.vo.FesRemarkVO">
+	       	<id property="id" column="f_remark_id"/>
+	       	<result property="processId" column="f_remark_process_id"/>
+	       	<result property="remark" column="f_remark_remark"/>
+	    	<result property="updateTime" column="f_remark_update_time"/>
+		</collection>
+     	<collection  property="fesOpenCardApplications" column="fk_id" ofType="com.yazuo.erp.fes.vo.FesOpenCardApplicationVO">
+	       	<id property="id" column="f_application_id"/>
+	       	<result property="processId" column="f_application_process_id"/>
+	       	<result property="merchantId" column="f_application_merchant_id"/>
+	       	<result property="openCardApplicationStatus" column="open_card_application_status"/>
+	       	<result property="remark" column="remark"/>
+	       	<result property="updateTime" column="f_application_update_time"/>
+		</collection>
+     	<collection  property="fesStowages" column="fk_id" ofType="com.yazuo.erp.fes.vo.FesStowageVO">
+	       	<id property="id" column="f_stowage_id"/>
+	       	<result property="processId" column="f_stowage_process_id"/>
+	       	<result property="logisticsCompany" column="logistics_company"/>
+	       	<result property="logisticsNum" column="logistics_num"/>
+	       	<result property="remark" column="remark"/>
+	       	<result property="updateTime" column="f_stowage_update_time"/>
+		</collection>
+     	<collection  property="fesSysAttachments" column="fk_id" ofType="com.yazuo.erp.system.vo.SysAttachmentVO">
+     	 	<!-- 实际关联的是sys_attachement表 -->
+	       	<id property="id" column="f_process_attachment_id"/><!-- sys_attachment_id -->
+	       	<result property="processAttachmentType" column="process_attachment_type"/><!-- 来自fes_process_attachement -->
+	    	<result property="attachmentName" column="attachment_name"/>
+	    	<result property="originalFileName" column="original_file_name"/>
+	    	<result property="attachmentType" column="attachment_type"/>
+	    	<result property="attachmentSize" column="attachment_size"/>
+	    	<result property="attachmentPath" column="attachment_path"/>
+	    	<result property="attachmentSuffix" column="attachment_suffix"/>
+	    	<result property="moduleType" column="module_type"/>
+	    	<result property="isDownloadable" column="is_downloadable"/>
+	    	<result property="insertBy" column="f_process_attachment_insert_by"/><!-- 操作人 -->
+	    	<result property="insertTime" column="f_process_attachment_insert_time"/> <!-- 做排序用 -->
+	    	<result property="updateTime" column="f_process_attachment_update_time"/>
+		</collection>
+	    <collection  property="tradeCardtypes" column="fk_id" ofType="com.yazuo.erp.trade.vo.TradeCardtypeVO">
+	    	<id property="id" column="card_type_id"/>
+	    	<result property="merchantId" column="card_type_merchant_id"/>
+	    	<result property="cardtype" column="cardtype"/>
+	    	<result property="price" column="price"/>
+		</collection>
+	    <collection  property="tradeMessageTemplates" column="fk_id" ofType="com.yazuo.erp.trade.vo.TradeMessageTemplateVO">
+	    	<id property="id" column="trade_message_id"/>
+	    	<result property="merchantNo" column="merchant_no"/>
+	    	<result property="transCode" column="trans_code"/>
+	    	<result property="messageTemplate" column="message_template"/>
+		</collection>
+		<!-- 前端负责人 -->
+		<collection  property="listUsers" column="fk_id" ofType="com.yazuo.erp.system.vo.SysUserVO">
+	    	<result property="id" column="user_id"/>
+	    	<result property="userName" column="user_name"/>
+	    	<result property="tel" column="tel"/>
+		</collection>
+	</resultMap>	
+	
+	<select id="getComplexFesOnlineProcesss" resultMap="ComplexFesOnlineProcess">
+  	 SELECT f_process.id as f_process_id, f_process.online_process_status as process_online_process_status, 
+  	 		 f_process.remark as process_remark,
+  	      (case when f_process_attachment.update_time>now() and f_step.step_num = 'draft_program'
+          then 'false' else 'true' end ) as del_available, 
+          (case when f_process.plan_end_time&lt;now() then 'true' else 'false' end ) as plan_end_time_status, now(), 
+        m_brand_interview.id as m_brand_interview_id, m_shop_survey.id as m_shop_survey_id, 
+        m_brand_interview.merchant_id as m_brand_interview_merchant_id, m_brand_interview.*,
+        m_shop_survey.merchant_id as m_shop_survey_merchant_id,
+        m_shop_survey.update_time as m_shop_survey_update_time,  m_shop_survey.* ,
+	    f_process.*, f_program.id as fes_online_program_id, f_program.*, f_step.id as fes_step_id, f_step.* ,
+		f_train_plan.id as fes_train_plan_id,f_train_plan.update_time as fes_train_update_time,  f_train_plan.address as train_plan_address,
+		 f_train_plan.begin_time as fes_begin_time, f_train_plan.end_time as fes_end_time, 
+		f_train_plan.* , f_remark.id as f_remark_id,f_remark.process_id as f_remark_process_id, f_remark.remark as f_remark_remark, 
+		f_remark.update_time as f_remark_update_time,
+		f_application.id as f_application_id, f_application.update_time as f_application_update_time,
+		f_application.process_id as f_application_process_id,
+		f_application.merchant_id as f_application_merchant_id,
+		 f_application.* , f_stowage.id as f_stowage_id,  f_stowage.process_id as f_stowage_process_id, 
+		 f_stowage.update_time as f_stowage_update_time, f_stowage.*, 
+		f_process_attachment.ssa_id as f_process_attachment_id, f_process_attachment.*, 
+		f_process_attachment.atta_insert_by as f_process_attachment_insert_by,
+		f_process_attachment.atta_insert_time as f_process_attachment_insert_time,
+		f_process_attachment.update_time as f_process_attachment_update_time,
+		s_dictionary.id as s_dictionary_id, s_dictionary.dictionary_key, s_dictionary.dictionary_value, 
+		t_cardtype.merchant_id as card_type_merchant_id, t_cardtype.id as card_type_id, t_cardtype.*, 
+		t_message_temp.*, t_message_temp.id as trade_message_id, 
+		temp_user_merchant.user_id, temp_user_merchant.user_name, temp_user_merchant.tel, /*前端负责人*/
+		(case when (f_step.step_num ='entity_cards' and f_process.online_process_status ='07')  then 0 /*未开始*/
+				when (f_step.step_num ='materials_design' and f_process.online_process_status ='14')  then 0 /*未开始*/
+				when (f_step.step_num ='research' and f_process.online_process_status ='03')  then 0 /*未开始*/
+				when (f_process.online_process_status ='02')  then 0 /*未开始*/  else 1  /*流程中*/ end ) as porcess_status 
+	  FROM fes.fes_online_process as f_process 
+	  LEFT JOIN fes.fes_online_program as f_program ON f_process.program_id = f_program.id 
+	  LEFT JOIN syn.syn_merchant  ON syn.syn_merchant.merchant_id = f_program.merchant_id  
+	LEFT JOIN (select sys.sys_user.id as user_id, sys.sys_user.user_name as user_name,sys.sys_user_merchant.merchant_id, sys.sys_user.tel /*前端负责人*/
+	    from sys.sys_user, sys.sys_user_merchant 
+	  			 where  sys.sys_user.id = sys.sys_user_merchant.user_id ) as temp_user_merchant 
+	   on  temp_user_merchant.merchant_id  = f_program.merchant_id 
+	LEFT JOIN trade.trade_cardtype as t_cardtype  ON t_cardtype.merchant_id = f_program.merchant_id  
+	LEFT JOIN trade.trade_message_template as t_message_temp on t_message_temp.merchant_no =  syn.syn_merchant.merchant_no  /*跟syn_merchant对应*/
+	  LEFT JOIN fes.fes_step as f_step on  f_process.step_id = f_step.id 
+      LEFT JOIN mkt.mkt_brand_interview as m_brand_interview on m_brand_interview.merchant_id = f_program.merchant_id and m_brand_interview.is_enable= '1' 
+      LEFT JOIN mkt.mkt_shop_survey as m_shop_survey on m_shop_survey.merchant_id = f_program.merchant_id and m_shop_survey.is_enable= '1' 
+	  LEFT JOIN fes.fes_train_plan as f_train_plan on  f_process.id = f_train_plan.process_id and f_train_plan.is_enable= '1' 
+	  LEFT JOIN fes.fes_remark as f_remark on  f_process.id = f_remark.process_id 
+	  LEFT JOIN fes.fes_open_card_application as f_application on  f_process.id = f_application.process_id and f_application.is_enable= '1' 
+	  LEFT JOIN fes.fes_stowage as f_stowage on  f_process.id = f_stowage.process_id 
+	  LEFT JOIN (select ssa.id as ssa_id, ssa.insert_time as atta_insert_time, ssa.insert_by as atta_insert_by, 
+	  ffpa.*,ssa.* from fes.fes_process_attachment as ffpa, sys.sys_attachment as ssa 
+       where  ffpa.attachment_id = ssa.id) as f_process_attachment  on f_process.id = f_process_attachment.process_id 
+	  LEFT JOIN sys.sys_dictionary as s_dictionary on s_dictionary.dictionary_type='00000043' 
+	   AND  f_process.online_process_status = s_dictionary.dictionary_key 
+	   <include refid="getComplexFesOnlineProcesss_where" />
+	   ORDER BY  f_process.step_id  
+	</select>
+	
+	<sql id="getComplexFesOnlineProcesss_where">
+		<where>	      				
+	       <if test="processId!=null ">AND f_process.id = #{processId}</if>
+	       <if test="programId!=null ">AND program_id = #{programId}</if>
+		   <if test="userId!=null">
+             AND EXISTS (SELECT 1 from sys.sys_to_do_list where related_id = f_process.id 
+ 				 AND related_type = '1' and user_id = #{userId} and sys.sys_to_do_list.item_status ='0' )
+           </if>
+		</where>
+	</sql>
+	
+	<resultMap id="FesOnlineProcess" type="com.yazuo.erp.fes.vo.FesOnlineProcessVO">
+    	<id property="id" column="id"/>
+    	<result property="programId" column="program_id"/>
+    	<result property="stepId" column="step_id"/>
+    	<result property="planEndTime" column="plan_end_time"/>
+    	<result property="endTime" column="end_time"/>
+    	<result property="onlineProcessStatus" column="online_process_status"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="stepNum" column="step_num"/>
+    	<result property="merchantId" column="merchant_id"/>
+	</resultMap>
+	
+	<!-- 工具方法，通过商户id和步骤代码查询上线流程 -->
+    <select id="getFesOnlineProcessByMerchantAndStep" resultMap="FesOnlineProcess">
+		SELECT  program.merchant_id, process.id, program.id as program_id,  step.id as step_id, step.step_num, process.*
+		     from fes.fes_online_process as process, fes.fes_online_program as program , fes.fes_step as step 
+			where process.program_id = program.id and  process.step_id = step.id 
+			and step.step_num = #{stepNum} and merchant_id = #{merchantId}    
+	</select>
+	
+	<sql id="fesonlineprocess_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="programId!=null ">AND program_id = #{programId}</if>
+	       <if test="stepId!=null ">AND step_id = #{stepId}</if>
+		   <if test="planEndTime!=null ">AND plan_end_time >= #{planEndTime}</if>
+		   <if test="planEndTime!=null ">AND plan_end_time &lt;= #{planEndTime}</if>
+		   <if test="endTime!=null ">AND end_time >= #{endTime}</if>
+		   <if test="endTime!=null ">AND end_time &lt;= #{endTime}</if>
+	       <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">AND online_process_status = #{onlineProcessStatus}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="fesonlineprocessColumns">
+	    <![CDATA[
+		id,program_id,step_id,plan_end_time,end_time,online_process_status,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveFesOnlineProcess" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： program_id,step_id,online_process_status,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_online_process (
+        	 <if test="programId!=null ">program_id,</if>
+        	 <if test="stepId!=null ">step_id,</if>
+        	 <if test="planEndTime!=null ">plan_end_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">online_process_status,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="programId!=null ">#{programId},</if>
+       	    <if test="stepId!=null ">#{stepId},</if>
+       	    <if test="planEndTime!=null ">#{planEndTime},</if>
+       	    <if test="endTime!=null ">#{endTime},</if>
+       	    <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">#{onlineProcessStatus},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertFesOnlineProcesss" parameterType="map">
+	 <!--不允许为空的字段： program_id,step_id,online_process_status,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_online_process (
+        	 <if test="programId!=null ">program_id,</if>
+        	 <if test="stepId!=null ">step_id,</if>
+        	 <if test="planEndTime!=null ">plan_end_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">online_process_status,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="programId!=null ">#{t.programId},</if>
+          <if test="stepId!=null ">#{t.stepId},</if>
+          <if test="planEndTime!=null ">#{t.planEndTime},</if>
+          <if test="endTime!=null ">#{t.endTime},</if>
+          <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">#{t.onlineProcessStatus},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesOnlineProcess">
+        UPDATE fes.fes_online_process 
+ 		  <set>
+	        <if test="programId!=null ">program_id = #{programId} ,</if>
+	        <if test="stepId!=null ">step_id = #{stepId} ,</if>
+	        <if test="planEndTime!=null ">plan_end_time = #{planEndTime} ,</if>
+	        <if test="endTime!=null ">end_time = now(),</if>
+	        <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">online_process_status = #{onlineProcessStatus} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesOnlineProcesssToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_online_process 
+ 		  <set>
+	        <if test="programId!=null ">program_id = #{t.programId} ,</if>
+	        <if test="stepId!=null ">step_id = #{t.stepId} ,</if>
+	        <if test="planEndTime!=null ">plan_end_time = #{t.planEndTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{t.endTime} ,</if>
+	        <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">online_process_status = #{t.onlineProcessStatus} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesOnlineProcesssToSameVals" parameterType="map">
+        UPDATE fes.fes_online_process 
+ 		  <set>
+	        <if test="programId!=null ">program_id = #{programId} ,</if>
+	        <if test="stepId!=null ">step_id = #{stepId} ,</if>
+	        <if test="planEndTime!=null ">plan_end_time = #{planEndTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="onlineProcessStatus!=null and onlineProcessStatus!=''">online_process_status = #{onlineProcessStatus} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesOnlineProcessById">
+    <![CDATA[
+        DELETE FROM fes.fes_online_process WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesOnlineProcessByIds" parameterType="list">
+        DELETE FROM fes.fes_online_process WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesOnlineProcessById" resultMap="FesOnlineProcess">
+		SELECT <include refid="fesonlineprocessColumns" />
+		    FROM fes.fes_online_process 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getFesOnlineProcesss" resultMap="FesOnlineProcess">
+		SELECT <include refid="fesonlineprocessColumns" />
+		    FROM fes.fes_online_process  
+	    <include refid="fesonlineprocess_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getFesOnlineProcesssMap" resultType="map">
+		SELECT <include refid="fesonlineprocessColumns" />
+	    <![CDATA[
+		    FROM fes.fes_online_process  
+	    ]]>
+	    <include refid="fesonlineprocess_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+    <select id="getFesOnlineProcessCount" resultType="long">
+        SELECT count(*) FROM fes.fes_online_process 
+		<include refid="fesonlineprocess_findPage_where"/>    
+    </select>
+    
+</mapper>

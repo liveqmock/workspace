@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* CSS Document */
+body, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, th, td, p,input, button, textarea,header{margin:0px; padding:0px;}
+body{font-family: "Microsoft Yahei","Helvetica Neue", Helvetica, STHeiTi, sans-serif;font-size:12px;color:#393939; line-height:24px;}
+a{ text-decoration:none; outline:none;}
+a, img {-webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */}
+html, body {-webkit-user-select: none;   /* 禁止选中文本（如无文本选中需求，此为必选项） */ user-select: none;}
+ul,li{ list-style:none}
+.clearfix {display: block;}
+.clearfix:after{content:".";display: block;height: 0;clear: both;visibility: hidden;}
+
+/*btn*/
+.redBtn{background:#C8161D;background:-moz-linear-gradient(top, #CD2B31, #C6080F);background:-webkit-gradient(linear, 0 0, 0 100%, from(#D94A4E), to(#B6070C));filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#CD2B31',endColorStr='#C6080F',gradientType='0'); color:#ffffff; padding:0px 15px; display:inline-block; height:26px; line-height:26px; text-align:center; border-radius:3px;}
+
+
+
+
+/*广告页*/
+.lineHeader{ height:38px; line-height:38px; background:#F3F3F3; color:#66CC00;margin-bottom:10px;}
+.lineHeader h3{background: -moz-linear-gradient(left,#EEEEEE,#BFBFBF,#EEEEEE);
+				background: -webkit-gradient(linear,left top,right bottom,from(#EEEEEE),color-stop(0.5, #BFBFBF),to(#EEEEEE));
+				background: -o-linear-gradient(left,#EEEEEE, #BFBFBF,#EEEEEE);
+				position: relative;top:19px;height:2px;text-align: center;}
+.lineHeader h3 span {padding: 0px 15px;display: inline-block; background:#F3F3F3;position: relative;top:-19px;font-weight: normal;}
+
+/*绿色柱子的title*/
+.greenBorderTitle{ height:22px; line-height:22px; border-left:#66CC00 solid 4px; background:#F3F3F3; font-size:14px; color:#333333; text-indent:10px; margin-bottom:10px; font-weight:normal;}
+/*卡说明及办卡方式列表*/
+.cardDetails{margin:0px 4% 10px;}
+.cardDetails li{ padding:0px 0 0px 5px; position:relative; line-height:20px;}
+.greenPointer{width:4px; height:4px; background:#66CC00; border-radius:4px; position:absolute; left:-5px; top:8px; display:block;}
+.cardDetails li h3{ font-size:14px; font-weight:normal; color:#646464;}
+.cardDetails li p{ color:#A4A4A4; padding:4px 0;}
+
+/*卡片背景图*/
+.cardBgItem{ margin:10px 5%; position:relative;} 
+.cardImg{ width:100%; margin:0px auto; display:block;}
+.cardLogo{ width:54px; height:54px; background:#F0F0F1; border:#F6EAA8 solid 3px; position:absolute; left:20px; top:20px; display:block;}
+.cardLogo img{ max-width:54px; max-height:54px;}
+.memberInfoList li span.cardLogo{ margin-left:0px;}
+.cardName{ width:74px; line-height:20px; font-size:14px; color:#ffffff; position:absolute; left:12px; top:80px; display:block; text-align:center;}
+.cardCoffeName{ width:74px; line-height:20px; font-size:14px; color:#ffffff; position:absolute; left:12px; top:100px; display:block; text-align:center;}
+.cardType{ position:absolute; right:20px; top:20px; font-size:12px; color:#ffffff;}
+.cardNum{position:absolute; right:20px; bottom:24px; font-size:12px; line-height:20px; text-align:right; color:#ffffff;}
+.cardNum strong{display:block; font-size:16px; padding-top:2px;}
+/*增加单一会员卡 区分颜色*/
+.difColor{ color:#94851B}
+.cardBirthday{position:absolute; right:20px; top:40px; font-size:14px}
+
+
+
+/*一人多卡页  头部ad 和 导航*/
+.adHeader{ margin-bottom:10px;}
+.adHeader img{ width:100%; display:block;}
+.mainMenu{ border-top:#DEDEDE solid 1px; border-bottom:#DEDEDE solid 2px;}
+.mainMenu li{ height:44px; line-height:44px; width:33%; float:left; margin-left:-1px; border-left:#D4D4D4 solid 1px; text-align:center;}
+.mainMenu li:first-child{ width:34%;}
+.mainMenu li a{ font-size:14px; color:#727272;}
+.mainMenu li.curr{ background:#EDEDED;}
+.mainMenu li.curr a{ color:#6DB70D;}
+
+/*卡列表*/
+.cardList{ margin:0px 5% 10px;}
+.cardList .cardItem{ margin:0 0 10px;background:#F8F5E6; border:#E2D6C3 solid 1px;box-shadow:0 0 3px #cfcfcf; border-radius:20px;}
+.cardList .cardItem .cardBgItem{ margin:0px; position:relative; z-index:5;}
+.cardMoney{ position:relative;z-index:2; }
+.cardMoney p{ padding:5px 10px; font-size:16px; color:#474746; line-height:34px; border-top:#EDE5D3 solid 1px;}
+.cardMoney p:first-child{border-top:none;}
+.cardMoney p strong{ font-size:20px; margin-right:5px;}
+.cardMoney p strong.cardNum2{color:#555657; font-size:16px;}
+.cardMoney p .red{ color:#FF5E00;}
+.cardMoney p .green{ color:#66CC00;}
+.cardMoney p em{ color:#CBCBCC; font-size:12px; position:relative; top:4px; font-style:normal;}
+/*修改 重置密码操作行*/
+.cardMoney .pwdLine{ color:#C7C5BE; font-size:10px; text-align:right; padding-bottom:0px;}
+.pwdLine a{ padding-right:17px; color:#787775; margin:0px 8px; font-size:14px}
+.pwdLine a.editPwdLink{ background:url(../images/pwdEditIco.png) right center no-repeat;}
+.pwdLine a.resetPwdLink{ background:url(../images/pwdResetIco.png) right center no-repeat;}
+
+/*咖啡陪你 card*/
+.cofeBeanCardNum{ position:absolute; right:20px; bottom:15px; font-size:20px; font-family:Arial;color:#F1C700; text-shadow:0 0 3px #000000; font-weight:normal;}
+
+/*会员信息列表*/
+.memberInfoList li{ padding:6px 3%; border:#F5F5F5 solid 1px; border-left:none; border-right:0px; padding-right:60px; margin-bottom:10px; color:#888888; line-height:26px; position:relative;}
+.memberInfoList li span{ margin-left:10px;}
+.editMemberLink{ position:absolute; right:10px; top:15px; padding-right:15px; color:#66CC00; background:url(../image/editLink.png) right center no-repeat;}
+.sexIco{ width:16px; height:16px; display:inline-block; position:relative; top:4px; margin:0px 5px;}
+.maleIco{ background:url(../image/maleIco.png) no-repeat;}
+.femaleIco{ background:url(../image/femaleIco.png) no-repeat;}
+
+
+
+/*申请会员卡*/     
+.grayBg{ background:#E8E8E8;}
+.orangeHeader{ height:36px; line-height:36px; text-align:center; background:#FF5900; color:#ffffff; font-size:16px; position:relative; margin-bottom:10px;}
+.orangeHeader .rightLink{ position:absolute; right:15px; top:0px; font-size:14px; color:#ffffff;}
+.cardTypeList{ background:#ffffff;}
+.cardTypeList h3{ line-height:38px; border-bottom:#EFEFEF solid 2px; font-weight:normal; padding:0px 10px; color:#646464}
+.applyCardList li{ padding:5px 0; height:82px; position:relative;border-bottom:#EAEAEA solid 2px;}
+.applyCardList li .cardDemoImg{ width:135px; height:82px; position:absolute; left:10px; top:5px; display:block;}
+.applyCardList li h4,.applyCardList li p{ padding-left:155px; padding-right:40px;}
+.applyCardList li h4{ padding-top:10px; color:#2B2B2B; font-weight:normal; font-size:14px}
+.applyCardList li p{ color:#959595; font-size:12px; padding-top:10px;}
+.applyCardList li p em{ font-style:normal;}
+.applyCardList li p strong{ margin-right:10px; font-size:20px; font-weight:normal; color:#FF6300;}
+.applyCardList li p del{ font-size:14px;}
+.editCardLink{ background:url(../image/editLink.png) no-repeat; width:9px; height:13px; display:block; position:absolute; right:15px; top:50%; margin-top:-7px;}
+
+
+/*选择想查看的会员卡列表*/
+.cardPackageTitle{ padding:0px 15px; line-height:36px; color:#717171; font-weight:normal; font-size:14px;}
+.cardPackageList{ margin-bottom:30px; padding-bottom:20px;}
+.cardPackageList li{box-shadow:0px 8px 8px #cccccc; }
+.cardPackageList li:first-child .borderBottom{border-top:none}
+.cardPackageList li:last-child{border-bottom:#EADED1 dashed 2px;}
+.cardPackageList li .cardBgItem{ margin:0px; position:relative; height:80px; overflow:hidden;}
+.borderBottom{ height:80px;padding:8px 15px 2px; border-bottom:#EADED1 dashed 2px;}
+
+
+
+
+/*修改密码 弹窗样式*/
+.popWin{ display:none;}
+.popWin .popBg{ position:fixed; z-index:999; width:100%; height:100%; left:0px; top:0px;  background:#000; opacity:0.5; filter:alpha(opacity=50);}
+.popWin .popInfo{ width:84%; position:fixed; left:5%; top:130px; z-index:1000; background:#ffffff; box-shadow:0 0 3px #000000; border-radius:3px; padding:12px 3%; font-size:14px; line-height:24px;}
+.popGreenBtn{ background:#6ECB00; color:#ffffff; font-size:16px; font-weight:bold; width:80px; height:36px; line-height:36px; display:block; text-align:center; padding:0px 20px; margin:15px auto 10px; border-radius:3px;}
+#closePopWinBtn{ position:absolute; right:-8px; top:-8px; background:#000000; opacity:0.6; filter:alpha(opacity=60); color:#ffffff; font-size:18px; line-height:30px;width:30px; height:30px; text-align:center; border-radius:30px;}
+#closePopWinBtn:hover{opacity:0.9; filter:alpha(opacity=90); }
+/*赠送券确认弹窗*/
+.centerTxt{text-align:center;}
+.centerTxt h3{font-size:16px; font-weight:normal;}
+.centerTxt p{font-size:14px; color:#969696; padding:5px 0;}
+.centerTxt strong{font-size:18px;font-weight:normal;}
+.popOrangeBtn{background:#FEA823; color:#ffffff; font-size:16px; font-weight:bold; width:60px; height:36px; line-height:36px; display:inline-block; text-align:center; padding:0px 20px; margin:15px 5px 10px; border-radius:3px;}
+.popGrayBtn{background:#B5B5B5; color:#ffffff; font-size:16px; font-weight:bold; width:60px; height:36px; line-height:36px; display:inline-block; text-align:center; padding:0px 20px; margin:15px 5px 10px; border-radius:3px;}
+
+
+
+/*会员  券 带赠送功能 列表*/
+.couponList{padding:0px 20px; margin:20px 0;}
+.couponList .partTitle{ color:#3B3B3B; font-size:16px; font-weight:normal; line-height:30px;} 
+.couponList .partTitle span{ margin-left:6px; font-size:12px; color:#888888;}
+.couponList li{margin-bottom:10px; background:#ffffff; border:#EDEDED solid 1px;}
+.couponList li .couponTitle{ height:36px; line-height:36px; padding:0px 15px; position:relative; font-size:14px; font-weight:normal; color:#ffffff; border-radius:3px 3px 0 0;}
+.couponList li .couponTitle.greenTitle{ background:#6CB647 url(../images/greenTitleBorder.jpg) left bottom repeat-x;}
+.couponList li .couponTitle.blueTitle{ background:#4D96C3 url(../images/blueTitleBorder.jpg) left bottom repeat-x;}
+.couponList li .couponTitle a{position:absolute; right:15px; top:7px; line-height:20px; padding:0px 15px; border:#ffffff solid 1px; color:#ffffff; display:block;border-radius:3px; opacity:0.8; filter:alpha(opacity=80);}
+.couponList li .couponTitle a:hover{opacity:1; filter:alpha(opacity=100);}
+.couponDate{ padding:10px 15px; text-align:center; line-height:20px; font-size:14px; color:#404040;}
+.couponDate em{ padding:0px 4px;}
+.couponDate em.green{color:#6CB647}
+.couponDate em.blue{color:#4D96C3}
+/*隐藏的详情*/
+.couponDetailBox{ padding:0px 15px 10px;}
+.showDetailLinkIco,.hideDetailLinkIco{width:15px; height:11px; display:block; margin:0px auto; cursor:pointer;}
+.showDetailLinkIco{ background:url(../images/viewMoreIco.png) no-repeat;}
+.hideDetailLinkIco{ background:url(../images/viewMoreIco1.png) no-repeat; display:none;}
+.couponDetailInfo{display:none;}
+
+/*券赠送 表单页*/
+.grayBody{ background:#E8E8E8;}
+#JS_couponGiveForm{}
+#JS_couponGiveForm h3{ padding:15px 12px 5px; font-size:16px; font-weight:normal; color:#646464;}
+#JS_couponGiveForm .couponGiveFormItem{ padding:10px 15px; color:#969696; font-size:14px; background:#ffffff; border-bottom:#DEDEDE solid 1px;}
+#JS_couponGiveForm .couponGiveFormItem:first-child{ border-top:#DEDEDE solid 1px;}
+#JS_couponGiveForm .couponGiveFormItem label{color:#646464;}
+#JS_couponGiveForm .couponGivePhoneNum{ margin:0px 10px; padding:0px 10px 0px 60px; position:relative; background:#ffffff; border:#DEDEDE solid 1px;}
+#JS_couponGiveForm .couponGivePhoneNum label{position:absolute; left:10px; top:10px;}
+#JS_couponGivePhoneNum{width:100%; height:40px; line-height:40px; font-size:14px; color:#646464; font-family:'Microsoft Yahei'; border:none;}
+#couponGiveError{ color:#D52828; padding:0px 25px; font-size:14px; display:none;}
+.giveCouponOrangeBtn{margin:20px 15px; border:#F9A11D solid 1px; box-shadow:0 0 3px #999999; border-radius:5px; height:38px; line-height:38px; display:block;
+color:#ffffff; text-align:center; font-size:16px; text-shadow:0 0 3px #aaaaaa;
+background:#FFAA23;background:-moz-linear-gradient(top, #FFB023, #FCA020);background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFB023), to(#FCA020));
+filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFB023',endColorStr='#FCA020',gradientType='0');}
+
+/*优惠券赠送成功 提示页面*/
+#JS_couponGiveSuccess{display:none;}
+.couponGiveSuccessTitle{font-size:16px; color:#393939; text-align:center;  margin:20px 10px 10px; border-bottom:#ffffff solid 1px;}
+.couponGiveSuccessTitle p{ border-bottom:#D4D4D4 solid 2px;padding:20px 0; line-height:26px;}
+.couponGiveSuccessTitle p .couponGiveSuccessIco{ width:26px; height:26px; background:url(../images/successIco.png) no-repeat; display:inline-block; position:relative; top:7px; margin-right:2px;}
+.couponGivePeople{padding:0px 25px 20px; color:#646464; font-size:14px; line-height:24px; }
+.couponGiveSuccessDetail{color:#646464; font-size:14px; padding:0px 25px 0px; line-height:24px;}
+.couponGiveSuccessDetail p{color:#ABABAB;}
+
+
+

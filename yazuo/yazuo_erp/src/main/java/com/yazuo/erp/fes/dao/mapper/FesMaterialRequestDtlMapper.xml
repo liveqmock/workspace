@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesMaterialRequestDtlDao">
+	<resultMap id="FesMaterialRequestDtl" type="com.yazuo.erp.fes.vo.FesMaterialRequestDtlVO">
+    	<id property="id" column="id"/>
+    	<result property="materialRequestId" column="material_request_id"/>
+    	<result property="materialRequestType" column="material_request_type"/>
+    	<result property="specificationType" column="specification_type"/>
+    	<result property="description" column="description"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="fesmaterialrequestdtlColumns">
+	    <![CDATA[
+		id,material_request_id,material_request_type,specification_type,description,remark,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveFesMaterialRequestDtl" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： material_request_id,material_request_type,insert_by,insert_time,--> 
+        INSERT INTO fes.fes_material_request_dtl (
+        	 <if test="materialRequestId!=null ">material_request_id,</if>
+        	 <if test="materialRequestType!=null and materialRequestType!=''">material_request_type,</if>
+        	 <if test="specificationType!=null and specificationType!=''">specification_type,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES (
+       	    <if test="materialRequestId!=null ">#{materialRequestId},</if>
+       	    <if test="materialRequestType!=null and materialRequestType!=''">#{materialRequestType},</if>
+       	    <if test="specificationType!=null and specificationType!=''">#{specificationType},</if>
+       	    <if test="description!=null and description!=''">#{description},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertFesMaterialRequestDtls" parameterType="map">
+	 <!--不允许为空的字段： material_request_id,material_request_type,insert_by,insert_time,--> 
+        INSERT INTO fes.fes_material_request_dtl (
+        	 <if test="materialRequestId!=null ">material_request_id,</if>
+        	 <if test="materialRequestType!=null and materialRequestType!=''">material_request_type,</if>
+        	 <if test="specificationType!=null and specificationType!=''">specification_type,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="materialRequestId!=null ">#{t.materialRequestId},</if>
+          <if test="materialRequestType!=null and materialRequestType!=''">#{t.materialRequestType},</if>
+          <if test="specificationType!=null and specificationType!=''">#{t.specificationType},</if>
+          <if test="description!=null and description!=''">#{t.description},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesMaterialRequestDtl">
+        UPDATE fes.fes_material_request_dtl 
+ 		  <set>
+	        <if test="materialRequestId!=null ">material_request_id = #{materialRequestId} ,</if>
+	        <if test="materialRequestType!=null and materialRequestType!=''">material_request_type = #{materialRequestType} ,</if>
+	        <if test="specificationType!=null and specificationType!=''">specification_type = #{specificationType} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesMaterialRequestDtlsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_material_request_dtl 
+ 		  <set>
+	        <if test="materialRequestId!=null ">material_request_id = #{t.materialRequestId} ,</if>
+	        <if test="materialRequestType!=null and materialRequestType!=''">material_request_type = #{t.materialRequestType} ,</if>
+	        <if test="specificationType!=null and specificationType!=''">specification_type = #{t.specificationType} ,</if>
+	        <if test="description!=null and description!=''">description = #{t.description} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesMaterialRequestDtlsToSameVals" parameterType="map">
+        UPDATE fes.fes_material_request_dtl 
+ 		  <set>
+	        <if test="materialRequestId!=null ">material_request_id = #{materialRequestId} ,</if>
+	        <if test="materialRequestType!=null and materialRequestType!=''">material_request_type = #{materialRequestType} ,</if>
+	        <if test="specificationType!=null and specificationType!=''">specification_type = #{specificationType} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesMaterialRequestDtlById">
+    <![CDATA[
+        DELETE FROM fes.fes_material_request_dtl WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesMaterialRequestDtlByIds" parameterType="list">
+        DELETE FROM fes.fes_material_request_dtl WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesMaterialRequestDtlById" resultMap="FesMaterialRequestDtl">
+		SELECT <include refid="fesmaterialrequestdtlColumns" />
+		    FROM fes.fes_material_request_dtl 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getFesMaterialRequestDtls" resultMap="FesMaterialRequestDtl">
+		SELECT <include refid="fesmaterialrequestdtlColumns" />
+		    FROM fes.fes_material_request_dtl  
+	    <include refid="fesmaterialrequestdtl_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getFesMaterialRequestDtlsMap" resultType="map">
+		SELECT <include refid="fesmaterialrequestdtlColumns" />
+	    <![CDATA[
+		    FROM fes.fes_material_request_dtl  
+	    ]]>
+	    <include refid="fesmaterialrequestdtl_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="fesmaterialrequestdtl_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="materialRequestId!=null ">AND material_request_id = #{materialRequestId}</if>
+	       <if test="materialRequestType!=null and materialRequestType!=''">AND material_request_type = #{materialRequestType}</if>
+	       <if test="specificationType!=null and specificationType!=''">AND specification_type = #{specificationType}</if>
+	       <if test="description!=null and description!=''">AND description = #{description}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getFesMaterialRequestDtlCount" resultType="long">
+        SELECT count(*) FROM fes.fes_material_request_dtl 
+		<include refid="fesmaterialrequestdtl_findPage_where"/>    
+    </select>
+    
+</mapper>

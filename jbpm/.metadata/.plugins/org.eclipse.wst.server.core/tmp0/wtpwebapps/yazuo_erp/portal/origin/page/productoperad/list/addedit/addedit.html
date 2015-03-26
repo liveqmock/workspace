@@ -1,0 +1,132 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+
+    <div class="page-padding">
+        <h2 class="addedit-title">{{titleType}}</h2>
+        <div class="add-edit-content">
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>标题：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box customer-title" >
+                                <input type="text" maxlength="100"
+                                       class="input-text"
+                                       ms-duplex='requestData.title'
+                                       data-rules="empty"
+                                       data-tips="标题内容不能为空！"
+                                       isrule=true
+                                        >
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>运营内容：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <div ms-widget="editor,$,$editorOpts" class="edit">
+                                </div>
+
+                            </div>
+                            <input type="hidden"
+                                   class="isEdit"
+                                   data-rules="empty"
+                                   data-tips="运营内容不能为空！"
+                                   isrule=true>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>所属产品：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <label class="used-list" ms-repeat="productType">
+                                    <span><input type="checkbox"
+                                                 ms-value="el.value"
+                                                 ms-click="setProducts"
+                                                 ms-checked="el.isSelect === '1'"> {{el.text}}</span>
+                                </label>
+                            </div>
+                            <input type="hidden"
+                                   class="isProducts"
+                                   data-rules="empty"
+                                   data-tips="请选择所属产品！"
+                                   isrule=true>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>推广平台：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <label class="used-list" ms-repeat="promotionPlatform">
+                                    <span><input type="checkbox"
+                                                 name="platForm"
+                                                 ms-value="el.value"
+                                                 ms-click="setPlatform"
+                                                 ms-checked="el.isSelect === '1'"> {{el.text}}</span>
+                                </label>
+                            </div>
+                            <input type="hidden"
+                                   class="isPromotionPlatform"
+                                   data-rules="empty"
+                                   data-tips="请选择推广平台！"
+                                   isrule=true>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>推广开始日期：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text date-input" readonly="readonly" ms-duplex="requestData.beginTime" data-type="beginTime" ms-click="openDateCalendar"/>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>推广截止日期：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text date-input" readonly="readonly" ms-duplex="requestData.endTime" data-type="endTime" ms-click="openDateCalendar"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>是否开启推广：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <label class="used-list">
+                                    <span><input type="radio"
+                                                 name="name1"
+                                                 value="1"
+                                                 ms-click = setRadio
+                                                 ms-checked="requestData.isOpen === '1'">  是</span>
+                                </label>
+                                <label class="used-list">
+                                    <span><input type="radio"
+                                                 name="name1"
+                                                 value="0"
+                                                 ms-click = setRadio
+                                                 ms-checked="requestData.isOpen === '0'"> 否</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ff-value-box"><input type="button" ms-click="saveData" class="save-button main-btn" value="保存"></div>
+                </div>
+        </div>
+    </div>
+
+</div>
+

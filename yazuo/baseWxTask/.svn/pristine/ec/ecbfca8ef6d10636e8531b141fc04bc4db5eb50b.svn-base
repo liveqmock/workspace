@@ -1,0 +1,192 @@
+/**
+ * @Description TODO
+ * Copyright Copyright (c) 2014 
+ * Company 雅座在线（北京）科技发展有限公司
+ * 
+ * 		author		date		description
+ * —————————————————————————————————————————————
+ * 
+ * 
+ */
+package com.yazuo.erp.syn.dao;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import com.yazuo.erp.base.BaseDAO;
+
+/**
+ * @author zhaohuaqin
+ * @date 2014-8-12 上午11:24:13
+ */
+@Repository
+public class HealthDegreeDao extends BaseDAO {
+	
+	
+	/**
+	 * 根据某一指标得到汇总的目标值
+	 * 
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> getTargetValueByIndexId(Integer indexId, String month) throws Exception {
+		StringBuffer sql = new StringBuffer("");
+		if (indexId.intValue() == 14 || indexId.intValue() == 18 || indexId.intValue() == 11) {
+			sql.append("SELECT  ");
+			sql.append("	brand_id, ");
+			sql.append("	MONTH, ");
+			sql.append("	ROUND(SUM(index_value))AS index_value ");
+			sql.append("FROM ");
+			sql.append("	PUBLIC .merchant_index_plan as plan ");
+			sql.append("WHERE ");
+			sql.append("	plan.index_id = ? ");
+			sql.append("AND plan.MONTH < ? ");
+			sql.append("AND  plan.merchant_id in "+ this.getExistsTradeMerchantList());
+//			sql.append("AND EXISTS( ");
+//			sql.append("	SELECT ");
+//			sql.append("		* ");
+//			sql.append("	FROM ");
+//			sql.append("		trade.merchant AS mer1 ");
+//			sql.append("	WHERE ");
+//			sql.append("		mer1.merchant_id = plan.merchant_id ");
+//			sql.append("	AND status = 1 ");
+//			sql.append(") ");
+			sql.append("GROUP BY ");
+			sql.append("	plan.brand_id, ");
+			sql.append("	plan.MONTH ");
+			sql.append("ORDER BY ");
+			sql.append("	plan.brand_id, ");
+			sql.append("	plan.MONTH ");
+		} else if (indexId.intValue() == 15 || indexId.intValue() == 16) {
+			sql.append("SELECT                                                       ");
+			sql.append("	brand_id,						 ");
+			sql.append("	MONTH,							 ");
+			sql.append("	SUM(index_value)index_value_sum,			 ");
+			sql.append("	COUNT(merchant_id)merchant_id_count,			 ");
+			sql.append("	round(SUM(index_value)/ COUNT(merchant_id))AS index_value");
+			sql.append(" FROM							 ");
+			sql.append("	PUBLIC .merchant_index_plan as plan			 ");
+			sql.append(" WHERE							 ");
+			sql.append("	plan.index_id = ?					 ");
+			sql.append("AND plan.MONTH < ?						 ");
+			sql.append("AND  plan.merchant_id in "+ this.getExistsTradeMerchantList());
+			sql.append("GROUP BY							 ");
+			sql.append("	plan.brand_id,						 ");
+			sql.append("	plan.MONTH;						 ");
+		} else {
+			throw new Exception("参数值上送有误");
+		}
+
+		return jdbcTemplateCrm.queryForList(sql.toString(), indexId, month);
+	}
+
+	public List<Integer> getBrandIdByIndexId(Integer indexId) {
+		String sql = "SELECT DISTINCT brand_id FROM public.merchant_index_plan where index_id = ?;";
+		return jdbcTemplateCrm.queryForList(sql, Integer.class, indexId);
+	}
+
+	public String getMinMonth() {
+		String sql = "SELECT min(MONTH)  FROM public.merchant_index_plan;";
+		return jdbcTemplateCrm.queryForObject(sql, String.class);
+	}
+
+	/**
+	 * 根据某一指标得到给定月汇总的目标值
+	 * 
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> getTargetValueByIndexIdAndMonth(Integer indexId, String month, BigDecimal proportion)
+			throws Exception {
+		StringBuffer sql = new StringBuffer("");
+		if (indexId.intValue() == 14 || indexId.intValue() == 18 || indexId.intValue() == 11) {
+			sql.append("SELECT                                               ");
+			sql.append("	brand_id,					 ");
+			sql.append("	MONTH ,ROUND(? * SUM(index_value))AS index_value ");
+			sql.append("FROM						 ");
+			sql.append("	PUBLIC .merchant_index_plan as plan		 ");
+			sql.append("WHERE						 ");
+			sql.append("	plan.index_id = ?				 ");
+			sql.append("AND plan.MONTH = ?					 ");
+			sql.append("AND  plan.merchant_id in "+ this.getExistsTradeMerchantList());
+			sql.append("GROUP BY						 ");
+			sql.append("	plan.brand_id,					 ");
+			sql.append("	plan.MONTH;					 ");
+		} else if (indexId.intValue() == 15 || indexId.intValue() == 16) {
+			sql.append("SELECT                                                   ");
+			sql.append("	brand_id,					     ");
+			sql.append("	MONTH,						     ");
+			sql.append("	SUM(index_value)index_value_sum,		     ");
+			sql.append("	COUNT(merchant_id)merchant_id_count ,ROUND(?* 	     ");
+			sql.append("		(					     ");
+			sql.append("			SUM(index_value)/ COUNT(merchant_id) ");
+			sql.append("		)					     ");
+			sql.append("	)AS index_value					     ");
+			sql.append("FROM						     ");
+			sql.append("	PUBLIC .merchant_index_plan as plan		     ");
+			sql.append("WHERE						     ");
+			sql.append("	plan.index_id = ?				     ");
+			sql.append("AND plan.MONTH = ?					     ");
+			sql.append("AND  plan.merchant_id in "+ this.getExistsTradeMerchantList());
+			sql.append("GROUP BY						     ");
+			sql.append("	plan.brand_id,					     ");
+			sql.append("	plan.MONTH;					     ");
+		} else {
+			throw new Exception("参数值上送有误");
+		}
+		return jdbcTemplateCrm.queryForList(sql.toString(), proportion, indexId, month);
+	}
+
+	/**
+	 * 根据某一指标得到时间段内汇总的目标值
+	 * 
+	 * @throws Exception
+	 */
+	public List<Map<String, Object>> getTargetValueByIndexIdDate(Integer indexId, String startMonth, String endMonth)
+			throws Exception {
+		StringBuffer sql = new StringBuffer("");
+		if (indexId.intValue() == 14 || indexId.intValue() == 18 || indexId.intValue() == 11) {
+			sql.append("SELECT                                              ");
+			sql.append("	brand_id,				        ");
+			sql.append("	MONTH,					        ");
+			sql.append("	ROUND(SUM(index_value))AS index_value	        ");
+			sql.append("FROM					        ");
+			sql.append("	PUBLIC .merchant_index_plan as plan	        ");
+			sql.append("WHERE					        ");
+			sql.append("	plan.index_id = ?			        ");
+			sql.append("AND plan.MONTH >= ?				        ");
+			sql.append("AND plan.MONTH < ?				        ");
+			sql.append("AND  plan.merchant_id in "+ this.getExistsTradeMerchantList());
+			sql.append("GROUP BY					        ");
+			sql.append("	plan.brand_id,				        ");
+			sql.append("	plan.MONTH				        ");
+			sql.append("ORDER BY					        ");
+			sql.append("	plan.brand_id,				        ");
+			sql.append("	plan.MONTH				        ");
+		} else if (indexId.intValue() == 15 || indexId.intValue() == 16) {
+			sql.append("SELECT                                              ");
+			sql.append("	brand_id,					");
+			sql.append("	MONTH,						");
+			sql.append("	SUM(index_value)index_value_sum,		");
+			sql.append("	COUNT(merchant_id)merchant_id_count,		");
+			sql.append("	ROUND(						");
+			sql.append("		SUM(index_value)/ COUNT(merchant_id)	");
+			sql.append("	)AS index_value					");
+			sql.append("FROM						");
+			sql.append("	PUBLIC .merchant_index_plan as plan		");
+			sql.append("WHERE						");
+			sql.append("	plan.index_id = ?				");
+			sql.append("AND plan.MONTH >= ?					");
+			sql.append("AND plan.MONTH < ?					");
+			sql.append("AND  plan.merchant_id in "+ this.getExistsTradeMerchantList());
+			sql.append("GROUP BY						");
+			sql.append("	plan.brand_id,					");
+			sql.append("	plan.MONTH;					");
+		} else {
+			throw new Exception("参数值上送有误");
+		}
+
+		return jdbcTemplateCrm.queryForList(sql.toString(), indexId, startMonth, endMonth);
+	}
+}

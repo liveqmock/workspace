@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.bes.dao.BesRequirementDao">
+	<resultMap id="BesRequirement" type="com.yazuo.erp.bes.vo.BesRequirementVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="storeId" column="store_id"/>
+    	<result property="contactCat" column="contact_cat"/>
+    	<result property="contactId" column="contact_id"/>
+    	<result property="sourceCat" column="source_cat"/>
+    	<result property="sourceContent" column="source_content"/>
+    	<result property="resourceRemark" column="resource_remark"/>
+    	<result property="resourceExtraRemark" column="resource_extra_remark"/>
+    	<result property="title" column="title"/>
+    	<result property="content" column="content"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="operationLogIds" column="operation_log_ids" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="handlerId" column="handler_id"/>
+    	<result property="handledTime" column="handled_time"/>
+    	<result property="conments" column="conments"/>
+    	<result property="status" column="status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="typeOfKey" column="type_of_key"/>
+    	<result property="fesPlanId" column="fes_plan_id"/>
+    	<result property="processStatus" column="process_status"/>
+    	<result property="isRemind" column="is_remind"/>
+    	<result property="nodeLastTime" column="node_last_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="besrequirementColumns">
+	    <![CDATA[
+		id,merchant_id,store_id,contact_cat,contact_id,source_cat,source_content,resource_remark,resource_extra_remark,title,content,attachment_id,operation_log_ids,handler_id,handled_time,conments,status,is_enable,remark,insert_by,insert_time,update_by,update_time,type_of_key,fes_plan_id,process_status,is_remind,node_last_time
+	    ]]>
+	</sql>
+
+	<insert id="saveBesRequirement" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,contact_cat,source_cat,source_content,resource_remark,title,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO bes.bes_requirement (
+        	<trim suffixOverrides=",">
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="storeId!=null ">store_id,</if>
+        	 <if test="contactCat!=null and contactCat!=''">contact_cat,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="sourceCat!=null and sourceCat!=''">source_cat,</if>
+        	 <if test="sourceContent!=null and sourceContent!=''">source_content,</if>
+        	 <if test="resourceRemark!=null and resourceRemark!=''">resource_remark,</if>
+        	 <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="operationLogIds!=null ">operation_log_ids,</if>
+        	 <if test="handlerId!=null ">handler_id,</if>
+        	 <if test="handledTime!=null ">handled_time,</if>
+        	 <if test="conments!=null and conments!=''">conments,</if>
+        	 <if test="status!=null and status!=''">status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="typeOfKey!=null and typeOfKey!=''">type_of_key,</if>
+        	 <if test="fesPlanId!=null ">fes_plan_id,</if>
+        	 <if test="processStatus!=null and processStatus!=''">process_status,</if>
+        	 <if test="isRemind!=null and isRemind!=''">is_remind,</if>
+        	 <if test="nodeLastTime!=null ">node_last_time,</if>
+        	 <if test="updateTime!=null ">update_time,</if>
+        	</trim>
+        ) VALUES (
+        	<trim suffixOverrides=",">
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="storeId!=null ">#{storeId},</if>
+       	    <if test="contactCat!=null and contactCat!=''">#{contactCat},</if>
+       	    <if test="contactId!=null ">#{contactId},</if>
+       	    <if test="sourceCat!=null and sourceCat!=''">#{sourceCat},</if>
+       	    <if test="sourceContent!=null and sourceContent!=''">#{sourceContent},</if>
+       	    <if test="resourceRemark!=null and resourceRemark!=''">#{resourceRemark},</if>
+       	    <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">#{resourceExtraRemark},</if>
+       	    <if test="title!=null and title!=''">#{title},</if>
+       	    <if test="content!=null and content!=''">#{content},</if>
+       	    <if test="attachmentId!=null ">#{attachmentId},</if>
+       	    <if test="operationLogIds!=null ">
+       	   	 #{operationLogIds, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+       	    <if test="handlerId!=null ">#{handlerId},</if>
+       	    <if test="handledTime!=null ">#{handledTime},</if>
+       	    <if test="conments!=null and conments!=''">#{conments},</if>
+       	    <if test="status!=null and status!=''">#{status},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">#{insertTime},</if>  <!-- 与程序new Date()保持一致 -->
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="typeOfKey!=null and typeOfKey!=''">#{typeOfKey},</if>
+       	    <if test="fesPlanId!=null ">#{fesPlanId},</if>
+       	    <if test="processStatus!=null and processStatus!=''">#{processStatus},</if>
+       	    <if test="isRemind!=null and isRemind!=''">#{isRemind},</if>
+       	    <if test="nodeLastTime!=null ">#{nodeLastTime},</if>
+       	    <if test="updateTime!=null ">#{updateTime},</if>
+       	    </trim>
+        )
+	</insert>
+	
+	<insert id="batchInsertBesRequirements" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,contact_cat,source_cat,source_content,resource_remark,title,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO bes.bes_requirement (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="storeId!=null ">store_id,</if>
+        	 <if test="contactCat!=null and contactCat!=''">contact_cat,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="sourceCat!=null and sourceCat!=''">source_cat,</if>
+        	 <if test="sourceContent!=null and sourceContent!=''">source_content,</if>
+        	 <if test="resourceRemark!=null and resourceRemark!=''">resource_remark,</if>
+        	 <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="operationLogIds!=null ">operation_log_ids,</if>
+        	 <if test="handlerId!=null ">handler_id,</if>
+        	 <if test="handledTime!=null ">handled_time,</if>
+        	 <if test="conments!=null and conments!=''">conments,</if>
+        	 <if test="status!=null and status!=''">status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="typeOfKey!=null and typeOfKey!=''">type_of_key,</if>
+        	 <if test="fesPlanId!=null ">fes_plan_id,</if>
+        	 <if test="processStatus!=null and processStatus!=''">process_status,</if>
+        	 <if test="isRemind!=null and isRemind!=''">is_remind,</if>
+        	 <if test="nodeLastTime!=null ">node_last_time,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="storeId!=null ">#{t.storeId},</if>
+          <if test="contactCat!=null and contactCat!=''">#{t.contactCat},</if>
+          <if test="contactId!=null ">#{t.contactId},</if>
+          <if test="sourceCat!=null and sourceCat!=''">#{t.sourceCat},</if>
+          <if test="sourceContent!=null and sourceContent!=''">#{t.sourceContent},</if>
+          <if test="resourceRemark!=null and resourceRemark!=''">#{t.resourceRemark},</if>
+          <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">#{t.resourceExtraRemark},</if>
+          <if test="title!=null and title!=''">#{t.title},</if>
+          <if test="content!=null and content!=''">#{t.content},</if>
+          <if test="attachmentId!=null ">#{t.attachmentId},</if>
+          <if test="operationLogIds!=null ">#{t.operationLogIds},</if>
+          <if test="handlerId!=null ">#{t.handlerId},</if>
+          <if test="handledTime!=null ">#{t.handledTime},</if>
+          <if test="conments!=null and conments!=''">#{t.conments},</if>
+          <if test="status!=null and status!=''">#{t.status},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="typeOfKey!=null and typeOfKey!=''">#{t.typeOfKey},</if>
+          <if test="fesPlanId!=null ">#{t.fesPlanId},</if>
+          <if test="processStatus!=null and processStatus!=''">#{t.processStatus},</if>
+          <if test="isRemind!=null and isRemind!=''">#{t.isRemind},</if>
+          <if test="nodeLastTime!=null ">#{t.nodeLastTime},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateBesRequirement">
+        UPDATE bes.bes_requirement 
+ 		  <set>
+ 		   <trim suffixOverrides=",">
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="storeId!=null ">store_id = #{storeId} ,</if>
+	        <if test="contactCat!=null and contactCat!=''">contact_cat = #{contactCat} ,</if>
+	        <if test="contactId!=null ">contact_id = #{contactId} ,</if>
+	        <if test="sourceCat!=null and sourceCat!=''">source_cat = #{sourceCat} ,</if>
+	        <if test="sourceContent!=null and sourceContent!=''">source_content = #{sourceContent} ,</if>
+	        <if test="resourceRemark!=null and resourceRemark!=''">resource_remark = #{resourceRemark} ,</if>
+	        <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark = #{resourceExtraRemark} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="operationLogIds!=null ">
+	         operation_log_ids = #{operationLogIds, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+	        <if test="handlerId!=null ">handler_id = #{handlerId} ,</if>
+	        <if test="handledTime!=null ">handled_time = #{handledTime} ,</if>
+	        <if test="conments!=null and conments!=''">conments = #{conments} ,</if>
+	        <if test="status!=null and status!=''">status = #{status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="typeOfKey!=null and typeOfKey!=''">type_of_key = #{typeOfKey} ,</if>
+	        <if test="fesPlanId!=null ">fes_plan_id = #{fesPlanId} ,</if>
+	        <if test="processStatus!=null and processStatus!=''">process_status = #{processStatus} ,</if>
+	        <if test="isRemind!=null and isRemind!=''">is_remind = #{isRemind} ,</if>
+	        <if test="nodeLastTime!=null ">node_last_time = #{nodeLastTime}, </if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	        </trim>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateBesRequirementsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE bes.bes_requirement 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="storeId!=null ">store_id = #{t.storeId} ,</if>
+	        <if test="contactCat!=null and contactCat!=''">contact_cat = #{t.contactCat} ,</if>
+	        <if test="contactId!=null ">contact_id = #{t.contactId} ,</if>
+	        <if test="sourceCat!=null and sourceCat!=''">source_cat = #{t.sourceCat} ,</if>
+	        <if test="sourceContent!=null and sourceContent!=''">source_content = #{t.sourceContent} ,</if>
+	        <if test="resourceRemark!=null and resourceRemark!=''">resource_remark = #{t.resourceRemark} ,</if>
+	        <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark = #{t.resourceExtraRemark} ,</if>
+	        <if test="title!=null and title!=''">title = #{t.title} ,</if>
+	        <if test="content!=null and content!=''">content = #{t.content} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{t.attachmentId} ,</if>
+	        <if test="operationLogIds!=null ">operation_log_ids = #{t.operationLogIds} ,</if>
+	        <if test="handlerId!=null ">handler_id = #{t.handlerId} ,</if>
+	        <if test="handledTime!=null ">handled_time = #{t.handledTime} ,</if>
+	        <if test="conments!=null and conments!=''">conments = #{t.conments} ,</if>
+	        <if test="status!=null and status!=''">status = #{t.status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="typeOfKey!=null and typeOfKey!=''">type_of_key = #{t.typeOfKey} ,</if>
+	        <if test="fesPlanId!=null ">fes_plan_id = #{t.fesPlanId} ,</if>
+	        <if test="processStatus!=null and processStatus!=''">process_status = #{t.processStatus} ,</if>
+	        <if test="isRemind!=null and isRemind!=''">is_remind = #{t.isRemind} ,</if>
+	        <if test="nodeLastTime!=null ">node_last_time = #{t.nodeLastTime}, </if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateBesRequirementsToSameVals" parameterType="map">
+        UPDATE bes.bes_requirement 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="storeId!=null ">store_id = #{storeId} ,</if>
+	        <if test="contactCat!=null and contactCat!=''">contact_cat = #{contactCat} ,</if>
+	        <if test="contactId!=null ">contact_id = #{contactId} ,</if>
+	        <if test="sourceCat!=null and sourceCat!=''">source_cat = #{sourceCat} ,</if>
+	        <if test="sourceContent!=null and sourceContent!=''">source_content = #{sourceContent} ,</if>
+	        <if test="resourceRemark!=null and resourceRemark!=''">resource_remark = #{resourceRemark} ,</if>
+	        <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">resource_extra_remark = #{resourceExtraRemark} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="operationLogIds!=null ">operation_log_ids = #{operationLogIds} ,</if>
+	        <if test="handlerId!=null ">handler_id = #{handlerId} ,</if>
+	        <if test="handledTime!=null ">handled_time = #{handledTime} ,</if>
+	        <if test="conments!=null and conments!=''">conments = #{conments} ,</if>
+	        <if test="status!=null and status!=''">status = #{status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="typeOfKey!=null and typeOfKey!=''">type_of_key = #{typeOfKey} ,</if>
+	        <if test="fesPlanId!=null ">fes_plan_id = #{fesPlanId} ,</if>
+	        <if test="processStatus!=null and processStatus!=''">process_status = #{processStatus} ,</if>
+	        <if test="isRemind!=null and isRemind!=''">is_remind = #{isRemind} ,</if>
+	        <if test="nodeLastTime!=null ">node_last_time = #{nodeLastTime}, </if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteBesRequirementById">
+    <![CDATA[
+        DELETE FROM bes.bes_requirement WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteBesRequirementByIds" parameterType="list">
+        DELETE FROM bes.bes_requirement WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getBesRequirementById" resultMap="BesRequirement">
+		SELECT <include refid="besrequirementColumns" />
+		    FROM bes.bes_requirement 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getBesRequirements" resultMap="BesRequirement">
+		SELECT <include refid="besrequirementColumns" />
+		    FROM bes.bes_requirement  
+        <include refid="besrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<!-- not use -->
+    <select id="getBesRequirementsForSearch" resultMap="BesRequirement">
+        SELECT <include refid="besrequirementColumns" />
+        FROM bes.bes_requirement
+        <where>
+            <if test="vo.title!=null and vo.title!=''">AND title like '%'||#{vo.title}||'%'</if>
+            <if test="vo.handlerId==1"> AND handler_id = #{userId} </if>
+            <if test="vo.handlerId==-1"> AND handler_id != #{userId} </if>
+            <if test="vo.status!=null and vo.status!=''">AND status = #{vo.status}</if>
+            <if test="vo.startTime!=null">AND insert_time >= '${vo.startTime}'</if>
+            <if test="vo.endTime!=null">AND insert_time &lt; '${vo.endTime}'</if>
+            <if test="vo.resourceRemark!=null and vo.resourceRemark!=''">AND resource_remark = #{vo.resourceRemark}</if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+	<select id="getBesRequirementsMap" resultType="map">
+		SELECT <include refid="besrequirementColumns" />
+	    <![CDATA[
+		    FROM bes.bes_requirement  
+	    ]]>
+	    <include refid="besrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getRequirementForTimer" resultMap="BesRequirement">
+		SELECT * FROM bes.bes_requirement 
+		  where  is_remind = '1' and is_enable = '1'
+   		    and to_char(handled_time, 'YYYYMMDD') = to_char(now(), 'YYYYMMDD') /*插入时间为今天,定时器今天23:59:59调用*/
+   			and to_char(insert_time, 'YYYYMMDD') != to_char(now(), 'YYYYMMDD') 
+	</select>
+	
+	<sql id="besrequirement_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="storeId!=null ">AND store_id = #{storeId}</if>
+	       <if test="contactCat!=null and contactCat!=''">AND contact_cat = #{contactCat}</if>
+	       <if test="contactId!=null ">AND contact_id = #{contactId}</if>
+	       <if test="sourceCat!=null and sourceCat!=''">AND source_cat = #{sourceCat}</if>
+	       <if test="sourceContent!=null and sourceContent!=''">AND source_content = #{sourceContent}</if>
+	       <if test="resourceRemark!=null and resourceRemark!=''">AND resource_remark = #{resourceRemark}</if>
+	       <if test="resourceExtraRemark!=null and resourceExtraRemark!=''">AND resource_extra_remark = #{resourceExtraRemark}</if>
+	       <if test="title!=null and title!=''">AND title like '%'||#{title}||'%'</if>
+	       <if test="content!=null and content!=''">AND content = #{content}</if>
+	       <if test="attachmentId!=null ">AND attachment_id = #{attachmentId}</if>
+	       <if test="operationLogIds!=null ">AND operation_log_ids = #{operationLogIds}</if>
+	       <if test="handlerId!=null and handlerId!=-1">AND handler_id = #{handlerId}</if>
+	       <!--过滤条件为 其他人 -->
+	       <if test="handlerId==-1 and baseUserId!=null">AND handler_id != #{baseUserId}</if>
+		   <if test="handledTime!=null ">AND handled_time >= #{handledTime}</if>
+		   <if test="handledTime!=null ">AND handled_time &lt;= #{handledTime}</if>
+	       <if test="conments!=null and conments!=''">AND conments = #{conments}</if>
+	       <if test="status!=null and status!=''">AND status = #{status}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		    <if test="typeOfKey!=null and typeOfKey!=''">AND type_of_key = #{typeOfKey}</if>
+	       <if test="fesPlanId!=null ">AND fes_plan_id = #{fesPlanId}</if>
+	       <if test="processStatus!=null and processStatus!=''">AND process_status = #{processStatus}</if>
+	       <if test="isRemind!=null and isRemind!=''">AND is_remind = #{isRemind}</if>
+		
+		 <!-- <if test="startTime!=null">AND insert_time >= '${startTime}'</if>
+		   <if test="endTime!=null">AND insert_time &lt; '${endTime}'</if> -->
+		   <!-- fix bug 13129 -->
+		   <if test="startTime!=null">AND node_last_time >= '${startTime}'</if>
+		   <if test="endTime!=null">AND node_last_time &lt; '${endTime}'</if>
+		   
+		   <!-- 包换管辖范围过滤 包含自己 -->
+		   <if test="baseUserId!=null"> 
+		     and (handler_id is null or handler_id in (
+		       select sys.sys_user.id 
+				  from (select user_id
+				          from (select sys.sys_group_user.user_id
+				                  from sys.sys_group_user
+				                 where exists
+				                 (select 1
+				                          from sys.sys_group_managers
+				                         where sys.sys_group_user.group_id =
+				                               sys.sys_group_managers.group_id
+				                           and sys.sys_group_managers.base_user_id = #{baseUserId})) as temp_users
+				         where not exists
+				         (select 1
+				                  from sys.sys_group_managers
+				                 where sys.sys_group_managers.manager_type = '3'
+				                   and sys.sys_group_managers.base_user_id = #{baseUserId}
+				                   and temp_users.user_id = sys.sys_group_managers.user_id)
+				        UNION
+				         select sys.sys_group_managers.user_id
+				          from sys.sys_group_managers
+				         where sys.sys_group_managers.manager_type = '2'
+				           and sys.sys_group_managers.base_user_id = #{baseUserId}
+				       UNION select id from sys.sys_user where id = #{baseUserId}) temp_outer_users,
+				       sys.sys_user
+				 where temp_outer_users.user_id = sys.sys_user.id and sys.sys_user.is_enable = '1' 
+		  	  )
+		    )
+		    </if>
+		</where>
+	</sql>
+		
+    <select id="getBesRequirementCount" resultType="long">
+        SELECT count(*) FROM bes.bes_requirement 
+		<include refid="besrequirement_findPage_where"/>    
+    </select>
+    
+</mapper>

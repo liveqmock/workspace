@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.erp.system.dao.SysKnowledgeDao">
+    <resultMap id="SysKnowledgeResultMap" type="com.yazuo.erp.system.vo.SysKnowledgeVO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="kind_id" property="kindId" jdbcType="INTEGER"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="merchant_id" property="merchantId" jdbcType="INTEGER"/>
+        <result column="business_type_id" property="businessTypeId" jdbcType="INTEGER"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="analysis" property="analysis" jdbcType="VARCHAR"/>
+        <result column="resolution" property="resolution" jdbcType="VARCHAR"/>
+        <result column="successful_case" property="successfulCase" jdbcType="VARCHAR"/>
+        <result column="talking_skills" property="talkingSkills" jdbcType="VARCHAR"/>
+        <result column="viewed_times" property="viewedTimes"/>
+        <result column="attachment_id" property="attachmentId"/>
+        <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP"/>
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP"/>
+        <result column="created_by" property="createdBy" jdbcType="INTEGER"/>
+        <result column="updated_by" property="updatedBy" jdbcType="INTEGER"/>
+    </resultMap>
+    
+    <resultMap id="SysKnowledgeResultMapForSearch" extends="SysKnowledgeResultMap" type="com.yazuo.erp.system.vo.SysKnowledgeVO">
+        <result column="user_name" property="username"/>
+    </resultMap>
+
+    <select id="getKnowledge" resultMap="SysKnowledgeResultMap">
+        SELECT *
+        FROM sys.sys_knowledge
+        WHERE id=#{knowledgeId}
+    </select>
+
+    <update id="updateKnowledge">
+        update sys.sys_knowledge
+        set kind_id = #{knowledge.kindId},
+            title = #{knowledge.title},
+            merchant_id = #{knowledge.merchantId},
+            business_type_id = #{knowledge.businessTypeId},
+            description = #{knowledge.description},
+            analysis = #{knowledge.analysis},
+            resolution = #{knowledge.resolution},
+            successful_case = #{knowledge.successfulCase},
+            talking_skills = #{knowledge.talkingSkills},
+            viewed_times = #{knowledge.viewedTimes},
+            updated_time = #{knowledge.updatedTime},
+            created_time = #{knowledge.createdTime},
+            created_by = #{knowledge.createdBy},
+            updated_by = #{knowledge.updatedBy},
+            attachment_id = #{knowledge.attachmentId}
+        where id=#{knowledge.id}
+    </update>
+
+    <delete id="deleteKnowledge">
+        DELETE
+        FROM sys.sys_knowledge
+        where id=#{id}
+    </delete>
+
+    <delete id="deleteKnowledgeProve">
+        DELETE FROM sys.sys_knowledge_prove
+        WHERE knowledge_id = #{knowledgeId}
+    </delete>
+
+    <delete id="deleteKnowledgeCommentary">
+        DELETE FROM sys.sys_commentary
+        WHERE knowledge_id=#{knowledgeId}
+    </delete>
+
+    <insert id="saveKnowledge" useGeneratedKeys="true">
+        insert into sys.sys_knowledge ( kind_id, title,
+          merchant_id, business_type_id, description,
+          analysis, resolution, successful_case,
+          talking_skills,viewed_times, updated_time, created_time,
+          created_by, updated_by,attachment_id)
+        values (#{kindId}, #{title},
+          #{merchantId}, #{businessTypeId}, #{description},
+          #{analysis}, #{resolution}, #{successfulCase},
+          #{talkingSkills},#{viewedTimes}, #{updatedTime}, #{createdTime},
+          #{createdBy}, #{updatedBy},#{attachmentId})
+    </insert>
+
+    <select id="getAttachment" resultMap="com.yazuo.erp.system.dao.SysAttachmentDao.SysAttachment">
+        select sa.*
+        from sys.sys_knowledge sk left join sys.sys_attachment sa on sk.attachment_id=sa.id
+        where sk.id=#{knowledgeId}
+    </select>
+
+    <select id="getKnowledges" resultMap="SysKnowledgeResultMapForSearch">
+        SELECT kl.id as alais_id, kl.*, su.user_name
+        FROM sys.sys_knowledge kl LEFT JOIN sys.sys_user su ON kl.created_by = su.id
+        <where>
+            <if test="username!=null">
+                AND su.user_name like '%'||#{username}||'%'
+            </if>
+            <if test="title!=null">
+                AND title like '%' ||  #{title} || '%'
+            </if>
+            <if test="content != null">
+                AND (description like '%' || #{content} || '%'
+                OR analysis like '%' || #{content} || '%'
+                OR  resolution like '%' || #{content} || '%'
+                OR  successful_case like '%' || #{content} || '%'
+                OR  talking_skills like '%' || #{content} || '%')
+            </if>
+            <if test="beginUpdatedTime != null">
+                AND  updated_time >= #{beginUpdatedTime,jdbcType=DATE}
+            </if>
+            <if test="endUpdatedTime != null">
+                AND  updated_time &lt;= #{endUpdatedTime,jdbcType=DATE}
+            </if>
+            <if test="kindId!=null">
+                AND kind_id IN(
+                   SELECT id
+                   FROM sys.sys_knowledge_kind
+                   WHERE ancestors LIKE (
+                       SELECT ancestors FROM sys.sys_knowledge_kind WHERE id=#{kindId}
+                    ) || '%'
+                )
+            </if>
+        </where>
+        ORDER BY id DESC
+        @@
+    </select>
+
+    <select id="getKnowledgeKind" resultMap="com.yazuo.erp.system.dao.SysKnowledgeKindDao.SysKnowledgeKindResultMap">
+        SELECT skk.*
+        FROM  sys.sys_knowledge ssk LEFT JOIN sys.sys_knowledge_kinds skk on ssk.knowledge_kind_id = skk.id
+        WHERE ssk.id=#{knowledgeId}
+    </select>
+</mapper>

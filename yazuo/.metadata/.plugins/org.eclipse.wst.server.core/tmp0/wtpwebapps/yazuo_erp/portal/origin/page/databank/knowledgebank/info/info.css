@@ -1,0 +1,130 @@
+.page-databank-knowledgebank-info .page-bd {
+    padding: 20px 15px;
+}
+.page-databank-knowledgebank-info .info-con {
+    margin-bottom: 15px;
+}
+.page-databank-knowledgebank-info .knowledgecate-title {
+    font-size: 20px;
+    color: #555;
+    padding-bottom: 15px;
+}
+.page-databank-knowledgebank-info .info-con table {
+    font-size: 14px;
+    color: #666;
+}
+.page-databank-knowledgebank-info .info-con table td {
+    padding: 5px;
+    line-height: 25px;
+}
+.page-databank-knowledgebank-info .info-con-type {
+    color: #999;
+}
+.page-databank-knowledgebank-info .info-con table .info-table-left {
+    width: 120px;
+    text-align: right;
+    color: #777;
+}
+.page-databank-knowledgebank-info .info-con .iconfont {
+    cursor: pointer;
+}
+.page-databank-knowledgebank-info .info-con .info-table-comment {
+    width: 100%;
+    overflow: hidden;
+}
+.page-databank-knowledgebank-info .info-con .info-table-comment p {
+    float: left;
+    display: inline;
+    margin-right: 10px;
+}
+.page-databank-knowledgebank-info .info-con .info-table-comment p i {
+    margin-right: 6px;
+    background: none;
+    border: none;
+}
+.page-databank-knowledgebank-info .info-con .info-table-comment p i.allow {
+    color: #2cc78f;
+}
+.page-databank-knowledgebank-info .info-comment {
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.page-databank-knowledgebank-info .info-comment h2 {
+    position: relative;
+    margin-bottom: 20px;
+    height: 30px;
+}
+.page-databank-knowledgebank-info .info-comment h2 p {
+    border-bottom: 1px solid #ccc;
+    position: absolute;
+    left: 60px;
+    top: 20px;
+    width: 100%;
+}
+.page-databank-knowledgebank-info .info-comment h2 b {
+    position: absolute;
+    left: 0;
+    height: 30px;
+    padding: 0 10px;
+    font-size: 16px;
+    line-height: 30px;
+}
+.page-databank-knowledgebank-info .info-comment-list {
+    font-size: 14px;
+    color: #666;
+}
+.page-databank-knowledgebank-info .info-comment-list .info-comment-list-box {
+    padding: 10px 20px;
+}
+.page-databank-knowledgebank-info .info-comment-list .info-comment-list-box p {
+    padding: 3px 0;
+    line-height: 25px;
+}
+.page-databank-knowledgebank-info .info-comment-list .info-comment-list-box p span {
+    color: #777;
+    margin-left: 10px;
+}
+.page-databank-knowledgebank-info .even {
+    background: #eef6ff;
+}
+.page-databank-knowledgebank-info .info-comment-list .state-hover:hover {
+    background: #e2f1f6;
+}
+.page-databank-knowledgebank-info .info-comment-input {
+    background: #cde2f9;
+    padding: 15px;
+    font-size: 14px;
+}
+.page-databank-knowledgebank-info .info-comment-input .star-comment i.iconfont {
+    font-weight: 900;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 3px;
+}
+.page-databank-knowledgebank-info .info-comment-input .star-comment i.selected {
+    color: #f9841d;
+}
+.page-databank-knowledgebank-info .info-comment-input table {
+    color: #666;
+    width: 100%;
+}
+.page-databank-knowledgebank-info .info-comment-input table td {
+    padding: 5px;
+    vertical-align: top;
+}
+.page-databank-knowledgebank-info .info-comment-input table td.comment-input-text {
+    vertical-align: middle;
+}
+.page-databank-knowledgebank-info p.info-con-type span,
+.page-databank-knowledgebank-info p.info-con-type a {
+    margin-left: 20px;
+}
+.page-databank-knowledgebank-info .comment-input-left {
+    width: 80px;
+    text-align: right;
+    vertical-align: top;
+}
+.page-databank-knowledgebank-info .info-comment-input table td textarea {
+    width: 700px;
+    height: 120px;
+}

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+	<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+	<mapper namespace="com.yazuo.erp.system.dao.SysGroupDao">
+	<resultMap id="SysGroup" type="com.yazuo.erp.system.vo.SysGroupVO">
+        <result property="id" column="id"/>
+        <result property="groupName" column="group_name"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="treeCode" column="tree_code"/>
+        <result property="parentTreeCode" column="parent_tree_code"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="groupType" column="group_type"/><!-- 新添加的字段， 为"trunk" or "leaf" -->
+	</resultMap>
+	
+	<!--公司组织架构 管理者 查找所有的下属 的人 -->
+	<!-- 测试sql 
+	select * from sys.sys_group_user s, sys.sys_user u where s.user_id=u.id and u.is_enable='1'
+  		and s.group_id in (60,67)  ORDER BY group_id ;
+	 -->
+	<select id="getSubordinateEmployees" resultMap="com.yazuo.erp.system.dao.SysUserDao.SysUser" parameterType="map">
+		select sys.sys_user.*
+		  from (select user_id
+		          from (select sys.sys_group_user.user_id
+		                  from sys.sys_group_user
+		                 where exists
+		                 (select 1
+		                          from sys.sys_group_managers
+		                         where sys.sys_group_user.group_id =
+		                               sys.sys_group_managers.group_id
+		                           and sys.sys_group_managers.base_user_id = #{baseUserId})) as temp_users
+		         where not exists
+		         (select 1
+		                  from sys.sys_group_managers
+		                 where sys.sys_group_managers.manager_type = '3'
+		                   and sys.sys_group_managers.base_user_id = #{baseUserId}
+		                   and temp_users.user_id = sys.sys_group_managers.user_id)
+		        UNION
+		        select sys.sys_group_managers.user_id
+		          from sys.sys_group_managers
+		         where sys.sys_group_managers.manager_type = '2'
+		           and sys.sys_group_managers.base_user_id = #{baseUserId}) temp_outer_users,
+		       sys.sys_user
+		 where temp_outer_users.user_id = sys.sys_user.id and sys.sys_user.is_enable = '1' 
+		 <if test="subUserName!=null and subUserName!=''">and sys.sys_user.user_name like '%'||#{subUserName}||'%'</if>
+		 	and sys.sys_user.id != #{baseUserId}
+	</select>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysgroupColumns">
+	    <![CDATA[
+		id,group_name,parent_id,tree_code,parent_tree_code,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveSysGroup"  useGeneratedKeys="true"  keyProperty="id" >
+    <![CDATA[
+        INSERT INTO sys.sys_group (
+        		group_name ,
+        		parent_id ,
+        		tree_code ,
+        		parent_tree_code ,
+        		is_enable ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{groupName} ,
+        	#{parentId} ,
+        	#{treeCode} ,
+        	#{parentTreeCode} ,
+        	#{isEnable} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateSysGroup" >
+    <![CDATA[
+        UPDATE sys.sys_group SET
+	        group_name = #{groupName} ,
+	        parent_id = #{parentId} ,
+	        tree_code = #{treeCode} ,
+	        parent_tree_code = #{parentTreeCode} ,
+	        is_enable = #{isEnable} ,
+	        remark = #{remark} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteSysGroup">
+    <![CDATA[
+        DELETE FROM sys.sys_group WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getSysGroupById" resultMap="SysGroup">
+		SELECT <include refid="sysgroupColumns" />
+	    <![CDATA[
+		    FROM sys.sys_group 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+	<!-- 看当前组是否存在用户 -->
+    <select id="getCountOfGroupUser" resultType="int" parameterType="int">
+		select count(1) from sys.sys_group_user where group_id = #{groupId} and exists 
+ 			(select 1 from sys.sys_user where sys.sys_user.id = sys.sys_group_user.user_id and sys.sys_user.is_enable = '1') 
+	</select>
+	
+    <select id="getMaxTreeCodeOfSameLevel" resultMap="SysGroup" parameterType="int">
+		SELECT max(tree_code) tree_code 
+		    FROM sys.sys_group 
+	        WHERE 
+		        parent_id = #{parentId} AND is_enable='1'  
+	</select>
+
+	<select id="getSysGroups" resultMap="SysGroup" parameterType="map">
+      select check_leaf_group.isLeaf,  sys.sys_group.*  from sys.sys_group, 
+		(SELECT (case when
+			exists(select 1 from sys.sys_group as base_sys_group where base_sys_group.parent_id = sys.sys_group.id
+			and sys.sys_group.is_enable = '1' and base_sys_group.is_enable = '1')
+		 	then 0 else 1 end) as isLeaf,  sys.sys_group.id 
+		    FROM sys.sys_group  
+	     where sys.sys_group.is_enable = '1' ) check_leaf_group  
+	    <include refid="sysgroup_findPage_where" />  and check_leaf_group.id = sys.sys_group.id AND sys.sys_group.is_enable = '1' 
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getSysGroupsMap" resultType="map" parameterType="map">
+		SELECT <include refid="sysgroupColumns" />
+	    <![CDATA[
+		    FROM sys.sys_group  
+	    ]]>
+	    <include refid="sysgroup_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getAllSysGroups" resultType="map" parameterType="map">
+		SELECT <include refid="sysgroupColumns" />
+	    <![CDATA[
+		    FROM sys.sys_group  
+	    ]]>
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysgroup_findPage_where">
+		<where>	  1=1      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="groupName!=null">
+				AND group_name = #{groupName}
+			</if>
+	       <if test="parentId!=null">
+				AND parent_id = #{parentId}
+			</if>
+	       <if test="treeCode!=null">
+				AND tree_code = #{treeCode}
+			</if>
+	       <if test="parentTreeCode!=null">
+				AND parent_tree_code = #{parentTreeCode}
+			</if>
+	       <if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getSysGroupCount" resultType="long">
+        SELECT count(*) FROM sys.sys_group 
+		<include refid="sysgroup_findPage_where"/>    
+    </select>
+    
+     <select id="getSysGroupByParentId" resultType="map" parameterType="Integer">
+       select id, group_name from sys.sys_group where parent_id=#{parentId} and is_enable ='1'
+   </select>
+	
+   <select id="getSysGroupsForXTree" resultType="map">
+		SELECT id, parent_id as pId, group_name as name 
+		    FROM sys.sys_group 
+	    <include refid="sysgroup_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+</mapper>
+

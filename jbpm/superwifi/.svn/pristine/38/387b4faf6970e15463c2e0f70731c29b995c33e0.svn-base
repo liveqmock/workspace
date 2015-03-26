@@ -1,0 +1,174 @@
+.page-network-browselimit .page-bd {
+    font-size: 14px;
+    color: #666666;
+    padding: 20px;
+}
+
+.page-network-browselimit .go-back {
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    width: 77px;
+    padding-left: 13px;
+    text-align: center;
+    color: #444444;
+    font-size: 16px;
+    background: url("../../../asset/image/bt-location.png") 0 0 no-repeat;
+}
+
+.page-network-browselimit a:hover.go-back {
+    background: url("../../../asset/image/bt-location.png") 0 -42px no-repeat;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.page-network-browselimit .device-t {
+    padding-bottom: 10px;
+    margin: 20px 0 15px 0;
+    border-bottom: solid #e0e1e1 1px;
+    position: relative;
+}
+
+.page-network-browselimit .device-t p {
+    color: #888888;
+    font-size: 12px;
+}
+
+.page-network-browselimit .device-t p.main-t {
+    color: #333333;
+    font-size: 16px;
+}
+
+.page-network-browselimit .page-h2 {
+    height: 45px;
+    color: #888888;
+    line-height: 45px;
+}
+
+.page-network-browselimit .page-h2 ins {
+    color: #444444;
+    padding: 0 5px;
+}
+
+.page-network-browselimit .add-btn {
+    float: right;
+    margin-top: 6px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+
+.page-network-browselimit .format-a a {
+    padding: 0 8px;
+}
+
+.page-network-browse-limit-dialog .input-text {
+    width: 97%;
+}
+
+.page-network-browse-limit-dialog .app-list {
+    width: 348px;
+}
+
+.page-network-browselimit .limit-l {
+    width: 580px;
+    float: left;
+}
+
+.page-network-browselimit .limit-r {
+    width: 300px;
+    float: right;
+}
+
+.page-network-browselimit .limit-grid {
+    width: 280px;
+}
+
+.page-network-browselimit .limit-grid thead {
+    display: none;
+}
+
+.page-network-browselimit .limit-r-tab {
+    height: 72px;
+}
+
+.page-network-browselimit .limit-r-tab li {
+    float: left;
+    width: 150px;
+    border-bottom: solid #e0e1e1 1px;
+    padding-top: 42px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: #888888;
+    cursor: pointer;
+    height: 20px;
+}
+
+.page-network-browselimit .limit-web {
+    background: url("../../../asset/image/icon-limit-web.png") center 0 no-repeat;
+}
+
+.page-network-browselimit .limit-app {
+    background: url("../../../asset/image/icon-limit-app.png") center 0 no-repeat;
+}
+
+.page-network-browselimit .limit-r-tab li.tab-current {
+    color: #333333;
+    border-bottom: solid #27a742 3px;
+    height: 18px;
+}
+
+.page-network-browselimit .ranking-tip {
+    padding-top: 15px;
+    color: #888888;
+}
+
+.page-network-browselimit .ranking-list dt {
+    float: left;
+    width: 50px;
+    height: 65px;
+    text-align: center;
+    line-height: 65px;
+    background-color: #ededed;
+    color: #888888;
+    font-size: 26px;
+    font-family: arial, helvetica, sans-serif;
+}
+
+.page-network-browselimit .ranking-list {
+    margin-top: 10px;
+}
+
+.page-network-browselimit .ranking-list dd {
+    border-bottom: solid #e0e1e1 1px;
+    border-top: solid #e0e1e1 1px;
+    border-right: solid #e0e1e1 1px;
+    float: left;
+    width: 248px;
+    height: 63px;
+    background-color: #FFFFFF;
+}
+
+.page-network-browselimit .ranking-list dd p {
+    padding-left: 20px;
+    color: #888888;
+}
+
+.page-network-browselimit .ranking-list dd p.ranking-url {
+    padding-top: 10px;
+    color: #444444;
+}
+
+.page-network-browselimit .ranking-list dt.bg-red {
+    background-color: #fd5864;
+    color: #FFFFFF;
+}
+
+.page-network-browselimit .ranking-list dt.bg-orange {
+    background-color: #f7903c;
+    color: #FFFFFF;
+}
+
+.page-network-browselimit .ranking-list dt.bg-blue {
+    background-color: #519bbd;
+    color: #FFFFFF;
+}

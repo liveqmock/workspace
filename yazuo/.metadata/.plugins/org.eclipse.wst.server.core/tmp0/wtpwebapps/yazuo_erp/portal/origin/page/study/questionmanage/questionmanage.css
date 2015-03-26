@@ -1,0 +1,7 @@
+.page-study-questionmanage .quesiton-grid {
+    table-layout: fixed;
+}
+.page-study-questionmanage .question-cell {
+    width: 300px;
+    text-align: left;
+}

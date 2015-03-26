@@ -1,0 +1,170 @@
+package com.yazuo.erp.api.service.impl;
+
+import com.google.common.collect.Collections2;
+import com.yazuo.erp.api.dao.ReportDataDao;
+import com.yazuo.erp.api.dao.SysReportParamsDao;
+import com.yazuo.erp.api.service.ReportDataService;
+import com.yazuo.erp.api.vo.SysReportParams;
+import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang.time.DateUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.utils.HttpClientUtils;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.HttpContext;
+import org.apache.http.protocol.HttpCoreContext;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.node.ArrayNode;
+import org.elasticsearch.action.search.SearchRequestBuilder;
+import org.elasticsearch.client.Client;
+import org.elasticsearch.client.transport.TransportClient;
+import org.elasticsearch.common.transport.InetSocketTransportAddress;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.TermsQueryBuilder;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.facet.FacetBuilder;
+import org.elasticsearch.search.facet.FacetBuilders;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+/**
+ */
+@Service
+public class ReportDataServiceImpl implements ReportDataService {
+
+    @Resource
+    private SysReportParamsDao sysReportParamsDao;
+    @Resource
+    private ReportDataDao reportDataDao;
+
+
+    @Value("${elasticsearch.prefix}")
+    private String esPrefix;
+
+    @Override
+    public Map<String, Object> getMarketingReportData(String key) {
+        SysReportParams reportParams = this.sysReportParamsDao.get(key);
+        Integer merchantId = reportParams.getMerchantId();
+        boolean isExpired = DateUtils.addMonths(new Date(), -2).after(reportParams.getReportTime());
+        Date currentMonth = reportParams.getReportTime();
+        Date nextMonth = DateUtils.addMonths(currentMonth, 1);
+        Map<String, Object> result = new HashMap<String, Object>();
+        if (!isExpired) {
+            result.put("month", currentMonth);
+            result.put("storedValueOfMon", this.storedValueOfMon(merchantId, currentMonth, nextMonth));
+            result.put("storedValueOfLastMon", this.storedValueOfMon(merchantId, nextMonth, currentMonth));
+            result.put("storedValueOfFormer", this.reportDataDao.getReportBeginning(merchantId, DateUtils.addDays(nextMonth,-1)));
+            result.put("OpenNumPercent", this.reportDataDao.getOpenNumPercent(merchantId, currentMonth));
+            result.put("marketingIncome", this.reportDataDao.getMarketingIncome(merchantId, currentMonth, nextMonth));//读一个字段
+
+            Map<String, Long> memberships = this.membershipCount(merchantId, currentMonth);
+            for (String k : memberships.keySet()) {
+                result.put(k, memberships.get(k));
+            }
+        }
+        result.put("expired", isExpired);
+        return result;
+    }
+
+    protected double storedValueOfMon(Integer brand_id, Date from, Date to) {
+        List<String> transCodes = Arrays.asList(new String[]{"2011", "2008", "2001", "2003", "2007", "2005"});
+        QueryBuilder query = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termQuery("brand_id", brand_id))
+                .must(new TermsQueryBuilder("trans_code", transCodes));
+
+        SearchRequestBuilder request = new SearchRequestBuilder(null);
+        request.setQuery(query)
+                .setFrom(0)
+                .setSize(0)
+                .addAggregation(AggregationBuilders.sum("storedBalance").field("balance"));
+        JsonNode node = this.executeSearch("trans_water", "trade", request.toString());
+        return node == null ? 0 : node.get("aggregations").get("storedBalance").get("value").getDoubleValue();
+    }
+
+    protected Map<String, Long> membershipCount(Integer brandId, Date currentMonth) {
+        Date nextMonth = DateUtils.addMonths(currentMonth, 1);
+        Date lastMonth = DateUtils.addMonths(currentMonth, -1);
+        Date currentYear = DateUtils.truncate(currentMonth, Calendar.YEAR);
+
+        String currentMonthStr = this.formatFoES(currentMonth);
+        String nextMonthStr = this.formatFoES(nextMonth);
+        String lastMonthStr = this.formatFoES(lastMonth);
+        String currentYearStr = this.formatFoES(currentYear);
+
+        QueryBuilder query = QueryBuilders.boolQuery()
+                .must(QueryBuilders.termQuery("brand_id", brandId));
+        SearchRequestBuilder request = new SearchRequestBuilder(null);
+        FacetBuilder facet = FacetBuilders.rangeFacet("join_date").field("join_date")
+                .addRange(currentMonthStr, nextMonthStr)
+                .addRange(lastMonthStr, currentMonthStr)
+                .addRange(currentYearStr, nextMonthStr);
+        request.setQuery(query)
+                .setFrom(0)
+                .setSize(0)
+                .addFacet(facet);
+        JsonNode node = this.executeSearch("membership", "trade", request.toString());
+        System.out.println(node);
+        ArrayNode node1 = (ArrayNode) node.get("facets").get("join_date").get("ranges");
+        Map<String, Long> result = new HashMap<String, Long>();
+        Iterator<JsonNode> a = node1.iterator();
+        while (a.hasNext()) {
+            JsonNode n = a.next();
+            Long number = n.get("count").getLongValue();
+            if (n.get("from_str").getTextValue().equals(currentMonthStr) && n.get("to_str").getTextValue().equals(nextMonthStr)) {
+                result.put("membershipNumOfMon", number);
+            } else if (n.get("from_str").getTextValue().equals(lastMonthStr) && n.get("to_str").getTextValue().equals(currentMonthStr)) {
+                result.put("membershipNumOfLastMon", number);
+            } else if (n.get("from_str").getTextValue().equals(currentYearStr) && n.get("to_str").getTextValue().equals(nextMonthStr)) {
+                result.put("membershipNumOfYear", number);
+            }
+        }
+        return result;
+    }
+
+
+    private String formatFoES(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(date) + "T00:00:00.000+08:00";
+
+    }
+    /**
+     * 执行查询
+     *
+     * @param index
+     * @param type
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    protected JsonNode executeSearch(String index, String type, String request) {
+        String url = this.esPrefix + "/" + index + "/" + type + "/_search";
+//        url = url.replaceAll("//", "/");
+        HttpPost post = new HttpPost(url);
+        HttpEntity entity = new StringEntity(request.toString(), ContentType.create("text/plain", "UTF-8"));
+        post.setEntity(entity);
+        HttpContext context = HttpCoreContext.create();
+        HttpClient client = new DefaultHttpClient();
+        HttpResponse response = null;
+        JsonNode node = null;
+        try {
+            response = client.execute(post, context);
+            ObjectMapper mapper = new ObjectMapper();
+            node = mapper.readTree(response.getEntity().getContent());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return node;
+    }
+}

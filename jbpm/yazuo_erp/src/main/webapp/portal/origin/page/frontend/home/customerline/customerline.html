@@ -1,0 +1,530 @@
+<div class="page-frontend-sales-home-customerline">
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd-warn" ms-visible="warn.length">
+    <ul id="warn">
+        <li ms-repeat = "warn">提醒：{{el.itemContent}} <span>{{el.insertTime | date("yyyy-MM-dd")}}</span></li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+
+    <!--client-header-->
+    <div class="client-head">
+        <!--client-left-->
+        <div class="client-head-left">
+            <div class="client-head-left-logo"><img ms-src="{{merchantData.imgUrl}}"></div>
+            <div class="client-head-left-text pt20">
+                <h2>{{merchantData.merchant_name}}</h2>
+                <ul>
+                    <li>启动日期：{{merchantData.begin_time | date("yyyy-MM-dd")}}</li>
+                    <li>销售负责人：{{merchantData.sale_user_name}}</li>
+                    <li>上线日期：{{merchantData.online_time | date("yyyy-MM-dd")}}</li>
+                    <li>前端负责人：{{merchantData.front_user_name}}</li>
+                </ul>
+            </div>
+        </div>
+        <!--client-left-end-->
+        <!--client-right--->
+        <div class="client_head_right" ms-if="promise">
+            <div class="fn-left">
+                <button class="simple-btn mr5" ms-click="localHref('#/frontend/home/mycommunication')"><i class="iconfont icon-blue f26">&#xe612; </i>通讯录</button>
+                <button ms-click="onLineMail" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe614; </i>发送月报</button>
+                <button ms-click="modifyMess" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe60f; </i>修改信息</button>
+            </div>
+        </div>
+        <!--client-right-end-->
+    </div>
+    <!--client-header-end-->
+    <!--max-tabs-nav-->
+    <div class="max-tabs-nav fn-clear">
+        <p ms-class="cur:pageStatus == 1" ms-click="changePageStatus(1)">商户基本信息</p>
+        <p ms-class="cur:pageStatus == 2" ms-click="changePageStatus(2)">会员卡信息<span ms-if="merchantData.cardCount" class="tips-number">{{merchantData.cardCount}}</span></p>
+        <div>
+            <span>短信余量：{{merchantData.smsCount||0}}条</span>
+            <span ms-if="promise">|&nbsp;&nbsp;<a ms-href="#/frontend/home/marketactivitie/{{merchantId}}">查看营销活动<b ms-if="merchantData.activityCount">（{{merchantData.activityCount}}）</b></a></span>
+            <span ms-if="promise">|&nbsp;&nbsp;<a href="#/frontend/home/questionmanage">查看商户问题<b ms-if="merchantData.problemCount">（{{merchantData.problemCount}}）</b></a></span>
+            <span ms-if="promise && modelType == 1">|&nbsp;&nbsp;<a href="#/frontend/home/attachmentmanage">查看商户附件</a></span>
+        </div>
+    </div>
+    <!--max-tabs-nav-end-->
+    <!--max-tabs-con-->
+    <div class="max-tab-con">
+        <!--商户基本信息-->
+        <div ms-if="pageStatus == 1">
+            <div>
+                <ul class="waiting-head-list fn-clear">
+                    <li>业态：{{merchantData.format_name||'暂无'}}</li>
+                    <li>门店：{{merchantData.store_number||0}}家</li>
+                    <li>人均：{{merchantData.person_avg||0}}元</li>
+                    <li>桌均：{{merchantData.desk_avg||0}}元</li>
+                </ul>
+                <ul class="waiting-head-product">
+                    <p>
+                        开通的产品 :
+                        <span ms-repeat="merchantData.productList">{{el}}&nbsp;&nbsp;</span>
+                    </p>
+                </ul>
+            </div>
+        </div>
+        <!--商户基本信息-end-->
+        <!--会员卡信息-->
+        <div ms-if="pageStatus == 2">
+            <table class="user-grid ui-grid card-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="name-center">卡名称</th>
+                    <th class="name-center">卡类型</th>
+                    <th class="name-center" width="80">是否实体卡</th>
+                    <th class="name-center">商户名称</th>
+                    <th class="name-center">商户类型</th>
+                    <th class="name-center" width="80">卡余量</th>
+                    <th class="name-center" width="80">单价（元）</th>
+                    <th class="name-center" >卡规则说明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-repeat="responseCardData" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="name-left">{{el.card_name}}</td>
+                    <td class="name-left">{{el.card_type}}</td>
+                    <td class="name-center">
+                        {{el.is_sold_card}}
+                    </td>
+                    <td class="name-left">{{el.merchant_name}}</td>
+                    <td class="name-center">{{el.merchant_type}}</td>
+                    <td class="name-right">
+                        <span ms-class = "warn-red:el.card_count<1000">{{el.card_count}}</span>
+                    </td>
+                    <td class="name-right">{{el.card_price}}</td>
+                    <td class="name-left">暂无数据</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--会员卡信息-end-->
+    </div>
+    <!--max-tabs-con-end-->
+    <!--table-->
+    <div class="health-con">
+        <div class="health-con-select">
+            <p class="health-con-select-title"><b>{{healthMonth}}月健康度</b></p>
+            <p class="health-con-select-con">
+                <span ms-click="prevHealth" class="cur">上一月</span>
+                <span ms-if="nextHealthBtn" ms-click="nextHealth" class="cur">下一月</span>
+                <span ms-if="!nextHealthBtn" style="color:#999;">下一月</span>
+            </p>
+        </div>
+        <table width="100%" cellspacing="0" cellpadding="0">
+            <thead>
+            <tr>
+                <th class="table-left">项目名称</th>
+                <th class="table-right">目标</th>
+                <th class="table-right">完成情况</th>
+                <th class="table-right">健康度</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ms-repeat = "healthResponseData">
+                <td class="table-left">{{el.targetTypeText}}</td>
+                <td class="table-right">
+                    {{el.targetValue}}
+                    <span ms-if="el.targetType == 1||el.targetType == 3||el.targetType == 5">%</span>
+                    <span ms-if="el.targetType == 2||el.targetType == 4">元</span>
+                </td>
+                <td class="table-right">
+                    {{el.actualValue}}
+                    <span ms-if="el.targetType == 1||el.targetType == 3||el.targetType == 5">%</span>
+                    <span ms-if="el.targetType == 2||el.targetType == 4">元</span>
+                </td>
+                <td class="table-right">
+                    <b class="pass"
+                       ms-class-1="pass:el.healthDegree>100"
+                       ms-class-2="no-pass:el.healthDegree<100">{{el.healthDegree}}</b>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--table-end-->
+    <!--table-商户数据报表-->
+    <div class="monthly-report" >
+        <!--div class="health-con-select">
+            <p class="health-con-select-title"><b>{{reportMonth}}月商户月报</b></p>
+            <p class="health-con-select-con">
+                <span class="cur" ms-click="prevReport">上一月</span>
+                <span class="cur" ms-if="nextReportBtn" ms-click="nextReport">下一月</span>
+                <span ms-if="!nextReportBtn" style="color:#999;">下一月</span>
+            </p>
+        </div-->
+        <table class="month-day-data">
+            <tr>
+                <td width="160" align="center" height="50">商户数据报表</td>
+                <td width="80" data-value="1" ms-click="changeMothDay"><p class="select-p" ms-class-1="cur:monthDayTabs == 1">月</p></td>
+                <td width="80" data-value="2" ms-click="changeMothDay"><p class="select-p" ms-class-1="cur:monthDayTabs == 2">日</p></td>
+                <td>
+                    <div class="fn-right" ms-visible="monthDayTabs == 1">
+                        <span ms-widget="select,$,$monthYearOpts"></span>
+                        &nbsp;
+                    </div>
+                    <div class="fn-right" ms-visible="monthDayTabs == 2">
+                        <span ms-widget="select,$,$dayYearOpts"></span>
+                        <span ms-widget="select,$,$dayMonthOpts"></span>
+                        &nbsp;
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="month-day-info" ms-visible="monthDayTabs == 1">
+                        <table width="100%" class="border-none">
+                            <tr>
+                                <td ms-repeat="monthlyMonth" width="8.3%">
+                                    <p ms-if="maxMonth>=$index+1" class="month-p" ms-click="getMonthData" ms-class-1="cur:currentMonth==$index+1">{{el}}</p>
+                                    <p ms-if="maxMonth<$index+1" class="month-p-abort">{{el}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="month-day-info" ms-visible="monthDayTabs == 2">
+                        <table width="100%" class="border-none">
+                            <tr>
+                                <td ms-repeat="monthlyDay">
+                                    <p ms-if="maxDay>=$index+1" class="month-p" ms-click="getDayData" ms-class-1="cur:currentDay==$index+1">{{el}}</p>
+                                    <p ms-if="maxDay<$index+1" class="month-p-abort">{{el}}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!--月报-->
+        <div ms-visible="monthDayTabs == 1">
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="6">会员发展情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">年度会员数</td>
+                    <td class="table-center">新增会员总数</td>
+                    <td class="table-center">新增粉丝会员</td>
+                    <td class="table-center">新增积分会员</td>
+                    <td class="table-center">新增储值会员</td>
+                    <td class="table-center">新增积分会员占比</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reportResponseData.yearMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.newMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.fansMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.integralMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.storeMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.integralMemberRate}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="3">售卡情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">售卡量</td>
+                    <td class="table-center">售卡收益</td>
+                    <td class="table-center">年度累计</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reportResponseData.realcard}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.cardIncome}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.yearCardInconsume}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="2">储值情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">储值充值</td>
+                    <td class="table-center">储值沉淀</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reportResponseData.storePay}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.storeBalance}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="2">营销发展情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">营销收益</td>
+                    <td class="table-center">年度累计</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reportResponseData.marketingIncome}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.yearMarketingConsume}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="6">会员消费情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">会员总消费</td>
+                    <td class="table-center">会员现金消费</td>
+                    <td class="table-center">会员储值消费</td>
+                    <td class="table-center">会员积分消费</td>
+                    <td class="table-center">会员桌均消费</td>
+                    <td class="table-center">会员活跃度</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reportResponseData.totalConsume}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.cash}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.storeConsume}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.integralConsume}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.consumedAvg}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.consumedRate}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="2">会员口碑分析</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">会员满意度</td>
+                    <td class="table-center">会员评价率</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reportResponseData.evaluateWellRate}}</b></td>
+                    <td class="table-center"><b class="normal">{{reportResponseData.evaluateRate}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--月报-end-->
+        <!--日报-->
+        <div ms-visible="monthDayTabs == 2">
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="4">会员发展情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">新增会员总数</td>
+                    <td class="table-center">新增粉丝会员</td>
+                    <td class="table-center">新增积分会员</td>
+                    <td class="table-center">新增储值会员</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.newMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.fansMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.integralMember}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.storeMember}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="3">售卡/储值营业情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">售卡收益</td>
+                    <td class="table-center">储值充值</td>
+                    <td class="table-center">营销收益</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.cardIncome}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.storePay}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.marketingIncome}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+            <table width="100%" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr>
+                    <th class="table-left" colspan="4">会员消费情况</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="table-center">会员总消费</td>
+                    <td class="table-center">会员现金消费</td>
+                    <td class="table-center">会员储值消费</td>
+                    <td class="table-center">会员积分消费</td>
+                </tr>
+                <tr>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.totalConsume}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.cash}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.storeConsume}}</b></td>
+                    <td class="table-center"><b class="normal">{{reDayResponseData.integralConsume}}</b></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!--table-商户数据报表-end-->
+    <!-- 日历 start -->
+    <div class="schedule" ms-module="schedule,$,$scheduleOpts"></div>
+    <!-- 日历 end -->
+</div>
+</div>
+
+<!-- 修改商户信息 start -->
+<div class="frontend-modify-mess ui-hidden" ms-widget="dialog,$,$modifyMessDisposeOpts">
+    <div class="f-body">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <div class="logo">
+                        <div><img ms-src="{{path}}{{modifyData.attachDocument.fileFullPath}}"></div>
+                        <div class="modify-mess-logo"></div>
+                        <div>
+                            <div class="upFile-box" ms-widget="uploader,$,$UploaderLogoOpts">
+                                <button ms-if="upLogoIng" class="simple-btn">上传LOGO</button>
+                            </div>
+                        </div>
+                        <div><span>大小：100*100，小于100K</span></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-left"><span class="warn">*</span>业态：</td>
+                <td class="table-td-relative f-field">
+                    <input type="text" ms-value="{{dicforParentText}}{{dicforChildrenText}}" class="input-text format-choose" ms-click="showFormat" readonly>
+                    <input type="hidden" ms-value="{{dicforChildrenText}}" data-rules="empty" data-tips="业态子内容不能为空！" isrule=true>
+                    <div class="ff-value-tip"></div>
+                    <div class="format-box">
+                        <ul class="format-box-info">
+                            <li class="format-left">
+                                <label ms-repeat="modifyData.dicFormat"><input type="radio" ms-attr-data-value="el.value" ms-attr-data-text="el.text" ms-checked="el.isSelected == 1" ms-click="showFormatChildren" name="outer" ms-value="formatChildId">&nbsp;{{el.text}}</label>
+                            </li>
+                            <li class="format-right">
+                                <p ms-repeat="formatChild"><label><input type="checkbox" name="inner" ms-attr-data-text="el.text" ms-attr-data-value="el.value" ms-checked="el.isSelected == 1" ms-click="selectedFormatChildren">&nbsp;{{el.text}}</label></p>
+                            </li>
+                        </ul>
+                        <ul class="format-box-button"><button class="simple-btn closeLineFormat">确定</button></ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-left"><span class="warn">*</span>门店数（家）：</td>
+                <td class="f-field">
+                    <input type="text" ms-duplex="modifyRequestData.storeNumber" class="input-text" data-rules="empty" data-tips="门店数不能为空！" isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-left"><span class="warn">*</span>人均（元）：</td>
+                <td class="f-field">
+                    <input type="text" ms-duplex="modifyRequestData.perCapita" class="input-text" data-rules="empty" data-tips="人均不能为空！" isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-left"><span class="warn">*</span>桌均（元）：</td>
+                <td class="f-field">
+                    <input type="text" ms-duplex="modifyRequestData.perOrder" class="input-text" data-rules="empty" data-tips="桌均不能为空！" isrule=true>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-left"><span class="warn">*</span>销售负责人：</td>
+                <td><span class="schedule" ms-widget="select,$,$salesPersonOpts"></span></td>
+            </tr>
+            <tr>
+                <td class="table-left"><span class="warn">*</span>商户负责人：</td>
+                <td><span class="schedule" ms-widget="select,$,$merchantPersonOpts"></span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- 修改商户信息 end -->
+<!--发送启动通知涵-->
+<div class="common-mail" ms-widget="dialog,$,$onLineMailDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$onLineMailFormOpts"
+          action="javascript:;">
+        <table class="common-mail-table-max f-field">
+            <tr>
+                <td width="90" align="right">收件人：</td>
+                <td>
+                    <div class="common-mail-box">
+                        <input class="mail-to customer-line-mail-to" ms-duplex="mailTo"  isrule=true data-rules="empty" data-tips="收件人不能为空！">
+                        <input type="hidden" class="common-mail-mail-line-test" data-rules="mail" ms-duplex="errorMail" data-tips="请输入正确的邮箱！" isempty="true" isrule=true>
+                        <p ms-click="addLinkman" id="addLinkMan">通讯录</p>
+                    </div>
+                    <div class="mail-name" ms-if="linkMan.flag">
+                        <table class="mail-name-table">
+                            <tr><th width="35%">姓名</th><th>角色</th></tr>
+                            <tr ms-if="!linkMan.data.length"><td colspan="2">暂无通讯录</td></tr>
+                            <tr ms-repeat = 'linkMan.data' ms-click="addPut" ms-attr-id="el.id"><td>{{el.name}}</td><td>{{el.roleType}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" align="right">邮件标题：</td>
+                <td>
+                    <div class="common-mail-box">
+                        <input class="mail-subject" ms-duplex="mailRequestData.subject" isrule=true data-rules="empty" data-tips="邮件标题不能为空！">
+                        <p ms-click="addMailModel" id="addMailModel">选择模板</p>
+                    </div>
+                    <div class="mail-title" ms-if="mailModel.flag">
+                        <p ms-if = "!mailModel.data.length">暂无邮件模板</p>
+                        <p ms-repeat = "mailModel.data" ms-click="addPutEmailModel">{{el.name}}</p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" align="right">正文：</td>
+                <td width="500">
+                    <!--div class="line-email-con">引用参数：[<a href="javascript:;" ms-mousedown="appendValue">{{merchantName}}</a>]</div-->
+                    <div class="email-content" ms-widget="editor,$,$editorOpts"></div>
+                    <input type="hidden" class="common-email-test-custmer" ms-value="mailRequestData.context" isrule=true data-rules="empty" data-tips="邮件内容不能为空！">
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" align="right">发件人：</td>
+                <td>
+                    <input class="input-text mail-name-fa" ms-duplex="mailRequestData.sendAddress" readonly>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!--发送启动通知涵-end-->

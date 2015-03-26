@@ -1,0 +1,623 @@
+.page-frontend-sales-home-customerline .page-bd {
+    padding: 20px 15px;
+}
+
+.page-frontend-sales-home-customerline .page-bd-warn {
+    width: 100%;
+    height: 40px;
+    background: #DCAC6C;
+    overflow: hidden;
+    position: relative;
+}
+.page-frontend-sales-home-customerline .page-bd-warn ul {
+    width: 100%;
+    background: #fdf4da;
+    position: absolute;
+    top:0;
+}
+.page-frontend-sales-home-customerline .page-bd-warn li {
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+    overflow: hidden;
+}
+.page-frontend-sales-home-customerline {
+    color:#777;
+}
+.page-frontend-sales-home-customerline .page-padding{
+    padding:20px 15px;
+}
+.page-frontend-sales-home-customerline .client-head{
+    width:100%;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+.page-frontend-sales-home-customerline .client-head-left{
+    float:left;
+    display:inline;
+}
+.page-frontend-sales-home-customerline .client-head-left-logo{
+    float:left;display:inline;
+    width:100px;
+    height:100px;
+}
+.page-frontend-sales-home-customerline .client-head-left-logo img {
+    width:100px;
+    height:100px;
+}
+.page-frontend-sales-home-customerline .client-head-left-text{
+    float:left;display:inline;
+    margin-left:30px;
+    width:450px;
+}
+.page-frontend-sales-home-customerline .client_head_right{
+    float:right;
+    display:inline;
+    width: 310px;
+    text-align: right;
+}
+.page-frontend-sales-home-customerline .client_head_right button {
+    margin:3px 0;
+}
+.page-frontend-sales-home-customerline .permission_type {
+    margin-bottom:30px;
+}
+.page-frontend-sales-home-customerline .permission_type a {
+    color:#fff;
+}
+
+.page-frontend-sales-home-customerline .max-tabs-nav p {
+    float:left;
+    display:inline;
+    cursor: pointer;
+    width:120px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+.page-frontend-sales-home-customerline .tips-number {
+    width:20px;
+    height:20px;
+    background:#FE561A;
+    border-radius: 10px;
+    color:#fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 12px;
+    right:5px;
+    top:2px;
+}
+.page-frontend-sales-home-customerline .max-tabs-nav {
+    height:40px;
+    position: relative;
+}
+.page-frontend-sales-home-customerline .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-frontend-sales-home-customerline .max-tabs-nav div {
+    position:absolute;
+    right:20px;
+    top:10px;
+}
+.page-frontend-sales-home-customerline .max-tabs-nav div span {
+    margin: 0 5px;
+    font-size: 14px;
+}
+.page-frontend-sales-home-customerline .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+    margin-bottom:20px;
+}
+.page-frontend-sales-home-customerline .client-head-left-text h2 {
+    font-size:24px;
+    line-height:30px;
+    padding-bottom:10px;
+}
+.page-frontend-sales-home-customerline .client-head-left-text ul {
+    width:100%;
+    overflow:hidden;
+}
+.page-frontend-sales-home-customerline .client-head-left-text ul li {
+    float:left;
+    display: inline;
+    width:170px;
+    line-height:23px;
+}
+.page-frontend-sales-home-customerline .waiting-head-list li {
+    float: left;
+    display: inline;
+    width: 30%;
+    padding-left:3%;
+    line-height: 30px;
+    font-size: 14px;
+}
+.page-frontend-sales-home-customerline .waiting-head-product p {
+    padding-left:3%;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+
+.page-frontend-sales-home-customerline .client-step {
+    margin-top :15px;
+}
+.page-frontend-sales-home-customerline .status-box {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    background:#fff;
+    margin-bottom:15px;
+    border:1px solid #E1E1E1;
+}
+.page-frontend-sales-home-customerline .status-box .number {
+    width:55px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:28px;
+    height:100%;
+    border:none;
+    background:#D5D2CD;
+    color:#fff;
+
+}
+.page-frontend-sales-home-customerline .status-box .content {
+    position:relative;
+    margin-left:70px;
+    margin-right:300px;
+    padding:10px 0;
+}
+
+.page-frontend-sales-home-customerline .status-box .operation {
+    width:260px;
+    position: absolute;
+    right:20px;
+    top:50%;
+    height:100%;
+    margin-top:-17px;
+    text-align:right;
+}
+.page-frontend-sales-home-customerline .status-box .content h2 {
+    font-size:20px;
+}
+.page-frontend-sales-home-customerline .type-box {
+    background: #F4F3F2;
+    padding: 5px;
+}
+.page-frontend-sales-home-customerline .type-box li {
+    padding:5px 0;
+    width: 100%;
+    overflow: hidden;
+}
+.page-frontend-sales-home-customerline .type-box li .left-title {
+    float: left;
+    display: inline;
+    width:80px;
+    text-align: right;
+    line-height: 20px;
+}
+.page-frontend-sales-home-customerline .type-box li .left-con {
+    float: left;
+    display: inline;
+    width:600px;
+    padding-left:10px;
+    text-align: left;
+    line-height: 20px;
+}
+.page-frontend-sales-home-customerline .merchantName {
+    font-size: 14px;
+    padding-top:5px;
+}
+.add-edit-customerline-dialog  .merchantName {
+    font-size: 14px;
+}
+.add-edit-customerline-dialog .ff-value-tip {
+    padding-left: 80px;
+}
+.add-edit-customerline-dialog .customerline-upfile {
+    line-height: 25px;
+    width: 300px;
+    overflow: hidden;
+}
+.page-frontend-sales-home-customerline .question-manage-dialog-ul li{
+    width:100%;
+    overflow: hidden;
+    margin-bottom:20px;
+}
+.page-frontend-sales-home-customerline .question-manage-dialog-ul li .fn-left{
+    float:left;
+    display: inline;
+    width:50px;
+    font-size: 14px;
+}
+.page-frontend-sales-home-customerline .question-manage-dialog-ul li label{
+    margin-right:20px;
+}
+.page-frontend-sales-home-customerline .question-manage-dialog-ul li textarea{
+    width:350px;
+    height:130px;
+}
+.page-frontend-sales-home-customerline .question-manage-dialog-ul li .fn-right{
+    float:left;
+    display: inline;
+    width:380px;
+    font-size: 14px;
+}
+.page-frontend-sales-home-customerline .page-frontend-sales-home-customerline .health-con {
+    background:#fff;
+}
+.page-frontend-sales-home-customerline .health-con-select {
+    overflow: hidden;
+    height:56px;
+    border: 1px solid #E4E4E4;
+    border-bottom:none;
+}
+.page-frontend-sales-home-customerline .health-con-select p{
+    height:6px;
+    line-height: 56px;
+}
+.page-frontend-sales-home-customerline .health-con-select-title {
+    float: left;
+    display: inline;
+    padding-left:20px;
+    font-size: 16px;
+
+}
+.page-frontend-sales-home-customerline .health-con-select-con {
+    float: right;
+    display: inline;
+    padding-right:20px;
+    font-size: 16px;
+}
+.page-frontend-sales-home-customerline .health-con-select-con span.cur {
+    cursor: pointer;
+}
+.page-frontend-sales-home-customerline .health-con table {
+    background: #E4E4E4;
+    border-collapse:inherit;
+    border-spacing:1px;
+}
+.page-frontend-sales-home-customerline .health-con th {
+    height: 40px;
+    line-height: 40px;
+    padding:0 10px;
+    color:#000;
+    font-size:14px;
+    font-weight: 900
+}
+.page-frontend-sales-home-customerline .health-con td {
+    background: #fff;
+    padding: 10px;
+    line-height:23px;
+    font-size: 14px;
+}
+.page-frontend-sales-home-customerline .health-con td .pass {
+    color:#009933;
+}
+.page-frontend-sales-home-customerline .health-con td .no-pass {
+    color:#FF3300;
+}
+.page-frontend-sales-home-customerline .warn-red {
+    color:#FF3300;
+}
+.page-frontend-sales-home-customerline td .normal {
+    color:#0099CC;
+}
+.page-frontend-sales-home-customerline .table-left {
+    text-align: left;
+}
+.page-frontend-sales-home-customerline .table-right {
+    text-align: right;
+}
+.page-frontend-sales-home-customerline .table-center {
+    text-align: center;
+}
+.page-frontend-sales-home-customerline .monthly-report {
+    background:#fff;
+    margin-top: 20px;
+}
+.page-frontend-sales-home-customerline .monthly-report table {
+    background: #E4E4E4;
+    border-collapse:inherit;
+    border-spacing:1px;
+}
+.page-frontend-sales-home-customerline .monthly-report th {
+    background: #DCECF8;
+    height: 40px;
+    line-height: 40px;
+    padding:0 10px;
+    color:#000;
+    font-size:14px;
+    font-weight: 900;
+}
+.page-frontend-sales-home-customerline .monthly-report td {
+    background: #fff;
+    padding: 10px 5px;
+    line-height:23px;
+    font-size: 14px;
+}
+
+/* 日历 start */
+.page-frontend-sales-home-customerline .schedule {
+    border: 1px solid #e4e4e4;
+    background: #ffffff;
+    margin-top: 20px;
+}
+.page-frontend-sales-home-customerline .schedule td {
+    border: 1px solid #e4e4e4;
+}
+.page-frontend-sales-home-customerline .schedule .module-schedule-bd {
+    background: #ffffff;
+}
+.card-grid td {
+    border-right:1px solid #ccc;
+}
+.card-grid .name-left {
+    padding-left:10px;
+    text-align:left;
+}
+.card-grid .name-center {
+    padding:0 10px;
+    text-align:center;
+}
+.card-grid .name-right {
+    padding-right:10px;
+    text-align:right;
+}
+
+
+/*mail*/
+.common-mail table {
+    font-size: 14px;
+    color:#777;
+}
+.common-mail div.send-sms {
+    padding: 5px 0;
+}
+.common-mail table td {
+    padding: 5px;
+    vertical-align: top;
+}
+.common-mail div.send-sms label input {
+    vertical-align: 1px;
+}
+.common-mail .email-content{
+    width: 550px;
+}
+.common-mail .mail-name-fa {
+    width:95%;
+}
+.common-mail .common-mail-box {
+    width: 550px;
+    position: relative;
+    height:32px;
+    border: 1px solid #66ccb5;
+    z-index: 100;
+}
+.common-mail .common-mail-box input {
+    width:450px;
+    height:30px;
+    line-height: 30px;
+    position: absolute;
+    left:1;
+    top:1;
+    border:none;
+    padding-left:3px;
+}
+.common-mail .common-mail-box p {
+    width:80px;
+    height:30px;
+    position: absolute;
+    right: 1px;
+    top:1px;
+    text-align: center;
+    background: #e5f8f1;
+    font-size:14px;
+    line-height: 30px;
+    cursor:pointer;
+}
+
+
+.common-mail .common-mail-table-max {
+    position: relative;
+    width: 650px;
+}
+.common-mail .common-mail-table-max .mail-name {
+    position: absolute;
+    right:5px;
+    top:38px;
+    width:200px;
+    border:1px solid #66ccb5;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    background: #fff;
+}
+.common-mail table.mail-name-table {
+    width: 100%;
+}
+.common-mail table.mail-name-table tr {
+    position: relative;
+}
+.common-mail table.mail-name-table th{
+    line-height:25px;
+    padding:5px;
+    font-size: 14px;
+    color:#000;
+    background: #e5f8f1;
+}
+.common-mail table.mail-name-table td{
+    line-height:25px;
+    padding:5px;
+    cursor: pointer;
+}
+.common-mail .mail-title {
+    position: absolute;
+    right:5px;
+    top:82px;
+    width:300px;
+    z-index: 1000;
+    border:1px solid #66ccb5;
+    background: #fff;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.common-mail .mail-title p {
+    padding:5px;
+    cursor: pointer;
+}
+.common-mail .line-email-con {
+    padding-bottom: 10px;
+}
+.common-mail .common-email-smscontext-customer {
+    width: 540px;
+    height: 120px;
+}
+.common-mail .warn {
+    color: red;
+}
+/*增加日报css*/
+.page-frontend-sales-home-customerline .monthly-report .month-day-data {
+    width: 100%;
+}
+.page-frontend-sales-home-customerline .monthly-report .month-day-data td {
+    padding: 0;
+    position: relative;
+}
+.page-frontend-sales-home-customerline .monthly-report .month-day-data .select-p {
+    position: absolute;
+    left: 0;
+    top:0;
+    cursor: pointer;
+    text-align: center;
+    height: 101%;
+    width: 100%;
+    line-height: 50px;
+}
+.page-frontend-sales-home-customerline .monthly-report .month-day-data p.cur {
+    background: #eee;
+    color: #000;
+}
+.page-frontend-sales-home-customerline .monthly-report .month-day-info {
+    background: #eee;
+}
+.page-frontend-sales-home-customerline .monthly-report .border-none {
+    border:none;
+    border-spacing:0;
+}
+.page-frontend-sales-home-customerline .monthly-report .border-none td {
+    background: #eee;
+}
+.page-frontend-sales-home-customerline .monthly-report .border-none p.cur {
+    border-left: 1px solid #E4E4E4;;
+    border-right: 1px solid #E4E4E4;;
+    background: #ecf4fb;
+    color: #0099d4;
+}
+.page-frontend-sales-home-customerline .monthly-report .month-p {
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}
+.page-frontend-sales-home-customerline .monthly-report .month-p-abort {
+    color: #ccc;
+    text-align: center;
+    padding: 5px;
+}
+
+/*修改商户信息*/
+.frontend-modify-mess {
+    font-size: 14px;
+    color: #777;
+}
+.frontend-modify-mess table {
+    width: 100%;
+}
+.frontend-modify-mess td {
+    padding: 5px;
+}
+.frontend-modify-mess td.table-left {
+    width: 110px;
+    text-align: right;
+}
+.frontend-modify-mess input.input-text {
+    width: 280px;
+}
+.frontend-modify-mess .logo div {
+    text-align: center;
+    padding: 5px 0;
+}
+.frontend-modify-mess .logo div img {
+    width: 100px;
+    height: 100px;
+    border: #eee;
+}
+.frontend-modify-mess .upFile-box {
+    display: inline-block;
+    _display:inline;
+    _zoom:1;
+}
+.frontend-modify-mess .upFile-box #SWFUpload_0 {
+    left: 0;
+}
+.frontend-modify-mess .warn {
+    color: red;
+}
+.frontend-modify-mess td.table-td-relative {
+    position: relative;
+}
+.frontend-modify-mess .format-box {
+    position: absolute;
+    top: 36px;
+    left: 5px;
+    border: 1px solid #2cc78f;
+    padding: 0 10px 10px 10px;
+    width: 600px;
+    background: #fff;
+    display: none;
+}
+.frontend-modify-mess .format-box-info {
+    width: 100%;
+    overflow: hidden;
+}
+.frontend-modify-mess .format-box-info .format-left {
+    float: left;
+    display: inline;
+    width: 350px;
+    padding-top: 6px;
+}
+.frontend-modify-mess .format-box-info .format-left label {
+    display: inline-block;
+    _display:inline;
+    _zoom:1;
+    min-width: 100px;
+    margin:0 0 10px 10px;
+}
+.frontend-modify-mess .format-box-info .format-right {
+    float: right;
+    display: inline;
+    width: 225px;
+    padding-left: 15px;
+    border-left:1px solid #2cc78f;
+    padding-bottom: 1000px;
+    margin-bottom: -1000px;
+}
+.frontend-modify-mess .format-box-button {
+    text-align: center;
+    padding-top: 15px;
+}
+.frontend-modify-mess .format-right p {
+    padding: 5px 0;
+}

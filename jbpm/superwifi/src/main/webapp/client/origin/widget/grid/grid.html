@@ -1,0 +1,61 @@
+<div class="ui-grid-tbar">
+    共<span class="num">{{gridTotalSize}}</span>{{recordUnit}}
+</div>
+MS_OPTION_TBAR
+<table class="ui-grid-main" cellpadding="0" cellspacing="0" ms-css-table-layout="tableLayout">
+    <thead>
+        <tr>
+            <th class="cell-check"
+                ms-visible="!disableCheckbox"
+                ms-class-1="cell-first: !disableCheckbox"><span class="cell-inner"><input type="checkbox"
+                class="check-all" ms-duplex-radio="gridAllChecked"
+                ms-visible="!disableCheckAll"
+                ms-click="gridCheckAll" /></span></th>
+            <th ms-repeat="columns"
+                ms-if-loop="!el.hideable"
+                ms-class-1="{{el.cls}}: el.cls"
+                ms-class-2="cell-first: $first && disableCheckbox"
+                ms-class-3="cell-last: $last"
+                ms-css-width="el.width"
+                ms-css-text-align="el.textAlign"><span ms-if="el.headerWidget" ms-data-widget-type="el.headerWidget.type" ms-data-data-index="el.dataIndex" class="cell-header-widget cell-inner"></span><span ms-if="!el.headerWidget" class="cell-header-text cell-inner">{{el.text}}</span></th>
+        </tr>
+    </thead>
+    <tbody ms-visible="!!gridData.length">
+        <tr ms-repeat="gridData"
+            ms-class-1="odd:!($index % 2)"
+            ms-class-2="even:$index % 2"
+            ms-class-3="state-selected: el._selected"
+            ms-hover="state-hover">
+            <td class="cell-check"
+                ms-visible="!disableCheckbox"
+                ms-class-1="cell-first: !disableCheckbox"><span class="cell-inner"><input type="checkbox" ms-value="el.id"
+                ms-duplex="gridSelected" /></span></td>
+            <td ms-repeat="columns"
+                ms-if-loop="!el.hideable"
+                ms-class-1="{{el.cls}}: el.cls"
+                ms-class-2="cell-first: $first && disableCheckbox"
+                ms-class-3="cell-last: $last"
+                ms-css-width="el.width"
+                ms-css-text-align="el.textAlign"><span class="cell-inner" ms-if="el.html">{{$outer.el[el.dataIndex] | html}}</span><span class="cell-inner" ms-if="!el.html">{{$outer.el[el.dataIndex]}}</span></td>
+        </tr>
+    </tbody>
+    <tbody ms-if="!gridData.length">
+        <tr class="empty-row">
+            <td class="cell-empty" ms-attr-colspan="columns.length + 1">您还没有选择查询条件，或没有符合条件的数据。</td>
+        </tr>
+    </tbody>
+</table>
+MS_OPTION_MAIN
+<div class="ui-grid-bbar fn-clear">
+    <div class="grid-action fn-left">
+        <button type="button" class="check-all-btn main-btn"
+            ms-visible="!disableCheckAll"
+            ms-click="scCheckAll">全选</button>
+        &nbsp;
+        <button type="button" class="batch-remove-btn main-btn"
+            ms-visible="!disableBatchRemove"
+            ms-click="batchRemoveGridItem">批量删除</button>
+    </div>
+    <div class="pagination fn-right"
+        ms-widget="pagination,$,$paginationOpts"></div>
+</div>

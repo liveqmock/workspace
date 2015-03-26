@@ -1,0 +1,157 @@
+<div class="page-bd page-bd-form">
+    <!--活动申请-提醒-问题管-->
+    <div class="permission_type">
+        <button type="button" ms-click="localHref('#/backend/attachmentmanage')" ms-if="permission.end_attachment_mag" class="main-btn">附件管理</button>
+        <button type="button" ms-click="localHref('#/backend/emailtemplate')" ms-if="permission.end_email_temp" class="main-btn">邮件模板</button>
+        <button type="button" ms-click="localHref('#/backend/complaintsmanage')" ms-if="permission.end_complaint_mag" class="main-btn">投诉管理</button>
+    </div>
+    <!--活动申请-提醒-问题管-end-->
+    <!--max-tabs-nav-->
+    <div class="max-tabs-nav fn-clear">
+        <p ms-if="permission.end_merchant_mag" ms-class="cur:pageStatus == 1" ms-click="changePageStatus(1)">商户管理</p>
+        <p ms-if="permission.end_custom_service_todolist" ms-class="cur:pageStatus == 2" ms-click="changePageStatus(2)">待办事项<span class="tips-number" ms-if="dotolen">{{dotolen}}</span></p>
+    </div>
+    <!--max-tabs-nav-end-->
+    <!--max-tabs-con-->
+    <div class="max-tab-con">
+        <!--我的商户-->
+        <div ms-visible="pageStatus == 1 ">
+            <!--tabs-类型-->
+            <div class="cate-list-wrapper">
+                <ul class="cate-list fn-clear mb20">
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:requestData.merchantStatus == '200'" ms-click="changeStatus('200')">全部</a>
+                    </li>
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:requestData.merchantStatus == '0'" ms-click="changeStatus('0')">未上线</a>
+                    </li>
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:requestData.merchantStatus == '1'" ms-click="changeStatus('1')">已上线</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!--tabs-类型-end-->
+            <!--search-->
+            <div class="search mb20">
+                <div class="page-filter">
+                    <input type="text" class="coursewareName input-text" ms-duplex="requestData.merchantName" placeholder="请输入商户名称">&nbsp;
+                    <button type="button" class="query-btn main-btn" style="vertical-align: 0px;" ms-click="search">搜索</button>
+                </div>
+            </div>
+            <!--search-end-->
+            <!--table-->
+            <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="name-left">商户名称</th>
+                    <th class="name-left">销售负责人</th>
+                    <th class="name-left">前端负责人</th>
+                    <th class="name-left">客服助理</th>
+                    <th class="name-center" width="80">状态</th>
+                    <th class="schedule-cell" width="250">操 作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-repeat="pageDataMerchant" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="name-left">{{el.merchantName}}</td>
+                    <td class="name-left">{{el.salesName}}</td>
+                    <td class="name-left" ms-if="el.listUsers[0]">{{el.listUsers[0].userName}}</td>
+                    <td class="name-left" ms-if="!el.listUsers[0]"></td>
+                    <td class="name-left" ms-if="el.listAssistantUsers[0]">{{el.listAssistantUsers[0].userName}}</td>
+                    <td class="name-left" ms-if="!el.listAssistantUsers[0]"></td>
+                    <td class="name-center">{{el.merchantStatusText}}</td>
+                    <td class="name-center-cell customerService-padding">
+                        <span ms-if="!el.listAssistantUsers[0]" ms-click="distribution"><a href="javascript:;">分配客服助理</a></span><span ms-if="el.listAssistantUsers[0]" ms-click="distribution"><a href="javascript:;">修改客服助理</a></span><span>待办事项(<b class="warn-num">{{el.countToDoList}}</b>)</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--table-end-->
+        </div>
+        <!--我的商户-end-->
+        <!--代办事项-->
+        <div ms-visible="pageStatus == 2">
+            <!--tabs-类型-->
+            <div class="cate-list-wrapper">
+                <ul class="cate-list fn-clear mb20">
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:backlog.inputItemTypes=='01,02,03,04'" ms-click="doToStatus(['01','02','03','04'])">全部</a>
+                    </li>
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:backlog.inputItemTypes=='01'" ms-click="doToStatus(['01'])">上线流程</a>
+                    </li>
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:backlog.inputItemTypes=='02'" ms-click="doToStatus(['02'])">投诉处理</a>
+                    </li>
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:backlog.inputItemTypes=='03'" ms-click="doToStatus(['03'])">商户调研</a>
+                    </li>
+                    <li class="cate-item fn-left">
+                        <a href="javascript:;" ms-class="cur:backlog.inputItemTypes=='04'" ms-click="doToStatus(['04'])">上线后服务</a>
+                    </li>
+                </ul>
+            </div>
+            <!--tabs-类型-end-->
+            <!--search-->
+            <div class="search">
+                <div class="page-filter">
+                    <input type="text" class="coursewareName input-text" ms-duplex="backlog.merchantName" placeholder="请输入商户名称">&nbsp;
+                    <button type="button" class="query-btn main-btn" ms-click="backlogSearch">搜索</button>
+                </div>
+            </div>
+            <!--search-end-->
+            <!--table-->
+            <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="name-center" width="200">时间</th>
+                    <th class="name-left">商户名称</th>
+                    <th class="name-center">类型</th>
+                    <th class="name-left">待办内容</th>
+                    <th class="name-center" width="100"><span style="width: 90px;" class="schedule" ms-widget="select,$,$statusSelectOpts"></span></th>
+                    <th class="name-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-repeat="pageDataBacklog" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="name-center">{{el.insertTime|date("yyyy-MM-dd HH:mm")}}</td>
+                    <td class="name-left">{{el.merchantName}}</td>
+                    <td class="name-center">{{el.itemTypeText}}</td>
+                    <td class="name-left">{{el.itemContent}}</td>
+                    <td class="name-center"><span ms-if="el.itemStatus == '1'">已完成</span><span ms-if="el.itemStatus == '0'">未完成</span></td>
+                    <td class="name-center">
+                        <a ms-if="el.itemType == '01'" ms-href="#/backend/customerservice/waiting/{{el.merchantId}}/{{el.itemStatus}}">查看详情</a>
+                        <a ms-if="el.itemType == '04'" ms-href="#/backend/customerservice/linewaiting/{{el.merchantId}}">查看详情</a>
+                        <a ms-if="el.itemType == '03'" ms-href="#/backend/customerservice/waitingbefor/{{el.merchantId}}/1/{{el.itemStatus}}">查看详情</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--代办事项-end-->
+
+    </div>
+    <!--max-tabs-con-end-->
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+</div>
+<!-- 分配负责人 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$distributionDialogOpts">
+    <div class="f-body">
+        <div class="f-field fn-clear">
+            <label class="ff-label fn-left"><span class="icon-star">*</span>分配客服助理：</label>
+            <div class="ff-value">
+                <div class="ff-value-box">
+                    <span class="schedule" ms-widget="select,$,$scheduleOpts"></span>
+                </div>
+                <div class="ff-value-tip"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 分配负责人 end -->
+

@@ -1,0 +1,42 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <span class="current-year-selector" ms-widget="select,$,$currentYearOpts"></span>&nbsp;&nbsp;<span class="current-month-selector" ms-widget="select,$,$currentMonthOpts"></span>
+    </div>
+</div>
+<div class="page-bd">
+    <ul class="team-list">
+        <li class="team-item"
+            ms-repeat="teamList"
+            ms-class-1="first-item: $first">
+            <div class="team-item-main fn-clear">
+                <div class="index-box fn-left">{{$index + 1}}</div>
+                <div class="team-panel">
+                    <h3 class="team-name">{{el.teamName}}</h3>
+                    <div class="team-detail">
+                        <p>队长：{{el.teamLeader}}</p>
+                        <p>队员：{{el.teamMember}}</p>
+                        <p>口号：{{el.teamWord}}</p>
+                    </div>
+                    <div class="stake">
+                        <p>赔率：<span class="odds-text" ms-visible="el.oddsState == 'r'">{{el.odds}}&nbsp;&nbsp;</span><input type="text" class="odds-editor input-text" ms-visible="el.oddsState == 'e'" ms-value="el.odds" /><button type="button" ms-class-1="simple-btn: el.oddsState == 'r'" ms-class-2="main-btn: el.oddsState == 'e'" ms-click="clickOddsBtn">{{el.oddsBtnText}}</button></p>
+                    </div>
+                    <div class="income-box">
+                        <label>到账银两：</label><span class="income-text" ms-visible="el.incomeState == 'r'">{{el.income}}元&nbsp;&nbsp;</span><span ms-visible="el.incomeState == 'e'"><input type="text" class="income-editor input-text" ms-value="el.income" />&nbsp;元&nbsp;</span><button type="button" ms-class-1="simple-btn: el.incomeState == 'r'" ms-class-2="main-btn: el.incomeState == 'e'" ms-click="clickIncomeBtn">{{el.incomeBtnText}}</button>
+                    </div>
+                    <div class="support-box">共{{el.supportNum}}人支持&nbsp;&nbsp;&nbsp;<button type="button" class="support-visible-ctr-btn" ms-click="clickSupportVisibleBtn">{{el.supportVisibleCtrBtnText}}</button></div>
+                </div>
+            </div>
+            <div class="team-support-list-wrapper fn-clear" ms-visible="el.supportVisibleState">
+                <div class="team-support-list-inner">
+                    <ul class="support-list">
+                        <li class="support-item fn-left" ms-repeat="el.supportList" ms-hover="support-item-hover" ms-attr-title="el.supportName"><span class="support-name">{{el.supportName}}</span><i class="remove-h iconfont" ms-click="removeSupport" ms-data-user-id="el.id" ms-data-team-id="$outer.el.id">&#xe615;</i></li>
+                    </ul>
+                </div>
+                <button type="button" class="add-support-btn simple-btn fn-left" ms-click="addMoreSupport">添加支持者</button>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="page-wldh-setting-add-support-dialog" ms-widget="dialog,$,$addSupportOpts">
+    <div ms-widget="itemselector,$,$userSelectorOpts"></div>
+</div>

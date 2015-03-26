@@ -1,0 +1,161 @@
+<div class="page-bd">
+    <div class="network-bd-left">
+        <dl class="column-block color-one">
+            <dt>
+                <span class="column-tip icon-img-1">访问限制</span>
+                <span class="column-content"><ins class="font-en">{{limitTotal}}</ins>当前限制的访问总数：</span>
+                <span class="alpha-layer"></span>
+            </dt>
+            <dd class="content-area">
+                <p class="content-t">您限制的访问内容：</p>
+                <p>被屏蔽的网站个数：{{limitWeb}}</p>
+                <p>被屏蔽的APP个数：{{limitApp}}</p>
+            </dd>
+            <dd class="bt-area">
+                <span class="no-hover main-btn" ms-mouseenter="showDown" ms-mouseleave="hideDown">快速添加 <i class="iconfont" ms-visible="showDownIs==false">&#xe609;</i><i class="iconfont" ms-visible="showDownIs==true">&#xe60a;</i>
+                    <div class="drop-down-nav" ms-visible="showDownIs">
+                        <a href="javascript:;" ms-click="openWebDialog" data-type="web">网址</a>
+                        <a href="javascript:;" ms-click="openWebDialog" data-type="app">APP</a>
+                    </div>
+                </span><a href="#/network/browselimit" class="main-btn">详细设置</a>
+            </dd>
+        </dl>
+        <dl class="column-block color-three">
+            <dt>
+                <span class="column-tip icon-img-5">网络连接方式</span>
+                <span class="column-content"><ins class="font-14">{{linkType}}</ins>当前设置：</span>
+                <span class="alpha-layer"></span>
+            </dt>
+            <dd class="content-area">
+                <p>您可以在此设置到店用户通过何种方式连接并使用WIFI。</p>
+            </dd>
+            <dd class="bt-area">
+                <a class="full-bt main-btn" href="javascript:;" ms-click="openWebDialog" data-type="link">修改连接方式</a>
+            </dd>
+        </dl>
+        <dl class="column-block color-four">
+            <dt>
+                <span class="column-tip icon-img-4">设备名称管理</span>
+                <span class="column-content"><ins class="font-en">{{ssidTotal}}</ins>当前的设备个数：</span>
+                <span class="alpha-layer"></span>
+            </dt>
+            <dd class="content-area">
+                <p>您可以为设备设置自定义名称方便用户在WIFI列表中查看。</p>
+            </dd>
+            <dd class="bt-area">
+                <a class="full-bt main-btn" href="#/network/device">管理设备名称</a>
+            </dd>
+        </dl>
+        <dl class="column-block color-two">
+            <dt>
+                <span class="column-tip icon-img-2">白名单</span>
+                <span class="column-content"><ins class="font-en">{{whiteTotal}}</ins>当前的白名单人数：</span>
+                <span class="alpha-layer"></span>
+            </dt>
+            <dd class="content-area">
+                <p>加入白名单中的用户将不受黑名单条件限制。</p>
+            </dd>
+            <dd class="bt-area">
+                <a href="javascript:;" class="main-btn" ms-click="openWebDialog" data-type="white">快速添加</a><a href="#/network/whitelist" class="main-btn">详细设置</a>
+            </dd>
+        </dl>
+        <dl class="column-block color-two">
+            <dt>
+                <span class="column-tip icon-img-3">店员名单</span>
+                <span class="column-content"><ins class="font-en">{{blackTotal}}</ins>当前的店员名单人数：</span>
+                <span class="alpha-layer"></span>
+            </dt>
+            <dd class="content-area">
+                <p>店员名单中的用户将只能连接并使用店员WIFI。连接时间超过驻店时长的用户将被自动加入店员名单。</p>
+            </dd>
+            <dd class="bt-area">
+                <a href="javascript:;" class="main-btn" ms-click="openWebDialog" data-type="black">快速添加</a><a href="#/network/blacklist" class="main-btn">详细设置</a>
+            </dd>
+        </dl>
+    </div>
+    <div class="network-bd-right">
+        <ul class="link-num-box">
+            <li>
+                <p>当前全部设备连接人数</p>
+                <p class="font-en">{{linkPeople}}</p>
+            </li>
+            <li>
+                <p>当前全部设备使用率</p>
+                <p class="font-en">{{linkUsePer}}</p>
+            </li>
+        </ul>
+        <div class="right-block" ms-class-1="device-box:linkDeviceList.length>0&&!showDeviceIs">
+            <div class="right-t">
+                <span>当前各设备使用率统计</span>
+            </div>
+            <dl class="device-list fn-clear" ms-repeat="linkDeviceList">
+                <dt></dt>
+                <dd>
+                    <p class="bottom-line">ID:{{el.devName}}</p>
+                    <p class="progress-box">
+                        <span class="progress-icon" ms-class-1="progress-green:el.intPer<50" ms-class-2="progress-blue:el.intPer>50&&el.intPer<90" ms-class-2="progress-red:el.intPer>90"></span>
+                        <span class="progress-line"><ins  ms-css-width="el.percent" ms-class-1="progress-green:el.intPer<50" ms-class-2="progress-blue:el.intPer>50&&el.intPer<90" ms-class-2="progress-red:el.intPer>90"></ins></span>
+                        <span class="font-en">{{el.percent}}</span>
+                    </p>
+                    <p>当前连接数：<ins class="font-en">{{el.count}}</ins></p>
+                </dd>
+            </dl>
+        </div>
+        <div class="toggle-all-device" ms-if="linkDeviceList.length>3">
+            <a href="javascript:;" ms-click="showDevice" class="iconfont" ms-if="!showDeviceIs">&#xe60f;</a>
+            <a href="javascript:;" ms-click="showDevice" class="iconfont" ms-if="showDeviceIs">&#xe60e;</a>
+        </div>
+        <div class="right-block margin-t15">
+            <div class="right-t">
+                <span>设备使用情况统计</span>
+            </div>
+            <ul class="phone-list">
+                <li ms-repeat="flowList"><em>{{$index+1}}</em><ins class="font-en">{{el.flow}} KB/S</ins>{{el.phoneNumber}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 添加网址 start -->
+<div class="page-network-add-web-dialog ui-hidden"
+     ms-widget="dialog,$,$addWebDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addWebFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear" ms-visible="dialogType=='web'">
+                <label class="ff-label">请输入要限制页面的URL：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="请在此输入链接地址" class="input-text web-url" name="url" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear" ms-visible="dialogType=='app'">
+                <label class="ff-label">请选择要限制的APP：</label>
+                <div class="ff-value">
+                    <span class="app-list" ms-widget="select,$,$appListOpts"></span>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear" ms-visible="dialogType=='link'">
+                <label class="ff-label">请选择您希望的连接方式：</label>
+                <div class="ff-value">
+                    <span class="link-type" ms-widget="select,$,$linkTypeOpts"></span>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear" ms-visible="dialogType=='white'||dialogType=='black'">
+                <label class="ff-label">请输入要添加的手机号：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="在这里输入手机号" class="input-text phone-num" name="phoneNum" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear" ms-visible="dialogType=='app'||dialogType=='web'||dialogType=='white'||dialogType=='black'">
+                <label class="ff-label">请输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="password" placeholder="6位主管密码" class="input-text manager-psd" name="managerPsd" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加网址 end -->

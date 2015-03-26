@@ -1,0 +1,14 @@
+<div class="timer-panel">
+    倒计时：<span class="countdown">{{countdownText}}</span>
+</div>
+<div class="exam-panel">
+    <h3 class="panel-title">当前考题信息</h3>
+    <div class="exam-content">{{examContent | html}}</div>
+</div>
+<span class="practice-info-panel-visible-h state-shown iconfont" ms-click="clickVisibleHandler">&#xe625;</span>
+<div class="module-practicehelper-end-tip ui-hidden" ms-widget="dialog,$,$endTipOpts">
+    <div class="tip-content">
+        <span ms-if="isPassed">您通过了本次实操考试，要继续保持哦～</span>
+        <span ms-if="!isPassed">您没能通过考试，所有试题通过才能完成考试哦～</span>
+    </div>
+</div>

@@ -1,0 +1,335 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <button type="button" class="add-btn main-btn" ms-click="addDemand" ms-if="permission.add">添加需求</button>
+    </div>
+    <div class="page-filter">
+        <input type="text" class="demand input-text" placeholder="需求名称" ms-duplex="demandName" />&nbsp;<span class="year" ms-widget="select,$,$yearOpts"></span>&nbsp;<span class="month" ms-widget="select,$,$monthOpts"></span>&nbsp;<span class="plan-type" ms-widget="select,$,$priorityOpts"></span>&nbsp;<span class="plan-type" ms-widget="select,$,$reqSourceOpts"></span>&nbsp;<span class="project" ms-widget="select,$,$projectOpts"></span>&nbsp;<span class="status" ms-widget="select,$,$statusOpts"></span>&nbsp;&nbsp;&nbsp;<button type="button" class="query-btn main-btn" ms-click="search">查询</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="grid-wrapper">
+        <div class="summary">共<span class="num">{{gridTotalSize}}</span>个需求</div>
+        <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="check-cell fn-hide"><input type="checkbox" class="check-all" ms-checked="gridAllChecked" ms-click="gridCheckAll" /></th>
+                    <th class="demand-id-cell">ID</th>
+                    <th class="demand-name-cell">需求名称</th>
+                    <th class="project-cell">所属项目</th>
+                    <th class="plan-type-cell">优先级</th>
+                    <th class="demand-review-cell">通过评审</th>
+                    <!--<th class="product-review-cell">通过产品评审时间</th>-->
+                    <th class="plan-time-cell">计划月份</th>
+                    <!--<th class="dev-time-cell">研发开发时间</th>-->
+                    <th class="predict-time-cell">预计完成</th>
+                    <th class="online-time-cell">上线时间</th>
+                    <th class="dev-charge-cell">开发负责人</th>
+                    <th class="dev-charge-cell">需求添加人</th>
+                    <th class="status-cell">状态</th>
+                    <!--<th class="remark-cell">备注</th>-->
+                    <th class="operation-cell">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ms-repeat="gridData"
+                    ms-class-1="odd:!($index % 2)"
+                    ms-class-2="even:$index % 2"
+                    ms-hover="state-hover">
+                    <td class="check-cell fn-hide"><input type="checkbox" ms-value="el.id" ms-duplex="gridSelected"/></td>
+                    <td class="demand-id-cell">{{el.id}}</td>
+                    <td class="demand-name-cell">{{el.name}}</td>
+                    <td class="project-cell">{{el.projectNames}}</td>
+                    <td class="plan-type-cell">{{el.priority}}</td>
+                    <td class="demand-review-cell">{{el.requirementsReviewTime | html}}<span ms-if="el.requirementsReviewTime">&nbsp;</span>{{el.isRequirementsReviewText | html}}</td>
+                    <!-- <td class="product-review-cell">{{el.productReviewTime}}&nbsp;{{el.isProductReviewText | html}}</td>-->
+                    <td class="plan-time-cell">{{el.planTimeText}}</td>
+                    <!--<td class="dev-time-cell">{{el.developmentTime}}</td>-->
+                    <td class="predict-time-cell">{{el.planEndTime}}</td>
+                    <td class="plan-time-cell"
+                        ms-class-1="state-out-date: el.isOutDateOfPlanEndTime">{{el.onlineTime}}</td>
+                    <td class="dev-charge-cell">{{el.leader}}</td>
+                    <td class="dev-charge-cell">{{el.operator}}</td>
+                    <td class="status-cell">{{el.requirementStatusVal}}</td>
+                    <!--<td class="remark-cell">{{el.remark}}</td>-->
+                    <td class="operation-cell"><a href="javascript:;" class="edit-l" ms-if="permission.edit" ms-click="editGridItem">编辑</a>&nbsp;&nbsp;<a href="javascript:;" class="view-l" ms-click="viewGridItem">查看</a>&nbsp;&nbsp;<a href="javascript:;" class="remove-l" ms-click="removeGridItem" ms-if="permission.delete && el.requirementStatus == '1'">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="grid-bbar fn-clear">
+            <div class="grid-action fn-left">
+                <button type="button" class="check-all-btn main-btn" ms-click="scCheckAll">全选</button>&nbsp;<button type="button" class="batch-remove-btn main-btn" ms-click="batchRemoveGridItem">批量删除</button>
+            </div>
+            <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+        </div>
+    </div>
+</div>
+<!-- 添加和编辑需求 start -->
+<div class="demand-add-edit-dialog ui-hidden" ms-widget="dialog,$,$aeDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$aeFormOpts"
+        action="javascript:;">
+        <div class="f-body">
+            <div class="body-t fn-clear">
+                <div class="body-l fn-left">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>需求名称：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text demand-name"
+                                       name="demandName"
+                                       ms-visible="formState == 'edit' || formState == 'add'"
+                                       ms-value="demandName" />
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{demandName}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>需求来源：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box" ms-visible="formState == 'add' || formState == 'edit'">
+                                <span class="reqSource" ms-widget="select,$,$reqSourceOpts_"></span>
+                            </div>
+                            <div class="ff-value-box" ms-if="formState == 'view'">
+                                <span class="ff-value-text">{{reqSource}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>所属项目：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box ff-value-text" ms-visible="formState == 'add' || formState == 'edit'">
+                                <span class="label-for" ms-repeat="projectList"><input type="checkbox" class="belong-project" name="belongProject"
+                                    ms-value="el.value" ms-duplex="belongProject" />&nbsp;<label>{{el.text}}</label>&nbsp;&nbsp;</span>
+
+                            </div>
+                            <div class="ff-value-box" ms-visible="formState == 'view'">
+                                <span class="ff-value-text" ms-repeat="projectList"><label>{{el.text}}</label><span ms-if="!$last">，</span><span ms-if="$last">。</span></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>开发负责人：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text dev-charge-person"
+                                       name="devChargePerson"
+                                       ms-visible="formState == 'add' || formState == 'edit'"
+                                       ms-value="devChargePerson" />
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{devChargePerson}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>计划类型：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box" ms-visible="formState == 'add'">
+                                <span class="plan-type"
+                                      ms-widget="select,$,$planTypeOpts_"></span>
+                            </div>
+                            <div class="plan-type ff-value-box" ms-if="formState == 'edit' || formState == 'view'">
+                                <span class="ff-value-text">{{planTypeText}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>计划月份：</label>
+                        <div class="ff-value">
+                            <div class="plan-date ff-value-box" ms-visible="formState == 'add' || formState == 'edit'">
+                                <span class="year" ms-widget="select,$,$yearOpts_"></span>&nbsp;<span class="month" ms-widget="select,$,$monthOpts_"></span>
+                            </div>
+                            <div class="plan-date ff-value-box" ms-if="formState == 'view'">
+                                <span class="ff-value-text">{{planDateText}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>状态：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box" ms-visible="formState == 'add' || formState == 'edit'">
+                                <span class="status" ms-widget="select,$,$statusOpts_"></span>
+                            </div>
+                            <div class="ff-value-box" ms-if="formState == 'view'">
+                                <span class="ff-value-text">{{statusText}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-r fn-left">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">是否通过需求评审：</label>
+                        <div class="ff-value">
+                            <div class="demand-review-box ff-value-box ff-value-text" ms-visible="formState == 'add' || formState == 'edit'">
+                                <span class="label-for"><input type="radio" class="demand-review" name="demandReview"
+                                    value="1" ms-duplex-text="isRequirementsReview" />&nbsp;<label>通过</label>&nbsp;&nbsp;</span><span class="label-for"><input type="radio" class="demand-review" name="demandReview"
+                                    value="0" ms-duplex-text="isRequirementsReview" />&nbsp;<label>未通过</label>&nbsp;&nbsp;</span><span class="label-for"><input type="radio" class="demand-review" name="demandReview"
+                                    value="2" ms-duplex-text="isRequirementsReview" />&nbsp;<label>无需需求评审</label>&nbsp;&nbsp;</span>
+                            </div>
+                            <div class="ff-value-box" ms-if="formState == 'view'">
+                                <span class="ff-value-text">{{requirementsReviewText}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear" ms-if="isRequirementsReview == '0'">
+                        <label class="ff-label fn-left">未通过原因：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="demand-no-passed-reason" ms-value="requirementsReviewOpinion" ms-visible="formState == 'add' || formState == 'edit'" maxlength="200"></textarea>
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{requirementsReviewOpinion}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">需求评审时间：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text demand-review-time"
+                                       readonly="readonly"
+                                       name="demandReviewTime"
+                                       ms-visible="formState == 'add' || formState == 'edit'"
+                                       ms-value="demandReviewTime"
+                                       ms-disabled="isRequirementsReview == '2'"
+                                       ms-click="showCalendar" />
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{demandReviewTime}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">是否通过产品评审：</label>
+                        <div class="ff-value">
+                            <div class="product-review-box ff-value-box ff-value-text" ms-visible="formState == 'add' || formState == 'edit'">
+                                <span class="label-for"><input type="radio" class="product-review" name="productReview"
+                                    value="1" ms-duplex-text="isProductReview" />&nbsp;<label>通过</label>&nbsp;&nbsp;</span><span class="label-for"><input type="radio" class="product-review" name="productReview"
+                                    value="0" ms-duplex-text="isProductReview" />&nbsp;<label>未通过</label>&nbsp;&nbsp;</span><span class="label-for"><input type="radio" class="product-review" name="productReview"
+                                    value="2" ms-duplex-text="isProductReview" />&nbsp;<label>无需产品评审</label>&nbsp;&nbsp;</span>
+                            </div>
+                            <div class="ff-value-box" ms-if="formState == 'view'">
+                                <span class="ff-value-text">{{productReviewText}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear" ms-if="isProductReview == '0'">
+                        <label class="ff-label fn-left">未通过原因：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="product-no-passed-reason" ms-value="productReviewOpinion" ms-visible="formState == 'add' || formState == 'edit'" maxlength="200"></textarea>
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{productReviewOpinion}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">产品评审时间：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text product-review-time"
+                                       readonly="readonly"
+                                       name="productReviewTime"
+                                       ms-visible="formState == 'add' || formState == 'edit'"
+                                       ms-value="productReviewTime"
+                                       ms-disabled="isProductReview == '2'"
+                                       ms-click="showCalendar" />
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{productReviewTime}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">研发开始时间：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text dev-start-time"
+                                       readonly="readonly"
+                                       name="devStartTime"
+                                       ms-visible="formState == 'add' || formState == 'edit'"
+                                       ms-value="devStartTime"
+                                       ms-click="showCalendar" />
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{devStartTime}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">预计完成时间：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text dev-end-time"
+                                       readonly="readonly"
+                                       name="devEndTime"
+                                       ms-visible="formState == 'add' || formState == 'edit'"
+                                       ms-value="devEndTime"
+                                       ms-click="showCalendar"/>
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{devEndTime}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left">上线时间：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <input type="text" class="input-text online-time"
+                                       readonly="readonly"
+                                       name="onlineTime"
+                                       ms-visible="formState == 'add' || formState == 'edit'"
+                                       ms-value="onlineTime"
+                                       ms-click="showCalendar"/>
+                                <span class="ff-value-text" ms-if="formState == 'view'">{{onlineTime}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>添加人：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <!--input type="text" class="input-text dev-charge-person"
+                                       name="devChargePerson"
+                                       ms-visible="formState == 'add' || formState == 'edit'"
+                                       ms-value="devChargePerson" /-->
+                                <span class="ff-value-text">{{operator}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>优先级：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box" ms-visible="formState == 'add' || formState == 'edit'">
+                                <span class="priority" ms-widget="select,$,$priorityOpts_"></span>
+                            </div>
+                            <div class="ff-value-box" ms-if="formState == 'view'">
+                                <span class="ff-value-text">{{priority}}</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="body-b">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left">备注：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <textarea ms-value="remark" class="remark" ms-visible="formState == 'add' || formState == 'edit'"></textarea>
+                            <span class="ff-value-text" ms-if="formState == 'view'">{{remark}}</span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加和编辑需求 end -->
+

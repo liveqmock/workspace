@@ -1,0 +1,71 @@
+.page-backend-distribution .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-distribution .permission_type {
+    margin-bottom:30px;
+}
+.page-backend-distribution .permission_type a {
+    color:#fff;
+}
+.page-backend-distribution .max-tabs-nav p {
+    float:left;
+    display:inline;
+    cursor: pointer;
+    width:120px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+.page-backend-distribution .tips-number {
+    width:20px;
+    height:20px;
+    background:#FE561A;
+    border-radius: 10px;
+    color:#fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 12px;
+    right:5px;
+    top:2px;
+}
+.page-backend-distribution .max-tabs-nav {
+    height:40px;
+}
+.page-backend-distribution .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-backend-distribution .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+}
+.page-backend-distribution .cate-list-wrapper {
+    padding-left:15px;
+    margin-bottom:10px;
+}
+.page-backend-distribution .cate-list .cate-item {
+    height:36px;
+    line-height: 36px;
+    margin-right:10px;
+    float: left;
+    display: inline;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+    cursor: pointer;
+}
+.page-backend-distribution .cate-list .cur {
+    background: #b2eed8;
+}

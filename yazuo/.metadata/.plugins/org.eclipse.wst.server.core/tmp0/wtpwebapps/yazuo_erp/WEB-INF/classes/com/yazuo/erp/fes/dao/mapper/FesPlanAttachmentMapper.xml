@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesPlanAttachmentDao">
+	<resultMap id="FesPlanAttachment" type="com.yazuo.erp.fes.vo.FesPlanAttachmentVO">
+    	<id property="id" column="id"/>
+    	<result property="planId" column="plan_id"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="fesplanattachmentColumns">
+	    <![CDATA[
+		id,plan_id,attachment_id,remark,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveFesPlanAttachment" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： plan_id,attachment_id,insert_by,insert_time,--> 
+        INSERT INTO fes.fes_plan_attachment (
+        	 <if test="planId!=null ">plan_id,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES (
+       	    <if test="planId!=null ">#{planId},</if>
+       	    <if test="attachmentId!=null ">#{attachmentId},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertFesPlanAttachments" parameterType="map">
+	 <!--不允许为空的字段： plan_id,attachment_id,insert_by,insert_time,--> 
+        INSERT INTO fes.fes_plan_attachment (
+        	 <if test="planId!=null ">plan_id,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="planId!=null ">#{t.planId},</if>
+          <if test="attachmentId!=null ">#{t.attachmentId},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesPlanAttachment">
+        UPDATE fes.fes_plan_attachment 
+ 		  <set>
+	        <if test="planId!=null ">plan_id = #{planId} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesPlanAttachmentsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_plan_attachment 
+ 		  <set>
+	        <if test="planId!=null ">plan_id = #{t.planId} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{t.attachmentId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesPlanAttachmentsToSameVals" parameterType="map">
+        UPDATE fes.fes_plan_attachment 
+ 		  <set>
+	        <if test="planId!=null ">plan_id = #{planId} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesPlanAttachmentById">
+    <![CDATA[
+        DELETE FROM fes.fes_plan_attachment WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesPlanAttachmentByIds" parameterType="list">
+        DELETE FROM fes.fes_plan_attachment WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesPlanAttachmentById" resultMap="FesPlanAttachment">
+		SELECT <include refid="fesplanattachmentColumns" />
+		    FROM fes.fes_plan_attachment 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getFesPlanAttachments" resultMap="FesPlanAttachment">
+		SELECT <include refid="fesplanattachmentColumns" />
+		    FROM fes.fes_plan_attachment  
+	    <include refid="fesplanattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getFesPlanAttachmentsMap" resultType="map">
+		SELECT <include refid="fesplanattachmentColumns" />
+	    <![CDATA[
+		    FROM fes.fes_plan_attachment  
+	    ]]>
+	    <include refid="fesplanattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="fesplanattachment_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="planId!=null ">AND plan_id = #{planId}</if>
+	       <if test="attachmentId!=null ">AND attachment_id = #{attachmentId}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getFesPlanAttachmentCount" resultType="long">
+        SELECT count(*) FROM fes.fes_plan_attachment 
+		<include refid="fesplanattachment_findPage_where"/>    
+    </select>
+    
+</mapper>

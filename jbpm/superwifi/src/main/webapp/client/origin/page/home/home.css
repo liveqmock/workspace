@@ -1,0 +1,277 @@
+.page-home .page-bd {
+    padding: 20px;
+}
+.page-home .panel-title {
+    margin-bottom: 20px;
+    color: #333333;
+    font-size: 16px;
+    line-height: 1em;
+}
+.page-home .panel-box {
+    border: 1px solid #e0e1e1;
+    padding: 14px;
+    background: #ffffff;
+}
+.page-home .device-panel {
+    position: relative;
+    margin-bottom: 20px;
+}
+.page-home .device-panel .panel-title {
+    margin-bottom: 54px;
+}
+.page-home .device-panel .panel-action {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 426px;
+    border: 1px solid #E0E1E1;
+    border-top: none;
+    border-right: none;
+    z-index: 10;
+}
+.page-home .device-panel .whitelist-action,
+.page-home .device-panel .blacklist-action {
+    width: 50%;
+}
+.page-home .device-panel .panel-action .list-action-inner {
+    position: relative;
+}
+.page-home .device-panel .panel-action .action-title {
+    position: relative;
+    color: #3280a4;
+    font-size: 14px;
+    height: 38px;
+    line-height: 38px;
+    padding-left: 16px;
+    cursor: pointer;
+}
+.page-home .device-panel .panel-action .action-title .num {
+    color: #434a4c;
+}
+.page-home .device-panel .whitelist-action .list-action-inner {
+    border-right: 1px solid #E0E1E1;
+}
+.page-home .device-panel .panel-action .action-list {
+    position: absolute;
+    top: 39px;
+    left: -1px;
+    width: 100%;
+    border: 1px solid #E0E1E1;
+    border-top: none;
+    background: #ffffff;
+}
+.page-home .device-panel .panel-action .action-item-hover {
+    background: #f5f5f5;
+}
+.page-home .device-panel .panel-action .action-item-inner {
+    display: block;
+    height: 38px;
+    line-height: 38px;
+    margin: 0 14px;
+    color: #333333;
+    font-size: 14px;
+    border-bottom: 1px solid #e0e1e1;
+    margin-bottom: -1px;
+    cursor: pointer;
+}
+.page-home .device-panel .panel-action .action-item-inner a{
+    color: #333333;
+}
+.page-home .device-panel .panel-action .action-item-inner a:hover{
+    color: #333333;
+    text-decoration: none;
+}
+.page-home .device-panel .panel-action .action-title .icon-arrow {
+    font-size: 10px;
+    position: absolute;
+    top: 0px;
+    right: 12px;
+    cursor: pointer;
+}
+.page-home .device-panel .total-analysis,
+.page-home .device-panel .detail-view {
+    width: 50%;
+}
+.page-home .device-panel .total-analysis-inner {
+
+}
+.page-home .device-panel .chart-wrapper {
+    width: 180px;
+    height: 180px;
+    /*padding: 0 10px;*/
+}
+.page-home .device-panel .desc {
+    margin-left: 20px;
+    position: relative;
+}
+.page-home .device-panel .detail-view-inner {
+    position: relative;
+    width: 360px;
+    margin: 0 38px;
+}
+.page-home .device-panel .detail-view-inner .nav-left,
+.page-home .device-panel .detail-view-inner .nav-right {
+    position: absolute;
+    font-size: 16px;
+    line-height: 1em;
+    color: #ededed;
+}
+.page-home .device-panel .detail-view-inner .state-enabled:hover {
+    color: #27a742;
+}
+.page-home .device-panel .detail-view-inner .state-enabled {
+    color: #434a4c;
+    cursor: pointer;
+}
+.page-home .device-panel .detail-view-inner .nav-left {
+    top: 50%;
+    margin-top: -8px;
+    left: -24px;
+}
+.page-home .device-panel .detail-view-inner .nav-right {
+    top: 50%;
+    margin-top: -12px;
+    right: -24px;
+}
+.page-home .device-panel .detail-view-inner .device-list-wrapper {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+.page-home .device-panel .detail-view-inner .device-list {
+    width: 10000px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.page-home .device-panel .detail-view-inner .device-item {
+    width: 120px;
+    text-align: center;
+}
+.page-home .device-panel .detail-view-inner .device-item .device-img {
+    width: 100%;
+    height: 52px;
+    margin-bottom: 18px;
+    background: url(../../asset/image/router.png) no-repeat center center;
+}
+.page-home .device-panel .detail-view-inner .device-item .device-name {
+    margin-bottom: 20px;
+    color: #444444;
+    font-size: 14px;
+    line-height: 1em;
+}
+.page-home .device-panel .detail-view-inner .device-item .device-name label {
+    color: #c7c7c7;
+    font-family: arial;
+}
+.page-home .device-panel .detail-view-inner .device-item .link-user {
+    color: #888888;
+    font-size: 14px;
+}
+.page-home .device-panel .detail-view-inner .device-item .link-num {
+    margin-top: 4px;
+    font-size: 36px;
+    line-height: 1em;
+    font-family: arial;
+}
+
+.page-home .device-panel .total-analysis .desc-title {
+    color: #666666;
+    font-size: 14px;
+}
+.page-home .device-panel .total-analysis .desc-summary {
+    color: #888888;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+.page-home .device-panel .total-analysis .device-num {
+    font-size: 22px;
+    font-family: arial;
+    color: #3280a4;
+}
+.page-home .device-panel .total-analysis .device-list-wrapper {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #ffffff;
+}
+.page-home .device-panel .total-analysis .device-list-wrapper .icon-arrow {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+.page-home .device-panel .total-analysis .device-list-wrapper .icon-arrow:hover {
+    color: #27a742;
+}
+.page-home .device-panel .total-analysis .device-item {
+    /*margin-bottom: 14px;*/
+}
+.page-home .device-panel .total-analysis .device-item span {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+.page-home .device-panel .total-analysis .device-item .item-index {
+    /*width: 20px;
+    height: 20px;
+    border: 1px solid #E0E1E1;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 20px;
+    color: #586a70;*/
+    font-family: arial;
+    font-size: 32px;
+    line-height: 1em;
+}
+.page-home .device-panel .total-analysis .device-item .progress-bar {
+    position: relative;
+    width: 110px;
+    height: 4px;
+    margin: 0 2px;
+    background: #e6e6e6;
+    /*border-radius: 3px;*/
+    overflow: hidden;
+}
+.page-home .device-panel .total-analysis .device-item .progress-front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #3280a4;
+}
+.page-home .device-panel .total-analysis .device-item .used-ratio {
+    color: #434a4c;
+    font-size: 12px;
+    font-family: arial;
+}
+
+.page-home .real-time-panel .panel-content {
+    position: relative;
+}
+.page-home .real-time-panel .chart-bbar {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.page-home .real-time-panel .chart-btn {
+    width: 50px;
+    height: 18px;
+    line-height: normal;
+    border: 1px solid #cfcfcf;
+    border-radius: 9px;
+    background: #ffffff;
+    text-align: center;
+    color: #888888;
+    font-size: 12px;
+    cursor: pointer;
+}
+.page-home .real-time-panel .state-active {
+    background: #3280a4;
+    border: 1px solid #3280a4;
+    color: #ffffff;
+}
+.page-home-add-bw-dialog .input-text{
+    width: 97%;
+}

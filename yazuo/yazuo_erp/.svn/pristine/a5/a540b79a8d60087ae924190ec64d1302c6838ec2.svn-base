@@ -1,0 +1,2 @@
+//From origin/asset/avalon-ext.js
+!function(a,b){a=this.avalon,a&&(a.adjustWidgetCssUrl=function(b,e){var c=/url\s*\(\s*(['"]?)([^"'\)]*)\1\s*\)/gi,a,d;try{a=WIDGET_BASE_PATH,d=PUBLISH_MODEL;}catch(a){}return a&&d==='development'?b.replace(c,function(c){var b;return c=c.replace(/\s/g,''),b=c.slice(4,-1).replace(/"|'/g,''),/^\/|https:|http:|data:/i.test(b)===!1&&(b=a+e+b),'url("'+b+'")';}):b;},a.getVm=function(b){return a.vmodels[b];},a.removeVm=function(b){a.vmodels[b]=null,delete a.vmodels[b];});}();

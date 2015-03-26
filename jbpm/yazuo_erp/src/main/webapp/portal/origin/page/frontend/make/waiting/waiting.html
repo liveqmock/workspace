@@ -1,0 +1,499 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form page-padding">
+<!--client-header-->
+<div class="client-head">
+    <!--client-left-->
+    <div class="client-head-left">
+        <div class="client-head-left-logo"><img ms-src="{{merchantData.imgUrl}}"></div>
+        <div class="client-head-left-text pt20">
+            <h2>{{merchantData.merchant_name}}</h2>
+        </div>
+    </div>
+    <!--client-left-end-->
+    <!--client-right-->
+    <div class="client_head_right">
+        <div class="fn-left pt25">
+            <button ms-click="addQuestions" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe60f; </i>添加问题
+            </button>
+        </div>
+    </div>
+    <!--client-right-end-->
+</div>
+<!--client-header-end-->
+<!--client-data-->
+<div class="client-top fn-clear mb20">
+    <ul class="fn-left client-info-left fn-clear">
+        <li>销售负责人：{{merchantData.sale_user_name}}</li>
+        <li>业态：{{merchantData.format_name}}</li>
+        <li>前端负责人：{{merchantData.front_user_name}}</li>
+        <li>门店：{{merchantData.store_number}}家</li>
+        <li>人均：{{merchantData.person_avg}}元</li>
+        <li>桌均：{{merchantData.desk_avg}}元</li>
+    </ul>
+    <ul class="fn-right client-info-right">
+        <li>开通的产品</li>
+        <li>
+            <p ms-repeat="merchantData.productList">{{el}}</p>
+        </li>
+    </ul>
+</div>
+<!--client-data-end-->
+<!--list-->
+<div class="client-step">
+
+    <!--style-->
+    <div  ms-repeat="pageData">
+        <!--实体卡制作-->
+        <div ms-if="el.stepNum == 'entity_cards'">
+            <div class="status-box"
+                 ms-class-1="status-ready:el.onlineProcessStatus =='07'"
+                 ms-class-2="status-bging:el.onlineProcessStatus =='08'||el.onlineProcessStatus =='09'||el.onlineProcessStatus =='10'||el.onlineProcessStatus =='11'||el.onlineProcessStatus =='12'||el.onlineProcessStatus =='13'"
+                 ms-class-3="status-end:el.onlineProcessStatus =='04'"
+                 ms-class-4="status-past:el.planEndTimeStatus" class="status-end">
+                <button class="number">{{$index+1}}</button>
+                <div class="content f14 step6-upfile-list1">
+                    <h2 class="mb5">{{el.fesStep.stepName}}</h2>
+                    <div class="title" ms-if="!el.listAttachmentAndOperateLog.length">{{el.fesStep.tip}}</div>
+                    <div ms-repeat="el.listAttachmentAndOperateLog">
+                        <div class="update-time status-style">
+                            <p class="left-title">{{el.insertTime | date("yyyy-MM-dd HH:mm")}}</p>
+                            <p class="left-con"
+                               ms-if="el.processAttachmentType == '3'">上传卡样源文件 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，
+                                <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载卡样源文件</a>
+                                <i ms-click="removeAttach($outer.el.id,el.id)"
+                                   ms-if="$outer.el.onlineProcessStatus == '07'||$outer.el.onlineProcessStatus=='08'" class="iconfont">&#xe616;</i>
+                            </p>
+                            <p class="left-con"
+                               ms-if="el.processAttachmentType == '4'">上传卡样确认单 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，
+                                <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载卡样确认单</a>
+                                <i ms-click="removeAttach($outer.el.id,el.id)"
+                                   ms-if="$outer.el.onlineProcessStatus == '09'||$outer.el.onlineProcessStatus=='08'" class="iconfont">&#xe616;</i>
+                            </p>
+                            <p class="left-con"
+                               ms-if="el.processAttachmentType == '12'">上传开卡表单 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，
+                                <a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载开卡数据</a>
+                                <i ms-click="removeAttach($outer.el.id,el.id)"
+                                   ms-if="$outer.el.onlineProcessStatus == '11'" class="iconfont">&#xe616;</i>
+                            </p>
+                            <p class="left-con"
+                               ms-if="el.fesLogType == '14'">{{el.description}}，
+                                <a href="javascript:;" ms-click="openCardTmp($outer.el.id,1)">点击查看开卡申请单</a>
+                            </p>
+                            <p class="left-con"
+                               ms-if="el.processAttachmentType != '3' &&
+                                  el.processAttachmentType != '4' &&
+                                  el.processAttachmentType != '12' &&
+                                  el.fesLogType != '14'">{{el.description}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="operation">
+                    <p ms-visible="el.onlineProcessStatus == '07' || el.onlineProcessStatus == '08'">
+                    <span ms-widget="uploader,$,$step61UploaderOpts">
+                        <button class="simple-btn"
+                                ><i class="iconfont icon-blue f26">&#xe611;</i> 卡样源文件
+                        </button>
+                    </span>
+                    </p>
+                    <p ms-visible="el.onlineProcessStatus == '09' || el.onlineProcessStatus == '08'">
+                    <span ms-widget="uploader,$,$step62UploaderOpts">
+                        <button class="simple-btn"
+                                ><i class="iconfont icon-blue f26">&#xe611;</i> 卡样确认单
+                        </button>
+                    </span>
+                    </p>
+                    <p ms-if="el.onlineProcessStatus == '09'">
+                    <span>
+                        <button class="simple-btn"
+                                ms-click="openCardTmp(el.id,0)"><i class="iconfont icon-blue f26">&#xe60f;</i> 申请开卡
+                        </button>
+                    </span>
+                    </p>
+                    <p ms-if="el.onlineProcessStatus == '12'">
+                    <span>
+                        <button class="simple-btn"
+                                ms-click="makeCard(el.id,'13','entity_cards')"><i
+                                class="iconfont icon-blue f26">&#xe60f;</i> 下单制卡
+                        </button>
+                    </span>
+                    </p>
+                    <p ms-if="el.onlineProcessStatus == '13'">
+                    <span>
+                        <button class="simple-btn"
+                                ms-click="stowageCard(el.id)"><i class="iconfont icon-blue f26">&#xe610;</i> 确认已配送
+                        </button>
+                    </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--实体卡制作-end-->
+        <!--物料设计-->
+        <div ms-if="el.stepNum == 'materials_design'">
+            <div class="status-box"
+                 ms-class-1="status-ready:el.onlineProcessStatus =='18'"
+                 ms-class-2="status-bging:el.onlineProcessStatus =='19'||el.onlineProcessStatus =='14'||el.onlineProcessStatus =='02'"
+                 ms-class-3="status-end:el.onlineProcessStatus =='04'"
+                 ms-class-4="status-past:el.planEndTimeStatus">
+                <button class="number">{{$index+1}}</button>
+                <div class="content f14 step7-upfile-list1">
+                    <h2 class="mb5">{{el.fesStep.stepName}}</h2>
+                    <div class="title" ms-if="!el.listAttachmentAndOperateLog.length">{{el.fesStep.tip}}</div>
+                    <div class="fn-clear">
+                        <div class="page-button status-style" ms-if="el.fesMaterialRequests.length">
+                            <p class="text"
+                               ms-click="step7Input(el.fesMaterialRequests[0].id)">设计需求单</p>
+
+                        </div>
+                    </div>
+                    <div ms-each="el.fesSysAttachments">
+                        <div ms-if="el.processAttachmentType == '6'" class="status-style fn-clear update-time">
+                            <p class="fn-left-time">{{el.updateTime | date("yyyy-MM-dd HH:mm")}}</p>
+                            <p class="fn-left-text">上传物料源文件 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，<a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载物料源文件</a></p>
+                            <i ms-click="removeAttach($outer.el.id,el.id)"
+                               ms-if="$outer.el.onlineProcessStatus != '04'" class="iconfont">&#xe616;</i>
+                        </div>
+                        <div ms-if="el.processAttachmentType == '15'" class="status-style fn-clear update-time">
+                            <p class="fn-left-time">{{el.updateTime | date("yyyy-MM-dd HH:mm")}}</p>
+                            <p class="fn-left-text">上传了设计素材 <span ms-if="el.userName">[操作人: {{el.userName}}]</span>，<a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{$outer.el.fileConfigPath}}{{el.attachmentPath == null?'':el.attachmentPath}}/{{el.attachmentName}}">点击下载物料设计素材</a></p>
+                        </div>
+                    </div>
+                    <div class="update-time status-style" ms-repeat="el.sysOperationLogVOs">
+                        <p class="fn-left-time">{{el.operatingTime |date("yyyy-MM-dd HH:mm")}}</p>
+                        <p class="fn-left-text">{{el.description}}</p>
+                    </div>
+                    <ul class="make-ul" ms-each="el.fesSysAttachments">
+                        <li ms-if="el.processAttachmentType != '6'&&el.processAttachmentType != '15'">
+                            <p class="make-ul-img">
+                                <a ms-href="{{path}}{{$outer.el.fileConfigPath}}/{{el.attachmentName}}" target="_blank">
+                                    <img ms-src="{{path}}{{$outer.el.fileConfigPath}}/{{el.attachmentName}}">
+                                </a>
+                                <i class="iconfont"
+                                   ms-if="$outer.el.onlineProcessStatus != '04'"
+                                   ms-click="removeAttach($outer.el.id,el.id)">&#xe616;</i>
+                            </p>
+                            <p class="make-ul-text" ms-if="el.processAttachmentType == '7'">X展架</p>
+                            <p class="make-ul-text" ms-if="el.processAttachmentType == '8'">台卡卡心</p>
+                            <p class="make-ul-text" ms-if="el.processAttachmentType == '9'">易拉宝</p>
+                            <p class="make-ul-text" ms-if="el.processAttachmentType == '10'">三折台卡</p>
+                            <p class="make-ul-text" ms-if="el.processAttachmentType == '11'">海报</p>
+                            <p class="make-ul-text" ms-if="el.processAttachmentType == '13'">桌贴</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="operation">
+                    <p ms-if="el.onlineProcessStatus != '04'">
+                    <span ms-widget="uploader,$,$step71UploaderOpts">
+                        <button class="simple-btn make-step7-id"
+                                ms-data-step7-id="el.id"
+                                ><i class="iconfont icon-blue f26">&#xe610;</i> 源文件
+                        </button>
+                    </span>
+                    </p>
+                    <p ms-if="el.onlineProcessStatus != '04'">
+                    <span>
+                        <button class="simple-btn" ms-click="uploaderImgType(el.fesMaterialRequests[0].id)"><i class="iconfont icon-blue f26">
+                            &#xe610;</i> 缩略图
+                        </button>
+                    </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--物料设计-end-->
+    </div>
+    <!--style-end-->
+</div>
+<!--list-end-->
+</div>
+
+<!--申请开卡-end-->
+<!--上传缩略图-->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$addsltDialogOpts">
+    <div class="f-body step-slt">
+        <div class="f-field fn-clear">
+            <label class="ff-label fn-left"><span class="icon-star">*</span>选择类别：</label>
+
+            <div class="ff-value">
+                <div class="ff-value-box">
+                    <span class="schedule" ms-widget="select,$,$selectSltOpts"></span>
+                </div>
+                <div class="ff-value-tip"></div>
+            </div>
+        </div>
+        <div class="f-field fn-clear">
+            <label class="ff-label fn-left"><span class="icon-star">*</span>上传图片：</label>
+            <div class="ff-value">
+                <div class="ff-value-box">
+                    <span ms-widget="uploader,$,$step72UploaderOpts" style="position: relative">
+                        <button ms-if="!uploading" class="simple-btn"><i class="iconfont icon-blue f26">&#xe610;</i>
+                            选择图片
+                        </button>
+                        <button ms-if="uploading" class="simple-btn-disabled">正在上传&#8230;</button>
+                    </span>
+                </div>
+            </div>
+            <div class="common-img-show" ms-if="sltImg">
+                <img ms-src="sltImg">
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--上传缩略图-end-->
+<!--实体卡配送-->
+<div class="add-edit-course-dialog ui-hidden send-cord"
+     ms-widget="dialog,$,$stowageDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$stowageFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>快递公司：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span style="width:317px;" class="schedule" ms-widget="select,$,$selectProcessOpts"></span>
+                        <!--input type="text" class="input-text w310 logisticsCompany" name="logisticsCompany"
+                               ms-value="logisticsCompany"/-->
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>快递单号：</label>
+
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text w310 logisticsNum" name="logisticsNum"
+                               ms-value="logisticsNum"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>短信通知：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span style="width:317px;" class="schedule" ms-widget="select,$,$selectMessOpts"></span>
+                        <p style="padding-top: 5px;"><label><input type="checkbox" ms-click="changeSendSms" ms-checked="isSendSMSToUser==1">&nbsp;同时发生短信给前端</label></p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--实体卡配送-end-->
+<!--设计需求单-->
+<div class="frontend-backend-step7" ms-widget="dialog,$,$step7DialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$step7FormOpts" action="javascript:;">
+        <table class="frontend-table-max f-field">
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>对接人：</td>
+                <td>
+                    <div ms-visible="!readonly" class="common-mail-box">
+                        <span style = "width:185px" class="schedule" ms-widget="select,$,$step7NameSelectOpts"></span>
+                    </div>
+                    <div ms-visible="readonly">{{accessName}}</div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>物料文案：</td>
+                <td>
+                    <div class="common-mail-box">
+                        <textarea class="step7-textarea" ms-duplex = "setp7ReqData.description"
+                                  data-rules="empty"
+                                  data-tips="物料文案不能为空！"
+                                  isrule=true ms-attr-readonly="readonly"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>模版编码：</td>
+                <td>
+                    <div>
+                        <input type="text" class="input-text input-text-code"
+                               ms-duplex = "setp7ReqData.fesMaterialRequestDtlVOs[0].description"
+                               data-rules="empty"
+                               data-tips="模版编码不能为空！"
+                               isrule=true
+                               ms-attr-readonly="readonly">
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>台卡卡心：</td>
+                <td>
+                    <div ms-visible="!readonly" class="step7-div">
+                        <p class="lable-p"><label><input type="radio" value="1" name="t1" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[1].specificationType">&nbsp;无</label></p>
+                        <p class="lable-p"><label><input type="radio" value="2" name="t1" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[1].specificationType">&nbsp;10*20cm</label></p>
+                        <p class="lable-p"><label><input type="radio" value="3" name="t1" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[1].specificationType">&nbsp;其他</label>&nbsp;
+                            <input type="text" class="input-text input-text-max" ms-if="setp7ReqData.fesMaterialRequestDtlVOs[1].specificationType == 3" ms-duplex = "setp7ReqData.fesMaterialRequestDtlVOs[1].description"
+                                   data-rules="empty"
+                                   data-tips="其他不能为空！"
+                                   isrule=true>
+                        </p>
+                    </div>
+                    <div ms-visible="readonly">
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[1].specificationType == 1">无</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[1].specificationType == 2">10*20cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[1].specificationType == 3">其他 ({{setp7ReqData.fesMaterialRequestDtlVOs[1].description}})</span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>桌贴：</td>
+                <td>
+                    <div ms-visible="!readonly" class="step7-div">
+                        <p class="lable-p"><label><input type="radio" value="1" name="t2" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[2].specificationType">&nbsp;无</label></p>
+                        <p class="lable-p"><label><input type="radio" value="2" name="t2" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[2].specificationType">&nbsp;10*15cm</label></p>
+                        <p class="lable-p"><label><input type="radio" value="3" name="t2" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[2].specificationType">&nbsp;其他</label>&nbsp;
+                            <input type="text" class="input-text input-text-max" ms-if="setp7ReqData.fesMaterialRequestDtlVOs[2].specificationType == 3" ms-duplex = "setp7ReqData.fesMaterialRequestDtlVOs[2].description"
+                                   data-rules="empty"
+                                   data-tips="其他不能为空！"
+                                   isrule=true>
+                    </div>
+                    <div ms-visible="readonly">
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[2].specificationType == 1">无</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[2].specificationType == 2">10*15cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[2].specificationType == 3">其他 ({{setp7ReqData.fesMaterialRequestDtlVOs[2].description}})</span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>三折台卡：</td>
+                <td>
+                    <div ms-visible="!readonly" class="step7-div">
+                        <p class="lable-p"><label><input type="radio" value="1" name="t3" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType">&nbsp;无</label></p>
+                        <p class="lable-p"><label><input type="radio" value="2" name="t3" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType">&nbsp;9*20*3cm</label></p>
+                        <p class="lable-p"><label><input type="radio" value="3" name="t3" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType">&nbsp;29.5*18cm</label></p>
+                        <p class="lable-p"><label><input type="radio" value="4" name="t3" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType">&nbsp;其他</label>&nbsp;
+                            <input type="text" class="input-text input-text-mini" ms-if="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType == 4" ms-duplex = "setp7ReqData.fesMaterialRequestDtlVOs[3].description"
+                                   data-rules="empty"
+                                   data-tips="其他不能为空！"
+                                   isrule=true>
+                    </div>
+                    <div ms-visible="readonly">
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType == 1">无</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType == 2">9*20*3cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType == 3">29.5*18cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[3].specificationType == 4">其他 ({{setp7ReqData.fesMaterialRequestDtlVOs[3].description}})</span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>X展台：</td>
+                <td>
+                    <div ms-visible="!readonly" class="step7-div">
+                        <p class="lable-p"><label><input type="radio" value="1" name="t4" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType">&nbsp;无</label></p>
+                        <p class="lable-p"><label><input type="radio" value="2" name="t4" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType">&nbsp;60*160cm</label></p>
+                        <p class="lable-p"><label><input type="radio" value="3" name="t4" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType">&nbsp;80*180cm&nbsp;</label></p>
+                        <p class="lable-p"><label><input type="radio" value="4" name="t4" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType">&nbsp;其他</label>&nbsp;
+                            <input type="text" class="input-text input-text-mini" ms-if="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType == 4" ms-duplex = "setp7ReqData.fesMaterialRequestDtlVOs[4].description"
+                                   data-rules="empty"
+                                   data-tips="其他不能为空！"
+                                   isrule=true>
+                    </div>
+                    <div ms-visible="readonly">
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType == 1">无</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType == 2">60*160cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType == 3">80*180cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[4].specificationType == 4">其他 ({{setp7ReqData.fesMaterialRequestDtlVOs[4].description}})</span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>海报：</td>
+                <td>
+                    <div ms-visible="!readonly" class="step7-div">
+                        <p class="lable-p"><label><input type="radio" value="1" name="t5" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[5].specificationType">&nbsp;无</label></p>
+                        <p class="lable-p"><label><input type="radio" value="2" name="t5" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[5].specificationType">&nbsp;60*80cm</label></p>
+                        <p class="lable-p"><label><input type="radio" value="3" name="t5" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[5].specificationType">&nbsp;其他</label>&nbsp;
+                            <input type="text" class="input-text input-text-max" ms-if="setp7ReqData.fesMaterialRequestDtlVOs[5].specificationType == 3" ms-duplex = "setp7ReqData.fesMaterialRequestDtlVOs[5].description"
+                                   data-rules="empty"
+                                   data-tips="其他不能为空！"
+                                   isrule=true>
+                    </div>
+                    <div ms-visible="readonly">
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[5].specificationType == 1">无</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[5].specificationType == 2">60*80cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[5].specificationType == 3">其他 ({{setp7ReqData.fesMaterialRequestDtlVOs[5].description}})</span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" class="tab-left" align="right"><span class="warn">*</span>易拉宝：</td>
+                <td>
+                    <div ms-visible="!readonly" class="step7-div">
+                        <p class="lable-p"><label><input type="radio" value="1" name="t6" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[6].specificationType">&nbsp;无</label></p>
+                        <p class="lable-p"><label><input type="radio" value="2" name="t6" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[6].specificationType">&nbsp;60*80cm</label></p>
+                        <p class="lable-p"><label><input type="radio" value="3" name="t6" ms-duplex-text="setp7ReqData.fesMaterialRequestDtlVOs[6].specificationType">&nbsp;其他</label>&nbsp;
+                            <input type="text" class="input-text input-text-max" ms-if="setp7ReqData.fesMaterialRequestDtlVOs[6].specificationType == 3" ms-duplex = "setp7ReqData.fesMaterialRequestDtlVOs[6].description"
+                                   data-rules="empty"
+                                   data-tips="其他不能为空！"
+                                   isrule=true>
+                    </div>
+                    <div ms-visible="readonly">
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[6].specificationType == 1">无</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[6].specificationType == 2">60*80cm</span>
+                        <span ms-if="setp7ReqData.fesMaterialRequestDtlVOs[6].specificationType == 3">其他 ({{setp7ReqData.fesMaterialRequestDtlVOs[6].description}})</span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </td>
+            </tr>
+            <tr>
+                <td width="90" align="right"><span class="warn"></span>上传附件：</td>
+                <td class="step7-input-upfile">
+                    <p ms-if="setp7ReqData.sysAttachmentVO.attachmentName.length" class="actives-upfile"><a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{setp7ReqData.sysAttachmentVO.fileFullPath}}">{{setp7ReqData.sysAttachmentVO.attachmentName}}</a></p>
+                    <p ms-visible="!readonly" style="margin-bottom: 10px;" ms-visible="step7UpFile">
+                        <span  ms-widget="uploader,$,$step7AttachInput">
+                            <button ms-if="step7Uploading" class="simple-btn">选择附件</button>
+                        </span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!--设计需求单－end-->
+<!--下单制卡-->
+<div class="frontend-backend-make-card" ms-widget="dialog,$,$makeCardDialogOpts">
+    <table>
+        <tr>
+            <td colspan="2">你确定要下单制卡吗？</td>
+        </tr>
+        <tr>
+            <td><span class="warn">*</span>预计出卡时间</td>
+            <td><input type="text" class="input-text" readonly="readonly" name="makeData.planReciveCardTime" ms-value="makeData.planReciveCardTime" ms-click="openMakeCalendar"/></td>
+        </tr>
+    </table>
+</div>
+<!--下单制卡-end-->
+<!--申请开卡-->
+<div ms-module="opencard,$,$opencardOpts"></div>
+<!--申请开卡-end-->
+<!--添加问题-->
+<div ms-module="addquestion,$,$addquestionOpts"></div>
+<!--添加问题-end-->
+<!--通讯录-->
+<div ms-module="address,$,$addressOpts"></div>
+<!--通讯录-end-->
+
+

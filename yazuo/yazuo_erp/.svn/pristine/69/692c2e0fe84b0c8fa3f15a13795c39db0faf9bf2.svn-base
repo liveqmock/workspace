@@ -1,0 +1,111 @@
+.page-databank-list .page-bd {
+    padding: 20px 15px;
+}
+.page-databank-list .permission_type {
+    margin-bottom:30px;
+}
+.page-databank-list .permission_type a {
+    color:#fff;
+}
+.page-databank-list .max-tab-con {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+}
+.page-databank-list .search {
+    padding: 15px 0;
+    width: 100%;
+    overflow: hidden;
+}
+.page-databank-list .search .sum {
+    float: left;
+    display: inline;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 20px;
+    color: #777;
+    font-size: 14px;
+}
+.page-databank-list .search .sum b {
+    color: #00afe0;
+}
+.page-databank-list .page-filter {
+    float: right;
+    padding-right: 20px;
+    text-align: right;
+    width:800px;
+    position: relative;
+}
+.page-databank-list .page-filter .box {
+    display: inline-block;
+    _display:inline;
+    zoom: 1;
+    margin-left: 15px;
+    position: relative;
+}
+.page-databank-list .page-filter .select-box .schedule {
+    margin-top: -6px;
+    width: 100px;
+}
+.page-databank-list .input-text {
+    width: 180px;
+}
+.page-databank-list table .name-left {
+    text-align: left;
+    padding: 8px;
+}
+.page-databank-list table .name-center {
+    text-align: center;
+    padding: 8px;
+}
+.page-databank-list table .title-data {
+    width: 680px;
+    overflow: hidden;
+}
+.page-databank-list table .data-img {
+    float: left;
+    display: inline;
+    width:55px;
+}
+.page-databank-list table .data-text {
+    float: left;
+    display: inline;
+    width:600px;
+}
+.page-databank-list table .data-text .doctype {
+    display: inline-block;
+    _display: inline;
+    zoom: 1;
+    margin:0 6px 0 6px;
+    background: #777;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+.page-databank-list table .data-text li {
+    padding: 3px 0;
+}
+.page-databank-list table .data-text .doctype:hover {
+    background: #ff6e00;
+}
+.page-databank-list table .data-img .iconfont{
+    font-size: 40px;
+    color: #66ccb5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+基于老版本的taskScheduler改造
+1、构建改为maven
+2、定时任务调度用spring的quartz封装重新实现，任务类支持spring属性注入（参考com.yazuo.task.TestTask.java）
+3、支持task.xml实时更新，线上环境更改task.xml后，不需要更新，任务调度会重新加载。
+
+使用方法：
+1、添加任务类，任务类需要继承com.yazuo.task.BaseTask（参考com.yazuo.task.TestTask.java）
+2、在task.xml中添加任务配置，配置格式如下：
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+	<!-- 测试任务1 -->
+	<config>
+        <class>com.yazuo.task.TestTask</class>
+        <cronExpress>0/9 * * * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭-->
+	</config>
+
+    <!--测试任务2，包含多表达式、自定义参数等配置-->
+	<config>
+        <class>com.yazuo.task.TestTask</class>
+        <!--多表达式支持-->
+        <cronExpresses>
+            <cronExpress>0/10 * * * * ?</cronExpress>
+            <cronExpress>3,13,23,33,43,53 * * * * ?</cronExpress>
+        </cronExpresses>
+        <!--自定义参数-->
+		<params>
+			<param1>a</param1>
+			<param2>b</param2>
+			<param3 type="list">
+				<value>a</value>
+				<value>b</value>
+			</param3>
+		</params>
+		<open>t</open>
+	</config>
+</configs>
+

@@ -1,0 +1,517 @@
+
+.page-frontend-make-waiting {
+    color:#777;
+}
+.page-frontend-make-waiting .page-padding{
+    padding:20px 15px;
+}
+.page-frontend-make-waiting .client-head{
+    width:100%;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+.page-frontend-make-waiting .client-head-left{
+    float:left;
+    display:inline;
+}
+.page-frontend-make-waiting .client-head-left-logo {
+    float:left;display:inline;
+    width:100px;
+    height:100px;
+}
+.page-frontend-make-waiting .client-head-left-logo img {
+    width: 100px;
+    height: 100px;
+    border:1px solid #ccc;
+}
+.page-frontend-make-waiting .client-head-left-text{
+    float:left;display:inline;
+    margin-left:30px;
+    width:350px;
+}
+.page-frontend-make-waiting .client_head_right{
+    float:right;
+    display:inline;
+}
+.page-frontend-make-waiting .client-head-left-text h2 {
+    font-size:24px;
+    line-height:30px;
+}
+.page-frontend-make-waiting .client-head-left-text ul {
+    width:100%;
+    overflow:hidden;
+}
+.page-frontend-make-waiting .client-head-left-text ul li {
+    float:left;
+    display: inline;
+    width:170px;
+    line-height:23px;
+    margin:10px 0;
+}
+.page-frontend-make-waiting .mail {
+    background: #FDF4DA;
+    padding:10px;
+}
+.page-frontend-make-waiting .client-top {
+    overflow: hidden;
+    border:1px solid #DDE3EA;
+}
+.page-frontend-make-waiting .client-info-left {
+    padding:15px;
+    width:650px;
+}
+.page-frontend-make-waiting .client-info-right {
+    padding:15px;
+    width:300px;
+    padding-bottom:200px;
+    margin-bottom:-200px;
+    border-left:1px solid #DDE3EA;
+}
+.page-frontend-make-waiting .client-info-left li {
+    float:left;
+    display:inline;
+    font-size:16px;
+    width:300px;
+    margin:8px 5px;
+}
+.page-frontend-make-waiting .client-info-right li {
+    font-size:16px;
+    margin-top:5px;
+    width:100%;
+    overflow:hidden;
+}
+.page-frontend-make-waiting .client-info-right li p {
+    float:left;
+    display:inline;
+    width:130px;
+    margin:2px 0;
+}
+.page-frontend-make-waiting .client-info-right li p a {
+    font-size:14px;
+}
+.page-frontend-make-waiting .swfupload {
+    left:0;
+}
+
+
+.page-frontend-make-waiting .client-step {
+    margin-top :15px;
+}
+.page-frontend-make-waiting .status-box {
+    position: relative;
+    width:100%;
+    margin-bottom:15px;
+    background:#fff;
+    border:1px solid #ccc;
+}
+.page-frontend-make-waiting .status-box .number {
+    width:55px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:28px;
+    height:100%;
+    border:none;
+    background:#D5D2CD;
+    color:#fff;
+
+}
+.page-frontend-make-waiting .status-box .content {
+    position:relative;
+    margin-left:70px;
+    margin-right:390px;
+    padding:10px 0;
+}
+
+.page-frontend-make-waiting .status-box .operation {
+    width:390px;
+    position: absolute;
+    right:0px;
+    top:50%;
+    height:100%;
+    margin-top:-17px;
+    text-align:right;
+}
+.page-frontend-make-waiting .status-box .operation p {
+    display:inline-block;
+}
+.page-frontend-make-waiting .status-box .content h2 {
+    font-size:20px;
+}
+.page-frontend-make-waiting .type-box {
+
+    padding: 5px;
+}
+.page-frontend-make-waiting .type-box li {
+    padding:5px 0;
+    width: 100%;
+    overflow: hidden;
+    background: #F4F3F2;
+    margin:3px 0;
+    position: relative;
+}
+.page-frontend-make-waiting .type-box li b{
+    position: absolute;
+    right:3px;
+    top:3px;
+    cursor: pointer;
+}
+.page-frontend-make-waiting .type-box li .left-title {
+    float: left;
+    display: inline;
+    width:120px;
+    text-align: right;
+    line-height: 20px;
+}
+.page-frontend-make-waiting .type-box li .left-con {
+    float: left;
+    display: inline;
+    width:490px;
+    padding-left:10px;
+    text-align: left;
+    line-height: 20px;
+}
+.merchantName {
+    font-size: 14px;
+}
+.customer-title {
+    width: 318px;
+    float: left;
+    position: relative;
+}
+.page-frontend-make-waiting .make-ul {
+    width: 100%;
+    overflow: hidden;
+}
+.page-frontend-make-waiting .make-ul li {
+    float: left;
+    display: inline;
+    width: 106px;
+    height: 106px;
+    margin-right:10px;
+    background: none;
+}
+
+.page-frontend-make-waiting .make-ul li .make-ul-img {
+    width:106px;
+    height:80px;
+    overflow: hidden;
+    position: relative;
+}
+.page-frontend-make-waiting .make-ul li .make-ul-img img {
+    width:106px;
+    height:80px;
+}
+.page-frontend-make-waiting .make-ul li .make-ul-img i.iconfont{
+    position: absolute;
+    right:1px;
+    top:1px;
+    width:18px;
+    height:18px;
+    text-align:center;
+    background: #fff;
+    cursor: pointer;
+}
+.page-frontend-make-waiting .make-ul li .make-ul-text {
+    width:106px;
+    height:25px;
+    overflow: hidden;
+    line-height: 35px;
+    text-align: center;
+}
+.widget-con {
+    padding-right:20px;
+}
+.waiting-list {
+    border :1px solid #ccc;
+    background: #eee;
+    position: relative;
+    margin-bottom: 15px;
+    padding:10px;
+    position: relative;
+}
+.waiting-list .valid-error {
+    padding-left:92px;
+}
+.con-pdtop {
+    padding-top:0px;
+}
+.con-pdtop label {
+    margin-right: 15px;
+    color: #333;
+}
+.waiting-card .ui-dialog-content {
+    padding: 20px 0 20px 20px;
+}
+.waiting-list .remove-list {
+    position: absolute;
+    top: 3px;
+    right:3px;
+    cursor: pointer;
+}
+.common-img-show {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    margin-top:20px;
+    margin-left: 78px;
+}
+.common-img-show img {
+    width: 100px;
+    height: 100px;
+}
+
+
+
+/*未开始*/
+.page-frontend-make-waiting .status-ready {
+    border:1px solid #E1E1E1;
+}
+.page-frontend-make-waiting .status-ready .number {
+    background:#E1E1E1;
+}
+.page-frontend-make-waiting .status-ready .status-style {
+    background:#fff;
+    border:1px solid #E1E1E1;
+}
+/*已经开始*/
+.page-frontend-make-waiting .status-bging {
+    border:1px solid #0099CC;
+    background: #f4fdff;
+}
+.page-frontend-make-waiting .status-bging .number {
+    background: #0099CC;
+}
+.page-frontend-make-waiting .status-bging .content h2 {
+    color:#0099CC;
+}
+.page-frontend-make-waiting .status-bging .status-style {
+    background:#fff;
+    border:1px solid #0099CC;
+}
+/*已经结束*/
+.page-frontend-make-waiting .status-end {
+    border:1px solid #2CC78F;
+    background: #eafff1;
+}
+.page-frontend-make-waiting .status-end .number {
+    background: #2CC78F;
+}
+.page-frontend-make-waiting .status-end .content h2 {
+    color:#2CC78F;
+}
+.page-frontend-make-waiting .status-end .status-style {
+    background:#fff;
+    border:1px solid #2CC78F;
+}
+/*已超时*/
+.page-frontend-make-waiting .status-past {
+    border:1px solid #FF7800;
+    background: #ffeeea;
+}
+.page-frontend-make-waiting .status-past .number {
+    background: #FF7800;
+}
+.page-frontend-make-waiting .status-past .content h2 {
+    color:#FF7800;
+}
+.page-frontend-make-waiting .status-past .status-style {
+    background:#fff;
+    border:1px solid #FF7800;
+}
+.page-frontend-make-waiting .content-list {
+    width:100%;
+    overflow: hidden;
+    margin:5px 0;
+}
+
+.page-frontend-make-waiting .page-button {
+    width: 180px;
+    overflow: hidden;
+    margin: 0px 5px 8px 0;
+    height: 25px;
+    position: relative;
+    float: left;
+    display: inline-block;
+    cursor: pointer;
+}
+.page-frontend-make-waiting .page-button .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    padding: 0 5px;
+    text-align: center;
+    overflow: hidden;
+    background: #fff;
+    line-height: 25px;
+    margin: 0;
+    color : #005ea7;
+}
+.page-frontend-make-waiting .page-button .choice {
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    width: 50px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+/*未开始*/
+.page-frontend-make-waiting .status-ready .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #e1e1e1;
+    text-align: center;
+}
+/*已经开始*/
+.page-frontend-make-waiting .status-bging .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #0099cc;
+    text-align: center;
+}
+/*已经结束*/
+.page-frontend-make-waiting .status-end .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #2cc78f;
+    text-align: center;
+}
+/*已超时*/
+.page-frontend-make-waiting .status-past .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #FF7800;
+    text-align: center;
+}
+.page-frontend-make-waiting .update-time {
+    margin:5px 0;
+    line-height: 25px;
+    background: #f3f3f3;
+    width:555px;
+    overflow:hidden;
+    position: relative;
+    margin-right: 5px;
+}
+.page-frontend-make-waiting .left-title {
+    float:left;
+    display:inline;
+    width:110px;
+    padding-left:5px;
+}
+.page-frontend-make-waiting .left-con {
+    float:left;
+    display:inline;
+    width:410px;
+}
+
+.page-frontend-make-waiting .fn-left-time {
+    float:left;
+    display:inline;
+    width:110px;
+    height:15px;
+    text-indent: 5px;
+}
+.page-frontend-make-waiting .fn-left-text {
+    float:left;
+    display:inline;
+    width:410px;
+    padding:0 5px;
+}
+.page-frontend-make-waiting .icon-close {
+    font-family: "arial";
+    font-style: normal;
+    cursor: pointer;
+    font-size:18px;
+    position: absolute;
+    right:3px;
+    top:1px;
+}
+.page-frontend-make-waiting .left-con i.iconfont,
+.page-frontend-make-waiting .update-time i.iconfont {
+    position: absolute;
+    right: 5px;
+    top: 1px;
+    cursor: pointer;
+}
+.send-cord .ff-value-tip {
+    margin-left: 78px;
+}
+.send-cord .ff-value {
+    margin-left: 78px;
+    font-size: 14px;
+    color: #777;
+}
+/*step7-xuqiudan-dialog*/
+/*step7-xuqiudan-dialog*/
+.frontend-backend-step7 td {
+    vertical-align: top;
+}
+
+.frontend-backend-step7 .actives-upfile {
+    color: #777;
+    width: 330px;
+    overflow: hidden;
+    line-height: 25px;
+}
+.frontend-backend-step7 .ui-dialog-content {
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.frontend-backend-step7 .frontend-table-max td,
+.frontend-backend-step7 .frontend-table-max th {
+    padding:5px;
+    font-size: 14px;
+    color: #777;
+}
+
+.frontend-backend-step7 .input-text-max {
+    width: 211px;
+}
+.frontend-backend-step7 .input-text-mini {
+    width: 100px;
+}
+.frontend-backend-step7 .input-text-code {
+    width: 400px;
+}
+.frontend-backend-step7 .step7-textarea {
+    width: 400px;
+    height:120px;
+}
+.frontend-backend-step7 .lable-p {
+    display: inline-block;
+    _display:inline;
+    _zoom:1;
+    margin-right: 13px;
+    padding: 3px 0;
+}
+.frontend-backend-step7 .warn {
+    color: red;
+}
+.page-sales-home-waiting .merchant-logo-select {
+    float: left;
+    display: inline-block;
+}
+.frontend-backend-make-card {
+    font-size: 14px;
+    color: #777;
+}
+.frontend-backend-make-card td {
+    padding:5px;
+}
+.frontend-backend-make-card .warn {
+    color: red;
+}

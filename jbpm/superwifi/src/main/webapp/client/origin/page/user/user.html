@@ -1,0 +1,51 @@
+<div class="page-bd">
+    <div class="device-t">
+        <p class="main-t">用户管理</p>
+        <p>请通过下方列表查看并管理店内用户</p>
+        <div class="page-filter">
+            <input type="text" class="keyword input-text" placeholder="在这里输入用户名"
+                   ms-duplex="keyword"/>&nbsp;&nbsp;
+            <button type="button" class="query-btn main-btn-blue" ms-click="query">搜 索</button>
+        </div>
+    </div>
+    <div class="device-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 添加白名单 start -->
+<div class="page-user-add-dialog ui-hidden"
+     ms-widget="dialog,$,$addUserDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addUserFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入用户的姓名：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="请输入用户的姓名" class="input-text user-name" name="userInfoName" ms-value="userInfoName" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入用户的手机号：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="在这里输入手机号" class="input-text mobile" name="mobile" ms-value="mobile" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label">请选择用户所属范围：</label>
+                <div class="ff-value">
+                    <!--<div class="ff-value-box"><input type="text" placeholder="请选择用户所属范围" class="input-text phone-num" name="phoneNum" /></div>-->
+                    <div class="ff-value-box"><span class="merchant-domain" ms-module="merchantdomain,$,$merchantdomainOpts"></span></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label">请选择用户可以使用的功能：</label>
+                <div class="ff-value">
+                    <ul class="authority-list">
+                        <li ms-repeat="authorityList" ms-click="checkAuthority" ms-data-value="el.authority_id" ms-class="no-right:$index==2||$index==5||$index==8||$index==11">{{el.product_name}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加白名单 end -->

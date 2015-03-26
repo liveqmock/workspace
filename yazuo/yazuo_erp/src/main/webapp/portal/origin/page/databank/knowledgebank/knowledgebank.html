@@ -1,0 +1,52 @@
+<div class="page-bd page-bd-form">
+    <div class="page-content">
+        <!--页面-left-->
+        <div class="page-left page-knowledgebank-left">
+            <div class="page-left-con">
+                <div class="page-left-search">
+                    <input type="text" class="input-text left-search-input" ms-duplex="kindText" withemptyicon="no" placeholder="分类">
+                    <button class="iconfont button-style" ms-click="searchKind">&#xe62a;</button>
+                </div>
+                <div class="class-tree-padding">
+                    <!--分类树结构-->
+                    <div class="create-knowledge-tree">
+                        <div ms-widget="tree,$,$ztreeOpts"></div>
+                    </div>
+                    <!--分类树结构-end-->
+                </div>
+            </div>
+            <div class="dragEle" data-isdrag="1"></div>
+        </div>
+        <!--页面-left-end-->
+        <!--页面-right-->
+        <div class="page-right page-knowledgebank-right">
+            <!--创建-->
+            <div class="permission_type" ms-if="permission.knowledge_kind_add_185">
+                <button type="button" ms-click="localAddEdit"  class="main-btn">&nbsp;&nbsp;&nbsp;&nbsp; 创建 &nbsp;&nbsp;&nbsp;&nbsp;</button>
+            </div>
+            <!--创建-end-->
+            <div class="page-grid">
+                <div class="page-grid-head">
+                    <input type="text" class="input-text" ms-duplex="title" placeholder="标题">
+                    <input type="text" class="input-text" ms-duplex="username" placeholder="作者">
+                    <input type="text" class="input-text" ms-duplex="content" placeholder="内容">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;更新时间：<input type="text" class="input-text" readonly name="beginUpdatedTime" ms-value="beginUpdatedTime" ms-click="openStartDateCalendar">&nbsp;至&nbsp;<input type="text" class="input-text auto-width" readonly name="endUpdatedTime" ms-value="endUpdatedTime" ms-click="openEndDateCalendar">&nbsp;<button type="button" ms-click="search" class="main-btn">搜索</button>
+                </div>
+                <div class="page-grid-body">
+                    <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+                </div>
+            </div>
+        </div>
+        <!--页面-right-end-->
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

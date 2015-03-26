@@ -1,0 +1,3 @@
+.module-positionselector-dialog .query {
+    width: 200px;
+}

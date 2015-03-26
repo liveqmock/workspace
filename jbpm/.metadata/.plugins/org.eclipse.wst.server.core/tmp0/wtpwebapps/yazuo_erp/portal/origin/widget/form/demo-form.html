@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Form验证提交</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+    <link rel="stylesheet" href="../../asset/base.css">
+    <script src="../../asset/third/jquery-1.11.1.js"></script>
+    <script src="../../asset/third/underscore/underscore.js"></script>
+    <script src="../../asset/third/underscore/underscore.string.js"></script>
+    <script src="../../asset/third/avalon/avalon.js"></script>
+    <style>
+
+    </style>
+</head>
+<body class="ms-controller" ms-controller="demo">
+    <form class="form-demo" ms-widget="form,$,$formOpts">
+        <div class="f-field">
+            <div class="f-field-inner">
+                <input type="text" class="input-1" value="test" />
+            </div>
+            <span class="field-tip"></span>
+        </div>
+        <div class="f-field">
+            <input type="text" class="input-2" />
+        </div>
+        <div class="f-field">
+            <input type="checkbox" class="input-3" name="haha" /><input type="checkbox" class="input-3" name="haha" />
+        </div>
+        <div class="f-action">
+            <button type="button">提交</button><button type="reset">重置</button>
+        </div>
+    </form>
+
+    <script>
+        require("../../../widget/form/form", function(avalon) {
+            var model = avalon.define("demo", function(vm) {
+                vm.$formOpts = {
+                    "field": [{
+                        "selector": ".input-1",
+                        "name": "ooo",
+                        "rule": ['noempty', function (val, rs) {
+                            if (rs[0] !== true) {
+                                return '不能为空';
+                            }
+                            if (val.length > 5) {
+                                return "不能大于5个字符";
+                            }
+                        }],
+                        "getValue": function () {
+                            return _.str.trim($(this).val());
+                        },    //可选，取值
+                        "reset": function () {},    //可选，重置
+                        "tipDeep": 3 //可选，错误提示容器向上查找最大深度
+                    }, {
+                        "selector": ".input-2",
+                        "rule": function (val) {
+                            return true;
+                        }
+                    }, {
+                        "selector": ".input-3",
+                        "rule": function (val) {
+                            return true;
+                        }
+                    }],
+                    "action": [{
+                        "selector": '[type="button"]',
+                        "eventType": "click",
+                        "handler": function (evt) {
+                            var requestData;
+                            if (this.validate()) {
+                                requestData = this.getFormData();
+                                alert(requestData);
+                            }
+                            return false;
+                        }
+                    }, {
+                        "selector": '[type="reset"]',
+                        "eventType": "click",
+                        "handler": function (evt) {
+                            this.reset();
+                        }
+                    }]
+                };
+            });
+            avalon.scan();
+        });
+    </script>
+</body>
+</html>
+

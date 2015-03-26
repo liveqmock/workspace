@@ -1,0 +1,60 @@
+.page-frontend-home-remind .add-question-btn {
+    padding:15px;
+}
+
+
+.page-frontend-home-remind .cate-list-wrapper {
+    padding-left:15px;
+    margin-bottom:10px;
+}
+.page-frontend-home-remind .cate-list .cate-item {
+    height:36px;
+    line-height: 36px;
+    margin-right:10px;
+    float: left;
+    display: inline;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+    cursor: pointer;
+}
+.page-frontend-home-remind .cate-list .cur {
+    background: #b2eed8;
+}
+.page-frontend-home-remind .search {
+    background: #eee;
+    padding:7px 15px;
+}
+.page-frontend-home-remind .coursewareName {
+    width:200px;
+}
+.page-frontend-home-remind .search .page-filter button{
+    vertical-align: 0px;
+}
+.page-frontend-home-remind .question-list {
+    padding-top:15px;
+}
+.page-frontend-home-remind .question-list-inner {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    padding:5px 0;
+}
+.page-frontend-home-remind .question-list-inner-bg {
+    background:#d9edf7;
+}
+.page-frontend-home-remind .qusetion-list-style-main {
+    float: left;
+    display: inline;
+    width: 930px;
+    padding-left: 15px;
+}
+.page-frontend-home-remind .qusetion-list-style-main h2 {
+    font-size:16px;
+    color:#777;
+    margin-bottom:5px;
+}
+.page-frontend-home-remind table .not-read td{
+    color:#000;
+}

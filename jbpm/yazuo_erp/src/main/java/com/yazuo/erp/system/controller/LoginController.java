@@ -1,0 +1,266 @@
+/**
+ * Copyright Copyright (c) 2014 
+ * Company 雅座在线（北京）科技发展有限公司
+ * 
+ * 		author		date		description
+ * —————————————————————————————————————————————
+ * 
+ * 
+ */
+package com.yazuo.erp.system.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.yazuo.erp.base.Constant;
+import com.yazuo.erp.base.JsonResult;
+import com.yazuo.erp.filter.BindSessionUser;
+import com.yazuo.erp.system.TreeNode;
+import com.yazuo.erp.system.service.SysUserService;
+import com.yazuo.erp.system.service.SysWhiteListService;
+import com.yazuo.erp.system.vo.SysResourceVO;
+import com.yazuo.erp.system.vo.SysUserVO;
+import com.yazuo.erp.system.vo.SysWhiteListVO;
+import com.yazuo.erp.train.service.StudentService;
+import com.yazuo.util.StringUtils;
+import com.zdp.service.UserServiceJTA;
+
+/**
+ * @Description 职位相关的业务操作
+ * @author song
+ * @date 2014-6-9 11:06:21
+ */
+@Controller
+@RequestMapping("login")
+@SessionAttributes(Constant.SESSION_USER)  
+@Scope("prototype")
+public class LoginController {
+
+	private static final Log log = LogFactory.getLog(LoginController.class);
+
+	@Value("${userPhotoPath}")
+	private String userPhotoPath;
+	@Resource
+	private SysUserService userService;
+	
+	@Resource
+	private SysWhiteListService sysWhiteListService;
+	@Resource
+	private StudentService studentService;
+
+	/**
+	 * 用login.do的形式进入登录页面
+	 */
+	@RequestMapping(value = "login", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public ModelAndView login(HttpServletResponse response, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("login");
+		return mav;
+	}
+//	@Resource UserServiceJTA userServiceJTA;
+	/**
+	 * 用户登录提交操作
+	 */
+	@RequestMapping(value = "loginSubmit", method = { RequestMethod.POST }, produces = { "application/json;charset=UTF-8" })
+	@ResponseBody
+	public JsonResult loginSubmit(@RequestBody SysUserVO sysUserVO,  HttpSession session) {
+//		userServiceJTA.saveUser("1", "cc");
+//		if(true)return null;
+		String tel = sysUserVO.getTel();
+		String password = sysUserVO.getPassword();
+		if(StringUtils.isEmpty(tel)){
+			log.error("手机号不能为空");
+			return new JsonResult(false).setMessage("手机号不能为空!");
+		}
+		if(StringUtils.isEmpty(password)){
+			log.error("密码不能为空");
+			return new JsonResult(false).setMessage("密码不能为空!");
+		}
+		SysUserVO dbUser = this.userService.getSysUserByTel(tel);
+		if(dbUser==null){
+			log.error("手机号不存在");
+			return new JsonResult(false).setMessage("手机号不存在!");
+		}
+		//通过手机号密码查询用户且是有效用户
+		sysUserVO.setIsEnable(Constant.IS_ENABLE);
+		dbUser = this.userService.getSysUserByTelAndPWD(sysUserVO);
+		if (dbUser == null) { // 不是有效用户
+			log.error("用户被冻结");
+			return new JsonResult(false).setMessage("用户被冻结!");
+		} else {
+			 // 如果用户输入的密码和数据库密码一致，查到
+			boolean flag = this.userService.toVerifyPassword(sysUserVO.getPassword(), dbUser.getPassword());
+			if(!flag){
+				log.error("密码错误");
+				return new JsonResult(false).setMessage("密码错误!");
+			}
+			//以下是登录成功的处理
+
+			//记录首次登陆时间和最后一次登陆时间和登录次数
+			userService.saveCalculatedLoginTimeAndFrequency(dbUser);
+			//添加默认登录用户的权限
+	//		userService.addResourceForUser(dbUser);
+			List<SysResourceVO> listPrivilege = userService.getAllUserResourceByPrivilege(dbUser.getId());
+			dbUser.setListPrivilege(listPrivilege);
+			dbUser.setPassword(null);//清空密码
+			//学生是否有课程
+			dbUser.setHasCourse(studentService.hasCourse(dbUser.getId()));
+			//添加sessionID
+			dbUser.setSessionId(session.getId());
+			//img路径更改， 用全路径
+			String imgPath = dbUser.getUserImage();
+			if(!StringUtils.isEmpty(imgPath)){
+				dbUser.setUserImagePath(session.getAttribute(Constant.BASEPATH) +userPhotoPath);
+				dbUser.setUserImage(session.getAttribute(Constant.BASEPATH) +userPhotoPath+"/"+ imgPath);
+			}
+			//把石山视频分类信息保存到user中
+			dbUser.setSmvp(JSONObject.fromObject(Constant.smvpVideoCatInfo));
+			// 把用户名放入在线列表
+			session.setAttribute("BindSessionUser", new BindSessionUser(dbUser));
+			//把用户放到session中
+			session.setAttribute(Constant.SESSION_USER, dbUser);
+			//把视频案例库合法用户放到session中
+			session.setAttribute(Constant.LEGAL_USER, "1");
+			return new JsonResult(true).setMessage("登录成功!");
+		}
+	}  
+	/**
+	 * test 方法
+	 */
+	@RequestMapping(value = "getAllNodeForCurrentUser", method = { RequestMethod.POST,
+			RequestMethod.GET })	
+	@ResponseBody
+	public JsonResult getAllNodeForCurrentUser() {
+		TreeNode treeNode = userService.getAllNodeForCurrentUser(1);
+		return new JsonResult(true).setData(treeNode);
+	}
+	/**
+	 * 获得用户session
+	 */
+	@RequestMapping(value = "getSessionUser", method = { RequestMethod.POST,
+			RequestMethod.GET })	
+	@ResponseBody
+	@Deprecated //测试方法
+	public JsonResult getSessionUser(HttpSession session,HttpServletRequest request,
+			@ModelAttribute(Constant.SESSION_USER) SysUserVO user) {
+		request.getParameterNames();
+		request.getCookies();
+		log.info(session.getId());
+		return new JsonResult(true).setData(user);
+	}
+	/**
+	 * 清除用户session
+	 */
+	@RequestMapping(value = "removeSessionUser", method = { RequestMethod.POST,
+			RequestMethod.GET })	
+	@ResponseBody
+	public JSONObject removeSessionUser(SessionStatus sessionStatus, HttpSession session) {
+		session.removeAttribute(Constant.SESSION_USER);
+		session.invalidate();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("1", true);
+		map.put(Constant.TIME_OUT, true);
+		return JSONObject.fromObject(map);
+	}
+	
+	/**
+	 * 保存资源
+	 */
+	@RequestMapping(value = "saveSysResource", method = { RequestMethod.POST,
+			RequestMethod.GET })	
+	@ResponseBody
+	public JsonResult saveSysResource(@RequestBody SysResourceVO sysResourceVO) {
+		int count = 0;
+		return new JsonResult(count > 0).setMessage(count > 0 ? "保存成功!" : "保存失败!");
+	}
+	
+	@RequestMapping(value = "getPWD", method = { RequestMethod.POST }, produces = { "application/json;charset=UTF-8" })
+	@ResponseBody
+	public JsonResult getPWD(@RequestParam("tel") String tel) {
+		if(StringUtils.isEmpty(tel)){
+			log.error("手机号不能为空");
+			return new JsonResult(false).setMessage("手机号不能为空!");
+		}
+		SysUserVO dbUser = this.userService.getSysUserByTel(tel);
+		if(dbUser==null){
+			log.error("手机号不存在");
+			return new JsonResult(false).setMessage("手机号不存在!");
+		}else{
+			dbUser.setPassword(Constant.RESET_PWD);
+			userService.updatePWDAndSendToTel(dbUser);
+    		return new JsonResult(true).setMessage("密码已发送至您手机!");
+		}
+	}
+	/**
+	 * @Description ：接口： 通过用户查找数据库中所有MAC地址
+	 */
+	@RequestMapping(value = "verifyMac", produces = { "application/json;charset=UTF-8" }, method = { RequestMethod.POST,
+			RequestMethod.GET })	
+	@ResponseBody
+	public JsonResult verifyMac(String tel) {
+		SysUserVO user = userService.getSysUserByTel(tel);
+		if(user==null){
+			return new JsonResult(false).setMessage("手机号不存在");
+		}
+		SysWhiteListVO sysWhiteListVO = new SysWhiteListVO();
+		sysWhiteListVO.setUserId(user.getId());
+		List<SysWhiteListVO> listMacs = sysWhiteListService.getSysWhiteLists(sysWhiteListVO);
+		for (SysWhiteListVO sysWhiteListVO2 : listMacs) {
+			log.info(sysWhiteListVO2.getMac());
+		}
+		int count = listMacs.size();
+		return new JsonResult(count > 0).setMessage(count > 0 ? "成功得到mac地址!" : "数据库中mac地址不存在!").setData(listMacs);
+	}
+	
+	@RequestMapping(value = "changePWD", method = { RequestMethod.POST })
+	@ResponseBody
+	public JsonResult changePWD(@RequestParam("oldPassword") String oldPassword,  HttpSession session,
+			@RequestParam("newPassword") String newPassword ,@ModelAttribute(Constant.SESSION_USER) SysUserVO userVO) {
+
+		SysUserVO dbUser = this.userService.getSysUserByTelAndPWD(userVO);
+		 // 如果用户输入的密码和数据库密码一致，查到
+		boolean flag = this.userService.toVerifyPassword(oldPassword, dbUser.getPassword());
+		if(!flag){
+			log.error("密码错误");
+			return new JsonResult(false).setMessage("旧密码错误!");
+		}else{
+			userVO.setPassword(newPassword);
+			this.userService.updatePWD(userVO);
+			session.setAttribute(Constant.SESSION_USER, userVO);
+			return new JsonResult(true).setMessage("密码修改成功");
+		}
+	}
+	
+	@RequestMapping(value = "addMacToUser/{tel}/{macs}", method = { RequestMethod.POST })
+	@ResponseBody
+	public JsonResult addMacToUser(@PathVariable String tel, @PathVariable List<String> macs, 
+			@ModelAttribute SysUserVO sessionUser) {
+		int sessionUserId = (sessionUser==null||sessionUser.getId()==null)? Constant.DEFAULT_ADD_USER: sessionUser.getId();
+		int updateId = userService.saveMacAndUser(tel, macs, sessionUserId);
+		return new JsonResult(updateId>0).setMessage("添加MAC地址成功！");
+	}
+}

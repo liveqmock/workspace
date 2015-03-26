@@ -1,0 +1,154 @@
+.page-fbs-complaintsmanage .add-question-btn {
+    padding:15px;
+}
+.page-fbs-complaintsmanage .cate-list-wrapper {
+    padding-left:15px;
+    margin-bottom:10px;
+}
+.page-fbs-complaintsmanage .cate-list .cate-item {
+    height:36px;
+    line-height: 36px;
+    margin-right:10px;
+    float: left;
+    display: inline;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+    cursor: pointer;
+}
+.page-fbs-complaintsmanage .cate-list .cur {
+    background: #b2eed8;
+}
+.page-fbs-complaintsmanage .search {
+    background: #eee;
+    padding:7px 15px;
+}
+.page-fbs-complaintsmanage .coursewareName {
+    width:200px;
+}
+.page-fbs-complaintsmanage .search .page-filter button{
+    vertical-align: 0px;
+}
+.page-fbs-complaintsmanage .question-list {
+    padding-top:15px;
+}
+.page-fbs-complaintsmanage .question-list-inner {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    padding:5px 0;
+}
+.page-fbs-complaintsmanage .question-list-inner-bg {
+    background:#d9edf7;
+}
+.page-fbs-complaintsmanage .max-width {
+    width: 100%;
+}
+.page-fbs-complaintsmanage .max-inner {
+    padding:3px 20px;
+}
+.page-fbs-complaintsmanage .bottom-line {
+    border-bottom:1px solid #ccc;
+}
+.page-fbs-complaintsmanage .max-inner h2 {
+    font-size: 16px;
+    color: #777;
+    font-weight: 900;
+    line-height:35px;
+}
+.page-fbs-complaintsmanage .max-inner ul {
+    padding-bottom: 5px;
+    position: relative;
+}
+.page-fbs-complaintsmanage .max-inner .head-title {
+    line-height:25px;
+}
+.page-fbs-complaintsmanage .max-inner .head-title span {
+    font-size: 14px;
+    margin-right: 20px;
+    color:#777;
+}
+.page-fbs-complaintsmanage .max-inner .content {
+    padding:10px 0;
+}
+.page-fbs-complaintsmanage .max-inner .content p {
+    font-size:14px;
+    color:#333;
+    line-height:25px;
+    margin-bottom:10px;
+}
+
+.page-fbs-complaintsmanage .show {
+    position: absolute;
+    padding: 3px 6px;
+    background: #61AADD;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    bottom:-4px;
+    right:-20px;
+}
+.page-fbs-complaintsmanage .hidden {
+    position: absolute;
+    padding: 3px 6px;
+    background: #61AADD;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    top:-4px;
+    right:-20px;
+}
+.page-fbs-complaintsmanage .footer-title {
+    padding-top:10px;
+    line-height:25px;
+    color:#777;
+}
+.page-fbs-complaintsmanage .footer-title span{
+    margin-right:20px;
+}
+.page-fbs-complaintsmanage .show-bg {
+    background: #fdf4da
+}
+
+#SWFUpload_0 {
+    left:0px;
+}
+.customer-title {
+    width: 318px;
+    float: left;
+    position: relative;
+}
+
+.assigned-list {
+    width: 100%;
+    overflow: hidden;
+    padding: 3px 0 0 3px;
+}
+
+.assigned-list li{
+    float: left;
+    display: inline;
+    width: 49%;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    margin-top:-1px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 35px;
+}
+.plaints-checkbox {
+    margin-right: 12px;
+    padding-top:5px;
+    display: inline-block;
+}
+.complaints .valid-error {
+    padding-left: 92px;
+}
+.complaints-upfile {
+    color: #777;
+    width: 330px;
+    overflow: hidden;
+    line-height: 25px;
+}

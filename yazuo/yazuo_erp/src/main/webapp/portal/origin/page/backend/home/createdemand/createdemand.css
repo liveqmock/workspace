@@ -1,0 +1,156 @@
+.page-backend-home-createdemand .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-home-createdemand .addedit-title {
+    font-size: 26px;
+    color: #777;
+    padding: 15px 5px;
+}
+.page-backend-home-createdemand .add-edit-content {
+    padding: 20px;
+}
+.page-backend-home-createdemand .ff-label {
+    width: 150px;
+    text-align: right;
+}
+.page-backend-home-createdemand .input-text {
+    width:400px;
+}
+.page-backend-home-createdemand .input-textarea {
+    width:400px;
+    height:150px;
+}
+.page-backend-home-createdemand .add-edit-create-query {
+    position: relative;
+}
+.page-backend-home-createdemand .used-list {
+    margin-right: 25px;
+}
+
+.page-backend-home-createdemand .save-button {
+    width: 300px;
+    margin-left: 150px;
+}
+.page-backend-home-createdemand .valid-error {
+    padding-left: 150px;
+}
+.page-backend-home-createdemand .upload-box {
+    float: left;
+    display: inline;
+    height: 27px;
+    line-height:27px;
+    padding: 0 10px;
+    margin-right: 15px;
+}
+.page-backend-home-createdemand .ff-value-box {
+    padding-left: 150px;
+}
+.page-backend-home-createdemand .ff-value-box .upfile-create {
+}
+.page-backend-home-createdemand .date-input {
+    width: 150px;
+}
+
+.page-backend-home-createdemand .font14 {
+    font-size: 14px;
+}
+.page-backend-home-createdemand .create-select-small {
+    width: 154px;
+}
+.page-backend-home-createdemand .create-input-small {
+    width: 154px;
+}
+.page-backend-home-createdemand .attachment-box {
+    padding-top: 10px;
+}
+.page-backend-home-createdemand .attachments-style {
+    display: inline-block;
+    _zoom:1;
+    _display:inline;
+    height: 30px;
+    line-height: 30px;
+    border:1px solid #eee;
+    background: #fff;
+    padding: 0 0 0 10px;
+    margin: 0 5px 5px 0;
+    color:#777;
+}
+.page-backend-home-createdemand .attachments-style .iconfont {
+    vertical-align: 0;
+    cursor: pointer;
+    display: inline-block;
+    _zoom:1;
+    _display:inline;
+    padding:  0 5px;
+}
+.page-backend-home-createdemand .create-span-small {
+    background: #fff;
+    display: inline-block;
+    _zoom:1;
+    _display:inline;
+    width: 120px;
+}
+.page-backend-home-createdemand .handler-person-name {
+    width: 120px;
+}
+.page-backend-home-createdemand .brand-name .select-header-text {
+    width: 365px;
+}
+.page-backend-home-createdemand .tips-color {
+    color: #777;
+}
+.page-backend-home-createdemand .remind-trigger {
+    padding: 6px 20px 6px 8px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 14px;
+    color: #66ccb5;
+    border-radius: 16px;
+    border: 1px solid #2CC78F;
+    cursor: pointer;
+    background: #fff;
+}
+.page-backend-home-createdemand .icon-remind {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 14px;
+    width: 24px;
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #2CC78F;
+}
+.page-backend-home-createdemand .icon-remind,
+.page-backend-home-createdemand .remind-text {
+    vertical-align: top;
+}
+.page-backend-home-createdemand .state-remind-open .icon-remind {
+    background: #2CC78F;
+}
+.page-backend-home-createdemand .upload-info {
+    padding-top: 8px;
+}
+.page-backend-home-createdemand .create-store-add-remove-parent .schedule {
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+.page-backend-home-createdemand input.input-text-store {
+    width: 307px;
+}
+
+/*门店树*/
+.page-backend-home-createdemand .create-merchant-tree {
+    position: absolute;
+    width: 315px;
+    max-height: 360px;
+    overflow-y: auto;
+    border: 1px solid #2CC78F;
+    background: #eee;
+}
+.page-backend-home-createdemand .create-merchant-tree-default {
+    line-height: 30px;
+    background: #fef7dc;
+    text-indent: 6px;
+    font-size: 14px;
+    color: #666;
+}

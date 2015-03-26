@@ -1,0 +1,365 @@
+.page-network .page-bd {
+    font-size: 14px;
+    color: #666666;
+}
+
+.page-network .network-bd-left {
+    width: 690px;
+    float: left;
+    padding: 20px 0 20px 20px;
+}
+
+.page-network .column-block {
+    width: 219px;
+    height: 300px;
+    float: left;
+    background-color: #FFFFFF;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.page-network .column-block dt {
+    padding-top: 15px;
+    color: #FFFFFF;
+    position: relative;
+}
+
+.page-network .column-block dt span {
+    display: block;
+}
+
+.page-network .column-tip {
+    font-size: 18px;
+    line-height: 40px;
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+.page-network .column-content {
+    line-height: 41px;
+    height: 41px;
+    position: relative;
+    z-index: 2;
+    padding-left: 15px;
+}
+
+.page-network .alpha-layer {
+    height: 41px;
+    width: 100%;
+    background-color: #000;
+    filter: alpha(opacity=10);
+    -moz-opacity: 0.1;
+    opacity: 0.1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.page-network .column-content ins {
+    font-size: 24px;
+    float: right;
+    background-color: #545454;
+    height: 41px;
+    line-height: 41px;
+    text-align: center;
+    min-width: 64px;
+}
+
+.page-network .column-content ins.font-14 {
+    font-size: 14px;
+    padding: 0 15px;
+}
+
+.page-network .font-en {
+    font-family: arial, helvetica, sans-serif;
+}
+
+.page-network .content-area {
+    padding: 15px;
+    line-height: 20px;
+}
+
+.page-network .content-t {
+    margin-bottom: 7px;
+}
+
+.page-network .bt-area {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+}
+
+.page-network .bt-area a {
+    width: 92px;
+    margin-left: 10px;
+    padding: 0;
+    color: #666666;
+}
+
+.page-network .bt-area span {
+    width: 92px;
+    margin-left: 10px;
+    padding: 0;
+}
+
+.page-network .bt-area a.full-bt {
+    width: 196px;
+}
+
+.page-network .bt-area a:hover {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.page-network .bt-area span i {
+    font-size: 8px;
+}
+
+.page-network .icon-img-1 {
+    background: url("../../asset/image/icon-img-1.png") no-repeat 15px 0;
+    padding-left: 63px;
+}
+
+.page-network .icon-img-2 {
+    background: url("../../asset/image/icon-img-2.png") no-repeat 15px 0;
+    padding-left: 65px;
+}
+
+.page-network .icon-img-3 {
+    background: url("../../asset/image/icon-img-3.png") no-repeat 15px 0;
+    padding-left: 65px;
+}
+
+.page-network .icon-img-4 {
+    background: url("../../asset/image/icon-img-4.png") no-repeat 15px 0;
+    padding-left: 63px;
+}
+
+.page-network .icon-img-5 {
+    background: url("../../asset/image/icon-img-5.png") no-repeat 15px 0;
+    padding-left: 63px;
+}
+
+.page-network .color-one {
+    z-index: 1;
+}
+
+.page-network .color-one dt {
+    background-color: #1cb941;
+}
+
+.page-network .color-two dt {
+    background-color: #43ada7;
+}
+
+.page-network .color-three dt {
+    background-color: #3eaccc;
+}
+
+.page-network .color-four dt {
+    background-color: #efb400;
+}
+
+.page-network .network-bd-right {
+    width: 200px;
+    float: right;
+    border-left: solid #d7d7d7 1px;
+    padding: 15px;
+    background-color: #FBFBFB;
+}
+
+.page-network .right-block {
+    background-color: #FBFBFB;
+}
+
+.page-network .link-num-box {
+    border-bottom: solid #cccccc 1px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+    color: #444444;
+    margin-bottom: 15px;
+}
+
+.page-network .link-num-box li {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 80px;
+    padding-right: 12px;
+}
+
+.page-network .line-border {
+    border-left: solid #cccccc 1px;
+    height: 14px;
+    padding-right: 8px;
+    margin-left: 8px;
+    vertical-align: top;
+    margin-top: 3px;
+}
+
+.page-network .link-num-box .font-en {
+    font-size: 24px;
+    text-align: center;
+}
+
+.page-network .right-t {
+    height: 35px;
+}
+
+.page-network .right-t span {
+    float: left;
+    color: #444444;
+}
+
+.page-network .device-list{
+    border-bottom: solid #eeeeee 1px;
+    padding-bottom: 14px;
+    margin-bottom: 12px;
+}
+
+.page-network .device-list dt {
+    background: url("../../asset/image/router.png") no-repeat;
+    width: 58px;
+    height: 52px;
+    float: left;
+    margin-top: 12px;
+}
+
+.page-network .device-list dd {
+    width: 133px;
+    float: right;
+}
+
+.page-network .bottom-line {
+    color: #444444;
+    line-height: 30px;
+}
+
+.page-network .margin-top12 {
+    margin-top: 12px;
+}
+
+.page-network .margin-t15 {
+    margin-top: 15px;
+}
+
+.page-network .phone-list li {
+    line-height: 32px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.page-network .phone-list li ins {
+    float: right;
+    color: #3280a4;
+}
+
+.page-network .phone-list li em {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #5f6567;
+    border-radius: 50%;
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 15px;
+    font-size: 12px;
+}
+
+.page-network .drop-down-nav {
+    width: 92px;
+    position: absolute;
+    border: solid #cfcfcf 1px;
+    background-color: #FFFFFF;
+    z-index: 1000;
+    top: 33px;
+    left: 10px;
+}
+.page-network .no-hover.main-btn:hover{
+    background: none;
+    color: #666666;
+    border: solid #cfcfcf 1px;
+}
+
+.page-network .drop-down-nav a {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #333;
+    margin: 0;
+}
+
+.page-network .drop-down-nav a:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.page-network .progress-box span {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+
+.page-network .progress-icon {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #f1f1f1;
+}
+
+.page-network .progress-line {
+    width: 64px;
+    height: 4px;
+    background-color: #f1f1f1;
+}
+
+.page-network .progress-line ins {
+    height: 4px;
+    display: block;
+}
+
+.page-network .progress-box .progress-red {
+    background-color: #f26f2f;
+}
+
+.page-network .progress-box .progress-blue {
+    background-color: #2097a9;
+}
+
+.page-network .progress-box .progress-green {
+    background-color: #16a363;
+}
+.page-network .toggle-all-device{
+}
+.page-network .toggle-all-device a{
+    font-size: 14px;
+    color: #444;
+    width: 22px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 0 auto;
+    text-align: center;
+    display: block;
+    padding-top: 2px;
+}
+.page-network .toggle-all-device a:hover{
+    color: #27a742;
+    text-decoration: none;
+}
+.page-network .device-box{
+    height: 337px;
+    overflow: hidden;
+}
+.page-network-add-web-dialog .input-text{
+    width: 97%;
+}
+.page-network-add-web-dialog .app-list,.page-network-add-web-dialog .link-type{
+    width: 348px;
+}
+

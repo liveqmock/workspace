@@ -1,0 +1,292 @@
+/*index*/
+.menu-module-content{
+	background:#fff;
+	border-top:1px solid #cfcfcf;
+	border-bottom:1px solid #cfcfcf;
+	margin-bottom:10px;
+}
+.menu-module-content:nth-child(1){
+	border-top:none;
+}
+.menu-module-content h1{
+	color:#333;
+	font-size:16px;
+	padding:10px 0;
+	margin:0 10px;
+	border-bottom:1px solid #ededed;
+}
+.menu-module-content li{
+	padding:10px;
+	position:relative;
+	border-top:1px solid #ededed;
+}
+.menu-module-content li:nth-child(1){
+	border-top:none;
+}
+.menu-module-content li .menu-name{
+	color:#444;
+	font-size:14px;
+	position:absolute;
+	left:110px;
+	top:10px;
+	width:65%
+}
+.m-icon-new{
+	background:url(../../images/member/icon23.png) no-repeat;
+	background-size:contain;
+	width:19px;
+	height:11px;
+	position:absolute;
+	left:81px;
+	top:10px;
+}
+.menu-module-content li .menu-money-content{
+	position:absolute;
+	bottom:5px;
+	left:108px;
+	width:65%;
+}
+.menu-money-def{
+	font-size:18px;
+	color:#e6565a;
+}
+.menu-money-def i{
+	font-size:16px;
+}
+.menu-money-member{
+	font-size:16px;
+	color:#ff831e;
+	position:absolute;
+	left:59px;
+	bottom:0px;
+}
+.menu-money-member i{
+	font-size:16px;
+}
+.word-color-def{
+	color:#666;
+	font-size:small;
+	vertical-align:1px;
+}
+.menu-good-num{
+	color:#888;
+	font-size:small;
+	position:absolute;
+	right:0;
+	bottom:2px;
+	width: 60px;
+	height: 2em;
+	line-height: 3em;
+	text-align: center;
+	cursor: pointer;
+}
+.menu-good-num i{
+	background:url(../../images/member/icon24.png) no-repeat;
+	background-size:contain;
+	width:14px;
+	height:14px;
+	margin-right:5px;
+	display:inline-block;
+	vertical-align:-1px;
+	cursor: pointer;
+}
+.num-on i{
+	background:url(../../images/member/icon24_1.png) no-repeat;
+	background-size:contain;
+
+}
+/*menu detail*/
+.menu-detail-wrap{
+	background:#fff;
+}
+.menu-detail-wrap .menu-img{
+	position:relative;
+}
+.menu-detail-wrap .menu-img img{
+	width:100%;
+}
+.menu-detail-wrap .menu-detail{
+	padding:15px 20px 50px;
+	position:relative;
+}
+.menu-detail-wrap .menu-detail .menu-detail-name{
+	color:#444;
+	font-size:16px;
+}
+.menu-detail .menu-good-num{
+	right:20px;
+	top:15px;
+	z-index:11;
+}
+.menu-detail-money{
+	padding:10px 0;
+	border-bottom:1px solid #ededed;
+}
+.show-detail-money{
+	border-bottom:1px solid #ededed;
+}
+.menu-detail-money .menu-money-member{
+	position:static;
+	padding-left:10px;
+
+}
+.menu-detail .menu-detail-word{
+	padding:10px 0 15px;
+	color:#888;
+	font-size:small;
+	line-height:160%;
+}
+.menu-detail .menu-share{
+	border-top:1px solid #ededed;
+	text-align:right;
+	color:#888;
+	padding:10px 0;
+	font-size:small;
+	position:relative;
+	z-index:12;
+}
+.menu-detail .menu-share img{
+	width:30px;
+}
+.menu-detail .menu-share .m-icon-wx{
+	margin-right:15px;
+}
+.menu-show .menu-detail{
+	padding:15px 20px 5px;	
+}
+.menu-show{
+	margin-bottom:10px;
+}
+.menu-show .menu-good-num{
+	top:52px;
+}
+.menu-trans{
+	position:absolute;
+	display:inline-block;
+	right:78px;
+	border-right:1px solid #cfcfcf;
+	width:30px;
+	top:54px;
+	height:10px;
+}
+.menu-trans i{
+	background:url(../../images/member/icon27.png) no-repeat;
+	background-size:contain;
+	width:16px;
+	height:14px;
+	display:inline-block;
+	position:absolute;
+	top:-2px;
+}
+.menu-show-detail{
+	position:absolute;
+	top:48px;
+	right:-245px;
+	width:245px;
+	background:#fff;
+	min-height:100%;
+	z-index:1002;
+}
+.menu-show-detail .menu-show-icon{
+	position:absolute;
+	background:url(../../images/member/icon28.png) no-repeat;
+	background-size:contain;
+	width:50px;
+	height:35px;
+	left:-45px;
+	top:3px;
+}
+.menu-style{
+	padding:15px 0 0;
+	width:150px;
+	float:right;
+	position:relative;
+}
+.menu-style h1{
+	padding:30px 0 15px;
+	border-bottom:1px solid #cfcfcf;
+	color:#444;
+	font-size:16px;
+}
+.menu-style li{
+	padding:10px 0;
+	border-top:1px solid #ededed;
+	color:#888;
+	font-size:small;
+}
+.menu-style li:nth-child(1){
+	border-top:none;
+}
+.menu-show-detail .menu-style li a,.menu-show-detail .menu-style li a:hover{
+	color:#888;
+}
+.menu-icon-1,.menu-icon-2,.menu-icon-3,.menu-icon-4{
+	background:url(../../images/member/icon29.png) no-repeat;
+	background-size:contain;
+	display:inline-block;
+	width:50px;
+	height:50px;
+	position:absolute;
+	top:30px;
+	left:-70px;
+}
+.menu-icon-2{
+	background:url(../../images/member/icon30.png) no-repeat;
+	background-size:contain;
+}
+.menu-icon-3{
+	background:url(../../images/member/icon31.png) no-repeat;
+	background-size:contain;
+}
+.menu-icon-4{
+	background:url(../../images/member/icon32.png) no-repeat;
+	background-size:contain;
+}
+.m-layer-bg{
+	background-color:#000;
+	position:absolute;
+	height:100%;
+	display:inline;
+	top:0;
+	left:0;
+	opacity:0.3;
+	width:100%;
+	filter:Alpha(opacity=10);
+	z-index:1001;
+	zoom:1;
+}
+
+.m-icon-new-big{
+	background:url(../../images/member/icon23_1.png) no-repeat;
+	background-size:contain;
+	position:absolute;
+	width:34px;
+	height:16px;
+	right:0;
+	top:5px;
+}
+
+.search-result-error{
+	padding:100px 0 0;
+	text-align:center;
+}
+
+.search-result-error img{
+	width:80px;
+	margin-bottom:15px;
+}
+.search-result-error p{
+	color:#888;
+	font-size:16px;
+	line-height:150%;
+}
+.pinpai_logo{
+	text-align:center;
+	font-size:16px;
+	padding:20px 0 0;
+}
+.pinpai_text{
+	font-size:14px;
+	padding:15px 20px;
+	line-height:150%;
+}

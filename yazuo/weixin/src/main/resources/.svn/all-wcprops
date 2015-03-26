@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/crmapi/!svn/ver/25945/code/weixin/src/main/resources
+END
+image-config.properties
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/crmapi/!svn/ver/25456/code/weixin/src/main/resources/image-config.properties
+END
+cacert.pem
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/crmapi/!svn/ver/20017/code/weixin/src/main/resources/cacert.pem
+END
+weixin-coffee.properties
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/crmapi/!svn/ver/25945/code/weixin/src/main/resources/weixin-coffee.properties
+END
+spring-weixin-servlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/crmapi/!svn/ver/22091/code/weixin/src/main/resources/spring-weixin-servlet.xml
+END
+tenpay_cacert.jks
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/crmapi/!svn/ver/20017/code/weixin/src/main/resources/tenpay_cacert.jks
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/crmapi/!svn/ver/24957/code/weixin/src/main/resources/log4j.properties
+END
+spring-weixin-datasource.xml
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/crmapi/!svn/ver/19865/code/weixin/src/main/resources/spring-weixin-datasource.xml
+END
+fdfs_yazuo.conf
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/crmapi/!svn/ver/25306/code/weixin/src/main/resources/fdfs_yazuo.conf
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/crmapi/!svn/ver/23524/code/weixin/src/main/resources/jdbc.properties
+END
+weixin-merchant.properties
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/crmapi/!svn/ver/25945/code/weixin/src/main/resources/weixin-merchant.properties
+END

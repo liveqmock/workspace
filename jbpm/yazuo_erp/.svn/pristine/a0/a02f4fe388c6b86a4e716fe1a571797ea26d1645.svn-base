@@ -1,0 +1,165 @@
+<div class="page-study-question-add-edit">
+    <div class="page-tbar">
+        <ul class="page-nav-crumbs">
+            <li class="nav-item" ms-repeat="navCrumbs"><a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a><span
+                class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+        </ul>
+    </div>
+    <div class="page-bd page-bd-form">
+        <div class="page-section">
+            <h3 class="page-section-title">修改试题<span class="summary">（<span class="star">*</span>号为必填项）</span></h3>
+            <form class="page-section-form" action="javascript:;" ms-widget="form,$,$formOpts">
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>题型：</label>
+                        <div class="ff-value">
+                            <!-- 问答题和产品实操暂时隐藏掉 -->
+                            <div class="ff-value-box">
+                                <span class="mn-radio mn-radio-state-readonly question-type"
+                                      data-name="single"
+                                      ms-class="mn-radio-state-selected: questionType == 'single'">单选题</span>
+                                <span class="mn-radio mn-radio-state-readonly question-type"
+                                      data-name="multi"
+                                      ms-class="mn-radio-state-selected: questionType == 'multi'">多选题</span>
+                                <span class="mn-radio mn-radio-state-readonly question-type"
+                                      data-name="bool"
+                                      ms-class="mn-radio-state-selected: questionType == 'bool'">判断题</span>
+                                <span class="mn-radio mn-radio-state-readonly question-type"
+                                      data-name="qa"
+                                      ms-visible="false"
+                                      ms-class="mn-radio-state-selected: questionType == 'qa'">问答题</span>
+                                <span class="mn-radio mn-radio-state-readonly question-type"
+                                      data-name="ppt"
+                                      ms-class="mn-radio-state-selected: questionType == 'ppt'">PPT讲解</span>
+                                <span class="mn-radio mn-radio-state-readonly question-type"
+                                      data-name="practice"
+                                      ms-class="mn-radio-state-selected: questionType == 'practice'">产品实操</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>题目：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="question-title"  name="questionTitle" ms-value="questionTitle"></textarea>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="option-field-wrapper" ms-if="questionType == 'single' || questionType == 'multi'">
+                        <ul class="option-list">
+                            <li class="option-item f-field fn-clear"
+                                ms-repeat="optionList">
+                                <label class="ff-label fn-left"><span class="icon-star">*</span>答案{{$index + 1}}：</label>
+                                <div class="ff-value">
+                                    <div class="ff-value-box">
+                                        <textarea class="option-content" ms-duplex="el.optionContent"></textarea>
+                                        <div class="question-action">
+                                            <a href="javascript:;" class="set-true" ms-if="!el.isRight" ms-click="setOptionTrue">设为正确答案</a><a href="javascript:;"
+                                                class="set-false" ms-if="el.isRight" ms-click="setOptionFalse">取消正确答案</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
+                                                href="javascript:;" class="remove-option" ms-click="removeOption" ms-if="$index > 1">删除答案</a>
+                                        </div>
+                                    </div>
+                                    <div class="ff-value-tip"></div>
+                                </div>
+                            </li>
+                        </ul>
+                        <!--<div class="ff-value-tip"></div>-->
+                        <a href="javascript:;" class="add-new-option" ms-click="addQuestionOption"><i class="iconfont">&#xe600;</i>添加答案</a>
+                    </div>
+                    <!-- 判断题答案的设置 -->
+                    <div class="bool-answer-field f-field fn-clear" ms-if="questionType == 'bool'">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>答案设置：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="label-for ff-value-text" ms-repeat="boolSetting"><input type="radio" class="answer-setting" ms-value="el.isRight ? '1' : '0'" name="answer_setting" ms-checked="el.isRight" ms-click="setBoolSetting" />&nbsp;<label>{{el.optionContent}}</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="reference-answer-field-wrapper" ms-if="questionType == 'qa'">
+                        <div class="f-field fn-clear">
+                            <label class="ff-label fn-left"><span class="icon-star">*</span>参考答案：</label>
+                            <div class="ff-value">
+                                <div class="ff-value-box">
+                                    <textarea class="reference-answer" ms-duplex="referenceAnswer"></textarea>
+                                </div>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ppt-field-wrapper" ms-if="questionType == 'ppt'">
+                     <div class="f-field fn-clear">
+                            <label class="ff-label fn-left"><span class="icon-star">*</span>PPT名称：</label>
+                            <div class="ff-value">
+                                <div class="ff-value-box">
+                                   <input type="text" class="pptName input-text" ms-value="pptName" />
+                                </div>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </div>
+                        <div class="f-field fn-clear">
+                            <label class="ff-label fn-left"><span class="icon-star">*</span>选择PPT：</label>
+                            <div class="ff-value">
+                                <div class="ff-value-box">
+                                    <div class="upload-action">
+                                        <span class="ppt-uploader" ms-widget="uploader,$,$uploaderOpts"><button type="button" class="upload-btn simple-btn"
+                                                ms-if="!uploading">上传PPT图片</button>
+                                            <button type="button" class="simple-btn-disabled" ms-if="uploading">正在上传&#8230;</button></span>&nbsp;&nbsp;
+                                        <button type="button" class="remove-all-ppt-btn main-btn" ms-click="removeAllUploadBtn">删除全部图片</button>
+                                    </div>
+                                    <div class="upload-panel" ms-skip="1">
+                                        <ul class="upload-list fn-clear">
+                                            <li class="upload-item fn-left"
+                                                ms-class-1="upload-item-with-loading: !el.filePath"
+                                                ms-data-file-id="el.id"
+                                                ms-repeat="uploadList_">
+                                                <img ms-src="{{el.filePath}}" ms-if="el.filePath" alt="" />
+                                                <div class="overlay"></div>
+                                                <span class="file-index">{{$index + 1}}</span>
+                                                <span class="remove-file-btn" ms-click="clickRemoveBtn">&#10005;</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="practice-field-wrapper" ms-visible="questionType == 'practice'">
+                        <div class="f-field fn-clear">
+                            <label class="ff-label fn-left"><span class="icon-star">*</span>URL地址：</label>
+                            <div class="ff-value">
+                                <div class="ff-value-box">
+                                    <!--<input type="text" class="url input-text" ms-duplex="url" />-->
+                                    <span class="url" ms-widget="select,$,$urlOpts"></span>
+                                </div>
+                                <div class="ff-value-tip"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>归属课件：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="courseware-selected" ms-visible="!!coursewareId">{{coursewareName}}&nbsp;</span>
+                                <button type="button"
+                                        class="select-courseware-btn simple-btn"
+                                        ms-click="openCourseware">选择课件</button>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-action f-field fn-clear">
+                        <label class="ff-label fn-left">&nbsp;</label>
+                        <div class="ff-value">
+                            <button type="button" class="f-submit main-btn">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> <!--  end of form box -->
+    <div class="ui-hidden" ms-module="cwselector,$,$cwselectorOpts"></div>
+</div>

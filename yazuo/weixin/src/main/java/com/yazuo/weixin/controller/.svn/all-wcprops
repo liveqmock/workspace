@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/crmapi/!svn/ver/25899/code/weixin/src/main/java/com/yazuo/weixin/controller
+END
+NewFunctionController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/crmapi/!svn/ver/24422/code/weixin/src/main/java/com/yazuo/weixin/controller/NewFunctionController.java
+END
+ExternalInterface.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/crmapi/!svn/ver/9186/code/weixin/src/main/java/com/yazuo/weixin/controller/ExternalInterface.java
+END
+CreateButtonController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/crmapi/!svn/ver/25069/code/weixin/src/main/java/com/yazuo/weixin/controller/CreateButtonController.java
+END
+BrandManageController.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/crmapi/!svn/ver/24987/code/weixin/src/main/java/com/yazuo/weixin/controller/BrandManageController.java
+END
+AdministratorInterfaceController.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/crmapi/!svn/ver/7419/code/weixin/src/main/java/com/yazuo/weixin/controller/AdministratorInterfaceController.java
+END
+TimerTaskController.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/crmapi/!svn/ver/18828/code/weixin/src/main/java/com/yazuo/weixin/controller/TimerTaskController.java
+END
+WeixinManageControllerForSOP.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/crmapi/!svn/ver/24987/code/weixin/src/main/java/com/yazuo/weixin/controller/WeixinManageControllerForSOP.java
+END
+WeixinRechargeCenterController.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/crmapi/!svn/ver/18589/code/weixin/src/main/java/com/yazuo/weixin/controller/WeixinRechargeCenterController.java
+END
+LoginController.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/crmapi/!svn/ver/24957/code/weixin/src/main/java/com/yazuo/weixin/controller/LoginController.java
+END
+WeiXinLogAnalysisController.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/crmapi/!svn/ver/22186/code/weixin/src/main/java/com/yazuo/weixin/controller/WeiXinLogAnalysisController.java
+END
+QueryTransactionRecordController.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/crmapi/!svn/ver/24028/code/weixin/src/main/java/com/yazuo/weixin/controller/QueryTransactionRecordController.java
+END
+WeixinCoffeeController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/crmapi/!svn/ver/22519/code/weixin/src/main/java/com/yazuo/weixin/controller/WeixinCoffeeController.java
+END
+NewLotteryController.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/crmapi/!svn/ver/23548/code/weixin/src/main/java/com/yazuo/weixin/controller/NewLotteryController.java
+END
+ConsumerInterfaceController.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/crmapi/!svn/ver/23661/code/weixin/src/main/java/com/yazuo/weixin/controller/ConsumerInterfaceController.java
+END
+WeixinManageController.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/java/com/yazuo/weixin/controller/WeixinManageController.java
+END
+ConsumerLotteryController.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/14707/code/weixin/src/main/java/com/yazuo/weixin/controller/ConsumerLotteryController.java
+END
+TestController.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/crmapi/!svn/ver/22272/code/weixin/src/main/java/com/yazuo/weixin/controller/TestController.java
+END
+WeiXinFeedBackWaringController.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/crmapi/!svn/ver/21483/code/weixin/src/main/java/com/yazuo/weixin/controller/WeiXinFeedBackWaringController.java
+END
+WeixinCoffeeSellCardController.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/crmapi/!svn/ver/25899/code/weixin/src/main/java/com/yazuo/weixin/controller/WeixinCoffeeSellCardController.java
+END
+ServiceConfigController.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/crmapi/!svn/ver/15606/code/weixin/src/main/java/com/yazuo/weixin/controller/ServiceConfigController.java
+END
+BusinessAutoreplyLoaderController.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/crmapi/!svn/ver/7232/code/weixin/src/main/java/com/yazuo/weixin/controller/BusinessAutoreplyLoaderController.java
+END
+WeixinXldBuQuanController.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/18099/code/weixin/src/main/java/com/yazuo/weixin/controller/WeixinXldBuQuanController.java
+END
+WeiXinCoffeeFeedBackWaringController.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/crmapi/!svn/ver/21483/code/weixin/src/main/java/com/yazuo/weixin/controller/WeiXinCoffeeFeedBackWaringController.java
+END
+WeixinPhonePageController.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/crmapi/!svn/ver/25524/code/weixin/src/main/java/com/yazuo/weixin/controller/WeixinPhonePageController.java
+END

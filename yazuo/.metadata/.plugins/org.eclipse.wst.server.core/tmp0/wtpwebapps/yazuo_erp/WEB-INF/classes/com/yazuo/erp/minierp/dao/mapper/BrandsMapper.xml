@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.minierp.dao.BrandsDao">
+	<resultMap id="Brands" type="com.yazuo.erp.minierp.vo.BrandsVO">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="contractDate" column="contract_date" />
+		<result property="contractType" column="contract_type" />
+		<result property="onlineDate" column="online_date" />
+		<result property="expirationDate" column="expiration_date" />
+		<result property="sale" column="sale" />
+		<result property="userId" column="user_id" />
+		<result property="status" column="status" />
+		<result property="crmId" column="crm_id" />
+		<result property="brand" column="brand" />
+		<result property="shopCount" column="shop_count" />
+		<result property="sumHealth" column="sum_health" />
+		<result property="createdAt" column="created_at" />
+		<result property="updatedAt" column="updated_at" />
+		<result property="logoFileName" column="logo_file_name" />
+		<result property="logoContentType" column="logo_content_type" />
+		<result property="logoFileSize" column="logo_file_size" />
+		<result property="logoUpdatedAt" column="logo_updated_at" />
+	</resultMap>
+
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="brandsColumns">
+	    <![CDATA[
+		id,name,contract_date,contract_type,online_date,expiration_date,sale,user_id,status,crm_id,brand,shop_count,sum_health,created_at,updated_at,logo_file_name,logo_content_type,logo_file_size,logo_updated_at
+	    ]]>
+	</sql>
+
+	<insert id="saveBrands" useGeneratedKeys="true" keyProperty="id">
+		<!--不允许为空的字段： -->
+		INSERT INTO public.brands (
+		<if test="name!=null and name!=''">name,</if>
+		<if test="contractDate!=null ">contract_date,</if>
+		<if test="contractType!=null and contractType!=''">contract_type,</if>
+		<if test="onlineDate!=null ">online_date,</if>
+		<if test="expirationDate!=null ">expiration_date,</if>
+		<if test="sale!=null and sale!=''">sale,</if>
+		<if test="userId!=null ">user_id,</if>
+		<if test="status!=null ">status,</if>
+		<if test="crmId!=null ">crm_id,</if>
+		<if test="brand!=null and brand!=''">brand,</if>
+		<if test="shopCount!=null ">shop_count,</if>
+		<if test="sumHealth!=null ">sum_health,</if>
+		<if test="createdAt!=null ">created_at,</if>
+		<if test="updatedAt!=null ">updated_at,</if>
+		<if test="logoFileName!=null and logoFileName!=''">logo_file_name,</if>
+		<if test="logoContentType!=null and logoContentType!=''">logo_content_type,</if>
+		<if test="logoFileSize!=null ">logo_file_size,</if>
+		<if test="logoUpdatedAt!=null ">logo_updated_at</if>
+		) VALUES (
+		<if test="name!=null and name!=''">#{name},</if>
+		<if test="contractDate!=null ">#{contractDate},</if>
+		<if test="contractType!=null and contractType!=''">#{contractType},</if>
+		<if test="onlineDate!=null ">#{onlineDate},</if>
+		<if test="expirationDate!=null ">#{expirationDate},</if>
+		<if test="sale!=null and sale!=''">#{sale},</if>
+		<if test="userId!=null ">#{userId},</if>
+		<if test="status!=null ">#{status},</if>
+		<if test="crmId!=null ">#{crmId},</if>
+		<if test="brand!=null and brand!=''">#{brand},</if>
+		<if test="shopCount!=null ">#{shopCount},</if>
+		<if test="sumHealth!=null ">#{sumHealth},</if>
+		<if test="createdAt!=null ">#{createdAt},</if>
+		<if test="updatedAt!=null ">#{updatedAt},</if>
+		<if test="logoFileName!=null and logoFileName!=''">#{logoFileName},</if>
+		<if test="logoContentType!=null and logoContentType!=''">#{logoContentType},</if>
+		<if test="logoFileSize!=null ">#{logoFileSize},</if>
+		<if test="logoUpdatedAt!=null ">#{logoUpdatedAt}</if>
+		)
+	</insert>
+
+	<insert id="batchInsertBrandss" parameterType="map">
+		<!--不允许为空的字段： -->
+		INSERT INTO public.brands (
+		<if test="name!=null and name!=''">name,</if>
+		<if test="contractDate!=null ">contract_date,</if>
+		<if test="contractType!=null and contractType!=''">contract_type,</if>
+		<if test="onlineDate!=null ">online_date,</if>
+		<if test="expirationDate!=null ">expiration_date,</if>
+		<if test="sale!=null and sale!=''">sale,</if>
+		<if test="userId!=null ">user_id,</if>
+		<if test="status!=null ">status,</if>
+		<if test="crmId!=null ">crm_id,</if>
+		<if test="brand!=null and brand!=''">brand,</if>
+		<if test="shopCount!=null ">shop_count,</if>
+		<if test="sumHealth!=null ">sum_health,</if>
+		<if test="createdAt!=null ">created_at,</if>
+		<if test="updatedAt!=null ">updated_at,</if>
+		<if test="logoFileName!=null and logoFileName!=''">logo_file_name,</if>
+		<if test="logoContentType!=null and logoContentType!=''">logo_content_type,</if>
+		<if test="logoFileSize!=null ">logo_file_size,</if>
+		<if test="logoUpdatedAt!=null ">logo_updated_at</if>
+		) VALUES
+		<foreach collection="list" item="t" separator=",">
+			(
+			<if test="name!=null and name!=''">#{t.name},</if>
+			<if test="contractDate!=null ">#{t.contractDate},</if>
+			<if test="contractType!=null and contractType!=''">#{t.contractType},</if>
+			<if test="onlineDate!=null ">#{t.onlineDate},</if>
+			<if test="expirationDate!=null ">#{t.expirationDate},</if>
+			<if test="sale!=null and sale!=''">#{t.sale},</if>
+			<if test="userId!=null ">#{t.userId},</if>
+			<if test="status!=null ">#{t.status},</if>
+			<if test="crmId!=null ">#{t.crmId},</if>
+			<if test="brand!=null and brand!=''">#{t.brand},</if>
+			<if test="shopCount!=null ">#{t.shopCount},</if>
+			<if test="sumHealth!=null ">#{t.sumHealth},</if>
+			<if test="createdAt!=null ">#{t.createdAt},</if>
+			<if test="updatedAt!=null ">#{t.updatedAt},</if>
+			<if test="logoFileName!=null and logoFileName!=''">#{t.logoFileName},</if>
+			<if test="logoContentType!=null and logoContentType!=''">#{t.logoContentType},</if>
+			<if test="logoFileSize!=null ">#{t.logoFileSize},</if>
+			<if test="logoUpdatedAt!=null ">#{t.logoUpdatedAt}</if>
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateBrands">
+		UPDATE public.brands
+		<set>
+			<if test="name!=null and name!=''">name = #{name} ,</if>
+			<if test="contractDate!=null ">contract_date = #{contractDate} ,</if>
+			<if test="contractType!=null and contractType!=''">contract_type = #{contractType} ,</if>
+			<if test="onlineDate!=null ">online_date = #{onlineDate} ,</if>
+			<if test="expirationDate!=null ">expiration_date = #{expirationDate} ,</if>
+			<if test="sale!=null and sale!=''">sale = #{sale} ,</if>
+			<if test="userId!=null ">user_id = #{userId} ,</if>
+			<if test="status!=null ">status = #{status} ,</if>
+			<if test="crmId!=null ">crm_id = #{crmId} ,</if>
+			<if test="brand!=null and brand!=''">brand = #{brand} ,</if>
+			<if test="shopCount!=null ">shop_count = #{shopCount} ,</if>
+			<if test="sumHealth!=null ">sum_health = #{sumHealth} ,</if>
+			<if test="createdAt!=null ">created_at = #{createdAt} ,</if>
+			<if test="updatedAt!=null ">updated_at = #{updatedAt} ,</if>
+			<if test="logoFileName!=null and logoFileName!=''">logo_file_name = #{logoFileName} ,</if>
+			<if test="logoContentType!=null and logoContentType!=''">logo_content_type = #{logoContentType} ,</if>
+			<if test="logoFileSize!=null ">logo_file_size = #{logoFileSize} ,</if>
+			<if test="logoUpdatedAt!=null ">logo_updated_at = #{logoUpdatedAt} </if>
+		</set>
+		WHERE
+		id = #{id}
+	</update>
+
+	<update id="batchUpdateBrandssToDiffVals" parameterType="map">
+		<foreach collection="list" item="t" index="index" open=""
+			close="" separator=";">
+			UPDATE public.brands
+			<set>
+				<if test="name!=null and name!=''">name = #{t.name} ,</if>
+				<if test="contractDate!=null ">contract_date = #{t.contractDate} ,</if>
+				<if test="contractType!=null and contractType!=''">contract_type = #{t.contractType} ,</if>
+				<if test="onlineDate!=null ">online_date = #{t.onlineDate} ,</if>
+				<if test="expirationDate!=null ">expiration_date = #{t.expirationDate} ,</if>
+				<if test="sale!=null and sale!=''">sale = #{t.sale} ,</if>
+				<if test="userId!=null ">user_id = #{t.userId} ,</if>
+				<if test="status!=null ">status = #{t.status} ,</if>
+				<if test="crmId!=null ">crm_id = #{t.crmId} ,</if>
+				<if test="brand!=null and brand!=''">brand = #{t.brand} ,</if>
+				<if test="shopCount!=null ">shop_count = #{t.shopCount} ,</if>
+				<if test="sumHealth!=null ">sum_health = #{t.sumHealth} ,</if>
+				<if test="createdAt!=null ">created_at = #{t.createdAt} ,</if>
+				<if test="updatedAt!=null ">updated_at = #{t.updatedAt} ,</if>
+				<if test="logoFileName!=null and logoFileName!=''">logo_file_name = #{t.logoFileName} ,</if>
+				<if test="logoContentType!=null and logoContentType!=''">logo_content_type = #{t.logoContentType} ,</if>
+				<if test="logoFileSize!=null ">logo_file_size = #{t.logoFileSize} ,</if>
+				<if test="logoUpdatedAt!=null ">logo_updated_at = #{t.logoUpdatedAt} </if>
+			</set>
+			WHERE
+			id = #{t.id}
+		</foreach>
+	</update>
+
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateBrandssToSameVals" parameterType="map">
+		UPDATE public.brands
+		<set>
+			<if test="name!=null and name!=''">name = #{name} ,</if>
+			<if test="contractDate!=null ">contract_date = #{contractDate} ,</if>
+			<if test="contractType!=null and contractType!=''">contract_type = #{contractType} ,</if>
+			<if test="onlineDate!=null ">online_date = #{onlineDate} ,</if>
+			<if test="expirationDate!=null ">expiration_date = #{expirationDate} ,</if>
+			<if test="sale!=null and sale!=''">sale = #{sale} ,</if>
+			<if test="userId!=null ">user_id = #{userId} ,</if>
+			<if test="status!=null ">status = #{status} ,</if>
+			<if test="crmId!=null ">crm_id = #{crmId} ,</if>
+			<if test="brand!=null and brand!=''">brand = #{brand} ,</if>
+			<if test="shopCount!=null ">shop_count = #{shopCount} ,</if>
+			<if test="sumHealth!=null ">sum_health = #{sumHealth} ,</if>
+			<if test="createdAt!=null ">created_at = #{createdAt} ,</if>
+			<if test="updatedAt!=null ">updated_at = #{updatedAt} ,</if>
+			<if test="logoFileName!=null and logoFileName!=''">logo_file_name = #{logoFileName} ,</if>
+			<if test="logoContentType!=null and logoContentType!=''">logo_content_type = #{logoContentType} ,</if>
+			<if test="logoFileSize!=null ">logo_file_size = #{logoFileSize} ,</if>
+			<if test="logoUpdatedAt!=null ">logo_updated_at = #{logoUpdatedAt} </if>
+		</set>
+		WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</update>
+
+	<delete id="deleteBrandsById">
+    <![CDATA[
+        DELETE FROM public.brands WHERE
+        id = #{id} 
+    ]]>
+	</delete>
+
+	<delete id="batchDeleteBrandsByIds" parameterType="list">
+		DELETE FROM public.brands WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</delete>
+
+	<select id="getBrandsById" resultMap="Brands">
+		SELECT
+		<include refid="brandsColumns" />
+		FROM public.brands
+		WHERE id = #{id}
+	</select>
+
+	<select id="getBrandss" resultMap="Brands">
+		SELECT
+		<include refid="brandsColumns" />
+		FROM public.brands
+		<include refid="brands_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<select id="getBrandssMap" resultType="map">
+		SELECT
+		<include refid="brandsColumns" />
+	    <![CDATA[
+		    FROM public.brands  
+	    ]]>
+		<include refid="brands_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="brands_findPage_where">
+		<where>
+			<if test="id!=null ">AND id = #{id}</if>
+			<if test="name!=null and name!=''">AND name = #{name}</if>
+			<if test="contractDate!=null ">AND contract_date >= #{contractDate}</if>
+			<if test="contractDate!=null ">AND contract_date &lt;= #{contractDate}</if>
+			<if test="contractType!=null and contractType!=''">AND contract_type = #{contractType}</if>
+			<if test="onlineDate!=null ">AND online_date >= #{onlineDate}</if>
+			<if test="onlineDate!=null ">AND online_date &lt;= #{onlineDate}</if>
+			<if test="expirationDate!=null ">AND expiration_date >= #{expirationDate}</if>
+			<if test="expirationDate!=null ">AND expiration_date &lt;= #{expirationDate}</if>
+			<if test="sale!=null and sale!=''">AND sale = #{sale}</if>
+			<if test="userId!=null ">AND user_id = #{userId}</if>
+			<if test="status!=null ">AND status = #{status}</if>
+			<if test="crmId!=null ">AND crm_id = #{crmId}</if>
+			<if test="brand!=null and brand!=''">AND brand = #{brand}</if>
+			<if test="shopCount!=null ">AND shop_count = #{shopCount}</if>
+			<if test="sumHealth!=null ">AND sum_health = #{sumHealth}</if>
+			<if test="createdAt!=null ">AND created_at >= #{createdAt}</if>
+			<if test="createdAt!=null ">AND created_at &lt;= #{createdAt}</if>
+			<if test="updatedAt!=null ">AND updated_at >= #{updatedAt}</if>
+			<if test="updatedAt!=null ">AND updated_at &lt;= #{updatedAt}</if>
+			<if test="logoFileName!=null and logoFileName!=''">AND logo_file_name = #{logoFileName}</if>
+			<if test="logoContentType!=null and logoContentType!=''">AND logo_content_type = #{logoContentType}</if>
+			<if test="logoFileSize!=null ">AND logo_file_size = #{logoFileSize}</if>
+			<if test="logoUpdatedAt!=null ">AND logo_updated_at >= #{logoUpdatedAt}</if>
+			<if test="logoUpdatedAt!=null ">AND logo_updated_at &lt;= #{logoUpdatedAt}</if>
+		</where>
+	</sql>
+
+	<select id="getBrandsCount" resultType="long">
+		SELECT count(*) FROM public.brands
+		<include refid="brands_findPage_where" />
+	</select>
+
+	<select id="getBrandsInfo" resultType="map" parameterType="String">
+		SELECT
+		id,
+		name,
+		crm_id
+		FROM
+		public.brands
+		WHERE
+		id NOT IN(
+		SELECT
+		mini_merchant_id
+		FROM
+		syn.syn_merchant_brand
+		)
+		AND status = 0
+		AND id NOT IN(412,298)
+		<if test="name!=null and name!=''">AND name like '%'||#{name}||'%'
+		</if>
+	</select>
+
+	<select id="getCrmIds" resultType="int">
+		SELECT
+		crm_id
+		FROM
+		public .brands
+		WHERE
+		1 = 1
+		AND status = 0
+		AND crm_id IS NOT NULL;
+	</select>
+</mapper>

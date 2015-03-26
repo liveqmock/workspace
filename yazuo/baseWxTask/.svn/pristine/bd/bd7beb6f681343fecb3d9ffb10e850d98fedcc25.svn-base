@@ -1,0 +1,38 @@
+jdbc.driver_class=org.postgresql.Driver
+#########################################
+   ### ERP dev environment #######
+#########################################
+jdbc.erp.url=jdbc\:postgresql\://192.168.236.210\:5432/erp
+jdbc.erp.user=erp
+jdbc.erp.password=erp
+
+
+#########################################
+   ### crm environment -crm #######
+#########################################
+jdbc.crm.url=jdbc:postgresql://192.168.236.210:5432/crm
+jdbc.crm.user=dev
+jdbc.crm.password=dev
+
+#########################################
+   ### crm environment -trade #######
+#########################################
+jdbc.crm.trade.url=jdbc:postgresql://192.168.236.210:5432/trade
+jdbc.crm.trade.user=oper
+jdbc.crm.trade.password=oper
+
+
+#########################################
+   ### GP environment #######
+#########################################
+crmjdbc.crmurl=jdbc\:postgresql\://192.168.232.46\:5432/crm
+crmjdbc.crmusername=dev
+crmjdbc.crmpassword=dev
+
+
+#########################################
+   ### ERP test environment #######
+#########################################
+#jdbc.erp.url=jdbc\:postgresql\://192.168.236.51\:5432/erp
+#jdbc.erp.user=erp
+#jdbc.erp.password=erp

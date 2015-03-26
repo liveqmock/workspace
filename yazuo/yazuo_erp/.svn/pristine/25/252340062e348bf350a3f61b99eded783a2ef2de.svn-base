@@ -1,0 +1,121 @@
+package com.yazuo.erp.api.dao.impl;
+
+import com.yazuo.erp.api.dao.ReportDataDao;
+import com.yazuo.erp.api.vo.MonthlyStatVO;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.time.DateUtils;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+/**
+ */
+@Repository
+public class ReportDataDaoImpl implements ReportDataDao {
+    @Resource
+    private JdbcTemplate jdbcTemplateCrm210;
+
+    @Resource
+    private JdbcTemplate jdbcTemplateCrm;
+
+    @Override
+    public double getOpenNumPercent(Integer brandId, Date month) {
+        Integer total = this.getAllOpenNum(brandId,month);
+        Integer membershipOpenNum = this.getMembershipOpenNum(brandId, month);
+        return total == 0 ? 0 : (membershipOpenNum * 1.0) / total;
+    }
+
+    @Override
+    public int getAllOpenNum(Integer brandId, Date month) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+        String sql = "SELECT sum(index_value) as index_value FROM public.merchant_index_plan WHERE index_id=11 AND brand_id=? AND month=?";
+        List<Integer> result =  this.jdbcTemplateCrm210.query(sql, new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getInt("index_value");
+            }
+        }, brandId, format.format(month));
+        return  result.size() > 0 ? result.get(0) : 0;
+    }
+
+    protected int getMembershipOpenNum(Integer brandId, Date month) {
+        String sql = "SELECT sum(trans_quantity) as trans_quantity FROM report.daily_merchant_summary WHERE brand_id=? and trans_date between ? and ? ";
+        List<Integer> result = this.jdbcTemplateCrm.query(sql, new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getInt("trans_quantity");
+            }
+        },brandId, month, DateUtils.addMonths(month, 1));
+        return result.size() > 0 ? result.get(0) : 0;
+    }
+
+
+    @Override
+    public double getStoreBalance(Integer brandId, Date lastDay) {
+        String sql = "SELECT sum(store_balance) as store_balance FROM report.report_begining where type=1 and report_date =? and brand_id=?";
+        List<Double> result = this.jdbcTemplateCrm.query(sql, new RowMapper<Double>() {
+            @Override
+            public Double mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getDouble("store_balance");
+            }
+
+        },lastDay, brandId);
+        return result.size() > 0 ? result.get(0) : 0;
+    }
+
+    @Override
+    public MonthlyStatVO getStatForBrand(Integer brandId, Date from, Date to) {
+        String sql = "SELECT SUM(new_card) new_card," +
+                " SUM(new_member) new_member," +
+                " SUM(fans_member) fans_member," +
+                " SUM(integral_member) integral_member," +
+                " SUM(store_member) store_member," +
+                " SUM(realcard) realcard," +
+                " SUM(card_income) card_income," +
+                " SUM(store_pay_cash) store_pay," +
+                " SUM(store_pay_award) store_pay_award," +
+                " SUM(store_consume) store_consume," +
+                " SUM(integral_pay) integral_pay," +
+                " SUM(integral_consume) integral_consume," +
+                " SUM(store_doposit) store_doposit," +
+                " SUM(cash) cash," +
+                " SUM(coupon_amount) coupon_amount," +
+                " SUM(coupon_quantity) coupon_quantity," +
+                " SUM(cash_income) cash_income," +
+                " SUM(marketing_income) marketing_income," +
+                " SUM(evaluate_quantity) evaluate_quantity," +
+                " SUM(evaluate_sms) evaluate_sms," +
+                " SUM(evaluate_score) evaluate_score," +
+                " SUM(trans_quantity) trans_quantity," +
+                " SUM(old_trans_quantity) old_trans_quantity," +
+                " SUM(new_cash) new_cash," +
+                " SUM(new_store_consume) new_store_consume," +
+                " SUM(new_integral_consume) new_integral_consume" +
+                " FROM report.daily_merchant_summary " +
+                " WHERE  brand_id = ? AND trans_date >= ? AND trans_date < ?";
+        List<MonthlyStatVO> result = this.jdbcTemplateCrm.query(sql, this.toRowMapper(), brandId, from, to);
+        return CollectionUtils.isEmpty(result) ? null : result.get(0);
+    }
+    protected RowMapper<MonthlyStatVO> toRowMapper() {
+        return new RowMapper<MonthlyStatVO>() {
+            @Override
+            public MonthlyStatVO mapRow(ResultSet rs, int rowNum) throws SQLException {
+                MonthlyStatVO monthlyStatVO = new MonthlyStatVO();
+                monthlyStatVO.setNewMember(rs.getInt("new_member"));
+                monthlyStatVO.setFansMember(rs.getInt("fans_member"));
+                monthlyStatVO.setIntegralMember(rs.getInt("integral_member"));
+                monthlyStatVO.setStoreMember(rs.getInt("store_member"));
+                monthlyStatVO.setStorePay(rs.getDouble("store_pay"));
+                monthlyStatVO.setRealMarketingIncome(rs.getDouble("marketing_income") * 0.6 - rs.getDouble("coupon_amount") * 0.4);
+                return monthlyStatVO;
+            }
+        };
+    }
+}

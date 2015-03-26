@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.req.dao.ReqRequirementDao">
+
+	<resultMap id="ComplexReqRequirement" type="com.yazuo.erp.req.vo.ReqRequirementVO">
+    	<id property="id" column="id"/>
+    	<result property="name" column="req_name"/>
+    	<result property="requirementPlanType" column="requirement_plan_type"/>
+    	<result property="planTime" column="plan_time"/>
+    	<result property="isRequirementsReview" column="is_requirements_review"/>
+    	<result property="requirementsReviewTime" column="requirements_review_time"/>
+    	<result property="isProductReview" column="is_product_review"/>
+    	<result property="productReviewTime" column="product_review_time"/>
+    	<result property="developmentTime" column="development_time"/>
+    	<result property="planEndTime" column="plan_end_time"/>
+    	<result property="leader" column="leader"/>
+    	<result property="requirementStatus" column="requirement_status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="requirementsReviewOpinion" column="requirements_review_opinion"/>
+    	<result property="productReviewOpinion" column="product_review_opinion"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="requirementPlanTypeVal" column="requirement_plan_type_value"/>
+    	<result property="requirementStatusVal" column="requirement_status_value"/>
+    	<result property="onlineTime" column="online_time"/>
+    	<result property="priority" column="priority"/>
+    	<result property="reqSource" column="req_source"/>
+    	<result property="operator" column="operator"/>
+    	<result property="reqSourceText" column="req_source_text"/>
+     	<collection  property="reqProjects" column="project_id" ofType="com.yazuo.erp.req.vo.ReqProjectVO">
+	       	<id property="id" column="project_id"/>
+	       	<id property="name" column="name"/>
+		</collection>
+	</resultMap>
+	
+    <!-- 效率高，分页问题处理 : @@处为需要分页替换的部分 ； 排序要内层外层都加-->
+	<select id="getComplexRequirementByJoin" resultMap="ComplexReqRequirement" parameterType="map">		
+select req.id as alais_id, temp_req_req_project.project_id as project_id,  req.name as req_name,  s_user.user_name as operator, 
+ (select d.dictionary_value from sys.sys_dictionary  d where d.dictionary_key = req.requirement_plan_type and d.dictionary_type='00000032') as requirement_plan_type_value,
+ (select d.dictionary_value from sys.sys_dictionary  d where d.dictionary_key = req.requirement_status and d.dictionary_type='00000035') as requirement_status_value,
+ (select d.dictionary_value from sys.sys_dictionary  d where d.dictionary_key = req.req_source and d.dictionary_type='00000116') as req_source_text,
+		      temp_req_req_project.name as name,req.*
+			  from (select * from req.req_requirement as inner_req 
+		<where>	      				
+	       <if test="name!=null and name!=''">
+				AND inner_req.name like '%'||#{name}||'%'
+			</if>
+		   <if test="priority!=null and priority!=''">AND priority = #{priority}</if>
+	       <if test="reqSource!=null and reqSource!=''">AND req_source = #{reqSource}</if>
+	       <if test="requirementPlanType!=null and requirementPlanType!=''">AND requirement_plan_type = '${requirementPlanType}'</if>
+	       <if test="requirementStatus!=null and requirementStatus!=''">AND requirement_status = '${requirementStatus}'</if>
+		   <if test="startPlanTime!=null">AND plan_time >= '${startPlanTime}'</if>
+		   <if test="endPlanTime!=null">AND plan_time &lt; '${endPlanTime}'</if>
+		    <if test="projectIds!=null">
+			    and exists(select 1 from req.req_project_requirement req_p_r 
+	            where req_p_r.requirement_id =  inner_req.id and req_p_r.project_id in  
+		   	  <foreach collection="projectIds" item="id" open="(" close=")" separator=",">${id}</foreach>)     
+		    </if>
+		</where> ORDER BY inner_req.id desc  @@ ) req  
+			  LEFT JOIN sys.sys_user as s_user on s_user.id = req.insert_by 
+			  LEFT JOIN (select  rp.project_id, rp.requirement_id, p.name  
+	              from req.req_project_requirement rp  INNER JOIN req.req_project p on  rp.project_id = p.id) temp_req_req_project
+	          ON (req.id =temp_req_req_project.requirement_id) 
+		ORDER BY req.id desc 
+	</select>
+	
+	<resultMap id="ReqRequirement" type="com.yazuo.erp.req.vo.ReqRequirementVO">
+    	<id property="id" column="id"/>
+    	<result property="name" column="name"/>
+    	<result property="requirementPlanType" column="requirement_plan_type"/>
+    	<result property="planTime" column="plan_time"/>
+    	<result property="startPlanTime" column="plan_time"/>
+    	<result property="isRequirementsReview" column="is_requirements_review"/>
+    	<result property="requirementsReviewTime" column="requirements_review_time"/>
+    	<result property="isProductReview" column="is_product_review"/>
+    	<result property="requirementsReviewOpinion" column="requirements_review_opinion"/>
+    	<result property="productReviewOpinion" column="product_review_opinion"/>
+    	<result property="productReviewTime" column="product_review_time"/>
+    	<result property="developmentTime" column="development_time"/>
+    	<result property="planEndTime" column="plan_end_time"/>
+    	<result property="leader" column="leader"/>
+    	<result property="requirementStatus" column="requirement_status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="onlineTime" column="online_time"/>
+    	<result property="priority" column="priority"/>
+    	<result property="reqSource" column="req_source"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="reqrequirementColumns">
+	    <![CDATA[
+		id,name,requirement_plan_type,plan_time,is_requirements_review,requirements_review_time,is_product_review,product_review_time,development_time,plan_end_time,leader,requirement_status,is_enable,remark,insert_by,insert_time,update_by,update_time,online_time
+	    ]]>
+	</sql>
+
+	<insert id="saveReqRequirement" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： name,requirement_plan_type,plan_time,is_requirements_review,is_product_review,leader,requirement_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO req.req_requirement (
+        	 <if test="name!=null">name,</if>
+        	 <if test="requirementPlanType!=null">requirement_plan_type,</if>
+        	 <if test="startPlanTime!=null">plan_time,</if>
+        	 <if test="isRequirementsReview!=null">is_requirements_review,</if>
+        	 <if test="requirementsReviewTime!=null">requirements_review_time,</if>
+        	 <if test="isProductReview!=null">is_product_review,</if>
+        	 <if test="productReviewTime!=null">product_review_time,</if>
+        	 <if test="developmentTime!=null">development_time,</if>
+        	 <if test="planEndTime!=null">plan_end_time,</if>
+        	 <if test="requirementsReviewOpinion!=null">requirements_review_opinion,</if>
+        	 <if test="productReviewOpinion!=null">product_review_opinion,</if>
+        	 <if test="leader!=null">leader,</if>
+        	 <if test="requirementStatus!=null">requirement_status,</if>
+        	 <if test="onlineTime!=null">online_time,</if>
+        	 <if test="isEnable!=null">is_enable,</if>
+        	 <if test="remark!=null">remark,</if>
+        	 <if test="priority!=null and priority!=''">priority,</if>
+        	 <if test="reqSource!=null and reqSource!=''">req_source,</if>
+        	 <if test="insertBy!=null">insert_by,</if>
+        	 <if test="insertTime!=null">insert_time,</if>
+        	 <if test="updateBy!=null">update_by,</if>
+        	 update_time
+        ) VALUES (
+       	    <if test="name!=null">#{name},</if>
+       	    <if test="requirementPlanType!=null">#{requirementPlanType},</if>
+       	    <if test="startPlanTime!=null">#{startPlanTime},</if>
+       	    <if test="isRequirementsReview!=null">#{isRequirementsReview},</if>
+       	    <if test="requirementsReviewTime!=null">#{requirementsReviewTime},</if>
+       	    <if test="isProductReview!=null">#{isProductReview},</if>
+       	    <if test="productReviewTime!=null">#{productReviewTime},</if>
+       	    <if test="developmentTime!=null">#{developmentTime} ,</if>
+       	    <if test="planEndTime!=null">#{planEndTime},</if>
+       	    <if test="requirementsReviewOpinion!=null">#{requirementsReviewOpinion},</if>
+       	    <if test="productReviewOpinion!=null">#{productReviewOpinion},</if>
+       	    <if test="leader!=null">#{leader},</if>
+       	    <if test="requirementStatus!=null">#{requirementStatus},</if>
+       	    <if test="onlineTime!=null">#{onlineTime},</if>
+       	    <if test="isEnable!=null">#{isEnable},</if>
+       	    <if test="remark!=null">#{remark},</if>
+       	    <if test="priority!=null and priority!=''">#{priority},</if>
+       	    <if test="reqSource!=null and reqSource!=''">#{reqSource},</if>
+       	    <if test="insertBy!=null">#{insertBy},</if>
+       	    <if test="insertTime!=null">now(),</if>
+       	    <if test="updateBy!=null">#{updateBy},</if>
+       	    now()
+        )
+	</insert>
+	
+	<insert id="batchInsertReqRequirements" parameterType="map">
+	 <!--不允许为空的字段： name,requirement_plan_type,plan_time,is_requirements_review,is_product_review,leader,requirement_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO req.req_requirement (
+        	 <if test="name!=null">name,</if>
+        	 <if test="requirementPlanType!=null">requirement_plan_type,</if>
+        	 <if test="planTime!=null">plan_time,</if>
+        	 <if test="isRequirementsReview!=null">is_requirements_review,</if>
+        	 <if test="requirementsReviewTime!=null">requirements_review_time,</if>
+        	 <if test="isProductReview!=null">is_product_review,</if>
+        	 <if test="productReviewTime!=null">product_review_time,</if>
+        	 <if test="developmentTime!=null">development_time,</if>
+        	 <if test="planEndTime!=null">plan_end_time,</if>
+        	 <if test="leader!=null">leader,</if>
+        	 <if test="requirementStatus!=null">requirement_status,</if>
+        	 <if test="isEnable!=null">is_enable,</if>
+        	 <if test="remark!=null">remark,</if>
+        	 <if test="insertBy!=null">insert_by,</if>
+        	 <if test="insertTime!=null">insert_time,</if>
+        	 <if test="updateBy!=null">update_by,</if>
+        	 <if test="updateTime!=null">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="name!=null">#{t.name},</if>
+          <if test="requirementPlanType!=null">#{t.requirementPlanType},</if>
+          <if test="planTime!=null">#{t.planTime},</if>
+          <if test="isRequirementsReview!=null">#{t.isRequirementsReview},</if>
+          <if test="requirementsReviewTime!=null">now(),</if>
+          <if test="isProductReview!=null">#{t.isProductReview},</if>
+          <if test="productReviewTime!=null">#{t.productReviewTime},</if>
+          <if test="developmentTime!=null">#{t.developmentTime},</if>
+          <if test="planEndTime!=null">#{t.planEndTime},</if>
+          <if test="leader!=null">#{t.leader},</if>
+          <if test="requirementStatus!=null">#{t.requirementStatus},</if>
+          <if test="isEnable!=null">#{t.isEnable},</if>
+          <if test="remark!=null">#{t.remark},</if>
+          <if test="insertBy!=null">#{t.insertBy},</if>
+          <if test="insertTime!=null">now(),</if>
+          <if test="updateBy!=null">#{t.updateBy},</if>
+          <if test="updateTime!=null">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateReqRequirement">
+        UPDATE req.req_requirement 
+ 		  <set>
+	        <if test="name!=null">name = #{name} ,</if>
+	        <if test="requirementPlanType!=null">requirement_plan_type = #{requirementPlanType} ,</if>
+	        <if test="startPlanTime!=null">plan_time = #{startPlanTime} ,</if>
+	        <if test="isRequirementsReview!=null">is_requirements_review = #{isRequirementsReview} ,</if>
+	        <if test="requirementsReviewTime!=null">requirements_review_time = #{requirementsReviewTime} ,</if>
+	        <if test="isProductReview!=null">is_product_review = #{isProductReview} ,</if>
+	        <if test="productReviewTime!=null">product_review_time = #{productReviewTime} ,</if>
+	        <if test="developmentTime!=null">development_time = #{developmentTime} ,</if>
+	        <if test="planEndTime!=null">plan_end_time = #{planEndTime} ,</if>
+	        <if test="requirementsReviewOpinion!=null">requirements_review_opinion = #{requirementsReviewOpinion} ,</if>
+	        <if test="productReviewOpinion!=null">product_review_opinion = #{productReviewOpinion} ,</if>
+	        <if test="leader!=null">leader = #{leader} ,</if>
+	        <if test="requirementStatus!=null">requirement_status = #{requirementStatus} ,</if>
+	        <if test="onlineTime!=null">online_time = #{onlineTime},</if>
+	        <if test="isEnable!=null">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null">remark = #{remark} ,</if>
+	        <if test="insertBy!=null">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null">update_by = #{updateBy} ,</if>  
+	        <if test="priority!=null and priority!=''">priority = #{priority} ,</if>
+	        <if test="reqSource!=null and reqSource!=''">req_source = #{reqSource}, </if>
+	        <if test="updateTime!=null">update_time = #{updateTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateReqRequirementsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE req.req_requirement 
+ 		  <set>
+	        <if test="name!=null">name = #{t.name} ,</if>
+	        <if test="requirementPlanType!=null">requirement_plan_type = #{t.requirementPlanType} ,</if>
+	        <if test="planTime!=null">plan_time = #{t.planTime} ,</if>
+	        <if test="isRequirementsReview!=null">is_requirements_review = #{t.isRequirementsReview} ,</if>
+	        <if test="requirementsReviewTime!=null">requirements_review_time = #{t.requirementsReviewTime} ,</if>
+	        <if test="isProductReview!=null">is_product_review = #{t.isProductReview} ,</if>
+	        <if test="productReviewTime!=null">product_review_time = #{t.productReviewTime} ,</if>
+	        <if test="developmentTime!=null">development_time = #{t.developmentTime} ,</if>
+	        <if test="planEndTime!=null">plan_end_time = #{t.planEndTime} ,</if>
+	        <if test="leader!=null">leader = #{t.leader} ,</if>
+	        <if test="requirementStatus!=null">requirement_status = #{t.requirementStatus} ,</if>
+	        <if test="isEnable!=null">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null">update_time = #{t.updateTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateReqRequirementsToSameVals" parameterType="map">
+        UPDATE req.req_requirement 
+ 		  <set>
+	        <if test="name!=null">name = #{name} ,</if>
+	        <if test="requirementPlanType!=null">requirement_plan_type = #{requirementPlanType} ,</if>
+	        <if test="planTime!=null">plan_time = #{planTime} ,</if>
+	        <if test="isRequirementsReview!=null">is_requirements_review = #{isRequirementsReview} ,</if>
+	        <if test="requirementsReviewTime!=null">requirements_review_time = #{requirementsReviewTime} ,</if>
+	        <if test="isProductReview!=null">is_product_review = #{isProductReview} ,</if>
+	        <if test="productReviewTime!=null">product_review_time = #{productReviewTime} ,</if>
+	        <if test="developmentTime!=null">development_time = #{developmentTime} ,</if>
+	        <if test="planEndTime!=null">plan_end_time = #{planEndTime} ,</if>
+	        <if test="leader!=null">leader = #{leader} ,</if>
+	        <if test="requirementStatus!=null">requirement_status = #{requirementStatus} ,</if>
+	        <if test="isEnable!=null">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null">remark = #{remark} ,</if>
+	        <if test="insertBy!=null">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null">update_time = #{updateTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteReqRequirementById">
+    <![CDATA[
+        DELETE FROM req.req_requirement WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteReqRequirementByIds" parameterType="list">
+        DELETE FROM req.req_requirement WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getReqRequirementById" resultMap="ReqRequirement">
+		SELECT <include refid="reqrequirementColumns" />
+		    FROM req.req_requirement 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="updateRequirementStatusIfOverTime" resultMap="ReqRequirement">
+	 update req.req_requirement set requirement_status = '${requirementStatus}'  
+	   where exists (select 1 from (SELECT *
+		    FROM req.req_requirement  
+	    <where>	      				
+	       <if test="planEndTime!=null">AND plan_end_time &lt; '${planEndTime}'</if>
+	       <if test="requirementStatus!=null">AND TO_NUMBER(requirement_status,'999') &lt; ${requirementStatus}</if>
+	    </where>) as temp_req where req.req_requirement.id = temp_req.id)
+	</select>
+	
+	<select id="getReqRequirementsMap" resultType="map">
+		SELECT <include refid="reqrequirementColumns" />
+	    <![CDATA[
+		    FROM req.req_requirement  
+	    ]]>
+	    <include refid="reqrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getReqRequirements">
+		SELECT <include refid="reqrequirementColumns" />
+	    <![CDATA[
+		    FROM req.req_requirement  
+	    ]]>
+	    <include refid="reqrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="reqrequirement_findPage_where">
+		<where>	      				
+	       <if test="id!=null">AND id = #{id}</if>
+	       <if test="name!=null">AND name = #{name}</if>
+	       <if test="requirementPlanType!=null">AND requirement_plan_type = #{requirementPlanType}</if>
+		   <if test="planTime!=null">AND plan_time >= #{planTime}</if>
+		   <if test="planTime!=null">AND plan_time &lt;= #{planTime}</if>
+	       <if test="isRequirementsReview!=null">AND is_requirements_review = #{isRequirementsReview}</if>
+		   <if test="requirementsReviewTime!=null">AND requirements_review_time >= #{requirementsReviewTime}</if>
+		   <if test="requirementsReviewTime!=null">AND requirements_review_time &lt;= #{requirementsReviewTime}</if>
+	       <if test="isProductReview!=null">AND is_product_review = #{isProductReview}</if>
+		   <if test="productReviewTime!=null">AND product_review_time >= #{productReviewTime}</if>
+		   <if test="productReviewTime!=null">AND product_review_time &lt;= #{productReviewTime}</if>
+		   <if test="developmentTime!=null">AND development_time >= #{developmentTime}</if>
+		   <if test="developmentTime!=null">AND development_time &lt;= #{developmentTime}</if>
+		   <if test="planEndTime!=null">AND plan_end_time >= #{planEndTime}</if>
+		   <if test="planEndTime!=null">AND plan_end_time &lt;= #{planEndTime}</if>
+	       <if test="leader!=null">AND leader = #{leader}</if>
+	       <if test="requirementStatus!=null">AND requirement_status = #{requirementStatus}</if>
+	       <if test="isEnable!=null">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null">AND remark = #{remark}</if>
+	       <if test="insertBy!=null">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null">AND update_time &lt;= #{updateTime}</if>
+		   <if test="priority!=null and priority!=''">AND priority = #{priority}</if>
+	       <if test="reqSource!=null and reqSource!=''">AND req_source = #{reqSource}</if>
+		</where>
+	</sql>
+		
+    <select id="getReqRequirementCount" resultType="long">
+        SELECT count(*) FROM req.req_requirement 
+		<include refid="reqrequirement_findPage_where"/>    
+    </select>
+    
+</mapper>

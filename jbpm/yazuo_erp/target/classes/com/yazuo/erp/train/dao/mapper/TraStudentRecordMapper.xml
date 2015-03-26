@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.train.dao.TraStudentRecordDao">
+	<resultMap id="TraStudentRecord" type="com.yazuo.erp.train.vo.TraStudentRecordVO">
+    	<id property="id" column="id"/>
+    	<result property="studentId" column="student_id"/>
+    	<result property="teacherId" column="teacher_id"/>
+    	<result property="courseId" column="course_id"/>
+    	<result property="coursewareId" column="courseware_id"/>
+    	<result property="operatingType" column="operating_type"/>
+    	<result property="beginTime" column="begin_time"/>
+    	<result property="endTime" column="end_time"/>
+    	<result property="description" column="description"/>
+    	<result property="paperId" column="paper_id"/>
+    	<result property="isTimeout" column="is_timeout"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="learningProgressId" column="learning_progress_id"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="trastudentrecordColumns">
+	    <![CDATA[
+		id,student_id,teacher_id,course_id,courseware_id,operating_type,begin_time,end_time,description,paper_id,is_timeout,insert_by,insert_time,update_by,update_time,learning_progress_id
+	    ]]>
+	</sql>
+
+	<insert id="saveTraStudentRecord" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： student_id,teacher_id,operating_type,begin_time,is_timeout,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO train.tra_student_record (
+        	 <if test="studentId!=null ">student_id,</if>
+        	 <if test="teacherId!=null ">teacher_id,</if>
+        	 <if test="courseId!=null ">course_id,</if>
+        	 <if test="coursewareId!=null ">courseware_id,</if>
+        	 <if test="operatingType!=null and operatingType!=''">operating_type,</if>
+        	 <if test="beginTime!=null ">begin_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="paperId!=null ">paper_id,</if>
+        	 <if test="isTimeout!=null and isTimeout!=''">is_timeout,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time,</if>
+        	 <if test="learningProgressId!=null ">learning_progress_id</if>
+        ) VALUES (
+       	    <if test="studentId!=null ">#{studentId},</if>
+       	    <if test="teacherId!=null ">#{teacherId},</if>
+       	    <if test="courseId!=null ">#{courseId},</if>
+       	    <if test="coursewareId!=null ">#{coursewareId},</if>
+       	    <if test="operatingType!=null and operatingType!=''">#{operatingType},</if>
+       	    <if test="beginTime!=null ">#{beginTime},</if>
+       	    <if test="endTime!=null ">#{endTime},</if>
+       	    <if test="description!=null and description!=''">#{description},</if>
+       	    <if test="paperId!=null ">#{paperId},</if>
+       	    <if test="isTimeout!=null and isTimeout!=''">#{isTimeout},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now(),</if>
+       	    <if test="learningProgressId!=null ">#{learningProgressId}</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertTraStudentRecords" parameterType="map">
+	 <!--不允许为空的字段： student_id,teacher_id,operating_type,begin_time,is_timeout,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO train.tra_student_record (
+        	 <if test="studentId!=null ">student_id,</if>
+        	 <if test="teacherId!=null ">teacher_id,</if>
+        	 <if test="courseId!=null ">course_id,</if>
+        	 <if test="coursewareId!=null ">courseware_id,</if>
+        	 <if test="operatingType!=null and operatingType!=''">operating_type,</if>
+        	 <if test="beginTime!=null ">begin_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="paperId!=null ">paper_id,</if>
+        	 <if test="isTimeout!=null and isTimeout!=''">is_timeout,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time,</if>
+        	 <if test="learningProgressId!=null ">learning_progress_id</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="studentId!=null ">#{t.studentId},</if>
+          <if test="teacherId!=null ">#{t.teacherId},</if>
+          <if test="courseId!=null ">#{t.courseId},</if>
+          <if test="coursewareId!=null ">#{t.coursewareId},</if>
+          <if test="operatingType!=null and operatingType!=''">#{t.operatingType},</if>
+          <if test="beginTime!=null ">#{t.beginTime},</if>
+          <if test="endTime!=null ">#{t.endTime},</if>
+          <if test="description!=null and description!=''">#{t.description},</if>
+          <if test="paperId!=null ">#{t.paperId},</if>
+          <if test="isTimeout!=null and isTimeout!=''">#{t.isTimeout},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now(),</if>
+          <if test="learningProgressId!=null ">#{t.learningProgressId}</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateTraStudentRecord">
+        UPDATE train.tra_student_record 
+ 		  <set>
+	        <if test="studentId!=null ">student_id = #{studentId} ,</if>
+	        <if test="teacherId!=null ">teacher_id = #{teacherId} ,</if>
+	        <if test="courseId!=null ">course_id = #{courseId} ,</if>
+	        <if test="coursewareId!=null ">courseware_id = #{coursewareId} ,</if>
+	        <if test="operatingType!=null and operatingType!=''">operating_type = #{operatingType} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="paperId!=null ">paper_id = #{paperId} ,</if>
+	        <if test="isTimeout!=null and isTimeout!=''">is_timeout = #{isTimeout} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="learningProgressId!=null ">learning_progress_id = #{learningProgressId} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateTraStudentRecordsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE train.tra_student_record 
+ 		  <set>
+	        <if test="studentId!=null ">student_id = #{t.studentId} ,</if>
+	        <if test="teacherId!=null ">teacher_id = #{t.teacherId} ,</if>
+	        <if test="courseId!=null ">course_id = #{t.courseId} ,</if>
+	        <if test="coursewareId!=null ">courseware_id = #{t.coursewareId} ,</if>
+	        <if test="operatingType!=null and operatingType!=''">operating_type = #{t.operatingType} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{t.beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{t.endTime} ,</if>
+	        <if test="description!=null and description!=''">description = #{t.description} ,</if>
+	        <if test="paperId!=null ">paper_id = #{t.paperId} ,</if>
+	        <if test="isTimeout!=null and isTimeout!=''">is_timeout = #{t.isTimeout} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="learningProgressId!=null ">learning_progress_id = #{t.learningProgressId} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateTraStudentRecordsToSameVals" parameterType="map">
+        UPDATE train.tra_student_record 
+ 		  <set>
+	        <if test="studentId!=null ">student_id = #{studentId} ,</if>
+	        <if test="teacherId!=null ">teacher_id = #{teacherId} ,</if>
+	        <if test="courseId!=null ">course_id = #{courseId} ,</if>
+	        <if test="coursewareId!=null ">courseware_id = #{coursewareId} ,</if>
+	        <if test="operatingType!=null and operatingType!=''">operating_type = #{operatingType} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="paperId!=null ">paper_id = #{paperId} ,</if>
+	        <if test="isTimeout!=null and isTimeout!=''">is_timeout = #{isTimeout} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="learningProgressId!=null ">learning_progress_id = #{learningProgressId} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteTraStudentRecordById">
+    <![CDATA[
+        DELETE FROM train.tra_student_record WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteTraStudentRecordByIds" parameterType="list">
+        DELETE FROM train.tra_student_record WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getTraStudentRecordById" resultMap="TraStudentRecord">
+		SELECT <include refid="trastudentrecordColumns" />
+		    FROM train.tra_student_record 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getTraStudentRecords" resultMap="TraStudentRecord">
+		SELECT <include refid="trastudentrecordColumns" />
+		    FROM train.tra_student_record  
+	    <include refid="trastudentrecord_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getTraStudentRecordsMap" resultType="map">
+		SELECT <include refid="trastudentrecordColumns" />
+	    <![CDATA[
+		    FROM train.tra_student_record  
+	    ]]>
+	    <include refid="trastudentrecord_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="trastudentrecord_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="studentId!=null ">AND student_id = #{studentId}</if>
+	       <if test="teacherId!=null ">AND teacher_id = #{teacherId}</if>
+	       <if test="courseId!=null ">AND course_id = #{courseId}</if>
+	       <if test="coursewareId!=null ">AND courseware_id = #{coursewareId}</if>
+	       <if test="operatingType!=null and operatingType!=''">AND operating_type = #{operatingType}</if>
+		   <if test="beginTime!=null ">AND begin_time >= #{beginTime}</if>
+		   <if test="beginTime!=null ">AND begin_time &lt;= #{beginTime}</if>
+		   <if test="endTime!=null ">AND end_time >= #{endTime}</if>
+		   <if test="endTime!=null ">AND end_time &lt;= #{endTime}</if>
+	       <if test="description!=null and description!=''">AND description = #{description}</if>
+	       <if test="paperId!=null ">AND paper_id = #{paperId}</if>
+	       <if test="isTimeout!=null and isTimeout!=''">AND is_timeout = #{isTimeout}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+	       <if test="learningProgressId!=null ">AND learning_progress_id = #{learningProgressId}</if>
+		</where>
+	</sql>
+		
+    <select id="getTraStudentRecordCount" resultType="long">
+        SELECT count(*) FROM train.tra_student_record 
+		<include refid="trastudentrecord_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraStudentRecordPage" resultMap="TraStudentRecord">
+    	SELECT <include refid="trastudentrecordColumns" />
+	    FROM train.tra_student_record 
+		<include refid="trastudentrecord_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+    
+	<!-- 根据老师ID查询待办事项列表 -->
+    <select id="queryToDoListByTeacherId" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			P .learning_progress_id,
+			P .exam_paper_type,
+			P .paper_status,
+			r. ID,
+			r.student_id,
+			u.user_name AS student_name,
+			r.teacher_id,
+			COALESCE(r.course_id, 0)AS course_id,
+			COALESCE(r.courseware_id, 0)AS courseware_id,
+			r.operating_type,
+			r.begin_time,
+			r.end_time,
+			COALESCE(r.description, '')AS description,
+			COALESCE(r.paper_id, 0)AS paper_id,
+			r.is_timeout,
+			r.insert_by,
+			r.insert_time,
+			r.update_by,
+			r.update_time
+		FROM
+			train.tra_student_record r,
+			sys.sys_user u,
+			(
+				SELECT
+					ep.*
+				FROM
+					train.tra_exam_paper ep,
+					train.tra_learning_progress tlp
+				WHERE
+					1 = 1
+				AND ep.learning_progress_id = tlp. ID
+				AND tlp.course_status NOT IN('2', '4')
+				and tlp.learning_progress_type = '0'
+				AND (ep.paper_status = '0' OR ep.paper_status = '1')
+				AND ep. ID NOT IN(SELECT ID FROM train.tra_exam_paper WHERE 1 = 1 AND exam_paper_type = '0' AND paper_status = '0')
+				AND ep.student_id IN(SELECT DISTINCT T .student_id FROM train.tra_teacher_student T WHERE 1 = 1 AND T .is_enable = '1' AND T .teacher_id = #{teacherId,jdbcType=INTEGER})
+			)P
+		WHERE
+			1 = 1
+		AND u. ID = r.student_id
+		AND r.paper_id = P . ID
+		AND r.operating_type = '1'
+		and u.is_formal='0'
+		AND r.teacher_id = #{teacherId,jdbcType=INTEGER}
+		and r.end_time is not null
+		ORDER BY
+			r.insert_time DESC
+	</select>
+	
+	<!-- 根据学生ID查看流水 -->
+    <select id="queryTraStudentRecordByStudentId" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			r. ID AS record_id,
+			r.student_id,
+			r.teacher_id,
+			COALESCE(r.course_id, 0)AS course_id,
+			COALESCE(r.courseware_id, 0)AS courseware_id,
+			r.operating_type,
+			r.begin_time,
+			r.end_time,
+			COALESCE(r.description, '')AS description,
+			COALESCE(r.paper_id, 0)AS paper_id,
+			r.is_timeout,
+			r.insert_by,
+			r.insert_time,
+			r.update_by,
+			r.update_time,
+			COALESCE(r.learning_progress_id, 0)AS learning_progress_id,
+			COALESCE(u.user_name, '')AS teacher_name,
+			COALESCE(C .course_name, '')AS course_name,
+			COALESCE(C .is_enable, '')AS is_enable_course,
+			COALESCE(cw.courseware_name, '')AS courseware_name,
+			COALESCE(cw.is_enable, '')AS is_enable_courseware,
+			COALESCE(P .exam_paper_type, '')AS exam_paper_type,
+			COALESCE(P .total_score, 0)AS total_score,
+			COALESCE(P .mark, 0)AS mark,
+			COALESCE(P . COMMENT, '')AS paper_comment,
+			COALESCE(P .paper_status, '')AS paper_status
+		FROM
+			train.tra_student_record r
+		LEFT JOIN sys.sys_user u ON r.teacher_id = u. ID
+		LEFT JOIN train.tra_exam_paper P ON r.paper_id = P . ID
+		LEFT JOIN train.tra_course C ON r.course_id = C . ID
+		LEFT JOIN train.tra_courseware cw ON r.courseware_id = cw. ID
+		WHERE
+			1 = 1 
+		AND r.student_id = #{studentId,jdbcType=INTEGER}
+		AND r. ID NOT IN(
+			SELECT
+				sr. ID
+			FROM
+				train.tra_student_record sr
+			WHERE
+				1 = 1
+			AND sr.operating_type IN('0', '1')
+			AND sr.end_time IS NULL
+		)
+		ORDER BY
+			r.insert_time DESC
+	</select>
+	
+	<select id="getStudiedCoursewareIds" resultType="int" parameterType="list">
+        SELECT courseware_id
+        FROM train.tra_student_record
+        WHERE student_id=#{param1}
+        AND courseware_id IN
+        <foreach collection="param2" item="id" open="(" close=")" separator=",">
+            #{id}
+         </foreach>
+        AND end_time IS NOT NULL
+        <if test="courseId!=null ">AND course_id=#{courseId}</if>
+        <if test="learningProgressId!=null ">AND learning_progress_id = #{learningProgressId}</if>
+    </select>
+    
+    <!-- 根据试卷ID、课件ID查询学生的流水信息 -->
+    <select id="queryTraStudentRecord" resultMap="TraStudentRecord">
+		SELECT
+			s. ID,
+			s.student_id,
+			s.teacher_id,
+			COALESCE(s.course_id,0) AS course_id, 
+			COALESCE(s.courseware_id,0) AS courseware_id, 
+			s.operating_type,
+			s.begin_time,
+			s.end_time,
+			COALESCE(s.description,'') AS description, 
+			COALESCE(s.paper_id,0) AS paper_id, 
+			s.is_timeout,
+			s.insert_by,
+			s.insert_time,
+			s.update_by,
+			s.update_time
+		FROM
+			train.tra_student_record s
+		WHERE
+			1 = 1
+		AND s.paper_id = #{paperId}
+		
+		<if test="coursewareId != null">
+			AND s.courseware_id = #{coursewareId}
+		</if>
+		
+	</select>
+
+    <select id="getStudentRecordStudyCount" resultType="int">
+        SELECT count(1)
+        FROM train.tra_student_record
+        WHERE student_id=#{studentId}
+            <if test="courseId!=null ">AND course_id=#{courseId}</if>
+            AND courseware_id=#{coursewareId}
+            AND operating_type='0'
+            AND end_time IS not NULL
+            <if test="learningProgressId!=null ">AND learning_progress_id=#{learningProgressId}</if>
+    </select>
+
+    <select id="getStudentRecordExamCount" resultType="int">
+        SELECT count(1)
+        FROM train.tra_student_record
+        WHERE student_id=#{studentId}
+            <if test="courseId!=null ">AND course_id=#{courseId}</if>
+            AND courseware_id=#{coursewareId}
+            AND operating_type='1'
+            AND end_time IS not NULL
+            <if test="learningProgressId!=null ">AND learning_progress_id=#{learningProgressId}</if>
+    </select>
+
+    <select id="getStudentExamRecord" resultMap="TraStudentRecord">
+        SELECT  <include refid="trastudentrecordColumns"/>
+        FROM train.tra_student_record
+        WHERE student_id=#{studentId}
+        <if test="courseId!=null ">AND course_id=#{courseId}</if>
+        AND courseware_id=#{coursewareId}
+        AND operating_type='1'
+        <if test="learningProgressId!=null ">AND learning_progress_id=#{learningProgressId}</if>
+        AND end_time IS NULL
+        ORDER BY insert_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="getStudentRecord" resultMap="TraStudentRecord">
+        SELECT  <include refid="trastudentrecordColumns"/>
+        FROM train.tra_student_record
+        WHERE student_id=#{studentId}
+            <if test="courseId!=null ">AND course_id=#{courseId}</if>
+            AND courseware_id=#{coursewareId}
+            AND end_time IS NULL
+            <if test="learningProgressId!=null ">AND learning_progress_id=#{learningProgressId}</if>
+        ORDER BY insert_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="getFinalExamStudentRecord" resultMap="TraStudentRecord">
+        SELECT  <include refid="trastudentrecordColumns"/>
+        FROM train.tra_student_record
+        WHERE student_id=#{studentId}
+        <if test="courseId!=null ">AND course_id=#{courseId}</if>
+        <if test="learningProgressId!=null ">AND learning_progress_id=#{learningProgressId}</if>
+        AND end_time IS NULL
+        ORDER BY insert_time DESC
+        LIMIT 1
+    </select>
+
+    <select id="getStudentRecordsByCoursewareId" resultMap="TraStudentRecord">
+        SELECT  <include refid="trastudentrecordColumns"/>
+        FROM train.tra_student_record
+        WHERE student_id=#{studentId}
+        <if test="courseId!=null ">AND course_id=#{courseId}</if>
+        AND courseware_id=#{coursewareId}
+        <if test="learningProgressId!=null ">AND learning_progress_id=#{learningProgressId}</if>
+        AND end_time is not null
+    </select>
+    
+    <!-- 更新学生流水表中进度ID为当前最近的进度ID -->
+    <update id="updateLearningProgressIdOfTraStudentRecord">
+        UPDATE train.tra_student_record 
+ 		  <set>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="learningProgressId!=null ">learning_progress_id = #{learningProgressId} </if>
+	      </set>  
+        WHERE 
+	        insert_time >= #{insertTime}
+	        and student_id = #{studentId}
+	</update>
+	
+	<!-- 查询所有的真人互动评分的流水记录 -->
+	<select id="getTraStudentRecordsOfInterview" resultMap="TraStudentRecord">
+		select * from train.tra_student_record r
+		where 1=1
+		and r.description like '%'||'真人互动得分'||'%'
+    </select>
+    
+    <!-- 根据学习进度ID、课件ID、学生ID查询第一次学习的时间 -->
+	<select id="queryBeginTime" resultType="map" parameterType="map">
+		SELECT
+			r. ID,
+			r.student_id,
+			r.teacher_id,
+			r.learning_progress_id,
+			r.course_id,
+			r.courseware_id,
+			r.operating_type,
+			r.begin_time,
+			r.end_time,
+			r.description,
+			r.paper_id,
+			r.is_timeout,
+			r.insert_by,
+			r.insert_time,
+			r.update_by,
+			r.update_time
+		FROM
+			train.tra_student_record r
+		WHERE
+			1 = 1
+		AND r.student_id = #{studentId,jdbcType=INTEGER}
+		AND r.courseware_id = #{coursewareId,jdbcType=INTEGER}
+		AND r.end_time IS NOT NULL
+		AND r.operating_type = '0'
+		and r.learning_progress_id=#{learningProgressId,jdbcType=INTEGER}
+		ORDER BY r. ID
+		limit 1
+	</select>
+	
+	<!-- 根据学员ID列表查询待办事项 -->
+    <select id="queryToDoListByUserIdList" resultType="map" parameterType="map">
+		SELECT
+			P .learning_progress_id,
+			P .exam_paper_type,
+			P .paper_status,
+			r. ID,
+			r.student_id,
+			u.user_name AS student_name,
+			r.teacher_id,
+			COALESCE(r.course_id, 0)AS course_id,
+			COALESCE(r.courseware_id, 0)AS courseware_id,
+			r.operating_type,
+			r.begin_time,
+			r.end_time,
+			COALESCE(r.description, '')AS description,
+			COALESCE(r.paper_id, 0)AS paper_id,
+			r.is_timeout,
+			r.insert_by,
+			r.insert_time,
+			r.update_by,
+			r.update_time
+		FROM
+			train.tra_student_record r,
+			sys.sys_user u,
+			(
+				SELECT
+					ep.*
+				FROM
+					train.tra_exam_paper ep,
+					train.tra_learning_progress tlp
+				WHERE
+					1 = 1
+				AND ep.learning_progress_id = tlp. ID
+				AND tlp.course_status NOT IN('2', '4')
+				and tlp.learning_progress_type = '1'
+				AND (ep.paper_status = '0' OR ep.paper_status = '1')
+				AND ep. ID NOT IN(SELECT ID FROM train.tra_exam_paper WHERE 1 = 1 AND exam_paper_type = '0' AND paper_status = '0')
+				AND ep.student_id IN
+				<foreach collection="list" item="id" open="(" close=")" separator=",">
+					#{id}
+				</foreach>
+			)P
+		WHERE
+			1 = 1
+		AND u. ID = r.student_id
+		AND r.paper_id = P . ID
+		AND r.operating_type = '1'
+		and u.is_formal='1'
+		and r.end_time is not null
+		ORDER BY
+			r.insert_time DESC
+	</select>
+	
+	<!-- 根据学员ID列表查询待办事项数量 -->
+    <select id="queryToDoListCountByUserIdList" resultType="int" parameterType="map">
+		SELECT
+			count(*)
+		FROM
+			train.tra_student_record r,
+			sys.sys_user u,
+			(
+				SELECT
+					ep.*
+				FROM
+					train.tra_exam_paper ep,
+					train.tra_learning_progress tlp
+				WHERE
+					1 = 1
+				AND ep.learning_progress_id = tlp. ID
+				AND tlp.course_status NOT IN('2', '4')
+				and tlp.learning_progress_type = '1'
+				AND (ep.paper_status = '0' OR ep.paper_status = '1')
+				AND ep. ID NOT IN(SELECT ID FROM train.tra_exam_paper WHERE 1 = 1 AND exam_paper_type = '0' AND paper_status = '0')
+				AND ep.student_id IN
+				<foreach collection="list" item="id" open="(" close=")" separator=",">
+					#{id}
+				</foreach>
+			)P
+		WHERE
+			1 = 1
+		AND u. ID = r.student_id
+		AND r.paper_id = P . ID
+		AND r.operating_type = '1'
+		and u.is_formal='1'
+		and r.end_time is not null
+	</select>
+	
+</mapper>

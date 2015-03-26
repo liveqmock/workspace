@@ -1,0 +1,17 @@
+<div class="courseware-select-dialog select-list-dialog ui-hidden" ms-widget="dialog,$,$coursewareOpts">
+    <div class="dialog-tbar">
+        <input type="text" class="query input-text" placeholder="课件名称" ms-duplex="queryCourseName" ms-keydown="inputEnterKey" />&nbsp;&nbsp;<button type="button" class="query-btn main-btn" ms-click="clickQueryBtn">搜索</button>
+    </div>
+    <div class="courseware-list-wrapper list-wrapper">
+        <ul class="courseware-list select-list">
+            <li class="select-item fn-clear"
+                ms-click="selectCourseware"
+                ms-repeat="coursewareList"
+                ms-class-1="odd: !($index % 2)"
+                ms-class-2="even: $index % 2">
+                <span class="item-cell fn-left">{{el.coursewareName}}</span>
+                <i class="is-selected fn-right" ms-if="el.isSelected">&#xe604;</i>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+.page-backend-renewcardmanage .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-renewcardmanage .title {
+    width: 100%;
+    overflow: hidden;
+    padding:2px 0 20px;
+}
+.page-backend-renewcardmanage .title p {
+    float: left;
+    margin-right: 15px;
+}
+.page-backend-renewcardmanage .title p.renewcardmanage-p {
+    font-size: 14px;
+    color: #666;
+}
+.page-backend-renewcardmanage .title p.renewcardmanage-p input {
+    width: 60px;
+}
+.page-backend-renewcardmanage .schedule {
+    width: 100px;
+}
+.page-backend-renewcardmanage .max-tab-con {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+    overflow-x: auto;
+}
+.page-backend-renewcardmanage .end {
+    color: #999;
+}
+.page-backend-renewcardmanage .grind-left-width {
+    width: 200px;
+    text-align: left;
+}
+/*修改状态*/
+.renewcardmanage-modify-status table {
+    width: 100%;
+    font-size: 14px;
+    color: #666;
+}
+.renewcardmanage-modify-status table td {
+    padding: 10px 5px;
+    vertical-align: top;
+}
+.renewcardmanage-modify-status table td.table-label {
+    width: 60px;
+    text-align: right;
+}
+.renewcardmanage-modify-status table td textarea{
+    width: 330px;
+    height: 120px;
+}
+.renewcardmanage-modify-status .warn {
+    color: red;
+}
+/*查看修改历史*/
+.renewcardmanage-look-history .ui-dialog-content {
+    padding: 5px;
+}
+.renewcardmanage-look-history .renewcardmanage-look-history-time {
+    padding: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+.renewcardmanage-look-history .grind-decription-width {
+    word-break:break-all;
+}
+.renewcardmanage-look-history .grind-left-width {
+    width: 120px;
+}
+/*卡详细弹层*/
+.renewcardmanage-card-pop {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #CDE2F9;
+    z-index: 10000;
+}
+.renewcardmanage-card-pop .odd td {
+    background: #eef6ff;
+}
+.renewcardmanage-card-pop td {
+    padding: 5px;
+    color: #666;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+.page-study-coursestudy-practiceexam .question-list {
+    padding: 0 36px;
+    font-size: 14px;
+    color: #646464;
+}
+.page-study-coursestudy-practiceexam .question-list .item-content {
+    margin-left: 2em;
+}
+.page-study-coursestudy-practiceexam .question-item {
+    margin-bottom: 36px;
+}
+.page-study-coursestudy-practiceexam .page-action {
+    text-align: center;
+}

@@ -1,0 +1,98 @@
+.module-schedule {
+    color: #393939;
+}
+.module-schedule .date-mark {
+    line-height: 50px;
+    font-size: 16px;
+    padding-left: 14px;
+}
+.module-schedule .nav-box {
+    padding-right: 14px;
+    padding-top: 12px;
+}
+.module-schedule .nav-box .nav-l,
+.module-schedule .nav-box .nav-r,
+.module-schedule .nav-box .today-btn {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 12px;
+    cursor: pointer;
+    font-family: "宋体";
+    vertical-align: top;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+}
+.module-schedule .nav-box .nav-l,
+.module-schedule .nav-box .nav-r {
+    background: #66ccb5;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
+.module-schedule .nav-box .today-btn {
+    line-height: normal;
+    border: none;
+    background: #eaeaea;
+    font-size: 14px;
+    color: #6f6f6f;
+}
+.module-schedule-grid {
+    width: 100%;
+}
+.module-schedule-bd {
+    border-top: 1px solid #eaeaea;
+    background: #f6fafd;
+}
+.module-schedule .date-cell {
+    min-height: 128px;
+}
+.module-schedule td {
+    border: 1px solid #c5c8ca;
+    width: 14%;
+}
+.module-schedule th {
+    font-size: 16px;
+    text-align: center;
+    line-height: 54px;
+    width: 14%;
+}
+.module-schedule td.state-inactive {
+    background: #f5f5f5;
+}
+.module-schedule td.state-today {
+    background: #deeeff;
+}
+.module-schedule td.state-today .date-cell {
+    /*border: 1px solid #76a9e0;*/
+}
+.module-schedule .date-cell .date-num {
+    font-size: 14px;
+    padding: 2px 4px;
+}
+.module-schedule .date-cell .plan-item {
+    padding: 2px 4px;
+    cursor: pointer;
+}
+.module-schedule .date-cell .state-status-1 {
+    background: #FFFBE8;
+    margin-bottom: 1px;
+}
+.module-schedule .date-cell .state-status-2,
+.module-schedule .date-cell .state-timeout {
+    background: #e67e96;
+    margin-bottom: 1px;
+}
+.module-schedule .date-cell .state-status-3 {
+    background: #cccccc;
+    margin-bottom: 1px;
+}
+.module-schedule .date-cell .state-status-4 {
+    background: #8bbf43;
+    margin-bottom: 1px;
+}
+.module-schedule .date-cell .state-status-5 {
+    background: #0099cc;
+    margin-bottom: 1px;
+}

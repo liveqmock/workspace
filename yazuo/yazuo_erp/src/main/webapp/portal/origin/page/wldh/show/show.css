@@ -1,0 +1,204 @@
+.page-wldh-show .page-wldh {
+    font-family: "微软雅黑";
+    font-weight: 900;
+    font-size: 14px;
+    color: #777;
+}
+.page-wldh-show .page-wldh-data {
+    width: 1026px;
+    margin: 0 auto;
+    padding: 15px 0;
+}
+.page-wldh-show .wldh-body {
+    position: relative;
+    width: 1026px;
+    margin: 0 auto;
+    background: url(../../../asset/image/wldh/page-bg.jpg) repeat-y center;
+}
+.page-wldh-show .wldh-content {
+    background: url(../../../asset/image/wldh/page-bg-top.jpg) no-repeat center 0;
+    padding: 410px 0 110px;
+
+}
+.page-wldh-show .wldh-bottom-bg {
+    background: url(../../../asset/image/wldh/page-bg-tottom.png) no-repeat -2px 0;
+    width: 941px;
+    height: 114px;
+    position: absolute;
+    left: 43px;
+    bottom: 0;
+}
+
+
+.page-wldh-show .wldh-content-main {
+    width: 940px;
+    margin: 0 auto;
+}
+.page-wldh-show .wldh-list {
+    padding: 15px 25px 40px 25px;
+    box-shadow: 0px 10px 5px #999;
+    position: relative;
+}
+.page-wldh-show .wldh-list-middle {
+    margin-bottom: 20px;
+}
+.page-wldh-show .wldh-list-title {
+    background: url(../../../asset/image/wldh/title-bg.png) no-repeat center;
+    width: 100%;
+    overflow:hidden;
+    margin-bottom: 30px;
+}
+.page-wldh-show .wldh-list-title p {
+    float: left;
+    display: inline;
+}
+.page-wldh-show .wldh-list-middle-head {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin-right: 30px;
+    float: left;
+    display: inline;
+    overflow: hidden;
+}
+.page-wldh-show .wldh-list-middle-head img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+.page-wldh-show .wldh-list-middle-con {
+    float: left;
+    display: inline;
+    width: 700px;
+}
+.page-wldh-show .wldh-list-middle-con-info ,
+.page-wldh-show .wldh-list-middle-con-info-highlight {
+    width: 100%;
+    overflow: hidden;
+    padding: 5px 0;
+}
+.page-wldh-show .wldh-list-middle-con-info-highlight {
+    font-size: 14px;
+    color: #685331;
+    font-weight: 900;
+}
+.page-wldh-show .wldh-list-middle-con-info-left {
+    float: left;
+    display: inline;
+    width: 55px;
+    line-height:23px;
+}
+.page-wldh-show .wldh-list-middle-con-info-right {
+    float: left;
+    display: inline;
+    width: 600px;
+    line-height:23px;
+}
+.page-wldh-show .wldh-list-middle-con-info-img {
+    margin: 10px 20px 0 0;
+    width: 55px;
+    height: 55px;
+    float: left;
+    display: inline;
+}
+.page-wldh-show .wldh-list-middle-con-info-rule {
+    float: left;
+    display: inline;
+    width: 500px;
+}
+.page-wldh-show .wldh-list-middle-con-info-rule li {
+    padding: 5px 0;
+    width: 100%;
+    overflow:hidden;
+}
+.page-wldh-show .wldh-list-middle-con-info-rule li p{
+    font-size: 12px;
+    color: #ED6704;
+    line-height:23px;
+}
+.page-wldh-show .wldh-rule-left {
+    float: left;
+    display: inline;
+    margin-right :10px;
+}
+.page-wldh-show .wldh-rule-right {
+    float: left;
+    display: inline;
+    width: 400px;
+    font-size: 14px;
+}
+.page-wldh-show .wldh-rule-right span {
+    font-size: 18px;
+}
+.page-wldh-show .wldh-lold-show {
+    position: absolute;
+    background: url(../../../asset/image/wldh/show.png) no-repeat center;
+    width: 26px;
+    height: 24px;
+    cursor: pointer;
+    left: 50%;
+    margin-left: -13px;
+    bottom: 10px;
+}
+.page-wldh-show .wldh-lold-hide {
+    position: absolute;
+    background: url(../../../asset/image/wldh/hide.png) no-repeat center;
+    width: 26px;
+    height: 24px;
+    cursor: pointer;
+    left: 50%;
+    margin-left: -13px;
+    bottom: 10px;
+}
+.page-wldh-show .wldh-hide-info {
+    background: url(../../../asset/image/wldh/long-line.png) no-repeat center 0;
+    width: 890px;
+    padding-top:15px;
+    overflow: hidden;
+    position: relative;
+    min-height: 160px;
+}
+.page-wldh-show .wldh-sccess {
+    background: url(../../../asset/image/wldh/sccess.png) no-repeat center;
+    width: 47px;
+    height:160px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -80px;
+}
+.page-wldh-show .wldh-failure {
+    background: url(../../../asset/image/wldh/failure.png) no-repeat center;
+    width: 47px;
+    height:160px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -80px;
+}
+.page-wldh-show .wldh-fendou {
+    background: url(../../../asset/image/wldh/fendou.png) no-repeat center;
+    width: 47px;
+    height:160px;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    margin-top: -80px;
+}
+.page-wldh-show .wldh-support {
+    background: url(../../../asset/image/wldh/line.png) no-repeat center bottom;
+    width: 747px;
+    padding: 10px 15px 25px;
+    overflow: hidden;
+    margin-left: 113px;
+}
+.page-wldh-show .wldh-support p {
+    width : 25px;
+    font-size: 16px;
+    float: left;
+    display:inline;
+    margin: 5px 8px;
+    table-layout:fixed;
+    word-break: break-all;
+    overflow:hidden;
+}

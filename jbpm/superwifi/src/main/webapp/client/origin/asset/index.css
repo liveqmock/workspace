@@ -1,0 +1,162 @@
+/**
+ * 框架页面样式
+ */
+.app{
+    /*max-width: 1440px;*/
+    min-width: 1024px;
+    margin:0 auto;
+}
+.app-inner {
+    width: 1024px;
+    margin:0 auto;
+}
+.app-hd {
+    background: #303030;
+}
+.app-hd-inner {
+    height: 62px;
+}
+.app-hd .page-title{
+    height:50px;
+    line-height: 50px;
+}
+.app-hd .logo-l {
+    background: url("../asset/image/logo-l.png") no-repeat 0 24px;
+    text-indent: -1000em;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    text-decoration: none;
+    width: 102px;
+    height: 62px;
+}
+.app-hd .domain-wrapper {
+    padding: 18px 0 0 88px;
+}
+.app-hd .domain-wrapper .module-merchantdomain .ui-autocomplete-select {
+    background: #303030;
+    border: 1px solid #767676;
+}
+.app-hd .domain-wrapper .module-merchantdomain .icon-search {
+    color: #ffffff;
+}
+.app-hd .domain-wrapper .module-merchantdomain .select-header-text {
+    background: #303030;
+    color: #c4c4c4;
+}
+.app-hd .domain-wrapper .module-merchantdomain .ui-autocomplete-select ::-webkit-input-placeholder { /* WebKit browsers */
+    color: #c4c4c4;
+}
+.app-hd .domain-wrapper .module-merchantdomain .ui-autocomplete-select :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #c4c4c4;
+}
+.app-hd .domain-wrapper .module-merchantdomain .ui-autocomplete-select ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #c4c4c4;
+}
+.app-hd .domain-wrapper .module-merchantdomain .ui-autocomplete-select :-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #c4c4c4;
+}
+.app-hd .domain-wrapper .module-merchantdomain .ui-autocomplete-select .icon-select {
+    background: transparent;
+    color: #767676;
+}
+.app-hd .login-info-wrapper {
+    height: 100%;
+    line-height: 62px;
+    color: #ffffff;
+    font-size: 14px;
+    padding-right: 20px;
+    position: relative;
+}
+.app-hd .login-info-wrapper label {
+    color: #cfcfcf;
+}
+.app-hd .login-info-wrapper .iconfont {
+    font-size: 24px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.app-bd{
+    position: relative;
+}
+.app-bd .app-inner-l{
+    width: 80px;
+}
+.app-bd .app-inner-r{
+    background: #f8f8f8;
+    margin-left: 80px;
+    overflow: hidden;
+}
+.app-bd .page-mask{
+    display: none;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index: 10;
+}
+.app-bd .app-inner {
+    background: #3280a4;
+}
+.app-bd .app-inner-l .page-nav-wrapper {
+    padding-top: 16px;
+}
+.app-bd .app-inner-l .page-nav-1 .nav-title a {
+    position: relative;
+    display: block;
+    height: 52px;
+    text-decoration: none;
+    text-align: center;
+    color: #78b0ca;
+    padding-top: 12px;
+}
+.app-bd .app-inner-l .page-nav-1 .page-nav-item {
+    margin: 6px 0;
+}
+.app-bd .app-inner-l .page-nav-1 .nav-title a .icon-paper {
+    font-size: 42px;
+    line-height: 1em;
+    color: #ffffff;
+}
+.app-bd .app-inner-l .page-nav-1 .nav-title a.page-nav-state-current {
+    background: #f8f8f8;
+}
+.app-bd .app-inner-l .page-nav-1 .nav-title a.page-nav-state-current .icon-paper {
+    color: #434a4c;
+}
+.app-bd .app-inner-l .page-nav-1 .nav-title a .icon-arrow {
+    display: none;
+    position: absolute;
+    top: 50%;
+    right: -8px;
+    margin-top: -12px;
+    font-size: 24px;
+    line-height: 1em;
+}
+.app-bd .app-inner-l .page-nav-1 .nav-title a.page-nav-state-current .icon-arrow {
+    display: block;
+    color: #f8f8f8;
+}
+
+.page {
+    display: none;
+}
+.page-state-active {
+    display: block;
+}
+.app-hd .login-info-wrapper .tips-layer{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 62px;
+    height: 62px;
+    background-color: #3e3e3e;
+    display: none;
+}
+.app-hd .login-info-wrapper .icon-user{
+    position: relative;
+    z-index: 1;
+}

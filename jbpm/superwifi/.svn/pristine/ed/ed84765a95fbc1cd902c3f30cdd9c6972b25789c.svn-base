@@ -1,0 +1,31 @@
+<div class="page-bd">
+    <a href="#/network" class="go-back">返回</a>
+    <div class="device-t">
+        <p class="main-t">超级WIFI设备名称</p>
+        <p>管理和维护店内的所有设备名称</p>
+    </div>
+    <div class="device-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 修改设备名称 start -->
+<div class="page-network-edit-device-dialog ui-hidden"
+     ms-widget="dialog,$,$editDeviceDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$editDeviceFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入设备名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="请在此输入设备名称" class="input-text device-name" name="deviceName" ms-value="deviceName" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="password" placeholder="6位主管密码" class="input-text manager-psd" name="managerPsd" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 修改设备名称 end -->

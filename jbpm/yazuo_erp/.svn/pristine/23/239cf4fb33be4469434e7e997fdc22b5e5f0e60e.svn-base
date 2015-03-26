@@ -1,0 +1,184 @@
+.page-backend-home-monthly .page-bd {
+    padding: 10px;
+}
+.page-backend-home-monthly .main {
+    width: 100%;
+    overflow: hidden;
+    min-height: 50px;
+}
+
+.page-backend-home-monthly .head {
+    width: 700px;
+    overflow:hidden;
+    margin-bottom: 15px;
+}
+.page-backend-home-monthly .head h2 {
+    font-size: 18px;
+    color: #333;
+    line-height: 35px;
+    padding: 5px;
+}
+.page-backend-home-monthly .head p {
+    line-height: 30px;
+    background: #eee;
+    color: #777;
+    padding:0 10px;
+    margin-bottom: 5px;
+}
+.page-backend-home-monthly .con-info {
+    width: 680px;
+    overflow: hidden;
+    position: relative;
+    color:#777;
+    line-height: 23px;
+    padding-right: 20px;
+    margin-bottom: 10px;
+}
+.page-backend-home-monthly .fixed {
+    height: 23px;
+
+}
+.page-backend-home-monthly .con-info .iconfont {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.page-backend-home-monthly .content {
+    width: 100%;
+    overflow: hidden;
+}
+.page-backend-home-monthly .content .content-left {
+    width: 700px;
+    overflow: hidden;
+    float: left;
+    display: inline;
+}
+.page-backend-home-monthly .content .content-right {
+    width: 300px;
+    overflow: hidden;
+    float: right;
+    display: inline;
+}
+.page-backend-home-monthly .context-left-list {
+    width: 698px;
+    border: 1px solid #ccc;
+    background: #fff;
+    min-height: 50px;
+    position: relative;
+    margin-bottom: 20px;
+}
+.page-backend-home-monthly .context-left-list button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50px;
+    border: none;
+}
+.page-backend-home-monthly .context-left-list button.start,
+.page-backend-home-monthly .context-left-list button.active {
+    background: #76a9e0;
+}
+.page-backend-home-monthly .context-left-list button.begin {
+    background: #d1d1d1;
+}
+.page-backend-home-monthly .context-left-list button.end {
+    background: #2CC78F;
+}
+.page-backend-home-monthly .context-left-list button .iconfont {
+    font-size: 30px;
+    color: #fff;
+}
+.page-backend-home-monthly .context-left-list .content {
+    width: 620px;
+    margin-left: 65px;
+    padding: 15px 0;
+}
+.page-backend-home-monthly .context-left-list .content .box {
+    width: 100%;
+    overflow: hidden;
+    font-size: 14px;
+    color: #777;
+    padding: 5px 0;
+}
+.page-backend-home-monthly .context-left-list .content .box .box-left {
+    float: left;
+    display: inline;
+    width: 120px;
+    font-size: 14px;
+    color: #777;
+}
+.page-backend-home-monthly .context-left-list .content .box .box-right {
+    width: 490px;
+    line-height: 23px;
+    float: left;
+    display: inline;
+}
+.page-backend-home-monthly .context-left-list .content .attachment {
+    background: #eee;
+    line-height: 20px;
+    padding: 5px;
+    color: #777;
+    margin-bottom: 5px;
+}
+.page-backend-home-monthly .context-left-list .box-active {
+    width: 100%;
+    overflow:hidden;
+}
+.page-backend-home-monthly .context-left-list .box-active .active-style {
+    height: 32px;
+    line-height: 32px;
+    padding: 5px 0;
+    font-size: 14px;
+}
+.page-backend-home-monthly .context-left-list .box-active .active-style .simple-btn {
+    margin-left: 10px;
+}
+.page-backend-home-monthly .context-left-list .box-active .active-description {
+    color: #777;
+    line-height: 22px;
+    padding: 5px 0;
+
+}
+
+
+
+
+.page-backend-home-monthly .content-right-box {
+    width: 278px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #777;
+    overflow: hidden;
+}
+.page-backend-home-monthly .content-right-box .title {
+    line-height: 23px;
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+}
+.page-backend-home-monthly .content-right-box .con {
+    padding: 5px 0;
+}
+.page-backend-home-monthly .content-right-box .list {
+    padding: 5px 0;
+    overflow:hidden;
+}
+
+.page-backend-home-monthly .content-right-box .list label {
+    float: left;
+    display: inline;
+    width: 90px;
+    line-height: 20px;
+    text-align: right;
+}
+.page-backend-home-monthly .content-right-box .list p {
+    line-height: 20px;
+    padding-left: 90px;
+}
+.quit-description {
+    width: 420px;
+    height: 120px;
+}

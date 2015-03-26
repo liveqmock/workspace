@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.system.dao.SysDictionaryDao">
+
+	<resultMap id="SysDictionary" type="com.yazuo.erp.system.vo.SysDictionaryVO">
+        <result property="id" column="id"/>
+        <result property="dictionaryType" column="dictionary_type"/>
+        <result property="dictionaryName" column="dictionary_name"/>
+        <result property="dictionaryKey" column="dictionary_key"/>
+        <result property="dictionaryValue" column="dictionary_value"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysdictionaryColumns">
+	    <![CDATA[
+		id,dictionary_type,dictionary_name,dictionary_key,dictionary_value,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveSysDictionary">
+    <![CDATA[
+        INSERT INTO sys.sys_dictionary (
+        		dictionary_type ,
+        		dictionary_name ,
+        		dictionary_key ,
+        		dictionary_value ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{dictionaryType} ,
+        	#{dictionaryName} ,
+        	#{dictionaryKey} ,
+        	#{dictionaryValue} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateSysDictionary" >
+    <![CDATA[
+        UPDATE sys.sys_dictionary SET
+	        dictionary_type = #{dictionaryType} ,
+	        dictionary_name = #{dictionaryName} ,
+	        dictionary_key = #{dictionaryKey} ,
+	        dictionary_value = #{dictionaryValue} ,
+	        remark = #{remark} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteSysDictionary">
+    <![CDATA[
+        DELETE FROM sys.sys_dictionary WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getSysDictionaryById" resultMap="SysDictionary">
+		SELECT <include refid="sysdictionaryColumns" />
+	    <![CDATA[
+		    FROM sys.sys_dictionary 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getSysDictionarys" resultMap="SysDictionary" parameterType="map">
+		SELECT <include refid="sysdictionaryColumns" />
+	    <![CDATA[
+		    FROM sys.sys_dictionary  
+	    ]]>
+	    <include refid="sysdictionary_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+    <select id="getDictionariesByType" resultMap="SysDictionary" parameterType="SysDictionaryVO">
+        SELECT <include refid="sysdictionaryColumns"/>
+        FROM sys.sys_dictionary
+        <where>
+            <if test="dictionaryType!=null">
+                AND dictionary_type = #{dictionaryType}
+            </if>
+        </where>
+        ORDER BY id
+    </select>
+
+    <select id="getDictionariesByTypes" resultMap="SysDictionary" parameterType="arraylist">
+        SELECT <include refid="sysdictionaryColumns"/>
+        FROM sys.sys_dictionary
+        <where>
+            dictionary_type in
+            <foreach collection="list" item="type" open="(" close=")" separator=",">#{type}</foreach>
+        </where>
+    </select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getSysDictionarysMap" resultType="map" parameterType="map">
+		SELECT <include refid="sysdictionaryColumns" />
+	    <![CDATA[
+		    FROM sys.sys_dictionary  
+	    ]]>
+	    <include refid="sysdictionary_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<select id="getAllSysDictionarys" resultType="map" parameterType="map">
+		SELECT <include refid="sysdictionaryColumns" />
+	    <![CDATA[
+		    FROM sys.sys_dictionary  
+	    ]]>
+	    <include refid="sysdictionary_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysdictionary_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="dictionaryType!=null">
+				AND dictionary_type = #{dictionaryType}
+			</if>
+	       <if test="dictionaryName!=null">
+				AND dictionary_name = #{dictionaryName}
+			</if>
+	       <if test="dictionaryKey!=null">
+				AND dictionary_key = #{dictionaryKey}
+			</if>
+	       <if test="dictionaryValue!=null">
+				AND dictionary_value = #{dictionaryValue}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getSysDictionaryCount" resultType="long">
+        SELECT count(*) FROM sys.sys_dictionary 
+		<include refid="sysdictionary_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findSysDictionaryPage" resultMap="SysDictionary">
+    	SELECT <include refid="sysdictionaryColumns" />
+	    FROM sys.sys_dictionary 
+		<include refid="sysdictionary_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+    
+    <!-- 根据类型（例如，00000001）查询数据字典 -->
+    <select id="querySysDictionaryByType" resultType="map">
+		SELECT
+			d. ID,
+			d.dictionary_type,
+			d.dictionary_name,
+			d.dictionary_key,
+			d.dictionary_value,
+			remark
+		FROM
+			sys.sys_dictionary d
+		WHERE
+			d.dictionary_type = #{dictionaryType,jdbcType=VARCHAR}
+    </select>
+    <!-- 根据类型（例如，00000001）查询数据字典 标准的方式 -->
+    <select id="querySysDictionaryByTypeStd" resultType="map">
+		SELECT
+			d.dictionary_key as value,
+			d.dictionary_value as text
+		FROM
+			sys.sys_dictionary d
+		WHERE
+			d.dictionary_type = #{dictionaryType,jdbcType=VARCHAR}
+    </select>
+</mapper>
+

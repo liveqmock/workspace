@@ -1,0 +1,272 @@
+html,
+body,
+.page,
+.page-bd,
+.page-bd-inner {
+    height: 100%;
+    overflow: hidden;
+    font-family: "微软雅黑", "Microsoft YaHei";
+}
+.page-bd {
+
+}
+.page-bd-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+.page-bd-bg img {
+    width: 100%;
+    height: 100%;
+}
+.page-bd-inner {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    margin-top: -195px;
+    z-index: 2;
+}
+.login-form {
+    position: relative;
+    width: 310px;
+    margin: 0 auto;
+}
+.login-form-north {
+    height: 130px;
+    background: #3280a4 url(image/icon-login-user.png) no-repeat 110px 24px;
+    border-radius: 10px 10px 0 0;
+}
+.login-form-center {
+    background: #ffffff;
+    border-radius: 0 0 10px 10px;
+}
+.login-form .f-title {
+    color: #333333;
+    font-size: 18px;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+}
+.login-form .f-field {
+    width: 196px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+.login-form .f-field-input {
+    height: 36px;
+}
+.login-form .f-field-input .f-field-inner {
+    position: relative;
+    width: 180px;
+    padding: 0 8px;
+    border: 1px solid #848484;
+    height: 32px;
+}
+.login-form .f-field-input-focus .f-field-inner {
+    border: 1px solid #27a742;
+}
+.login-form .f-field-input input {
+    width: 116px;
+    height: 32px;
+    border: none;
+    color: #434a4c;
+    font-family: "微软雅黑", "Microsoft YaHei";
+    font-size: 12px;
+    float: left;
+    line-height: 32px;
+}
+.login-form .f-field-input label {
+    color: #999999;
+    float: left;
+    line-height: 32px;
+    height: 32px;
+}
+.login-form .pwd-field {
+    margin-top: 24px;
+}
+.login-form .remember-field {
+    margin-top: 8px;
+    color: #434a4c;
+}
+.login-form .remember-field input {
+    position: relative;
+    top: 2px;
+}
+.login-form .remember-field a {
+    color: #434a4c;
+}
+.login-form .f-action {
+    margin-top: 20px;
+    padding-bottom: 28px;
+}
+.login-form .f-submit {
+    height: 40px;
+    width: 100%;
+    background: #27a742;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+    font-family: "微软雅黑", "Microsoft YaHei";
+    cursor: pointer;
+}
+.login-form .f-submit:hover {
+    background: #218e38;
+}
+.login-form .logo {
+    position: absolute;
+    top: 134px;
+    left: 370px;
+    width: 371px;
+    height: 121px;
+    background: url(image/logo.png) no-repeat center center;
+}
+.login-form .icon-clear {
+    display: none;
+    position: absolute;
+    right: 8px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    font-weight: bold;
+    color: #666666;
+    /*background: url(image/icon-login-clear.png) no-repeat;*/
+    cursor: pointer;
+}
+.login-form .icon-clear:hover {
+    /*background: url(image/icon-login-clear-hover.png) no-repeat;*/
+}
+.page-bd-south {
+    background: url("../asset/image/logo-yz.png") no-repeat center top;
+    padding-top: 41px;
+    position: absolute;
+    bottom: 34px;
+    left: 0;
+    color: #f1f1f1;
+    font-size: 14px;
+    line-height: 1em;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+}
+.login-mark-layer{
+    width: 100%;
+    background-color: #000000;
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index: 99;
+    height: 300px;
+    display: none;
+}
+.login-dialog{
+    width: 300px;
+    height: 220px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0 30px;
+    display: none;
+}
+.login-dialog-t{
+    border-bottom:solid #27a742 2px;
+    font-size: 18px;
+    color: #333;
+    height:50px;
+    line-height: 50px;
+}
+.login-dialog-phone{
+    border: 1px solid #848484;
+    padding: 0 4px;
+    font-size: 14px;
+    color: #646464;
+    height: 30px;
+    line-height: 30px;
+    width: 97%;
+    font-family: tahoma,arial,"Hiragino Sans GB","微软雅黑","Microsoft YaHei","WenQuanYi Micro Hei",\5b8b\4f53;
+}
+.input-area{
+    padding: 20px 0 15px 0;
+    font-size: 14px;
+    color: #666666;
+}
+.input-area p{
+    margin-bottom: 7px;
+}
+.main-btn {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding:0 40px;
+    background: #FFFFFF;
+    height: 30px;
+    line-height: 30px;
+    border: solid #cfcfcf 1px;
+    text-align: center;
+    color: #444444;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+    vertical-align: top;
+}
+.main-btn:hover{
+    background: #27a742;
+    border: solid #27a742 1px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.main-btn-green {
+    display: inline-block;
+    *display: inline;
+    border: none;
+    *zoom: 1;
+    padding:0 40px;
+    background: #27a742;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+    vertical-align: top;
+}
+.main-btn-green:hover{
+    background: #218e38;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+a.main-btn{
+    color: #444444;
+}
+a.main-btn-green{
+    color: #FFFFFF;
+}
+.login-bt-area{
+    text-align: center;
+}
+.tips-area{
+    font-size: 14px;
+    padding: 30px 0;
+    display: none;
+}
+a.main-btn-green.grey-bt{
+    background-color: #d4d4d4;
+    color: #444444;
+    display: none;
+}
+p.phone-tips{
+    color: #ff0000;
+    display: none;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+

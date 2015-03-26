@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysDocumentDtlOptionDao">
+	<resultMap id="SysDocumentDtlOption" type="com.yazuo.erp.system.vo.SysDocumentDtlOptionVO">
+    	<id property="id" column="id"/>
+    	<result property="documentDtlId" column="document_dtl_id"/>
+    	<result property="optionContent" column="option_content"/>
+    	<result property="isSelected" column="is_selected"/>
+    	<result property="isOpenTextarea" column="is_open_textarea"/>
+    	<result property="tip" column="tip"/>
+    	<result property="comment" column="comment"/>
+    	<result property="remark" column="remark"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysdocumentdtloptionColumns">
+	    <![CDATA[
+		id,document_dtl_id,option_content,is_selected,is_open_textarea,tip,comment,remark,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysDocumentDtlOption" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： document_dtl_id,is_open_textarea,update_by,update_time,--> 
+        INSERT INTO sys.sys_document_dtl_option (
+        	 <if test="documentDtlId!=null ">document_dtl_id,</if>
+        	 <if test="optionContent!=null and optionContent!=''">option_content,</if>
+        	 <if test="isSelected!=null and isSelected!=''">is_selected,</if>
+        	 <if test="isOpenTextarea!=null and isOpenTextarea!=''">is_open_textarea,</if>
+        	 <if test="tip!=null and tip!=''">tip,</if>
+        	 <if test="comment!=null and comment!=''">comment,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="documentDtlId!=null ">#{documentDtlId},</if>
+       	    <if test="optionContent!=null and optionContent!=''">#{optionContent},</if>
+       	    <if test="isSelected!=null and isSelected!=''">#{isSelected},</if>
+       	    <if test="isOpenTextarea!=null and isOpenTextarea!=''">#{isOpenTextarea},</if>
+       	    <if test="tip!=null and tip!=''">#{tip},</if>
+       	    <if test="comment!=null and comment!=''">#{comment},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysDocumentDtlOptions" parameterType="map">
+	 <!--不允许为空的字段： document_dtl_id,is_open_textarea,update_by,update_time,--> 
+        INSERT INTO sys.sys_document_dtl_option (
+        	 <if test="documentDtlId!=null ">document_dtl_id,</if>
+        	 <if test="optionContent!=null and optionContent!=''">option_content,</if>
+        	 <if test="isSelected!=null and isSelected!=''">is_selected,</if>
+        	 <if test="isOpenTextarea!=null and isOpenTextarea!=''">is_open_textarea,</if>
+        	 <if test="tip!=null and tip!=''">tip,</if>
+        	 <if test="comment!=null and comment!=''">comment,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="documentDtlId!=null ">#{t.documentDtlId},</if>
+          <if test="optionContent!=null and optionContent!=''">#{t.optionContent},</if>
+          <if test="isSelected!=null and isSelected!=''">#{t.isSelected},</if>
+          <if test="isOpenTextarea!=null and isOpenTextarea!=''">#{t.isOpenTextarea},</if>
+          <if test="tip!=null and tip!=''">#{t.tip},</if>
+          <if test="comment!=null and comment!=''">#{t.comment},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysDocumentDtlOption">
+        UPDATE sys.sys_document_dtl_option 
+ 		  <set>
+	        <if test="documentDtlId!=null ">document_dtl_id = #{documentDtlId} ,</if>
+	        <if test="optionContent!=null and optionContent!=''">option_content = #{optionContent} ,</if>
+	        <if test="isSelected!=null and isSelected!=''">is_selected = #{isSelected} ,</if>
+	        <if test="isOpenTextarea!=null and isOpenTextarea!=''">is_open_textarea = #{isOpenTextarea} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{tip} ,</if>
+	        <if test="comment!=null and comment!=''">comment = #{comment} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysDocumentDtlOptionsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_document_dtl_option 
+ 		  <set>
+	        <if test="documentDtlId!=null ">document_dtl_id = #{t.documentDtlId} ,</if>
+	        <if test="optionContent!=null and optionContent!=''">option_content = #{t.optionContent} ,</if>
+	        <if test="isSelected!=null and isSelected!=''">is_selected = #{t.isSelected} ,</if>
+	        <if test="isOpenTextarea!=null and isOpenTextarea!=''">is_open_textarea = #{t.isOpenTextarea} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{t.tip} ,</if>
+	        <if test="comment!=null and comment!=''">comment = #{t.comment} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysDocumentDtlOptionsToSameVals" parameterType="map">
+        UPDATE sys.sys_document_dtl_option 
+ 		  <set>
+	        <if test="documentDtlId!=null ">document_dtl_id = #{documentDtlId} ,</if>
+	        <if test="optionContent!=null and optionContent!=''">option_content = #{optionContent} ,</if>
+	        <if test="isSelected!=null and isSelected!=''">is_selected = #{isSelected} ,</if>
+	        <if test="isOpenTextarea!=null and isOpenTextarea!=''">is_open_textarea = #{isOpenTextarea} ,</if>
+	        <if test="tip!=null and tip!=''">tip = #{tip} ,</if>
+	        <if test="comment!=null and comment!=''">comment = #{comment} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysDocumentDtlOptionById">
+    <![CDATA[
+        DELETE FROM sys.sys_document_dtl_option WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysDocumentDtlOptionByIds" parameterType="list">
+        DELETE FROM sys.sys_document_dtl_option WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysDocumentDtlOptionById" resultMap="SysDocumentDtlOption">
+		SELECT <include refid="sysdocumentdtloptionColumns" />
+		    FROM sys.sys_document_dtl_option 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysDocumentDtlOptions" resultMap="SysDocumentDtlOption">
+		SELECT <include refid="sysdocumentdtloptionColumns" />
+		    FROM sys.sys_document_dtl_option  
+	    <include refid="sysdocumentdtloption_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysDocumentDtlOptionsMap" resultType="map">
+		SELECT <include refid="sysdocumentdtloptionColumns" />
+	    <![CDATA[
+		    FROM sys.sys_document_dtl_option  
+	    ]]>
+	    <include refid="sysdocumentdtloption_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysdocumentdtloption_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="documentDtlId!=null ">AND document_dtl_id = #{documentDtlId}</if>
+	       <if test="optionContent!=null and optionContent!=''">AND option_content = #{optionContent}</if>
+	       <if test="isSelected!=null and isSelected!=''">AND is_selected = #{isSelected}</if>
+	       <if test="isOpenTextarea!=null and isOpenTextarea!=''">AND is_open_textarea = #{isOpenTextarea}</if>
+	       <if test="tip!=null and tip!=''">AND tip = #{tip}</if>
+	       <if test="comment!=null and comment!=''">AND comment = #{comment}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysDocumentDtlOptionCount" resultType="long">
+        SELECT count(*) FROM sys.sys_document_dtl_option 
+		<include refid="sysdocumentdtloption_findPage_where"/>    
+    </select>
+    
+    <!-- 根据填单ID删除原有填单选项信息 -->
+    <delete id="deleteSysDocumentDtlOptionByDocumentId">
+		delete from sys.sys_document_dtl_option d where d.document_dtl_id in (
+			select dd.id from sys.sys_document_dtl dd where dd.document_id = #{documentId}
+		) 
+    </delete>
+    
+</mapper>

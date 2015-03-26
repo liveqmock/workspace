@@ -1,0 +1,133 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="page-padding">
+        <h2 class="addedit-title">{{titleType}}</h2>
+        <div class="add-edit-knowledge">
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>分类：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box customer-title" >
+                                <p class="addedit-create-tree-dom ui-select-header" ms-click="treeShow">
+                                    <input type="text" ms-value="kindText"  withemptyicon="no" placeholder="请选择分类" class="input-text create-class-input" readonly="readonly"><i class="icon-select iconfont">&#xe60b;</i>
+                                </p>
+                            </div>
+                            <input type="hidden"
+                                   ms-value="requestData.kindId"
+                                   class="create-class-input-hidden"
+                                   data-rules="empty"
+                                   data-tips="请选择分类！"
+                                   isrule=true>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                        <!--分类树结构-->
+                        <div class="create-knowledge-tree" ms-visible="displayTree">
+                            <div ms-widget="tree,$,$ztreeOpts"></div>
+                        </div>
+                        <!--分类树结构-end-->
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>标题：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box" >
+                                <input type="text" maxlength="20"
+                                       placeholder="标题最多20个字"
+                                       class="input-text"
+                                       ms-duplex='requestData.title'
+                                       data-rules="empty"
+                                       data-tips="标题内容不能为空！"
+                                       isrule=true>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>商户：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box" >
+                                <span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><!--span class="icon-star">*</span-->业态：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box" >
+                                <span class="schedule" ms-widget="select,$,$schedBusinessOpts"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>描述：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="input-textarea" ms-duplex='requestData.description'
+                                          data-rules="empty"
+                                          data-tips="描述内容不能为空！"
+                                          isrule=true></textarea>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>分析：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="input-textarea" ms-duplex='requestData.analysis'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>解决方案：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="input-textarea" ms-duplex='requestData.resolution'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>成功案例：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="input-textarea" ms-duplex='requestData.successfulCase'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>话术：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="input-textarea" ms-duplex='requestData.talkingSkills'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>附件：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box fn-clear">
+                                <div class="upload-box" ms-if="attachment.originalFileName">{{attachment.originalFileName}}</div>
+                                <div class="tips" ms-widget="uploader,$,$dataUploaderOpts">
+                                    <button ms-if="!uping && !attachment.originalFileName" class="simple-btn">选择文件</button>
+                                    <button ms-if="!uping && attachment.originalFileName" class="simple-btn">重新上传</button>
+                                </div>
+                                <div class="tips" ms-if="!uping">附件只能上传一个，后上传的覆盖之前上传的。</div>
+                            </div>
+                            <div class="ff-value-box fn-clear">
+                                <div class="upfile-create-knowledge"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ff-value"><input type="button" ms-click="saveData" class="save-button main-btn" value="保存"></div>
+                </div>
+        </div>
+    </div>
+</div>
+

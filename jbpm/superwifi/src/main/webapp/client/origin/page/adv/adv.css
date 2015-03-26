@@ -1,0 +1,209 @@
+.page-adv .page-bd {
+    font-size: 14px;
+    color: #666666;
+    padding: 20px;
+}
+.page-adv .adv-l{
+    width: 600px;
+    float: left;
+}
+.page-adv .adv-l-block{
+    border: solid #e0e1e1 1px;
+    background-color: #FFFFFF;
+    padding:10px 20px 20px 20px;
+    margin-bottom: 20px;
+}
+.page-adv .adv-l-title{
+    font-size: 16px;
+    color: #333333;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+}
+.page-adv .adv-l-bt{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.page-adv .adv-r{
+    float: right;
+    width: 275px;
+}
+.page-adv .adv-img{
+    float: left;
+    width: 260px;
+    margin-top: 15px;
+}
+.page-adv .adv-img img{
+    width: 260px;
+    height: 100px;
+    margin-top: 10px;
+}
+.page-adv .upload-box{
+    float: right;
+    width: 255px;
+    border-left: solid #edeeee 1px;
+    padding: 10px 0 10px 20px;
+    margin-top: 30px;
+}
+.page-adv .img-upload{
+    margin: 10px 0;
+}
+.page-adv .home-set{
+    padding-top: 20px;
+}
+.page-adv .home-set p{
+    color: #444444;
+}
+.page-adv .home-set .font-grey{
+    color: #888888;
+}
+.page-adv .link-type-tab{
+    margin: 15px 0;
+}
+.page-adv .link-type-tab li{
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-right: 35px;
+    padding-left: 30px;
+}
+.page-adv .select-style{
+    width: 18px;
+    height: 18px;
+    border: solid #c8c8c8 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.page-adv .checked-st{
+    background: url("../../asset/image/icon-select.png") center center no-repeat;
+}
+.page-adv .margin-t10{
+    margin-top: 10px;
+}
+.page-adv .message-tip{
+    position: relative;
+    padding-left:35px;
+    margin-bottom: 10px;
+}
+.page-adv .message-text{
+    width: 98%;
+    height: 80px;
+    line-height: 20px;
+    padding: 5px;
+    border: solid #cccccc 1px;
+}
+.page-adv .down-label,.page-adv .down-list-check{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+}
+.page-adv .down-list-check{
+    width: 240px;
+    height: 35px;
+    line-height: 35px;
+    border: solid #e0e1e1 1px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 10px;
+}
+.page-adv .icon-arrow{
+    font-size: 10px;
+    position: absolute;
+    top: 0px;
+    right: 12px;
+    cursor: pointer;
+}
+.page-adv .down-outer-c{
+    width: 205px;
+    height: 35px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    overflow: hidden;
+}
+.page-adv .down-list-box{
+    position: absolute;
+    top: 35px;
+    left: -1px;
+    border: solid #e0e1e1 1px;
+    width: 250px;
+    background-color: #FFFFFF;
+    padding: 10px 0;
+}
+.page-adv .down-list-box ul{
+    overflow-y: auto;
+    max-height: 300px;
+    height: 300px;
+    position: relative;
+}
+.page-adv .down-list-box ul li{
+    position: relative;
+    padding-left: 45px;
+    line-height: 36px;
+    height: 36px;
+}
+.page-adv .down-list-box ul li:hover{
+    background-color: #f5f5f5;
+}
+.page-adv .down-list-box ul li .select-style{
+    top: 8px;
+    left: 15px;
+}
+.page-adv .down-list-bt{
+    text-align: center;
+    padding-top: 10px;
+}
+.page-adv .adv-r-title{
+    font-size: 16px;
+    color: #333333;
+}
+.page-adv .portal-img{
+    width: 270px;
+    height: 372px;
+    padding: 40px 1px;
+    background: url("../../asset/image/adv-img-1.png") no-repeat;
+    margin-top: 7px;
+}
+.page-adv .portal-text{
+    margin-top: 12px;
+    color:#666666;
+}
+.page-adv .no-img{
+    width: 272px;
+    margin-top: 12px;
+    color: #c4c4c4;
+}
+.page-adv .link-member-img{
+    width: 272px;
+    height: 499px;
+    background: url("../../asset/image/adv-img-2.png") no-repeat;
+    margin-top: 7px;
+}
+.page-adv .link-card-img{
+    width: 272px;
+    height: 499px;
+    background: url("../../asset/image/adv-img-3.png") no-repeat;
+    margin-top: 7px;
+}
+.page-adv .page-selection{
+    font-size: 16px;
+    color: #333333;
+    padding-bottom: 15px;
+}
+.page-adv .img-tips{
+    font-size: 12px;
+    line-height: 20px;
+    background-color: #fffcf6;
+    border: solid #f8e6c2 1px;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding: 10px 15px;
+}
+.page-adv .img-tips span{
+    color: #3280a4;
+}

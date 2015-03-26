@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.mkt.dao.MktTeamDao">
+	<resultMap id="MktTeam" type="com.yazuo.erp.mkt.vo.MktTeamVO">
+    	<id property="id" column="id"/>
+    	<result property="teamName" column="team_name"/>
+    	<result property="teamSlogan" column="team_slogan"/>
+    	<result property="teamLeader" column="team_leader"/>
+    	<result property="dateTime" column="date_time"/>
+    	<result property="teamOdds" column="team_odds"/>
+    	<result property="salesDegrees" column="sales_degrees" jdbcType="NUMERIC"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="leaderImage" column="leader_image"/>
+    	<result property="leaderName" column="leader_name"/>
+    	<result property="teamMember" column="team_member"/>
+    	<result property="supportCount" column="support_count"/>
+	</resultMap>
+	
+	<resultMap id="SysUser" type="com.yazuo.erp.system.vo.SysUserVO">
+		<result property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<association property="position" javaType="SysPositionVO">
+			<result property="id" column="position_id" />
+			<result property="positionName" column="position_name" />
+		</association>
+	</resultMap>
+	
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="mktteamColumns">
+	    <![CDATA[
+		id,team_name,team_slogan,team_leader,date_time,team_odds,sales_degrees,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveMktTeam" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： team_name,team_slogan,team_leader,date_time,team_odds,sales_degrees,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_team (
+        	 <if test="teamName!=null and teamName!=''">team_name,</if>
+        	 <if test="teamSlogan!=null and teamSlogan!=''">team_slogan,</if>
+        	 <if test="teamLeader!=null ">team_leader,</if>
+        	 <if test="dateTime!=null ">date_time,</if>
+        	 <if test="teamOdds!=null and teamOdds!=''">team_odds,</if>
+        	 <if test="salesDegrees!=null">sales_degrees,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="teamName!=null and teamName!=''">#{teamName},</if>
+       	    <if test="teamSlogan!=null and teamSlogan!=''">#{teamSlogan},</if>
+       	    <if test="teamLeader!=null ">#{teamLeader},</if>
+       	    <if test="dateTime!=null ">#{dateTime},</if>
+       	    <if test="teamOdds!=null and teamOdds!=''">#{teamOdds},</if>
+       	    <if test="salesDegrees!=null">#{salesDegrees},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertMktTeams" parameterType="map">
+	 <!--不允许为空的字段： team_name,team_slogan,team_leader,date_time,team_odds,sales_degrees,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_team (
+        	 <if test="teamName!=null and teamName!=''">team_name,</if>
+        	 <if test="teamSlogan!=null and teamSlogan!=''">team_slogan,</if>
+        	 <if test="teamLeader!=null ">team_leader,</if>
+        	 <if test="dateTime!=null ">date_time,</if>
+        	 <if test="teamOdds!=null and teamOdds!=''">team_odds,</if>
+        	 <if test="salesDegrees!=null">sales_degrees,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="teamName!=null and teamName!=''">#{t.teamName},</if>
+          <if test="teamSlogan!=null and teamSlogan!=''">#{t.teamSlogan},</if>
+          <if test="teamLeader!=null ">#{t.teamLeader},</if>
+          <if test="dateTime!=null ">#{t.dateTime},</if>
+          <if test="teamOdds!=null and teamOdds!=''">#{t.teamOdds},</if>
+          <if test="salesDegrees!=null">#{t.salesDegrees},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateMktTeam">
+        UPDATE mkt.mkt_team 
+ 		  <set>
+	        <if test="teamName!=null and teamName!=''">team_name = #{teamName} ,</if>
+	        <if test="teamSlogan!=null and teamSlogan!=''">team_slogan = #{teamSlogan} ,</if>
+	        <if test="teamLeader!=null ">team_leader = #{teamLeader} ,</if>
+	        <if test="dateTime!=null ">date_time = #{dateTime} ,</if>
+	        <if test="teamOdds!=null and teamOdds!=''">team_odds = #{teamOdds} ,</if>
+	        <if test="salesDegrees!=null">sales_degrees = #{salesDegrees, jdbcType=NUMERIC} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateMktTeamsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE mkt.mkt_team 
+ 		  <set>
+	        <if test="teamName!=null and teamName!=''">team_name = #{t.teamName} ,</if>
+	        <if test="teamSlogan!=null and teamSlogan!=''">team_slogan = #{t.teamSlogan} ,</if>
+	        <if test="teamLeader!=null ">team_leader = #{t.teamLeader} ,</if>
+	        <if test="dateTime!=null ">date_time = #{t.dateTime} ,</if>
+	        <if test="teamOdds!=null and teamOdds!=''">team_odds = #{t.teamOdds} ,</if>
+	        <if test="salesDegrees!=null">sales_degrees = #{t.salesDegrees} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateMktTeamsToSameVals" parameterType="map">
+        UPDATE mkt.mkt_team 
+ 		  <set>
+	        <if test="teamName!=null and teamName!=''">team_name = #{teamName} ,</if>
+	        <if test="teamSlogan!=null and teamSlogan!=''">team_slogan = #{teamSlogan} ,</if>
+	        <if test="teamLeader!=null ">team_leader = #{teamLeader} ,</if>
+	        <if test="dateTime!=null ">date_time = #{dateTime} ,</if>
+	        <if test="teamOdds!=null and teamOdds!=''">team_odds = #{teamOdds} ,</if>
+	        <if test="salesDegrees!=null">sales_degrees = #{salesDegrees} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteMktTeamById">
+    <![CDATA[
+        DELETE FROM mkt.mkt_team WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteMktTeamByIds" parameterType="list">
+        DELETE FROM mkt.mkt_team WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getMktTeamById" resultMap="MktTeam">
+		SELECT <include refid="mktteamColumns" />
+		    FROM mkt.mkt_team 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getMktTeams" resultMap="MktTeam" parameterType="map">
+		SELECT u.user_image leader_image,u.user_name leader_name,
+		array_to_string(
+					ARRAY (
+						SELECT DISTINCT(su.user_name) FROM mkt.mkt_team_user tu
+						INNER JOIN sys.sys_user su ON (su.id = tu.user_id)
+						WHERE t.id = tu.team_id	AND su.is_enable='1'
+					),','
+				) AS team_member,
+		(select count(*) from mkt.mkt_team_supporter where team_id=t.id) support_count,
+		t.* FROM mkt.mkt_team t left join sys.sys_user u on (t.team_leader=u.id)
+	    <include refid="mktteam_findPage_where" />
+		ORDER BY sales_degrees desc
+	</select>
+	
+	<select id="getMktTeamsMap" resultType="map">
+		SELECT <include refid="mktteamColumns" />
+	    <![CDATA[
+		    FROM mkt.mkt_team  
+	    ]]>
+	    <include refid="mktteam_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSupportUserByTeamId" resultMap="SysUser">
+		select u.id,u.user_name,p.id position_id,p.position_name from mkt.mkt_team_supporter ts INNER JOIN sys.sys_user u on (ts.supporter_id=u.id) 
+		INNER JOIN sys.sys_position p on (u.position_id = p.id)
+		where ts.team_id=#{teamId} and u.is_enable='1' ORDER BY u.user_name
+	</select>
+	
+	<select id="getNoSupportCurrentTeamUser" resultMap="SysUser">
+		 select u.id,u.user_name,p.id position_id,p.position_name from sys.sys_user u INNER JOIN sys.sys_user_role ur on (u.id = ur.user_id)
+		 INNER JOIN sys.sys_role r on (r.id = ur.role_id)
+		  INNER JOIN sys.sys_position p on (p.id = u.position_id)
+		   <include refid="no_support_current_tem_where" />
+		   ORDER BY u.user_name
+	</select>
+	<sql id="no_support_current_tem_where">
+		<where>
+			<if test="1==1">role_name not like '%销售%' and u.is_enable='1'</if>
+			<if test="userName!=null and userName!=''">
+			 	and u.user_name like '%'||#{userName}||'%'
+			</if>
+		</where>
+	</sql>
+	
+	 <delete id="deleteSupportByTeamIdAndUserId">
+	       DELETE FROM mkt.mkt_team_supporter WHERE supporter_id = #{supportId} and team_id=#{teamId} 
+    </delete>
+    
+    <delete id="deleteSupportByTeamId">
+	      DELETE FROM mkt.mkt_team_supporter WHERE team_id=#{teamId} 
+    </delete>
+	
+	<sql id="mktteam_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="teamName!=null and teamName!=''">AND team_name = #{teamName}</if>
+	       <if test="teamSlogan!=null and teamSlogan!=''">AND team_slogan = #{teamSlogan}</if>
+	       <if test="teamLeader!=null ">AND team_leader = #{teamLeader}</if>
+		   <if test="beginDate!=null and endDate!=null">AND date_time BETWEEN #{beginDate} AND #{endDate}</if>
+	       <if test="teamOdds!=null and teamOdds!=''">AND team_odds = #{teamOdds}</if>
+	       <if test="salesDegrees!=null">AND sales_degrees = #{salesDegrees}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+		</where>
+	</sql>
+		
+    <select id="getMktTeamCount" resultType="long">
+        SELECT count(*) FROM mkt.mkt_team 
+		<include refid="mktteam_findPage_where"/>    
+    </select>
+    
+    <select id="getMktTeamSupportCount" resultType="long">
+        SELECT count(*) FROM mkt.mkt_team_supporter where team_id=#{teamId} 
+    </select>
+    
+    <insert id="batchInsertMktTeamSupport" parameterType="map">
+        INSERT INTO mkt.mkt_team_supporter (
+        	team_id,
+        	supporter_id,
+        	insert_by,
+        	insert_time
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          #{t.teamId},
+          #{t.supporterId},
+          #{t.insertBy},
+          now()
+         )
+        </foreach>
+	</insert>
+    
+</mapper>

@@ -1,0 +1,66 @@
+.page-study-coursestudy-oldstaffstudy .courseware-item {
+    border: 1px solid #e1e1e1;
+    height: 94px;
+    line-height: 94px;
+    margin: 0 8px 8px 8px;
+    background: #ffffff;
+    font-size: 18px;
+    color: #666666;
+}
+.page-study-coursestudy-oldstaffstudy .page-section-title {
+    line-height: 1em;
+    padding: 16px 14px ! important;
+}
+.page-study-coursestudy-oldstaffstudy .item-cell {
+    padding: 0 14px;
+}
+.page-study-coursestudy-oldstaffstudy .cell-index {
+    width: 52px;
+    background: #d1d1d1;
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+}
+.page-study-coursestudy-oldstaffstudy .cell-title {
+    /*width: 160px;*/
+    height: 100%;
+    line-height: normal;
+    margin-right: 770px;
+    margin-left: 80px;
+    /*white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;*/
+    overflow:hidden;
+}
+.page-study-coursestudy-oldstaffstudy .history-list-section .cell-title {
+    margin-right: 540px;
+}
+.page-study-coursestudy-oldstaffstudy .cell-operation {
+    width: 200px;
+    text-align: right;
+}
+.page-study-coursestudy-oldstaffstudy .cell-hour {
+    width: 110px;
+}
+.page-study-coursestudy-oldstaffstudy .cell-title .title-wrapper {
+    display:table;
+    height: 100%;
+}
+.page-study-coursestudy-oldstaffstudy .cell-title .title-inner {
+    display:table-cell;
+    vertical-align:middle;
+}
+.page-study-coursestudy-oldstaffstudy .cell-speaker {
+    /*max-width: 130px;
+    min-width: 100px;*/
+    width: 130px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+}
+.page-study-coursestudy-oldstaffstudy .empty-list-tip {
+    font-size: 14px;
+    padding-left: 24px;
+    color: #666666;
+}

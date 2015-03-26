@@ -1,0 +1,179 @@
+.page-datamonitor-allstatistics .page-tbar {
+    background: #f3f4f6;
+    position: relative;
+    z-index: 10;
+}
+.page-datamonitor-allstatistics .date-range-selector {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    position: relative;
+}
+.page-datamonitor-allstatistics .date-range-selector .selector-input {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    border: 1px solid #66ccb5;
+    font-size: 14px;
+    color:#646464;
+}
+.page-datamonitor-allstatistics .date-range-selector .select-header-text {
+    width: 160px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+    border: none;
+    vertical-align: middle;
+    color: #646464;
+}
+.page-datamonitor-allstatistics .date-range-selector .icon-select {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 8px;
+    width: 26px;
+    text-align: center;
+    line-height: 30px;
+    color: #66ccb5;
+    vertical-align: middle;
+    background: #e5f8f1;
+    cursor: pointer;
+}
+.page-datamonitor-allstatistics .date-range-selector .selector-panel {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 723px;
+    border: 1px solid #66CCB5;
+    background: #ffffff;
+    padding: 10px;
+    font-size: 14px;
+    color: #666666;
+}
+.page-datamonitor-allstatistics .date-range-selector .date-calendar {
+    width: 220px;
+    border: 1px solid #dedede;
+}
+.page-datamonitor-allstatistics .date-range-selector .calendar-2 {
+    border-left: none;
+    border-right: none;
+}
+.page-datamonitor-allstatistics .date-range-selector .date-nav{
+    width: 28px;
+    border: 1px solid #dedede;
+}
+.page-datamonitor-allstatistics .date-range-selector .date-nav-l{
+    border-right: none;
+}
+.page-datamonitor-allstatistics .date-range-selector .date-nav-r{
+    border-left: none;
+}
+.page-datamonitor-allstatistics .date-range-selector .date-nav .year-nav {
+    border-bottom: 1px solid #dedede;
+    height: 29px;
+    background: #76A9E0;
+    color: #ffffff;
+    text-align: center;
+    line-height: 29px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.page-datamonitor-allstatistics .date-range-selector .date-nav .month-nav {
+    height: 194px;
+    line-height: 194px;
+    text-align: center;
+    color: #76A9E0;
+    cursor: pointer;
+}
+.page-datamonitor-allstatistics .date-range-selector .date-nav .is-current-date {
+    color: #969696;
+    cursor: default;
+}
+.page-datamonitor-allstatistics .date-range-selector .is-focus-date span {
+    border: 1px solid #F8F8F8;
+    background: transparent;
+}
+.page-datamonitor-allstatistics .date-range-selector .is-today span {
+    border: 1px solid #76A9E0;
+    background: transparent;
+}
+.page-datamonitor-allstatistics .date-range-selector .is-start-date span,
+.page-datamonitor-allstatistics .date-range-selector .is-end-date span {
+    background: #cae4ff;
+}
+.page-datamonitor-allstatistics .date-range-selector .is-range-date  span {
+    background: #cae4ff;
+}
+.page-datamonitor-allstatistics .date-range-selector .panel-action {
+    margin-top: 14px;
+}
+.page-datamonitor-allstatistics .date-range-selector .panel-action .start-date,
+.page-datamonitor-allstatistics .date-range-selector .panel-action .end-date {
+    width: 160px;
+}
+
+.page-datamonitor-allstatistics .page-line-title {
+    margin: 24px 14px 0 14px! important;
+}
+.page-datamonitor-allstatistics .statistics-box {
+    padding: 30px 14px;
+}
+.page-datamonitor-allstatistics .statistics-nav-item {
+    border-top: 4px solid #edf6ff;
+    background: #edf6ff;
+    padding: 8px 0;
+    position: relative;
+    top: 1px;
+    border-bottom: 1px solid #c4d5e9;
+    cursor: pointer;
+}
+.page-datamonitor-allstatistics .statistics-nav-item .nav-label {
+    text-align: center;
+    color: #666666;
+    font-size: 16px;
+}
+.page-datamonitor-allstatistics .statistics-nav-item .nav-data {
+    width: 160px;
+    text-align: center;
+    color: #ff7800;
+    font-size: 16px;
+}
+.page-datamonitor-allstatistics .fun-section .statistics-nav-item .nav-data {
+    color: #666666;
+}
+.page-datamonitor-allstatistics .fun-section .statistics-nav-active .nav-data {
+    color: #76a9e0;
+}
+.page-datamonitor-allstatistics .statistics-nav-active {
+    border: 1px solid #c4d5e9;
+    border-top: 4px solid #76a9e0;
+    border-bottom: 1px solid #ffffff;
+    background: #ffffff;
+    cursor: default;
+}
+.page-datamonitor-allstatistics .statistics-panel {
+    padding: 14px;
+    border: 1px solid #c4d5e9;
+}
+.page-datamonitor-allstatistics .statistics-nav-item .sub-nav-item {
+    border-right: 1px solid #e9e9e9;
+}
+.page-datamonitor-allstatistics .statistics-nav-item .sub-nav-last-item {
+    border-right: none;
+}
+.page-datamonitor-allstatistics .statistics-nav-item .sub-nav-separation {
+    border-right: 1px solid #d2d2d2;
+}
+.page-datamonitor-allstatistics .chart-box-title {
+    font-size: 14px;
+    color: #666666;
+    padding: 16px 0 8px 0;
+}
+
+.page-datamonitor-allstatistics .his-max-date-field {
+    color: #969696;
+    font-size: 12px;
+}
+.page-datamonitor-allstatistics .statistics-panel .chart-panel {
+    height: 400px;
+}

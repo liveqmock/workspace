@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.req.dao.ReqProjectRequirementDao">
+	<resultMap id="ReqProjectRequirement" type="com.yazuo.erp.req.vo.ReqProjectRequirementVO">
+    	<id property="id" column="id"/>
+    	<result property="projectId" column="project_id"/>
+    	<result property="requirementId" column="requirement_id"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	<resultMap id="ComplexReqProjectRequirement" type="com.yazuo.erp.req.vo.ReqProjectRequirementVO">
+    	<id property="id" column="id"/>
+    	<result property="projectId" column="project_id"/>
+    	<result property="requirementId" column="requirement_id"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+      	<association  property="reqProject" javaType="com.yazuo.erp.req.vo.ReqProjectVO">
+        	<id property="id" column="id"/>
+        	<result property="name" column="name"/>
+        	<result property="description" column="description"/>
+        	<result property="isEnable" column="is_enable"/>
+        	<result property="remark" column="remark"/>
+        	<result property="insertBy" column="insert_by"/>
+        	<result property="insertTime" column="insert_time"/>
+        	<result property="updateBy" column="update_by"/>
+        	<result property="updateTime" column="update_time"/>
+		</association>
+      	<association  property="reqRequirement" javaType="com.yazuo.erp.req.vo.ReqRequirementVO">
+        	<id property="id" column="id"/>
+        	<result property="name" column="name"/>
+        	<result property="requirementPlanType" column="requirement_plan_type"/>
+        	<result property="planTime" column="plan_time"/>
+        	<result property="isRequirementsReview" column="is_requirements_review"/>
+        	<result property="requirementsReviewTime" column="requirements_review_time"/>
+        	<result property="isProductReview" column="is_product_review"/>
+        	<result property="productReviewTime" column="product_review_time"/>
+        	<result property="developmentTime" column="development_time"/>
+        	<result property="planEndTime" column="plan_end_time"/>
+        	<result property="leader" column="leader"/>
+        	<result property="requirementStatus" column="requirement_status"/>
+        	<result property="isEnable" column="is_enable"/>
+        	<result property="remark" column="remark"/>
+        	<result property="insertBy" column="insert_by"/>
+        	<result property="insertTime" column="insert_time"/>
+        	<result property="updateBy" column="update_by"/>
+        	<result property="updateTime" column="update_time"/>
+		</association>
+	</resultMap>
+			
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="reqprojectrequirementColumns">
+	    <![CDATA[
+		id,project_id,requirement_id,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveReqProjectRequirement" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： project_id,requirement_id,insert_by,insert_time,--> 
+        INSERT INTO req.req_project_requirement (
+        	 <if test="projectId!=null">project_id,</if>
+        	 <if test="requirementId!=null">requirement_id,</if>
+        	 <if test="insertBy!=null">insert_by,</if>
+        	 <if test="insertTime!=null">insert_time</if>
+        ) VALUES (
+       	    <if test="projectId!=null">#{projectId},</if>
+       	    <if test="requirementId!=null">#{requirementId},</if>
+       	    <if test="insertBy!=null">#{insertBy},</if>
+       	    <if test="insertTime!=null">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertReqProjectRequirements" parameterType="map">
+	 <!--不允许为空的字段： project_id,requirement_id,insert_by,insert_time,--> 
+        INSERT INTO req.req_project_requirement (
+        	 <if test="projectId!=null">project_id,</if>
+        	 <if test="requirementId!=null">requirement_id,</if>
+        	 <if test="insertBy!=null">insert_by,</if>
+        	 <if test="insertTime!=null">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="projectId!=null">#{t.projectId},</if>
+          <if test="requirementId!=null">#{t.requirementId},</if>
+          <if test="insertBy!=null">#{t.insertBy},</if>
+          <if test="insertTime!=null">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateReqProjectRequirement">
+        UPDATE req.req_project_requirement 
+ 		  <set>
+	        <if test="projectId!=null">project_id = #{projectId} ,</if>
+	        <if test="requirementId!=null">requirement_id = #{requirementId} ,</if>
+	        <if test="insertBy!=null">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateReqProjectRequirementsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE req.req_project_requirement 
+ 		  <set>
+	        <if test="projectId!=null">project_id = #{t.projectId} ,</if>
+	        <if test="requirementId!=null">requirement_id = #{t.requirementId} ,</if>
+	        <if test="insertBy!=null">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateReqProjectRequirementsToSameVals" parameterType="map">
+        UPDATE req.req_project_requirement 
+ 		  <set>
+	        <if test="projectId!=null">project_id = #{projectId} ,</if>
+	        <if test="requirementId!=null">requirement_id = #{requirementId} ,</if>
+	        <if test="insertBy!=null">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteReqProjectRequirementById">
+    <![CDATA[
+        DELETE FROM req.req_project_requirement WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteReqProjectRequirementByIds" parameterType="list">
+        DELETE FROM req.req_project_requirement WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <delete id="batchDeleteReqProjectRequirementByReq">
+        DELETE FROM req.req_project_requirement WHERE requirement_id = #{id} 
+    </delete>
+    
+    <select id="getReqProjectRequirementById" resultMap="ReqProjectRequirement">
+		SELECT <include refid="reqprojectrequirementColumns" />
+		    FROM req.req_project_requirement 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getReqProjectRequirements" resultMap="ReqProjectRequirement">
+		SELECT <include refid="reqprojectrequirementColumns" />
+		    FROM req.req_project_requirement  
+	    <include refid="reqprojectrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getReqProjectRequirementsMap" resultType="map">
+		SELECT <include refid="reqprojectrequirementColumns" />
+	    <![CDATA[
+		    FROM req.req_project_requirement  
+	    ]]>
+	    <include refid="reqprojectrequirement_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="reqprojectrequirement_findPage_where">
+		<where>	      				
+	       <if test="id!=null">AND id = #{id}</if>
+	       <if test="projectId!=null">AND project_id = #{projectId}</if>
+	       <if test="requirementId!=null">AND requirement_id = #{requirementId}</if>
+	       <if test="insertBy!=null">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null">AND insert_time &lt;= #{insertTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getReqProjectRequirementCount" resultType="long">
+        SELECT count(*) FROM req.req_project_requirement 
+		<include refid="reqprojectrequirement_findPage_where"/>    
+    </select>
+    
+</mapper>

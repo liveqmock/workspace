@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yazuo.erp.trade.dao.TradeMessageTemplateDao">
+	<resultMap id="TradeMessageTemplate" type="com.yazuo.erp.trade.vo.TradeMessageTemplateVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantNo" column="merchant_no"/>
+    	<result property="transCode" column="trans_code"/>
+    	<result property="messageTemplate" column="message_template"/>
+    	<result property="templateFeilds" column="template_feilds"/>
+    	<result property="parent" column="parent"/>
+    	<result property="source" column="source"/>
+    	<result property="isCombined" column="is_combined"/>
+    	<result property="isAvail" column="is_avail"/>
+    	<result property="isSynchronize" column="is_synchronize"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="trademessagetemplateColumns">
+	    <![CDATA[
+		id,merchant_no,trans_code,message_template,template_feilds,parent,source,is_combined,is_avail,is_synchronize
+	    ]]>
+	</sql>
+
+	<insert id="saveTradeMessageTemplate" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_no,trans_code,message_type,is_avail,is_synchronize,--> 
+        INSERT INTO trade.trade_message_template (
+        	 <if test="merchantNo!=null and merchantNo!=''">merchant_no,</if>
+        	 <if test="transCode!=null and transCode!=''">trans_code,</if>
+        	 <if test="messageTemplate!=null and messageTemplate!=''">message_template,</if>
+        	 <if test="templateFeilds!=null and templateFeilds!=''">template_feilds,</if>
+        	 <if test="parent!=null and parent!=''">parent,</if>
+        	 <if test="source!=null and source!=''">source,</if>
+        	 <if test="isCombined!=null ">is_combined,</if>
+        	 <if test="isAvail!=null ">is_avail,</if>
+        	 <if test="isSynchronize!=null ">is_synchronize</if>
+        ) VALUES (
+       	    <if test="merchantNo!=null and merchantNo!=''">#{merchantNo},</if>
+       	    <if test="transCode!=null and transCode!=''">#{transCode},</if>
+       	    <if test="messageTemplate!=null and messageTemplate!=''">#{messageTemplate},</if>
+       	    <if test="templateFeilds!=null and templateFeilds!=''">#{templateFeilds},</if>
+       	    <if test="parent!=null and parent!=''">#{parent},</if>
+       	    <if test="source!=null and source!=''">#{source},</if>
+       	    <if test="isCombined!=null ">#{isCombined},</if>
+       	    <if test="isAvail!=null ">#{isAvail},</if>
+       	    <if test="isSynchronize!=null ">#{isSynchronize}</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertTradeMessageTemplates" parameterType="map">
+	 <!--不允许为空的字段： merchant_no,trans_code,message_type,is_avail,is_synchronize,--> 
+        INSERT INTO trade.trade_message_template (
+        	 <if test="merchantNo!=null and merchantNo!=''">merchant_no,</if>
+        	 <if test="transCode!=null and transCode!=''">trans_code,</if>
+        	 <if test="messageTemplate!=null and messageTemplate!=''">message_template,</if>
+        	 <if test="templateFeilds!=null and templateFeilds!=''">template_feilds,</if>
+        	 <if test="parent!=null and parent!=''">parent,</if>
+        	 <if test="source!=null and source!=''">source,</if>
+        	 <if test="isCombined!=null ">is_combined,</if>
+        	 <if test="isAvail!=null ">is_avail,</if>
+        	 <if test="isSynchronize!=null ">is_synchronize</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantNo!=null and merchantNo!=''">#{t.merchantNo},</if>
+          <if test="transCode!=null and transCode!=''">#{t.transCode},</if>
+          <if test="messageTemplate!=null and messageTemplate!=''">#{t.messageTemplate},</if>
+          <if test="templateFeilds!=null and templateFeilds!=''">#{t.templateFeilds},</if>
+          <if test="parent!=null and parent!=''">#{t.parent},</if>
+          <if test="source!=null and source!=''">#{t.source},</if>
+          <if test="isCombined!=null ">#{t.isCombined},</if>
+          <if test="isAvail!=null ">#{t.isAvail},</if>
+          <if test="isSynchronize!=null ">#{t.isSynchronize}</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateTradeMessageTemplate">
+        UPDATE trade.trade_message_template 
+ 		  <set>
+	        <if test="merchantNo!=null and merchantNo!=''">merchant_no = #{merchantNo} ,</if>
+	        <if test="transCode!=null and transCode!=''">trans_code = #{transCode} ,</if>
+	        <if test="messageTemplate!=null and messageTemplate!=''">message_template = #{messageTemplate} ,</if>
+	        <if test="templateFeilds!=null and templateFeilds!=''">template_feilds = #{templateFeilds} ,</if>
+	        <if test="parent!=null and parent!=''">parent = #{parent} ,</if>
+	        <if test="source!=null and source!=''">source = #{source} ,</if>
+	        <if test="isCombined!=null ">is_combined = #{isCombined} ,</if>
+	        <if test="isAvail!=null ">is_avail = #{isAvail} ,</if>
+	        <if test="isSynchronize!=null ">is_synchronize = #{isSynchronize} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateTradeMessageTemplatesToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE trade.trade_message_template 
+ 		  <set>
+	        <if test="merchantNo!=null and merchantNo!=''">merchant_no = #{t.merchantNo} ,</if>
+	        <if test="transCode!=null and transCode!=''">trans_code = #{t.transCode} ,</if>
+	        <if test="messageTemplate!=null and messageTemplate!=''">message_template = #{t.messageTemplate} ,</if>
+	        <if test="templateFeilds!=null and templateFeilds!=''">template_feilds = #{t.templateFeilds} ,</if>
+	        <if test="parent!=null and parent!=''">parent = #{t.parent} ,</if>
+	        <if test="source!=null and source!=''">source = #{t.source} ,</if>
+	        <if test="isCombined!=null ">is_combined = #{t.isCombined} ,</if>
+	        <if test="isAvail!=null ">is_avail = #{t.isAvail} ,</if>
+	        <if test="isSynchronize!=null ">is_synchronize = #{t.isSynchronize} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateTradeMessageTemplatesToSameVals" parameterType="map">
+        UPDATE trade.trade_message_template 
+ 		  <set>
+	        <if test="merchantNo!=null and merchantNo!=''">merchant_no = #{merchantNo} ,</if>
+	        <if test="transCode!=null and transCode!=''">trans_code = #{transCode} ,</if>
+	        <if test="messageTemplate!=null and messageTemplate!=''">message_template = #{messageTemplate} ,</if>
+	        <if test="templateFeilds!=null and templateFeilds!=''">template_feilds = #{templateFeilds} ,</if>
+	        <if test="parent!=null and parent!=''">parent = #{parent} ,</if>
+	        <if test="source!=null and source!=''">source = #{source} ,</if>
+	        <if test="isCombined!=null ">is_combined = #{isCombined} ,</if>
+	        <if test="isAvail!=null ">is_avail = #{isAvail} ,</if>
+	        <if test="isSynchronize!=null ">is_synchronize = #{isSynchronize} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteTradeMessageTemplateById">
+    <![CDATA[
+        DELETE FROM trade.trade_message_template WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteTradeMessageTemplateByIds" parameterType="list">
+        DELETE FROM trade.trade_message_template WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getTradeMessageTemplateById" resultMap="TradeMessageTemplate">
+		SELECT <include refid="trademessagetemplateColumns" />
+		    FROM trade.trade_message_template 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getTradeMessageTemplates" resultMap="TradeMessageTemplate">
+		SELECT <include refid="trademessagetemplateColumns" />
+		    FROM trade.trade_message_template  
+	    <include refid="trademessagetemplate_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getTradeMessageTemplatesMap" resultType="map">
+		SELECT <include refid="trademessagetemplateColumns" />
+	    <![CDATA[
+		    FROM trade.trade_message_template  
+	    ]]>
+	    <include refid="trademessagetemplate_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+    <insert id="insertTradeMessageTemplateVOs">
+        <selectKey keyColumn="id" keyProperty="id" resultType="int" order="BEFORE">
+            SELECT nextval('trade.trade_message_template_id_seq')
+        </selectKey>
+        INSERT INTO trade.trade_message_template
+        (id,merchant_no,trans_code,message_template,template_feilds,parent,source,is_combined,is_avail,is_synchronize)
+        VALUES
+        <foreach collection="list" item="t" separator=",">
+            (#{t.id},#{t.merchantNo},#{t.transCode},#{t.messageTemplate},#{t.templateFeilds},#{t.parent},#{t.source},#{t.isCombined},#{t.isAvail},#{t.isSynchronize})
+        </foreach>
+    </insert>
+
+    <insert id="insertTradeMessageTemplateVO" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO trade.trade_message_template(merchant_no,trans_code,message_template,template_feilds,parent,source,is_combined,is_avail)
+        VALUES (#{merchantNo},#{transCode},#{messageTemplate},#{templateFeilds},#{parent},#{source},#{isCombined},#{isAvail})
+    </insert>
+
+    <update id="updateTradeMessageTemplateVOs">
+        <foreach collection="list" item="t" separator=";">
+            UPDATE trade.trade_message_template
+            SET merchant_no = #{t.merchantNo},
+            trans_code = #{t.transCode},
+            message_template = #{t.messageTemplate},
+            template_feilds = #{t.templateFeilds},
+            parent = #{t.parent},
+            source = #{t.source},
+            is_combined = #{t.isCombined},
+            is_avail = #{t.isAvail}
+            where id=#{t.id}
+        </foreach>
+    </update>
+
+    <select id="listTradeMessageTemplates" resultMap="TradeMessageTemplate">
+        SELECT
+        <include refid="trademessagetemplateColumns"/>
+        FROM trade.trade_message_template
+        WHERE merchant_no=#{merchantNo}
+        ORDER BY id
+    </select>
+    
+    <update id="updateIsSynchronize">
+        UPDATE trade.trade_message_template SET is_synchronize=true
+        where id in <foreach collection="list" item="t" open="(" close=")" separator=",">#{t.id}</foreach>
+    </update>
+
+    <sql id="trademessagetemplate_findPage_where">
+		<where>	      				
+	       <if test="id!=null and id!=''">AND id = #{id}</if>
+	       <if test="merchantNo!=null and merchantNo!=''">AND merchant_no = #{merchantNo}</if>
+	       <if test="transCode!=null and transCode!=''">AND trans_code = #{transCode}</if>
+	       <if test="messageTemplate!=null and messageTemplate!=''">AND message_template = #{messageTemplate}</if>
+	       <if test="templateFeilds!=null and templateFeilds!=''">AND template_feilds = #{templateFeilds}</if>
+	       <if test="parent!=null and parent!=''">AND parent = #{parent}</if>
+	       <if test="source!=null and source!=''">AND source = #{source}</if>
+	       <if test="isCombined!=null ">AND is_combined = #{isCombined}</if>
+	       <if test="isAvail!=null ">AND is_avail = #{isAvail}</if>
+	       <if test="isSynchronize!=null ">AND is_synchronize = #{isSynchronize}</if>
+		</where>
+	</sql>
+</mapper>

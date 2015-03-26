@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+externalMigrateFromAuthorizationDatabase/isMigrated=true
+migrateFromAuthorizationDatabase/isMigrated=true
+repositories/e0df631332bf00141c5cf993968f1120=e0df631332bf00141c5cf993968f1120;http\://192.168.232.111/svn/crmapi/code/yazuo_erp/branch/20150108_yazuo_erp_test;http\://192.168.232.111/svn/crmapi/code/yazuo_erp/branch/20150108_yazuo_erp_test;branches;tags;trunk;true;b49ac297-b803-4cca-9b6e-091c4ad8fd11;http\://192.168.232.111/svn/crmapi;;false;;;0

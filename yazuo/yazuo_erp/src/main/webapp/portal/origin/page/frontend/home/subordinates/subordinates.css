@@ -1,0 +1,387 @@
+.page-frontend-home-subordinates .page-bd {
+    padding: 20px 15px;
+}
+.page-frontend-home-subordinates .permission_type {
+    margin-bottom:30px;
+}
+.page-frontend-home-subordinates .permission_type a {
+    color:#fff;
+}
+.page-frontend-home-subordinates .max-tabs-nav p {
+    float:left;
+    display:inline;
+    cursor: pointer;
+    width:120px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+.page-frontend-home-subordinates .tips-number {
+    width:20px;
+    height:20px;
+    background:#FE561A;
+    border-radius: 10px;
+    color:#fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 12px;
+    right:5px;
+    top:2px;
+}
+.page-frontend-home-subordinates .max-tabs-nav {
+    height:40px;
+}
+.page-frontend-home-subordinates .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-frontend-home-subordinates .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+}
+.page-frontend-home-subordinates .cate-list-wrapper {
+    padding-left:10px;
+}
+.page-frontend-home-subordinates .cate-list .cate-item {
+    height:36px;
+    margin-right:10px;
+}
+.page-frontend-home-subordinates .cate-list .cate-item a {
+    display: block;
+    line-height:36px;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+}
+.page-frontend-home-subordinates .cate-list .cate-item a.cur {
+    background: #b2eed8;
+}
+
+.page-frontend-home-subordinates .coursewareName {
+    width:200px;
+}
+
+.page-frontend-home-subordinates .name-left {
+    text-align: left;
+    padding-left: 10px;
+}
+.page-frontend-home-subordinates .name-center {
+    text-align: center;
+}
+.page-frontend-home-subordinates .progress-item {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    font-size: 14px;
+    color: #d3cecc;
+    margin-left: -1px;
+}
+.page-frontend-home-subordinates .progress-item-cn {
+    width: 50px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    font-size: 14px;
+    color: #d3cecc;
+    margin-left: -1px;
+}
+.page-frontend-home-subordinates .progress-list .is-studied {
+    border: 1px solid #45b79d;
+    background: #66ccb5;
+    color: #ffffff;
+}
+
+
+.page-frontend-home-subordinates .progress-list .is-current {
+    border: 1px solid #548bc6;
+    background: #76a9e0;
+    color: #ffffff;
+}
+.page-frontend-home-subordinates .progress-list .is-timeout {
+    border: 1px solid #c4170e;
+    background: #e81130;
+    color: #ffffff;
+}
+
+.warn-num {
+    color:red;
+}
+
+
+
+
+
+
+
+.page-frontend-home-subordinates .schedule {
+    color: #393939;
+}
+.page-frontend-home-subordinates .schedule .date-mark {
+    line-height: 50px;
+    font-size: 16px;
+    padding-left: 14px;
+}
+.page-frontend-home-subordinates .schedule .nav-box {
+    padding-right: 14px;
+    padding-top: 12px;
+}
+.page-frontend-home-subordinates .schedule .nav-box .nav-l,
+.page-frontend-home-subordinates .schedule .nav-box .nav-r,
+.page-frontend-home-subordinates .schedule .nav-box .today-btn {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 12px;
+    cursor: pointer;
+    font-family: "宋体";
+    vertical-align: top;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+}
+.page-frontend-home-subordinates .schedule .nav-box .nav-l,
+.page-frontend-home-subordinates .schedule .nav-box .nav-r {
+    background: #66ccb5;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
+.page-frontend-home-subordinates .schedule .nav-box .today-btn {
+    line-height: normal;
+    border: none;
+    background: #eaeaea;
+    font-size: 14px;
+    color: #6f6f6f;
+}
+.page-frontend-home-subordinates .schedule-grid {
+    width: 100%;
+}
+.page-frontend-home-subordinates .schedule-bd {
+    border-top: 1px solid #eaeaea;
+    background: #f6fafd;
+}
+.page-frontend-home-subordinates .schedule .date-cell {
+    min-height: 128px;
+}
+.page-frontend-home-subordinates .schedule td {
+    border: 1px solid #c5c8ca;
+    width: 14%;
+}
+.page-frontend-home-subordinates .schedule th {
+    font-size: 16px;
+    text-align: center;
+    line-height: 54px;
+    width: 14%;
+}
+.page-frontend-home-subordinates .schedule td.state-inactive {
+    background: #f5f5f5;
+}
+.page-frontend-home-subordinates .schedule td.state-today {
+    background: #deeeff;
+}
+.page-frontend-home-subordinates .schedule td.state-today .date-cell {
+    /*border: 1px solid #76a9e0;*/
+}
+.page-frontend-home-subordinates .schedule .date-cell .date-num {
+    font-size: 14px;
+    padding: 2px 4px;
+}
+.page-frontend-home-subordinates .schedule .date-cell .plan-item {
+    padding: 2px 4px;
+    cursor: pointer;
+}
+.page-frontend-home-subordinates .schedule .date-cell .state-status-1 {
+    background: #e67e96;
+    margin-bottom: 1px;
+}
+.page-frontend-home-subordinates .schedule .date-cell .state-status-2 {
+    background: #e67e96;
+    margin-bottom: 1px;
+}
+.page-frontend-home-subordinates .schedule .date-cell .state-status-3 {
+    background: #cccccc;
+    margin-bottom: 1px;
+}
+.page-frontend-home-subordinates .schedule .date-cell .state-status-4 {
+    background: #8bbf43;
+    margin-bottom: 1px;
+}
+.page-frontend-home-subordinates .schedule .date-cell .state-status-5 {
+    background: #0099cc;
+    margin-bottom: 1px;
+}
+
+/* 添加和编辑页 start */
+.page-work-plan-add-edit .f-body {
+    padding: 0 14px;
+}
+.page-work-plan-add-edit .f-body .ff-label {
+    width: 120px;
+    text-align: right;
+}
+.page-work-plan-add-edit .f-body .ff-value {
+    margin-left: 120px;
+}
+.page-work-plan-add-edit .start-hour,
+.page-work-plan-add-edit .start-minute {
+    width: 80px;
+}
+.page-work-plan-add-edit .project {
+    width: 174px;
+}
+.page-work-plan-add-edit .title {
+    width: 364px;
+}
+.page-work-plan-add-edit .desc {
+    width: 588px;
+}
+.page-work-plan-add-edit .remind-trigger {
+    padding: 6px 20px 6px 8px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 14px;
+    color: #66ccb5;
+    border-radius: 16px;
+    border: 1px solid #2CC78F;
+    cursor: pointer;
+}
+.page-work-plan-add-edit .icon-remind {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 14px;
+    width: 24px;
+    border-radius: 8px;
+    background: #2CC78F;
+    border: 1px solid #2CC78F;
+}
+.page-work-plan-add-edit .icon-remind,
+.page-work-plan-add-edit .remind-text {
+    vertical-align: top;
+}
+.page-work-plan-add-edit .state-remind-open .icon-remind {
+    background: #ffffff;
+}
+.page-work-plan-add-edit .upload-info {
+    padding-top: 8px;
+}
+.page-work-plan-add-edit .upload-info .upload-item {
+    border: 1px solid #eaeaea;
+    line-height: 28px;
+    padding: 0 0.4em;
+    background: #ffffff;
+    margin-right: 8px;
+}
+.page-work-plan-add-edit .upload-info .remove-h {
+    cursor: pointer;
+}
+.page-work-plan-add-edit .page-action .page-nav-crumbs {
+    padding: 0;
+    padding-top: 8px;
+}
+
+.page-work-plan-remind-dialog .sub-title {
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #666666;
+}
+.page-work-plan-reason-dialog .reason {
+    width: 420px;
+}
+.page-work-plan-reason-dialog .delay-field .ff-label {
+    width: 80px;
+}
+.page-work-plan-reason-dialog .delay-field .ff-value {
+    margin-left: 80px;
+}
+/* 添加和编辑页 end */
+
+/* 工作指派 start */
+.page-work-assign .assign-form {
+    padding-top: 30px;
+}
+/* 工作指派 end */
+
+/* 工作列表 start */
+.page-work-plan-list .page-action .nav-l,
+.page-work-plan-list .page-action .nav-r,
+.page-work-plan-list .page-action .current-date-view {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height:32px;
+    line-height: 32px;
+    padding: 0 12px;
+    cursor: pointer;
+    background: #66ccb5;
+    color: #ffffff;
+    font-size: 14px;
+    vertical-align: top;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+}
+.page-work-plan-list .page-action .nav-l,
+.page-work-plan-list .page-action .nav-r {
+    font-family: "宋体";
+    font-size: 16px;
+    font-weight: bold;
+}
+.page-work-plan-list .plan-list {
+    padding: 20px;
+}
+.page-work-plan-list .plan-list .page-line-title {
+    margin: 0;
+}
+.page-work-plan-list .plan-list .page-line-title .title-text,
+.page-work-plan-list .plan-list .page-line-title .status-text {
+    background: #F6FAFD;
+}
+.page-work-plan-list .f-body {
+    padding: 20px 0;
+}
+.page-work-plan-list .f-field {
+    margin-bottom: 0;
+}
+.page-work-plan-list .ff-label {
+    width: 108px;
+    text-align: right;
+}
+.page-work-plan-list .ff-value {
+    margin-left: 108px;
+}
+.page-work-plan-list .page-tip {
+    text-align: center;
+    line-height: 60px;
+    font-size: 14px;
+    color: #666666;
+}
+.page-work-plan-list .page-line-title .state-status-1 {
+    color: #e67e96;
+}
+.page-work-plan-list .page-line-title .state-status-2 {
+    color: #e67e96;
+}
+.page-work-plan-list .page-line-title .state-status-3 {
+    color: #cccccc;
+}
+.page-work-plan-list .page-line-title .state-status-4 {
+    color: #8bbf43;
+}
+.page-work-plan-list .page-line-title .state-status-5 {
+    color: #0099cc;
+}
+/* 工作列表 end */

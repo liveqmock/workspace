@@ -1,0 +1,120 @@
+.page-study-question-add-edit .page-bd-form {
+    padding-bottom: 40px;
+}
+.page-study-question-add-edit .ff-label {
+    width: 80px;
+    text-align: right;
+}
+.page-study-question-add-edit .ff-value {
+    margin-left: 80px;
+}
+.page-study-question-add-edit textarea {
+    width: 590px;
+    height: 100px;
+}
+.page-study-question-add-edit .input-text {
+    width: 590px;
+}
+.page-study-question-add-edit .option-field-wrapper {
+    position: relative;
+    /*zoom: 1;*/
+}
+.page-study-question-add-edit .add-new-option {
+    position: absolute;
+    bottom: 20px;
+    +bottom: 24px; /* ie7下bottom定位不准，触发haslayout也不能解决 */
+    left: 690px;
+    color: #66ccb5;
+    font-size: 14px;
+    text-decoration: none;
+}
+.page-study-question-add-edit .option-field-wrapper .ff-value-box {
+    position: relative;
+
+}
+.page-study-question-add-edit .option-field-wrapper .question-action {
+    position: absolute;
+    top: 10px;
+    left: 612px;
+}
+.page-study-question-add-edit .option-field-wrapper .question-action a {
+    color: #005ea7;
+    font-size: 14px;
+    text-decoration: none;
+}
+.page-study-question-add-edit .courseware-selected {
+    font-size: 14px;
+    color: #646464;
+    font-family: \65B0\5B8B\4F53, \5b8b\4f53;
+    vertical-align: top;
+}
+.page-study-question-add-edit .ppt-uploader {
+    display: inline-block;
+    *display: inline;
+    * zoom: 1;
+}
+.page-study-question-add-edit .remove-all-ppt-btn {
+    height: 30px;
+}
+.page-study-question-add-edit .upload-item {
+    width: 116px;
+    height: 86px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.page-study-question-add-edit .upload-item-with-loading {
+    background: url(../../../asset/image/loading.gif) no-repeat center center;
+}
+.page-study-question-add-edit .upload-item img {
+    width: 100%;
+}
+.page-study-question-add-edit .upload-item .file-index {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #66ccb5;
+    color: #ffffff;
+}
+.page-study-question-add-edit .upload-item .remove-file-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background: #c2c2c2;
+    color: #ffffff;
+    cursor: pointer;
+}
+.page-study-question-add-edit .upload-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    filter:alpha(opacity=50);
+    background: #7f7f7e;
+}
+.page-study-question-add-edit .upload-panel {
+    border: 1px solid #e9e9e9;
+    padding: 10px 10px 0 10px;
+    margin-top: 20px;
+    min-height: 96px;
+}
+.page-study-question-add-edit .upload-panel .placeholder {
+    float: left;
+    display: inline-block;
+    width: 112px;
+    height: 82px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 2px dotted #cccccc;
+}

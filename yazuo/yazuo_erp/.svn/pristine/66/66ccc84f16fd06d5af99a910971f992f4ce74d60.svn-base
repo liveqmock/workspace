@@ -1,0 +1,78 @@
+.page-databank-knowledgebank-addedit .page-bd {
+    padding: 20px 15px;
+}
+.page-databank-knowledgebank-addedit .addedit-title {
+    font-size: 26px;
+    color: #777;
+    padding: 15px 5px;
+}
+.page-databank-knowledgebank-addedit .add-edit-content {
+    padding: 20px;
+}
+.page-databank-knowledgebank-addedit .ff-label {
+    width: 150px;
+    text-align: right;
+}
+.page-databank-knowledgebank-addedit .input-text {
+    width:400px;
+}
+.page-databank-knowledgebank-addedit .input-textarea {
+    width:600px;
+    height:120px;
+}
+
+.page-databank-knowledgebank-addedit .used-list {
+    margin-right: 25px;
+}
+
+.page-databank-knowledgebank-addedit .save-button {
+    width: 300px;
+}
+
+.page-databank-knowledgebank-addedit .upload-box {
+    float: left;
+    display: inline;
+    height: 27px;
+    line-height:27px;
+    padding: 0 10px;
+    margin-right: 15px;
+    color: #777;
+}
+.page-databank-knowledgebank-addedit .ff-value {
+    padding-left: 150px;
+}
+.page-databank-knowledgebank-addedit .ff-value-box .tips{
+    float: left;
+    display: inline;
+    margin-right: 15px;
+    line-height: 30px;
+    color: #777;
+}
+.page-databank-knowledgebank-addedit .f-field .ff-value-tip {
+    display: block;
+}
+.page-databank-knowledgebank-addedit .addedit-create-tree-dom {
+    position: relative;
+
+}
+.page-databank-knowledgebank-addedit .addedit-create-tree-dom input {
+    border: none;
+    width: 280px;
+}
+.page-databank-knowledgebank-addedit .addedit-create-tree-dom i.iconfont {
+    vertical-align: 2px;
+
+}
+.page-databank-knowledgebank-addedit .create-knowledge-tree {
+    border:1px solid #2cc78f;
+    background: #fff;
+    padding: 5px;
+    position: absolute;
+    width: 304px;
+    max-height: 270px;
+    overflow: auto;
+}
+.page-databank-knowledgebank-addedit .brand-name .select-header-text {
+    width: 236px;
+}
+

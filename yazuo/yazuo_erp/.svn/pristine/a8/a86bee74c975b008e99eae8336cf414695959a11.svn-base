@@ -1,0 +1,245 @@
+.module-visitinfo {
+    font-size: 14px;
+    color: #777;
+}
+.module-visitinfo .ui-dialog-content {
+    border-top:5px solid #c7d4e3;
+    padding: 0;
+    height: 430px;
+    overflow: hidden;
+}
+.module-visitinfo .content {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    height: 500px;
+}
+/*left*/
+.module-visitinfo .con-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300px;
+    overflow: hidden;
+    height: 430px;
+    border-right: 5px solid #c7d4e3;
+}
+.module-visitinfo .con-left .title {
+    width: 90%;
+    height: 30px;
+    border-bottom: 1px solid #ccc;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 15px;
+}
+.module-visitinfo .con-left .title p {
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 16px;
+    color: #000;
+    background: #fff;
+    padding-right: 10px;
+}
+.module-visitinfo .con-left-main {
+    width: 90%;
+    height: 365px;
+    overflow-y: auto;
+    font-size: 12px;
+    margin: 0 auto;
+}
+.module-visitinfo .con-left-main li.con-left-main-repeat {
+    margin-bottom: 2px;
+}
+.module-visitinfo .con-left-main .tab-title {
+    background: #eee;
+    height: 35px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+.module-visitinfo .con-left-main .tab-title span {
+    margin-right: 50px;
+    font-size: 14px;
+    line-height: 35px;
+    padding-left: 10px;
+    display: inline-block;
+}
+.module-visitinfo .con-left-main .tab-title i {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+.module-visitinfo .con-left-main li.con-left-main-repeat p.con-left-main-select {
+    padding: 10px 15px;
+    line-height: 23px;
+    border: 1px solid #eee;
+    font-size: 12px;
+}
+.module-visitinfo .con-left-main li.con-left-main-repeat p.con-left-main-select * {
+    font-size: 12px!important;
+}
+/*center*/
+.module-visitinfo .con-center {
+    position: absolute;
+    left: 305px;
+    top: 0;
+    width: 360px;
+    border-right: 5px solid #c7d4e3;
+    height: 430px;
+    overflow: hidden;
+}
+.module-visitinfo .con-center .title {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    background: #ECF6FF;
+    border-bottom: 1px solid #CAE5FA;
+    line-height: 40px;
+    font-size: 16px;
+}
+.module-visitinfo .con-center .title p {
+    position: absolute;
+    width: 180px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    text-indent: 0;
+    font-weight: 100;
+}
+.module-visitinfo .con-center .title p.tab1 {
+    left: 0;
+    top: 0;
+}
+.module-visitinfo .con-center .title p.tab2 {
+    right: 0;
+    top: 0;
+}
+.module-visitinfo .con-center .title p.cur {
+    background: #fff;
+    color: #5EA9E0;
+    border-top: 4px solid #5EA9E0;
+}
+.module-visitinfo .con-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 228px;
+    height: 430px;
+}
+.module-visitinfo .con-right .title {
+    width: 90%;
+    height: 30px;
+    border-bottom: 1px solid #ccc;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 15px;
+}
+.module-visitinfo .con-right .title p {
+    float: left;
+    position: absolute;
+    left: 0;
+    top: 10px;
+    font-size: 16px;
+    color: #000;
+    background: #fff;
+    padding-right: 10px;
+}
+.module-visitinfo .con-right-main {
+    width: 200px;
+    height: 370px;
+    overflow: hidden;
+    padding-top: 5px;
+    font-size: 12px;
+    margin:0 auto;
+    position: relative;
+}
+
+.module-visitinfo .con-right-main .list {
+    padding: 10px 0;
+}
+.module-visitinfo .con-right-main .list li {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.module-visitinfo .con-right-main .list .left {
+    width: 60px;
+    float: left;
+    display: inline;
+    text-align: right;
+}
+.module-visitinfo .con-right-main .list .right {
+    width: 130px;
+    text-indent: 15px;
+    float: left;
+    display: inline;
+}
+.module-visitinfo .con-right-main .button {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    height: 45px;
+}
+.module-visitinfo .con-right-main .button button {
+    width: 100%;
+    height: 45px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.module-visitinfo .con-right-main .button button.end-btn {
+    background: #fe561a;
+    border:none;
+    color:#fff;
+}
+.module-visitinfo .con-center-main {
+    width: 340px;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+    height: 365px;
+}
+.module-visitinfo .con-center-main .changeLink {
+    width: 100%;
+}
+.module-visitinfo .con-center-main .changeLink td {
+    padding: 5px;
+}
+.module-visitinfo .con-center-main .changeLink td.left {
+    width: 80px;
+    text-align: right;
+}
+.module-visitinfo .con-center-main .question-list {
+    border-bottom:1px dashed #eee;
+    padding:10px 5px;
+}
+.module-visitinfo .con-center-main .question-list .question-title {
+    padding: 5px 0;
+    color: #333;
+}
+.module-visitinfo .con-center-main .question-list .question-title .tip {
+    color: #777;
+    padding-left: 20px;
+}
+
+.module-visitinfo .con-center-main .question-list .question-con {
+    padding-left: 20px;
+}
+.module-visitinfo .con-center-main .question-list .question-con label {
+    margin-right: 10px;
+    padding: 5px 0;
+    display: inline-block;
+    _zoom:1;
+    *display:inline;
+}
+.module-visitinfo .con-center-main .question-list .question-con textarea {
+    width: 280px;
+}
+.module-visitinfo .warn {
+    color: red;
+}

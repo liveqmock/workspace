@@ -1,0 +1,28 @@
+package com.yazuo.erp.base;
+
+import javax.annotation.Resource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
+/**
+ * Created with MyElipse.<br/>
+ * Date: 2013-11-18<br/>
+ * Time: 下午8:29:12<br/>
+ * <br/>
+ */
+public class BaseDAO {
+	protected static final String SCHEMANAME_SYN = "syn";
+	protected static final String SCHEMANAME_FES = "fes";
+	protected static final String SCHEMANAME_SYS = "sys";
+	protected static final String SCHEMANAME_TRADE = "trade";
+
+	@Resource(name = "jdbcTemplateErp")
+	protected JdbcTemplate jdbcTemplate;
+
+	@Resource(name = "jdbcTemplateCRM")
+	protected JdbcTemplate jdbcTemplateCrm;
+
+	@Resource(name = "jdbcTemplateCrm46")
+	protected JdbcTemplate jdbcTemplateCrm46;
+
+}

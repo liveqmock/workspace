@@ -1,0 +1,205 @@
+.page-fbs-questionmanage .add-question-btn {
+    padding:15px;
+}
+
+.page-fbs-questionmanage .cate-list-wrapper {
+    padding-left:15px;
+    margin-bottom:10px;
+}
+.page-fbs-questionmanage .cate-list .cate-item {
+    height:36px;
+    line-height: 36px;
+    margin-right:10px;
+    float: left;
+    display: inline;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+    cursor: pointer;
+}
+.page-fbs-questionmanage .cate-list .cur {
+    background: #b2eed8;
+}
+.page-fbs-questionmanage .search {
+    background: #eee;
+    padding:7px 15px;
+}
+
+.page-fbs-questionmanage .coursewareName {
+    width:200px;
+}
+.page-fbs-questionmanage .search .page-filter button{
+    vertical-align: 0px;
+}
+.page-fbs-questionmanage .question-list {
+    padding-top:15px;
+}
+.page-fbs-questionmanage .question-list-inner {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    padding:5px 0;
+}
+.page-fbs-questionmanage .question-list-inner-bg {
+    background:#d9edf7;
+}
+.page-fbs-questionmanage .qusetion-list-style-main {
+    float: left;
+    display: inline;
+    width: 830px;
+    padding-left: 15px;
+}
+.page-fbs-questionmanage .qusetion-list-style-main h2 {
+    font-size:16px;
+    color:#777;
+    margin-bottom:5px;
+}
+.page-fbs-questionmanage .qusetion-list-style-main h2 a {
+    color:#777;
+}
+.page-fbs-questionmanage .qusetion-tit1 {
+    font-size:14px;
+    color:#777;
+    margin-bottom:5px;
+}
+.page-fbs-questionmanage .qusetion-tit2 {
+    font-size:12px;
+    color:#777;
+    margin-bottom:5px;
+}
+.page-fbs-questionmanage .qusetion-tit2 span{
+    padding-right:6px;
+    display: inline-block;
+}
+.page-fbs-questionmanage .qusetion-remark {
+    border-top:1px dashed #ccc;
+    padding:10px 0;
+    font-size: 14px;
+    color :#008200;
+}
+.page-fbs-questionmanage .qusetion-remark p {
+    padding-bottom: 10px;
+}
+.page-fbs-questionmanage .qusetion-tit1 span {
+    margin-right:30px;
+}
+.page-fbs-questionmanage .qusetion-con {
+    font-size:14px;
+    color:#333;
+    line-height:23px;
+    margin-bottom:5px;
+}
+.page-fbs-questionmanage .qusetion-list-style-but {
+    float: right;
+    display: inline;
+    width:100px;
+    padding-right: 30px;
+}
+.page-fbs-questionmanage .qusetion-list-style-but p {
+    text-align: right;
+    padding: 5px 0;
+}
+
+.customer-title {
+    width: 318px;
+    float: left;
+    position: relative;
+}
+
+.assigned-list {
+    width: 100%;
+    overflow: hidden;
+    padding: 3px 0 0 3px;
+}
+
+.assigned-list li{
+    float: left;
+    display: inline;
+    width: 49%;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    margin-top:-1px;
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+    line-height: 35px;
+}
+
+.assigned-list li.cur {
+    color:#fff;
+    background:#009933;
+}
+.question-manage-dialog-ul {
+
+}
+.question-manage-dialog-ul li{
+    width:100%;
+    overflow: hidden;
+    margin-bottom:20px;
+}
+.question-manage-dialog-ul li .fn-left{
+    float:left;
+    display: inline;
+    width:50px;
+    font-size: 14px;
+}
+.question-manage-dialog-ul li label{
+    margin-right:20px;
+}
+.question-manage-dialog-ul li textarea{
+    width:350px;
+    height:130px;
+}
+.question-manage-dialog-ul li .fn-right{
+    float:left;
+    display: inline;
+    width:380px;
+    font-size: 14px;
+}
+.hander-questions-dialog-ul {
+    padding-top: 10px;
+    font-size: 14px;
+    color: #777;
+}
+.hander-questions-dialog-ul .warn {
+    color: red;
+}
+.hander-questions-dialog-ul li {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.hander-questions-dialog-ul .fn-left-p {
+    float: left;
+    display: inline;
+    width: 90px;
+    text-align: right;
+}
+.hander-questions-dialog-ul .fn-right-p {
+    padding-left: 95px;
+}
+.hander-questions-dialog-ul .fn-right-p .question-remark {
+    width: 300px;
+    height: 120px;
+}
+.hander-questions-dialog-ul .ff-value-tip {
+    padding-left: 95px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

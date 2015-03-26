@@ -1,0 +1,60 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <button type="button" class="add-btn main-btn" ms-click="openAdd">上传新版应用</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="webkit-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 添加新的版本 start -->
+<div class="page-sysmanage-webkit-add-dialog ui-hidden"
+    ms-widget="dialog,$,$addDialogOpts">
+    <form class="add-form" ms-widget="form,$,$addFormOpts"
+        action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>版本号：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="version-num-1" ms-widget="select,$,$versionNum1Opts"></span>&nbsp;.&nbsp;<span class="version-num-2" ms-widget="select,$,$versionNum2Opts"></span>&nbsp;.&nbsp;<span class="version-num-3" ms-widget="select,$,$versionNum3Opts"></span><!--&nbsp;.&nbsp;<input type="text" class="input-text version-tail" />-->
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>上传应用：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box fn-clear">
+                        <div class="upload-info ff-value-text fn-left" ms-if="originalFileName">{{originalFileName}}&nbsp;</div>
+                        <div class="version-uploader fn-left"
+                             ms-widget="uploader,$,$uploaderOpts">
+                            <button type="button" class="upload-btn simple-btn"  ms-if="!uploading">选择文件</button><button type="button" class="simple-btn-disabled" ms-if="uploading">正在上传&#8230;</button>
+                        </div>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>更新说明：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="update-desc"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>强制更新：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box ff-value-text">
+                        <span class="label-for"><input type="radio" name="page_sysmanage_webkit_add_is_forced_upgrade" value="1" /><label>是</label></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="label-for"><input type="radio" name="page_sysmanage_webkit_add_is_forced_upgrade" value="0" checked="checked" /><label>否</label></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加新的版本 end -->

@@ -1,0 +1,23 @@
+<div class="module-ppt-player fn-left">
+    <img ms-src="{{currentPath}}" alt="preview">
+</div>
+<div class="module-ppt-nav-wrapper fn-left">
+    <div class="ppt-nav-up"
+         ms-class-1="is-nav-disabled: movePassedNum == pptList.length - 1"
+         ms-click="navUp"><i class="icon-nav-arrow iconfont">&#xe60a;</i></div>
+    <div class="ppt-nav-list-wrapper">
+        <ul class="ppt-nav-list">
+            <li class="ppt-nav-item"
+                ms-class-1="is-current-item: currentIndex === $index"
+                ms-repeat="pptList"
+                ms-click="clickNavItem">
+                <img ms-src="{{el.imagePath}}" alt="">
+                <div class="overlay"></div>
+                <span class="sup-tip">{{$index + 1}}/{{pptList.length}}</span>
+            </li>
+        </ul>
+    </div>
+    <div class="ppt-nav-down"
+         ms-class-1="is-nav-disabled: movePassedNum == 0"
+         ms-click="navDown"><i class="icon-nav-arrow iconfont">&#xe609;</i></div>
+</div>

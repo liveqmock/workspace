@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.erp.bes.dao.BesRenewCardStatusDao">
+    <resultMap id="BesRenewCardStatusMap" type="com.yazuo.erp.bes.vo.BesRenewCardStatusVO">
+        <id column="id" property="id"/>
+        <result column="status" property="status"/>
+        <result column="card_type_id" property="cardTypeId"/>
+        <result column="card_type" property="cardType"/>
+        <result column="card_type_status" property="cardTypeStatus"/>
+        <result column="brand_id" property="brandId"/>
+        <result column="no_activated_num" property="noActivatedNum"/>
+        <result column="card_total_num" property="cardTotalNum"/>
+        <result column="card_total_num_for_3months" property="cardTotalNumFor3Months"/>
+        <result column="avg_card_num_for_3months" property="avgCardNumFor3Months"/>
+        <result column="avail_date_num" property="availDateNum"/>
+        <result column="is_entity_card" property="isEntityCard"/>
+        <result column="last_activate_date" property="lastActivateDate"/>
+        <result column="remark" property="remark"/>
+        <result column="updated_time" property="updatedTime"/>
+        <result column="operation_ids" property="operationIds"
+                typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    </resultMap>
+    <select id="getAllCardTypeIds" resultType="Integer">
+        SELECT card_type_id
+        FROM bes.bes_renew_card_status
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bes.bes_renew_card_status(status, card_type_id, card_type, card_type_status, brand_id, no_activated_num, card_total_num, card_total_num_for_3months,
+                                               avg_card_num_for_3months, avail_date_num, is_entity_card, last_activate_date, remark, updated_time, operation_ids)
+        VALUES
+            (#{status}, #{cardTypeId}, #{cardType}, #{cardTypeStatus}, #{brandId}, #{noActivatedNum}, #{cardTotalNum},
+             #{cardTotalNumFor3Months}, #{avgCardNumFor3Months}, #{availDateNum}, #{isEntityCard}, #{lastActivateDate},
+             #{remark}, #{updatedTime}, #{operationIds, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler})
+    </insert>
+    <update id="updateById">
+        UPDATE bes.bes_renew_card_status
+        SET status                     = #{status},
+            card_type_id               = #{cardTypeId},
+            card_type                  = #{cardType},
+            card_type_status           = #{cardTypeStatus},
+            brand_id                   = #{brandId},
+            no_activated_num           = #{noActivatedNum},
+            card_total_num             = #{cardTotalNum},
+            card_total_num_for_3months = #{cardTotalNumFor3Months},
+            avg_card_num_for_3months   = #{avgCardNumFor3Months},
+            avail_date_num             = #{availDateNum},
+            is_entity_card             = #{isEntityCard},
+            last_activate_date         = #{lastActivateDate},
+            remark                     = #{remark},
+            updated_time               = #{updatedTime},
+            operation_ids              = #{operationIds, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getBesRenewCardStatuses" resultMap="BesRenewCardStatusMap">
+        SELECT id as alais_id,*
+        FROM bes.bes_renew_card_status bb LEFT JOIN syn.syn_merchant ss ON bb.brand_id=ss.merchant_id
+        <where>
+            <if test="dto.merchantName!=null and dto.merchantName!=''"> ss.merchant_name like '%'||#{dto.merchantName}||'%'</if>
+            <if test="dto.availDateFrom!=null and dto.availDateFrom!=''">AND bb.avail_date_num >= #{dto.availDateFrom}</if>
+            <if test="dto.availDateTo!=null and dto.availDateTo!=''"> AND bb.avail_date_num &lt;= #{dto.availDateTo}</if>
+            <if test="dto.merchantStatus !=null"> AND bb.status = #{dto.merchantStatus}</if>
+            <if test="dto.cardType!=null">AND bb.is_entity_card = #{dto.cardType} </if>
+        </where>
+        ORDER BY id DESC
+        @@
+    </select>
+
+    <delete id="delete">
+        DELETE FROM bes.bes_renew_card_status
+        WHERE id in
+        <foreach collection="renewCardStatusIds" item="id" open="(" close=")" separator=",">#{id}</foreach>
+    </delete>
+
+    <select id="selectById" resultMap="BesRenewCardStatusMap">
+        SELECT *
+        FROM bes.bes_renew_card_status
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectByCardTypeId" resultMap="BesRenewCardStatusMap">
+        SELECT *
+        FROM bes.bes_renew_card_status
+        WHERE card_type_id = #{cardTypeId}
+    </select>
+</mapper>

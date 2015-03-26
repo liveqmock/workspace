@@ -1,0 +1,172 @@
+.page-frontend-home-marketactivitie .page-bd {
+    padding: 20px 15px;
+}
+.page-frontend-home-marketactivitie {
+    color:#777;
+}
+.page-frontend-home-marketactivitie .page-padding{
+    padding:20px 15px;
+}
+.page-frontend-home-marketactivitie .client-head{
+    width:100%;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+.page-frontend-home-marketactivitie .client-head-left{
+    float:left;
+    display:inline;
+}
+.page-frontend-home-marketactivitie .client-head-left-logo{
+    float:left;display:inline;
+    width:100px;
+    height:100px;
+}
+.page-frontend-home-marketactivitie .client-head-left-logo img{
+    width:100px;
+    height:100px;
+}
+.page-frontend-home-marketactivitie .client-head-left-text{
+    float:left;display:inline;
+    margin-left:30px;
+    width:450px;
+}
+.page-frontend-home-marketactivitie .client_head_right{
+    float:right;
+    display:inline;
+    width: 400px;
+    text-align: right;
+}
+.page-frontend-home-marketactivitie .client_head_right button {
+    margin:3px 0;
+}
+.page-frontend-home-marketactivitie .permission_type {
+    margin-bottom:30px;
+}
+.page-frontend-home-marketactivitie .permission_type a {
+    color:#fff;
+}
+.page-frontend-home-marketactivitie .client-head-left-text h2 {
+    font-size:24px;
+    line-height:30px;
+    padding-bottom:10px;
+}
+.page-frontend-home-marketactivitie .client-head-left-text ul {
+    width:100%;
+    overflow:hidden;
+}
+.page-frontend-home-marketactivitie .client-head-left-text ul li {
+    float:left;
+    display: inline;
+    width:170px;
+    line-height:23px;
+}
+.page-frontend-home-marketactivitie .text-left {
+    text-align:left;
+    padding-left:10px;
+}
+.page-frontend-home-marketactivitie .text-center {
+    text-align:center;
+    padding-left:10px;
+}
+.page-frontend-home-marketactivitie .marketactivitie-sales-div {
+    border:1px solid #eee;
+}
+
+
+/*mail*/
+.common-mail table {
+    font-size: 14px;
+    color:#777;
+}
+.common-mail table td {
+    padding: 5px;
+}
+
+.common-mail .email-content{
+    width: 550px;
+}
+.common-mail .mail-name-fa {
+    width:95%;
+}
+.common-mail .common-mail-box {
+    width: 550px;
+    position: relative;
+    height:32px;
+    border: 1px solid #66ccb5;
+    z-index: 100;
+}
+.common-mail .common-mail-box input {
+    width:450px;
+    height:30px;
+    line-height: 30px;
+    position: absolute;
+    left:1;
+    top:1;
+    border:none;
+    padding-left:3px;
+}
+.common-mail .common-mail-box p {
+    width:80px;
+    height:30px;
+    position: absolute;
+    right: 1px;
+    top:1px;
+    text-align: center;
+    background: #e5f8f1;
+    font-size:14px;
+    line-height: 30px;
+    cursor:pointer;
+}
+
+
+.common-mail .common-mail-table-max {
+    position: relative;
+    width: 650px;
+}
+.common-mail .common-mail-table-max .mail-name {
+    position: absolute;
+    right:5px;
+    top:38px;
+    width:200px;
+    border:1px solid #66ccb5;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    background: #fff;
+}
+.common-mail table.mail-name-table {
+    width: 100%;
+}
+.common-mail table.mail-name-table tr {
+    position: relative;
+}
+.common-mail table.mail-name-table th{
+    line-height:25px;
+    padding:5px;
+    font-size: 14px;
+    color:#000;
+    background: #e5f8f1;
+}
+.common-mail table.mail-name-table td{
+    line-height:25px;
+    padding:5px;
+}
+.common-mail .mail-title {
+    position: absolute;
+    right:5px;
+    top:82px;
+    width:300px;
+    z-index: 1000;
+    border:1px solid #66ccb5;
+    background: #fff;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.common-mail .mail-title p {
+    padding:5px;
+}
+
+
+
+
+

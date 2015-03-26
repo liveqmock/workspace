@@ -1,0 +1,37 @@
+<div class="ui-calendar-tbar">
+    <div class="ui-calendar-nav-prev" ms-if="!disableYearMonthPanel" ms-click="clickNavPrev">&#9668;</div>
+    <div class="ui-calendar-title"><span class="label-year" ms-visible="panelState != 'year'" ms-click="clickLabelYear">{{focusDate | date("yyyy")}}</span><select
+            class="year-selector" ms-visible="panelState == 'year'" ms-change="changeYear"></select>年<span
+            class="label-month" ms-visible="panelState != 'month'"
+            ms-click="clickLabelMonth">{{focusDate | date("MM")}}</span><select class="month-selector"
+                                                                                ms-visible="panelState == 'month'"
+                                                                                ms-change="changeMonth"></select>月
+    </div>
+    <div class="ui-calendar-nav-next" ms-if="!disableYearMonthPanel" ms-click="clickNavNext">&#9658;</div>
+</div>
+<div class="ui-calendar-body">
+    <div class="ui-calendar-date-panel ui-calendar-panel"></div>
+</div>
+<div class="ui-calendar-bbar" ms-visible="!disableTimePanel || !disableSubmit">
+    <div class="ui-calendar-bbar-inner fn-clear">
+        <div class="ui-calendar-bbar-l fn-left" ms-visible="!disableTimePanel">
+            <input type="text" class="hour" ms-duplex="hour" ms-blur="lpadTime" data-time-part="hour" /><span class="separator">&nbsp;:&nbsp;</span><input type="text" class="minute" ms-duplex="minute" ms-blur="lpadTime" data-time-part="minute" /><span class="separator">&nbsp;:&nbsp;</span><input type="text" class="second" ms-duplex="second" ms-blur="lpadTime" data-time-part="second" />
+        </div>
+        <div class="ui-calendar-bbar-r fn-right" ms-visible="!disableSubmit">
+            <button type="button" class="submit-btn" ms-click="_clickSubmit">确定</button><!--&nbsp;&nbsp;<button type="button" class="cancel-btn">取消</button>-->
+        </div>
+    </div>
+</div>
+MS_OPTION_WIDGET
+<thead class="day-title">
+<tr>
+    <th><span class="date-cell">日</span></th>
+    <th><span class="date-cell">一</span></th>
+    <th><span class="date-cell">二</span></th>
+    <th><span class="date-cell">三</span></th>
+    <th><span class="date-cell">四</span></th>
+    <th><span class="date-cell">五</span></th>
+    <th><span class="date-cell">六</span></th>
+</tr>
+</thead>
+

@@ -1,0 +1,183 @@
+.page-backend-customerservice .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-customerservice .permission_type {
+    margin-bottom:30px;
+}
+.page-backend-customerservice .permission_type a {
+    color:#fff;
+}
+.page-backend-customerservice .max-tabs-nav p {
+    float:left;
+    display:inline;
+    cursor: pointer;
+    width:120px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+.page-backend-customerservice .tips-number {
+    width:20px;
+    height:20px;
+    background:#FE561A;
+    border-radius: 10px;
+    color:#fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 12px;
+    right:5px;
+    top:2px;
+}
+.page-backend-customerservice .max-tabs-nav {
+    height:40px;
+}
+.page-backend-customerservice .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-backend-customerservice .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+}
+.page-backend-customerservice .cate-list-wrapper {
+    padding-left:10px;
+}
+.page-backend-customerservice .cate-list .cate-item {
+    height:36px;
+    margin-right:10px;
+}
+.page-backend-customerservice .cate-list .cate-item a {
+    display: block;
+    line-height:36px;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+}
+.page-backend-customerservice .cate-list .cate-item a.cur {
+    background: #b2eed8;
+}
+.page-backend-customerservice .search {
+    background: #eee;
+    padding:7px 10px;
+}
+.page-backend-customerservice .coursewareName {
+    width:200px;
+}
+.page-backend-customerservice .list {
+    width: 100%;
+    overflow: hidden;
+}
+.page-backend-customerservice .list ul {
+    width: 100%;
+    overflow: hidden;
+}
+.page-backend-customerservice .list ul li {
+    float: left;
+    display: inline;
+    margin: 15px 17px;
+    border:1px solid #60A9DE;
+    width: 180px;
+    height: 190px;
+}
+.page-backend-customerservice .list-img {
+    width: 180px;
+    height: 160px;
+    overflow: hidden;
+}
+.page-backend-customerservice .list-img img {
+    width: 180px;
+    height: 160px;
+}
+.page-backend-customerservice .list-text {
+    height: 30px;
+    line-height: 30px;
+    background: #60A9DE;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+.page-backend-customerservice .name-left {
+    text-align: left;
+    padding-left: 10px;
+}
+.page-backend-customerservice .name-center {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page-backend-customerservice .progress-item {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    font-size: 14px;
+    color: #d3cecc;
+    margin-left: -1px;
+}
+.page-backend-customerservice .progress-item-cn {
+    width: 50px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    font-size: 14px;
+    color: #d3cecc;
+    margin-left: -1px;
+}
+.page-backend-customerservice .progress-list .is-studied {
+    border: 1px solid #45b79d;
+    background: #66ccb5;
+    color: #ffffff;
+}
+
+
+.page-backend-customerservice .progress-list .is-current {
+    border: 1px solid #548bc6;
+    background: #76a9e0;
+    color: #ffffff;
+}
+.page-backend-customerservice .progress-list .is-timeout {
+    border: 1px solid #c4170e;
+    background: #e81130;
+    color: #ffffff;
+}
+
+.warn-num {
+    color:red;
+}
+
+.customerService-padding span {
+    padding: 0 5px;
+}
+
+

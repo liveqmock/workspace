@@ -1,0 +1,8 @@
+import java.util.*;
+import ${basepackage}.vo.*;
+import ${basepackage}.dao.*;
+
+/**
+ * @author erp team
+ * @date 
+ */

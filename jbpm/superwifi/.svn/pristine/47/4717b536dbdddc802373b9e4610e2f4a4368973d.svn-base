@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Form相关样式</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+        <link rel="stylesheet" href="../asset/base.css">
+        <link rel="stylesheet" href="../widget/widget.css">
+        <link rel="stylesheet" href="../asset/common.css">
+        <script src="../asset/third/underscore/underscore.js"></script>
+        <script src="../asset/third/underscore/underscore.string.js"></script>
+        <script src="../asset/third/jquery-1.11.1.js"></script>
+        <script src="../asset/third/avalon/avalon.js"></script>
+        <script>
+            var VERSION="0.0.0.0.0"; //版本号设置规则:all.asset.module.page.widget
+            var BASE_PATH="http://localhost:8080/yazuo_erp/";  //web根目录地址
+        </script>
+        <script src="../asset/boot.js"></script>
+        <style>
+            form {
+                position: absolute;
+                top: 200px;
+                left: 200px;
+            }
+            .ff-value {
+                margin-left: 60px;
+            }
+        </style>
+    </head>
+    <body ms-controller="demo">
+        <form action="#"
+              ms-widget="form,$,$formOpts">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left">分类：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="selector" ms-widget="select,$,$selectorOpts"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left">名称：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text name" />
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left">描述：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <textarea class="desc"></textarea>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <script>
+            require(["avalon", 'common', '../../../widget/form/form', '../../../widget/form/select'], function (avalon, common, form) {
+                common.setup(function () {
+                    var demoVm = avalon.define('demo', function (vm) {
+                        vm.$selectorOpts = {
+                            "selectedIndex": 1,
+                            "options": [{
+                                "text": "test001",
+                                "value": "001"
+                            },{
+                                "text": "test002",
+                                "value": "002"
+                            }]
+                        };
+                        vm.$formOpts = {
+                            "tipCls": "ff-value-tip",
+                            "errorCls": "valid-error",
+                            "field": [{
+                                "selector": ".cate",
+                                "rule": ["noempty", function (val, rs) {
+                                    if (rs[0] !== true) {
+                                        return "不能为空";
+                                    } else {
+                                        return true;
+                                    }
+                                }]
+                            },{
+                                "selector": ".name",
+                                "rule": ["noempty", function (val, rs) {
+                                    if (rs[0] !== true) {
+                                        return "不能为空";
+                                    } else {
+                                        return true;
+                                    }
+                                }]
+                            }]
+                        };
+                    });
+                    avalon.scan();
+                });
+            });
+        </script>
+    </body>
+</html>

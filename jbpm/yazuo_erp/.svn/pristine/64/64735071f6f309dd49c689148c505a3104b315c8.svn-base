@@ -1,0 +1,14 @@
+<div class="module-positionselector-dialog select-list-dialog ui-hidden" ms-widget="dialog,$,$positionOpts">
+    <div class="position-list-wrapper list-wrapper">
+        <ul class="position-list select-list">
+            <li class="select-item fn-clear"
+                ms-click="selectPosition"
+                ms-repeat="positionList"
+                ms-class-1="odd: !($index % 2)"
+                ms-class-2="even: $index % 2">
+                <span class="item-cell fn-left">{{el.positionName}}</span>
+                <i class="is-selected fn-right" ms-if="el.isSelected">&#xe604;</i>
+            </li>
+        </ul>
+    </div>
+</div>

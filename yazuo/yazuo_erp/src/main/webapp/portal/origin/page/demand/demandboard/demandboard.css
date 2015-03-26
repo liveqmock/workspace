@@ -1,0 +1,79 @@
+.page-demand-demandboard .page-tbar .ui-select-header {
+    width: 110px;
+}
+.page-demand-demandboard .page-tbar .demand {
+    width: 160px;
+}
+.page-demand-demandboard .state-out-date {
+    color: #FF7800;
+}
+.page-demand-demandboard .ui-grid {
+    table-layout:fixed;
+}
+.page-demand-demandboard .ui-grid td span {
+    display:inline-block;
+}
+.page-demand-demandboard .project-cell,
+.page-demand-demandboard .remark-cell {
+    width: 60px;
+    text-align: left;
+}
+.page-demand-demandboard .fixed-width {
+    text-align: left;
+}
+.page-demand-demandboard .demand-id-cell {
+    width: 20px;
+}
+.page-demand-demandboard .demand-name-cell {
+    text-align: left;
+    /*width: 110px;*/
+}
+.page-demand-demandboard .plan-type-cell,
+.page-demand-demandboard .plan-time-cell,
+.page-demand-demandboard .predict-time-cell,
+.page-demand-demandboard .online-time-cell,
+.page-demand-demandboard .status-cell{
+    width: 64px;
+}
+.page-demand-demandboard .dev-charge-cell {
+    width: 70px;
+}
+.page-demand-demandboard .demand-review-cell {
+    width: 120px;
+    text-align: left;
+}
+.page-demand-demandboard .operation-cell {
+    width: 84px;
+    word-break: break-all;
+}
+
+
+.demand-add-edit-dialog .f-field .ff-label {
+    width: 130px;
+    text-align: right;
+}
+.demand-add-edit-dialog .f-field .ff-value {
+    margin-left: 130px;
+}
+.demand-add-edit-dialog .input-text,
+.demand-add-edit-dialog textarea{
+    width: 240px;
+}
+.demand-add-edit-dialog .year,
+.demand-add-edit-dialog .month {
+    width: 92px;
+}
+.demand-calendar {
+    position: absolute;
+    z-index: 10000;
+}
+.demand-add-edit-dialog .body-l,
+.demand-add-edit-dialog .body-r {
+    width: 380px;
+}
+.demand-add-edit-dialog .body-l {
+    margin-right: 40px;
+}
+.demand-add-edit-dialog .remark {
+    width: 660px;
+}

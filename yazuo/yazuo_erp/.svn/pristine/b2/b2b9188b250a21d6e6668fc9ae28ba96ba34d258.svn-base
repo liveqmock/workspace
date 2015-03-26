@@ -1,0 +1,83 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <button type="button" class="add-btn main-btn" ms-if="permission.add" ms-click="openAdd">添加模板</button>
+    </div>
+    <div class="page-filter">
+        <input type="text" class="tmpl-name input-text"
+            placeholder="请输入模板名称" ms-duplex="tmplName" />&nbsp;&nbsp;<button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="tmpl-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 添加模板 start -->
+<div class="page-sysmanage-smstmpl-dialog ui-hidden"
+    ms-widget="dialog,$,$dialogOpts">
+    <form class="tmpl-form" ms-widget="form,$,$formOpts"
+        action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>模板类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <div ms-visible="dialogState !== 'view'">
+                            <span class="tmpl-type" ms-widget="select,$,$tmplTypeOpts"></span>
+                        </div>
+                        <div class="ff-value-text" ms-visible="dialogState === 'view'">
+                            <span>{{tmplTypeName}}</span>
+                        </div>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>模板名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <div ms-visible="dialogState !== 'view'">
+                            <input type="text" class="input-text tmpl-name" name="tmplName" maxlength="20"
+                                ms-value="tmplName" />
+                        </div>
+                        <div class="ff-value-text" ms-visible="dialogState === 'view'">
+                            <span>{{tmplName}}</span>
+                        </div>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>发送对象：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <div ms-visible="dialogState !== 'view'">
+                            <textarea class="send-target" name="sendTarget" withemptyicon="no" readonly="readonly" ms-value="sendTarget" ms-click="selectSendTarget"></textarea>&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="select-send-target main-btn" ms-click="selectSendTarget">选择</button>
+                        </div>
+                        <div class="ff-value-text" ms-visible="dialogState === 'view'">
+                            <span>{{sendTarget}}</span>
+                        </div>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>正文：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <div ms-visible="dialogState !== 'view'">
+                            <textarea class="send-content" name="sendContent" maxlength="30" ms-value="{{sendContent}}"></textarea>
+                        </div>
+                        <div class="ff-value-text" ms-visible="dialogState === 'view'">
+                            <span>{{sendContent}}</span>
+                        </div>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加模板 end -->
+<!-- 选择目标群体 start -->
+<div class="target-selector" ms-module="targetselector,$,$targetSelectorOpts"></div>
+<!-- 选择目标群体 end -->

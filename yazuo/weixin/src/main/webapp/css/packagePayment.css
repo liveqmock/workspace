@@ -1,0 +1,123 @@
+@charset "utf-8";
+/* 微信套餐支付 */
+
+/* 公用部分 */
+html{background:#EFEFEF;}
+body{background:none}
+.whiteBg{background:#ffffff;}
+a{text-decoration:none;}
+input,textarea{font-family:'Microsoft Yahei',Arial,Helvetica,Tahoma,sans-serif; color:#444; font-size:14px;}
+header{height:38px; line-height:38px; text-align:center;border-bottom:#C9C5D1 solid 1px; box-shadow:0 0 3px #bbbbbb; color:#333333; font-size:18px; margin-bottom:20px;
+background:#F6F5F9;background:-moz-linear-gradient(top, #ffffff, #EEEBF4);background:-webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#EEEBF4));
+filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#ffffff',endColorStr='#EEEBF4',gradientType='0');}
+.goBack{ position:absolute; left:10px; top:0px; color:#646464; font-size:14px;}
+
+
+/* 图标、按钮类 */
+.pIco{ background:url(../images/wPayIco.png) no-repeat; display:inline-block;}
+.numReduceIco,.numPlusIco{width:35px; height:35px; position:absolute; top:2px;}
+.numReduceIco{ background-position:0 -35px; right:98px;}
+.numPlusIco{ background-position:0 -70px; right:10px;}
+
+.goBackIco{ width:15px; height:20px; background-position:0px -105px; position:relative; top:3px; margin-right:5px;}
+.clockIco{width:15px; height:15px; background-position:-15px -105px; float:left; margin-top:8px; margin-right:3px;}
+
+
+.payBtn{width:94%; height:40px; line-height:40px; color:#ffffff; margin:0px 3%; display:block; border-radius:3px; text-align:center;
+background:#2FC12F;background:-moz-linear-gradient(top, #38CF38, #25B225);background:-webkit-gradient(linear, 0 0, 0 100%, from(#38CF38), to(#25B225));
+filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#38CF38',endColorStr='#25B225',gradientType='0'); margin-bottom:20px;}
+.payBtn:link,.payBtn:visited,.payBtn:hover,.payBtn:active{color:#ffffff;}
+
+.btn{height:34px; line-height:34px; color:#ffffff; display:inline-block; border-radius:3px; text-align:center; border:#FBA71A solid 1px;
+background:#FEA823;background:-moz-linear-gradient(top, #FFA823, #FFB023);background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFA823), to(##FFB023));
+filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#FFA823',endColorStr='#FFB023',gradientType='0');}
+.btn:hover{color:#ffffff;}
+.bugNowBtn{float:right;padding:0px 2em;}
+.successBtn{ width:46%; float:right;}
+.successBtn:first-child{float:left;}
+
+.arrow{width:15px; height:25px; background-position:0px -125px; position:absolute; right:10px; top:25px;}
+
+
+/* 抢购套餐页 */
+.payFormItemTitle{font-size:16px; line-height:34px; margin:0px 3%; font-weight:normal}
+.payFormItem{width:94%; margin:0px auto 20px; box-shadow:0 2px 4px #cccccc; background:#fff; border-radius:5px;}
+.payFormItem p{height:40px; line-height:40px; padding-left:78px; position:relative; border-top:#EBEBEB solid 1px;}
+.payFormItem p label{width:75px; position:absolute; left:0px; top:0px; display:block; text-align:right; color:#999999;}
+.payFormItem p span{display:block; padding-right:10px; text-align:right;}
+.totalPrice{ color:#FF7800;}
+.totalNumTxt{width:40px; border:#ccc solid 1px; text-align:center; height:26px; line-height:26px; margin-right:40px; border-radius:3px;}
+.buyerPhone{height:38px; width:98%; text-align:center; border:none;}
+
+/* 套餐详情 */
+.picWrap{width:94%; box-shadow:0 0 3px #999999; background:#ffffff; padding:1px; overflow:hidden; margin:0px auto 10px;}
+.picWrap .packagePic{margin:0px auto 3px; display:block; width:100%;}
+.picWrap p{font-size:12px; color:#777777; line-height:28px; padding:0px 5px;}
+/*购买行*/
+.buyNow{width:94%; margin:0px auto 10px;}
+.buyNow .bugMoney{color:#FF8D12; font-size:30px; line-height:38px; font-weight:bold}
+.buyNow .bugMoney em{ font-size:16px; line-height:24px; font-style:normal;float:left;}
+/*套餐内容*/
+.packageInfo{margin:0px 3% 20px; background:#ffffff; border-top:#C7C7C7 dashed 2px; padding:5px 12px 10px; font-size:14px;}
+.packageInfo .packageTitle{line-height:36px; border-bottom:#C7C7C7 dashed 1px;}
+/*套餐文字描述*/
+.infoPart{line-height:28px; padding-bottom:10px; border-bottom:#C7C7C7 dashed 1px; margin-bottom:10px;}
+.infoPart p{color:#969696; font-size:14px;}
+/*套餐信息列表*/
+.packageDetails{}
+.packageDetails h3{line-height:30px; color:#777777;}
+.packageDetails h3 i{width:5px; height:5px; background:#D9D9D8; border-radius:5px; display:inline-block;position:relative; top:-3px; margin-right:2px;}
+.packageDetailTab{width:100%}
+.packageDetailTab,.packageDetailTab th,.packageDetailTab td{border:#D3D3D3 solid 1px; font-size:14px; line-height:20px;}
+.packageDetailTab th{padding:5px; background:#F8F3EB}
+.packageDetailTab td{padding:5px;}
+.packageInclude{width:70%;}
+.numTd{text-align:center}
+
+
+/* 购买成功页 */
+.successTips{padding:20px 0; height:36px; line-height:36px; text-align:center; color:#FFB219; font-size:20px; font-weight:normal;}
+.successTips span{height:35px; background:url(demoPic/packagePic.png) 0 0 left center; display:inline-block; padding-left:38px;}
+/*背景线、文字*/
+.thanksLine{ border-bottom:#ffffff solid 1px; margin:0px 4% 40px; height:20px;text-align:center; position:relative; line-height:34px;}
+.thanksLine p{border-bottom:#E3E4E5 solid 2px; height:18px; position:relative; top:0px;}
+.thanksLine p span{padding:0px 8px; background:#EFEFEF; font-size:14px;}
+/*详情列表*/
+.successDetail{margin:0px 3% 20px; line-height:26px; font-size:14px;}
+.successDetail label{color:#939393;}
+/*按钮行*/
+.bugSuccessBtns{margin:0px 4% 20px;}
+
+
+/* update index css style */ 
+.package-title{margin:0px 5% 15px; position:relative; color:#F17E24;}
+.package-title h3{font-size: 20px;}
+.package-title .topLogoPic{width:100px; height:79px; position:absolute; right:-5px; top:-8px; display:block; background:url(../images/indexLogo.png) no-repeat;}
+.package-title p{color:#F49950; font-size:14px;  padding-top:5px;}
+/*套餐列表*/
+.packageList{border-bottom:#E5DDDC solid 1px;}
+.packageList li{padding:11px 10px 10px 70px; height:55px; overflow:hidden; border-top:#E5DDDC solid 1px; position:relative;}
+.color1{background:#A9271E;}
+.color2{background:#FF9A97;}
+.color3{background:#996533;}
+.color4{background:#D0BE47;}
+.packageList li a{color:#ffffff;}
+.packageList li img{height:76px; position:absolute; left:0px; top:0px; display:block;}
+.packageList li p{font-size:12px; text-shadow:0 0 3px #999999; padding-top:5px;}
+.packageList li h3{text-shadow:0 0 3px #999999; font-weight:normal; line-height:26px;}
+/*价格标签*/
+.box{width:62px; height:34px; padding:3px 5px; position:absolute; right:30px; top:18px; font-size:12px; text-align:center;}
+.box .boxBg{height:100%; width:100%; background:#000000; opacity:0.4; position:absolute; left:0px; top:0px; border-radius:3px; z-index:1}
+.boxInfo{position:absolute; left:5px; top:3px; z-index:2;}
+
+
+.package-footer {line-height:56px; font-size:14px;color:#939393;text-align:center;}
+.yazuoLogo{width:50px; height:28px; background:url(../images/yazuoLogo.png) no-repeat; display:inline-block; margin-right:5px; position:relative; top:5px;}
+
+
+/*中奖说明*/
+.packageExplain{ line-height:20px; font-size:12px; color:#8E8E8E; margin:20px 0;}
+.packageExplain h3{color:#393939; margin-top:5px;}
+.packageExplain h3 i.pointIco{width:5px; height:5px; background:#cccccc; border-radius:5px; display:inline-block;}
+.packageExplain p{text-indent:1em; padding:3px 0;}
+.packageExplain p.explainExtra{ color:#E53D3D; padding-top:10px;}

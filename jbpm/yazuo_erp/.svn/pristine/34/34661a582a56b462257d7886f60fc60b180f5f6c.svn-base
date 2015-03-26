@@ -1,0 +1,20 @@
+<div class="ui-dialog-mask" ms-visible="toggle"></div>
+MS_OPTION_WIDGET
+<div ms-widget="dialog,MS_OPTION_ID,MS_OPTION_OPTS"></div>
+MS_OPTION_INNERWRAPPER
+<div class="ui-dialog-inner" ms-draggable></div>
+MS_OPTION_HEADER
+<div class="ui-dialog-header">
+    <div class="ui-dialog-close" ms-click="close" ms-if="showClose">
+        {{ closeIconText|html }}
+    </div>
+    <div class="ui-dialog-title">{{ title|html }}</div>
+</div>
+MS_OPTION_CONTENT
+<div class="ui-dialog-content">11111</div>
+MS_OPTION_FOOTER
+<div class="ui-dialog-footer fn-clear">
+    <div class="ui-dialog-btns">
+        <button type="button" class="submit-btn ui-dialog-btn" ms-click="close">确&nbsp;定</button><span class="separation"></span><button type="button" class="cancel-btn ui-dialog-btn" ms-click="close">取&nbsp;消</button>
+    </div>
+</div>

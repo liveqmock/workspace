@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- <typeAlias type="com.someapp.model.User" alias="User"/> -->
+		<package name="com.yazuo.erp.train.vo" />
+		<package name="com.yazuo.erp.system.vo" />
+		<package name="com.yazuo.erp.req.vo" />
+		<package name="com.yazuo.erp.trade.vo" />
+	</typeAliases>
+	<plugins>
+		<!-- 打印sql 语句 (注：plugin是有顺序的， 放在上边后做拦截)
+		  	<plugin interceptor="com.yazuo.erp.interceptors.PrintSqlPlugin">
+		 	</plugin>
+	 	 -->
+		<plugin interceptor="com.yazuo.erp.interceptors.PageHelper">
+			<property name="dialect" value="postgresql" />
+		</plugin>
+	</plugins>
+	<mappers>
+	</mappers>
+</configuration>

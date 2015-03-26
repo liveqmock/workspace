@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/crmapi/!svn/ver/25959/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao
+END
+WxMallGoodsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/crmapi/!svn/ver/22522/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxMallGoodsDao.java
+END
+WxMallOrderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/crmapi/!svn/ver/25959/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxMallOrderDao.java
+END
+WxAccessTokenDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/crmapi/!svn/ver/21432/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxAccessTokenDao.java
+END
+WxMallInventoryDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/crmapi/!svn/ver/20058/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxMallInventoryDao.java
+END
+WxMallOrderCouponDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/crmapi/!svn/ver/22970/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxMallOrderCouponDao.java
+END
+WxMallOrderCouponStateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/crmapi/!svn/ver/21741/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxMallOrderCouponStateDao.java
+END
+WxMallRefundRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/crmapi/!svn/ver/24315/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxMallRefundRecordDao.java
+END
+WxMallMerchantDictDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/crmapi/!svn/ver/25236/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxMallMerchantDictDao.java
+END
+WxTemplateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/crmapi/!svn/ver/22209/code/weixin/src/main/java/com/yazuo/weixin/minimart/dao/WxTemplateDao.java
+END

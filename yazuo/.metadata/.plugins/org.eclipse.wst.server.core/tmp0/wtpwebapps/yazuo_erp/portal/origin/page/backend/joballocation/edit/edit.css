@@ -1,0 +1,39 @@
+.page-backend-joballocation-edit .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-joballocation-edit .addedit-title {
+    font-size: 26px;
+    color: #777;
+    padding: 15px 5px;
+}
+.page-backend-joballocation-edit .add-edit-content {
+    padding: 20px;
+}
+.page-backend-joballocation-edit .ff-label {
+    width: 150px;
+    text-align: right;
+}
+.page-backend-joballocation-edit .input-text {
+    width:400px;
+}
+.page-backend-joballocation-edit textarea {
+    width:400px;
+    height:150px;
+}
+
+.page-backend-joballocation-edit .used-list {
+    margin-right: 25px;
+}
+
+.page-backend-joballocation-edit .save-button {
+    width: 300px;
+    margin-left: 150px;
+}
+.page-backend-joballocation-edit .valid-error {
+    padding-left: 150px;
+}
+.page-backend-joballocation-edit .email-content {
+    margin-left: 150px;
+    width: 600px;
+
+}

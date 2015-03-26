@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.erp.system.dao.SysKnowledgeKindDao">
+    <resultMap id="SysKnowledgeKindResultMap" type="com.yazuo.erp.system.vo.SysKnowledgeKindVO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+        <result column="ancestors" property="ancestors" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="saveKnowledgeKind" useGeneratedKeys="true" keyProperty="id">
+         insert into sys.sys_knowledge_kind (parent_id, ancestors, title)
+         values (#{parentId}, #{ancestors}, #{title})
+    </insert>
+
+    <select id="getKnowledgeKind" resultMap="SysKnowledgeKindResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_kind
+        WHERE id=#{knowledgeKindId}
+    </select>
+
+    <update id="updateKnowledgeKindById">
+        UPDATE sys.sys_knowledge_kind
+        SET parent_id = #{parentId}, ancestors = #{ancestors}, title = #{title}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteKnowledgeKind" parameterType="int">
+        DELETE
+        FROM sys.sys_knowledge_kind
+        WHERE id=#{id}
+    </delete>
+
+    <select id="getAllKnowledgeKinds" resultMap="SysKnowledgeKindResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_kind
+    </select>
+
+    <select id="getAllKnowledgeKindByIds" resultMap="SysKnowledgeKindResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_kind
+        <where>
+            id in <foreach collection="knowledgeKindIds" item="id" open="(" close=")" separator=",">#{id}</foreach>
+        </where>
+    </select>
+
+    <select id="searchKnowledgeKinds" resultMap="SysKnowledgeKindResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_kind
+        WHERE title like '%' || #{title} || '%'
+    </select>
+
+
+    <select id="getKnowledgeKinds" resultMap="SysKnowledgeKindResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_kind
+        where id in <foreach collection="ids" open="(" close=")" separator="," item="id">#{id}</foreach>
+        order by id desc
+    </select>
+
+    <select id="getChildrenKnowledgeKinds" resultMap="SysKnowledgeKindResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_kind
+        where parent_id=#{parentId}
+    </select>
+
+    <select id="hasChildren" resultType="boolean">
+        select count(id) > 0
+        from sys.sys_knowledge_kind
+        where parent_id=#{parentId}
+    </select>
+
+    <select id="hasKnowledge" resultType="boolean">
+        SELECT count(id) > 0
+        FROM sys.sys_knowledge
+        WHERE kind_id IN (
+            SELECT ID
+            FROM sys.sys_knowledge_kind
+            WHERE ancestors LIKE ( (SELECT ancestors FROM sys.sys_knowledge_kind WHERE id = #{kindId}) || '%' )
+	    )
+    </select>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.erp.system.dao.SysCommentaryDao">
+    <resultMap id="SysCommentaryResultMap" type="com.yazuo.erp.system.vo.SysCommentaryVO" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="user_id" property="userId"/>
+        <result column="knowledge_id" property="knowledgeId" jdbcType="INTEGER" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <insert id="saveCommentary" useGeneratedKeys="true">
+         INSERT INTO sys.sys_commentary (user_id, knowledge_id, content,created_time)
+         VALUES (#{userId}, #{knowledgeId}, #{content},#{createdTime})
+    </insert>
+
+    <select id="getCommentaries" resultMap="SysCommentaryResultMap">
+        SELECT id as alais_id,*
+        FROM sys.sys_commentary
+        WHERE knowledge_id = #{knowledgeId}
+        ORDER BY id
+        @@
+    </select>
+
+</mapper>

@@ -1,0 +1,55 @@
+<div class="page-bd">
+    <h2 class="page-selection">会员查询</h2>
+    <div class="add-member">
+        <p>您今天共有<span>{{newMember}}</span>位新增会员</p>
+        <p class="fu-title">本周共有 <ins>{{totalWifi}}</ins> 人连接了WIFI&nbsp;&nbsp;&nbsp;&nbsp;其中有 <ins>{{totalNewMember}}</ins> 位新增WIFI会员&nbsp;&nbsp;&nbsp;&nbsp;统计周期：{{wifiStart}} 至 {{wifiEnd}}</p>
+    </div>
+    <div class="real-time-panel panel-box">
+        <button type="button" class="add-btn main-btn" ms-click="openDialog">导出会员资料</button>
+        <h3 class="panel-title">近7天会员增量环比图</h3>
+        <div class="panel-content">
+            <div class="chart-wrapper"></div>
+        </div>
+    </div>
+    <div class="adv-l-block">
+        <div class="adv-l-title">
+            短信推送设置
+            <div class="adv-l-bt">
+                <button type="button" class="query-btn main-btn-green" ms-click="showMessage">{{editOrSave}}</button>&nbsp;&nbsp;
+                <button type="button" class="query-btn main-btn" ms-click="cancelMessage" ms-visible="showMessageSet">取消</button>
+            </div>
+        </div>
+        <div class="home-set">
+            <div ms-visible="!showMessageSet">
+                <p class="font-grey" ms-visible="!isSendMessage">您还没有设置报表推送</p>
+                <p class="font-grey" ms-visible="isSendMessage">报表推送号码：{{currentMessage}}</p>
+            </div>
+            <div ms-visible="showMessageSet">
+                <div class="message-tip"><span class="select-style" ms-class-1="checked-st:isSendMessage" ms-click="messageCheck"></span>给老板发送会员统计报表</div>
+                <p>老板/店长手机号：<input name="" class="input-text" ms-duplex="currentMessage" ms-disabled="!isSendMessage">&nbsp;&nbsp;&nbsp;&nbsp;<span class="font-grey">信息将于每周一上午九点发送至该手机</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 导出会员资料 start -->
+<div class="page-member-export-dialog ui-hidden"
+     ms-widget="dialog,$,$exportDialogOpts">
+    <form class="export-form" ms-widget="form,$,$exportFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label">请选择要导出的时间：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input
+                            type="text" class="start-date input-text" placeholder="选择开始时间" ms-value="startDate" readonly="readonly"
+                            data-date-name="start" ms-click="openCalendar"/>&nbsp;至&nbsp;<input type="text" class="end-date input-text"
+                                                                                                placeholder="选择结束时间" ms-value="endDate"
+                                                                                                readonly="readonly" data-date-name="end"
+                                                                                                ms-click="openCalendar"/></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 导出会员资料 end -->
+

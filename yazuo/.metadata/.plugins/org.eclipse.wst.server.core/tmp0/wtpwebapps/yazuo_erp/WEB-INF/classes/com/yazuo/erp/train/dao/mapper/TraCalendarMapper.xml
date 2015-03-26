@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yazuo.erp.train.dao.TraCalendarDao">
+
+	<resultMap id="TraCalendarVO" type="com.yazuo.erp.train.vo.TraCalendarVO">
+        <result property="calendarDate" column="calendar_date"/>
+        <result property="isPlayday" column="is_playday"/>
+        <result property="remark" column="remark"/>
+	</resultMap>
+
+    <sql id="calendar_columns"> calendar_date,is_playday,remark</sql>
+
+    <insert id="insertCalendarVO" parameterType="TraCalendarVO">
+        INSERT INTO train.tra_calendar(calendar_date,is_playday,remark)
+        VALUES (#{calendarDate},#{isPlayday},#{remark})
+    </insert>
+
+    <insert id="batchInsertCalendarVO" parameterType="list">
+        INSERT INTO train.tra_calendar(calendar_date,is_playday,remark)
+        VALUES <foreach collection="list" item="vo" separator=",">
+               (#{calendarDate},#{isPlayday},#{remark})
+        </foreach>
+    </insert>
+
+    <select id="nthWorkdays" resultType="date">
+        SELECT max(calendar_date)
+        FROM (
+            SELECT calendar_date
+            FROM train.tra_calendar
+            WHERE  calendar_date >= #{date} AND  is_playday='0'
+            LIMIT #{dayNum}
+        ) as cdate
+    </select>
+
+    <select id="isWorkday" parameterType="date" resultType="boolean">
+        SELECT count(1) > 0
+        FROM train.tra_calendar
+        WHERE calendar_date = #{date} AND is_playday='0'
+    </select>
+
+    <select id="maxDate" resultType="date">
+        SELECT max(calendar_date)
+        FROM train.tra_calendar
+    </select>
+    <select id="nthFormerWorkdays" resultType="date">
+         SELECT max(calendar_date)
+        FROM (
+            SELECT calendar_date
+            FROM train.tra_calendar
+            WHERE  calendar_date &lt;= #{date} AND  is_playday='0'
+            LIMIT #{dayNum}
+        ) as cdate
+    </select>
+</mapper>
+

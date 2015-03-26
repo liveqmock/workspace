@@ -1,0 +1,13 @@
+2015-03-12 15:03:35,819 [http-8080-1] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/login/verifyMac.do**********
+	参数名getParameter：tel,参数值：15000000000
+
+2015-03-12 15:03:36,397 [http-8080-1] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/login/loginSubmit.do**********
+
+2015-03-12 15:03:38,782 [http-8080-1] [erp] [INFO] - sessionId: 44533B6F97195B2A3188C6DF34E4B338
+2015-03-12 15:03:38,783 [http-8080-1] [erp] [INFO] - userId: 1
+2015-03-12 15:03:38,783 [http-8080-1] [erp] [INFO] - userName: admin
+2015-03-12 15:03:38,783 [http-8080-1] [erp] [INFO] - ******************本次POST请求的参数如下************************
+********请求toUri=/yazuo_erp_test/sysProductOperation/listSysProductOperations.do**********
+

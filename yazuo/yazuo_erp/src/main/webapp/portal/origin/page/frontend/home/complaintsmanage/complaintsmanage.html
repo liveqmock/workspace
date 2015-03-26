@@ -1,0 +1,135 @@
+<div class="page-fbs-complaintsmanage">
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="add-question-btn">
+        <button class="main-btn" ms-click="submitCom">提交投诉</button>
+    </div>
+    <!--tabs-类型-->
+    <div class="cate-list-wrapper">
+        <ul class="cate-list fn-clear">
+            <li class="cate-item" ms-class-1="cur:requestData.customerComplaintStatus==''" ms-click="changeStatus('')">全部投诉</li>
+            <li class="cate-item" ms-class-1="cur:requestData.customerComplaintStatus=='0'" ms-click="changeStatus('0')">未处理</li>
+            <li class="cate-item" ms-class-1="cur:requestData.customerComplaintStatus=='1'" ms-click="changeStatus('1')">已处理</li>
+            <li class="cate-item" ms-class-1="cur:requestData.customerComplaintStatus=='2'" ms-click="changeStatus('2')">投诉不属实</li>
+        </ul>
+    </div>
+    <!--tabs-类型-end-->
+    <!--search-->
+    <div class="search">
+        <div class="page-filter">
+            <input type="text" class="coursewareName input-text" ms-duplex="requestData.merchantName" placeholder="请输入商户名称">&nbsp;
+            <button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+        </div>
+    </div>
+    <!--search-end-->
+    <!--table-->
+    <div class="question-list">
+        <div class="question-list-inner" ms-repeat="pageData">
+            <div class="max-width" ms-class="question-list-inner-bg:$index%2==0">
+                <div class="max-inner bottom-line">
+                    <h2>{{el.merchant_name}}</h2>
+                    <ul>
+                        <li class="head-title">
+                            <span>投诉时间：{{el.complaint_time|date("yyyy-MM-dd")}}</span>
+                            <span>投诉类型：{{el.customer_complaint_type_name}}</span>
+                            <span>状态：{{el.customer_complaint_status_name}}</span>
+                        </li>
+                        <li class="content">
+                            <p>{{el.complaint_title}}</p>
+                            <p>{{el.complaint_content}}</p>
+                        </li>
+                        <span class="show" ms-if="el.customer_complaint_status == '1'&&!el.state" ms-click="showCon">查看处理方法</span>
+                    </ul>
+                </div>
+                <div class="max-inner show-bg" ms-if="el.state">
+                    <ul>
+                        <p class="hidden" ms-click="hideCon">收起</p>
+                        <li class="content">处理方法：</li>
+                        <li class="content">{{el.handled_description}}</li>
+                        <li class="footer-title" >
+                            <span>处理人：{{el.handled_by_name}}</span>
+                            <span>处理时间：{{el.handled_time|date("yyyy-MM-dd HH:mm")}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--table-end-->
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+</div>
+<!--content-end-->
+</div>
+<!-- 创建营销活动申请 start -->
+<div class="add-edit-course-dialog ui-hidden complaints"
+     ms-widget="dialog,$,$submitComDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$submitComFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>投诉的商户：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box customer-title">
+                        <span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star" style="margin-left:14px;">*</span>投诉类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span ms-repeat="options1" class="plaints-checkbox"><label><input ms-click="addType" type="checkbox"> {{el.text}}</label></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star" style="margin-left:42px;">*</span>标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 complaintTitle" name="complaintTitle" ms-value="complaintTitle" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star" style="margin-left:42px;">*</span>内容：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text w310 complaintContent" name="complaintContent" ms-text="complaintContent"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star" style="margin-left:14px;">*</span>投诉录音：</label>
+                <div class="ff-value"  style="padding-left: 95px;">
+                    <p ms-if="upfile" class="complaints-upfile">{{upfile}}</p>
+                    <span ms-widget="uploader,$,$attachUploaderOpts">
+                        <button ms-if="!uploading" class="simple-btn">上传投诉录音</button>
+                        <button ms-if="uploading" class="simple-btn-disabled">正在上传&#8230;</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 创建营销活动申请 end -->
+
+

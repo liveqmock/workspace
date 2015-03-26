@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+						http://www.springframework.org/schema/context
+    					http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- crm 数据源 -->
+	<bean id="dataSourceCrm" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver_class}" />
+		<property name="url" value="${jdbc.crm.url}" />
+		<property name="username" value="${jdbc.crm.user}" />
+		<property name="password" value="${jdbc.crm.password}" />
+		<!--稍微设大一些，以后可以调优 -->
+		<property name="maxActive" value="10" />
+		<property name="maxIdle" value="0" />
+		<!-- 空闲资源最快被驱逐时间，即多久不使用的资源会被放入空闲区 -->
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<!--空闲资源回收器执行间隔 -->
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!--preparedStatement 缓存设置，默认为不开启缓存 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="5" />
+	</bean>
+
+	<bean id="dataSourceErp" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver_class}" />
+		<property name="url" value="${jdbc.erp.url}" />
+		<property name="username" value="${jdbc.erp.user}" />
+		<property name="password" value="${jdbc.erp.password}" />
+		<!--稍微设大一些，以后可以调优 -->
+		<property name="maxActive" value="10" />
+		<property name="maxIdle" value="0" />
+		<!-- 空闲资源最快被驱逐时间，即多久不使用的资源会被放入空闲区 -->
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<!--空闲资源回收器执行间隔 -->
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!--preparedStatement 缓存设置，默认为不开启缓存 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="5" />
+	</bean>
+
+	<bean id="dataSourceCrm46" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver_class}" />
+		<property name="url" value="${crmjdbc.crmurl}" />
+		<property name="username" value="${crmjdbc.crmusername}" />
+		<property name="password" value="${crmjdbc.crmpassword}" />
+		<!--稍微设大一些，以后可以调优 -->
+		<property name="maxActive" value="10" />
+		<property name="maxIdle" value="0" />
+		<!-- 空闲资源最快被驱逐时间，即多久不使用的资源会被放入空闲区 -->
+		<property name="minEvictableIdleTimeMillis" value="30000" />
+		<!--空闲资源回收器执行间隔 -->
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!--preparedStatement 缓存设置，默认为不开启缓存 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="5" />
+	</bean>
+
+
+	<bean id="jdbcTemplateCRM" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSourceCrm" />
+	</bean>
+
+	<bean id="jdbcTemplateErp" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSourceErp" />
+	</bean>
+
+	<bean id="jdbcTemplateCrm46" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSourceCrm46" />
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceCrm" />
+		<qualifier value="crm" />
+	</bean>
+
+	<bean id="txManagerErp"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourceErp" />
+		<qualifier value="erp" />
+	</bean>
+	<!-- 支持通过注解添加事务, rollback-for="java.lang.Exception" -->
+	<tx:annotation-driven proxy-target-class="true"
+		transaction-manager="txManagerErp" />
+
+	<!-- enable autowire -->
+	<context:annotation-config />
+
+</beans>

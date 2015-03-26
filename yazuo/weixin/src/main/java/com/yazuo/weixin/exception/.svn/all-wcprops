@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/crmapi/!svn/ver/19017/code/weixin/src/main/java/com/yazuo/weixin/exception
+END
+ExceptionHandling.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/crmapi/!svn/ver/7184/code/weixin/src/main/java/com/yazuo/weixin/exception/ExceptionHandling.java
+END
+WeixinRuntimeException.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/crmapi/!svn/ver/17071/code/weixin/src/main/java/com/yazuo/weixin/exception/WeixinRuntimeException.java
+END
+UserErrorException.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/crmapi/!svn/ver/19017/code/weixin/src/main/java/com/yazuo/weixin/exception/UserErrorException.java
+END

@@ -1,0 +1,6 @@
+<div class="ui_thinkSearch">
+<input type="text" placeholder="请输入内容" ms-duplex="searchValue" ms-focus="getDataAll">
+<div class="ui_thinkSearch_search" ms-css-display="showHide">
+	<div ms-repeat='matchData' class='ui_thinkSearch_search_list' ms-data-id="el.id" ms-click="getValue">{{el.value}}</div>
+</div>
+</div>

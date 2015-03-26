@@ -1,0 +1,137 @@
+<div class="page-bd">
+    <div class="device-panel panel-box">
+        <h3 class="panel-title">店内设备连接情况总览</h3>
+        <div class="panel-action">
+            <div class="panel-action-inner fn-clear">
+                <div class="whitelist-action fn-left">
+                   <div class="list-action-inner">
+                       <div class="action-title" ms-click="actionVisibleHandler" data-state="down">当前白名单人数：&nbsp;<span class="num">{{whitelistUserNum}}</span>&nbsp;人<span class="icon-arrow iconfont">&#xe609;</span></div>
+                        <ul class="action-list fn-hide">
+                            <li class="action-item" ms-hover="action-item-hover"><span class="action-item-inner" ms-click="openWebDialog" data-type="white">快速添加用户</span></li>
+                            <li class="action-item" ms-hover="action-item-hover"><span class="action-item-inner"><a href="#/network/whitelist">查看白名单</a></span></li>
+                        </ul>
+                   </div>
+                </div>
+                <div class="blacklist-action fn-left">
+                   <div class="list-action-inner">
+                        <div class="action-title" ms-click="actionVisibleHandler" data-state="down">当前店员名单人数：&nbsp;<span class="num">{{blacklistUserNum}}</span>&nbsp;人<span class="icon-arrow iconfont">&#xe609;</span></div>
+                        <ul class="action-list fn-hide">
+                            <li class="action-item" ms-hover="action-item-hover"><span class="action-item-inner" ms-click="openWebDialog" data-type="black">快速添加用户</span></li>
+                            <li class="action-item" ms-hover="action-item-hover"><span class="action-item-inner">查找最近</span></li>
+                            <li class="action-item" ms-hover="action-item-hover"><span class="action-item-inner"><a href="#/network/blacklist">查看店员名单</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-content fn-clear">
+            <div class="total-analysis fn-left">
+                <div class="total-analysis-inner fn-clear">
+                    <div class="chart-wrapper fn-left">
+                        <div class="device-chart"></div>
+                    </div>
+                    <div class="desc fn-left">
+                        <h4 class="desc-title">店内设备使用量（用户）统计：</h4>
+                        <div class="desc-summary">当前共有<span class="device-num">&nbsp;{{deviceNum}}&nbsp;</span>台设备</div>
+                        <div class="device-list-wrapper">
+                            <ul class="device-list">
+                                <li class="device-item"
+                                    ms-repeat="deviceList"
+                                    ms-if-loop="$index < 3">
+                                    <span class="item-index" ms-css-color="{{el.color}}">&#8226;</span>
+                                    <span class="progress-bar"><span class="progress-front" ms-css-width="el.usedRatio" ms-css-background="{{el.color}}"></span></span>
+                                    <span class="used-ratio">{{el.usedRatio}}</span>
+                                </li>
+                            </ul>
+                            <ul class="device-list device-list-more fn-hide">
+                                <li class="device-item"
+                                    ms-repeat="deviceList"
+                                    ms-if-loop="$index >= 3">
+                                    <span class="item-index" ms-css-color="{{el.color}}">&#8226;</span>
+                                    <span class="progress-bar"><span class="progress-front" ms-css-width="el.usedRatio" ms-css-background="{{el.color}}"></span></span>
+                                    <span class="used-ratio">{{el.usedRatio}}</span>
+                                </li>
+                            </ul>
+                            <span class="icon-arrow iconfont" ms-visible="deviceList.length > 2" ms-click="deviceListVisibleHandler" data-state="down">&#xe60f;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-view fn-left">
+                <div class="detail-view-inner">
+                    <span class="nav-left iconfont"
+                          ms-class-1="state-enabled:firstDeviceIndex > 0"
+                          ms-click="deviceNavHandler">&#xe611;</span>
+                    <div class="device-list-wrapper">
+                        <ul class="device-list fn-clear">
+                            <li class="device-item fn-left"
+                                ms-repeat="deviceList">
+                                <div class="device-img"></div>
+                                <div class="device-name"><label>ID：</label>{{el.deviceName}}</div>
+                                <div class="link-user">
+                                    <p>连接用户：</p>
+                                    <p class="link-num">{{el.linkNum}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <span class="nav-right iconfont"
+                          ms-class-1="state-enabled:firstDeviceIndex + 3 < deviceList.length"
+                          ms-click="deviceNavHandler">&#xe610;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="real-time-panel panel-box">
+        <h3 class="panel-title">实时流量看板（MB/H）</h3>
+        <div class="panel-content">
+            <div class="chart-wrapper"></div>
+            <div class="chart-bbar">
+                <button type="button"
+                        class="chart-btn"
+                        data-cate="minute"
+                        ms-class-1="state-active: realTimeCate === 'minute'"
+                        ms-click="filterRealTimeCate">分钟</button>&nbsp;&nbsp;&nbsp;<button type="button"
+                        class="chart-btn"
+                        data-cate="hour"
+                        ms-class-1="state-active: realTimeCate === 'hour'"
+                        ms-click="filterRealTimeCate">小时</button>&nbsp;&nbsp;&nbsp;<button type="button"
+                        class="chart-btn"
+                        data-cate="day"
+                        ms-class-1="state-active: realTimeCate === 'day'"
+                        ms-click="filterRealTimeCate">日</button>&nbsp;&nbsp;&nbsp;<button type="button"
+                        class="chart-btn"
+                        data-cate="week"
+                        ms-class-1="state-active: realTimeCate === 'week'"
+                        ms-click="filterRealTimeCate">周</button>&nbsp;&nbsp;&nbsp;<button type="button"
+                        class="chart-btn"
+                        data-cate="month"
+                        ms-class-1="state-active: realTimeCate === 'month'"
+                        ms-click="filterRealTimeCate">月</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 添加黑白名单 start -->
+<div class="page-home-add-bw-dialog ui-hidden"
+     ms-widget="dialog,$,$addBwDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addBwFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入要添加的手机号：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="在这里输入手机号" class="input-text phone-num" name="phoneNum" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="password" placeholder="6位主管密码" class="input-text manager-psd" name="managerPsd" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加黑白名单 end -->

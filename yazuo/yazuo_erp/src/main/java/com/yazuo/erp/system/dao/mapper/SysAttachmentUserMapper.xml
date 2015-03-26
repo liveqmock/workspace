@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysAttachmentUserDao">
+	<resultMap id="SysAttachmentUser" type="com.yazuo.erp.system.vo.SysAttachmentUserVO">
+    	<id property="id" column="id"/>
+    	<result property="userId" column="user_id"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysattachmentuserColumns">
+	    <![CDATA[
+		id,user_id,attachment_id,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysAttachmentUser" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： user_id,attachment_id,insert_by,insert_time,--> 
+        INSERT INTO sys.sys_attachment_user (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES (
+       	    <if test="userId!=null ">#{userId},</if>
+       	    <if test="attachmentId!=null ">#{attachmentId},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysAttachmentUsers" parameterType="map">
+	 <!--不允许为空的字段： user_id,attachment_id,insert_by,insert_time,--> 
+        INSERT INTO sys.sys_attachment_user (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="userId!=null ">#{t.userId},</if>
+          <if test="attachmentId!=null ">#{t.attachmentId},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysAttachmentUser">
+        UPDATE sys.sys_attachment_user 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysAttachmentUsersToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_attachment_user 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{t.userId} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{t.attachmentId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysAttachmentUsersToSameVals" parameterType="map">
+        UPDATE sys.sys_attachment_user 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysAttachmentUserById">
+    <![CDATA[
+        DELETE FROM sys.sys_attachment_user WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysAttachmentUserByIds" parameterType="list">
+        DELETE FROM sys.sys_attachment_user WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysAttachmentUserById" resultMap="SysAttachmentUser">
+		SELECT <include refid="sysattachmentuserColumns" />
+		    FROM sys.sys_attachment_user 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysAttachmentUsers" resultMap="SysAttachmentUser">
+		SELECT <include refid="sysattachmentuserColumns" />
+		    FROM sys.sys_attachment_user  
+	    <include refid="sysattachmentuser_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysAttachmentUsersMap" resultType="map">
+		SELECT <include refid="sysattachmentuserColumns" />
+	    <![CDATA[
+		    FROM sys.sys_attachment_user  
+	    ]]>
+	    <include refid="sysattachmentuser_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysattachmentuser_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="userId!=null ">AND user_id = #{userId}</if>
+	       <if test="attachmentId!=null ">AND attachment_id = #{attachmentId}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysAttachmentUserCount" resultType="long">
+        SELECT count(*) FROM sys.sys_attachment_user 
+		<include refid="sysattachmentuser_findPage_where"/>    
+    </select>
+    
+    <!-- 分页查询下载记录 -->
+    <select id="getSysAttachmentUserList" resultType="map">
+		SELECT
+			au. ID,
+			au.user_id,
+			au.attachment_id,
+			au.insert_by,
+			au.insert_time,
+			u.user_name,
+			u.user_image
+		FROM
+			sys.sys_attachment_user au
+		LEFT JOIN sys.sys_user u ON u. ID = au.user_id
+		WHERE
+			1 = 1
+		AND au.attachment_id = #{attachmentId}
+	</select>
+    
+</mapper>

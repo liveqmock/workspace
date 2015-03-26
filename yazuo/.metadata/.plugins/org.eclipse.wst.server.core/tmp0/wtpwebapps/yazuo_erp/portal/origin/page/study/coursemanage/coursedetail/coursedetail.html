@@ -1,0 +1,81 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="page-section">
+        <div class="required-grid grid-wrapper">
+            <div class="grid-tbar fn-clear">
+                <h3 class="grid-title fn-left">必修课</h3>
+                <div class="grid-action fn-right" >
+                    <button type="button" class="add-btn simple-btn" data-course-type="required" ms-click="openAdd">添加必修课</button>&nbsp;&nbsp;<button type="button" class="add-btn simple-btn" data-course-type="required" ms-click="deleteAll">全部删除</button>
+                </div>
+            </div>
+            <table class="required-grid ui-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="sort-cell">排序</th>
+                        <th class="name-cell">课件名称</th>
+                        <th class="limit-cell">课程限时（小时）</th>
+                        <th class="operation-cell">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ms-repeat="requiredCourseware"
+                        ms-class-1="odd:!($index % 2)"
+                        ms-class-2="even:$index % 2"
+                        ms-hover="state-hover"
+                        ms-data-courseware-id="el.coursewareId">
+                        <td class="sort-cell">{{$index+1}}</td>
+                        <td class="name-cell">{{el.coursewareName}}</td>
+                        <td class="limit-cell">{{el.timeLimit}}</td>
+                        <td class="operation-cell">
+                            <a href="javascript:;" class="remove-l" ms-click="removeGridItem"  data-course-type="required" ms-data-coursewareId="el.coursewareId">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="not-required-grid grid-wrapper">
+            <div class="grid-tbar fn-clear">
+                <h3 class="grid-title fn-left">选修课</h3>
+                <div class="grid-action fn-right" >
+                    <button type="button" class="add-btn simple-btn" data-course-type="optional" ms-click="openAdd">添加选修课</button>&nbsp;&nbsp;<button type="button" class="add-btn simple-btn" data-course-type="optional" ms-click="deleteAll">全部删除</button>
+                </div>
+            </div>
+            <table class="not-required-grid ui-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="sort-cell">排序</th>
+                        <th class="name-cell">课件名称</th>
+                        <th class="limit-cell">课程限时（小时）</th>
+                        <th class="operation-cell">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ms-repeat="optionalCourseware"
+                        ms-class-1="odd:!($index % 2)"
+                        ms-class-2="even:$index % 2"
+                        ms-hover="state-hover"
+                        ms-data-courseware-id="el.coursewareId">
+                        <td class="sort-cell">{{$index+1}}</td>
+                        <td class="name-cell">{{el.coursewareName}}</td>
+                        <td class="limit-cell">{{el.timeLimit}}</td>
+                        <td class="operation-cell">
+                            <a href="javascript:;" class="remove-l" ms-click="removeGridItem" data-course-type="optional" data-courseware-id="el.coursewareId">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="page-btn-save">
+        <button type="button" class="add-btn main-btn" ms-click="saveCourseware">保存</button>
+ </div>
+<div class="ui-hidden" ms-module="cwselector,$,$cwselectorOpts"></div>

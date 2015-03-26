@@ -1,0 +1,13 @@
+.page-sysmanage-migration .migration-form {
+    padding: 0 54px;
+}
+.page-sysmanage-migration .input-text {
+    width: 180px;
+}
+.page-sysmanage-migration .ff-label {
+    width: 160px;
+    text-align: right;
+}
+.page-sysmanage-migration .ff-value {
+    margin-left: 160px;
+}

@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraTeacherStudentDao">
+
+	<resultMap id="TraTeacherStudent" type="com.yazuo.erp.train.vo.TraTeacherStudentVO">
+        <result property="id" column="id"/>
+        <result property="teacherId" column="teacher_id"/>
+        <result property="studentId" column="student_id"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="trateacherstudentColumns">
+	    <![CDATA[
+		id,teacher_id,student_id,is_enable,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraTeacherStudent">
+    <![CDATA[
+        INSERT INTO train.tra_teacher_student (
+        		teacher_id ,
+        		student_id ,
+        		is_enable ,
+        		insert_by ,
+        		insert_time 
+        ) VALUES (
+        	#{teacherId} ,
+        	#{studentId} ,
+        	#{isEnable} ,
+        	#{insertBy} ,
+        	#{insertTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraTeacherStudent" >
+    <![CDATA[
+        UPDATE train.tra_teacher_student SET
+	        teacher_id = #{teacherId} ,
+	        student_id = #{studentId} ,
+	        is_enable = #{isEnable} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraTeacherStudent">
+    <![CDATA[
+        DELETE FROM train.tra_teacher_student WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraTeacherStudentById" resultMap="TraTeacherStudent">
+		SELECT <include refid="trateacherstudentColumns" />
+	    <![CDATA[
+		    FROM train.tra_teacher_student 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraTeacherStudents" resultMap="TraTeacherStudent" parameterType="map">
+		SELECT <include refid="trateacherstudentColumns" />
+	    <![CDATA[
+		    FROM train.tra_teacher_student  
+	    ]]>
+	    <include refid="trateacherstudent_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraTeacherStudentsMap" resultType="map" parameterType="map">
+		SELECT <include refid="trateacherstudentColumns" />
+	    <![CDATA[
+		    FROM train.tra_teacher_student  
+	    ]]>
+	    <include refid="trateacherstudent_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<select id="getAllTraTeacherStudents" resultType="map" parameterType="map">
+		SELECT <include refid="trateacherstudentColumns" />
+	    <![CDATA[
+		    FROM train.tra_teacher_student  
+	    ]]>
+	    <include refid="trateacherstudent_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="trateacherstudent_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="teacherId!=null">
+				AND teacher_id = #{teacherId}
+			</if>
+	       <if test="studentId!=null">
+				AND student_id = #{studentId}
+			</if>
+	       <if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraTeacherStudentCount" resultType="long">
+        SELECT count(*) FROM train.tra_teacher_student 
+		<include refid="trateacherstudent_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraTeacherStudentPage" resultMap="TraTeacherStudent">
+    	SELECT <include refid="trateacherstudentColumns" />
+	    FROM train.tra_teacher_student 
+		<include refid="trateacherstudent_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+
+	<!-- 查询未分配老师的学生列表 -->
+    <select id="queryStudentListToBeAllocated" resultType="map" parameterType="map">
+		SELECT
+			s. ID,
+			s.user_name,
+			s.tel,
+			s.gender_type,
+			COALESCE(s.user_image, '')AS user_image,
+			s.birthday,
+			s.position_id,
+			P .position_name,
+			gu.group_id,
+			G .group_name,
+			COALESCE(C . ID, 0)AS course_id,
+			COALESCE(C .course_name, '')AS course_name,
+			s.is_formal,
+			s.login_time,
+			s.login_frequency,
+			s.is_enable,
+			COALESCE(s.remark, '')AS remark
+		FROM
+			sys.sys_user s
+		LEFT JOIN sys.sys_position P ON P . ID = s.position_id AND P .is_enable = '1'
+		LEFT JOIN sys.sys_group_user gu ON gu.user_id = s. ID
+		LEFT JOIN sys.sys_group G ON G . ID = gu.group_id AND G .is_enable = '1'
+		LEFT JOIN train.tra_position_course pc ON pc.position_id = s.position_id 
+		LEFT JOIN train.tra_course C ON C . ID = pc.course_id AND C .is_enable = '1'
+		WHERE
+			1 = 1
+		AND s.is_enable = '1'
+		AND s.is_formal = '0'
+		AND s. ID NOT IN(SELECT DISTINCT T .student_id FROM train.tra_teacher_student T WHERE T .is_enable = '1')
+	    <if test="userName != null and userName != '' ">
+			AND s.user_name LIKE '%'||#{userName,jdbcType=VARCHAR}||'%'
+		</if>
+		<if test="tel != null and tel != '' ">
+			AND s.tel LIKE '%'||#{tel,jdbcType=VARCHAR}||'%'
+		</if>
+		order by s.id DESC
+	</select>
+	
+	<!-- 根据老师ID和学生ID查询老师-学生关系表 -->
+	<select id="queryTraTeacherStudent" resultMap="TraTeacherStudent">
+		SELECT
+			T . ID,
+			T .teacher_id,
+			T .student_id,
+			T .is_enable,
+			T .insert_by,
+			T .insert_time
+		FROM
+			train.tra_teacher_student T
+		WHERE
+			1 = 1
+		AND T .teacher_id =#{teacherId}
+		AND T .student_id =#{studentId}
+	</select>
+	
+	<!-- 条件查询学生信息列表 -->
+	<select id="queryStudentList" resultType="map" parameterType="map">
+		SELECT
+			COALESCE(sp.position_name, '')AS position_name,
+			COALESCE(tu.user_name, '')AS teacher_name,
+			COALESCE(T . ID, 0)AS teacher_student_ref_id,
+			COALESCE(T .teacher_id, 0)AS teacher_id,
+			COALESCE(pr. ID, 0)AS learning_progress_id,
+			COALESCE(Pr.course_id, 0)AS course_id,
+			COALESCE(pr.course_name, '')AS course_name,
+			COALESCE(Pr.courseware_id, 0)AS courseware_id,
+			COALESCE(pr.courseware_name, '')AS courseware_name,
+			COALESCE(Pr.course_status, '')AS course_status,
+			COALESCE(pr.course_status_name, '')AS course_status_name,
+			COALESCE(Pr.courseware_status, '')AS courseware_status,
+			COALESCE(pr.courseware_status_name, '')AS courseware_status_name,
+			pr.course_end_time,
+			Pr.courseware_end_time,
+			COALESCE(Pr.progress_type, '') as progress_type,
+			COALESCE(pr.progress_type_name, '') as progress_type_name,
+			u. ID AS student_id,
+			u.user_name AS student_name,
+			u.tel,
+			u.gender_type,
+			COALESCE(u.user_image,'') AS user_image, 
+			u.birthday,
+			u.position_id,
+			u.is_formal,
+			u.login_time,
+			u.login_frequency,
+			u.is_enable,
+			COALESCE(u.remark,'') AS remark, 
+			u.insert_by,
+			u.insert_time,
+			u.update_by,
+			u.update_time
+		FROM
+			sys.sys_user u
+		LEFT JOIN train.tra_teacher_student T ON T .student_id = u. ID AND T .is_enable = '1'
+		LEFT JOIN sys.sys_user tu ON T .teacher_id = tu. ID	AND tu .is_enable = '1'
+		LEFT JOIN sys.sys_position sp ON sp. ID = u.position_id AND sp.is_enable = '1' 
+		LEFT JOIN(
+			SELECT
+				P . ID,
+				P .student_id,
+				P .course_id,
+				cs.course_name,
+				P .courseware_id,
+				cw.courseware_name,
+				P .course_status,
+				csd.dictionary_value AS course_status_name,
+				P .courseware_status,
+				cwd.dictionary_value AS courseware_status_name,
+				P .course_end_time,
+				P .courseware_end_time,
+				P .progress_type,
+				ptd.dictionary_value AS progress_type_name,
+				P .remark
+			FROM
+				train.tra_learning_progress P,
+				sys.sys_dictionary ptd,
+				train.tra_courseware cw,
+				train.tra_course cs,
+				sys.sys_dictionary csd,
+				sys.sys_dictionary cwd,
+				(SELECT MAX(lp. ID) AS pid FROM train.tra_learning_progress lp GROUP BY lp.student_id)tlp
+			WHERE
+				1 = 1
+			AND P .course_id = cs. ID
+			AND P .courseware_id = cw. ID
+			AND ptd.dictionary_type = '00000006'
+			AND P .progress_type = ptd.dictionary_key
+			AND csd.dictionary_type = '00000005'
+			AND P .course_status = csd.dictionary_key
+			AND cwd.dictionary_type = '00000007'
+			AND P .courseware_status = cwd.dictionary_key
+			AND P . ID = tlp.pid
+		)pr ON u .id = pr.student_id
+		WHERE
+			1 = 1
+		AND u.is_formal = '0'
+		AND u.is_enable = '1'
+
+		<if test="hasTeacherFlag == 0 ">
+			AND (T . is_enable = '0' or T.ID is null)
+		</if>
+		
+		<if test="hasTeacherFlag == 1 ">
+			AND T . is_enable = '1'
+		</if>
+		
+		<if test="studentId != null">
+			AND T .student_id = #{studentId,jdbcType=INTEGER}
+		</if>
+		
+		<if test="teacherId != null">
+			AND T .teacher_id = #{teacherId,jdbcType=INTEGER}
+		</if>
+		
+		<if test="positionId != null and positionId != 0 ">
+			AND u.position_id = #{positionId,jdbcType=INTEGER}
+		</if>
+		
+		<if test="courseStatus != null and courseStatus != '' ">
+			AND pr.course_status = #{courseStatus,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="tel != null and tel != '' ">
+			AND u.tel LIKE '%'||#{tel,jdbcType=VARCHAR}||'%'
+		</if>		
+		
+		<if test="userName != null and userName != '' ">
+			AND u.user_name LIKE '%'||#{userName,jdbcType=VARCHAR}||'%'
+		</if>
+		
+		order by u.id DESC
+		
+	</select>
+	
+	<!-- 批量解除师生关系 -->
+	<update id="batchDeleteTraTeacherStudent" parameterType="list">
+		<foreach collection="list" item="t" index="index" open="" close="" separator=";">
+	        UPDATE train.tra_teacher_student SET
+		        teacher_id = #{t.teacherId,jdbcType=INTEGER} ,
+		        student_id = #{t.studentId,jdbcType=INTEGER} ,
+		        is_enable = '0'
+	        WHERE 
+		        id = #{t.id}
+	     </foreach>
+	</update>
+	
+	<!-- 查询老师列表 -->
+	<select id="queryTeacherList" resultType="map" parameterType="map">
+		SELECT
+			r.role_name,
+			u. ID AS teacher_id,
+			u.user_name,
+			u.tel,
+			u.gender_type,
+			COALESCE(u.user_image,'') AS user_image,
+			u.birthday,
+			u.position_id,
+			u.is_formal,
+			u.login_time,
+			u.login_frequency,
+			u.is_enable,
+			COALESCE(u.remark,'') AS remark,
+			u.insert_by,
+			u.insert_time,
+			u.update_by,
+			u.update_time
+		FROM
+			sys.sys_user u,
+			sys.sys_role r,
+			sys.sys_user_role ur
+		WHERE
+			1 = 1
+		AND ur.user_id = u. ID
+		AND ur.role_id = r. ID
+		AND r.is_enable = '1'
+		AND u.is_enable = '1'
+		AND r.role_name = #{roleName,jdbcType=VARCHAR}
+		
+		<if test="userName != null and userName != '' ">
+			AND u.user_name LIKE '%'||#{userName,jdbcType=VARCHAR}||'%'
+		</if>
+		
+		<if test="tel != null and tel != '' ">
+			AND u.tel LIKE '%'||#{tel,jdbcType=VARCHAR}||'%'
+		</if>
+		
+		order by u.id DESC
+		
+	</select>
+
+    <select id="getTeacherIdByStudentId" parameterType="int" resultType="int">
+        SELECT teacher_id
+        FROM train.tra_teacher_student
+        WHERE student_id=#{studentId} AND is_enable='1'
+    </select>
+     
+    <!-- 建立师生关系 -->
+	<update id="updateTraTeacherStudentRef" parameterType="map">
+        UPDATE train.tra_teacher_student SET
+	        teacher_id = #{teacherId,jdbcType=INTEGER} ,
+	        student_id = #{studentId,jdbcType=INTEGER} ,
+	        is_enable = '1'
+        WHERE 
+	        id = #{id,jdbcType=INTEGER}
+	</update>
+	
+	<!-- 查询老学员信息列表 -->
+	<select id="queryOldStaffList" resultType="map" parameterType="map">
+		SELECT
+			l. ID,
+			l.student_id,
+			s.user_name,
+			s.tel,
+			s.position_id,
+			P .position_name,
+			gu.group_id,
+			G .group_name,
+			l.learning_progress_type,
+			l.course_id,
+			l.courseware_id,
+			C .courseware_name,
+			l.course_status,
+			l.courseware_status,
+			l.course_end_time,
+			l.courseware_end_time,
+			l.progress_type,
+			l.remark,
+			l.insert_by,
+			l.insert_time,
+			l.update_by,
+			l.update_time
+		FROM
+			sys.sys_user s
+		INNER JOIN train.tra_learning_progress l ON l.student_id = s. ID
+		LEFT JOIN sys.sys_position P ON P . ID = s.position_id
+		LEFT JOIN sys.sys_group_user gu ON gu.user_id = s. ID
+		LEFT JOIN sys.sys_group G ON G . ID = gu.group_id
+		LEFT JOIN train.tra_courseware C ON C . ID = l.courseware_id
+		WHERE
+			1 = 1
+		AND l.learning_progress_type = '1'
+		AND l.course_status NOT IN('4')
+		AND s.is_formal = '1'
+		AND s.is_enable = '1'
+		AND l.courseware_id = #{coursewareId,jdbcType=INTEGER}
+		AND l. ID IN(
+			SELECT
+				MAX(lp. ID)AS pid
+			FROM
+				train.tra_learning_progress lp
+			WHERE
+				1 = 1
+			AND lp.courseware_id = #{coursewareId,jdbcType=INTEGER}
+			GROUP BY
+				lp.student_id
+		)
+
+		<if test="studentId != null">
+			AND l.student_id = #{studentId,jdbcType=INTEGER}
+		</if>
+		
+		<if test="positionId != null and positionId != 0 ">
+			AND s.position_id = #{positionId,jdbcType=INTEGER}
+		</if>
+		
+		<if test="courseStatus != null and courseStatus != '' ">
+			AND l.course_status = #{courseStatus,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="tel != null and tel != '' ">
+			AND s.tel LIKE '%'||#{tel,jdbcType=VARCHAR}||'%'
+		</if>		
+		
+		<if test="userName != null and userName != '' ">
+			AND s.user_name LIKE '%'||#{userName,jdbcType=VARCHAR}||'%'
+		</if>
+		
+		order by s.id DESC
+	</select>
+	
+	<!-- 根据用户ID列表查询详细信息 -->
+	<select id="queryMemberList" resultType="map" parameterType="map">
+		SELECT
+			s. ID,
+			s.user_name,
+			s.tel,
+			s.position_id,
+			P .position_name,
+			gu.group_id,
+			G .group_name
+		FROM
+			sys.sys_user s
+		LEFT JOIN sys.sys_position P ON P . ID = s.position_id
+		LEFT JOIN sys.sys_group_user gu ON gu.user_id = s. ID
+		LEFT JOIN sys.sys_group G ON G . ID = gu.group_id
+		WHERE
+			1 = 1
+		AND s.is_formal = '1'
+		AND s.is_enable = '1'
+		AND s. ID IN
+		<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+			#{t.id,jdbcType=INTEGER}
+		</foreach>
+		ORDER BY
+			s. ID DESC
+	</select>
+</mapper>
+

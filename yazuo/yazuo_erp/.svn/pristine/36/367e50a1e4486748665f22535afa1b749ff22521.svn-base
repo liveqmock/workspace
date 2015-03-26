@@ -1,0 +1,36 @@
+<div class="node-tree fn-clear">
+    <div class="module-organization-action-dialog ui-hidden" ms-widget="dialog,$,$dialogOpts">
+        <form class="action-form" ms-widget="form,$,$formOpts" action="javascript:;">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>组织名称：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="hidden" class="input-text organization-id" name="organization_id" ms-value="organizationId" />
+                        </div>
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text organization-name" name="group_name" ms-value="organizationName" />
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+MS_OPTION_MODULE
+<div class="MS_VAR_NODE_TEXT_CLS node-text fn-left" ms-mousedown="showContextMenu" data-organization-id="MS_VAR_ORGANIZATION_ID"
+    data-organization-name="MS_VAR_ORGANIZATION_NAME">
+    <div class="node-text-inner">
+        <span class="connect-line-left"></span><i class="visible-h iconfont" ms-click="clickNode">&#xe600;</i>&nbsp;<span class="text-name">MS_VAR_GROUP_NAME</span><span
+            class="connect-line-right"></span>
+    </div>
+</div>
+MS_OPTION_CONTEXT_MENU
+<ul class="organization-context-menu">
+    <li class="add-same-level-item context-item" data-action-type="addSameLevel">添加同级部门</li>
+    <li class="context-item" data-action-type="addNextLevel">添加子级部门</li>
+    <li class="context-item" data-action-type="renameNode">重命名</li>
+    <li class="remove-node-item context-item" data-action-type="removeNode">删除部门</li>
+</ul>
+

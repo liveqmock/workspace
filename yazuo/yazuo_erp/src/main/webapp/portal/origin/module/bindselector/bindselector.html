@@ -1,0 +1,42 @@
+<div class="bind-select-dialog select-list-dialog ui-hidden" ms-widget="dialog,$,$bindOpts">
+    <!--<div class="bind-course-wrapper">
+        <div class="f-field fn-clear">
+            <label class="ff-label fn-left"><span class="icon-star">*</span>指定学员课程：</label>
+            <div class="ff-value fn-left">
+                <div class="ff-value-box">
+                    <span class="course-select" ms-widget="select,$,$courseListOpts"></span>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="dialog-tbar">
+        <input type="text" class="user-name input-text" placeholder="姓名" ms-duplex="userName" />&nbsp;&nbsp;<input type="text" class="mobile input-text" placeholder="手机号" ms-duplex="mobile" />&nbsp;&nbsp;<button type="button" class="query-btn main-btn" ms-click="clickQueryBtn">搜索</button>
+    </div>
+    <div class="list-hd">
+        <ul class="select-list fn-clear">
+            <li class="select-item">
+                <span class="name-cell item-cell fn-left">姓名</span>
+                <span class="mobile-cell item-cell fn-left">联系电话</span>
+                <span class="position-cell item-cell fn-left" ms-if="userRole == 'student'">职位</span>
+                <span class="group-cell item-cell fn-left" ms-if="userRole == 'student'">部门</span>
+                <span class="course-cell item-cell fn-left" ms-if="userRole == 'student'">课程</span>
+            </li>
+        </ul>
+    </div>
+    <div class="user-list-wrapper list-wrapper">
+        <ul class="user-list select-list">
+            <li class="select-item fn-clear"
+                ms-click="selectUser"
+                ms-repeat="userList"
+                ms-class-1="odd: !($index % 2)"
+                ms-class-2="even: $index % 2">
+                <span class="name-cell item-cell fn-left" ms-attr-title="el.userName">{{el.userName}}</span>
+                <span class="mobile-cell item-cell fn-left" ms-attr-title="el.tel">{{el.tel}}</span>
+                <span class="position-cell item-cell fn-left" ms-if="userRole == 'student'" ms-attr-title="el.positionName">{{el.positionName}}</span>
+                <span class="group-cell item-cell fn-left" ms-if="userRole == 'student'" ms-attr-title="el.groupName">{{el.groupName}}</span>
+                <span class="course-cell item-cell fn-left" ms-if="userRole == 'student'" ms-attr-title="el.courseName">{{el.courseName}}</span>
+                <i class="is-selected fn-right" ms-if="el.isSelected">&#xe604;</i>
+            </li>
+        </ul>
+    </div>
+</div>

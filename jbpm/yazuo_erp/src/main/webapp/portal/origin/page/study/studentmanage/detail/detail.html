@@ -1,0 +1,22 @@
+<div class="page-bd">
+    <div class="history-list-wrapper line-list-wrapper">
+        <ul class="history-list line-list">
+            <li class="history-item line-item fn-clear"
+                ms-class-1="is-today: el.isToday"
+                ms-class-2="is-yestoday: el.isYestoday"
+                ms-class-3="line-item-last: $last && isComplete"
+                ms-repeat="lineList">
+                <i class="icon-circle iconfont">&#xe602;</i>
+                <div class="date-index fn-left">{{el.dateIndex}}</div>
+                <div class="list-detail fn-left">
+                    <ul class="detail-list">
+                        <li class="detail-item"
+                            ms-repeat="el.detailList">
+                            <span class="time-index">{{el.timeIndex}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="detail-item-content">{{el.content}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="detail-item-action">{{el.action | html}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+.page-databank-list-info .page-bd {
+    padding: 20px 15px;
+}
+.page-databank-list-info .info-content {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+}
+.page-databank-list-info .data-head {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+.page-databank-list-info .data-head .data-head-left {
+    float: left;
+    display: inline;
+    width: 100px;
+    margin-left:30px;
+    overflow: hidden;
+}
+.page-databank-list-info .data-head .data-head-right {
+    float: left;
+    display: inline;
+    width: 800px;
+    margin-left: 20px;
+    overflow: hidden;
+}
+.page-databank-list-info .data-head .data-head-right h2 {
+    font-size: 20px;
+    color: #777;
+}
+.page-databank-list-info .data-head .data-head-right h2 a {
+    font-size: 14px;
+    margin-left: 15px;
+}
+.page-databank-list-info .data-head .data-head-right .doc-info {
+    width: 600px;
+    overflow: hidden;
+    padding-top: 20px;
+}
+.page-databank-list-info .data-head .data-head-right .doc-info p {
+    float: left;
+    display: inline;
+    width: 150px;
+    margin-right: 20px;
+    line-height: 23px;
+    margin-bottom: 5px;
+    color: #777;
+}
+.page-databank-list-info .data-head .data-head-right .doc-descirption {
+    padding-top: 20px;
+    line-height: 23px;
+    color: #777;
+}
+
+.page-databank-list-info .data-head .data-head-left .img {
+    font-size: 90px;
+    color: #b2eed8;
+}
+.page-databank-list-info .data-head .data-head-left .down {
+    width: 70px;
+}
+.page-databank-list-info .data-head .data-head-left .down a {
+    display: block;
+    line-height: 30px;
+    color: #fff;
+    text-align: center;
+}
+.page-databank-list-info .data-sum {
+    height: 45px;
+    line-height: 45px;
+    border-top:1px solid #CDE2F9;
+    border-bottom:1px solid #CDE2F9;
+    text-indent: 25px;
+    background: #eee;
+    font-size: 18px;
+    margin-bottom: 25px;
+
+}
+.page-databank-list-info .data-sum span {
+    margin-left: 10px;
+    color: #777;
+    font-size: 14px;
+}
+.page-databank-list-info .data-list {
+    width: 100%;
+    overflow: hidden;
+}
+.page-databank-list-info .data-list li {
+    float: left;
+    display: inline;
+    width: 80px;
+    text-align: center;
+    margin: 20px;
+    overflow: hidden;
+    height: 120px;
+}
+.page-databank-list-info .data-list li .data-list-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    overflow: hidden;
+}
+.page-databank-list-info .data-list li .data-list-img img {
+    width: 80px;
+    height: 80px;
+}
+.page-databank-list-info .data-list li .data-list-name {
+    line-height: 23px;
+    padding-top: 10px;
+    width: 80px;
+    text-align: center;
+    font-size: 14px;
+}
+

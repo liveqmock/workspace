@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>select</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+    <link rel="stylesheet" href="../../asset/base.css">
+    <script src="../../asset/third/jquery-1.11.1.js"></script>
+    <script src="../../asset/third/underscore/underscore.js"></script>
+    <script src="../../asset/third/avalon/avalon.js"></script>
+    <script src="../../asset/avalon-ext.js"></script>
+    <style>
+        .selector1 {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body class="ms-controller" ms-controller="demo">
+    <span class="selector1" ms-widget="select,$,$selectOpts2" data-select-options='[{"text":"ffeffew","value":111},{"text":"ffweffwe","value":2222}]'></span>
+    <span class="selector2" ms-widget="select,$,$selectOpts1"></span>
+
+    <script>
+        require("../../../widget/form/select", function(avalon) {
+            var model = avalon.define("demo", function(vm) {
+                vm.$selectOpts1 = {
+                    "selectedIndex": 1,
+                    "options": [{
+                        "text": "test1",
+                        "value": "1"
+                    },{
+                        "text": "test2",
+                        "value": "2"
+                    }]
+                };
+                vm.$selectOpts2 = {
+                    "selectedIndex": 0,
+                    "options": [{
+                        "text": "test1111",
+                        "value": "1111"
+                    },{
+                        "text": "test2222",
+                        "value": "2222"
+                    }],
+                    "onSelect": function (selectedIndex) {
+                        alert(selectedIndex);
+                    }
+                };
+            });
+            avalon.scan();
+        });
+    </script>
+</body>
+</html>
+

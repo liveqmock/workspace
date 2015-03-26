@@ -1,0 +1,86 @@
+<div class="module-schedule-tbar fn-clear">
+    <div class="date-mark fn-left">{{ currentReferDate | date("M 月 yyyy年")}}</div>
+    <div class="nav-box fn-right">
+        <span class="export-l" ms-if="planExportPermission" ms-click="exportPlan">导出工作计划</span>&nbsp;&nbsp;<span class="nav-l" ms-click="navPrev" title="上月">&#139;</span>&nbsp;&nbsp;<span class="nav-r" ms-click="navNext" title="下月">&#155;</span>&nbsp;&nbsp;<button class="today-btn" ms-click="navToday" title="返回本月">本月</button>
+    </div>
+</div>
+<div class="module-schedule-bd">
+    <table class="module-schedule-grid" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>周日</th>
+                <th>周一</th>
+                <th>周二</th>
+                <th>周三</th>
+                <th>周四</th>
+                <th>周五</th>
+                <th>周六</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ms-repeat="dateRows">
+                <td ms-repeat="el"
+                    ms-class-1="state-inactive: !el.isCurrentMonth"
+                    ms-class-2="state-today: el.isToday"
+                    ms-click="clickDateCell">
+                    <div class="date-cell">
+                        <div class="date-num">{{ el.date | date("d")}}</div>
+                        <ul class="plan-list">
+                            <li class="plan-item"
+                                ms-repeat="el.planList"
+                                ms-data-plan-id="el.id"
+                                ms-data-status="el.status"
+                                ms-data-plan="el.json"
+                                ms-class-1="state-status-1:el.status == '1'"
+                                ms-class-2="state-status-2:el.status == '2'"
+                                ms-class-3="state-status-3:el.status == '3'"
+                                ms-class-4="state-status-4:el.status == '4'"
+                                ms-class-5="state-status-5:el.status == '5'"
+                                ms-class-6="state-timeout:el.isTimeout">
+                                {{el.title}}
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- 导出弹框 start -->
+<div class="module-schedule-export-dialog ui-hidden"
+    ms-widget="dialog,$,$exportDialogOpts">
+    <form class="module-schedule-export-form" ms-widget="form,$,$exportFormOpts"
+        action="javascript:;">
+        <h3 class="f-title">请选择导出工作计划时间</h3>
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>时间：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box fn-clear">
+                        <div class="input-field fn-left">
+                            <input type="text" class="input-text start-date"
+                                name="startTime"
+                                readonly="readonly"
+                                data-date-name="start"
+                                ms-click="openExportDateCalendar"
+                                ms-value="startDate" />
+                            <div class="ff-value-tip"></div>
+                        </div>
+                        <div class="ff-value-text input-separater fn-left">至</div>
+                        <div class="input-field fn-left">
+                            <input type="text" class="input-text end-date"
+                                name="endTime"
+                                readonly="readonly"
+                                data-date-name="end"
+                                ms-click="openExportDateCalendar"
+                                ms-value="endDate" />
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 导出弹框 end -->

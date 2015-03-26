@@ -1,0 +1,17 @@
+<!-- 回访记录 start -->
+<div class="module-visit" ms-widget="dialog,$,$visitOpts">
+    <div class="f-body">
+        <div class="content">
+            <ul class="con-top">
+                <li><span>联系人：</span>{{name}}</li>
+                <li><span>电话：</span>{{mobilePhone}}</li>
+            </ul>
+            <ul class="con-list">
+                <li>
+                    <button ms-repeat="list" type="button" ms-click="phoneType" class="submit-btn">{{el.text}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 回访记录 end -->

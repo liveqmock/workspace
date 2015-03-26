@@ -1,0 +1,24 @@
+<input type="text"
+       class="select-header-text"
+       ms-value="selectedText"
+       ms-title="selectedText"
+       ms-attr-placeholder="placeholder"
+       ms-readonly="readonly"
+       ms-disabled="disabled"
+       ms-css-width="textWidth" /><i class="icon-select ui-icon">{{selectIconText|html}}</i>
+MS_OPTION_HEADER
+<ul class="select-list"
+    ms-on-click="selectItem"
+    ms-css-min-width="minWidth">
+    <li class="select-item"
+        ms-repeat="options"
+        ms-css-min-width="minWidth - 16"
+        ms-class="state-selected:$index==selectedIndex"
+        ms-class-1="state-disabled:el.disabled"
+        ms-class-last-item="$last"
+        ms-hover="state-hover"
+        ms-data-index="$index"
+        ms-attr-title="el.text"
+        ms-data-value="el.value">{{el.text}}</li>
+</ul>
+MS_OPTION_WIDGET

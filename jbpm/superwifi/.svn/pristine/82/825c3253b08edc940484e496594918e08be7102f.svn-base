@@ -1,0 +1,101 @@
+.page-user .page-bd {
+    font-size: 14px;
+    color: #666666;
+    padding: 20px;
+}
+
+.page-user .go-back {
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    width: 77px;
+    padding-left: 13px;
+    text-align: center;
+    color: #444444;
+    font-size: 16px;
+    background: url("../../asset/image/bt-location.png") 0 0 no-repeat;
+}
+
+.page-user a:hover.go-back {
+    background: url("../../asset/image/bt-location.png") 0 -42px no-repeat;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.page-user .device-t{
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: solid #e0e1e1 1px;
+    position: relative;
+}
+.page-user .device-t p{
+    color: #888888;
+    font-size: 12px;
+}
+.page-user .device-t p.main-t{
+    color: #333333;
+    font-size: 16px;
+}
+.page-user .page-h2{
+    height: 45px;
+    color: #888888;
+    line-height: 45px;
+}
+.page-user .page-h2 ins{
+    color: #444444;
+    padding:0 5px;
+}
+.page-user .add-btn {
+    float: right;
+    margin-top: 6px;
+    line-height: 30px;
+    color: #FFFFFF;
+}
+.page-user .format-a a{
+    padding: 0 8px;
+}
+.page-user .page-filter{
+    position: absolute;
+    right: 0;
+    top: 6px;
+}
+.page-user .page-filter label {
+    line-height: 30px;
+}
+.page-user .page-filter label,
+.page-user .page-filter span,
+.page-user .page-filter input {
+    vertical-align: middle;
+}
+.page-user-add-dialog .input-text {
+    width: 97%;
+}
+.page-user-add-dialog .merchant-domain .module-merchantdomain-autocomplete {
+    width: 368px;
+}
+.page-user-add-dialog .authority-list{
+    border-bottom: solid #eeeeee 1px;
+    padding:10px 0;
+}
+.page-user-add-dialog .authority-list li{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 107px;
+    line-height: 36px;
+    height: 36px;
+    border:solid #cfcfcf 1px;
+    text-align: center;
+    cursor: pointer;
+    color: #666666;
+    margin-bottom: 20px;
+    margin-right: 16px;
+}
+.page-user-add-dialog .authority-list li.no-right{
+    margin-right: 0;
+}
+.page-user-add-dialog .authority-list .checked{
+    border:solid #27a742 2px;
+    line-height: 34px;
+    height: 34px;
+    width: 105px;
+}

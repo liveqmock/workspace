@@ -1,0 +1,20 @@
+<!-- 产品运营弹层 start -->
+<div class="addproduct-index" >
+    <div class="addproduct-main">
+        <button class="prev iconfont" ms-click="prev">&#xe624;</button>
+        <div class="content">
+            <div class="addproduct-outer">
+                 <div ms-repeat="list" class="item">
+                     <h2>{{el.title}}</h2>
+                     <div class="middle">{{el.content|html}}</div>
+                 </div>
+            </div>
+
+        </div>
+        <div class="button-box">
+            <button class="button main-btn iconfont" ms-click="close">我知道了</button>
+        </div>
+        <button class="next iconfont" ms-click="next">&#xe625;</button>
+        <button class="close iconfont" ms-click="close">&#xe616;</button>
+    </div>
+</div>

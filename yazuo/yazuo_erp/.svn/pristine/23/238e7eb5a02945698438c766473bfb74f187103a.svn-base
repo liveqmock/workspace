@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysAttachmentDao">
+	<resultMap id="SysAttachment" type="com.yazuo.erp.system.vo.SysAttachmentVO">
+    	<id property="id" column="id"/>
+    	<result property="attachmentName" column="attachment_name"/>
+    	<result property="originalFileName" column="original_file_name"/>
+    	<result property="attachmentType" column="attachment_type"/>
+    	<result property="attachmentSize" column="attachment_size"/>
+    	<result property="attachmentPath" column="attachment_path"/>
+    	<result property="attachmentSuffix" column="attachment_suffix"/>
+    	<result property="moduleType" column="module_type"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="isDownloadable" column="is_downloadable"/>
+    	<result property="hours" column="hours"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="merchantName" column="merchant_name"/>
+    	<result property="processAttachmentType" column="process_attachment_type"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysattachmentColumns">
+	    <![CDATA[
+		id,attachment_name,original_file_name,attachment_type,attachment_size,attachment_path,attachment_suffix,module_type,is_enable,is_downloadable,hours,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysAttachment" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： attachment_name,attachment_type,attachment_suffix,module_type,is_enable,is_downloadable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_attachment (
+        	 <if test="attachmentName!=null and attachmentName!=''">attachment_name,</if>
+        	 <if test="originalFileName!=null and originalFileName!=''">original_file_name,</if>
+        	 <if test="attachmentType!=null and attachmentType!=''">attachment_type,</if>
+        	 <if test="attachmentSize!=null and attachmentSize!=''">attachment_size,</if>
+        	 <if test="attachmentPath!=null and attachmentPath!=''">attachment_path,</if>
+        	 <if test="attachmentSuffix!=null and attachmentSuffix!=''">attachment_suffix,</if>
+        	 <if test="moduleType!=null and moduleType!=''">module_type,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="isDownloadable!=null and isDownloadable!=''">is_downloadable,</if>
+        	 <if test="hours!=null and hours!=''">hours,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="attachmentName!=null and attachmentName!=''">#{attachmentName},</if>
+       	    <if test="originalFileName!=null and originalFileName!=''">#{originalFileName},</if>
+       	    <if test="attachmentType!=null and attachmentType!=''">#{attachmentType},</if>
+       	    <if test="attachmentSize!=null and attachmentSize!=''">#{attachmentSize},</if>
+       	    <if test="attachmentPath!=null and attachmentPath!=''">#{attachmentPath},</if>
+       	    <if test="attachmentSuffix!=null and attachmentSuffix!=''">#{attachmentSuffix},</if>
+       	    <if test="moduleType!=null and moduleType!=''">#{moduleType},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="isDownloadable!=null and isDownloadable!=''">#{isDownloadable},</if>
+       	    <if test="hours!=null and hours!=''">#{hours},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysAttachments" parameterType="map">
+	 <!--不允许为空的字段： attachment_name,attachment_type,attachment_suffix,module_type,is_enable,is_downloadable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_attachment (
+        	 <if test="attachmentName!=null and attachmentName!=''">attachment_name,</if>
+        	 <if test="originalFileName!=null and originalFileName!=''">original_file_name,</if>
+        	 <if test="attachmentType!=null and attachmentType!=''">attachment_type,</if>
+        	 <if test="attachmentSize!=null and attachmentSize!=''">attachment_size,</if>
+        	 <if test="attachmentPath!=null and attachmentPath!=''">attachment_path,</if>
+        	 <if test="attachmentSuffix!=null and attachmentSuffix!=''">attachment_suffix,</if>
+        	 <if test="moduleType!=null and moduleType!=''">module_type,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="isDownloadable!=null and isDownloadable!=''">is_downloadable,</if>
+        	 <if test="hours!=null and hours!=''">hours,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="attachmentName!=null and attachmentName!=''">#{t.attachmentName},</if>
+          <if test="originalFileName!=null and originalFileName!=''">#{t.originalFileName},</if>
+          <if test="attachmentType!=null and attachmentType!=''">#{t.attachmentType},</if>
+          <if test="attachmentSize!=null and attachmentSize!=''">#{t.attachmentSize},</if>
+          <if test="attachmentPath!=null and attachmentPath!=''">#{t.attachmentPath},</if>
+          <if test="attachmentSuffix!=null and attachmentSuffix!=''">#{t.attachmentSuffix},</if>
+          <if test="moduleType!=null and moduleType!=''">#{t.moduleType},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="isDownloadable!=null and isDownloadable!=''">#{t.isDownloadable},</if>
+          <if test="hours!=null and hours!=''">#{t.hours},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysAttachment">
+        UPDATE sys.sys_attachment 
+ 		  <set>
+	        <if test="attachmentName!=null and attachmentName!=''">attachment_name = #{attachmentName} ,</if>
+	        <if test="originalFileName!=null and originalFileName!=''">original_file_name = #{originalFileName} ,</if>
+	        <if test="attachmentType!=null and attachmentType!=''">attachment_type = #{attachmentType} ,</if>
+	        <if test="attachmentSize!=null and attachmentSize!=''">attachment_size = #{attachmentSize} ,</if>
+	        <if test="attachmentPath!=null and attachmentPath!=''">attachment_path = #{attachmentPath} ,</if>
+	        <if test="attachmentSuffix!=null and attachmentSuffix!=''">attachment_suffix = #{attachmentSuffix} ,</if>
+	        <if test="moduleType!=null and moduleType!=''">module_type = #{moduleType} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="isDownloadable!=null and isDownloadable!=''">is_downloadable = #{isDownloadable} ,</if>
+	        <if test="hours!=null and hours!=''">hours = #{hours} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysAttachmentsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_attachment 
+ 		  <set>
+	        <if test="attachmentName!=null and attachmentName!=''">attachment_name = #{t.attachmentName} ,</if>
+	        <if test="originalFileName!=null and originalFileName!=''">original_file_name = #{t.originalFileName} ,</if>
+	        <if test="attachmentType!=null and attachmentType!=''">attachment_type = #{t.attachmentType} ,</if>
+	        <if test="attachmentSize!=null and attachmentSize!=''">attachment_size = #{t.attachmentSize} ,</if>
+	        <if test="attachmentPath!=null and attachmentPath!=''">attachment_path = #{t.attachmentPath} ,</if>
+	        <if test="attachmentSuffix!=null and attachmentSuffix!=''">attachment_suffix = #{t.attachmentSuffix} ,</if>
+	        <if test="moduleType!=null and moduleType!=''">module_type = #{t.moduleType} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="isDownloadable!=null and isDownloadable!=''">is_downloadable = #{t.isDownloadable} ,</if>
+	        <if test="hours!=null and hours!=''">hours = #{t.hours} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysAttachmentsToSameVals" parameterType="map">
+        UPDATE sys.sys_attachment 
+ 		  <set>
+	        <if test="attachmentName!=null and attachmentName!=''">attachment_name = #{attachmentName} ,</if>
+	        <if test="originalFileName!=null and originalFileName!=''">original_file_name = #{originalFileName} ,</if>
+	        <if test="attachmentType!=null and attachmentType!=''">attachment_type = #{attachmentType} ,</if>
+	        <if test="attachmentSize!=null and attachmentSize!=''">attachment_size = #{attachmentSize} ,</if>
+	        <if test="attachmentPath!=null and attachmentPath!=''">attachment_path = #{attachmentPath} ,</if>
+	        <if test="attachmentSuffix!=null and attachmentSuffix!=''">attachment_suffix = #{attachmentSuffix} ,</if>
+	        <if test="moduleType!=null and moduleType!=''">module_type = #{moduleType} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="isDownloadable!=null and isDownloadable!=''">is_downloadable = #{isDownloadable} ,</if>
+	        <if test="hours!=null and hours!=''">hours = #{hours} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysAttachmentById">
+    <![CDATA[
+        DELETE FROM sys.sys_attachment WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysAttachmentByIds" parameterType="list">
+        DELETE FROM sys.sys_attachment WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysAttachmentById" resultMap="SysAttachment">
+		SELECT <include refid="sysattachmentColumns" />
+		    FROM sys.sys_attachment 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysAttachments" resultMap="SysAttachment">
+		SELECT <include refid="sysattachmentColumns" />
+		    FROM sys.sys_attachment  
+	    <include refid="sysattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysAttachmentsMap" resultType="map">
+		SELECT <include refid="sysattachmentColumns" />
+	    <![CDATA[
+		    FROM sys.sys_attachment  
+	    ]]>
+	    <include refid="sysattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysattachment_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="attachmentName!=null and attachmentName!=''">AND attachment_name = #{attachmentName}</if>
+	       <if test="originalFileName!=null and originalFileName!=''">AND original_file_name = #{originalFileName}</if>
+	       <if test="attachmentType!=null and attachmentType!=''">AND attachment_type = #{attachmentType}</if>
+	       <if test="attachmentSize!=null and attachmentSize!=''">AND attachment_size = #{attachmentSize}</if>
+	       <if test="attachmentPath!=null and attachmentPath!=''">AND attachment_path = #{attachmentPath}</if>
+	       <if test="attachmentSuffix!=null and attachmentSuffix!=''">AND attachment_suffix = #{attachmentSuffix}</if>
+	       <if test="moduleType!=null and moduleType!=''">AND module_type = #{moduleType}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="isDownloadable!=null and isDownloadable!=''">AND is_downloadable = #{isDownloadable}</if>
+	       <if test="hours!=null and hours!=''">AND hours = #{hours}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysAttachmentCount" resultType="long">
+        SELECT count(*) FROM sys.sys_attachment 
+		<include refid="sysattachment_findPage_where"/>    
+    </select>
+    
+    <!-- 根据工作计划ID查询附件信息 -->
+    <select id="getSysAttachmentList" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			A . ID,
+			A .attachment_name,
+			A .original_file_name,
+			A .attachment_type,
+			A .attachment_size,
+			A .attachment_path,
+			A .attachment_suffix,
+			A .module_type,
+			A .is_enable,
+			A .is_downloadable,
+			A .hours,
+			A .remark,
+			A .insert_by,
+			A .insert_time,
+			A .update_by,
+			A .update_time
+		FROM
+			sys.sys_attachment A
+		WHERE
+			1 = 1
+		AND A . ID IN(SELECT P .attachment_id FROM fes.fes_plan_attachment P WHERE P .plan_id = #{planId,jdbcType=INTEGER} )
+	</select>
+	<!-- 工作计划附件 -->
+	<select id="queryPlanAttachment"  resultMap="SysAttachment">
+		SELECT merchant.merchant_name, a.* from sys.sys_attachment a INNER JOIN fes.fes_plan_attachment pa on (a.id = pa.attachment_id)
+		INNER JOIN fes.fes_plan p on (p.id = pa.plan_id) left JOIN 
+		(select m.merchant_id, m.merchant_name from syn.syn_merchant m inner JOIN sys.sys_user_merchant 
+		um on (m.merchant_id = um.merchant_id) where um.user_id=#{userId} and m.status =#{status})
+		 merchant ON (p.merchant_id = merchant.merchant_id)
+		<include refid="attachment_order"/>
+		 order by a.update_time desc
+	</select>
+	
+	<!-- 上线流程附件 -->
+	<select id="queryOnlineAttachment"  resultMap="SysAttachment">
+		select * from (select merchant.merchant_name, fpa.process_attachment_type, a.* from sys.sys_attachment a 
+		INNER JOIN fes.fes_process_attachment fpa on (a.id = fpa.attachment_id)
+		INNER JOIN fes.fes_online_process fop on (fpa.process_id = fop.id)
+		INNER JOIN fes.fes_online_program p on (p.id = fop.program_id)
+		INNER JOIN (select m.merchant_id, m.merchant_name from syn.syn_merchant m inner JOIN sys.sys_user_merchant 
+		um on (m.merchant_id = um.merchant_id) where um.user_id=#{userId} and m.status =#{status}) merchant
+		on (merchant.merchant_id = p.merchant_id) 
+	union /*包含销售回访单中的上传的电子文档附件*/
+	    select merchant.merchant_name, '00' as process_attachment_type,  atta.*  from mkt.mkt_brand_interview brand
+			INNER JOIN (select m.merchant_id, m.merchant_name from syn.syn_merchant m inner JOIN sys.sys_user_merchant 
+			um on (m.merchant_id = um.merchant_id) where um.user_id=#{userId} and m.status =#{status}) merchant 
+	   on merchant.merchant_id = brand.merchant_id  
+	    INNER JOIN  sys.sys_attachment atta
+	    on  brand.attachment_id = atta.id) as a 
+		<include refid="custom_attachment_order"/>
+		 order by a.update_time desc
+	</select>
+	
+	<sql id="custom_attachment_order">
+		<where>
+			<if test="1==1">a.is_enable='1'</if>
+			<if test="merchantId !=null and merchantId !=0"> and a.merchant_id=#{merchantId}</if>
+			<if test="merchantName !=null and merchantName !=''"> and a.merchant_name like '%'||#{merchantName}||'%'</if>
+		</where>
+	</sql>
+	
+	<!-- 营销活动申请附件 -->
+	<select id="queryActivityAttachment"  resultMap="SysAttachment">
+		select merchant.merchant_name, a.* from sys.sys_attachment a INNER JOIN fes.fes_marketing_activity ma ON (a.id = ma.attachment_id)
+		left JOIN (select m.merchant_id, m.merchant_name from syn.syn_merchant m inner JOIN sys.sys_user_merchant 
+		um on (m.merchant_id = um.merchant_id) where um.user_id=#{userId} and m.status =#{status}) merchant
+		on (merchant.merchant_id = ma.merchant_id)
+		<include refid="attachment_order"/>
+		 order by a.update_time desc
+	</select>
+	<sql id="attachment_order">
+		<where>
+			<if test="1==1">a.is_enable='1'</if>
+			<if test="merchantId !=null and merchantId !=0"> and a.merchant_id=#{merchantId}</if>
+			<if test="merchantName !=null and merchantName !=''"> and merchant.merchant_name like '%'||#{merchantName}||'%'</if>
+		</where>
+	</sql>
+</mapper>

@@ -1,0 +1,5 @@
+package com.yazuo.redisSpout;
+
+public class ElasticSearchHandler {
+
+}

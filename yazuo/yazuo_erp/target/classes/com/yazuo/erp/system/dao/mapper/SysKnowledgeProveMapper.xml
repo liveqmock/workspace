@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.erp.system.dao.SysKnowledgeProveDao">
+    <resultMap id="SysKnowledgeProveResultMap" type="com.yazuo.erp.system.vo.SysKnowledgeProveVO">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="knowledge_id" property="knowledgeId" jdbcType="INTEGER"/>
+        <result column="approved" property="approved" jdbcType="BIT"/>
+        <result column="score" property="score" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="saveKnowledgeProveVO" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys.sys_knowledge_prove (user_id, knowledge_id, approved, score)
+        VALUES( #{userId}, #{knowledgeId}, #{approved}, #{score})
+    </insert>
+    
+    <select id="getAllKnowledgeProves" resultMap="SysKnowledgeProveResultMap">
+        SELECT id as alais_id, *
+        FROM sys.sys_knowledge_prove
+        WHERE knowledge_id = #{knowledgeId}
+        ORDER BY id
+        @@
+    </select>
+
+    <select id="getStaticForProved" resultType="map">
+        SELECT approved,count(1) as num
+        FROM sys.sys_knowledge_prove
+        WHERE knowledge_id=#{knowledgeId} AND approved IS NOT NULL
+        GROUP BY approved
+    </select>
+
+    <select id="getStatForScore" resultType="double">
+        SELECT avg(score)
+        FROM sys.sys_knowledge_prove
+        WHERE knowledge_id=#{knowledgeId} AND score IS NOT NULL
+    </select>
+
+    <select id="getRecordForProved" resultMap="SysKnowledgeProveResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_prove
+        WHERE knowledge_id=#{knowledgeId} AND user_id = #{userId} AND score IS NULL
+    </select>
+
+    <select id="getRecordForScore" resultMap="SysKnowledgeProveResultMap">
+        SELECT *
+        FROM sys.sys_knowledge_prove
+        WHERE knowledge_id = #{knowledgeId} AND user_id = #{userId} AND approved IS NULL
+    </select>
+</mapper>

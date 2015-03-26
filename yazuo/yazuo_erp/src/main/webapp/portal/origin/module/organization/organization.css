@@ -1,0 +1,110 @@
+.module-organization {
+    overflow: auto;
+}
+/*.module-organization .node-tree {
+    width: 10000px;
+}*/
+.module-organization .node-text {
+    height: 34px;
+    line-height: 34px;
+    background: #76a9e0;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
+.module-organization .node-text .visible-h {
+    cursor: pointer;
+}
+.module-organization .node-text-inner {
+    position: relative;
+}
+.module-organization .connect-line-right {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -2px;
+    width: 46px;
+    height: 4px;
+    background: #76a9e0;
+}
+.module-organization .connect-line-left {
+    position: absolute;
+    top: 50%;
+    left: -8px;
+    margin-top: -2px;
+    width: 8px;
+    height: 4px;
+    background: #76a9e0;
+}
+.module-organization .root-node-text .node-text-inner {
+    padding: 0;
+}
+.module-organization .node-text .node-text-inner {
+    padding: 0 8px;
+}
+.module-organization .node-list {
+    border-left: 4px solid #76a9e0;
+    margin-left: 46px;
+    padding-left: 8px;
+}
+.module-organization .node-item {
+    margin-bottom: 8px;
+}
+.module-organization .node-item-last {
+    margin-bottom: 0;
+}
+.module-organization .root-node-text {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border: 5px solid #76a9e0;
+    background: #ffffff;
+    color: #393939;
+    border-radius: 45px;
+    text-align: center;
+}
+.module-organization .root-node-text .connect-line-right {
+    width: 52px;
+}
+.module-organization .root-node-text .visible-h,
+.module-organization .root-node-text .connect-line-left {
+    display: none;
+}
+.module-organization .leaf-node-text{
+    font-size: 14px;
+    font-weight: normal;
+    background: #66ccb5;
+}
+.module-organization .leaf-node-text .connect-line-right,
+.module-organization .leaf-node-text .visible-h {
+    display: none;
+}
+.module-organization .state-contract .connect-line-right {
+    display: none;
+}
+.organization-context-menu {
+    display: none;
+    position: absolute;
+    z-index: 10000;
+    border: 1px solid #e9e9e9;
+    background: #ffffff;
+    box-shadow:  1px 2px 2px #e9e9e9;
+}
+.organization-context-menu .context-item {
+    width: 178px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 8px;
+    border-bottom: 1px solid #e9e9e9;
+    text-indent: 20px;
+    background: #eef6ff;
+    color: #393939;
+    font-size: 14px;
+    cursor: pointer;
+}
+.module-organization-action-dialog .ff-value {
+    margin-left: 80px;
+}
+.module-organization-action-dialog .organization-name {
+    width: 300px;
+}

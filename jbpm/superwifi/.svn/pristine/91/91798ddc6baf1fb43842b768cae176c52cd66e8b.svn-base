@@ -1,0 +1,506 @@
+body,button,input,select,textarea {
+    font-family: tahoma,arial,"Hiragino Sans GB","微软雅黑","Microsoft YaHei","WenQuanYi Micro Hei",\5b8b\4f53;
+}
+a,
+a:active,
+a:focus {
+    outline:none;
+    color: #005ea7;
+}
+a:visited {
+     color: #743c89;
+}
+::-moz-focus-inner {
+    outline:none;
+}
+.input-text,
+textarea {
+    border: 1px solid #848484;
+    padding: 0 4px;
+    font-size: 14px;
+    color: #646464;
+}
+textarea {
+    min-height: 85px;
+}
+.input-text {
+    height: 30px;
+    line-height: 30px;
+}
+.input-focus {
+    border: 1px solid #27a742;
+}
+html,
+body {
+    background: #e8e8e8;
+}
+body {
+    overflow: scroll;
+}
+.ie-7 body {
+    overflow: visible;
+}
+.fn-hide-abs {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+}
+/* 参考 http://iconfont.cn */
+@font-face {
+    font-family: 'iconfont';
+    src: url('http://at.alicdn.com/t/font_1420427850_0213037.eot'); /* IE9*/
+    src: url('http://at.alicdn.com/t/font_1420427850_0213037.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('http://at.alicdn.com/t/font_1420427850_0213037.woff') format('woff'), /* chrome、firefox */
+    url('http://at.alicdn.com/t/font_1420427850_0213037.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('http://at.alicdn.com/t/font_1420427850_0213037.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size: 16px;
+    font-style:normal;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+    font-family: 'tip';
+    src: url('iconfont/tip/iconfont.eot'); /* IE9*/
+    src: url('iconfont/tip/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont/tip/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont/tip/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont/tip/iconfont.svg#uxiconfont') format('svg'); /* iOS 4.1- */
+}
+/* avalon隐藏插值表达式 */
+[ms-controller],
+[ms-important],
+.ms-controller,
+.ms-important {
+    visibility:hidden;
+}
+/* 按钮 start */
+.main-btn {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding:0 20px;
+    background: #FFFFFF;
+    height: 32px;
+    line-height: 32px;
+    border: solid #cfcfcf 1px;
+    text-align: center;
+    color: #444444;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+    vertical-align: top;
+}
+.main-btn:hover{
+    background: #27a742;
+    border: solid #27a742 1px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.main-btn-blue {
+    display: inline-block;
+    *display: inline;
+    border: none;
+    *zoom: 1;
+    padding:0 20px;
+    background: #3280a4;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+    vertical-align: top;
+}
+.main-btn-blue:hover{
+    background: #2b6d8c;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.main-btn-green {
+    display: inline-block;
+    *display: inline;
+    border: none;
+    *zoom: 1;
+    padding:0 20px;
+    background: #27a742;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+    vertical-align: top;
+}
+.main-btn-green:hover{
+    background: #218e38;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.minor-btn {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 0 12px;
+    background: #dad7d7;
+    height: 32px;
+    line-height: normal;
+    border: none;
+    color: #646464;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+    vertical-align: top;
+}
+.simple-btn {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 0 12px;
+    background: #e5fff5;
+    height: 32px;
+    line-height: normal;
+    border: 1px solid #2CC78F;
+    color: #646464;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+}
+.simple-btn-disabled {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    padding: 0 12px;
+    background: #eaeaea;
+    height: 32px;
+    line-height: normal;
+    border: 1px solid #c2c2c2;
+    color: #646464;
+    font-size: 14px;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+}
+.main-btn .btn-icon,
+.main-btn .btn-text,
+.minor-btn .btn-icon,
+.minor-btn .btn-text,
+.simple-btn .btn-icon,
+.simple-btn .btn-text,
+.simple-btn-disabled .btn-icon,
+.simple-btn-disabled .btn-text {
+    vertical-align: middle;
+}
+.main-btn .btn-icon,
+.minor-btn .btn-icon,
+.simple-btn .btn-icon,
+.simple-btn-disabled .btn-icon {
+    font-size: 24px;
+    padding-right: 4px;
+}
+/* 按钮 end */
+/* alert/confirm */
+.global-alert-confirm .icon-tip {
+    font-family:"tip" !important;
+    font-size: 46px;
+    font-style:normal;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.global-alert-confirm .icon-info {
+    color: #ff7800;
+}
+.global-alert-confirm .icon-success {
+    color: #468847;
+}
+.global-alert-confirm .icon-error {
+    color: #b94a48;
+}
+.global-alert-confirm .icon-ask {
+    color: #76a9e0;
+}
+.global-alert-confirm .tip-content {
+    display: block;
+    color: #646464;
+    font-size: 16px;
+    vertical-align: middle;
+    margin-left: 54px;
+}
+.global-alert-confirm .ui-dialog-content {
+    padding: 45px 60px;
+}
+.global-alert-confirm .ui-dialog-btns {
+    padding-top: 0;
+}
+/* ajax */
+.ajax-mask {
+    background: #ffffff;
+    display: none;
+    z-index: 10000;
+    background: rgba(255, 255, 255, 0.5) url(image/loading.gif) no-repeat center center;
+}
+.ajax-mask .ajax-mask-inner {
+    width: 100%;
+    height: 100%;
+}
+.ie-6 .ajax-mask,
+.ie-7 .ajax-mask,
+.ie-8 .ajax-mask{
+    background: transparent url(image/loading.gif) no-repeat center center;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7fffffff,endColorstr=#7fffffff);
+    zoom: 1;
+}
+.ajax-global-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.ajax-part-mask {
+    position: absolute;
+}
+/* 全局遮罩 start */
+.global-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: none;
+    z-index: 10000;
+    background: rgba(255, 255, 255, 0.5) url(image/loading.gif) no-repeat center center;
+}
+.ie-6 .global-mask,
+.ie-7 .global-mask,
+.ie-8 .global-mask{
+    background: transparent url(image/loading.gif) no-repeat center center;
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7fffffff,endColorstr=#7fffffff);
+    zoom: 1;
+}
+/* 全局遮罩 end */
+/* form start */
+.f-field {
+    margin-bottom: 16px;
+}
+.f-field-last {
+    margin-bottom: 0;
+}
+.f-field .ff-label {
+    display: block;
+    /*line-height: 30px;*/
+    color: #666666;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.f-field .ff-value-tip {
+    display: none;
+    font-size: 12px;
+    margin-top: 4px;
+}
+.f-field .valid-error {
+    color: #f56355;
+}
+.f-field .valid-error-field {
+    border: 1px solid #f56152 ! important;
+}
+.f-field .icon-star {
+    color: #ff0000;
+}
+.f-field .mn-radio {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    background: #e5f8f1;
+    color: #646464;
+    font-size: 14px;
+    text-align: center;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.f-field .mn-radio-state-selected {
+    background: #b2eed8;
+}
+.f-field .mn-radio-state-readonly {
+    cursor: default;
+}
+.f-field .ff-value-text {
+    font-size: 14px;
+    color: #666666;
+    /*line-height: 30px;*/
+    /*padding: 4px 0;*/
+}
+.f-action {
+    text-align: center;
+}
+.f-field .no-flash-player-tip {
+    font-size: 14px;
+    color: #666666;
+    line-height: 28px;
+}
+/* form end */
+
+/* label for start */
+.label-for {
+    /*line-height: 30px;*/
+}
+.label-for label {
+    cursor: pointer;
+}
+/* label for end */
+
+/* page start */
+.page .page-tbar .page-action {
+    padding: 12px 14px;
+}
+.page .page-tbar .page-filter {
+    padding: 10px 14px;
+    background: #f3f4f6;
+    margin-bottom: 10px;
+}
+.page .page-tbar .page-tip {
+    height: 36px;
+    line-height: 36px;
+    color: #646464;
+    font-size: 16px;
+    font-family: \65B0\5B8B\4F53, \5b8b\4f53;
+    text-align: center;
+    background: #fdf4da;
+}
+.page .grid-wrapper .grid-bbar {
+    padding: 16px 14px;
+}
+.page .grid-wrapper .summary {
+    color: #666666;
+    font-size: 14px;
+    padding: 6px 14px;
+}
+.page .grid-wrapper .summary  .num {
+    color: #ff7800;
+}
+.page .page-nav-crumbs {
+    font-size: 14px;
+    color: #666666;
+    padding: 20px 14px 10px 14px;
+}
+.page .page-nav-crumbs .nav-item {
+    display: inline;
+}
+.page .page-nav-crumbs a {
+    color: #005ea7;
+}
+.page .page-section-title {
+    color: #171a1f;
+    font-size: 16px;
+}
+.page .page-bd {
+    position: relative;
+}
+.page .page-iframe {
+    width: 100%;
+}
+.page .grid-wrapper .check-all-btn,
+.page .grid-wrapper .batch-remove-btn,
+.page .ui-grid .check-cell .check-all {
+    display: none;    /* 暂时隐藏批量删除 */
+}
+.page .grid-wrapper .ui-grid .check-cell {
+    width: 40px;
+}
+/* page end */
+
+/* other start */
+/* jwplayer start */
+.jwlogo {
+    display: none;
+}
+
+/* sortable start */
+body.dragging {
+  cursor: move !important;
+}
+.dragged {
+  position: absolute ! important;
+  opacity: 1;
+  z-index: 10000;
+}
+/* sortable end */
+
+/* softPos plugin start */
+#softPos {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+}
+/* softPos plugin end */
+
+/* grid start */
+.grid-tip {
+    position: absolute;
+    background: #fdf4da;
+    border: 1px solid #ff7800;
+    font-size: 14px;
+    color: #646464;
+    padding: 4px 20px;
+    border-radius: 4px;
+    box-shadow: 0px 2px 2px #cccccc;
+}
+
+.grid-tip .icon-arrow {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 17px;
+    height: 10px;
+    margin-left: -8px;
+    background: url(image/icon-arrow-down.png) no-repeat;
+}
+.ui-grid .operation-cell {
+    text-align: left;
+}
+/* grid end */
+
+/* input:text close按钮 start */
+#input-text-close {
+    display: none;
+    position: absolute;
+    line-height: 30px;
+    width: 30px;
+    background: transparent;
+    text-align: center;
+    color: #2CC78F;
+    cursor: pointer;
+    z-index: 10000;
+    font-family: "arial";
+}
+/* input:text close按钮 end */
+/*提示图标*/
+.global-alert-confirm .icon-info,.global-alert-confirm .icon-success,.global-alert-confirm .icon-error{
+    padding-left: 63px;
+    height: 48px;
+    display: block;
+    font-size: 14px;
+    line-height: 48px;
+    margin-left: 0;
+}
+.global-alert-confirm .icon-info{
+    background: url("image/icon-dialog-info.png") no-repeat;
+}
+.global-alert-confirm .icon-success{
+    background: url("image/icon-dialog-success.png") no-repeat;
+}
+.global-alert-confirm .icon-error{
+    background: url("image/icon-dialog-error.png") 0 0 no-repeat;
+}

@@ -1,0 +1,147 @@
+.module-interview {
+    font-size: 14px;
+    color: #777;
+}
+.module-interview .f-body {
+    position: relative;
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.module-interview table {
+    width: 100%;
+}
+.module-interview table td {
+    vertical-align: top;
+}
+.module-interview .interview-select {
+    width: 400px;
+}
+.module-interview .merchant-logo {
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.module-interview .merchant-logo p {
+    float: left;
+    display: inline;
+    margin-right: 10px;
+    line-height: 100px;
+}
+.module-interview .merchant-logo img {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+.module-interview .ui-dialog-content {
+    padding: 0;
+}
+.module-interview .interview-head {
+    padding: 15px 0;
+}
+.module-interview .interview-head table th {
+    padding: 5px 0;
+}
+
+.module-interview .research-tabs {
+    width: 100%;
+    height:45px;
+    background: #ECF6FF;
+}
+.module-interview .research-tabs td {
+    position: relative;
+}
+.module-interview .research-tabs p {
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+.module-interview .research-tabs p.cur {
+    border-top: 4px solid #5EA9E0;
+    border-left: 1px solid #CAE5FA;
+    border-right: 1px solid #CAE5FA;
+    color: #5EA9E0;
+    background: #fff;
+    height: 42px;
+    line-height: 40px;
+}
+.module-interview .label-check-radio {
+    margin: 0 15px 10px 0;
+    display: inline-block;
+    min-width: 80px;
+}
+.module-interview .research-con {
+    padding: 20px 5px;
+}
+.module-interview .research-con td {
+    padding-bottom: 10px;
+}
+.module-interview .research-left {
+    padding-left: 10px;
+    width: 150px;
+}
+.module-interview .warn {
+    color: red;
+}
+.module-interview .research-input {
+    width: 390px;
+}
+.module-interview .inter-upfile {
+    height: 30px;
+    line-height: 30px;
+}
+
+.module-interview .interview-format {
+    position: relative;
+}
+.module-interview .interview-format-box {
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    border: 1px solid #2cc78f;
+    padding: 0 10px 10px 10px;
+    width: 600px;
+    background: #fff;
+    display: none;
+}
+.module-interview .format-box-info {
+    width: 100%;
+    overflow: hidden;
+}
+.module-interview .format-box-info .format-left {
+    float: left;
+    display: inline;
+    width: 60%;
+    padding-top: 6px;
+}
+.module-interview .format-box-info .format-left label {
+    display: inline-block;
+    _display:inline;
+    _zoom:1;
+    min-width: 50px;
+    margin:0 0 10px 10px;
+}
+.module-interview .format-box-info .format-right {
+    float: right;
+    display: inline;
+    width: 38%;
+    border-left:1px solid #2cc78f;
+    padding-bottom: 1000px;
+    margin-bottom: -1000px;
+}
+
+.module-interview .format-box-button {
+    text-align: center;
+    padding-top: 15px;
+}
+.module-interview .format-right p {
+    padding: 5px;
+}

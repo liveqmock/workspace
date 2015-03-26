@@ -1,0 +1,82 @@
+.page-study-coursestudy-process .courseware-player {
+    padding: 0 24px 112px 24px;
+}
+.page-study-coursestudy-process .courseware-player .player-host,
+.page-study-coursestudy-process .courseware-player .jwplayer {
+    border: 1px solid #e4e4e4;
+}
+.page-study-coursestudy-process .courseware-title {
+    position: relative;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 24px 24px 18px 20px;
+}
+.page-study-coursestudy-process .courseware-title .enter-exam-btn {
+    position: absolute;
+    bottom: 8px;
+    left: 737px;
+}
+.page-study-coursestudy-process .courseware-title .title-summary {
+    font-weight: normal;
+    color: #969696;
+    font-size: 12px;
+}
+.page-study-coursestudy-process .courseware-wrapper {
+    position: relative;
+}
+.page-study-coursestudy-process .study-history {
+    position: absolute;
+    top: 74px;
+    left: 846px;
+    width: 148px;
+    border: 1px solid #e4e4e4;
+    color: #666666;
+    font-size: 14px;
+    min-height: 556px;
+    background: #ffffff;
+}
+.page-study-coursestudy-process .study-history .history-title {
+    font-weight: bold;
+}
+.page-study-coursestudy-process .study-history .history-title,
+.page-study-coursestudy-process .study-history .history-item {
+    margin: 0 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e4e4e4;
+}
+.page-study-coursestudy-process .study-history .history-title,
+.page-study-coursestudy-process .study-history .history-time {
+    padding-bottom: 6px;
+}
+.page-study-coursestudy-process .study-history .history-list-empty-tip {
+    padding: 12px;
+}
+.page-study-coursestudy-process .study-history .exam-score .num {
+    color: #d64040;
+}
+.page-study-coursestudy-process .study-history .exam-score .is-passed-num {
+    color: #66ccb5;
+}
+.page-study-coursestudy-process .courseware-empty-tip {
+    text-align: center;
+    color: #666666;
+    font-size: 14px;
+}
+.page-study-coursestudy-process .courseware-empty-tip .tip-content {
+    padding: 20px;
+}
+.page-study-coursestudy-process .courseware-empty-tip .is-strong {
+    font-size: 24px;
+    font-weight: bold;
+}
+.page-study-coursestudy-process .history-list-wrapper {
+    height: 240px;
+    overflow: auto;
+}
+
+.play-completed-dialog .play-tip {
+    color: #646464;
+    font-size: 16px;
+    text-align: center;
+}

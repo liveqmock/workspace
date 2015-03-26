@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* 公用样式 */
+html{color:#000;background:#f6f6f6;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;}
+*{margin:0;padding:0;}
+button,input,select,textarea{font-size:12px; line-height:20px; font-family:'Microsoft Yahei'; color: #333; }
+input,select,textarea{font-size:100%;}
+ol,ul {list-style:none;}
+a,a:link,a:visited,a:hover,a:active{text-decoration: none; outline:none;}
+i{ text-align:center; font-style:normal;}
+b{font-weight:normal;}
+h2{font-size:14px; line-height:20px;}
+h3{font-weight:normal; font-size:14px; line-height:40px;}
+
+.clear:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clear {zoom:1;}
+
+/* 公用框架 */
+html.redBg{background:#951715 url(../lotteryImages/waveBg.png) center bottom repeat-x; position:relative; height:100%;}
+.container{ width:96%; margin:10px 2% 0; min-height:380px; height: 380px; height:auto !important; position:relative;}
+
+/* 公用按钮 */
+.btn{width:100%; height:40px; line-height:40px; background: -moz-linear-gradient(top, #FFB023, #FCA020);background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFB023), to(#FCA020));display:block; color:#fff; font-size:14px; font-weight:bold; text-align:center; border-radius:5px; color:#fff;}
+.grayBtn{width:100%; height:40px; line-height:40px; background: -moz-linear-gradient(top, #999, #666);background:-webkit-gradient(linear, 0 0, 0 100%, from(#999), to(#666));display:block; color:#fff; font-size:14px; font-weight:bold; text-align:center;border-radius:5px;}
+
+.btn2{padding:0 20px; height:40px; line-height:40px; background: -moz-linear-gradient(top, #FFB023, #FCA020);background:-webkit-gradient(linear, 0 0, 0 100%, from(#FFB023), to(#FCA020));display:inline-block; color:#fff; font-size:14px; font-weight:bold; text-align:center; border-radius:5px; color:#fff;}
+.grayBtn2{padding:0 20px; height:40px; line-height:40px; background: -moz-linear-gradient(top, #999, #666);background:-webkit-gradient(linear, 0 0, 0 100%, from(#999), to(#666));display:inline-block; color:#fff; font-size:14px; font-weight:bold; text-align:center;border-radius:5px;}
+
+/* 老虎机 —— 复仇时刻*/
+.containerTiger{width:100%;  min-height:380px; height: 380px; height:auto !important; position:relative;}
+.tigerBg{width:100%; background:#790300;}
+.tigerTopBg{width:263px; height:64px; margin:0px auto; background:url(../lotteryImages/tigerTopBg.png) top center no-repeat; display:block;}
+.tigerGameBg{width:313px; height:109px;margin:0px auto; background:url(../lotteryImages/tigerCenterBg.png) top center no-repeat;}
+.tigerGameBtnBg{width:313px; height:55px;margin:0px auto;position:relative; background:url(../lotteryImages/tigerBtnBg.png) top center no-repeat;}
+.tigerGameBtn{ width:100px; text-align:center; font-size:14px; font-weight:bold;height:24px;line-height:24px;position:absolute; left:50%; margin-left:-50px; top:15px; display:block; border:#A51902 solid 3px; border-radius:5px; background:#EA6312; color:#fff;}
+span.tigerGameBtn{border:#666 solid 3px;background:#999; display:none;}
+
+/* 游戏规则 */
+.playRules{ margin:15px 8%; font-size:14px; color:#f0db5c;}
+
+/* 图片动画 样式 */
+.picViewer{width:56px; height:75px; float:left; overflow:hidden;position:relative;top:15px;}
+#JS_picViewerFir{left:52px;}
+#JS_picViewerSec{left:66px;}
+#JS_picViewerThi{left:80px;}
+.picViewer ul{position:absolute; left:0px; top:0px; width:56px;}
+.picViewer ul li{position:relaive; width:100%; height:75px; text-align:center;line-height:75px;}
+.picViewer ul li img{max-width:56px; max-height:75px;}
+
+/* 中奖记录  */
+.winRecordList li{padding:12px 50px 12px 45px; height:30px; min-height:30px; height:auto !important; line-height:24px; border-bottom:#ccc solid 1px; position:relative}
+.winRecordList b{color:red; padding:0px 2px;}
+.winRecordList span{position:absolute; right:10px; top:10px; color:#646464;}
+.winRecordList .canUseTip{color:red;} 
+
+
+/* 雅座大乐透  */
+.containerLotto{width:100%;}
+.starBg{ padding:20px 2%; background:url(../lotteryImages/starBg.png) repeat;}
+/* 刮刮卡  */
+.lottoBg{padding:13px 20px 13px 50px; height:112px; position:relative; background:url(../lotteryImages/ggkBg.png) repeat-x;}
+.lottoTitle{width:16px; font-size:16px; line-height:24px; color:#924517; position:absolute; left:30px;top:33px;}
+.wScratchPad{height:108px; width:225px; border:#E9D5BE solid 2px; float:right;position:relative;}
+/* 大乐透 游戏规则  */
+.lottoPlayRules{margin:0px 8%; padding:10px 0 25px; color:#f0db5c;}
+
+
+/* 幸运大转盘 */
+.containerWheel{position:relative;}
+.wheelInfo{width:300px; padding:20px 0; margin:0px auto; position:relative;}
+.wheelBg{width:300px; height:300px;}
+/*三种奖项 转盘背景*/
+.wheelBg1{background:url(../lotteryImages/wheelBg1.png) no-repeat;}
+.wheelBg2{background:url(../lotteryImages/wheelBg2.png) no-repeat;}
+.wheelBg3{background:url(../lotteryImages/wheelBg3.png) no-repeat;}
+
+#start {height:98px;left:120px; position: absolute;top:120px;width:60px;}
+#start img{outline:none;}
+/* 游戏规则 */
+.wheelPlayRules{background:#ba4e17;opacity:0.8; filter:alpha(opacity=80); padding:15px 8%; color:#F2E16C;position:relative; z-index:1;}
+/*游戏规则 详情列表*/
+ul.playRulesInfo,.playRulesInfo li{padding:5px 0px; list-style:disc; font-size:14px;}
+.wheelPlayRules #error{font-size:16px; font-weight:bold; color:#ffff00; list-style:none; padding:5px 0;}
+.playRulesInfo b,.playRulesInfo em{font-weight:bold; font-style:normal;}
+.playRulesInfo p{ padding-left:70px;}
+
+
+
+/* 弹窗效果 */
+.popUp{width:80%; border:#ccc solid 1px; border-radius:8px; background:#fafafa; position:fixed; left:10%; top:20px;z-index:999;}
+.popInfo{border-bottom:#ccc solid 1px; font-size:14px; padding:20px 18px 30px;}
+.popInfo em{color:#FF6600; font-weight:bold;font-style:normal; padding:0px 3px;}
+.popBtns{height:40px; line-height:40px; text-align:center; margin:0px 0px 15px;}
+.popBtn{font-size:14px; color:red;}
+/*中奖 提示*/
+.winTip{font-size:14px; font-weight:bold; line-height:20px;}
+.giftCoupon{margin:0 auto 10px; text-align:center; font-size:12px; color:#999;}
+.giftCoupon img{max-height:110px; max-width:225px; margin-bottom:4px;}
+/*弹窗 标题*/
+.popBorderTitle {border-bottom: 1px solid #FFFFFF;text-align: center; line-height:auto;}
+.popBorderTitle p.headBorder {border-bottom: 1px solid #CCCCCC; height: 15px;}
+.popBorderTitle .headText {background:#FAFAFA; color:#333333; display:inline-block; line-height: 24px; margin: 0 8px; padding: 0 3px; position:relative; top:-15px;}
+/*弹窗 广告*/
+.popAd{ margin:10px 0; text-align:center;}
+.popAd img{max-height:60px; max-width:100%; overflow:hidden; margin-bottom:10px;}
+.popAd p{ text-align:left;}
+
+/*大转盘没抽奖机会时，提示遮罩条*/
+#JS_noChanceTips{ padding:15px 5%; width:90%; line-height:50px; text-align:center; background:#ba4e17; opacity:0.8; color:#ffffff; font-size:16px; position:absolute; left:0px; top:120px; display:none;}
+
+
+.customer-add-input{height:30px;line-height:30px;padding:0 5px;border:1px solid #ccc; border-radius:5px; width:150px;font-size:14px;}
+.left{float:left;}
+.right{float:right;}
+.buy-module li{padding:5px 0;}
+.buy-pop-p{padding:5px 0;font-size:14px;}
+
+
+.pop-text p{text-align:left;font-size:14px;line-height:130%;}
+.pop-tit{padding:0 0 10px;}
+.pop-h1{font-size:20px;margin-bottom:10px;}
+.popUp .pop-cont{border-bottom:none;}
+/*两种清浮动方法*/
+.clear-wrap:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clear-wrap {display:block;_display:inline-block;}
+
+
+
+

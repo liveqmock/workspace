@@ -1,0 +1,595 @@
+﻿
+/*********************************************************************
+     *                  我的主页部分接口                               *
+**********************************************************************/
+     
+Fri Aug 15 17:58:20 CST 2014
+
+接口描述： 返回前端我的主页查询出来的所有商户信息
+
+http://localhost:8080/yazuo_erp/myHomePage/getComplexSynMerchants
+
+测试参数: {"merchantStatusType":0,"merchantStatus":"4","userId":1,"pageSize":10,"pageNumber":1,"merchantName":"北京"}
+     说明：merchantStatusType:　必须不为空，int类型　  1: 销售我的主页   0 ：其他   ； 
+        merchantStatus: [0:未上线商户  1:已上线商户  2:正常商户  3:问题商户   4:危险商户]为搜索条件
+        对于按钮【全部】的特别说明，如果是前端我的主页或者销售全部商户模块，传 merchantStatus:""
+           如果是后端客服  传 merchantStatus:"200"
+        
+        请求返回的merchantStatus 只有[0:未上线  1：已上线   2:商户创建  3：待分配前端顾问]
+返回值：
+
+商户名称：merchantName
+销售负责人：salesName
+客服助理：listAssistantUsers[0].userId, listAssistantUsers[0].userName (需要判断是否为空， 不为空取第一个)
+前端负责人：listUsers[0].userName (需要判断是否为空， 不为空取第一个)
+状态：merchantStatusText    [0:未上线  1：已上线   2:商户创建  3：待分配前端顾问]
+流程进度： "listSteps" : [ { 
+    "stepId" : 10,
+    "stepText" : "项目上线(已完成)",
+    "mainPagePlanEndTimeStatus" : 1      （根据状态判断显示颜色  {0:[已完成,绿色];  1:[已超时,红色];  2:[流程进行中,灰色]}）
+  }, {
+    "stepId" : 9,
+    "stepText" : "实施培训(已完成)",
+    "mainPagePlanEndTimeStatus" : 2
+  }, {
+    "stepId" : 8,
+    "stepText" : "设备配送(待确认)",
+    "mainPagePlanEndTimeStatus" : 0
+  }, {
+    "stepId" : 7,
+    "stepText" : "物料设计(已完成)",
+    "mainPagePlanEndTimeStatus" : 0
+  },………………
+健康度："synHealthDegrees" : [ { 
+    "id" : 769378,
+    "merchantId" : 2318,
+    "targetType" : "2", （取这个类型） 取值范围:[1,2,3,4] 
+    "targetValue" : 0.00, 
+    "actualValue" : 0.00,
+    "healthDegree" : 0.00, (如果大于100， 显示绿色， 否则显示红色)
+    "reportTime" : 1406822400000,
+    "updateBy" : null,
+    "updateTime" : 1408102201577,
+    "targetTypeText" : "售卡受益",  (不要用这个字段，根据类型前端拼写)
+  },
+ {   (虽然返回的是数组，但是只取一条) 
+    "id" : 769378,
+    "merchantId" : 2318,
+    "targetType" : "3", （取这个类型） 取值范围:[1,2,3,4] 
+    "targetValue" : 0.00, 
+    "actualValue" : 0.00,
+    "healthDegree" : 0.00, (如果大于100， 显示绿色， 否则显示红色)
+    "reportTime" : 1406822400000,
+    "updateBy" : null,
+    "updateTime" : 1408102201577,
+    "targetTypeText" : "售卡受益",  (不要用这个字段，根据类型前端拼写)
+    "sortColumns" : null,
+    "synMerchant" : null
+  }  
+],
+代办事项个数：  "countToDoList" : 8,
+
+
+Sat Aug 16 14:36:06 CST 2014
+
+接口描述： 我的主页, 分配负责人
+
+http://localhost:8080/yazuo_erp/myHomePage/assignPersionForMerchant
+
+测试参数: {"userId":9,"merchantId":15,"oldUserId":0}  (userId是从下拉列表中选择的，只能是一个； merchantId为列表行的一个属性)
+  说明： 如果是新增 oldUserId给0
+返回值： 标准输出
+
+
+
+Sat Aug 16 14:41:12 CST 2014
+
+接口描述： 我的主页, 我的下属
+
+http://localhost:8080/yazuo_erp/group/getSubordinateEmployees
+
+测试参数: {"subUserName":"13529999999","baseUserId":109,"pageNumber":1,"pageSize":10} (subUserName为输入框中输入的下属的名字， baseUserId登录的用户id(我))
+用户头像路径：  sessionUser.userImagePath+"/"+userImage
+返回值：前边省略 找到 数组 ：[ {
+  "id" : 117,
+  "userName" : "13529999999",  （下属的名字）
+  "tel" : "13529999999",
+  "password" : "E10ADC3949BA59ABBE56E057F20F883E",
+  "genderType" : "0",
+  "userImage" : "",  【图片文件名】
+  "birthday" : "2014-08-05",
+  "positionId" : 4
+  ……………………
+  
+  
+
+Sat Aug 16 16:00:00 CST 2014
+
+接口描述： 通过资源 remark 查询 所有拥有该资源的用户
+
+http://localhost:8080/yazuo_erp/user/getAllUsersByResourceCode
+
+测试参数: {"remark":"course_sty_his_review"}
+例：查询后端客服：　{"remark":"end_custom_service"}
+
+运营平台查找商户负责人（销售） {"remark":"sales_service"}
+
+返回值：前边省略 找到 数组 ：[ {
+  "id" : 117,
+  "userName" : "13529999999",  （分配的负责人的名字）
+  "tel" : "13529999999",
+  "password" : "",
+  "genderType" : "0",
+  "userImage" : "",
+  "birthday" : "2014-08-05",
+  "positionId" : 4
+  ……………………
+
+
+Mon Aug 18 16:20:52 CST 2014
+
+接口描述： 查询待办事项
+
+http://localhost:8080/yazuo_erp/myHomePage/getComplexSysToDoLists
+
+测试参数: {"inputItemTypes":["01","02"],"merchantName":"1","userId",1,"pageNumber":1,"pageSize":10, "businessTypes": ['3','4']}
+inputItemTypes: 对应表中的 item_type
+businessTypes 数组类型，每一个值为字符串类型，可选值
+    1-商户创建
+	2-投诉处理
+	3-上线流程[微信申请]
+	4-上线流程[实体卡制作]
+	5-上线流程[物流设计]
+	6-上线流程[实体卡配送]
+	7-上线流程[开卡申请]
+	8-上线流程[设备配送]
+	9-上线流程[营销活动创建]
+	10-上线流程[实施培训回访]
+	11-上线后服务[上线回访]
+	12-上线后服务[营销活动创建]
+	13-上线流程[后台设置]
+	
+每一菜单对应的businessType
+制卡/物料： 4，5,6
+设备配送：8
+后端客服：9，10,11,3,7,12 
+销售：1
+投诉管理： 2//有异议
+前端我的主页： 2 
+
+
+返回值： {
+  "flag" : 1,
+  "message" : null,
+  "data" : {
+    "totalSize" : 3,
+    "rows" : [ {
+      "id" : 11,
+      "userId" : 80,
+      "merchantId" : 1,
+      "priorityLevelType" : "01",
+      "itemType" : "01",
+      "itemContent" : "营销活动创建，请尽快安排。",
+      "itemStatus" : "0",
+      "relatedType" : "1",
+      "relatedId" : 26,
+      "remark" : null,
+      "isEnable" : "1",
+      "insertBy" : 1,
+      "insertTime" : 1408088958623,   (时间)
+      "merchantName" : null,   (商户名称)
+      "itemTypeText" : null,  (类型)
+      "updateBy" : 1,
+      
+/*********************************************************************
+     *                 10个流程部分接口                              *
+**********************************************************************/
+
+Fri Aug 15 18:10:18 CST 2014
+
+接口描述：  返回所有的上线流程信息
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/listFesOnlineProcesss/{merchantId}
+
+测试参数: {"programId":4}
+返回值：【参照10个步骤的接口描述】
+
+
+Mon Aug 18 16:20:52 CST 2014
+
+接口描述： 临时文件上传
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/uploadTempFiles
+
+测试参数: {"myfile": 特殊类型}
+返回值：
+  "flag" : 1,
+  "message" : "上传成功",
+  "data" : {
+    "fileSize" : 10,
+    "attachmentPath" : null,
+    "fileContentType" : "text/plain",
+    "originalFileName" : "test.txt",
+    "attachmentName" : "b4572b92-1cb3-4ced-8a27-7b5dc4fe070c.txt",
+    "fileFullPath" : "/temp/b4572b92-1cb3-4ced-8a27-7b5dc4fe070c.txt", 【取这个值，serverNam port要自己拼】
+    "fileSuffix" : "txt"
+  }
+}
+
+Mon Aug 18 16:20:52 CST 2014
+
+接口描述： 步骤上传相关(所有上传都给sessionId)
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/uploadFiles
+
+测试参数: {"myfile": 特殊类型, "processId": 155, "typeId": 0 }
+     typeId: 为了区分 默认值0
+	 *  1.流程6实体卡制作中的 卡样源文件和卡样确认单 依次为 3,4,12……
+	 *  2.流程7物料设计中的 物料设计源文件和物料设计缩略图(包含类型) 依次为 6,7,8,9,10,11,13 
+返回值：
+{
+  "flag" : 1,
+  "message" : "上传成功",
+  "data" : {
+    "id" : 251,
+    "fileSize" : 10,
+    "attachmentPath" : null,
+    "fileContentType" : "text/plain",
+    "processId" : 175,
+    "updateTime" : 1408616631100,
+    "originalFileName" : "test.txt",
+    "attachmentName" : "f9ebc46c-1d39-49f5-8e85-69285557dfbd.txt",
+    "fileSuffix" : "txt",
+    "attachmentTypeText": "X展架"  【物料设计的时候显示名字】
+    "onlineProcessStatus" : "03"  【状态】
+    "stepNum" : "draft_program",
+    "stepId" : 3  【步骤ID】,
+    "fileFullPath": "user-upload-file/fes/materialsDesign/0def7008-ca0d-4440-ae5a-90346cf16704.txt",
+        【需要加http://server:port】
+  }
+}
+
+Mon Aug 18 16:20:52 CST 2014
+
+接口描述： 	 物料上传完图片点确定按钮就的时候 
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/uploadFilesForCommit
+
+测试参数: {"processId": 155, "typeId": 0 , "fileMap": [上次上传发回来的data]}
+返回值：
+{
+  "flag" : 1,
+  "message" : "上传成功",
+  "data" : {
+    "id" : 251,
+    "fileSize" : 10,
+    "attachmentPath" : null,
+    "fileContentType" : "text/plain",
+    "processId" : 175,
+    "updateTime" : 1408616631100,
+    "originalFileName" : "test.txt",
+    "attachmentName" : "f9ebc46c-1d39-49f5-8e85-69285557dfbd.txt",
+    "fileSuffix" : "txt",
+    "attachmentTypeText": "X展架"  【物料设计的时候显示名字】
+    "onlineProcessStatus" : "03"  【状态】
+    "stepNum" : "draft_program",
+    "stepId" : 3  【步骤ID】,
+    "fileFullPath": "user-upload-file/fes/materialsDesign/0def7008-ca0d-4440-ae5a-90346cf16704.txt",
+        【需要加http://server:port】
+  }
+}
+ 
+
+Mon Aug 18 16:20:52 CST 2014
+
+接口描述： 步骤删除附件相关
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/deleteAttachment/{processId}/{attachmentId}
+
+测试参数: "processId": 155, "attachmentId": 200 
+返回值：
+{
+  "flag" : 1,
+  "message" : "删除成功",
+  "data" : {
+    "onlineProcessStatus" : "03"  【状态】
+    "stepNum" : "draft_program",
+    "stepId" : 3  【步骤ID】
+  }
+}
+
+
+Tue Aug 19 15:02:57 CST 2014
+
+接口描述： 更新上线流程 状态(点击按钮的时候用)
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/updateFesOnlineProcessStatus
+
+测试参数: {"id":168,"onlineProcessStatus":"12"}
+   说明： id为流程的id， onlineProcessStatus 为更改完的状态
+  
+返回值：
+{
+  "flag" : 1,
+  "message" : null,
+  "data" : {  【操作日志：如果有值，需要在页面显示】
+    "id" : 5,
+    "merchantId" : 2318,
+    "moduleType" : "fes",
+    "fesLogType" : "5",
+    "operatingTime" : 1408527829306,  【】
+    "description" : "确认完成",   【】
+    "remark" : null,
+    "insertBy" : 1,
+    "insertTime" : 1408527829306,
+    "finalStatus" : "02",    【流程总状态】
+    "onlineProcessStatus" : "06",【当前流程状态】
+    "stepId" : 4,【步骤id】
+    "stepNum" : "final_program",
+    "processId" : 366,
+  }
+}
+
+Tue Aug 19 15:53:15 CST 2014
+
+接口描述： 文件下载
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/download
+
+测试参数: realPath:  规则：http://host:port/appName/+ fileConfigPath+attachmentPath+"/"+ attachmentName
+
+注：没见路径对于每一个流程内的不同附件没有做区分
+
+
+Tue Aug 19 16:01:23 CST 2014
+
+接口描述： 保存 培训计划
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/saveFesTrainPlan
+
+测试参数: {"processId":31,"beginTime":1405937603000,"endTime":1405937603000,"address":"111啊时代发生地方","trainer":"1阿桑地方","content":"111阿桑地方"}
+
+返回值：  前边省略
+{
+  "id" : 34,
+  "processId" : 31,
+  "beginTime" : 1405937603000,
+  "endTime" : 1405937603000,
+  "address" : "111啊时代发生地方",
+  "trainer" : "1阿桑地方",
+  "content" : "111阿桑地方",
+  "isEnable" : "1",
+  "insertBy" : 109,
+  "insertTime" : 1408435283479,
+  "updateBy" : 109,
+  "updateTime" : 1408435283479,
+  "onlineProcessStatus": "03"
+}
+
+
+Mon Aug 25 16:53:31 CST 2014
+
+接口描述： 保存开卡申请
+
+http://localhost:8080/yazuo_erp/applySetting/saveOpenCardApply
+
+测试参数: {
+  "processId" : 1,
+  "merchantId" : 1,
+  "fesOpenCardApplicationDtls" : [ {
+    "cardName" : "??鹇",
+    "cardAmount" : 5.0,
+    "validityTerm" : 0,
+    "isContainFour" : "0",
+    "isContainSeven" : "0",
+  } ]
+}
+
+
+Tue Aug 26 11:02:24 CST 2014
+
+接口描述： 新增设备配送
+
+http://localhost:8080/yazuo_erp/applySetting/saveFesStowage
+
+测试参数: 
+物流配送: {"processId":198,"logisticsCompany":null,"logisticsNum":null,"contactId":9,
+"fesStowageDtls":[{"category":"2","amount":5.0,"unitType":"跭⤸ᗤ"}}
+
+对于实体卡配送 {"processId":198,"logisticsCompany":null,"logisticsNum":null,"contactId":9,
+"fesStowageDtls":[{"category":"2"}}
+
+
+
+Tue Aug 26 11:02:24 CST 2014
+
+接口描述：查询交易短信模板
+
+http://localhost:8080/yazuo_erp/tradeMessageTemplate/listTradeMessageTemplates
+
+参数:{"merchantNo":"111111111111111"}
+
+
+Wed Sep 03 16:26:27 CST 2014
+
+接口描述： 查询开卡申请单和明细
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/getFesOpenCardApplicationsAndDtls
+
+测试参数: {"processId":198}
+返回值：
+[ {
+  "id" : 45,
+  "processId" : 198,
+  "merchantId" : 243,
+  "openCardApplicationStatus" : "1",
+  "fesOpenCardApplicationDtls" : [ {
+    "id" : null,
+    "applicationId" : 6,
+    "cardName" : "1",
+    "cardAmount" : 1.00,
+    "validityTerm" : 3,
+    "isContainFour" : "0",
+    "isContainSeven" : "0",
+  } ],
+  "synMerchant" : null,
+  "fesOnlineProcess" : null
+}]
+
+
+Thu Sep 04 17:34:24 CST 2014
+
+接口描述： 保存客服商户关系
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/saveSysAssistantMerchant
+
+测试参数: {"userId":1,"merchantId":1, "newUserId": 2}
+特别说明：如果"newUserId":"", 则为新增， 否则为修改
+
+/**********************************************************************************************
+     ********发送邮件对应的接口********
+/**********************************************************************************************
+
+Thu Sep 04 17:34:24 CST 2014
+
+接口描述： 	 * 更新 第十步上线流程  状态 并发送邮件 
+	 * @param fesOnlineProcess  {id /*流程id*/, onlineProcessStatus/*更新后的状态*/}
+	 * @param sendAddress  发件人地址
+	 * @param subject  发件人地址
+	 * @param to 联系人邮件地址  @type 数组  
+	 * @param context 邮件正文
+	 
+测试参数:  //json格式
+{
+  "id": 1,
+  "onlineProcessStatus": "04",
+  "email": {
+    "sendAddress": "11@yazuo.com",
+    "subject": "subject",
+    "to": [
+      "1@yazuo.com",
+      "1@yazuo.com"
+    ],
+    "context": "context"
+  }
+}
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/updateOnlineStatusAndSendEmail
+
+返回值：
+{
+  "flag" : 1,
+  "message" : null, /*如果邮件发送失败显示 【发送邮件失败！】 */
+  "data" : {  【操作日志：如果有值，需要在页面显示】
+    "id" : 5,
+    "merchantId" : 2318,
+    "moduleType" : "fes",
+    "operatingTime" : 1408527829306,  【】
+    "description" : "确认完成",   【】
+    "finalStatus" : "02",    【流程总状态】
+    "onlineProcessStatus" : "06",【当前流程状态】
+    "stepId" : 4,【步骤id】
+    "stepNum" : "final_program",
+  }
+}
+
+
+Thu Sep 04 17:34:24 CST 2014
+
+接口描述： 查找联系人/对接人 
+
+http://localhost:8080/yazuo_erp/contact/searchContacts
+
+参数： {'merchantId':  1}
+
+返回值：
+
+返回值： {
+  "flag" : 1,
+  "message" : 联系人查询成功！,
+  "data" : {
+    "totalSize" : 3,
+    "rows" : [ {
+      "mail" : "songfuyu@yazuo.com"
+      }]
+  }
+
+Fri Sep 19 14:41:42 CST 2014
+
+接口描述： 查找邮件模板
+
+http://localhost:8080/yazuo_erp/fesOnlineProcess/getEmailTemplates
+
+测试参数: {"mailTemplateType":"001"} /*001 上线完成时邮件模板  002 月报模板*/
+返回： {
+  "flag" : 1,
+  "message" : null,
+  "data" : [ {
+    "id" : 29,
+    "mailTemplateType" : "001",
+    "name" : "测试测试",
+    "title" : "测试测试",
+    "content" : "<p>测试测试测试测试测试测试测试</p>",
+    "isEnable" : "1",
+    "remark" : null,
+    "insertBy" : 1,
+    "insertTime" : 1410777785286,
+    "updateBy" : 1,
+    "updateTime" : 1410777785286,
+    "sortColumns" : null
+  } ]
+}
+
+Wed Sep 24 14:38:24 CST 2014
+
+接口描述： 通过商户Id 和类型查找对应的回访信息
+
+http://localhost:8080/yazuo_erp/sysDocument/getSysDocumentsByMerchantAndType
+
+测试参数: "[{'merchantId':10, 'documentType':'2'}, {'merchantId':10, 'documentType':'3'}]"
+
+返回值： 参照高珊接口 http://192.168.236.33:8080/wiki/Wiki.jsp?page=QuerySysDocumentById
+
+
+Wed Sep 24 14:38:24 CST 2014
+
+接口描述： 通过商户Id 和类型查找对应的回访信息
+
+测试参数: [{'documentType':'2'}, {'documentType':'3'}]
+
+http://localhost:8080/sysQuestion/listMutiSysQuestions
+
+
+Wed Sep 24 14:38:24 CST 2014
+
+接口描述： 上传录音
+
+http://localhost:8080/yazuo_erp/sysDocument/uploadFiles
+
+测试参数: 数组类型  myfiles
+
+返回值：
+  上传完成后调用接口 ：http://localhost:8080/yazuo_erp/sysDocument/saveSysDocumentsForUpload
+    参数参照接口：http://192.168.236.33:8080/wiki/Wiki.jsp?page=SaveSysDocument
+      返回值： 查找对象中的remark属性值 如果是字符串 "upload"， 表示是上传操作，  培训回访单的文字不显示， 填写回访单按钮显示
+     
+  
+  Wed Sep 24 14:38:24 CST 2014
+
+接口描述： 修改(多个)填单信息
+
+测试参数:  "[{'id':1 ,'merchantId':10, 'documentType':'2'}, {'id':1 ,'merchantId':10, 'documentType':'3'}]"
+
+http://localhost:8080/sysDocument/updateSysDocuments
+  
+  
+Wed Sep 24 14:38:24 CST 2014
+
+接口描述： 保存(多个)填单信息
+
+测试参数: 数组对象 参照wiki
+
+http://localhost:8080/sysDocument/saveSysDocuments
+  
+
+

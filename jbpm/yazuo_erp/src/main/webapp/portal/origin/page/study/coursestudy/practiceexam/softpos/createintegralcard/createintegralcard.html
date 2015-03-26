@@ -1,0 +1,69 @@
+<div class="page-bd">
+    <div class="practice-exam-softpos">
+        <div class="hd fn-clear">
+            <div class="hd-l fn-left"></div>
+            <div class="hd-r fn-right"></div>
+        </div>
+        <div class="bd">
+            <div class="portal-section action-section">
+                <div class="card-input-box">
+                    <input class="card-input" type="password" placeholder="请输入卡号" ms-duplex="cardNo" ms-keydown="step0"/>
+                    <button class="card-submit" type="button" ms-click="step0"></button>
+                    <span class="field-tip fn-hide" ms-visible="result0 === false">非此商户卡，请核对</span>
+                </div>
+            </div>
+            <div class="card-active-section action-section fn-hide">
+                <div class="card-active-box">
+                    <input type="text" class="mobile" placeholder="请输入手机号" /><span class="mobile-field-tip field-tip fn-hide">手机号不能为空</span>
+                    <input type="text" class="user-name" />
+                    <select class="sex">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                    <span class="birthday-wrapper">
+                        <select class="birthday-year">
+                            <option value=""></option>
+                        </select>-<select class="birthday-month">
+                            <option value=""></option>
+                        </select>-<select class="birthday-day">
+                            <option value=""></option>
+                        </select>
+                    </span>
+                    <button class="card-active-submit" type="button" ms-click="step1"></button>
+                    <button class="card-active-cancel" type="button" ms-click="leaveCardActive"></button>
+                </div>
+            </div>
+            <div class="main-section action-section fn-hide">
+                <div class="group-consume-box">
+                    <input type="text" class="total-amount" value="0" />
+                   <!-- <input type="text" class="store-amount" />
+                    <input type="text" class="integral-amount" />-->
+                    <input type="text" class="cash-amount" value="0" />
+                    <button class="group-consume-submit" type="button" ms-click="step2"></button>
+                    <button class="group-consume-cancel" type="button" ms-click="leaveMain"></button>
+                </div>
+                <div class="card-info-box">卡和会员信息区</div>
+                <div class="action-btn-box">功能按键区</div>
+            </div>
+        </div>
+        <div class="ft"></div>
+        <div class="dialog-overlay"></div>
+        <div class="card-active-tip softpos-dialog">
+            <button class="submit-btn" type="button" ms-click="enterCardActive"></button>
+            <button class="cancel-btn" type="button" ms-click="cancelCardActive"></button>
+        </div>
+        <div class="consume-confirm softpos-dialog">
+            <div class="content">
+                现金消费：<span class="cash-value"></span>
+            </div>
+            <button class="submit-btn" type="button" ms-click="enterPrint"></button>
+            <button class="cancel-btn" type="button" ms-click="cancelConsumeConfirm"></button>
+        </div>
+        <div class="print softpos-dialog">
+            <span class="cash-value"></span>
+            <button class="submit-btn" type="button" ms-click="reEnterPortal"></button>
+            <button class="cancel-btn" type="button" ms-click="reEnterPortal"></button>
+        </div>
+    </div>
+    <div class="practice-exam-board" ms-module="practicehelper,$,$examBoardOpts"></div>
+</div>

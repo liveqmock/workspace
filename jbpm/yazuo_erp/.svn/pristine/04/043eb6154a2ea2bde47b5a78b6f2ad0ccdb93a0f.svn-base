@@ -1,0 +1,56 @@
+.page-databank-list-addedit .page-bd {
+    padding: 20px 15px;
+}
+.page-databank-list-addedit .addedit-title {
+    font-size: 26px;
+    color: #777;
+    padding: 15px 5px;
+}
+.page-databank-list-addedit .add-edit-content {
+    padding: 20px;
+}
+.page-databank-list-addedit .ff-label {
+    width: 150px;
+    text-align: right;
+}
+.page-databank-list-addedit .input-text {
+    width:400px;
+}
+.page-databank-list-addedit .input-textarea {
+    width:400px;
+    height:150px;
+}
+
+.page-databank-list-addedit .used-list {
+    margin-right: 25px;
+}
+
+.page-databank-list-addedit .save-button {
+    width: 300px;
+    margin-left: 150px;
+}
+.page-databank-list-addedit .valid-error {
+    padding-left: 150px;
+}
+.page-databank-list-addedit .upload-box {
+    float: left;
+    display: inline;
+    height: 27px;
+    line-height:27px;
+    padding: 0 10px;
+    margin-right: 15px;
+}
+.page-databank-list-addedit .ff-value-box {
+
+}
+.page-databank-list-addedit .ff-value-box .tips{
+    float: left;
+    display: inline;
+    margin-right: 15px;
+    line-height: 16px;
+    color: #777;
+}
+.page-databank-list-addedit .f-field .ff-value-tip {
+    display: block;
+}
+

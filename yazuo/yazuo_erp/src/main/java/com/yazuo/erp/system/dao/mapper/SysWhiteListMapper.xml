@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.system.dao.SysWhiteListDao">
+
+	<resultMap id="SysWhiteList" type="com.yazuo.erp.system.vo.SysWhiteListVO">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="ip" column="ip"/>
+        <result property="mac" column="mac"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	<!-- test -->
+	<resultMap id="SysUserCascade" type="com.yazuo.erp.system.vo.SysUserVO">
+      <id property="id" column="id"/>
+      <result property="userName" column="user_name"/>
+	  <collection property="writeLists" ofType="SysWhiteListVO" >
+	    <id property="id" column="id"/>
+	    <result property="ip" column="ip"/>
+	    <result property="mac" column="mac"/>
+	  </collection>
+    </resultMap>
+    <!-- test -->
+ 	<select id="getSysUserCascade" resultMap="SysUserCascade">
+		SELECT
+		 sys.sys_white_list.*, sys.sys_user.* 
+		FROM
+		 sys.sys_white_list,
+		 sys.sys_user
+		WHERE
+		 sys.sys_white_list.user_id = sys.sys_user.id 
+		AND sys.sys_user.id = 36
+	</select>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="syswhitelistColumns">
+	    <![CDATA[
+		id,user_id,ip,mac,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysWhiteList" parameterType="list" useGeneratedKeys="true">
+        INSERT INTO sys.sys_white_list (
+        		user_id ,
+        		ip ,
+        		mac ,
+        		insert_by ,
+        		insert_time 
+        ) VALUES 
+         <foreach collection="list" index="index" item="item" separator=",">
+         (
+        	#{item.userId},
+        	#{item.ip} ,
+        	#{item.mac} ,
+        	#{item.insertBy} ,
+        	now()
+        )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysWhiteList" >
+    <![CDATA[
+        UPDATE sys.sys_white_list SET
+	        user_id = #{userId} ,
+	        ip = #{ip} ,
+	        mac = #{mac} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteSysWhiteList">
+    <![CDATA[
+        DELETE FROM sys.sys_white_list WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="deleteSysWhiteByUser">
+    <![CDATA[
+        DELETE FROM sys.sys_white_list WHERE
+        user_id = #{userId} 
+    ]]>
+    </delete>
+    
+    <select id="getSysWhiteListById" resultMap="SysWhiteList">
+		SELECT <include refid="syswhitelistColumns" />
+	    <![CDATA[
+		    FROM sys.sys_white_list 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getSysWhiteLists" resultMap="SysWhiteList" parameterType="map">
+		SELECT <include refid="syswhitelistColumns" />
+	    <![CDATA[
+		    FROM sys.sys_white_list  
+	    ]]>
+	    <include refid="syswhitelist_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getSysWhiteListsMap" resultType="map" parameterType="map">
+		SELECT <include refid="syswhitelistColumns" />
+	    <![CDATA[
+		    FROM sys.sys_white_list  
+	    ]]>
+	    <include refid="syswhitelist_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getAllSysWhiteLists" resultType="map" parameterType="map">
+		SELECT <include refid="syswhitelistColumns" />
+	    <![CDATA[
+		    FROM sys.sys_white_list  
+	    ]]>
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="syswhitelist_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="userId!=null">
+				AND user_id = #{userId}
+			</if>
+	       <if test="ip!=null">
+				AND ip = #{ip}
+			</if>
+	       <if test="mac!=null">
+				AND mac = #{mac}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getSysWhiteListCount" resultType="long">
+        SELECT count(*) FROM sys.sys_white_list 
+		<include refid="syswhitelist_findPage_where"/>    
+    </select>
+    
+	
+</mapper>
+

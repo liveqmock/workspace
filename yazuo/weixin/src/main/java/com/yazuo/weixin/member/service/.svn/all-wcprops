@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/crmapi/!svn/ver/25435/code/weixin/src/main/java/com/yazuo/weixin/member/service
+END
+MerchantWifiService.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/crmapi/!svn/ver/24011/code/weixin/src/main/java/com/yazuo/weixin/member/service/MerchantWifiService.java
+END
+BindingOldMemberService.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/crmapi/!svn/ver/21875/code/weixin/src/main/java/com/yazuo/weixin/member/service/BindingOldMemberService.java
+END
+SettingCardRecommendService.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/crmapi/!svn/ver/24562/code/weixin/src/main/java/com/yazuo/weixin/member/service/SettingCardRecommendService.java
+END
+ResourceManagerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/crmapi/!svn/ver/24179/code/weixin/src/main/java/com/yazuo/weixin/member/service/ResourceManagerService.java
+END
+MemberInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/java/com/yazuo/weixin/member/service/MemberInfoService.java
+END
+MemberBirthManagerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/crmapi/!svn/ver/23548/code/weixin/src/main/java/com/yazuo/weixin/member/service/MemberBirthManagerService.java
+END
+CouponSendService.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/crmapi/!svn/ver/22605/code/weixin/src/main/java/com/yazuo/weixin/member/service/CouponSendService.java
+END

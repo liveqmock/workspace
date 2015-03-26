@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="263" key="DIALOG_WIDTH"/>
+		<item value="138" key="DIALOG_Y_ORIGIN"/>
+		<item value="824" key="DIALOG_X_ORIGIN"/>
+		<item value="425" key="DIALOG_HEIGHT"/>
+		<item value="1|微软雅黑|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="wrap"/>
+		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
+		<item value="true" key="incremental"/>
+		<item value="false" key="wholeword"/>
+		<item value="getBesMonthlyChecks" key="selection"/>
+		<list key="findhistory">
+			<item value="getBesMonthlyChecks"/>
+			<item value="月报检查"/>
+			<item value="八"/>
+			<item value="parse"/>
+			<item value="jdbc.urlcrm.account"/>
+			<item value="dataSourceCrm210Account"/>
+			<item value="jdbcTemplateCrm210Account"/>
+			<item value="jdbcTemplate210"/>
+		</list>
+		<list key="replacehistory">
+			<item value="synMerchantVO"/>
+			<item value=""/>
+			<item value="jdbcTemplateCRMTrade"/>
+			<item value="dataSourceCrmTrade"/>
+			<item value="/"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="252" key="DIALOG_Y_ORIGIN"/>
+		<item value="449" key="DIALOG_X_ORIGIN"/>
+	</section>
+</section>

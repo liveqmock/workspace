@@ -1,0 +1,1073 @@
+.page-sales-frontend-customer {
+    color:#777;
+}
+.page-sales-frontend-customer .page-padding{
+    padding:20px 15px;
+}
+.page-sales-frontend-customer .client-head{
+    width:100%;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+.page-sales-frontend-customer .client-head-left{
+    float:left;
+    display:inline;
+}
+.page-sales-frontend-customer .client-head-left-logo {
+    float:left;
+    display:inline;
+    width:100px;
+    height:100px;
+}
+.page-sales-frontend-customer .client-head-left-logo img {
+    width:100px;
+    height:100px;
+}
+.page-sales-frontend-customer .client-head-left-text{
+    float:left;display:inline;
+    margin-left:30px;
+    width:350px;
+}
+.page-sales-frontend-customer .client_head_right{
+    float:right;
+    display:inline;
+}
+.page-sales-frontend-customer .client-head-left-text h2 {
+    font-size:24px;
+    line-height:30px;
+}
+.page-sales-frontend-customer .client-head-left-text ul {
+    width:100%;
+    overflow:hidden;
+}
+.page-sales-frontend-customer .client-head-left-text ul li {
+    float:left;
+    display: inline;
+    width:170px;
+    line-height:23px;
+    margin:10px 0;
+}
+.page-sales-frontend-customer .mail {
+    background: #FDF4DA;
+    padding:10px;
+}
+
+.page-sales-frontend-customer .client-top {
+    border:1px solid #DDE3EA;
+    overflow: hidden;
+}
+.page-sales-frontend-customer .client-info-left {
+    padding:15px;
+    width:650px;
+}
+.page-sales-frontend-customer .client-info-right {
+    padding:15px;
+    width:300px;
+    padding-bottom:200px;
+    margin-bottom:-200px;
+    border-left:1px solid #DDE3EA;
+}
+.page-sales-frontend-customer .client-info-left li {
+    float:left;
+    display:inline;
+    font-size:16px;
+    width:300px;
+    margin:8px 5px;
+}
+.page-sales-frontend-customer .client-info-right li {
+    font-size:16px;
+    margin-top:5px;
+    width:100%;
+    overflow:hidden;
+}
+.page-sales-frontend-customer .client-info-right li p {
+    float:left;
+    display:inline;
+    width:130px;
+    margin:2px 0;
+}
+.page-sales-frontend-customer .client-info-right li p a {
+    font-size:14px;
+}
+.page-sales-frontend-customer .status-box {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    background:#fff;
+    margin-bottom:15px;
+}
+.page-sales-frontend-customer .status-box .number {
+    width:55px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:28px;
+    height:100%;
+    border:none;
+    background:#fff;
+    color:#fff;
+}
+.page-sales-frontend-customer .status-box .content {
+    position:relative;
+
+    margin-left:70px;
+    margin-right:300px;
+    padding:10px 0;
+}
+.page-sales-frontend-customer .status-box .content h2 {
+    font-size:20px;
+}
+.page-sales-frontend-customer .status-box .operation {
+    width:280px;
+    position: absolute;
+    right:0px;
+    top:50%;
+    height:100%;
+    margin-top:-17px;
+    text-align:right;
+}
+.page-sales-frontend-customer .status-box .operation p {
+    display: inline-block;
+    margin-right: 5px;
+}
+.page-sales-frontend-customer .status-box .operation-max {
+    width:350px;
+    position: absolute;
+    right:20px;
+    top:50%;
+    height:100%;
+    margin-top:-17px;
+    text-align:right;
+}
+
+/*未开始*/
+/*.page-sales-frontend-customer .type-box {
+    border:1px solid #E1E1E1;
+}*/
+.page-sales-frontend-customer .update-time .iconfont {
+    cursor: pointer;
+}
+.page-sales-frontend-customer .status-ready {
+    border:1px solid #ccc;
+}
+.page-sales-frontend-customer .status-ready .number {
+    background:#E1E1E1;
+}
+.page-sales-frontend-customer .status-ready .status-style {
+    background:#fff;
+    border:1px solid #E1E1E1;
+}
+/*已经开始*/
+.page-sales-frontend-customer .status-bging {
+    border:1px solid #0099CC;
+    background: #f4fdff;
+}
+.page-sales-frontend-customer .status-bging .number {
+    background: #0099CC;
+}
+.page-sales-frontend-customer .status-bging .content h2 {
+    color:#0099CC;
+}
+.page-sales-frontend-customer .status-bging .status-style {
+    background:#fff;
+    border:1px solid #0099CC;
+}
+/*已经结束*/
+.page-sales-frontend-customer .status-end {
+    border:1px solid #2CC78F;
+    background: #eafff1;
+}
+.page-sales-frontend-customer .status-end .number {
+    background: #2CC78F;
+}
+.page-sales-frontend-customer .status-end .content h2 {
+    color:#2CC78F;
+}
+.page-sales-frontend-customer .status-end .status-style {
+    background:#fff;
+    border:1px solid #2CC78F;
+}
+/*已超时*/
+.page-sales-frontend-customer .status-past {
+    border:1px solid #FF7800;
+    background: #ffeeea;
+}
+.page-sales-frontend-customer .status-past .number {
+    background: #FF7800;
+}
+.page-sales-frontend-customer .status-past .content h2 {
+    color:#FF7800;
+}
+.page-sales-frontend-customer .status-past .status-style {
+    background:#fff;
+    border:1px solid #FF7800;
+}
+
+.page-sales-frontend-customer .page-button {
+    width: 180px;
+    overflow: hidden;
+    margin: 0px 5px 8px 0;
+    height: 25px;
+    position: relative;
+    float: left;
+    display: inline-block;
+    cursor: pointer;
+}
+.page-sales-frontend-customer .page-button .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    padding: 0 5px;
+    text-align: center;
+    overflow: hidden;
+    background: #fff;
+    line-height: 25px;
+    margin: 0;
+    color : #005ea7;
+}
+.page-sales-frontend-customer .page-button .choice {
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    width: 50px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+/*未开始*/
+.page-sales-frontend-customer .status-ready .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #e1e1e1;
+    text-align: center;
+}
+/*已经开始*/
+.page-sales-frontend-customer .status-bging .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #0099cc;
+    text-align: center;
+}
+/*已经结束*/
+.page-sales-frontend-customer .status-end .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #2cc78f;
+    text-align: center;
+}
+/*已超时*/
+.page-sales-frontend-customer .status-past .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #FF7800;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.page-sales-frontend-customer .content h2 span{
+    font-size:12px;
+    color:#777;
+}
+
+.page-sales-frontend-customer .simple-btn-end {
+    border:none;
+    background:none;
+    color:#66CCB5;
+}
+.page-sales-frontend-customer .ff-value-title {
+    display:inline-block;
+    _display:inline;
+    _zoom:1;
+    line-height:30px;
+}
+.page-sales-frontend-customer .type-box {
+    overflow: hidden;
+    width:600px;
+}
+.page-sales-frontend-customer .content-list {
+    width:100%;
+    overflow: hidden;
+    margin:5px 0;
+}
+.page-sales-frontend-customer .content-list p {
+    float:left;
+    display:inline;
+    line-height: 25px;
+    padding:0 20px;
+    cursor:pointer;
+    background: #f3f3f3;
+    position: relative;
+    padding-right: 40px;
+    margin: 5px 10px 5px 0 ;
+}
+.page-sales-frontend-customer .content-list p.merchant-fangtan {
+    padding-right:20px;
+}
+/*.page-sales-frontend-customer .content-list p i {
+    position: absolute;
+    right:3px;
+    top:1px;
+}*/
+.page-sales-frontend-customer .update-time {
+    margin:5px 0;
+    line-height: 25px;
+    background: #f3f3f3;
+    width:598px;
+    overflow:hidden;
+    position: relative;
+    margin-right: 5px;
+}
+.page-sales-frontend-customer .left-title {
+    float:left;
+    display:inline;
+    width:140px;
+    padding-left:5px;
+}
+.page-sales-frontend-customer .left-con {
+    float:left;
+    display:inline;
+    width:430px;
+}
+
+.page-sales-frontend-customer .fn-left-time {
+    float:left;
+    display:inline;
+    width:140px;
+    height:15px;
+    text-indent: 5px;
+}
+.page-sales-frontend-customer .fn-left-text {
+    float:left;
+    display:inline;
+    width:430px;
+    padding:0 5px;
+}
+.page-sales-frontend-customer .icon-close {
+    font-family: "arial";
+    font-style: normal;
+    cursor: pointer;
+    font-size:18px;
+    position: absolute;
+    right:3px;
+    top:1px;
+}
+.page-sales-frontend-customer .show-img {
+    width: 100%;
+    overflow: hidden;
+}
+.page-sales-frontend-customer .show-img li {
+    float:left;
+    display: inline;
+    width: 75px;
+    height: 85px;
+    overflow: hidden;
+    margin-right:15px;
+    border:1px solid red;
+}
+.page-sales-frontend-customer .show-img li .img {
+    width:100%;
+    height:55px;
+    overflow: hidden;
+}
+.page-sales-frontend-customer .show-img li .text {
+    height:30px;
+    line-height:30px;
+    overflow: hidden;
+    text-align:center;
+}
+.page-sales-frontend-customer .fn-left-tit {
+    float:left;
+    display:inline;
+    width:80px;
+    padding-left:10px;
+    line-height:25px;
+}
+.page-sales-frontend-customer .fn-left-content {
+    float:left;
+    display:inline;
+    width:485px;
+    line-height:25px;
+}
+.page-sales-frontend-customer .icon-edit {
+    position: absolute;
+    right:5px;
+    top: 5px;
+    cursor:pointer;
+}
+.page-sales-frontend-customer .swfupload {
+    left:0;
+}
+
+
+
+/*
+.page-sales-frontend-customer .type-box li {
+    padding:5px 0;
+    width: 100%;
+    overflow: hidden;
+    margin:3px 0;
+    position: relative;
+}*/
+
+.page-sales-frontend-customer .make-ul {
+    width: 100%;
+    overflow: hidden;
+}
+.page-sales-frontend-customer .make-ul li {
+    float: left;
+    display: inline;
+    width: 106px;
+    height: 106px;
+    margin-right:10px;
+    background: none;
+}
+.page-sales-frontend-customer .make-ul li b{
+    right:0px;
+    top:3px;
+    width:18px;
+    height:20px;
+    text-align:center;
+    background: #fff;
+}
+.page-sales-frontend-customer .make-ul li .make-ul-img {
+    width:106px;
+    height:80px;
+    overflow: hidden;
+}
+.page-sales-frontend-customer .make-ul li .make-ul-img img {
+    width:106px;
+    height:80px;
+}
+.page-sales-frontend-customer .make-ul li .make-ul-text {
+    width:106px;
+    height:25px;
+    overflow: hidden;
+    line-height: 35px;
+    text-align: center;
+}
+
+
+.page-sales-frontend-customer .merchantName {
+    font-size: 14px;
+    padding-top:5px;
+}
+
+
+
+.page-sales-frontend-customer .research-name {
+    padding: 10px 0;
+    background: #F3F3F4;
+    border-bottom:4px solid #C4D7E3;
+}
+.page-sales-frontend-customer .research-name span {
+    margin-right:20px;
+    font-size: 14px;
+}
+.page-sales-home-waiting .research-con {
+    padding:20px 10px;
+}
+.page-sales-home-waiting .research-table td{
+    padding:5px 10px 5px 5px;
+    font-size: 14px;
+}
+.page-sales-home-waiting .research-table td .checkbox-list {
+    width: 120px;
+    float: left;
+    display: inline;
+    margin-right:20px;
+}
+.page-sales-home-waiting .research-tabs ul {
+    width: 100%;
+    border-bottom: 1px solid #CAE5FA;
+    background: #ECF6FF;
+    height:45px;
+}
+.page-sales-home-waiting .research-tabs ul li {
+    float: left;
+    display: inline;
+    padding:0 15px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+}
+.page-sales-home-waiting .research-tabs ul li.cur {
+    border-top: 4px solid #5EA9E0;
+    border-left: 1px solid #CAE5FA;
+    border-right: 1px solid #CAE5FA;
+    color: #5EA9E0;
+    background: #fff;
+    height: 42px;
+    line-height: 40px;
+}
+.page-sales-home-waiting .input-text {
+    width: 180px;
+}
+.page-sales-home-waiting .ui-dialog-content {
+    padding: 0;
+}
+.page-sales-home-waiting .research-name {
+    padding: 10px 0;
+    background: #F3F3F4;
+    border-bottom:4px solid #C4D7E3;
+}
+.page-sales-frontend-customer .input-text {
+    width: 180px;
+}
+.page-sales-home-waiting-Interview-tabs {
+    width: 100%;
+    border-bottom: 1px solid #CAE5FA;
+    background: #ECF6FF;
+    height:45px;
+}
+.page-sales-home-waiting-Interview-tabs {
+    width: 100%;
+    border-bottom: 1px solid #CAE5FA;
+    background: #ECF6FF;
+    height:45px;
+}
+.page-sales-home-waiting-Interview-tabs td{
+    position: relative;
+}
+.page-sales-home-waiting-Interview-tabs p {
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+.page-sales-home-waiting-Interview-tabs p.cur {
+    border-top: 4px solid #5EA9E0;
+    border-left: 1px solid #CAE5FA;
+    border-right: 1px solid #CAE5FA;
+    color: #5EA9E0;
+    background: #fff;
+    height: 42px;
+    line-height: 40px;
+}
+.page-sales-home-waiting .input-text-400 {
+    width:400px;
+}
+.page-sales-frontend-customer-message .ui-dialog-content {
+    padding: 20px 0 20px 20px;
+}
+.page-sales-frontend-customer-message .f-body {
+    height: 360px;
+    overflow-y: auto;
+    padding-right: 20px;
+}
+.page-sales-frontend-customer-message .message-con-model-title {
+    width:100%;
+    overflow:hidden;
+}
+.page-sales-frontend-customer-message .message-con-model {
+    border-bottom: 1px dashed #ccc;
+    padding: 10px 0;
+    width: 100%;
+    overflow: hidden;
+}
+.page-sales-frontend-customer-message .message-con-left {
+    float: left;
+    display: inline;
+    width: 120px;
+    text-align: right;
+    padding-right:5px;
+    font-size: 14px;
+}
+.page-sales-frontend-customer-message .message-con-right {
+    float: left;
+    display: inline;
+    width: 470px;
+    text-align: left;
+    padding-left:2px;
+    font-size: 14px;
+}
+.page-sales-frontend-customer-message .message-con-right label {
+    margin-right:10px;
+}
+.page-sales-frontend-customer-message .message-con-right input {
+    vertical-align: -1px;
+}
+.page-sales-frontend-customer-message .message-con-right textarea {
+    border:1px solid #E4E4E4;
+    width: 460px;
+    height: 100px;
+    background: #F5F6F7;
+}
+.page-sales-frontend-customer-message .message-con-right span {
+    display: inline-block;
+    color: #0099CC;
+    cursor: pointer;
+    margin-right: 2px;
+}
+.page-sales-frontend-customer-message .message-clear-clear {
+    padding:10px 0;
+    overflow: hidden;
+}
+.merchant-title {
+    font-size: 14px;
+
+}
+.page-sales-frontend-customer-message .make-ul {
+    width: 100%;
+    overflow: hidden;
+}
+.page-sales-frontend-customer-message .make-ul li {
+    float: left;
+    display: inline;
+    width: 106px;
+    height: 106px;
+    margin-right:10px;
+    background: none;
+}
+.page-sales-frontend-customer-message .make-ul li b{
+    right:0px;
+    top:3px;
+    width:18px;
+    height:20px;
+    text-align:center;
+    background: #fff;
+}
+.page-sales-frontend-customer-message .make-ul li .make-ul-img {
+    width:106px;
+    height:80px;
+    overflow: hidden;
+}
+.page-sales-frontend-customer-message .make-ul li .make-ul-img img {
+    width:106px;
+    height:80px;
+}
+.page-sales-frontend-customer-message .make-ul li .make-ul-text {
+    width:106px;
+    height:25px;
+    overflow: hidden;
+    line-height: 35px;
+    text-align: center;
+}
+.page-sales-frontend-customer-vip .ui-dialog-content {
+    padding: 0;
+}
+.page-sales-frontend-customer-vip .vip-tabs {
+    border: 1px solid #ccc;
+ }
+.page-sales-frontend-customer-vip .vip-tabs th {
+    position: relative;
+    border-right: 1px solid #ccc;
+    height:40px;
+}
+.page-sales-frontend-customer-vip .vip-tabs th p {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #eee;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #777;
+}
+.page-sales-frontend-customer-vip .vip-tabs th p.cur {
+    top: 1px;
+    background: #fff;
+    color: #333;
+}
+.page-sales-frontend-customer-vip .vip-con-box {
+    padding: 15px;
+}
+.page-sales-frontend-customer-vip .vip-box-select {
+    height:100px;
+    line-height: 100px;
+    text-align: center;
+    font-size: 14px;
+}
+.page-sales-frontend-customer-vip .vip-con-add-box {
+    border:1px solid #ccc;
+    background: #eee;
+    padding:10px;
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 14px;
+}
+.page-sales-frontend-customer-vip .vip-con-add-box td {
+    padding:10px 0;
+}
+.page-sales-frontend-customer-vip .vip-con-add-box .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: "宋体";
+    font-style: normal;
+    cursor: pointer;
+    font-size: 18px;
+}
+.page-sales-frontend-customer-vip .vip-con-add-box .input-type {
+    width: 200px;
+}
+.page-sales-frontend-customer-vip .vip-con-add-box .input-number {
+    width: 80px;
+}
+.page-sales-frontend-customer-vip .inner-box {
+    border:1px solid #ccc;
+    background: #fff;
+    position: relative;
+    padding: 10px;
+    width:480px
+}
+.page-sales-frontend-customer-vip .inner-box-list {
+    padding:5px 0;
+}
+.page-sales-frontend-customer-vip .inner-box-list .select-header-text {
+    width:80px;
+}
+.inner-box-list p {
+    position: absolute;
+    left: 140px;
+    top: 15px;
+}
+.page-sales-home-waiting .merchant-logo {
+    width: 100px;
+    height:100px;
+    border:1px solid #ccc;
+    float:left;
+    display:inline;
+    margin-right:20px;
+    position: relative;
+    overflow: hidden;
+}
+.page-sales-home-waiting .merchant-logo img {
+    width: 100px;
+    height:100px;
+}
+
+.page-sales-home-waiting .merchant-logo .icon-close {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    font-family: "宋体";
+    font-style: normal;
+    cursor: pointer;
+    font-size: 18px;
+    width:18px;
+    height:18px;
+    line-height:18px;
+    background:#fff;
+}
+
+.page-sales-frontend-customer .merchant-logo img {
+    width:100px;
+    height:100px;
+}
+.page-sales-frontend-customer .merchant-logo-select {
+    float:left;
+    display:inline;
+}
+.waiting-list {
+    border :1px solid #ccc;
+    background: #eee;
+    position: relative;
+    margin-bottom: 15px;
+    padding:10px;
+    position: relative;
+}
+.con-pdtop {
+    padding-top:5px;
+}
+.con-pdtop label {
+    margin-right: 15px;
+    color: #333;
+}
+.waiting-card .ui-dialog-content {
+    padding: 20px 0 20px 20px;
+}
+.waiting-list .remove-list {
+    position: absolute;
+    top: 3px;
+    right:3px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+/*mail*/
+.common-mail table {
+    font-size: 14px;
+    color:#777;
+}
+.common-mail div.send-sms {
+    padding: 5px 0;
+}
+.common-mail div.send-sms label input {
+    vertical-align: 1px;
+}
+.common-mail table td {
+    padding: 5px;
+    vertical-align: top;
+}
+
+.common-mail .email-content{
+    width: 550px;
+}
+.common-mail .mail-name-fa {
+    width:95%;
+}
+.common-mail .common-mail-box {
+    width: 550px;
+    position: relative;
+    height:32px;
+    border: 1px solid #66ccb5;
+    z-index: 100;
+}
+.common-mail .common-mail-box input {
+    width:450px;
+    height:30px;
+    line-height: 30px;
+    position: absolute;
+    left:1;
+    top:1;
+    border:none;
+    padding-left:3px;
+}
+.common-mail .common-mail-box p {
+    width:80px;
+    height:30px;
+    position: absolute;
+    right: 1px;
+    top:1px;
+    text-align: center;
+    background: #e5f8f1;
+    font-size:14px;
+    line-height: 30px;
+    cursor:pointer;
+}
+
+
+.common-mail .common-mail-table-max {
+    position: relative;
+    width: 650px;
+}
+.common-mail .common-mail-table-max .mail-name {
+    position: absolute;
+    right:5px;
+    top:38px;
+    width:200px;
+    border:1px solid #66ccb5;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+    background: #fff;
+}
+.common-mail table.mail-name-table {
+    width: 100%;
+}
+.common-mail table.mail-name-table tr {
+    position: relative;
+}
+.common-mail table.mail-name-table th{
+    line-height:25px;
+    padding:5px;
+    font-size: 14px;
+    color:#000;
+    background: #e5f8f1;
+}
+.common-mail table.mail-name-table td{
+    line-height:25px;
+    padding:5px;
+    cursor: pointer;
+}
+.common-mail .mail-title {
+    position: absolute;
+    right:5px;
+    top:82px;
+    width:300px;
+    z-index: 1000;
+    border:1px solid #66ccb5;
+    background: #fff;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.common-mail .mail-title p {
+    padding:5px;
+    cursor: pointer;
+}
+.common-mail .line-email-con {
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+}
+/*step7-xuqiudan-dialog*/
+.frontend-backend-step7 td {
+    vertical-align: top;
+}
+
+.frontend-backend-step7 .actives-upfile {
+    color: #777;
+    width: 330px;
+    overflow: hidden;
+    line-height: 25px;
+}
+.frontend-backend-step7 .ui-dialog-content {
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.frontend-backend-step7 .frontend-table-max td,
+.frontend-backend-step7 .frontend-table-max th {
+    padding:5px;
+    font-size: 14px;
+    color: #777;
+}
+
+.frontend-backend-step7 .input-text-max {
+    width: 211px;
+}
+.frontend-backend-step7 .input-text-mini {
+    width: 100px;
+}
+.frontend-backend-step7 .input-text-code {
+    width: 400px;
+}
+.frontend-backend-step7 .step7-textarea {
+    width: 400px;
+    height:120px;
+}
+.frontend-backend-step7 .lable-p {
+    display: inline-block;
+    _display:inline;
+    _zoom:1;
+    margin-right: 13px;
+    padding: 3px 0;
+}
+.frontend-backend-step7 .warn {
+    color: red;
+}
+
+
+
+
+.page-sales-home-waiting .merchant-logo-select {
+    float: left;
+    display: inline-block;
+}
+
+
+
+
+
+
+/*培训回访单*/
+
+.page-backend-customerservice-waiting-dialog .page-backend-customerservice-waiting-box {
+    border-bottom: 1px dashed #ccc;
+    padding:10px;
+}
+.page-backend-customerservice-waiting-dialog .page-backend-customerservice-waiting-box-title {
+    font-size: 14px;
+    color: #777;
+    padding: 8px 0;
+}
+.page-backend-customerservice-waiting-dialog .page-backend-customerservice-waiting-box-con {
+    font-size: 14px;
+    color: #777;
+    padding: 8px 0;
+    padding-left: 32px;
+}
+.page-backend-customerservice-waiting-dialog .page-backend-customerservice-waiting-box-con label {
+    margin-right: 20px;
+}
+.page-backend-customerservice-waiting-box-con textarea {
+    width: 470px;
+    height:60px;
+}
+.page-backend-customerservice-waiting-box-con p {
+    padding: 6px 0;
+}
+.page-backend-customerservice-waiting-dialog .ui-dialog-content {
+    padding: 20px 0 20px 20px;
+}
+.page-backend-customerservice-waiting-dialog .huifangdan-con {
+    position: relative;
+    height:350px;
+    overflow-y:auto;
+    padding-right:20px;
+}
+.waiting-list {
+    border :1px solid #ccc;
+    background: #eee;
+    position: relative;
+    margin-bottom: 15px;
+    padding:10px;
+}
+.con-pdtop {
+    padding-top:5px;
+}
+.con-pdtop label {
+    margin-right: 15px;
+    color: #333;
+}
+.waiting-card .ui-dialog-content {
+    padding: 20px 0 20px 20px;
+}
+.waiting-list .remove-list {
+    position: absolute;
+    top: 3px;
+    right:3px;
+    cursor: pointer;
+}
+.pd-frontend-customer-dialog .frontend-customer-time {
+    width: 140px;
+}
+.study-dialog-box .valid-error {
+    text-indent: 80px;
+}
+
+.study-dialog-box .pei-xun-time {
+    line-height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

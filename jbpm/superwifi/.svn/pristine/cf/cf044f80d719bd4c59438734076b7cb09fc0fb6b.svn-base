@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.superwifi.security.dao.ResourceDao">
+	<resultMap id="BaseResultMap" type="com.yazuo.superwifi.security.dto.Resource">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="resource_name" property="resourceName"
+			jdbcType="VARCHAR" />
+		<result column="resource_url" property="resourceUrl" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="SMALLINT" />
+		<result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, resource_name, resource_url, status, insert_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from resource
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		resource
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.yazuo.superwifi.security.dto.Resource">
+		insert into resource (id,
+		resource_name, resource_url,
+		status, insert_time)
+		values
+		(#{id,jdbcType=INTEGER}, #{resourceName,jdbcType=VARCHAR},
+		#{resourceUrl,jdbcType=VARCHAR},
+		#{status,jdbcType=SMALLINT},
+		#{insertTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.yazuo.superwifi.security.dto.Resource">
+		insert into resource
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="resourceName != null">
+				resource_name,
+			</if>
+			<if test="resourceUrl != null">
+				resource_url,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="insertTime != null">
+				insert_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="resourceName != null">
+				#{resourceName,jdbcType=VARCHAR},
+			</if>
+			<if test="resourceUrl != null">
+				#{resourceUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=SMALLINT},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.yazuo.superwifi.security.dto.Resource">
+		update resource
+		<set>
+			<if test="resourceName != null">
+				resource_name = #{resourceName,jdbcType=VARCHAR},
+			</if>
+			<if test="resourceUrl != null">
+				resource_url = #{resourceUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=SMALLINT},
+			</if>
+			<if test="insertTime != null">
+				insert_time = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.yazuo.superwifi.security.dto.Resource">
+		update resource
+		set resource_name = #{resourceName,jdbcType=VARCHAR},
+		resource_url =
+		#{resourceUrl,jdbcType=VARCHAR},
+		status = #{status,jdbcType=SMALLINT},
+		insert_time = #{insertTime,jdbcType=TIMESTAMP}
+		where id =
+		#{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="listAllResources" resultType="map">
+		SELECT
+		product.product_id,
+		product.product_name,
+		authority.authority_id,
+		authority.authority_name
+		FROM
+		account.product,
+		account.authority
+		WHERE
+		product.product_id = authority.product_id
+		AND product.parent IN (
+		WITH RECURSIVE r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = #{productId}
+		UNION ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id = account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+		ORDER BY
+		product.sort ASC,
+		product.product_id ASC
+	</select>
+	<select id="getAuthoritiesByUserId" resultType="int">
+		SELECT
+		au.authority_id
+		FROM
+		account.user_info AS u,
+		account.user_role AS ur,
+		account.role_authority AS ra,
+		account.authority AS au
+		WHERE
+		u.user_info_id = ur.user_info_id
+		AND ur.role_id = ra.role_id
+		AND ra.authority_id = au.authority_id
+		AND u.available_flag IS TRUE
+		AND u.user_info_id = #{userId}
+		AND au.product_id IN (
+		WITH RECURSIVE r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = #{productId}
+		UNION ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id = account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+	</select>
+	
+	<select id="listAllAuthorityOfPrivilege" resultType="String">
+		SELECT
+		authority_code
+		FROM
+		account.authority
+		WHERE
+		product_id IN (
+		WITH RECURSIVE
+		r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = #{productId}
+		UNION
+		ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id =
+		account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+	</select>
+	<select id="listAllProductAndAuthority" resultType="map">
+		SELECT
+		P .product_id,
+		P .product_url,
+		A .authority_id,
+		A .authority_code
+		FROM
+		account.product AS P,
+		account.authority AS A
+		WHERE
+		A .product_id = P .product_id
+		AND P .product_id IN (
+		WITH RECURSIVE r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = #{productId}
+		UNION ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id = account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+	</select>
+</mapper>

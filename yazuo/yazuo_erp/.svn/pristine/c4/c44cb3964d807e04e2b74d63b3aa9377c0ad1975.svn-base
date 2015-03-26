@@ -1,0 +1,45 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <button type="button" class="add-btn main-btn" ms-click="openAdd" ms-if="permission.magCourse">添加课程</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 添加课程 start -->
+<div class="add-edit-course-dialog ui-hidden"
+    ms-widget="dialog,$,$addEditDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addEditFormOpts"
+        action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>课程名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text course-name"
+                               name="courseName"
+                               maxlength="20"
+                               ms-value="courseName" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>课程限时：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit" name="timeLimit"
+                            ms-value="timeLimit" />&nbsp;小时
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加课程管理 end -->
+<!-- 关联职位 start -->
+<div class="position-selector ui-hidden" ms-module="positionselector,$,$psOpts"></div>
+<!-- 关联职位 end -->

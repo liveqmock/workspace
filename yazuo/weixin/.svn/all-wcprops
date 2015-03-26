@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/crmapi/!svn/ver/25995/code/weixin
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/crmapi/!svn/ver/9468/code/weixin/.classpath
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/crmapi/!svn/ver/7169/code/weixin/.project
+END
+build.sh
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/crmapi/!svn/ver/7181/code/weixin/build.sh
+END
+pom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/crmapi/!svn/ver/25255/code/weixin/pom.xml
+END

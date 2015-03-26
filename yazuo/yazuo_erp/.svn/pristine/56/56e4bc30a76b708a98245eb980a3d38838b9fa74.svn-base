@@ -1,0 +1,72 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item"
+            ms-repeat="navCrumbs"><a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a><span class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="audition-wrapper page-section">
+        <h3 class="audition-title"><span class="student-name">{{studentName}}</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="title-summary">{{auditionSummary | html}}</span><button type="button" class="do-score-btn main-btn" ms-if="permission.markTheRecord" ms-click="doScore">录音评分</button></h3>
+        <div class="ppt-player"
+             ms-module="pptplayer,$,$pptOpts"></div>
+        <div class="audio-player" ms-widget="player,$,$audioOpts"></div>
+    </div>
+</div>
+<!-- 评分 start -->
+<div class="page-audition-dialog ui-hidden" ms-widget="dialog,$,$doScoreDialogOpts">
+    <form class="do-score-form" ms-widget="form,$,$doScoreFormOpts" action="javascript:;">
+        <div class="f-body">
+             <h3 class="page-section-title" ></h3>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>得分：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text score" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>评语：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                         <textarea class="comment"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 评分 end -->
+<!-- 播放完提示 start -->
+<div class="page-audition-play-over-dialog ui-hidden" ms-widget="dialog,$,$playOverDialogOpts">
+    <div class="play-over-tip">已播放完</div>
+    <form class="do-score-form"
+          ms-if="permission.markTheRecord"
+          ms-widget="form,$,$doScoreFormOpts_"
+          action="javascript:;">
+        <div class="f-body">
+             <h3 class="page-section-title" >请对学员{{studentName}}的《{{pptName}}》录音，进行评分</h3>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>得分：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text score" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>评语：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                         <textarea class="comment"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 播放完提示 end -->

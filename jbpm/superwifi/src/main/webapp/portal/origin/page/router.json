@@ -1,0 +1,22 @@
+{
+    "rows": [{
+        "route": "/welcome",
+        "isCache": true,
+        "css": true,
+        "js": true,
+        "belongToPermission": "all",
+        "isHidden": true
+    }, {
+        "title": "超级WIFI后台",
+        "navTitle": "超级WIFI后台",
+        "belongToPermission": "all",
+        "children": [{
+            "route": "/backend/macmanage",
+            "title": "MAC码管理",
+            "isCache": false,
+            "css": true,
+            "js": true,
+            "belongToPermission": "all"
+        }]
+    }]
+}

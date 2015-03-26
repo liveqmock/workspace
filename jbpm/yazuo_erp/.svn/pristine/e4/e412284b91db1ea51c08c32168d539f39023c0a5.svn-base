@@ -1,0 +1,159 @@
+<div class="page-fbs-questionmanage">
+<div class="page-tbar" ms-if="showNav">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="add-question-btn">
+        <button class="main-btn" ms-click="addQuestions">添加问题</button>
+    </div>
+    <!--tabs-类型-->
+    <div class="cate-list-wrapper">
+        <ul class="cate-list fn-clear">
+
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==''" ms-click="change('')">全部</li>
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==1" ms-click="change('1')">待指派</li>
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==2" ms-click="change('2')">待处理</li>
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==3" ms-click="change('3')">已处理</li>
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==4" ms-click="change('4')">已告知客户</li>
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==5" ms-click="change('5')">不予处理</li>
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==6" ms-click="change('6')">激活问题</li>
+            <li class="cate-item" ms-class-1="cur:requestData.problemStatus==7" ms-click="change('7')">我的问题</li>
+        </ul>
+    </div>
+    <!--tabs-类型-end-->
+    <!--search-->
+    <div class="search">
+        <div class="page-filter">
+            <input type="text" class="coursewareName input-text" ms-duplex="requestData.merchantName" placeholder="请输入商户名称">&nbsp;
+            <input type="text" class="coursewareName input-text" ms-duplex="requestData.title" placeholder="请输入问题标题">&nbsp;
+            <button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+        </div>
+    </div>
+    <!--search-end-->
+    <!--table-->
+    <div class="question-list">
+        <div class="question-list-inner" ms-repeat="pageData" ms-class="question-list-inner-bg:$index%2==0">
+            <div class="qusetion-list-style-main">
+                <h2>({{el.merchant_name}}) {{el.title}}</h2>
+                <ul>
+                    <li class="qusetion-tit1">
+                        <span ms-if="el.problem_type_name">问题类型：{{el.problem_type_name}}</span>
+                        <span>创建日期：{{el.insert_time|date("yyyy-MM-dd")}}</span>
+                        <span>创建人：{{el.user_name}}</span>
+                    </li>
+                    <li class="qusetion-con">{{el.description}}</li>
+
+                    <li class="qusetion-remark" ms-repeat="el.sysProblemCommentss">
+                        <p>回复（{{el.solvingTime|date("yyyy-MM-dd")}}）：</p>
+                        <p>{{el.description}}</p>
+                    </li>
+                    <li class="qusetion-remark" ms-if="el.problem_status==3">
+                        <p>处理完成（{{el.solving_time|date("yyyy-MM-dd")}}）：</p>
+                        <p>{{el.remark}}</p>
+                    </li>
+                    <li class="qusetion-remark" ms-if="el.problem_status==5">
+                        <p>不予处理（{{el.solving_time|date("yyyy-MM-dd")}}）：</p>
+                        <p>{{el.remark}}</p>
+                    </li>
+                    <li class="qusetion-tit2">
+                        <span ms-if="el.problem_status_name">状态：{{el.problem_status_name}}</span>
+                        <span ms-if="el.solving_type">|&nbsp;&nbsp;解决方式：{{el.solving_type_name}}</span>
+                        <span ms-if="el.solving_time">|&nbsp;&nbsp;解决时间：{{el.solving_time|date("yyyy-MM-dd")}}</span>
+                        <span ms-if="el.solvered_by_name">|&nbsp;&nbsp;解决人：{{el.solvered_by_name}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="qusetion-list-style-but">
+                <p ms-if="permission.fes_assign_persion"><input ms-if="el.problem_status==1" ms-click="assigned(el.id,el.merchant_id,el.title)" class="simple-btn" type="button" value="指派处理人"></p>
+                <p ms-if="permission.fes_deal_with_qst"><input ms-if="el.problem_status==2"  ms-click="dispose(el.id,1)" class="simple-btn" type="button" value="回复"></p>
+                <p ms-if="permission.fes_inform_custome"><input ms-if="el.problem_status==2"  ms-click="dispose(el.id,2)" class="simple-btn" type="button" value="处理完成"></p>
+                <p ms-if="permission.fes_redo"><input ms-if="el.problem_status==2"  ms-click="dispose(el.id,3)" class="simple-btn" type="button" value="不予处理"></p>
+                <p ms-if="permission.tell_customer_167"><input ms-if="el.problem_status==3" ms-click="confirmNotice(el.id)" class="simple-btn" type="button" value="已告知客户"></p>
+                <!--input ms-if="el.problem_status==4" class="simple-btn" type="button" value="已告知客户"-->
+                <!--input ms-if="el.problem_status==5" ms-click="assigned" class="simple-btn" type="button" value="异常终止"-->
+                <p ms-if="permission.activate_168"><input ms-if="el.problem_status==5" ms-click="again(el.id)" class="simple-btn" type="button" value="激活问题"></p>
+            </div>
+        </div>
+    </div>
+    <!--table-end-->
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+
+
+</div>
+</div>
+<!--content-end-->
+
+<!-- 指派处理人 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$assignedDialogOpts">
+        <div class="f-body" style="height: 300px;overflow-y: auto;">
+            <div class="f-field fn-clear">
+                <div class="ff-value">
+                    <ul class="assigned-list">
+                        <li ms-repeat="assignedArr" ms-class="cur:processClass==el.id" ms-data-id="el.id" ms-click="assignedFn(el.id)">{{el.userName}}</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+</div>
+<!-- 指派处理人 end -->
+<!-- 处理问题 start -->
+<div class="hander-questions ui-hidden"
+     ms-widget="dialog,$,$assignedDisposeOpts">
+    <form class="add-edit-form" ms-widget="form,$,$assignedformOpts"
+          action="javascript:;">
+    <div class="f-body">
+        <div class="f-field fn-clear">
+            <div class="ff-value">
+                <ul class="hander-questions-dialog-ul">
+                    <li ms-visible="handerType == 2||handerType == 3">
+                        <p class="fn-left-p"><span class="warn">*&nbsp;</span>问题类型：</p>
+                        <p class="fn-right-p">
+                            <span class="brand-name" ms-widget="select,$,$questionTypeOpts"></span>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="fn-left-p" ms-visible="handerType == 1"><span class="warn">*&nbsp;</span>回复内容：</p>
+                        <p class="fn-left-p" ms-visible="handerType == 2||handerType == 3"><span class="warn">*&nbsp;</span>备注：</p>
+                        <p class="fn-right-p" >
+                            <textarea class="question-remark"></textarea>
+                        </p>
+                    </li>
+                    <div class="ff-value-tip"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+<!-- 处理问题 end -->
+
+
+<!-- 重新处理 end -->
+<div class="add-edit-course-dialog ui-hidden global-confirm global-alert-confirm"
+     ms-widget="dialog,$,$againOpts">
+        <div class="ui-dialog-content">
+            <i class="icon-tip icon-ask"></i>
+            &nbsp;&nbsp;<span class="tip-content">你确定要重新激活问题吗？</span>
+        </div>
+</div>
+
+<!-- 重新处理 end -->
+<!--添加问题-->
+<div ms-module="addquestion,$,$addquestionOpts"></div>
+<!--添加问题-end-->
+
+
+
+
+

@@ -1,0 +1,65 @@
+.module-open-car {
+    font-size: 14px;
+    color: #777;
+}
+.module-open-car .ui-dialog-content {
+    padding: 10px 0;
+}
+.module-open-car table {
+    width: 100%;
+}
+.module-open-car table.title {
+    margin-bottom: 6px;
+}
+.module-open-car table.title td {
+    padding: 6px 8px;
+}
+.module-open-car .input-text {
+    width: 310px;
+}
+.module-open-car .card-name {
+    width: 50px;
+}
+.module-open-car .card-radio label {
+    margin-right: 10px;
+}
+.module-open-car .open-card-con {
+    position: relative;
+    padding: 0 15px;
+    height: 310px;
+    overflow-y: auto;
+}
+.module-open-car td {
+    vertical-align: top;
+    padding:5px 3px;
+}
+.module-open-car td.tab-left {
+    width: 100px;
+    text-align: right;
+}
+.module-open-car .model {
+    position: relative;
+    background: #eee;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.module-open-car .model .icon-close {
+    background: #fff;
+    border: 1px solid #ccc;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    cursor: pointer;
+}
+.module-open-car .addCarButton {
+    margin-right: 20px;
+}
+
+.module-open-car .warn {
+    color: red;
+}

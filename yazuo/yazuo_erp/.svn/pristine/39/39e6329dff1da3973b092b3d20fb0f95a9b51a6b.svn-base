@@ -1,0 +1,64 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="page-padding">
+        <h2 class="addedit-title">{{titleType}}</h2>
+        <div class="add-edit-content">
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>话术类型：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box customer-title" >
+                                <span class="schedule" ms-widget="select,$,$type1SelectOpts"></span>
+                                <span ms-visible="type2" class="schedule" ms-widget="select,$,$type2SelectOpts"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>标题：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box customer-title" >
+                                <input type="text" maxlength="20"
+                                       placeholder="标题最多20个字"
+                                       class="input-text"
+                                       ms-duplex='requestData.title'
+                                       data-rules="empty"
+                                       data-tips="标题不能为空！"
+                                       isrule=true>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>内容：</label>
+                        <div class="ff-value">
+                            <div class="email-content" ms-widget="editor,$,$editorOpts"></div>
+                            <!--div class="ff-value-box">
+                                <textarea
+                                 ms-duplex='requestData.content'
+                                 data-rules="empty"
+                                 data-tips="内容不能为空！"
+                                 isrule=true></textarea>
+                            </div-->
+                            <input type="hidden" class="email-hidden-content"
+                                   data-rules="empty"
+                                   data-tips="内容不能为空！"
+                                   isrule=true>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </div>
+
+                    <div class="ff-value-box"><input type="button" ms-click="saveData" class="save-button main-btn" value="保存"></div>
+                </div>
+        </div>
+    </div>
+
+</div>
+

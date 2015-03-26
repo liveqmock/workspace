@@ -1,0 +1,94 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs"><a ms-href="el.href"
+            class="nav-l" ms-if="el.href">{{el.text}}</a><span class="nav-text"
+            ms-if="!el.href">{{el.text}}</span><span class="separater"
+            ms-if="el.href">&nbsp;>&nbsp;</span></li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="page-section">
+        <h3 class="page-section-title">期末考试规则<span class="summary">（<span class="star">*</span>号为必填项）</span></h3>
+        <form class="page-section-form" action="javascript:;"
+            ms-widget="form,$,$formOpts">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>考试时限：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text time-limit"
+                                name="timeLimit" ms-value="timeLimit" />&nbsp;分钟
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>增加考题数量：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text total" name="total"
+                                ms-value="total" />&nbsp;道
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>及格分数线：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text pass-score" name="passScore" ms-value="passScore" />&nbsp;分<span class="score-tip">&nbsp;&nbsp;&nbsp;&nbsp;考试得分为考题答对率，例如：答对率为80%，则考试得分为80分</span></div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>设置考题：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="exam-rule" ms-widget="select,$,$writeRangeOpts"></span>&nbsp;<button type="button" ms-click="openQuestionSelector" class="main-btn" ms-visible="examRange == 'part'">选择必考题</button>
+                        </div>
+                        <!-- page grid -->
+                        <div class="questions-grid-wrapper" ms-visible="examRange == 'part'">
+                            <div class="grid-head-wrapper">
+                                <table cellpadding="0" cellspacing="0" class="ui-grid">
+                                    <thead>
+                                        <tr>
+                                            <th class="cell-title">标题</th>
+                                            <th class="cell-question-type">题型</th>
+                                            <th class="cell-action">操作</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="grid-body-wrapper">
+                                <table cellpadding="0" cellspacing="0" class="ui-grid">
+                                    <tbody>
+                                        <tr ms-repeat="selectedWriteList" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                                            <td class="cell-title">{{el.question}}</td>
+                                            <td class="cell-question-type">{{el.questionType}}</td>
+                                            <td class="cell-action"><a href="javascript:;" class="remove-l" ms-click="removeWriteItem">删除</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>互动及格分数线：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text interview-scores"
+                                name="interviewScores" ms-value="interviewScores" /> 分
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-action">
+                    <button type="button" class="f-submit main-btn">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="question-selector" ms-module="qselector,$,$qselectorOpts"></div>

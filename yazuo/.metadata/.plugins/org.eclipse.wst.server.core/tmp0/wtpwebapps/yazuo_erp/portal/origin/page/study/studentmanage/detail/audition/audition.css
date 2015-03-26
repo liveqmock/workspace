@@ -1,0 +1,49 @@
+.page-study-studentmanage-detail-audition .audition-wrapper {
+    padding: 0 24px 112px 24px;
+}
+.page-study-studentmanage-detail-audition .audition-title {
+    position: relative;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 24px 0 18px 0;
+}
+.page-study-studentmanage-detail-audition .do-score-btn {
+    position: absolute;
+    bottom: 8px;
+    left: 714px;
+}
+.page-study-studentmanage-detail-audition .audition-title .title-summary {
+    font-weight: normal;
+    color: #969696;
+    font-size: 12px;
+}
+
+.page-audition-dialog .ff-label,
+.page-audition-play-over-dialog .ff-label {
+    width: 52px;
+}
+.page-audition-dialog .ff-value,
+.page-audition-play-over-dialog .ff-value{
+    margin-left: 52px;
+}
+.page-audition-dialog .input-text,
+.page-audition-dialog textarea,
+.page-audition-play-over-dialog .input-text,
+.page-audition-play-over-dialog textarea {
+    width: 360px;
+}
+.page-audition-dialog .ui-dialog-content,
+.page-audition-play-over-dialog .ui-dialog-content{
+    padding-bottom: 0;
+}
+.page-audition-play-over-dialog .play-over-tip {
+    font-size: 18px;
+    color: #666666;
+    text-align: center;
+}
+.page-audition-play-over-dialog .page-section-title {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #666666;
+}

@@ -1,0 +1,44 @@
+<div class="page-tbar">
+    <h3 class="page-tbar-title">{{coursename}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="title-summary">(我的老师：{{speaker}}&nbsp;&nbsp;&nbsp;&nbsp;学习截止日期：{{endTime}})</span></h3>
+</div>
+<div class="page-bd">
+    <div class="required-course-wrapper">
+        <h3 class="page-line-title"><span class="title-text">必修课&nbsp;&nbsp;</span></h3>
+        <div class="num-list-wrapper">
+            <ul class="course-list num-list">
+                <li class="course-item num-item"
+                    ms-repeat="requiredList"
+                    ms-class-1="num-item-last: $last"
+                    ms-class-2="num-item-green: el.isNew"
+                    ms-class-3="num-item-blue: el.isStudied">
+                    <div class="icon-index">
+                        <i class="icon-circle iconfont">&#xe604;</i>
+                        <span class="index-num">{{el.indexNum}}</span>
+                    </div>
+                    <div class="item-content">{{el.content | html}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="box-bbar">
+            <a href="#/study/history">查看历史成绩&#187;</a>
+        </div>
+    </div>
+    <div class="optional-course-wrapper">
+        <h3 class="page-line-title"><span class="title-text">选修课&nbsp;&nbsp;</span></h3>
+        <div class="line-list-wrapper">
+            <ul class="course-list line-list">
+                <li class="course-item line-item"
+                    ms-repeat="optionalList"
+                    ms-class-1="line-item-last: $last"
+                    ms-class-2="line-item-green: el.isNew"
+                    ms-class-3="line-item-blue: el.isPrev">
+                    <i class="icon-circle iconfont">&#xe602;</i>
+                    <div class="item-content">{{el.content | html}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="box-bbar">
+            <a href="#/study/history">查看历史成绩&#187;</a>
+        </div>
+    </div>
+</div>

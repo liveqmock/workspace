@@ -1,0 +1,78 @@
+.page-frontend-make .page-bd {
+    padding: 20px 15px;
+}
+.page-frontend-make .permission_type {
+    margin-bottom:30px;
+}
+.page-frontend-make .permission_type a {
+    color:#fff;
+}
+.page-frontend-make .max-tabs-nav p {
+    float:left;
+    display:inline;
+    cursor: pointer;
+    width:120px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+.page-frontend-make .tips-number {
+    width:20px;
+    height:20px;
+    background:#FE561A;
+    border-radius: 10px;
+    color:#fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 12px;
+    right:5px;
+    top:2px;
+}
+.page-frontend-make .max-tabs-nav {
+    height:40px;
+}
+.page-frontend-make .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-frontend-make .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+}
+.page-frontend-make .cate-list-wrapper {
+    padding-left:15px;
+    margin-bottom:10px;
+}
+.page-frontend-make .cate-list .cate-item {
+    height:36px;
+    margin-right:10px;
+}
+.page-frontend-make .cate-list .cate-item a {
+    display: block;
+    line-height:36px;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+}
+.page-frontend-make .cate-list .cate-item a.cur {
+    background: #b2eed8;
+}
+.page-frontend-make .name-center {
+    text-align: center;
+}
+.page-frontend-make .name-left {
+    text-align: left;
+    padding-left:10px;
+}

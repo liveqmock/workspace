@@ -1,0 +1,34 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="page-padding">
+        <h2 class="addedit-title">{{titleType}}</h2>
+        <div class="add-edit-content">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>姓名：</label>
+                    <div class="ff-value">
+                        张三
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>相关业务：</label>
+                    <div class="ff-value">
+
+                    </div>
+
+                </div>
+
+
+                <div class="ff-value-box"><input type="button" ms-click="saveData" class="save-button main-btn" value="保存"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

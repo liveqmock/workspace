@@ -1,0 +1,156 @@
+{
+    "flag": 1,
+    "data": {
+        "totalSize": 2,
+        "rows": [
+            {
+                "merchantName": "测试测试测试",
+                "salesName": "张三",
+                "listUsers": [
+                    {
+                        "userName": "李四"
+                    }
+                ],
+                "merchantStatusText": "健康",
+                "merchantStatus": 0,
+                "listSteps": [
+                    {
+                        "stepId": 10,
+                        "stepText": "项目上线(已完成)",
+                        "planEndTimeStatus": 1
+                    },
+                    {
+                        "stepId": 9,
+                        "stepText": "实施培训(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 8,
+                        "stepText": "设备配送(待确认)",
+                        "planEndTimeStatus": 0
+                    },
+                    {
+                        "stepId": 7,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 0
+                    },
+                    {
+                        "stepId": 6,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 5,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 4,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 1
+                    },
+                    {
+                        "stepId": 3,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 0
+                    },
+                    {
+                        "stepId": 2,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 1,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 1
+                    }
+                ],
+                "countToDoList": 8,
+                "synHealthDegrees" : [
+                    {
+                        "targetType" : "2",
+                        "targetValue" : 0.00
+                    },
+                    {
+                        "targetType" : "1",
+                        "targetValue" : 0.00
+                    }
+                ]
+            },
+            {
+                "merchantName": "测试测试测试2",
+                "salesName": "张三2",
+                "listUsers": [
+                    {
+                        "userName": "李四"
+                    }
+                ],
+                "merchantStatusText": "健康22",
+                "merchantStatus": 1,
+                "listSteps": [
+                    {
+                        "stepId": 10,
+                        "stepText": "项目上线(已完成)",
+                        "planEndTimeStatus": 1
+                    },
+                    {
+                        "stepId": 9,
+                        "stepText": "实施培训(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 8,
+                        "stepText": "设备配送(待确认)",
+                        "planEndTimeStatus": 0
+                    },
+                    {
+                        "stepId": 7,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 0
+                    },
+                    {
+                        "stepId": 6,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 5,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 4,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 1
+                    },
+                    {
+                        "stepId": 3,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 0
+                    },
+                    {
+                        "stepId": 2,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 2
+                    },
+                    {
+                        "stepId": 1,
+                        "stepText": "物料设计(已完成)",
+                        "planEndTimeStatus": 1
+                    }
+                ],
+                "countToDoList": 8,
+                "synHealthDegrees" : [
+                    {
+                        "targetType" : "2",
+                        "targetValue" : 100
+                    },
+                    {
+                        "targetType" : "1",
+                        "targetValue" : 100
+                    }
+                ]
+            }
+        ]
+    }
+}

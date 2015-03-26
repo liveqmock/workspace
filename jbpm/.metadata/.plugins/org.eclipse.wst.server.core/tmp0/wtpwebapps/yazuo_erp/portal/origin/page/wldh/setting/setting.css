@@ -1,0 +1,129 @@
+.page-wldh-setting .page-action {
+    background: #eff3f6;
+}
+.page-wldh-setting .current-year-selector,
+.page-wldh-setting .current-month-selector {
+    width: 100px;
+}
+.page-wldh-setting .team-list {
+    padding: 14px;
+}
+.page-wldh-setting .team-item {
+    border: 1px solid #e1e1e1;
+    margin-bottom: 10px;
+}
+.page-wldh-setting .team-item-main {
+    position: relative;
+    background: #d1d1d1;
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: -1px;
+}
+.page-wldh-setting .first-item .team-item-main {
+    background: #76a9e0;
+}
+.page-wldh-setting .index-box {
+    width: 52px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -10px;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1em;
+    text-align: center;
+}
+.page-wldh-setting .team-panel {
+    position: relative;
+    margin-left: 52px;
+    background: #ffffff;
+    padding: 14px;
+}
+.page-wldh-setting .income-box {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    margin-top: -30px;
+    font-size: 18px;
+}
+.page-wldh-setting .income-box label {
+    color: #666666;
+}
+.page-wldh-setting .income-box .income-text {
+    color: #ff7800;
+}
+.page-wldh-setting .support-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #969696;
+    font-size: 14px;
+}
+.page-wldh-setting .support-box .support-visible-ctr-btn {
+    font-size: 12px;
+    background: #76a9e0;
+    font-family: \65B0\5B8B\4F53, \5b8b\4f53;
+    border: none;
+    color: #ffffff;
+    width: 72px;
+    height: 24px;
+    text-align: center;
+    cursor: pointer;
+}
+.page-wldh-setting .team-name {
+    color: #666666;
+    font-size: 18px;
+}
+.page-wldh-setting .team-detail{
+    color: #969696;
+    font-size: 14px;
+    margin: 4px 0;
+    padding-right: 320px;
+}
+.page-wldh-setting .team-detail p {
+    margin-bottom: 4px;
+}
+.page-wldh-setting .stake {
+    font-size: 14px;
+    color: #666666;
+    line-height: 32px;
+}
+.page-wldh-setting .team-support-list-wrapper {
+    padding: 10px 10px 0 10px;
+    max-height: 120px;
+    overflow: auto;
+}
+.page-wldh-setting .support-item {
+    position: relative;
+    width: 128px;
+    height: 30px;
+    line-height: 30px;
+    color: #666666;
+    font-size: 14px;
+    text-align: center;
+    background: #f3f3f3;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.page-wldh-setting .support-item .support-name {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 24px 0 4px;
+}
+.page-wldh-setting .support-item .remove-h {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    font-size: 18px;
+    line-height: 1em;
+    cursor: pointer;
+}
+.page-wldh-setting .support-item-hover {
+    background: #e5f8f1;
+}
+.page-wldh-setting .income-editor {
+    width: 6em;
+}
+.page-wldh-setting .add-support-btn {
+    margin-bottom: 10px;
+}

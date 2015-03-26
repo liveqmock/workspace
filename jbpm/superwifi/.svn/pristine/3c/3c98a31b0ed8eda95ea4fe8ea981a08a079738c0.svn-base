@@ -1,0 +1,31 @@
+<span class="module-merchantdomain-autocomplete" ms-widget="autocomplete,$,$autocompleteOpts"></span>
+MS_OPTION_WIDGET
+<i class="icon-search ui-icon">&#xe604;</i><input type="text"
+       class="select-header-text"
+       ms-duplex="inputText"
+       ms-attr-placeholder="placeholder"
+       ms-css-width="textWidth" /><i class="icon-select ui-icon">{{selectIconText|html}}</i>
+MS_OPTION_HEADER
+<div class="ui-autocomplete-panel">
+    <ul class="select-list"
+        ms-visible="state == 'ready' && options.length"
+        ms-on-click="selectItem"
+        ms-css-min-width="minWidth">
+        <li class="select-item"
+            ms-repeat="options"
+            ms-css-min-width="minWidth - 16"
+            ms-class="state-selected:$index==selectedIndex"
+            ms-class-last-item="$last"
+            ms-hover="state-hover"
+            ms-data-index="$index"
+            ms-data-value="el.value">{{el.text}}</li>
+    </ul>
+    <div class="module-merchantdomain-tree-panel"
+         ms-visible="state == 'ready' && !options.length"
+         ms-css-min-width="minWidth - 16">
+        <div class="merchant-tree" ms-widget="tree,$,$treeOpts"></div>
+    </div>
+    <div class="loading-tip"
+         ms-visible="state == 'loading'"
+         ms-css-min-width="minWidth - 16">loading...</div>
+</div>

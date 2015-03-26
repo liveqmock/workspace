@@ -1,0 +1,94 @@
+<!--<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>-->
+<div class="page-bd page-bd-form">
+    <div class="migration-section">
+        <h3 class="page-section-title">数据迁移</h3>
+        <form class="migration-form" ms-widget="form,$,$formOpts"
+            action="javascript:;">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>品牌名称：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span>&nbsp;&nbsp;<span ms-if="showMerchantList" class="ff-value-text"><span class="merchant-list" ms-widget="autocomplete,$,$merchantListOpts"></span>（手动绑定商户）</span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left">运营平台商户名称：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="merchant-name ff-value-text">{{merchantName}}</span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>服务开始时间：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="start-date input-text" ms-value="startDate" ms-click="openCalendar" readonly="readonly" />
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>服务年份：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="service-years" ms-widget="select,$,$serviceYearsOpts"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>门店赠送月份：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="free-months" ms-widget="select,$,$freeMonthsOpts"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>上线状态：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="online-status" ms-widget="select,$,$onlineStatusOpts"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>销售人员：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="sale" ms-widget="select,$,$saleOpts"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear" ms-visible="showAdvisor">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>前端顾问：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="advisor" ms-widget="select,$,$advisorOpts"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="f-action">
+                <button type="button" class="f-submit main-btn" ms-click="submit">保存</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysProblemDao">
+	<resultMap id="SysProblem" type="com.yazuo.erp.system.vo.SysProblemVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="title" column="title"/>
+    	<result property="description" column="description"/>
+    	<result property="problemType" column="problem_type"/>
+    	<result property="solveredBy" column="solvered_by"/>
+    	<result property="solvingType" column="solving_type"/>
+    	<result property="solvingTime" column="solving_time"/>
+    	<result property="problemStatus" column="problem_status"/>
+    	<result property="remark" column="remark"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="productName" column="product_name"/>
+    	<result property="source" column="source"/>
+	</resultMap>
+
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysproblemColumns">
+	    <![CDATA[
+		id,merchant_id,title,description,problem_type,solvered_by,solving_type,solving_time,problem_status,remark,is_enable,insert_by,insert_time,update_by,update_time,product_name,source
+	    ]]>
+	</sql>
+
+	<insert id="saveSysProblem" useGeneratedKeys="true" keyProperty="id">
+		<!--不允许为空的字段： merchant_id,title,description,problem_type,solvered_by,solving_type,solving_time,problem_status,is_enable,insert_by,insert_time,update_by,update_time, -->
+		INSERT INTO sys.sys_problem (
+		<if test="merchantId!=null ">merchant_id,</if>
+		<if test="title!=null and title!=''">title,</if>
+		<if test="description!=null and description!=''">description,</if>
+		<if test="problemType!=null and problemType!=''">problem_type,</if>
+		<if test="solveredBy!=null ">solvered_by,</if>
+		<if test="solvingType!=null and solvingType!=''">solving_type,</if>
+		<if test="solvingTime!=null ">solving_time,</if>
+		<if test="problemStatus!=null and problemStatus!=''">problem_status,</if>
+		<if test="remark!=null and remark!=''">remark,</if>
+        <if test="productName!=null and productName!=''">product_name,</if>
+        <if test="source!=null and source!=''">source,</if>
+		<if test="isEnable!=null and isEnable!=''">is_enable,</if>
+		<if test="insertBy!=null ">insert_by,</if>
+		<if test="insertTime!=null ">insert_time,</if>
+		<if test="updateBy!=null ">update_by,</if>
+		<if test="updateTime!=null ">update_time</if>
+		) VALUES (
+		<if test="merchantId!=null ">#{merchantId},</if>
+		<if test="title!=null and title!=''">#{title},</if>
+		<if test="description!=null and description!=''">#{description},</if>
+		<if test="problemType!=null and problemType!=''">#{problemType},</if>
+		<if test="solveredBy!=null ">#{solveredBy},</if>
+		<if test="solvingType!=null and solvingType!=''">#{solvingType},</if>
+		<if test="solvingTime!=null ">#{solvingTime},</if>
+		<if test="problemStatus!=null and problemStatus!=''">#{problemStatus},</if>
+		<if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="productName!=null and productName!=''">#{productName},</if>
+       	    <if test="source!=null and source!=''">#{source},</if>
+		<if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+		<if test="insertBy!=null ">#{insertBy},</if>
+		<if test="insertTime!=null ">now(),</if>
+		<if test="updateBy!=null ">#{updateBy},</if>
+		<if test="updateTime!=null ">now()</if>
+		)
+	</insert>
+
+	<insert id="batchInsertSysProblems" parameterType="map">
+		<!--不允许为空的字段： merchant_id,title,description,problem_type,solvered_by,solving_type,solving_time,problem_status,is_enable,insert_by,insert_time,update_by,update_time, -->
+		INSERT INTO sys.sys_problem (
+		<if test="merchantId!=null ">merchant_id,</if>
+		<if test="title!=null and title!=''">title,</if>
+		<if test="description!=null and description!=''">description,</if>
+		<if test="problemType!=null and problemType!=''">problem_type,</if>
+		<if test="solveredBy!=null ">solvered_by,</if>
+		<if test="solvingType!=null and solvingType!=''">solving_type,</if>
+		<if test="solvingTime!=null ">solving_time,</if>
+		<if test="problemStatus!=null and problemStatus!=''">problem_status,</if>
+		<if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="productName!=null and productName!=''">product_name,</if>
+        	 <if test="source!=null and source!=''">source,</if>
+		<if test="isEnable!=null and isEnable!=''">is_enable,</if>
+		<if test="insertBy!=null ">insert_by,</if>
+		<if test="insertTime!=null ">insert_time,</if>
+		<if test="updateBy!=null ">update_by,</if>
+		<if test="updateTime!=null ">update_time</if>
+		) VALUES
+		<foreach collection="list" item="t" separator=",">
+			(
+			<if test="merchantId!=null ">#{t.merchantId},</if>
+			<if test="title!=null and title!=''">#{t.title},</if>
+			<if test="description!=null and description!=''">#{t.description},</if>
+			<if test="problemType!=null and problemType!=''">#{t.problemType},</if>
+			<if test="solveredBy!=null ">#{t.solveredBy},</if>
+			<if test="solvingType!=null and solvingType!=''">#{t.solvingType},</if>
+			<if test="solvingTime!=null ">#{t.solvingTime},</if>
+			<if test="problemStatus!=null and problemStatus!=''">#{t.problemStatus},</if>
+			<if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="productName!=null and productName!=''">#{t.productName},</if>
+          <if test="source!=null and source!=''">#{t.source},</if>
+			<if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+			<if test="insertBy!=null ">#{t.insertBy},</if>
+			<if test="insertTime!=null ">now(),</if>
+			<if test="updateBy!=null ">#{t.updateBy},</if>
+			<if test="updateTime!=null ">now()</if>
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateSysProblem">
+		UPDATE sys.sys_problem
+		<set>
+			<if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+			<if test="title!=null and title!=''">title = #{title} ,</if>
+			<if test="description!=null and description!=''">description = #{description} ,</if>
+			<if test="problemType!=null and problemType!=''">problem_type = #{problemType} ,</if>
+			<if test="solveredBy!=null ">solvered_by = #{solveredBy} ,</if>
+			<if test="solvingType!=null and solvingType!=''">solving_type = #{solvingType} ,</if>
+			<if test="solvingTime!=null ">solving_time = #{solvingTime} ,</if>
+			<if test="problemStatus!=null and problemStatus!=''">problem_status = #{problemStatus} ,</if>
+			<if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="productName!=null and productName!=''">product_name = #{productName} ,</if>
+	        <if test="source!=null and source!=''">source = #{source} ,</if>
+			<if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+			<if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+			<if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+			<if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+			<if test="updateTime!=null ">update_time = now() </if>
+		</set>
+		WHERE
+		id = #{id}
+	</update>
+
+	<update id="batchUpdateSysProblemsToDiffVals" parameterType="map">
+		<foreach collection="list" item="t" index="index" open=""
+			close="" separator=";">
+			UPDATE sys.sys_problem
+			<set>
+				<if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+				<if test="title!=null and title!=''">title = #{t.title} ,</if>
+				<if test="description!=null and description!=''">description = #{t.description} ,</if>
+				<if test="problemType!=null and problemType!=''">problem_type = #{t.problemType} ,</if>
+				<if test="solveredBy!=null ">solvered_by = #{t.solveredBy} ,</if>
+				<if test="solvingType!=null and solvingType!=''">solving_type = #{t.solvingType} ,</if>
+				<if test="solvingTime!=null ">solving_time = #{t.solvingTime} ,</if>
+				<if test="problemStatus!=null and problemStatus!=''">problem_status = #{t.problemStatus} ,</if>
+				<if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+		        <if test="productName!=null and productName!=''">product_name = #{t.productName} ,</if>
+		        <if test="source!=null and source!=''">source = #{t.source}, </if>
+				<if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+				<if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+				<if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+				<if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+				<if test="updateTime!=null ">update_time = now() </if>
+			</set>
+			WHERE
+			id = #{t.id}
+		</foreach>
+	</update>
+
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysProblemsToSameVals" parameterType="map">
+		UPDATE sys.sys_problem
+		<set>
+			<if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+			<if test="title!=null and title!=''">title = #{title} ,</if>
+			<if test="description!=null and description!=''">description = #{description} ,</if>
+			<if test="problemType!=null and problemType!=''">problem_type = #{problemType} ,</if>
+			<if test="solveredBy!=null ">solvered_by = #{solveredBy} ,</if>
+			<if test="solvingType!=null and solvingType!=''">solving_type = #{solvingType} ,</if>
+			<if test="solvingTime!=null ">solving_time = #{solvingTime} ,</if>
+			<if test="problemStatus!=null and problemStatus!=''">problem_status = #{problemStatus} ,</if>
+			<if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="productName!=null and productName!=''">product_name = #{productName} ,</if>
+	        <if test="source!=null and source!=''">source = #{source}, </if>
+			<if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+			<if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+			<if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+			<if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+			<if test="updateTime!=null ">update_time = now() </if>
+		</set>
+		WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</update>
+
+	<delete id="deleteSysProblemById">
+    <![CDATA[
+        DELETE FROM sys.sys_problem WHERE
+        id = #{id} 
+    ]]>
+	</delete>
+
+	<delete id="batchDeleteSysProblemByIds" parameterType="list">
+		DELETE FROM sys.sys_problem WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</delete>
+
+	<select id="getSysProblemById" resultMap="SysProblem">
+		SELECT
+		<include refid="sysproblemColumns" />
+		FROM sys.sys_problem
+		WHERE id = #{id}
+	</select>
+
+	<select id="getSysProblems" resultMap="SysProblem">
+		SELECT
+		<include refid="sysproblemColumns" />
+		FROM sys.sys_problem
+		<include refid="sysproblem_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<select id="getSysProblemsMap" resultType="map">
+		SELECT
+		<include refid="sysproblemColumns" />
+	    <![CDATA[
+		    FROM sys.sys_problem  
+	    ]]>
+		<include refid="sysproblem_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="sysproblem_findPage_where">
+		<where>
+			<if test="id!=null ">AND id = #{id}</if>
+			<if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+			<if test="title!=null and title!=''">AND title = #{title}</if>
+			<if test="description!=null and description!=''">AND description = #{description}</if>
+			<if test="problemType!=null and problemType!=''">AND problem_type = #{problemType}</if>
+			<if test="solveredBy!=null ">AND solvered_by = #{solveredBy}</if>
+			<if test="solvingType!=null and solvingType!=''">AND solving_type = #{solvingType}</if>
+			<if test="solvingTime!=null ">AND solving_time >= #{solvingTime}</if>
+			<if test="solvingTime!=null ">AND solving_time &lt;= #{solvingTime}</if>
+			<if test="problemStatus!=null and problemStatus!=''">AND problem_status = #{problemStatus}</if>
+			<if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+			<if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+			<if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+			<if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+			<if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+			<if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+			<if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+			<if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if> 
+			 <if test="productName!=null and productName!=''">AND product_name = #{productName}</if>
+	       <if test="source!=null and source!=''">AND source = #{source}</if>
+	
+		</where>
+	</sql>
+
+	<select id="getSysProblemCount" resultType="long">
+		SELECT count(*) FROM sys.sys_problem where merchant_id=#{merchantId}
+	</select>
+
+	<select id="getSysProblemsInfo" resultType="map">
+
+		SELECT
+		pro. ID,
+		pro.merchant_id,
+		mer.merchant_name,
+		pro.title,
+		pro.problem_type,
+		COALESCE(pro.product_name, '')AS product_name,
+		COALESCE(pro.source, '')AS source,
+		dic1.dictionary_value AS problem_type_name,
+		pro.problem_status,
+		dic2.dictionary_value AS problem_status_name,
+		pro.insert_by,
+		u.user_name,
+		pro.insert_time,
+		COALESCE(pro.description, '')AS description,
+		pro.solvered_by,
+		COALESCE(u1.user_name, '')AS solvered_by_name,
+		pro.solving_type,
+		COALESCE(dic3.dictionary_value, '')AS solving_type_name,
+		pro.solving_time,
+		pro.remark
+		FROM
+		sys.sys_problem AS pro
+		LEFT JOIN sys.sys_user AS u ON pro.insert_by = u. ID
+		LEFT JOIN sys.sys_user AS u1 ON pro.solvered_by = u1. ID
+		LEFT JOIN syn.syn_merchant AS mer ON pro.merchant_id = mer.merchant_id
+		LEFT JOIN sys.sys_dictionary AS dic1 ON dic1.dictionary_key =
+		pro.problem_type AND dic1.dictionary_type = '00000040'
+		LEFT JOIN sys.sys_dictionary AS dic2 ON dic2.dictionary_key =
+		pro.problem_status AND dic2.dictionary_type = '00000041'
+		LEFT JOIN sys.sys_dictionary AS dic3 ON pro.solving_type =
+		dic3.dictionary_key AND dic3.dictionary_type = '00000055'
+		WHERE
+		1 = 1
+		AND u.is_enable = '1'
+		AND mer.status = 1
+		AND pro.is_enable = '1'
+		<if test="merchantId!=null ">AND pro.merchant_id = #{merchantId}</if>
+		<if test="problemStatus!=null  and problemStatus!='' ">AND pro.problem_status = #{problemStatus}</if>
+		<if test="insertBy!=null  and insertBy!='' ">AND pro.insert_by = #{insertBy}</if>
+		<if test="title!=null and title!=''">AND pro.title like '%'||#{title}||'%'
+		</if>
+		<if test="merchantName!=null  and merchantName!=''">AND mer.merchant_name like '%'||#{merchantName}||'%'</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,236 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <!--client-header-->
+    <div class="client-head">
+        <!--client-left-->
+        <div class="client-head-left">
+            <div class="client-head-left-logo"><img ms-src="{{merchantData.imgUrl}}"></div>
+            <div class="client-head-left-text pt20">
+                <h2>{{merchantData.merchant_name}}</h2>
+                <ul>
+                    <li>启动日期：{{merchantData.begin_time | date("yyyy-MM-dd")}}</li>
+                    <li>销售负责人：{{merchantData.sale_user_name}}</li>
+                    <li>上线日期：{{merchantData.online_time | date("yyyy-MM-dd")}}</li>
+                    <li>前端负责人：{{merchantData.front_user_name}}</li>
+                </ul>
+            </div>
+        </div>
+        <!--client-left-end-->
+        <!--client-right-->
+        <div class="client_head_right">
+            <div class="fn-left pt25">
+                <button class="simple-btn mr5" ms-click="localHref('#/frontend/home/mycommunication')"><i class="iconfont icon-blue f26">&#xe612; </i>通讯录</button>
+                <button ms-click="addQuestions" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe60f; </i>添加问题</button>
+                <button ms-click="createActive" class="simple-btn mr5"><i class="iconfont icon-blue f26">&#xe611; </i>活动申请</button>
+                <button class="simple-btn mr5" style="display:none;"><i class="iconfont icon-blue f26">&#xe614; </i>发送月报</button>
+            </div>
+        </div>
+        <!--client-right-end-->
+    </div>
+    <!--client-header-end-->
+    <!--max-tabs-nav-->
+    <div class="max-tabs-nav fn-clear">
+        <p ms-class="cur:pageStatus == 1" ms-click="changePageStatus(1)">商户基本信息</p>
+        <p ms-class="cur:pageStatus == 2" ms-click="changePageStatus(2)">会员卡信息<span ms-if="merchantData.cardCount" class="tips-number">{{merchantData.cardCount}}</span></p>
+        <div>
+            <span>短信余量：{{merchantData.smsCount||0}}条</span>
+            <span>|&nbsp;&nbsp;<a ms-href="#/frontend/home/marketactivitie/{{merchantId}}">查看营销活动<b ms-if="merchantData.activityCount">（{{merchantData.activityCount}}）</b></a></span>
+            <span>|&nbsp;&nbsp;<a href="#/frontend/home/questionmanage">查看商户问题<b ms-if="merchantData.problemCount">（{{merchantData.problemCount}}）</b></a></span>
+            <span>|&nbsp;&nbsp;<a href="#/frontend/home/attachmentmanage">查看商户附件</a></span>
+        </div>
+    </div>
+    <!--max-tabs-nav-end-->
+    <!--max-tabs-con-->
+    <div class="max-tab-con">
+        <!--商户基本信息-->
+        <div ms-if="pageStatus == 1">
+            <div>
+                <ul class="waiting-head-list fn-clear">
+                    <li>业态：{{merchantData.format_name||'暂无'}}</li>
+                    <li>门店：{{merchantData.store_number||0}}家</li>
+                    <li>人均：{{merchantData.person_avg||0}}元</li>
+                    <li>桌均：{{merchantData.desk_avg||0}}元</li>
+                </ul>
+                <ul class="waiting-head-product">
+                    <p>
+                        开通的产品 :
+                        <span ms-repeat="merchantData.productList">{{el}}&nbsp;&nbsp;</span>
+                    </p>
+                </ul>
+            </div>
+        </div>
+        <!--商户基本信息-end-->
+        <!--会员卡信息-->
+        <div ms-if="pageStatus == 2">
+            <table class="user-grid ui-grid card-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="name-center">卡名称</th>
+                    <th class="name-center">卡类型</th>
+                    <th class="name-center" width="80">是否实体卡</th>
+                    <th class="name-center">商户名称</th>
+                    <th class="name-center">商户类型</th>
+                    <th class="name-center" width="80">卡余量</th>
+                    <th class="name-center" width="80">单价（元）</th>
+                    <th class="name-center" >卡规则说明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-repeat="responseCardData" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="name-left">{{el.card_name}}</td>
+                    <td class="name-left">{{el.card_type}}</td>
+                    <td class="name-center">
+                        {{el.is_sold_card}}
+                    </td>
+                    <td class="name-left">{{el.merchant_name}}</td>
+                    <td class="name-center">{{el.merchant_type}}</td>
+                    <td class="name-right">{{el.card_count}}</td>
+                    <td class="name-right">{{el.card_price}}</td>
+                    <td class="name-left">暂无数据</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--会员卡信息-end-->
+    </div>
+    <!--max-tabs-con-end-->
+    <!--list-->
+    <div class="client-step" ms-repeat="listData">
+        <div class="status-box status-ready">
+            <button class="number">{{$index+1}}</button>
+            <div class="content f14">
+                <h2 class="mb5">客户投诉</h2>
+                <div class="type-box">
+                    <ul ms-if="!el.end">
+                        <li>
+                            <p class="left-title">投诉时间：</p>
+                            <p class="left-con">{{el.complaint_time | date("yyyy-MM-dd HH:mm")}}</p>
+                        </li>
+                        <li>
+                            <p class="left-title">投诉类型：</p>
+                            <p class="left-con">{{el.customer_complaint_type_name}}</p>
+                        </li>
+                        <li>
+                            <p class="left-title">投诉标题：</p>
+                            <p class="left-con">{{el.complaint_title}}</p>
+                        </li>
+                        <li>
+                            <p class="left-title">投诉内容：</p>
+                            <p class="left-con">{{el.complaint_content}}</p>
+                        </li>
+                        <li>
+                            <p class="left-title">投诉录音：</p>
+                            <p class="left-con"><a ms-href="{{erp.BASE_PATH}}{{el.customerComplaintFilePath}}/{{el.sysAttachment.attachmentName}}">点击下载试听</a></p>
+                        </li>
+                    </ul>
+                    <ul class="end-list" ms-if="el.end">
+                        <li class="end-list-left">{{el.end_time | date("yyyy-MM-dd HH:mm")}}</li>
+                        <li class="end-list-left">{{el.end_content}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="operation" ms-if="!el.end">
+                <button class="simple-btn" ms-click="disposeOpen(el.id,$index)"><i class="iconfont icon-blue f26">&#xe610;</i> 投诉处理确认</button>
+            </div>
+        </div>
+
+    </div>
+    <!--list-end-->
+</div>
+
+<!-- 创建营销活动申请 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$createActiveDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$createActiveFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>商户名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box customer-title">
+                        <p class="merchantName">{{merchantData.merchant_name}}</p>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 activityTitle" name="activityTitle" ms-value="activityTitle" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$activeOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>活动说明：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <textarea class="input-text w310 description" name="description" ms-text="description"></textarea>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left">上传活动表：</label>
+                <div class="ff-value">
+                    <span ms-widget="uploader,$,$activeUploaderOpts">
+                    <button class="simple-btn">选择文件</button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 创建营销活动申请 end -->
+<!-- 处理投诉 start -->
+<div class="add-edit-course-dialog ui-hidden"
+     ms-widget="dialog,$,$assignedDisposeOpts">
+    <div class="f-body">
+        <div class="f-field fn-clear">
+            <div class="ff-value">
+                <ul class="question-manage-dialog-ul">
+                    <li>
+                        <p class="fn-left">状态：</p>
+                        <p class="fn-right">
+                            <input type="radio" checked id="rad1" name="problemStatus" ms-click="changProblemStatus('1')"> <label for="rad1">投诉属实</label>
+                            <input type="radio" id="rad2" name="problemStatus" ms-click="changProblemStatus('2')"> <label for="rad2">投诉不属实</label>
+                        </p>
+                    </li>
+                    <li>
+                        <p class="fn-left">备注：</p>
+                        <p class="fn-right" >
+                            <textarea ms-duplex="requestDataDispose.handledDescription"></textarea>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 处理投诉 end -->
+<!--添加问题-->
+<div ms-module="addquestion,$,$addquestionOpts"></div>
+<!--添加问题-end-->

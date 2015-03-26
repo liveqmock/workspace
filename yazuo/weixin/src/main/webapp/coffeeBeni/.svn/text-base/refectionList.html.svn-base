@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0"/> 
+<link href="style/typeList.css" type="text/css" rel="stylesheet" />
+<title>便餐类</title>
+</head>
+
+<body>
+	<header>陪你菜单</header>
+    <img src="foodImg/luncheonette/typeLogo.jpg" class="typeLogoImg" />
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">便餐类 <i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/luncheonette/火辣鸡肉披萨.jpg" class="oneItemImg" />
+        	<p class="foodName">火辣鸡肉披萨<br/>스파이시치킨피자<br/>Spicy Chicken Pizza</p>
+            <p class="foodInfo">
+            	墨西哥风格的传统意式披萨<br />超薄面饼，口感香脆，咖啡陪你为顾客量身定制的一款健康披萨！<br />
+				价格：<em>68</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>   
+        <div class="oneItem">
+        	<img src="foodImg/luncheonette/陪你番茄意面.jpg" class="oneItemImg" />
+        	<p class="foodName">陪你番茄意面<br/>베네칠리파스타<br/>Bene Chilli Pasta</p>
+            <p class="foodInfo">
+            	采用上等培根、杏鲍菇、黄油、花生酱制作而成的传统意大利罗马白汁意面，口感略淡，符合东方人的口味。<br />
+				价格：<em>38</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/luncheonette/火腿芝士土司.jpg" class="oneItemImg" />
+        	<p class="foodName">火腿芝士土司<br/>팜치즈토스트<br/>Pan-toasted Ham Cheese Toast</p>
+            <p class="foodInfo">
+            	绵软的面包配上浓郁的切达芝士酱与火腿的完美结合<br />
+				价格：<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/luncheonette/培根芝士土司.jpg" class="oneItemImg" />
+        	<p class="foodName">培根芝士土司<br/>베이컨치즈토스트<br/>Bacon Cheese Toast</p>
+            <p class="foodInfo">
+            	绵软的面包配上浓郁的切达芝士酱与培根的完美结合<br />
+				价格：<em>28</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem">
+        	<img src="foodImg/luncheonette/陪你猪排.png" class="oneItemImg" />
+        	<p class="foodName">陪你猪排<br/>베네돈까스<br/>Special Bene Pork Chop</p>
+            <p class="foodInfo">
+            	外焦里嫩的猪排洒上酸甜酱汁，配以新鲜的水果和蔬菜沙拉<br />
+				价格：<em>45</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/luncheonette/香辣鸡球套餐.png" class="oneItemImg" />
+        	<p class="foodName">香辣鸡球套餐<br/>베네닭강정세트<br/>Sour & Spicy Chicken Balls</p>
+            <p class="foodInfo">
+            	香辣鸡球配上美式炸薯条，配以新鲜的蔬菜和水果，营养又健康<br />
+				价格：<em>50</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/luncheonette/香辣鸡球.png" class="oneItemImg" />
+        	<p class="foodName">香辣鸡球<br/>베네닭강정<br/>Sour & Spicy Chicken Balls</p>
+            <p class="foodInfo">
+            	微辣又稍带甜味的浓郁酱汁与外焦里嫩的鸡球的完美碰撞<br />
+				价格：<em>20</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>       
+    </div>
+
+<div id="popUpTip">
+	<div class="popBg"></div>
+    <div class="popInfo">
+    	在线购买功能功能即将开通，敬请期待！        
+        <a href="javascript:;" class="popConfirmBtn">确定</a>
+    </div>    
+</div>
+
+<script language="javascript" src="js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="js/typeList.js"></script>
+</body>
+</html>

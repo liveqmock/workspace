@@ -1,0 +1,65 @@
+@charset "utf-8";
+/*base*/
+body{background:#ffffff;font-family:"Microsoft Yahei","Helvetica Neue", Helvetica, STHeiTi, sans-serif;color:#444;}
+h1,h2,h3,div,li,p{margin:0;padding:0;font-size:100%;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body,button,input,select,textarea{font:12px/1.125;}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0; padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+fieldset,img{border:0;}
+q:before,q:after{content:'';}
+input,textarea{outline-style:none; font-family:"Microsoft Yahei","Helvetica Neue", Helvetica, STHeiTi, sans-serif;}
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;}
+textarea{resize:none}
+a{text-decoration:none;outline-style:none}
+a,img {-webkit-touch-callout: none; /* 禁止长按链接与图片弹出菜单 */}
+html, body {-webkit-user-select: none;  /* 禁止选中文本（如无文本选中需求，此为必选项） */user-select: none;}
+
+.left{float:left;}
+.right{float:right;}
+img{ vertical-align:middle;}
+.hide{display:none;}
+
+/*两种清浮动方法*/
+.clear:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clear{display:block;_display:inline-block;}
+
+
+/*头部*/
+header{line-height:46px; background:#4D3F36; color:#ffffff; text-align:center; font-size:16px;}
+.typeLogoImg{ max-width:100%; display:block; margin:0px auto;}
+
+/*列表*/
+.typeItemList{margin:0px 3%;}
+.typeTitle{line-height:46px; font-size:16px; font-weight:normal; color:#993300; text-align:center; border-bottom:#FF4800 dotted 1px; position:relative; margin-bottom:20px;}
+.borderCenterIco{width:50px; height:15px; background:url(../images/typeTitle.png) no-repeat; position:absolute; left:50%; bottom:-8px; margin-left:-25px; display:block;}
+.oneItemImg{max-width:98%; display:block; margin:0px auto;}
+.foodName{ color:#993300; font-size:16px; line-height:20px; margin-bottom:5px;}
+.foodInfo{color:#6E6E6E; font-size:14px; line-height:20px; margin-bottom:10px;}
+.foodInfo em{color:#FF6600; font-size:16px; font-weight:bold; font-style:normal;}
+.buyBtn{ background:#FF6600; box-shadow:0 0 3px #999999; display:block; border-radius:5px; line-height:40px; text-align:center; color:#ffffff;}
+.oneItem{padding:15px 0; border-bottom:#9B8C7A dotted 1px;}
+.oneItem.last{ border-bottom:none;}
+
+/*弹窗*/
+#popUpTip{position:fixed; z-index:100000; width:100%; height:100%; left:0px; top:0px; display:none;}
+#popUpTip .popBg{ background:#000000; opacity:0.5; filter:alpha(opacity=50); width:100%; height:100%;}
+#popUpTip .popInfo{width:86%; left:7%; top:200px; background:#ffffff; padding:20px 0px; text-align:center; position:fixed; z-index:1000001; border-radius:5px; box-shadow:0 0 3px #666666; font-size:14px;}
+.popInfo .popConfirmBtn{display:block; background:#FF7800; width:90px; height:32px; line-height:32px; color:#ffffff; margin:20px auto 0; box-shadow:0 0 3px #999999; border-radius:3px;}
+
+
+/*新品上市*/
+.artTitle{font-size:12px; color:#939393; margin:10px 3% 20px;}
+.artTitle h3{font-size:16px; color:#393939; line-height:40px;}
+.artInfo{margin:0px 3% 20px;}
+.newFoodImg{max-width:100%; display:block; margin:0px auto;font-size:14px;color:#393939; line-height:24px; }
+.artInfo p{padding:3px 0;}
+.artInfo p em{color:#76923C; font-weight:bold; font-style:normal;}
+.artInfo .paddingInfo{padding:15px 0; font-size:16px; line-height:28px;}
+.foodDetailTop{border-bottom:#9B8C7A dotted 1px;}
+
+.discountInfo{font-size:16px; color:#393939; line-height:28px; margin-bottom:15px;}
+.discountInfo h3{font-weight:normal; color:#AA0000;}
+.discountInfo p{ padding:2px 0; text-indent:2em;}
+

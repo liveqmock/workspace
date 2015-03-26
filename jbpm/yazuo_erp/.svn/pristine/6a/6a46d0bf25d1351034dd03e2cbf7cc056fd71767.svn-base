@@ -1,0 +1,322 @@
+.page-backend-distribution-waiting {
+    color:#777;
+}
+.page-backend-distribution-waiting .page-padding{
+    padding:20px 15px;
+}
+.page-backend-distribution-waiting .client-head{
+    width:100%;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+.page-backend-distribution-waiting .client-head-left{
+    float:left;
+    display:inline;
+}
+.page-backend-distribution-waiting .client-head-left-logo{
+    float:left;display:inline;
+    width:100px;
+    height:100px;
+}
+.page-backend-distribution-waiting .client-head-left-logo img {
+    width:100px;
+    height:100px;
+    border:1px solid #ccc;
+}
+.page-backend-distribution-waiting .client-head-left-text{
+    float:left;display:inline;
+    margin-left:30px;
+    width:350px;
+}
+.page-backend-distribution-waiting .client_head_right{
+    float:right;
+    display:inline;
+}
+.page-backend-distribution-waiting .client-head-left-text h2 {
+    font-size:24px;
+    line-height:30px;
+}
+.page-backend-distribution-waiting .client-head-left-text ul {
+    width:100%;
+    overflow:hidden;
+}
+.page-backend-distribution-waiting .client-head-left-text ul li {
+    float:left;
+    display: inline;
+    width:170px;
+    line-height:23px;
+    margin:10px 0;
+}
+.page-backend-distribution-waiting .mail {
+    background: #FDF4DA;
+    padding:10px;
+}
+.page-backend-distribution-waiting .client-top {
+    border:1px solid #DDE3EA;
+    overflow: hidden;
+}
+.page-backend-distribution-waiting .client-info-left {
+    padding:15px;
+    width:650px;
+}
+.page-backend-distribution-waiting .client-info-right {
+    padding:15px;
+    width:300px;
+    padding-bottom:200px;
+    margin-bottom:-200px;
+    border-left:1px solid #DDE3EA;
+}
+.page-backend-distribution-waiting .client-info-left li {
+    float:left;
+    display:inline;
+    font-size:16px;
+    width:300px;
+    margin:8px 5px;
+}
+.page-backend-distribution-waiting .client-info-right li {
+    font-size:16px;
+    margin-top:5px;
+    width:100%;
+    overflow:hidden;
+}
+.page-backend-distribution-waiting .client-info-right li p {
+    float:left;
+    display:inline;
+    width:130px;
+    margin:2px 0;
+}
+.page-backend-distribution-waiting .client-info-right li p a {
+    font-size:14px;
+}
+.page-backend-distribution-waiting .swfupload {
+    left:0;
+}
+
+
+.page-backend-distribution-waiting .client-step {
+    margin-top :15px;
+}
+.page-backend-distribution-waiting .status-box {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    background:#fff;
+    margin-bottom:15px;
+    border:1px solid #E1E1E1;
+}
+.page-backend-distribution-waiting .status-box .number {
+    width:55px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:28px;
+    height:100%;
+    border:none;
+    background:#D5D2CD;
+    color:#fff;
+
+}
+.page-backend-distribution-waiting .status-box .content {
+    position:relative;
+    margin-left:70px;
+    margin-right:300px;
+    padding:10px 0;
+}
+
+.page-backend-distribution-waiting .status-box .operation {
+    width:280px;
+    position: absolute;
+    right:0px;
+    top:50%;
+    height:100%;
+    margin-top:-17px;
+    text-align:right;
+}
+.page-backend-distribution-waiting .status-box .operation p {
+    display:inline-block;
+
+}
+.page-backend-distribution-waiting .status-box .content h2 {
+    font-size:20px;
+}
+.page-backend-distribution-waiting .type-box {
+    padding: 5px;
+}
+.page-backend-distribution-waiting .type-box li {
+    padding:5px 0;
+    width: 100%;
+    overflow: hidden;
+    background: #F4F3F2;
+    margin:3px 0;
+    position: relative;
+}
+.page-backend-distribution-waiting .type-box li b{
+    position: absolute;
+    right:3px;
+    top:3px;
+    cursor: pointer;
+}
+.page-backend-distribution-waiting .type-box li .left-title {
+    float: left;
+    display: inline;
+    width:120px;
+    text-align: right;
+    line-height: 20px;
+}
+.page-backend-distribution-waiting .type-box li .left-con {
+    float: left;
+    display: inline;
+    width:490px;
+    padding-left:10px;
+    text-align: left;
+    line-height: 20px;
+}
+.merchantName {
+    font-size: 14px;
+}
+.list-left {
+    width:78px;
+}
+.list-right {
+    float: left;
+    display: inline;
+    width: 356px;
+}
+/*设备配送*/
+.step8-diatri .ui-dialog-content {
+    padding:20px 0 20px 20px;
+}
+.step8-diatri .f-body {
+    padding-right:20px;
+}
+.step8-model {
+    position: relative;
+    margin-top:15px;
+}
+.step8-model .card-type input {
+    width: 100px;
+}
+.step8-model input.card-number {
+    width: 75px;
+    vertical-align: -1px;
+    margin-right: 5px;
+}
+.step8-model .card-unit input {
+    width: 40px;
+}
+.step8-model .ui-select-header {
+    margin-right: 5px;
+}
+.step8-model .card-add {
+    border: 2px solid #2cc78f;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: 12px;
+    font-size: 18px;
+    color: #2cc78f;
+}
+.step8-model .card-remove {
+    border: 2px solid #2cc78f;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    line-height: 12px;
+    font-size: 18px;
+    color: #2cc78f;
+}
+.step8-model .card-number-unit {
+    width: 70px;
+    vertical-align: -1px;
+    margin-right: 5px;
+}
+
+/*未开始*/
+.page-backend-distribution-waiting .status-ready {
+    border:1px solid #E1E1E1;
+}
+.page-backend-distribution-waiting .status-ready .number {
+    background:#E1E1E1;
+}
+.page-backend-distribution-waiting .status-ready .status-style {
+    background:#fff;
+    border:1px solid #E1E1E1;
+    width: 100%;
+    overflow: hidden;
+    padding: 5px 0;
+}
+/*已经开始*/
+.page-backend-distribution-waiting .status-bging {
+    border:1px solid #0099CC;
+    background: #f4fdff;
+}
+.page-backend-distribution-waiting .status-bging .number {
+    background: #0099CC;
+}
+.page-backend-distribution-waiting .status-bging .content h2 {
+    color:#0099CC;
+}
+.page-backend-distribution-waiting .status-bging .status-style {
+    background:#fff;
+    border:1px solid #0099CC;
+    width: 100%;
+    overflow: hidden;
+    padding: 5px 0;
+}
+/*已经结束*/
+.page-backend-distribution-waiting .status-end {
+    border:1px solid #2CC78F;
+    background: #eafff1;
+}
+.page-backend-distribution-waiting .status-end .number {
+    background: #2CC78F;
+}
+.page-backend-distribution-waiting .status-end .content h2 {
+    color:#2CC78F;
+}
+.page-backend-distribution-waiting .status-end .status-style {
+    background:#fff;
+    border:1px solid #2CC78F;
+    width: 100%;
+    overflow: hidden;
+    padding: 5px 0;
+}
+/*已超时*/
+.page-backend-distribution-waiting .status-past {
+    border:1px solid #FF7800;
+    background: #ffeeea;
+}
+.page-backend-distribution-waiting .status-past .number {
+    background: #FF7800;
+}
+.page-backend-distribution-waiting .status-past .content h2 {
+    color:#FF7800;
+}
+.page-backend-distribution-waiting .status-past .status-style {
+    background:#fff;
+    border:1px solid #FF7800;
+    width: 100%;
+    overflow: hidden;
+    padding: 5px 0;
+}
+
+.page-backend-distribution-waiting .fn-left-time {
+    float:left;
+    display:inline;
+    width:140px;
+    height:15px;
+    text-indent: 5px;
+}
+.page-backend-distribution-waiting .fn-left-text {
+    float:left;
+    display:inline;
+    width:470px;
+    padding:0 5px;
+}
+

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/crmapi/!svn/ver/21106/code/weixin/src/main/webapp/jsp/oauth
+END
+obatinOauthCode.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/crmapi/!svn/ver/21106/code/weixin/src/main/webapp/jsp/oauth/obatinOauthCode.jsp
+END
+oauthCodeRedirect.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/crmapi/!svn/ver/21106/code/weixin/src/main/webapp/jsp/oauth/oauthCodeRedirect.jsp
+END

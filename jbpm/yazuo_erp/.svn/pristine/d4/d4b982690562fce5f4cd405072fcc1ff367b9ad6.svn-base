@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.trade.dao.TradeAwardRuleDao">
+	<resultMap id="TradeAwardRule" type="com.yazuo.erp.trade.vo.TradeAwardRuleVO">
+    	<id property="id" column="id"/>
+    	<result property="lowerLimit" column="lower_limit"/>
+    	<result property="upperLimit" column="upper_limit"/>
+    	<result property="awardAmount" column="award_amount"/>
+    	<result property="transCode" column="trans_code"/>
+    	<result property="cardtypeId" column="cardtype_id"/>
+    	<result property="awardType" column="award_type"/>
+    	<result property="awardAmountType" column="award_amount_type"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="tradeawardruleColumns">
+	    <![CDATA[
+		id,lower_limit,upper_limit,award_amount,trans_code,cardtype_id,award_type,award_amount_type
+	    ]]>
+	</sql>
+
+	<insert id="saveTradeAwardRule" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： trans_code,award_type,award_amount_type,--> 
+        INSERT INTO trade.trade_award_rule (
+        	 <if test="lowerLimit!=null and lowerLimit!=''">lower_limit,</if>
+        	 <if test="upperLimit!=null and upperLimit!=''">upper_limit,</if>
+        	 <if test="awardAmount!=null and awardAmount!=''">award_amount,</if>
+        	 <if test="transCode!=null and transCode!=''">trans_code,</if>
+        	 <if test="cardtypeId!=null ">cardtype_id,</if>
+        	 <if test="awardType!=null and awardType!=''">award_type,</if>
+        	 <if test="awardAmountType!=null and awardAmountType!=''">award_amount_type</if>
+        ) VALUES (
+       	    <if test="lowerLimit!=null and lowerLimit!=''">#{lowerLimit},</if>
+       	    <if test="upperLimit!=null and upperLimit!=''">#{upperLimit},</if>
+       	    <if test="awardAmount!=null and awardAmount!=''">#{awardAmount},</if>
+       	    <if test="transCode!=null and transCode!=''">#{transCode},</if>
+       	    <if test="cardtypeId!=null ">#{cardtypeId},</if>
+       	    <if test="awardType!=null and awardType!=''">#{awardType},</if>
+       	    <if test="awardAmountType!=null and awardAmountType!=''">#{awardAmountType}</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertTradeAwardRules">
+	 <!--不允许为空的字段： trans_code,award_type,award_amount_type,--> 
+        INSERT INTO trade.trade_award_rule ( lower_limit,upper_limit,award_amount,trans_code,cardtype_id,award_type,award_amount_type)
+        VALUES <foreach collection="list" item="t" separator=",">
+           (#{t.lowerLimit},#{t.upperLimit},#{t.awardAmount},#{t.transCode},#{t.cardtypeId},#{t.awardType},#{t.awardAmountType})
+        </foreach>
+	</insert>
+
+    <update id="batchUpdateTradeAwardRules">
+       <foreach collection="awardRuleVOs" item="t" separator=";">
+           UPDATE trade.trade_award_rule
+           SET lower_limit=#{t.lowerLimit},
+            upper_limit=#{t.upperLimit},
+            award_amount=#{t.awardAmount},
+            trans_code=#{t.transCode},
+            cardtype_id=#{t.cardtypeId},
+            award_type=#{t.awardType},
+            award_amount_type=#{t.awardAmountType}
+           WHERE id=#{t.id}
+       </foreach>
+    </update>
+
+    <select id="getAwardRulesByCardtypeIds" resultMap="TradeAwardRule">
+        SELECT <include refid="tradeawardruleColumns"/>
+        FROM trade.trade_award_rule
+        WHERE cardtype_id in <foreach collection="cardtypeIds" item="id" open="(" close=")" separator=",">#{id}</foreach>
+    </select>
+
+	<update id="updateTradeAwardRule">
+        UPDATE trade.trade_award_rule 
+ 		  <set>
+	        <if test="lowerLimit!=null and lowerLimit!=''">lower_limit = #{lowerLimit} ,</if>
+	        <if test="upperLimit!=null and upperLimit!=''">upper_limit = #{upperLimit} ,</if>
+	        <if test="awardAmount!=null and awardAmount!=''">award_amount = #{awardAmount} ,</if>
+	        <if test="transCode!=null and transCode!=''">trans_code = #{transCode} ,</if>
+	        <if test="cardtypeId!=null ">cardtype_id = #{cardtypeId} ,</if>
+	        <if test="awardType!=null and awardType!=''">award_type = #{awardType} ,</if>
+	        <if test="awardAmountType!=null and awardAmountType!=''">award_amount_type = #{awardAmountType} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateTradeAwardRulesToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE trade.trade_award_rule 
+ 		  <set>
+	        <if test="lowerLimit!=null and lowerLimit!=''">lower_limit = #{t.lowerLimit} ,</if>
+	        <if test="upperLimit!=null and upperLimit!=''">upper_limit = #{t.upperLimit} ,</if>
+	        <if test="awardAmount!=null and awardAmount!=''">award_amount = #{t.awardAmount} ,</if>
+	        <if test="transCode!=null and transCode!=''">trans_code = #{t.transCode} ,</if>
+	        <if test="cardtypeId!=null ">cardtype_id = #{t.cardtypeId} ,</if>
+	        <if test="awardType!=null and awardType!=''">award_type = #{t.awardType} ,</if>
+	        <if test="awardAmountType!=null and awardAmountType!=''">award_amount_type = #{t.awardAmountType} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateTradeAwardRulesToSameVals" parameterType="map">
+        UPDATE trade.trade_award_rule 
+ 		  <set>
+	        <if test="lowerLimit!=null and lowerLimit!=''">lower_limit = #{lowerLimit} ,</if>
+	        <if test="upperLimit!=null and upperLimit!=''">upper_limit = #{upperLimit} ,</if>
+	        <if test="awardAmount!=null and awardAmount!=''">award_amount = #{awardAmount} ,</if>
+	        <if test="transCode!=null and transCode!=''">trans_code = #{transCode} ,</if>
+	        <if test="cardtypeId!=null ">cardtype_id = #{cardtypeId} ,</if>
+	        <if test="awardType!=null and awardType!=''">award_type = #{awardType} ,</if>
+	        <if test="awardAmountType!=null and awardAmountType!=''">award_amount_type = #{awardAmountType} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteTradeAwardRuleById">
+    <![CDATA[
+        DELETE FROM trade.trade_award_rule WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteTradeAwardRuleByIds" parameterType="list">
+        DELETE FROM trade.trade_award_rule WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+
+    <delete id="deleteAwardRuleByCardtypeIds" parameterType="list">
+        DELETE FROM trade.trade_award_rule WHERE cardtype_id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+    </delete>
+    
+    <select id="getTradeAwardRuleById" resultMap="TradeAwardRule">
+		SELECT <include refid="tradeawardruleColumns" />
+		    FROM trade.trade_award_rule 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getTradeAwardRules" resultMap="TradeAwardRule">
+		SELECT <include refid="tradeawardruleColumns" />
+		    FROM trade.trade_award_rule  
+	    <include refid="tradeawardrule_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getTradeAwardRulesMap" resultType="map">
+		SELECT <include refid="tradeawardruleColumns" />
+	    <![CDATA[
+		    FROM trade.trade_award_rule  
+	    ]]>
+	    <include refid="tradeawardrule_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="tradeawardrule_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="lowerLimit!=null and lowerLimit!=''">AND lower_limit = #{lowerLimit}</if>
+	       <if test="upperLimit!=null and upperLimit!=''">AND upper_limit = #{upperLimit}</if>
+	       <if test="awardAmount!=null and awardAmount!=''">AND award_amount = #{awardAmount}</if>
+	       <if test="transCode!=null and transCode!=''">AND trans_code = #{transCode}</if>
+	       <if test="cardtypeId!=null ">AND cardtype_id = #{cardtypeId}</if>
+	       <if test="awardType!=null and awardType!=''">AND award_type = #{awardType}</if>
+	       <if test="awardAmountType!=null and awardAmountType!=''">AND award_amount_type = #{awardAmountType}</if>
+		</where>
+	</sql>
+
+</mapper>

@@ -1,0 +1,85 @@
+.page-network-blacklist .page-bd {
+    font-size: 14px;
+    color: #666666;
+    padding: 20px;
+}
+
+.page-network-blacklist .go-back {
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    width: 77px;
+    padding-left: 13px;
+    text-align: center;
+    color: #444444;
+    font-size: 16px;
+    background: url("../../../asset/image/bt-location.png") 0 0 no-repeat;
+}
+
+.page-network-blacklist a:hover.go-back {
+    background: url("../../../asset/image/bt-location.png") 0 -42px no-repeat;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.page-network-blacklist .device-t{
+    padding-bottom: 10px;
+    margin: 20px 0;
+    border-bottom: solid #e0e1e1 1px;
+    position: relative;
+}
+.page-network-blacklist .device-t p{
+    color: #888888;
+    font-size: 12px;
+}
+.page-network-blacklist .device-t p.main-t{
+    color: #333333;
+    font-size: 16px;
+}
+.page-network-blacklist .page-h2{
+    height: 45px;
+    color: #888888;
+    line-height: 45px;
+}
+.page-network-blacklist .page-h2 ins{
+    color: #444444;
+    padding:0 5px;
+}
+.page-network-blacklist .add-btn {
+    float: right;
+    margin-top: 6px;
+    line-height: 30px;
+    color: #FFFFFF;
+    margin-left: 5px;
+}
+.page-network-blacklist .format-a a{
+    padding: 0 8px;
+}
+.page-network-blacklist .main-t-right{
+    position: absolute;
+    right: 0;
+    top: 6px;
+}
+.page-network-blacklist .page-filter{
+}
+.page-network-blacklist .page-filter label {
+    line-height: 30px;
+}
+.page-network-blacklist .page-filter label,
+.page-network-blacklist .page-filter span,
+.page-network-blacklist .page-filter input {
+    vertical-align: middle;
+}
+.page-network-blacklist .page-filter .sb-border{
+    border:solid #27a742 2px;
+}
+.page-network-black-add-dialog .input-text{
+    width: 97%;
+}
+.page-network-black-add-dialog .input-text.time{
+    width: 50px;
+    margin: 0 10px;
+}
+.page-network-black-add-dialog .ff-value-box{
+    font-size: 14px;
+    color: #666666;
+}

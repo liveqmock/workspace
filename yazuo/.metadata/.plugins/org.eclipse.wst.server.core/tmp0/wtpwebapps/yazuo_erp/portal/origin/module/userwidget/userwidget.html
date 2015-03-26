@@ -1,0 +1,47 @@
+<div class="fn-clear">
+    <div class="thumb-wrapper fn-left">
+        <img class="user-avatar" ms-src="{{userAvatar}}" ms-alt="{{userName}}" />
+    </div>
+    <div class="user-info fn-left">
+        <h3 class="user-name">{{userName}}，您好</h3>
+        <div class="user-action">
+            <button type="button" class="modify-pwd-btn" ms-click="clickModifyInfo">个人信息</button>&nbsp;
+            <button type="button"  ms-click="logOut" class="logout-btn">退&nbsp;出</button>
+        </div>
+    </div>
+</div>
+<div class="modify-user-pwd-dialog ui-hidden"
+     ms-widget="dialog,$,$dialogOpts">
+    <form action="javascript:;"
+          ms-widget="form,$,$formOpts">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>旧密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password" name="oldPassword" class="input-text old-pwd" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>新密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password" class="input-text new-pwd" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>确认密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password"  name="newPassword" class="input-text confirm-pwd" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

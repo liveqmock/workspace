@@ -1,0 +1,50 @@
+.page-network-device .page-bd {
+    font-size: 14px;
+    color: #666666;
+    padding: 20px;
+}
+
+.page-network-device .go-back {
+    height: 30px;
+    line-height: 30px;
+    display: block;
+    width: 77px;
+    padding-left: 13px;
+    text-align: center;
+    color: #444444;
+    font-size: 16px;
+    background: url("../../../asset/image/bt-location.png") 0 0 no-repeat;
+}
+
+.page-network-device a:hover.go-back {
+    background: url("../../../asset/image/bt-location.png") 0 -42px no-repeat;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.page-network-device .device-t{
+    padding-bottom: 10px;
+    margin: 20px 0;
+    border-bottom: solid #e0e1e1 1px;
+}
+.page-network-device .device-t p{
+    color: #888888;
+    font-size: 12px;
+}
+.page-network-device .device-t p.main-t{
+    color: #333333;
+    font-size: 16px;
+}
+.page-network-device .page-h2{
+    padding-bottom: 10px;
+    color: #888888;
+}
+.page-network-device .page-h2 ins{
+    color: #444444;
+    padding:0 5px;
+}
+.page-network-device .device-grid .ui-grid-bbar{
+    display: none;
+}
+.page-network-edit-device-dialog .input-text{
+    width: 97%;
+}

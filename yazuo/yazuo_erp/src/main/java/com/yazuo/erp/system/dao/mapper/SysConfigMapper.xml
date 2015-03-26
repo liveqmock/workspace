@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysConfigDao">
+	<resultMap id="SysConfig" type="com.yazuo.erp.system.vo.SysConfigVO">
+    	<id property="id" column="id"/>
+    	<result property="configName" column="config_name"/>
+    	<result property="configKey" column="config_key"/>
+    	<result property="configValue" column="config_value"/>
+    	<result property="description" column="description"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysconfigColumns">
+	    <![CDATA[
+		id,config_name,config_key,config_value,description,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysConfig" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： config_name,config_key,config_value,update_by,update_time,--> 
+        INSERT INTO system.sys_config (
+        	 <if test="configName!=null and configName!=''">config_name,</if>
+        	 <if test="configKey!=null and configKey!=''">config_key,</if>
+        	 <if test="configValue!=null and configValue!=''">config_value,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="configName!=null and configName!=''">#{configName},</if>
+       	    <if test="configKey!=null and configKey!=''">#{configKey},</if>
+       	    <if test="configValue!=null and configValue!=''">#{configValue},</if>
+       	    <if test="description!=null and description!=''">#{description},</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysConfigs" parameterType="map">
+	 <!--不允许为空的字段： config_name,config_key,config_value,update_by,update_time,--> 
+        INSERT INTO sys.sys_config (
+        	 <if test="configName!=null and configName!=''">config_name,</if>
+        	 <if test="configKey!=null and configKey!=''">config_key,</if>
+        	 <if test="configValue!=null and configValue!=''">config_value,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="configName!=null and configName!=''">#{t.configName},</if>
+          <if test="configKey!=null and configKey!=''">#{t.configKey},</if>
+          <if test="configValue!=null and configValue!=''">#{t.configValue},</if>
+          <if test="description!=null and description!=''">#{t.description},</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysConfig">
+        UPDATE sys.sys_config 
+ 		  <set>
+	        <if test="configName!=null and configName!=''">config_name = #{configName} ,</if>
+	        <if test="configKey!=null and configKey!=''">config_key = #{configKey} ,</if>
+	        <if test="configValue!=null and configValue!=''">config_value = #{configValue} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysConfigsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_config 
+ 		  <set>
+	        <if test="configName!=null and configName!=''">config_name = #{t.configName} ,</if>
+	        <if test="configKey!=null and configKey!=''">config_key = #{t.configKey} ,</if>
+	        <if test="configValue!=null and configValue!=''">config_value = #{t.configValue} ,</if>
+	        <if test="description!=null and description!=''">description = #{t.description} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysConfigsToSameVals" parameterType="map">
+        UPDATE sys.sys_config 
+ 		  <set>
+	        <if test="configName!=null and configName!=''">config_name = #{configName} ,</if>
+	        <if test="configKey!=null and configKey!=''">config_key = #{configKey} ,</if>
+	        <if test="configValue!=null and configValue!=''">config_value = #{configValue} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysConfigById">
+    <![CDATA[
+        DELETE FROM sys.sys_config WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysConfigByIds" parameterType="list">
+        DELETE FROM sys.sys_config WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysConfigById" resultMap="SysConfig">
+		SELECT <include refid="sysconfigColumns" />
+		    FROM sys.sys_config 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysConfigs" resultMap="SysConfig">
+		SELECT <include refid="sysconfigColumns" />
+		    FROM sys.sys_config  
+	    <include refid="sysconfig_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysConfigsMap" resultType="map">
+		SELECT <include refid="sysconfigColumns" />
+	    <![CDATA[
+		    FROM sys.sys_config  
+	    ]]>
+	    <include refid="sysconfig_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysconfig_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="configName!=null and configName!=''">AND config_name = #{configName}</if>
+	       <if test="configKey!=null and configKey!=''">AND config_key = #{configKey}</if>
+	       <if test="configValue!=null and configValue!=''">AND config_value = #{configValue}</if>
+	       <if test="description!=null and description!=''">AND description = #{description}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysConfigCount" resultType="long">
+        SELECT count(*) FROM sys.sys_config 
+		<include refid="sysconfig_findPage_where"/>    
+    </select>
+    
+</mapper>

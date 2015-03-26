@@ -1,0 +1,157 @@
+<div class="page-plan-add-edit">
+    <div class="page-tbar">
+        <div class="page-action fn-clear">
+            <div class="action-l fn-left">
+                <button type="button" class="set-complete-btn main-btn" ms-click="setComplete">完成</button>&nbsp;&nbsp;<button type="button" class="set-complete-btn main-btn" ms-click="setUnComplete" ms-visible="unCompleteState == 'view'">未完成</button><span ms-widget="select,$,$unCompleteOpts" class="un-complete-selector" ms-visible="unCompleteState == 'edit'"></span>
+            </div>
+            <div class="action-r fn-right">
+                <div class="remind-trigger-wrapper fn-clear">
+                    <div class="remind-trigger-time-wrapper fn-left"
+                         ms-if="isRemindOpen">
+                        提醒时间：{{remindTime}}
+                    </div>
+                    <div class="remind-trigger fn-left"
+                         ms-class-1="state-remind-open: isRemindOpen"
+                         ms-click="clickRemindSetting"><span class="icon-remind"></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="remind-text" ms-if="isRemindOpen">关闭提醒</span><span class="remind-text" ms-if="!isRemindOpen">打开提醒</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-bd page-bd-form">
+        <form action="javascript:;" method="post" ms-widget="form,$,$formOpts">
+            <h3 class="page-section-title">{{currentDate | date("yyyy-MM-dd HH:mm")}}</h3>
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>开始时间：</label>
+                    <div class="ff-value">
+                        <div class="start-time ff-value-box">
+                            <span ms-widget="select,$,$startHourOpts" class="start-hour"></span>&nbsp;:&nbsp;<span ms-widget="select,$,$startMinuteOpts" class="start-minute"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>项目：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span ms-widget="autocomplete,$,$projectOpts" class="project"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>事项类型：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span ms-widget="select,$,$planItemTypeOpts" class="plan-item-type"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear" ms-visible="showContact">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>商户联系人：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span ms-widget="select,$,$contactOpts" class="contact"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>沟通方式：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span ms-widget="select,$,$communicationFormTypeOpts" class="communication-form-type"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>标题：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box ff-value-text">
+                            <input type="text" class="title input-text" ms-duplex="title" ms-readonly="titleReadonly || atDailyPaper" />&nbsp;64个汉字以内
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>说明：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <textarea class="desc" ms-value="desc"></textarea>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left">上传附件：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <div class="attach-uploader"
+                                 ms-widget="uploader,$,$attachUploaderOpts">
+                                <button type="button" class="upload-btn simple-btn"  ms-if="!uploading">上传新的附件</button><button type="button" class="simple-btn-disabled" ms-if="uploading">正在上传&#8230;</button>
+                            </div>
+                            <div class="upload-info fn-hide ff-value-text" ms-skip="true">
+                                <ul class="upload-list fn-clear" ms-each="uploadList">
+                                    <li class="upload-item fn-left" ms-if="el.uploaded"><a ms-href="el.downloadUrl" ms-if="el.downloadUrl">{{el.name}}</a><span ms-if="!el.downloadUrl">{{el.name}}</span>&nbsp;&nbsp;<span class="remove-h" ms-click="removeItem">&#10005;</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="f-action">
+                <button type="button" class="f-submit main-btn" ms-click="submit">保存</button>
+            </div>
+        </form>
+    </div>
+    <!-- 提醒设置 start -->
+    <div class="page-work-plan-remind-dialog ui-hidden" ms-widget="dialog,$,$remindDialogOpts">
+        <form class="remind-form">
+            <div class="f-body">
+                <!--<h3 class="sub-title">工作提醒将以短信形式发送到您的手机上</h3>-->
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>提醒时间：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="remind-date input-text" readonly="readonly" ms-value="remindDate" ms-click="openRemindCalendar" />&nbsp;&nbsp;<span ms-widget="select,$,$remindTimeOpts" class="remind-time"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 提醒设置 end -->
+    <!-- 原因设置 start -->
+    <div class="page-work-plan-reason-dialog ui-hidden" ms-widget="dialog,$,$reasonDialogOpts">
+        <form class="remind-form" ms-widget="form,$,$reasonFormOpts">
+            <div class="f-body">
+                <div class="delay-field f-field fn-clear" ms-if="state == 'delay'">
+                    <label class="ff-label fn-left">预期时间：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="expect-date input-text" readonly="readonly" ms-value="expectDate" ms-click="openExpectCalendar" />&nbsp;&nbsp;<span ms-widget="select,$,$expectTimeOpts" class="expect-time"></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="reason-label ff-label"><span class="icon-star">*</span>{{reasonLabel}}：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <textarea class="reason"></textarea>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 原因设置 end -->
+    <!-- 添加联系人 start -->
+    <div ms-module="address,$,$addNewContactOpts"></div>
+    <!-- 添加联系人 end -->
+</div>

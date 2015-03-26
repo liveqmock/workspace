@@ -1,0 +1,311 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/webapp/jsp
+END
+backDoor.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/crmapi/!svn/ver/19552/code/weixin/src/main/webapp/jsp/backDoor.jsp
+END
+wx-xldDeliverQuery.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/crmapi/!svn/ver/17552/code/weixin/src/main/webapp/jsp/wx-xldDeliverQuery.jsp
+END
+wx-xldPaySuccess.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/crmapi/!svn/ver/17450/code/weixin/src/main/webapp/jsp/wx-xldPaySuccess.jsp
+END
+businessList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/crmapi/!svn/ver/25162/code/weixin/src/main/webapp/jsp/businessList.jsp
+END
+wx-xldLogAnalysis.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/crmapi/!svn/ver/18043/code/weixin/src/main/webapp/jsp/wx-xldLogAnalysis.jsp
+END
+wx-huoguoList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/crmapi/!svn/ver/17694/code/weixin/src/main/webapp/jsp/wx-huoguoList.jsp
+END
+subbranchManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/crmapi/!svn/ver/7404/code/weixin/src/main/webapp/jsp/subbranchManager.jsp
+END
+businessModify.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/crmapi/!svn/ver/20517/code/weixin/src/main/webapp/jsp/businessModify.jsp
+END
+w-registerInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/crmapi/!svn/ver/23534/code/weixin/src/main/webapp/jsp/w-registerInfo.jsp
+END
+businessAdd.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/crmapi/!svn/ver/17464/code/weixin/src/main/webapp/jsp/businessAdd.jsp
+END
+w_dishes.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/crmapi/!svn/ver/22273/code/weixin/src/main/webapp/jsp/w_dishes.jsp
+END
+w_story.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/crmapi/!svn/ver/22273/code/weixin/src/main/webapp/jsp/w_story.jsp
+END
+w_summaryDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/crmapi/!svn/ver/22107/code/weixin/src/main/webapp/jsp/w_summaryDetail.jsp
+END
+addBrandKey.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/crmapi/!svn/ver/21024/code/weixin/src/main/webapp/jsp/addBrandKey.jsp
+END
+w_register.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/crmapi/!svn/ver/22273/code/weixin/src/main/webapp/jsp/w_register.jsp
+END
+imageManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/crmapi/!svn/ver/25241/code/weixin/src/main/webapp/jsp/imageManager.jsp
+END
+backDoorLogin.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/crmapi/!svn/ver/18152/code/weixin/src/main/webapp/jsp/backDoorLogin.jsp
+END
+autoreplyManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/crmapi/!svn/ver/25395/code/weixin/src/main/webapp/jsp/autoreplyManager.jsp
+END
+buttonManage.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/crmapi/!svn/ver/16678/code/weixin/src/main/webapp/jsp/buttonManage.jsp
+END
+addStoryManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/crmapi/!svn/ver/25147/code/weixin/src/main/webapp/jsp/addStoryManager.jsp
+END
+w_membershipCard_new.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/crmapi/!svn/ver/24368/code/weixin/src/main/webapp/jsp/w_membershipCard_new.jsp
+END
+wx-coffeeRecharge.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/crmapi/!svn/ver/25094/code/weixin/src/main/webapp/jsp/wx-coffeeRecharge.jsp
+END
+wx-Error.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/crmapi/!svn/ver/18706/code/weixin/src/main/webapp/jsp/wx-Error.jsp
+END
+backDoorLoginRedrect.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/crmapi/!svn/ver/18146/code/weixin/src/main/webapp/jsp/backDoorLoginRedrect.jsp
+END
+w_preferenceDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/crmapi/!svn/ver/22273/code/weixin/src/main/webapp/jsp/w_preferenceDetail.jsp
+END
+activityManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/crmapi/!svn/ver/10907/code/weixin/src/main/webapp/jsp/activityManager.jsp
+END
+wx-xldNoQuanOrderQuery.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/crmapi/!svn/ver/17748/code/weixin/src/main/webapp/jsp/wx-xldNoQuanOrderQuery.jsp
+END
+error.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/crmapi/!svn/ver/7169/code/weixin/src/main/webapp/jsp/error.jsp
+END
+addAccesstokenTime.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/crmapi/!svn/ver/25073/code/weixin/src/main/webapp/jsp/addAccesstokenTime.jsp
+END
+w_subbranch.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/crmapi/!svn/ver/22273/code/weixin/src/main/webapp/jsp/w_subbranch.jsp
+END
+w_getLocation.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/crmapi/!svn/ver/7256/code/weixin/src/main/webapp/jsp/w_getLocation.jsp
+END
+coupondescribeList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/crmapi/!svn/ver/16009/code/weixin/src/main/webapp/jsp/coupondescribeList.jsp
+END
+bossManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/crmapi/!svn/ver/7322/code/weixin/src/main/webapp/jsp/bossManager.jsp
+END
+cardBound.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/crmapi/!svn/ver/23534/code/weixin/src/main/webapp/jsp/cardBound.jsp
+END
+w_preference.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/crmapi/!svn/ver/22273/code/weixin/src/main/webapp/jsp/w_preference.jsp
+END
+wx-xldProductBuy.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/crmapi/!svn/ver/21109/code/weixin/src/main/webapp/jsp/wx-xldProductBuy.jsp
+END
+webSql.html
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/crmapi/!svn/ver/7529/code/weixin/src/main/webapp/jsp/webSql.html
+END
+w_membershipCardList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/crmapi/!svn/ver/24368/code/weixin/src/main/webapp/jsp/w_membershipCardList.jsp
+END
+wx-xldPayError.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/crmapi/!svn/ver/17450/code/weixin/src/main/webapp/jsp/wx-xldPayError.jsp
+END
+wx-xldProductDetail.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/crmapi/!svn/ver/18040/code/weixin/src/main/webapp/jsp/wx-xldProductDetail.jsp
+END
+addWeixinTemplate.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/crmapi/!svn/ver/25073/code/weixin/src/main/webapp/jsp/addWeixinTemplate.jsp
+END
+preferenceManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/crmapi/!svn/ver/25191/code/weixin/src/main/webapp/jsp/preferenceManager.jsp
+END
+dishesManager.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/crmapi/!svn/ver/7322/code/weixin/src/main/webapp/jsp/dishesManager.jsp
+END
+w_membershipCard.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/crmapi/!svn/ver/24368/code/weixin/src/main/webapp/jsp/w_membershipCard.jsp
+END
+w_new_story.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/crmapi/!svn/ver/24368/code/weixin/src/main/webapp/jsp/w_new_story.jsp
+END
+addBrandParam.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/crmapi/!svn/ver/25230/code/weixin/src/main/webapp/jsp/addBrandParam.jsp
+END
+cardBoundWithoutCode.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/crmapi/!svn/ver/23396/code/weixin/src/main/webapp/jsp/cardBoundWithoutCode.jsp
+END
+w-registerSuccess.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/crmapi/!svn/ver/21412/code/weixin/src/main/webapp/jsp/w-registerSuccess.jsp
+END
+baidumap.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/crmapi/!svn/ver/17481/code/weixin/src/main/webapp/jsp/baidumap.jsp
+END
+w-registerInfoWithoutCode.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/23396/code/weixin/src/main/webapp/jsp/w-registerInfoWithoutCode.jsp
+END
+addMerberRight.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/crmapi/!svn/ver/20517/code/weixin/src/main/webapp/jsp/addMerberRight.jsp
+END

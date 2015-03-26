@@ -1,0 +1,28 @@
+<h2 class="page-selection">{{courseName}}</h2>
+<div class="manage-nav-box">
+    <ul class="manage-nav-bar">
+        <li data-type="1" ms-class="current-nav-style:tabIndex==1" ms-click="switchTab">
+            <span class="manage-nav-text">全部学员</span>
+            <span class="manage-nav-num">{{sumSize}}</span>
+        </li>
+        <li data-type="2" ms-class="current-nav-style:tabIndex==2" ms-click="switchTab">
+            <span class="manage-nav-text">学习中</span>
+            <span class="manage-nav-num">{{learningSize}}</span>
+        </li>
+        <li data-type="3" ms-class="current-nav-style:tabIndex==3" ms-click="switchTab">
+            <span class="manage-nav-text">已超时</span>
+            <span class="manage-nav-num">{{timeOutSize}}</span>
+        </li>
+        <li data-type="4" ms-class="current-nav-style:tabIndex==4" ms-click="switchTab">
+            <span class="manage-nav-text">已通过</span>
+            <span class="manage-nav-num">{{graduationSize}}</span>
+        </li>
+    </ul>
+    <div class="senior-manage-search">
+        <input type="text" class="keyword input-text" ms-duplex="keyword" placeholder="姓名" />&nbsp;
+        <button type="button" class="query-btn main-btn" ms-click="query">搜 索</button>
+    </div>
+</div>
+<div class="page-bd senior-manage-bd">
+    <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>

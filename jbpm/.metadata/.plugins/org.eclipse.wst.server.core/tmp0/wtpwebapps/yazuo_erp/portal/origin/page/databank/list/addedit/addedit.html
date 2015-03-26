@@ -1,0 +1,83 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+
+    <div class="page-padding">
+        <h2 class="addedit-title">{{titleType}}</h2>
+        <div class="add-edit-content">
+                <div class="f-body">
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>标题：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box customer-title" >
+                                <input type="text" maxlength="100"
+                                       class="input-text"
+                                       ms-duplex='requestData.title'
+                                       data-rules="empty"
+                                       data-tips="标题内容不能为空！"
+                                       isrule=true
+                                        >
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star"></span>简介：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <textarea class="input-textarea" ms-duplex='requestData.description'></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>上传文件：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box fn-clear">
+                                <div class="upload-box" ms-if="fileName">{{fileName}}</div>
+                                <div class="tips" ms-widget="uploader,$,$dataUploaderOpts">
+                                    <button ms-if="!uploading" class="simple-btn">选择文件</button>
+                                    <button ms-if="uploading" class="simple-btn-disabled">正在上传&#8230;</button>
+                                </div>
+                                <div class="tips">仅支持 doc、docx、xls、xlsx、<br>ppt、pptx、pdf、rar、zip 格式</div>
+                            </div>
+                            <div class="ff-value-tip valid-error" ms-if="isData == 0">请上传文件！</div>
+                        </div>
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>适用人群：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <label class="used-list" ms-repeat="personType">
+                                    <span><input type="checkbox"
+                                                 ms-value="el.value"
+                                                 ms-click="personTypeSele"
+                                                 ms-checked="el.isSelect === '1'"> {{el.text}}</span>
+                                </label>
+                            </div>
+                            <div class="ff-value-tip valid-error" ms-if="isType == 0">请选择适用人群！</div>
+                        </div>
+
+                    </div>
+                    <div class="f-field fn-clear">
+                        <label class="ff-label fn-left"><span class="icon-star">*</span>资料类型：</label>
+                        <div class="ff-value">
+                            <div class="ff-value-box">
+                                <span class="schedule" ms-widget="select,$,$dataTypeOpts"></span>
+                            </div>
+                            <div class="ff-value-tip"></div>
+                        </div>
+
+                    </div>
+                    <div class="ff-value-box"><input type="button" ms-click="saveData" class="save-button main-btn" value="保存"></div>
+                </div>
+        </div>
+    </div>
+
+</div>
+

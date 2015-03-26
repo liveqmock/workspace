@@ -1,0 +1,16 @@
+log4j.rootLogger=info,console
+
+log4j.logger.org=warn
+
+#\u65e5\u5fd7\u8f93\u51fa\u683c\u5f0f
+log4j.ConversionPattern=%d %-5p[%t] -%m [%F %L] %n
+#\u65e5\u5fd7\u8f93\u51fa\u8def\u5f84
+log4j.LogPath=./weixinlog
+
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=${log4j.ConversionPattern}
+
+
+
+

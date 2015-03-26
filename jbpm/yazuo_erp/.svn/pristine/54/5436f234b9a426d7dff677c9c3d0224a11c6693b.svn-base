@@ -1,0 +1,10 @@
+.page-sysmanage-position .check-all-cell {
+    width: 40px;
+}
+.add-edit-position-dialog .position-name {
+    width: 300px;
+}
+.add-edit-position-dialog .ff-value {
+    margin-left: 80px;
+}
+

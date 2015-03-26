@@ -1,0 +1,62 @@
+<ul class="module-use-operation ui-hidden" ms-visible="showOper" ms-css-top="operTop" ms-css-left="operLeft" ms-mouseenter="showMe" ms-mouseleave="closeMe">
+    <!--<li ms-if="hasPromise"><a href="javascript:;" ms-click="showDialog" data-type="1">修改主管密码</a></li>-->
+    <li><a href="javascript:;" ms-click="showDialog" data-type="2">修改登录密码</a></li>
+    <li><a ms-href="logoutUrl">退出登录</a></li>
+</ul>
+<div class="module-useroperation-dialog ui-hidden"
+     ms-widget="dialog,$,$dialogOpts">
+    <form class="module-useroperation-form" ms-widget="form,$,$formOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field">
+                <label class="ff-label"><span class="retrieve-pas" ms-visible="pswType==1" ms-click="showGetDialog">找回密码</span>请输入原密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password" class="input-text old-pwd" placeholder="请输入6位数字密码"
+                               name="oldPassWord" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field">
+                <label class="ff-label">请输入新的密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password" class="input-text new-pwd" placeholder="请输入6位数字密码"
+                               name="newPassWord" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field">
+                <label class="ff-label">请再次输入密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password" class="input-text confirm-pwd" placeholder="请输入确认密码"
+                               name="confirm_pwd" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="module-useroperation-retrieve-dialog ui-hidden"
+     ms-widget="dialog,$,$dialogOneOpts">
+    <form class="module-useroperation-retrieve-form" ms-widget="form,$,$formOneOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field">
+                <label class="ff-label">请输入您的手机号：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text phone-num"
+                               name="mobileNumber" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

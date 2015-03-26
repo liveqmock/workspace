@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="junit.framework.Assert"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.fes.service.impl.FesOnlineProcessServiceImpl"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.system.service.SysToDoListService"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.system.service.SysUserMerchantService"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.system.vo.SysUserMerchantVO"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.mkt.service.MktBrandInterviewService"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.system.service.SysSalesmanMerchantService"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.mkt.service.MktFormerSalesMerchantService"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.system.service.ResourceService"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.system.vo.SysUserVO"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="com.yazuo.erp.syn.vo.SynMerchantVO"/>
+</qualifiedTypeNameHistroy>

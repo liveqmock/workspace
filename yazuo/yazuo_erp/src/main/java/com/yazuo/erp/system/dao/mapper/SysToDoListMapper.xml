@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysToDoListDao">
+	<resultMap id="ComplexSysToDoList" type="com.yazuo.erp.system.vo.SysToDoListVO">
+    	<id property="id" column="id"/>
+    	<result property="userId" column="user_id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="priorityLevelType" column="priority_level_type"/>
+    	<result property="itemType" column="item_type"/>
+    	<result property="itemContent" column="item_content"/>
+    	<result property="itemStatus" column="item_status"/>
+    	<result property="remark" column="remark"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="relatedType" column="related_type"/>
+    	<result property="relatedId" column="related_id"/>
+    	<result property="itemTypeText" column="item_type_text"/><!-- 页面列表对应的显示类型 -->
+    	<result property="merchantName" column="merchant_name"/><!-- 搜索和显示都要用到 -->
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="businessType" column="business_type"/>
+    	<result property="storeId" column="store_id"/>
+	</resultMap>
+	
+	<select id="getComplexSysToDoLists" resultMap="ComplexSysToDoList">
+		SELECT (select syn.syn_merchant.merchant_name from syn.syn_merchant 
+		   where  syn.syn_merchant.merchant_id = sys.sys_to_do_list.merchant_id) as merchant_name, 
+		(select sys.sys_dictionary.dictionary_value from sys.sys_dictionary where sys.sys_dictionary.dictionary_type = '00000038' 
+  		and sys.sys_dictionary.dictionary_key = sys.sys_to_do_list.item_type ) as item_type_text,
+			sys.sys_to_do_list.*   FROM sys.sys_to_do_list 
+		LEFT JOIN fes.fes_online_process ON related_type = '1' and fes.fes_online_process.id = related_id 
+		LEFT JOIN sys.sys_customer_complaint ON related_type = '3' and sys.sys_customer_complaint.id = related_id 
+		LEFT JOIN fes.fes_marketing_activity ON related_type = '4' and fes.fes_marketing_activity.id = related_id 
+	    <include refid="systodolist_findPage_where" />
+	    order by sys.sys_to_do_list.update_time desc
+	</select>
+	<sql id="systodolist_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="userId!=null ">AND user_id = #{userId}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="priorityLevelType!=null and priorityLevelType!=''">AND priority_level_type = #{priorityLevelType}</if>
+	       <if test="itemType!=null and itemType!=''">AND item_type = #{itemType}</if>
+	       <if test="itemContent!=null and itemContent!=''">AND item_content = #{itemContent}</if>
+	       <if test="relatedType!=null and relatedType!=''">AND related_type = #{relatedType}</if>
+	       <if test="relatedId!=null ">AND related_id = #{relatedId}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+	       <if test="businessType!=null and businessType!=''">AND business_type = #{businessType}</if>
+		    <if test="storeId!=null ">AND store_id = #{storeId}</if>
+		   <!-- 商户名称 -->
+	       <if test="merchantName!=null and merchantName!=''">
+			  and exists (select 1 from syn.syn_merchant where syn.syn_merchant.merchant_id = sys.sys_to_do_list.merchant_id
+			  and  syn.syn_merchant.merchant_name like  '%'||#{merchantName}||'%')</if>
+		   <!-- 待办事项类型可能为多个 -->
+		     <if test="inputItemTypes!=null">
+			  and sys.sys_to_do_list.item_type  in  
+		   	  <foreach collection="inputItemTypes" item="id" open="(" close=")" separator=",">#{id}</foreach>     
+		    </if>
+		    <!--业务场景可能为多个 -->
+		     <if test="businessTypes!=null">
+			  and sys.sys_to_do_list.business_type  in  
+		   	  <foreach collection="businessTypes" item="id" open="(" close=")" separator=",">#{id}</foreach>     
+		    </if>
+		    <!-- 如果为空,默认过滤0，未完成-->
+	        <if test="itemStatus!=null and itemStatus!=''">AND item_status = #{itemStatus}</if>
+		</where>
+	</sql>
+	
+	<resultMap id="SysToDoList" type="com.yazuo.erp.system.vo.SysToDoListVO">
+    	<id property="id" column="id"/>
+    	<result property="userId" column="user_id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="priorityLevelType" column="priority_level_type"/>
+    	<result property="itemType" column="item_type"/>
+    	<result property="itemContent" column="item_content"/>
+    	<result property="itemStatus" column="item_status"/>
+    	<result property="relatedType" column="related_type"/>
+    	<result property="relatedId" column="related_id"/>
+    	<result property="remark" column="remark"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="businessType" column="business_type"/>
+    	<result property="storeId" column="store_id"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="systodolistColumns">
+	    <![CDATA[
+		id,user_id,merchant_id,priority_level_type,item_type,item_content,item_status,related_type,related_id,remark,is_enable,insert_by,insert_time,update_by,update_time,business_type,store_id
+	    ]]>
+	</sql>
+
+	<insert id="saveSysToDoList" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： user_id,priority_level_type,item_type,item_content,item_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_to_do_list (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type,</if>
+        	 <if test="itemType!=null and itemType!=''">item_type,</if>
+        	 <if test="itemContent!=null and itemContent!=''">item_content,</if>
+        	 <if test="itemStatus!=null and itemStatus!=''">item_status,</if>
+        	 <if test="relatedType!=null and relatedType!=''">related_type,</if>
+        	 <if test="relatedId!=null ">related_id,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="storeId!=null ">store_id,</if>
+        	 <if test="businessType!=null and businessType!=''">business_type,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="userId!=null ">#{userId},</if>
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="priorityLevelType!=null and priorityLevelType!=''">#{priorityLevelType},</if>
+       	    <if test="itemType!=null and itemType!=''">#{itemType},</if>
+       	    <if test="itemContent!=null and itemContent!=''">#{itemContent},</if>
+       	    <if test="itemStatus!=null and itemStatus!=''">#{itemStatus},</if>
+       	    <if test="relatedType!=null and relatedType!=''">#{relatedType},</if>
+       	    <if test="relatedId!=null ">#{relatedId},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="storeId!=null ">#{storeId},</if>
+       	    <if test="businessType!=null and businessType!=''">#{businessType},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	
+	<insert id="batchInsertSysToDoLists" parameterType="map">
+	 <!--不允许为空的字段： user_id,priority_level_type,item_type,item_content,item_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_to_do_list (
+        	 user_id, merchant_id, priority_level_type, item_type, item_content,
+        	 item_status,related_type, related_id,is_enable, insert_by, insert_time, update_by,
+        	  <if test="businessType!=null and businessType!=''">business_type,</if>
+        	  update_time
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+        	#{t.userId},  #{t.merchantId}, #{t.priorityLevelType},#{t.itemType},#{t.itemContent},#{t.itemStatus},
+        	#{t.relatedType},#{t.relatedId},#{t.isEnable},#{t.insertBy},now(),#{t.updateBy},
+          <if test="businessType!=null and businessType!=''">#{t.businessType},</if>
+          now()
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysToDoList">
+        UPDATE sys.sys_to_do_list 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type = #{priorityLevelType} ,</if>
+	        <if test="itemType!=null and itemType!=''">item_type = #{itemType} ,</if>
+	        <if test="itemContent!=null and itemContent!=''">item_content = #{itemContent} ,</if>
+	        <if test="itemStatus!=null and itemStatus!=''">item_status = #{itemStatus} ,</if>
+	        <if test="relatedType!=null and relatedType!=''">related_type = #{relatedType} ,</if>
+	        <if test="relatedId!=null ">related_id = #{relatedId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	         <if test="storeId!=null ">store_id = #{storeId}, </if>
+	        <if test="businessType!=null and businessType!=''">business_type = #{businessType} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysToDoListsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_to_do_list 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{t.userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type = #{t.priorityLevelType} ,</if>
+	        <if test="itemType!=null and itemType!=''">item_type = #{t.itemType} ,</if>
+	        <if test="itemContent!=null and itemContent!=''">item_content = #{t.itemContent} ,</if>
+	        <if test="itemStatus!=null and itemStatus!=''">item_status = #{t.itemStatus} ,</if>
+	        <if test="relatedType!=null and relatedType!=''">related_type = #{t.relatedType} ,</if>
+	        <if test="relatedId!=null ">related_id = #{t.relatedId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="businessType!=null and businessType!=''">business_type = #{t.businessType} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysToDoListsToSameVals" parameterType="map">
+        UPDATE sys.sys_to_do_list 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="priorityLevelType!=null and priorityLevelType!=''">priority_level_type = #{priorityLevelType} ,</if>
+	        <if test="itemType!=null and itemType!=''">item_type = #{itemType} ,</if>
+	        <if test="itemContent!=null and itemContent!=''">item_content = #{itemContent} ,</if>
+	        <if test="itemStatus!=null and itemStatus!=''">item_status = #{itemStatus} ,</if>
+	        <if test="relatedType!=null and relatedType!=''">related_type = #{relatedType} ,</if>
+	        <if test="relatedId!=null ">related_id = #{relatedId} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="storeId!=null ">store_id = #{storeId}, </if>
+	        <if test="businessType!=null and businessType!=''">business_type = #{businessType} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysToDoListById">
+    <![CDATA[
+        DELETE FROM sys.sys_to_do_list WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysToDoListByIds" parameterType="list">
+        DELETE FROM sys.sys_to_do_list WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysToDoListById" resultMap="SysToDoList">
+		SELECT <include refid="systodolistColumns" />
+		    FROM sys.sys_to_do_list 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysToDoLists" resultMap="SysToDoList">
+		SELECT <include refid="systodolistColumns" />
+		    FROM sys.sys_to_do_list  
+	   	<include refid="systodolist_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysToDoListsMap" resultType="map">
+		SELECT <include refid="systodolistColumns" />
+	    <![CDATA[
+		    FROM sys.sys_to_do_list  
+	    ]]>
+	    <include refid="systodolist_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+    <select id="getSysToDoListCount" resultType="int">
+        SELECT count(*) FROM sys.sys_to_do_list 
+		<include refid="systodolist_findPage_where"/>    
+    </select>
+    
+    <select id="getSysToDoListsByOrder" resultMap="SysToDoList">
+    	SELECT <include refid="systodolistColumns" />
+		    FROM sys.sys_to_do_list  
+	   where merchant_id=#{merchantId} and item_type=#{itemType} and item_status=#{itemStatus}
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+    
+</mapper>

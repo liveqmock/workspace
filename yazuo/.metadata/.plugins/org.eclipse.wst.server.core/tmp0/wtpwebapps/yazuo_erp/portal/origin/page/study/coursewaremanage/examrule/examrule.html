@@ -1,0 +1,127 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs"><a ms-href="el.href"
+            class="nav-l" ms-if="el.href">{{el.text}}</a><span class="nav-text"
+            ms-if="!el.href">{{el.text}}</span><span class="separater"
+            ms-if="el.href">&nbsp;>&nbsp;</span></li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="page-section">
+        <h3 class="page-section-title">
+            考试规则<span class="summary">（<span class="star">*</span>号为必填项）</span>
+        </h3>
+        <form class="page-section-form" action="javascript:;"
+            ms-widget="form,$,$formOpts">
+            <div class="f-body">
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>考卷类型：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="mn-radio paper-type span-write" data-name="write"
+                                  data-value="0"
+                                  ms-click="switchPaperType"
+                                  ms-class="mn-radio-state-selected: paperType == 'write'">笔试题</span>
+                            <span class="mn-radio paper-type span-ppt" data-name="ppt"
+                                  data-value="1"
+                                  ms-click="switchPaperType"
+                                  ms-class="mn-radio-state-selected: paperType == 'ppt'">PPT讲解</span>
+                            <span class="mn-radio paper-type span-practice" data-name="practice"
+                                  data-value="2"
+                                  ms-click="switchPaperType"
+                                  ms-class="mn-radio-state-selected: paperType == 'practice'">产品实操</span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>老员工是否考试：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <span class="label-for"><input type="radio" class="for-old-staff"
+                                name="isTest" ms-duplex-text="isTest" value="0"/>&nbsp;<label>不考试</label></span>&nbsp;&nbsp;
+                            <span class="label-for"><input type="radio" class="for-old-staff"
+                                name="isTest" ms-duplex-text="isTest" value="1"/>&nbsp;<label>考试</label></span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>考试时限：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text time-limit "
+                                name="timeLimit" ms-value="timeLimit" />&nbsp;分钟
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear" ms-if="paperType == 'write' || paperType == 'practice'">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>考题数量：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text total" name="total"
+                                ms-value="total" />&nbsp;道
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>及格分数线：</label>
+                    <div class="ff-value">
+                        <div class="ff-value-box">
+                            <input type="text" class="input-text passing-score p-write"
+                                name="passingScore" ms-value="passingScore" />&nbsp;分<span class="score-tip" ms-if="paperType == 'write' || paperType == 'practice'">&nbsp;&nbsp;&nbsp;&nbsp;考试得分为考题答对率，例如：答对率为80%，则考试得分为80分</span>
+                        </div>
+                        <div class="ff-value-tip"></div>
+                    </div>
+                </div>
+                <div class="f-field fn-clear">
+                    <label class="ff-label fn-left"><span class="icon-star">*</span>设置考题：</label>
+                    <div class="ff-value">
+                        <div class="write-question-setting" ms-visible="paperType == 'write' || paperType == 'practice'">
+                            <div class="ff-value-box">
+                                <span class="exam-rule" ms-widget="select,$,$writeRangeOpts"></span>&nbsp;<button type="button" ms-click="openQuestionSelector" class="main-btn" ms-visible="examRange == 'part'">选择必考题</button>
+                            </div>
+                            <!-- page grid -->
+                            <div class="questions-grid-wrapper" ms-visible="examRange == 'part'">
+                                <div class="grid-head-wrapper">
+                                    <table cellpadding="0" cellspacing="0" class="ui-grid">
+                                        <thead>
+                                            <tr>
+                                                <th class="cell-title">标题</th>
+                                                <th class="cell-question-type">题型</th>
+                                                <th class="cell-action">操作</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="grid-body-wrapper">
+                                    <table cellpadding="0" cellspacing="0" class="ui-grid">
+                                        <tbody>
+                                            <tr ms-repeat="selectedWriteList">
+                                                <td class="cell-title">{{el.question}}</td>
+                                                <td class="cell-question-type">{{el.questionType}}</td>
+                                                <td class="cell-action"><a href="javascript:;" class="remove-l" ms-click="removeWriteItem">删除</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ppt-question-setting" ms-visible="paperType == 'ppt'">
+                            <div class="ff-value-box">
+                                <span class="ppt-name ff-value-text" ms-visible="examRange == 'part'">{{selectedPptName | html}}</span><span class="exam-rule" ms-widget="select,$,$pptRangeOpts"></span>&nbsp;<button type="button" ms-click="openPptSelector" class="main-btn" ms-visible="examRange == 'part'">选择PPT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-action">
+                    <button type="button" class="f-submit main-btn">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="question-selector" ms-module="qselector,$,$qselectorOpts"></div>
+<div class="ppt-selector" ms-module="pptselector,$,$pptselectorOpts"></div>

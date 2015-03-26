@@ -1,0 +1,72 @@
+.ui-dialog-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    opacity: 0.4;
+    filter: Alpha(opacity=40);
+    z-index: 1;
+}
+.ui-dialog {
+    position: absolute;
+    border:5px solid #c7d4e3;
+    background: #ffffff;
+}
+.ui-dialog-header {
+    height:40px;
+    line-height: 40px;
+    background: #76a9e0;
+    font-size: 18px;
+    color: #ffffff;
+}
+.ui-dialog-title {
+    padding-left: 12px;
+}
+.ui-dialog-header .ui-dialog-close {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    color :#ffffff;
+    line-height: 1em;
+}
+.ui-dialog-header .icon-close {
+    font-family: "arial";
+    font-style: normal;
+    cursor: pointer;
+}
+.ui-dialog-content {
+    padding: 16px 24px;
+}
+.ui-dialog-btns {
+    padding: 22px 0;
+    text-align: center;
+}
+.ui-dialog-btns {
+
+}
+.ui-dialog-btns .ui-dialog-btn {
+    height: 36px;
+    line-height: 36px;
+    padding:0 22px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    overflow:visible; /* ie6/7下 padding值会变大，不明原。参考http://blog.csdn.net/jyy_12/article/details/6636099 */
+}
+.ui-dialog-btns .submit-btn {
+    background: #66ccb5;
+    color: #ffffff;
+}
+.ui-dialog-btns .cancel-btn {
+    background: #dad7d7;
+    color: #646464;
+}
+.ui-dialog-btns .separation {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 24px;
+}

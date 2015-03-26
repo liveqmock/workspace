@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.system.dao.SysResourceDao">
+
+	<resultMap id="SysResource" type="com.yazuo.erp.system.vo.SysResourceVO">
+        <id property="id" column="id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="treeCode" column="tree_code"/>
+        <result property="parentTreeCode" column="parent_tree_code"/>
+        <result property="resourceType" column="resource_type"/>
+        <result property="resourceName" column="resource_name"/>
+        <result property="resourceUrl" column="resource_url"/>
+        <result property="sort" column="sort"/>
+        <result property="isVisible" column="is_visible"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用户登录成功时查询所有用户的拥有的资源， 返回一个大的list， 具体导航菜单由前端来处理 -->
+	 <select id="getAllUserResourceByPrivilege" resultMap="SysResource" parameterType="map">
+		SELECT sys.sys_resource.*
+		  FROM sys.sys_resource
+		 <where>	      		
+            is_visible = '1' 	
+			<if test="remark!=null and remark!=''"> and sys.sys_resource.remark = #{remark}</if>
+	    </where>
+		   and exists
+		 (select 1
+		          from (select sys.sys_role_resource.resource_id
+		                  from sys.sys_user_role, sys.sys_role_resource
+		                 where sys.sys_user_role.role_id =
+		                       sys.sys_role_resource.role_id
+		                   and sys.sys_user_role.user_id = ${userId}) as temp_role_resource
+		         where temp_role_resource.resource_id = sys.sys_resource.id)
+		 order by sys.sys_resource.sort  
+	</select>
+	
+	<!-- 逻辑同上，前端服务模块调用， 通过资源 remark 查询 所有拥有该资源的用户 -->
+	 <select id="getAllUsersByResourceCode" resultMap="com.yazuo.erp.system.dao.SysUserDao.SysUser">
+		SELECT '' as password, sys.sys_user.*
+		  FROM sys.sys_user 
+		 WHERE is_enable = '1'
+		   and exists
+		 (select 1
+		          from (select sys.sys_user_role.user_id
+		                  from sys.sys_user_role, sys.sys_role_resource
+		                 where sys.sys_user_role.role_id =
+		                       sys.sys_role_resource.role_id and 
+								exists (select 1 from sys.sys_resource
+                                 where  sys.sys_role_resource.resource_id =  sys.sys_resource.id 
+                                 and sys.sys_resource.remark = #{remark})
+		                  ) as temp_role_resource
+		         where temp_role_resource.user_id = sys.sys_user.id  ) 
+	</select>
+	<!-- 根据级别查询没一级对应的记录 -->
+	<select id="getSysResourcesByLevel" resultMap="SysResource" parameterType="map">
+		 <choose>
+		    <when test="level == 2">
+		     select sys.sys_resource.*
+				  from sys.sys_resource 
+				 where exists (select 1
+				          from sys.sys_resource c1
+				         where c1.parent_tree_code = '0'
+				           and sys.sys_resource.parent_tree_code = c1.tree_code)
+		    </when>
+		    <when test="level == 3">
+		      select sys.sys_resource.*
+				  from sys.sys_resource 
+				 where exists (select 1
+				          from (select c2.*
+				                  from sys.sys_resource c2
+				                 where exists
+				                 (select 1
+				                          from sys.sys_resource c1
+				                         where c1.parent_tree_code = '0'
+				                           and c2.parent_tree_code = c1.tree_code)) c
+				         where sys.sys_resource.parent_tree_code = c.tree_code)
+		    </when>
+		    <otherwise>
+		      select * from sys.sys_resource  where sys.sys_resource.parent_tree_code = '0'
+		    </otherwise>
+		  </choose>
+			   and exists (select 1
+	          from (select sys.sys_role_resource.id
+	                  from sys.sys_role_resource
+	                 where exists (select 1
+	                          from sys.sys_user_role
+	                         where sys.sys_user_role.role_id =
+	                               sys.sys_role_resource.role_id
+	                           and sys.sys_user_role.user_id =  ${userId})) temp_user_resource
+	         where sys.sys_resource.id = temp_user_resource.id)
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysresourceColumns">
+	    <![CDATA[
+		id,parent_id,tree_code,parent_tree_code,resource_type,resource_name,resource_url,sort,is_visible,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveSysResource">
+    <![CDATA[
+        INSERT INTO sys.sys_resource (
+        		parent_id ,
+        		tree_code ,
+        		parent_tree_code ,
+        		resource_type ,
+        		resource_name ,
+        		resource_url ,
+        		sort ,
+        		is_visible ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{parentId} ,
+        	#{treeCode} ,
+        	#{parentTreeCode} ,
+        	#{resourceType} ,
+        	#{resourceName} ,
+        	#{resourceUrl} ,
+        	#{sort} ,
+        	#{is_visible} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateSysResource" >
+    <![CDATA[
+        UPDATE sys.sys_resource SET
+	        parent_id = #{parentId} ,
+	        tree_code = #{treeCode} ,
+	        parent_tree_code = #{parentTreeCode} ,
+	        resource_type = #{resourceType} ,
+	        resource_name = #{resourceName} ,
+	        resource_url = #{resourceUrl} ,
+	        sort = #{sort} ,
+	        is_visible = #{isVisible} ,
+	        remark = #{remark} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+	<!-- 根据启用或禁用条件批量更新resource visiable状态 , flag:1/0  启用/禁用-->
+	<update id="updateSysResources" parameterType="map">
+       <if test="flag==1">
+	    	UPDATE sys.sys_resource SET
+		       is_visible = '1' 
+	        WHERE 
+		        id in 
+		   <foreach collection="listKey" index="index" item="item" open="(" separator="," close=")">
+		   		#{item.id}
+		   </foreach>   and is_visible = '0'
+	   </if>
+       <if test="flag==0">
+	    	UPDATE sys.sys_resource SET
+		       is_visible = '0'  
+	        WHERE 
+		        id in 		  
+		   <foreach collection="listKey" index="index" item="item" open="(" separator="," close=")">
+		   		#{item.id}
+		   </foreach>   and is_visible = '1'
+		</if>
+	</update>
+
+    <delete id="deleteSysResource">
+    <![CDATA[
+        DELETE FROM sys.sys_resource WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getSysResourceById" resultMap="SysResource">
+		SELECT <include refid="sysresourceColumns" />
+	    <![CDATA[
+		    FROM sys.sys_resource 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getSysResources" resultMap="SysResource" parameterType="map">
+		SELECT <include refid="sysresourceColumns" />
+	    <![CDATA[
+		    FROM sys.sys_resource  
+	    ]]>
+	    <include refid="sysresource_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getSysResourcesMap" resultType="map" parameterType="map">
+		SELECT <include refid="sysresourceColumns" />
+	    <![CDATA[
+		    FROM sys.sys_resource  
+	    ]]>
+	    <include refid="sysresource_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getAllSysResources" resultType="map" parameterType="map">
+		SELECT <include refid="sysresourceColumns" />
+	    <![CDATA[
+		    FROM sys.sys_resource 
+	    ]]>
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysresource_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="parentId!=null">
+				AND parent_id = #{parentId}
+			</if>
+	       <if test="treeCode!=null">
+				AND tree_code = #{treeCode}
+			</if>
+	       <if test="parentTreeCode!=null">
+				AND parent_tree_code = #{parentTreeCode}
+			</if>
+	       <if test="resourceType!=null">
+				AND resource_type = #{resourceType}
+			</if>
+	       <if test="resourceName!=null">
+				AND resource_name = #{resourceName}
+			</if>
+	       <if test="resourceUrl!=null">
+				AND resource_url = #{resourceUrl}
+			</if>
+	       <if test="sort!=null">
+				AND sort = #{sort}
+			</if>
+	       <if test="isVisible!=null">
+				AND is_visible = #{isVisible}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getSysResourceCount" resultType="long">
+        SELECT count(*) FROM sys.sys_resource 
+		<include refid="sysresource_findPage_where"/>    
+    </select>
+</mapper>
+

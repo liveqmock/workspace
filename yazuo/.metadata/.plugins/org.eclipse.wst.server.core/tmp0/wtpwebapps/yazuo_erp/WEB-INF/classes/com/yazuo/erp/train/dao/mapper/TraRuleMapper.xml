@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.train.dao.TraRuleDao">
+	<resultMap id="TraRule" type="com.yazuo.erp.train.vo.TraRuleVO">
+    	<id property="id" column="id"/>
+    	<result property="coursewareId" column="courseware_id"/>
+    	<result property="paperType" column="paper_type"/>
+    	<result property="isShortAnswer" column="is_short_answer"/>
+    	<result property="timeLimit" column="time_limit"/>
+    	<result property="total" column="total"/>
+    	<result property="score" column="score"/>
+    	<result property="ruleType" column="rule_type"/>
+    	<result property="passingScore" column="passing_score"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="isTest" column="is_test"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="traruleColumns">
+	    <![CDATA[
+		id,courseware_id,paper_type,is_short_answer,time_limit,total,score,rule_type,passing_score,remark,insert_by,insert_time,update_by,update_time,is_test
+	    ]]>
+	</sql>
+
+	<insert id="saveTraRule" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： courseware_id,paper_type,is_short_answer,time_limit,rule_type,passing_score,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO train.tra_rule (
+        	 <if test="coursewareId!=null ">courseware_id,</if>
+        	 <if test="paperType!=null and paperType!=''">paper_type,</if>
+        	 <if test="isShortAnswer!=null and isShortAnswer!=''">is_short_answer,</if>
+        	 <if test="timeLimit!=null and timeLimit!=''">time_limit,</if>
+        	 <if test="total!=null and total!=''">total,</if>
+        	 <if test="score!=null and score!=''">score,</if>
+        	 <if test="ruleType!=null and ruleType!=''">rule_type,</if>
+        	 <if test="passingScore!=null and passingScore!=''">passing_score,</if>
+        	 <if test="isTest!=null and isTest!=''">is_test,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 insert_time,
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 update_time
+        ) VALUES (
+       	    <if test="coursewareId!=null ">#{coursewareId},</if>
+       	    <if test="paperType!=null and paperType!=''">#{paperType},</if>
+       	    <if test="isShortAnswer!=null and isShortAnswer!=''">#{isShortAnswer},</if>
+       	    <if test="timeLimit!=null and timeLimit!=''">#{timeLimit},</if>
+       	    <if test="total!=null and total!=''">#{total},</if>
+       	    <if test="score!=null and score!=''">#{score},</if>
+       	    <if test="ruleType!=null and ruleType!=''">#{ruleType},</if>
+       	    <if test="passingScore!=null and passingScore!=''">#{passingScore},</if>
+       	    <if test="isTest!=null and isTest!=''">#{isTest},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    now(),
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    now()
+        )
+	</insert>
+	
+	<insert id="batchInsertTraRules" parameterType="map">
+	 <!--不允许为空的字段： courseware_id,paper_type,is_short_answer,time_limit,rule_type,passing_score,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO train.tra_rule (
+        	 <if test="coursewareId!=null ">courseware_id,</if>
+        	 <if test="paperType!=null and paperType!=''">paper_type,</if>
+        	 <if test="isShortAnswer!=null and isShortAnswer!=''">is_short_answer,</if>
+        	 <if test="timeLimit!=null and timeLimit!=''">time_limit,</if>
+        	 <if test="total!=null and total!=''">total,</if>
+        	 <if test="score!=null and score!=''">score,</if>
+        	 <if test="ruleType!=null and ruleType!=''">rule_type,</if>
+        	 <if test="passingScore!=null and passingScore!=''">passing_score,</if>
+        	 <if test="isTest!=null and isTest!=''">is_test,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="coursewareId!=null ">#{t.coursewareId},</if>
+          <if test="paperType!=null and paperType!=''">#{t.paperType},</if>
+          <if test="isShortAnswer!=null and isShortAnswer!=''">#{t.isShortAnswer},</if>
+          <if test="timeLimit!=null and timeLimit!=''">#{t.timeLimit},</if>
+          <if test="total!=null and total!=''">#{t.total},</if>
+          <if test="score!=null and score!=''">#{t.score},</if>
+          <if test="ruleType!=null and ruleType!=''">#{t.ruleType},</if>
+          <if test="passingScore!=null and passingScore!=''">#{t.passingScore},</if>
+          <if test="isTest!=null and isTest!=''">#{t.isTest},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateTraRule">
+        UPDATE train.tra_rule 
+ 		  <set>
+	        <if test="coursewareId!=null ">courseware_id = #{coursewareId} ,</if>
+	        <if test="paperType!=null and paperType!=''">paper_type = #{paperType} ,</if>
+	        <if test="isShortAnswer!=null and isShortAnswer!=''">is_short_answer = #{isShortAnswer} ,</if>
+	        <if test="timeLimit!=null and timeLimit!=''">time_limit = #{timeLimit} ,</if>
+	        <if test="total!=null and total!=''">total = #{total} ,</if>
+	        <if test="score!=null and score!=''">score = #{score} ,</if>
+	        <if test="ruleType!=null and ruleType!=''">rule_type = #{ruleType} ,</if>
+	        <if test="passingScore!=null and passingScore!=''">passing_score = #{passingScore} ,</if>
+			<if test="isTest!=null and isTest!=''">is_test = #{isTest} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        update_time = now()
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateTraRulesToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE train.tra_rule 
+ 		  <set>
+	        <if test="coursewareId!=null ">courseware_id = #{t.coursewareId} ,</if>
+	        <if test="paperType!=null and paperType!=''">paper_type = #{t.paperType} ,</if>
+	        <if test="isShortAnswer!=null and isShortAnswer!=''">is_short_answer = #{t.isShortAnswer} ,</if>
+	        <if test="timeLimit!=null and timeLimit!=''">time_limit = #{t.timeLimit} ,</if>
+	        <if test="total!=null and total!=''">total = #{t.total} ,</if>
+	        <if test="score!=null and score!=''">score = #{t.score} ,</if>
+	        <if test="ruleType!=null and ruleType!=''">rule_type = #{t.ruleType} ,</if>
+	        <if test="passingScore!=null and passingScore!=''">passing_score = #{t.passingScore} ,</if>
+	        <if test="isTest!=null and isTest!=''">is_test = #{t.isTest} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateTraRulesToSameVals" parameterType="map">
+        UPDATE train.tra_rule 
+ 		  <set>
+	        <if test="coursewareId!=null ">courseware_id = #{coursewareId} ,</if>
+	        <if test="paperType!=null and paperType!=''">paper_type = #{paperType} ,</if>
+	        <if test="isShortAnswer!=null and isShortAnswer!=''">is_short_answer = #{isShortAnswer} ,</if>
+	        <if test="timeLimit!=null and timeLimit!=''">time_limit = #{timeLimit} ,</if>
+	        <if test="total!=null and total!=''">total = #{total} ,</if>
+	        <if test="score!=null and score!=''">score = #{score} ,</if>
+	        <if test="ruleType!=null and ruleType!=''">rule_type = #{ruleType} ,</if>
+	        <if test="passingScore!=null and passingScore!=''">passing_score = #{passingScore} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+			<if test="isTest!=null and isTest!=''">is_test = #{isTest} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteTraRuleById">
+    <![CDATA[
+        DELETE FROM train.tra_rule WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteTraRuleByIds" parameterType="list">
+        DELETE FROM train.tra_rule WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getTraRuleById" resultMap="TraRule">
+		SELECT <include refid="traruleColumns" />
+		    FROM train.tra_rule 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getTraRules" resultMap="TraRule">
+		SELECT <include refid="traruleColumns" />
+		    FROM train.tra_rule  
+	    <include refid="trarule_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getTraRulesMap" resultType="map" parameterType="map">
+		SELECT <include refid="traruleColumns" />
+	    <![CDATA[
+		    FROM train.tra_rule  
+	    ]]>
+	    <include refid="trarule_findPage_where" />
+	</select>
+	
+	<sql id="trarule_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="coursewareId!=null ">AND courseware_id = #{coursewareId}</if>
+	       <if test="paperType!=null and paperType!=''">AND paper_type = #{paperType}</if>
+	       <if test="isShortAnswer!=null and isShortAnswer!=''">AND is_short_answer = #{isShortAnswer}</if>
+	       <if test="timeLimit!=null and timeLimit!=''">AND time_limit = #{timeLimit}</if>
+	       <if test="total!=null and total!=''">AND total = #{total}</if>
+	       <if test="score!=null and score!=''">AND score = #{score}</if>
+	       <if test="ruleType!=null and ruleType!=''">AND rule_type = #{ruleType}</if>
+	       <if test="passingScore!=null and passingScore!=''">AND passing_score = #{passingScore}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+	       <if test="isTest!=null and isTest!=''">AND is_test = #{isTest}</if>
+		</where>
+	</sql>
+		
+    <select id="getTraRuleCount" resultType="long">
+        SELECT count(*) FROM train.tra_rule 
+		<include refid="trarule_findPage_where"/>    
+    </select>
+    
+    <select id="getTraRuleByCoursewareId" resultMap="TraRule">
+        SELECT <include refid="traruleColumns"/>
+        FROM train.tra_rule
+        WHERE courseware_id=#{courseware_id}
+    </select>
+    
+    <select id="getAllTraRules" resultType="map" parameterType="map">
+		SELECT <include refid="traruleColumns" />
+	    <![CDATA[
+		    FROM train.tra_rule  
+	    ]]>
+	    <include refid="trarule_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+    
+    <!-- 根据试卷ID查找PPT的详情信息 -->
+    <select id="queryTraRule" resultMap="TraRule" parameterType="map">
+		SELECT
+			r. ID,
+			r.courseware_id,
+			r.paper_type,
+			r.is_short_answer,
+			r.time_limit,
+			r.total,
+			r.score,
+			r.rule_type,
+			r.passing_score,
+			r.is_test,
+			r.remark,
+			r.insert_by,
+			r.insert_time,
+			r.update_by,
+			r.update_time
+		FROM
+			train.tra_rule r
+		WHERE
+			1 = 1
+		AND r.courseware_id = #{coursewareId,jdbcType=INTEGER}
+		AND r.paper_type = #{paperType,jdbcType=VARCHAR}
+		LIMIT 1
+    </select>
+
+	<!-- 根据课件ID批量删除 tra_rule 考卷规则 -->
+	<delete id="batchDeleteTraRuleByCoursewareId" parameterType="list">
+		<foreach collection="list" item="t" index="index" open="" close="" separator=";">
+			delete from train.tra_rule r
+			where r.courseware_id = #{t,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+</mapper>

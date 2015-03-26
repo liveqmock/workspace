@@ -1,0 +1,183 @@
+.page-sales-home .page-bd {
+    padding: 20px 15px;
+}
+.page-sales-home .permission_type {
+    margin-bottom:30px;
+}
+.page-sales-home .permission_type a {
+    color:#fff;
+}
+.page-sales-home .max-tabs-nav p {
+    float:left;
+    display:inline;
+    cursor: pointer;
+    width:120px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background: #EDF6FF;
+    font-size: 16px;
+    position: relative;
+}
+.page-sales-home .tips-number {
+    width:20px;
+    height:20px;
+    background:#FE561A;
+    border-radius: 10px;
+    color:#fff;
+    text-align: center;
+    line-height: 20px;
+    position: absolute;
+    font-size: 12px;
+    right:5px;
+    top:2px;
+}
+.page-sales-home .max-tabs-nav {
+    height:40px;
+}
+.page-sales-home .max-tabs-nav p.cur {
+    color:#76A9E0;
+    background: #fff;
+    border-top:4px solid #76A9E0;
+    border-left:1px solid #CDE2F9;
+    border-right:1px solid #CDE2F9;
+    width:118px;
+    height:37px;
+    line-height:37px;
+}
+.page-sales-home .max-tab-con {
+    border:1px solid #CDE2F9;
+    padding:15px 0;
+    background: #fff;
+}
+.page-sales-home .cate-list-wrapper {
+    padding-left:10px;
+}
+.page-sales-home .cate-list .cate-item {
+    height:36px;
+    margin-right:10px;
+}
+.page-sales-home .cate-list .cate-item a {
+    display: block;
+    line-height:36px;
+    background: #e5f8f1;
+    padding:0 10px;
+    font-size:14px;
+    color:#777;
+}
+.page-sales-home .cate-list .cate-item a.cur {
+    background: #b2eed8;
+}
+.page-sales-home .search {
+    background: #eee;
+    padding:7px 10px;
+}
+.page-sales-home .coursewareName {
+    width:200px;
+}
+.page-sales-home .list {
+    width: 100%;
+    overflow: hidden;
+}
+.page-sales-home .list ul {
+    width: 100%;
+    overflow: hidden;
+}
+.page-sales-home .list ul li {
+    float: left;
+    display: inline;
+    margin: 15px 17px;
+    border:1px solid #60A9DE;
+    width: 180px;
+    height: 190px;
+}
+.page-sales-home .list-img {
+    width: 180px;
+    height: 160px;
+    overflow: hidden;
+}
+.page-sales-home .list-img img {
+    width: 180px;
+    height: 160px;
+}
+.page-sales-home .list-text {
+    height: 30px;
+    line-height: 30px;
+    background: #60A9DE;
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+.page-sales-home .name-left {
+    text-align: left;
+    padding-left: 10px;
+}
+.page-sales-home .name-center {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page-sales-home .progress-item {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    font-size: 14px;
+    color: #d3cecc;
+    margin-left: -1px;
+}
+.page-sales-home .progress-item-cn {
+    width: 50px;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    font-size: 14px;
+    color: #d3cecc;
+    margin-left: -1px;
+}
+.page-sales-home .progress-list .is-studied {
+    border: 1px solid #45b79d;
+    background: #66ccb5;
+    color: #ffffff;
+}
+
+.page-frontend-home .progress-list .is-base {
+    border: 1px solid #d5d5d5;
+    background: #f3f4f6;
+    color: #d3cecc;
+}
+.page-sales-home .progress-list .is-current {
+    border: 1px solid #548bc6;
+    background: #76a9e0;
+    color: #ffffff;
+}
+.page-sales-home .progress-list .is-timeout {
+    border: 1px solid #c4170e;
+    background: #e81130;
+    color: #ffffff;
+}
+
+.warn-num {
+    color:red;
+}
+
+

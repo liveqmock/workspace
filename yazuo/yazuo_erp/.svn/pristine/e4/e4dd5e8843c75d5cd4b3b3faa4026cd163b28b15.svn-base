@@ -1,0 +1,94 @@
+<ul class="page-nav-crumbs">
+    <li class="nav-item" ms-repeat="navCrumbs">
+        <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+        <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+        <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+    </li>
+</ul>
+<div class="page-bd page-bd-form">
+    <div class="info-content">
+        <h2 class="knowledgecate-title">{{knowledgeTitle}}</h2>
+        <div class="info-con">
+            <table>
+                <tr>
+                    <td colspan="2"><p class="info-con-type"><span>分类：{{kindText}}</span><span>业态：{{businessTypeText}}</span><span>更新时间：{{updatedTime|date('yyyy/MM/dd')}}</span><span>浏览：{{viewedTimes}}&nbsp;次</span><span>综合评分：{{score}}&nbsp;分</span><a ms-href="#/databank/knowledgebank/addedit/edit/{{fileId}}">编辑</a></p></td>
+                </tr>
+                <tr>
+                    <td class="info-table-left"><p>描述：</p></td>
+                    <td>
+                        <p class="info-table-right">{{description}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info-table-left"><p>分析：</p></td>
+                    <td>
+                        <p class="info-table-right">{{analysis}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info-table-left"><p>解决方案：</p></td>
+                    <td>
+                        <p class="info-table-right">{{resolution}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info-table-left"><p>成功案例：</p></td>
+                    <td>
+                        <p class="info-table-right">{{successfulCase}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info-table-left"><p>话术：</p></td>
+                    <td>
+                        <p class="info-table-right">{{talkingSkills}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info-table-left"><p>附件：</p></td>
+                    <td>
+                        <p class="info-table-right"><a ms-href="{{path}}{{attachment.fileFullPath}}" >{{attachment.originalFileName}}</a></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="info-table-comment">
+                            <p><i class="iconfont" ms-class="allow:provedAvail" ms-click="addCommentTrueOrFalse(1)">&#xe62c;</i>有用（{{trueRatio}}）:&nbsp;{{approvedTrue}}</p><p>|</p><p><i class="iconfont" ms-class="allow:provedAvail"  ms-click="addCommentTrueOrFalse(0)">&#xe62b;</i>没用（{{falseRatio}}）:&nbsp;{{approvedFalse}}</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="info-comment">
+            <h2><b>评论</b><p></p></h2>
+            <div class="info-comment-list">
+                <div class="info-comment-list-box" ms-repeat="commentariesRows" ms-class="even:$index%2" ms-hover="state-hover">
+                    <p>{{el.username}} <span>{{el.createdTime|date('yyyy/MM/dd HH:mm')}}</span></p>
+                    <p>{{el.content}}</p>
+                </div>
+            </div>
+            <div class="grid-bbar fn-clear">
+                <br>
+                <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+            </div>
+        </div>
+        <div class="info-comment-input">
+            <table>
+                <tr>
+                    <td class="comment-input-left comment-input-text" >评分：</td>
+                    <td class="star-comment">
+                        <i ms-repeat="starLen" class="iconfont" ms-title="{{el}}分" ms-class-1="selected:grade>$index" ms-click="changeGrade($event,el)" ms-mouseover="changeGrade($event,el)" ms-mouseout="changeGrade($event,el)">&#xe629;</i>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="comment-input-left">我要评论：</td>
+                    <td>
+                        <div><textarea ms-duplex="commentCon"></textarea></div>
+                        <div><button class="simple-btn" ms-click="addComment">确定</button></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

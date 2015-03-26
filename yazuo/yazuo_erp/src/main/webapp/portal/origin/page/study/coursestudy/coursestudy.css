@@ -1,0 +1,21 @@
+.page-study-coursestudy .box-bbar {
+    padding-left: 88px;
+    font-size: 14px;
+}
+.page-study-coursestudy .required-course-wrapper {
+    margin-bottom: 40px;
+}
+.page-study-coursestudy .optional-course-wrapper .course-item {
+    padding-bottom: 30px;
+    padding-left: 36px;
+    border-left: 4px solid #76a9e0;
+}
+.page-study-coursestudy .optional-course-wrapper .line-item-last {
+    border-left: 4px solid #ffffff;
+}
+.page-study-coursestudy .optional-course-wrapper .line-list-wrapper {
+    padding-bottom: 0;
+}
+.page-study-coursestudy .optional-course-wrapper .icon-circle{
+    color: #76a9e0;
+}

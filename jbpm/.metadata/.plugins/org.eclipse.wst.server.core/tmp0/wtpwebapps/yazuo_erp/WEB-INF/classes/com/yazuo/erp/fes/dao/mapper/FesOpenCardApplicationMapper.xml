@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesOpenCardApplicationDao">
+
+	<resultMap id="FesOpenCardApplicationWithDtls" type="com.yazuo.erp.fes.vo.FesOpenCardApplicationVO">
+    	<id property="id" column="id"/>
+    	<result property="processId" column="process_id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="openCardApplicationStatus" column="open_card_application_status"/>
+    	<result property="remark" column="remark"/>
+    	<collection  property="fesOpenCardApplicationDtls" column="fk_id" ofType="com.yazuo.erp.fes.vo.FesOpenCardApplicationDtlVO">
+	    	<id property="id" column="dtl_id"/>
+	    	<result property="applicationId" column="application_id"/>
+	    	<result property="cardName" column="card_name"/>
+	    	<result property="cardTag" column="card_tag"/>
+	    	<result property="cardAmount" column="card_amount"/>
+	    	<result property="validityTerm" column="validity_term"/>
+	    	<result property="isContainFour" column="is_contain_four"/>
+	    	<result property="isContainSeven" column="is_contain_seven"/>
+	    	<result property="remark" column="remark"/>
+	    	<result property="memberLevel" column="member_level"/>
+		</collection>
+	</resultMap>
+	
+	<select id="getFesOpenCardApplicationsAndDtls" resultMap="FesOpenCardApplicationWithDtls">
+			SELECT fes.fes_open_card_application.id as application_id, 
+			fes.fes_open_card_application_dtl.id as dtl_id,
+			fes.fes_open_card_application.*,fes.fes_open_card_application_dtl.*    
+			FROM fes.fes_open_card_application left join fes.fes_open_card_application_dtl 
+			on fes.fes_open_card_application.id = fes.fes_open_card_application_dtl.application_id
+	    <include refid="fesopencardapplication_findPage_where" />
+	</select>
+	
+	<resultMap id="FesOpenCardApplication" type="com.yazuo.erp.fes.vo.FesOpenCardApplicationVO">
+    	<id property="id" column="id"/>
+    	<result property="processId" column="process_id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="openCardApplicationStatus" column="open_card_application_status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="fesopencardapplicationColumns">
+	    <![CDATA[
+		id,process_id,merchant_id,open_card_application_status,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveFesOpenCardApplication" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： process_id,merchant_id,open_card_application_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_open_card_application (
+        	 <if test="processId!=null ">process_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">open_card_application_status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 insert_time,
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 update_time
+        ) VALUES (
+       	    <if test="processId!=null ">#{processId},</if>
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">#{openCardApplicationStatus},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    now(),
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    now()
+        )
+	</insert>
+	
+	<insert id="batchInsertFesOpenCardApplications" parameterType="map">
+	 <!--不允许为空的字段： process_id,merchant_id,open_card_application_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_open_card_application (
+        	 <if test="processId!=null ">process_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">open_card_application_status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="processId!=null ">#{t.processId},</if>
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">#{t.openCardApplicationStatus},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesOpenCardApplication">
+        UPDATE fes.fes_open_card_application 
+ 		  <set>
+	        <if test="processId!=null ">process_id = #{processId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">open_card_application_status = #{openCardApplicationStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesOpenCardApplicationsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_open_card_application 
+ 		  <set>
+	        <if test="processId!=null ">process_id = #{t.processId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">open_card_application_status = #{t.openCardApplicationStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesOpenCardApplicationsToSameVals" parameterType="map">
+        UPDATE fes.fes_open_card_application 
+ 		  <set>
+	        <if test="processId!=null ">process_id = #{processId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">open_card_application_status = #{openCardApplicationStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesOpenCardApplicationById">
+    <![CDATA[
+        DELETE FROM fes.fes_open_card_application WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesOpenCardApplicationByIds" parameterType="list">
+        DELETE FROM fes.fes_open_card_application WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesOpenCardApplicationById" resultMap="FesOpenCardApplication">
+		SELECT <include refid="fesopencardapplicationColumns" />
+		    FROM fes.fes_open_card_application 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getFesOpenCardApplications" resultMap="FesOpenCardApplication">
+		SELECT <include refid="fesopencardapplicationColumns" />
+		    FROM fes.fes_open_card_application  
+	    <include refid="fesopencardapplication_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getFesOpenCardApplicationsMap" resultType="map">
+		SELECT <include refid="fesopencardapplicationColumns" />
+	    <![CDATA[
+		    FROM fes.fes_open_card_application  
+	    ]]>
+	    <include refid="fesopencardapplication_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="fesopencardapplication_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="processId!=null ">AND process_id = #{processId}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="openCardApplicationStatus!=null and openCardApplicationStatus!=''">AND open_card_application_status = #{openCardApplicationStatus}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getFesOpenCardApplicationCount" resultType="long">
+        SELECT count(*) FROM fes.fes_open_card_application 
+		<include refid="fesopencardapplication_findPage_where"/>    
+    </select>
+    
+</mapper>

@@ -1,0 +1,55 @@
+<div class="page-bd page-bd-form">
+    <div class="title">
+        <p><input type="text" ms-duplex="searchObj.merchantName" placeholder="请输入商户名称" class="input-text"></p>
+        <p class="renewcardmanage-p">卡可用天数：<input type="text" class="input-text" ms-duplex="searchObj.availDateFrom" placeholder="只限数字" ms-keyup="setNum('availDateFrom')">&nbsp;至&nbsp;<input type="text" class="input-text" ms-duplex="searchObj.availDateTo" placeholder="只限数字" ms-keyup="setNum('availDateTo')">&nbsp;天以内&nbsp;&nbsp;&nbsp;</p>
+        <p><span style="width: 180px;" class="schedule" ms-widget="select,$,$statusSelectOpts"></span></p>
+        <p><span class="schedule" ms-widget="select,$,$typeSelectOpts"></span></p>
+        <p><input type="button" value="查询" class="main-btn" ms-click="search"></p>
+    </div>
+    <div class="max-tab-con">
+        <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+    </div>
+</div>
+<!--修改状态-->
+<div class="renewcardmanage-modify-status" ms-widget="dialog,$,$modCardDialogOpts">
+    <table>
+        <tr>
+            <td class="table-label"><span class="warn">*</span>状态：</td>
+            <td><span class="schedule" ms-widget="select,$,$modiStatusSelectOpts"></span></td>
+        </tr>
+        <tr>
+            <td class="table-label"><span class="warn"></span>备注：</td>
+            <td><textarea ms-duplex="remark"></textarea></td>
+        </tr>
+    </table>
+</div>
+<!--修改状态-end-->
+<!--查看历史-->
+<div class="renewcardmanage-look-history" ms-widget="dialog,$,$lookHistoryDialogOpts">
+    <div class="renewcardmanage-look-history-time">
+        <form class="add-edit-form" ms-widget="form,$,$addEditFormOpts" action="javascript:;">
+        <input type="text" class="input-text beginTime" readonly="readonly" name="beginTime" ms-value="beginTime" ms-click="openStartDateCalendar">
+        &nbsp;至&nbsp;
+        <input type="text" class="input-text endTime" readonly="readonly" name="endTime" ms-value="endTime" ms-click="openEndDateCalendar">
+        <input type="button" value="搜索" class="main-btn" ms-click="searchHistory">
+        </form>
+    </div>
+    <div class="renewcardmanage-look-history-course-grid" ms-widget="grid,$,$gridHistorOpts"></div>
+</div>
+<!--查看历史-end-->
+<!--鼠标经过弹层-->
+<table ms-visible="isShowPop" class="renewcardmanage-card-pop">
+    <tr class="odd">
+        <td align="right">开卡总量：</td>
+        <td>{{cardTotalNum}}</td>
+    </tr>
+    <tr>
+        <td align="right">近3个月发卡总量：</td>
+        <td>{{cardTotalNumFor3Months}}</td>
+    </tr>
+    <tr class="odd">
+        <td align="right">近3个月每日发卡平均数：</td>
+        <td>{{avgCardNumFor3Months}}</td>
+    </tr>
+</table>
+<!--鼠标经过弹层-end-->

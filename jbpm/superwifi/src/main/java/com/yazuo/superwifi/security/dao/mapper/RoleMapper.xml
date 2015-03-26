@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yazuo.superwifi.security.dao.RoleDao" >
+  <resultMap id="BaseResultMap" type="com.yazuo.superwifi.security.dto.Role" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="SMALLINT" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, role_name, brand_id, status, insert_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yazuo.superwifi.security.dto.Role" >
+    insert into role (id, role_name, brand_id, 
+      status, insert_time)
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, 
+      #{status,jdbcType=SMALLINT}, #{insertTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yazuo.superwifi.security.dto.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yazuo.superwifi.security.dto.Role" >
+    update role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yazuo.superwifi.security.dto.Role" >
+    update role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      status = #{status,jdbcType=SMALLINT},
+      insert_time = #{insertTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findUserRolesByMobileNumber" resultMap="BaseResultMap" parameterType="string">
+  	SELECT
+		DISTINCT r.role_id,r.role_name,r.merchant_id
+		FROM
+		account.user_info AS u,
+		account.user_role AS ur,
+		account."role" AS r,
+		account.role_authority AS ra,
+		account.authority AS au
+		WHERE
+		u.user_info_id = ur.user_info_id
+		AND ur.role_id = r.role_id
+		AND r.role_id = ra.role_id
+		AND ra.authority_id = au .authority_id
+		AND u.mobile =#{mobileNumber}
+		AND au.product_id IN (
+		WITH RECURSIVE r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = 1000027
+		UNION ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id = account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+  </select>
+  
+  <select id="findUserRolesByUserId" resultMap="BaseResultMap" parameterType="int">
+  	SELECT
+		DISTINCT r.role_id,r.role_name
+		FROM
+		account.user_info AS u,
+		account.user_role AS ur,
+		account."role" AS r,
+		account.role_authority AS ra,
+		account.authority AS au
+		WHERE
+		u.user_info_id = ur.user_info_id
+		AND ur.role_id = r.role_id
+		AND r.role_id = ra.role_id
+		AND ra.authority_id = au.authority_id
+		AND u.available_flag is TRUE
+		AND u.user_info_id = #{userId}
+		AND au.product_id IN (
+		WITH RECURSIVE r AS (
+		SELECT
+		*
+		FROM
+		account.product
+		WHERE
+		product_id = #{productId}
+		UNION ALL
+		SELECT
+		account.product.*
+		FROM
+		account.product,
+		r
+		WHERE
+		r.product_id = account.product.parent
+		) SELECT
+		r.product_id
+		FROM
+		r
+		)
+  </select>
+  
+  <select id="findRolesByBrandIdAndRoleName" resultType="map" >
+  	   SELECT DISTINCT r.role_id AS "roleId",r.role_name AS "roleName",r.merchant_id AS "merchantId"
+  	   FROM account."role" AS r,account.role_authority AS ra,account.authority AS A
+		WHERE r.role_id = ra.role_id
+		AND ra.authority_id = A .authority_id
+		AND A .product_id IN (
+		WITH RECURSIVE r AS ( SELECT * FROM account.product
+		WHERE product_id = 1000027
+		UNION ALL
+		SELECT account.product.* FROM account.product,r WHERE r.product_id = account.product.parent) 
+		SELECT r.product_id FROM r)
+		AND r.merchant_id = #{brandId} 
+		<if test="roleName != null and roleName !=''" >
+        AND r.role_name like  '%'||#{roleName,jdbcType=VARCHAR}||'%'
+        </if>
+        ORDER BY r.role_id desc
+  </select>
+</mapper>

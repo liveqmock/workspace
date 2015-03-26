@@ -1,0 +1,120 @@
+<div class="page-fbs-mailtemplate">
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="add-question-btn">
+        <button class="main-btn" ms-click="addEmailTemplate">添加邮件模板</button>
+    </div>
+    <!--search-->
+    <div class="search">
+        <div class="page-filter">
+            <input type="text" class="coursewareName input-text" ms-duplex="requestData.name" placeholder="请输入模板名称">&nbsp;
+            <button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+        </div>
+    </div>
+    <!--search-end-->
+    <!--table-->
+    <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th class="name-cell" >模板名称</th>
+            <th class="name-cell" >模板类型</th>
+            <th class="name-cell" width="200">添加时间</th>
+            <th class="name-cell" width="200">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover" ms-repeat="pageData">
+            <th class="name-cell" >{{el.name}}</th>
+            <th class="name-cell" ms-if="el.mailTemplateType == '001'">上线完成时邮件模板</th>
+            <th class="name-cell" ms-if="el.mailTemplateType == '002'">月报模板</th>
+            <th class="name-cell">{{el.insertTime|date("yyyy-MM-dd HH:mm")}}</th>
+            <th class="name-cell">
+                <a href="javascript:;" ms-click="read">查看</a>&nbsp;&nbsp;
+                <a href="javascript:;" ms-click="edit">编辑</a>&nbsp;&nbsp;
+                <a href="javascript:;" ms-click="remove">删除</a>&nbsp;&nbsp;
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <!--table-end-->
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+
+
+</div>
+</div>
+<!--content-end-->
+<!-- 添加邮件模板 start -->
+<div class="page-frontend-home-emailtemplate-email-dialog ui-hidden"
+     ms-widget="dialog,$,$addEmailDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$addEmilFormOpts"
+          action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>模板名称：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 name" name="name"
+                               ms-value="name" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+                <div class="ff-value issendsms"><label><input class="isSendSMS" name="isSendSMS" type="checkbox" ms-click="changeCheckbox" ms-checked="isSendSMS" value="true">&nbsp;同时发送短信通知</label></div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>邮件标题：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="text" class="input-text time-limit w310 title" name="title"
+                               ms-value="title"/>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>模板类型：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <span class="schedule" ms-widget="select,$,$scheduleOpts"></span>
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="fn-clear">
+                <label class="ff-label fn-left"></label>
+                <div class="ff-value mail-merchant-name">
+                    <div class="fn-clear"><p class="agv-left">引用参数：</p><p class="agv-right"><a href="javascript:;" ms-repeat="agvData" ms-mousedown="appendValue">{{el}}</a></p></div>
+                    <div class="tips">注：如果通讯录中没有该角色，选择后直接显示角色名称</div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label fn-left"><span class="icon-star">*</span>邮件正文：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <div class="email-content" ms-widget="editor,$,$editorOpts"></div>
+                       <!-- <textarea class="input-text w310 content" name="content" ms-text="content">
+
+                        </textarea>-->
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加邮件模板 end -->
+
+
+
+

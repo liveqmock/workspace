@@ -1,0 +1,17 @@
+.page-sysmanage-smstmpl-dialog .ff-label {
+    width: 86px;
+    text-align: right;
+}
+.page-sysmanage-smstmpl-dialog .ff-value {
+    margin-left: 86px;
+}
+.page-sysmanage-smstmpl-dialog .tmpl-type {
+    width: 240px;
+}
+.page-sysmanage-smstmpl-dialog .send-target {
+    width: 474px;
+}
+.page-sysmanage-smstmpl-dialog .tmpl-name,
+.page-sysmanage-smstmpl-dialog .send-content {
+    width: 550px;
+}

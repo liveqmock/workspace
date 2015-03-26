@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/crmapi/!svn/ver/24754/code/weixin/src/main/webapp/jsp/coffee
+END
+wx-coffeeCardIndex.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/crmapi/!svn/ver/22818/code/weixin/src/main/webapp/jsp/coffee/wx-coffeeCardIndex.jsp
+END
+wx-coffeeCardBuy.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/crmapi/!svn/ver/24118/code/weixin/src/main/webapp/jsp/coffee/wx-coffeeCardBuy.jsp
+END
+wx-coffeeMyCardList.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/crmapi/!svn/ver/24614/code/weixin/src/main/webapp/jsp/coffee/wx-coffeeMyCardList.jsp
+END
+wx-coffeeCardPaySuccess.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/crmapi/!svn/ver/21741/code/weixin/src/main/webapp/jsp/coffee/wx-coffeeCardPaySuccess.jsp
+END
+wx-coffeeCardGoodInfo.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/crmapi/!svn/ver/24614/code/weixin/src/main/webapp/jsp/coffee/wx-coffeeCardGoodInfo.jsp
+END

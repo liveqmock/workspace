@@ -1,0 +1,18 @@
+<div class="question-select-dialog select-list-dialog ui-hidden" ms-widget="dialog,$,$questionOpts">
+    <div class="dialog-tbar">
+        <input type="text" class="query input-text" placeholder="试题名称" ms-duplex="qName" ms-keydown="inputEnterKey" />&nbsp;&nbsp;<button type="button" class="query-btn main-btn" ms-click="clickQueryBtn">搜索</button>
+    </div>
+    <div class="question-list-wrapper list-wrapper">
+        <ul class="question-list select-list">
+            <li class="select-item fn-clear"
+                ms-click="selectQuestion"
+                ms-repeat="list"
+                ms-class-1="odd: !($index % 2)"
+                ms-class-2="even: $index % 2">
+                <span class="cell-title item-cell fn-left">{{el.question}}</span>
+                <span class="cell-question-type item-cell fn-left">{{el.questionType}}</span>
+                <i class="is-selected fn-right" ms-if="el.isSelected">&#xe604;</i>
+            </li>
+        </ul>
+    </div>
+</div>

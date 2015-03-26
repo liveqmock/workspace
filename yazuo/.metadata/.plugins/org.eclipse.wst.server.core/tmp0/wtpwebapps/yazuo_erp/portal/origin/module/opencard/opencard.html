@@ -1,0 +1,117 @@
+<!-- 申请开卡 start -->
+<div class="module-open-car" ms-widget="dialog,$,$addCardDialogOpts">
+    <div class="f-body">
+        <table class="title">
+            <tr>
+                <td class="tab-left">品牌名称：</td>
+                <td>{{merchantName}}</td>
+            </tr>
+        </table>
+        <div class="open-card-con">
+            <div class="model" ms-repeat="fesOpenCardApplicationDtls">
+                <table>
+                    <tr class="f-field ff-value">
+                        <td class="tab-left"><span class="warn">*</span>卡类型名称：</td>
+                        <td>
+                            <input ms-visible="displayType == 'add' || displayType == 'edit'" type="text" data-rules="empty" data-tips="卡类型名称不能为空！" isrule=true class="input-text" ms-duplex="el.cardName"/>
+                            <input ms-visible="displayType == 'read'" type="text" class="input-text" ms-duplex="el.cardName" readonly/>
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                    <tr class="f-field ff-value">
+                        <td class="tab-left"><span class="warn"></span>卡标签：</td>
+                        <td>
+                            <input ms-visible="displayType == 'add' || displayType == 'edit'" type="text" class="input-text" ms-duplex="el.cardTag"/>
+                            <input ms-visible="displayType == 'read'" type="text" class="input-text" ms-duplex="el.cardTag" readonly/>
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                    <tr class="f-field ff-value">
+                        <td class="tab-left"><span class="warn">*</span>开卡数量：</td>
+                        <td>
+                            <input ms-visible="displayType == 'add' || displayType == 'edit'" type="text" data-rules="empty&number" data-tips="开卡数量不能为空！&开卡数量只能是数字！" isrule=true class="input-text" ms-duplex="el.cardAmount"/>
+                            <input ms-visible="displayType == 'read'" type="text" class="input-text" ms-duplex="el.cardAmount" readonly/>
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                    <tr class="f-field ff-value">
+                        <td class="tab-left">卡有效期：</td>
+                        <td>
+                            <input ms-visible="displayType == 'add' || displayType == 'edit'" type="text" isempty="true" data-rules="number" data-tips="卡有效期只能是数字！" isrule="true" class="input-text card-name" ms-duplex="el.validityTerm"/>
+                            <input ms-visible="displayType == 'read'" type="text" class="input-text card-name" ms-duplex="el.validityTerm" readonly/>
+                            <span>&nbsp;天</span><span>&nbsp;（从激活之日算起，不填为永久有效）</span><div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tab-left"><span class="warn">*</span>会员等级：</td>
+                        <td>
+                            <div ms-visible="displayType == 'add' || displayType == 'edit'"><span class="schedule" ms-widget='select,$,el.$memberLevelOpts'></span></div>
+                            <input ms-visible="displayType == 'read'" type="text" class="input-text" ms-duplex="el.memberLevel" readonly/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tab-left"><span class="warn">*</span>是否包含4：</td>
+                        <td>
+                            <div ms-visible="displayType == 'add' || displayType == 'edit'" class="card-radio">
+                                <label><input ms-attr-name="readio4{{$index}}" type="radio" ms-duplex-text="el.isContainFour" value="1"> 是</label>
+                                <label><input ms-attr-name="readio4{{$index}}" type="radio" ms-duplex-text="el.isContainFour" value="0"> 否</label>
+                            </div>
+                            <span ms-visible="displayType == 'read'">
+                                <label ms-if="el.isContainFour == '1'">是</label>
+                                <label ms-if="el.isContainFour == '0'">否</label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tab-left"><span class="warn">*</span>是否包含7：</td>
+                        <td>
+                            <div ms-visible="displayType == 'add' || displayType == 'edit'" class="card-radio">
+                                <label><input ms-attr-name="readio7{{$index}}" type="radio" ms-duplex-text="el.isContainSeven" value="1"> 是</label>
+                                <label><input ms-attr-name="readio7{{$index}}" type="radio" ms-duplex-text="el.isContainSeven" value="0"> 否</label>
+                            </div>
+                            <span ms-visible="displayType == 'read'">
+                                <label ms-if="el.isContainSeven == '1'">是</label>
+                                <label ms-if="el.isContainSeven == '0'">否</label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tab-left"><span class="warn">*</span>是否带安全码：</td>
+                        <td>
+                            <div ms-visible="displayType == 'add' || displayType == 'edit'" class="card-radio">
+                                <label><input ms-attr-name="readion{{$index}}" type="radio" ms-duplex-text="el.isContainSecurityCode" value="1"> 是</label>
+                                <label><input ms-attr-name="readion{{$index}}" type="radio" ms-duplex-text="el.isContainSecurityCode" value="0"> 否</label>
+                            </div>
+                            <span ms-visible="displayType == 'read'">
+                                <label ms-if="el.isContainSecurityCode == '1'">是</label>
+                                <label ms-if="el.isContainSecurityCode == '0'">否</label>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tab-left"><span class="warn">*</span>上传附件：</td>
+                        <td class="f-field ff-value">
+                            <div ms-visible="displayType == 'add' || displayType == 'edit'" class="card-radio">
+                                <ul class="fn-clear">
+                                    <li class="fn-left"><div ms-widget="uploader,$,el.$cardUploaderOpts"><p ms-if="!uping"><button ms-if="!el.attachmentId" class="simple-btn">上传新附件</button><button ms-if="el.attachmentId" class="simple-btn">重新上传</button></p></div></li>
+                                    <li class="fn-left tips-width" ms-if="!uping">图片尺寸：506*330，大小不超过100K。支持jpg、png、gif格式(只能上传一个，后上传的覆盖之前上传的)</li>
+                                </ul>
+                                <ul class="upfile-box" ms-class-1="{{el.upFileFlag}}"></ul>
+                            </div>
+                            <div class="card-img-link" ms-if="el.sysAttachment.originalFileName"><a ms-href="{{path}}fesOnlineProcess/download.do?relPath={{el.sysAttachment.fileFullPath}}">{{el.sysAttachment.originalFileName}}</a></div>
+                            <div class="card-img-show" ms-if="el.sysAttachment.fileFullPath"><img ms-src="{{path}}{{el.sysAttachment.fileFullPath}}"></div>
+                            <input type="hidden" ms-class="{{el.upFileFlag}}input" ms-value="{{el.sysAttachment.originalFileName}}" data-rules="empty" data-tips="附件不能为空！" isrule=true >
+                            <div class="ff-value-tip"></div>
+                        </td>
+                    </tr>
+                </table>
+                <i ms-if="$index && (displayType == 'add' || displayType == 'edit')" class="iconfont icon-close" ms-click="remove(el)">&#xe616;</i>
+            </div>
+        </div>
+        <div class="fn-clear" ms-if="displayType == 'add' || displayType == 'edit'">
+            <button class="simple-btn fn-right addCarButton" ms-click="addCar"> 添加卡</button>
+        </div>
+    </div>
+</div>
+<!-- 申请开卡 end -->
+

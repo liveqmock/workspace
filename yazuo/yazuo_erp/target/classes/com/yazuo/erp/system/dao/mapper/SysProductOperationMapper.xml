@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.system.dao.SysProductOperationDao">
+	<resultMap id="SysProductOperation" type="com.yazuo.erp.system.vo.SysProductOperationVO">
+    	<id property="id" column="id"/>
+    	<result property="title" column="title"/>
+    	<result property="productType" column="product_type" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="promotionPlatform" column="promotion_platform" typeHandler="com.yazuo.erp.interceptors.ArrayTypeHandler"/>
+    	<result property="content" column="content"/>
+    	<result property="amount" column="amount"/>
+    	<result property="beginTime" column="begin_time"/>
+    	<result property="endTime" column="end_time"/>
+    	<result property="isOpen" column="is_open"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="sysproductoperationColumns">
+	    <![CDATA[
+		id,title,product_type,promotion_platform,content,amount,begin_time,end_time,is_open,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSysProductOperation" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： title,product_type,promotion_platform,content,begin_time,end_time,is_open,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_product_operation (
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="productType!=null and productType!=''">product_type,</if>
+        	 <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="amount!=null ">amount,</if>
+        	 <if test="beginTime!=null ">begin_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="isOpen!=null and isOpen!=''">is_open,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="title!=null and title!=''">#{title},</if>
+       	    <if test="productType!=null and productType!=''">
+       	    	 #{productType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+       	    <if test="promotionPlatform!=null and promotionPlatform!=''">
+       	    	 #{promotionPlatform, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+       	    <if test="content!=null and content!=''">#{content},</if>
+       	    <if test="amount!=null ">#{amount},</if>
+       	    <if test="beginTime!=null ">#{beginTime},</if>
+       	    <if test="endTime!=null ">#{endTime},</if>
+       	    <if test="isOpen!=null and isOpen!=''">#{isOpen},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSysProductOperations" parameterType="map">
+	 <!--不允许为空的字段： title,product_type,promotion_platform,content,begin_time,end_time,is_open,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO sys.sys_product_operation (
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="productType!=null and productType!=''">product_type,</if>
+        	 <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform,</if>
+        	 <if test="content!=null and content!=''">content,</if>
+        	 <if test="amount!=null ">amount,</if>
+        	 <if test="beginTime!=null ">begin_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="isOpen!=null and isOpen!=''">is_open,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="title!=null and title!=''">#{t.title},</if>
+          <if test="productType!=null and productType!=''">#{t.productType},</if>
+          <if test="promotionPlatform!=null and promotionPlatform!=''">#{t.promotionPlatform},</if>
+          <if test="content!=null and content!=''">#{t.content},</if>
+          <if test="amount!=null ">#{t.amount},</if>
+          <if test="beginTime!=null ">#{t.beginTime},</if>
+          <if test="endTime!=null ">#{t.endTime},</if>
+          <if test="isOpen!=null and isOpen!=''">#{t.isOpen},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSysProductOperation">
+        UPDATE sys.sys_product_operation 
+ 		  <set>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="productType!=null and productType!=''">
+       	    	 product_type = #{productType, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+       	    <if test="promotionPlatform!=null and promotionPlatform!=''">
+       	    	 promotion_platform = #{promotionPlatform, jdbcType=ARRAY, typeHandler=com.yazuo.erp.interceptors.ArrayTypeHandler},</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="amount!=null ">amount = #{amount} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="isOpen!=null and isOpen!=''">is_open = #{isOpen} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSysProductOperationsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE sys.sys_product_operation 
+ 		  <set>
+	        <if test="title!=null and title!=''">title = #{t.title} ,</if>
+	        <if test="productType!=null and productType!=''">product_type = #{t.productType} ,</if>
+	        <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform = #{t.promotionPlatform} ,</if>
+	        <if test="content!=null and content!=''">content = #{t.content} ,</if>
+	        <if test="amount!=null ">amount = #{t.amount} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{t.beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{t.endTime} ,</if>
+	        <if test="isOpen!=null and isOpen!=''">is_open = #{t.isOpen} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSysProductOperationsToSameVals" parameterType="map">
+        UPDATE sys.sys_product_operation 
+ 		  <set>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="productType!=null and productType!=''">product_type = #{productType} ,</if>
+	        <if test="promotionPlatform!=null and promotionPlatform!=''">promotion_platform = #{promotionPlatform} ,</if>
+	        <if test="content!=null and content!=''">content = #{content} ,</if>
+	        <if test="amount!=null ">amount = #{amount} ,</if>
+	        <if test="beginTime!=null ">begin_time = #{beginTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="isOpen!=null and isOpen!=''">is_open = #{isOpen} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSysProductOperationById">
+    <![CDATA[
+        DELETE FROM sys.sys_product_operation WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSysProductOperationByIds" parameterType="list">
+        DELETE FROM sys.sys_product_operation WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSysProductOperationById" resultMap="SysProductOperation">
+		SELECT <include refid="sysproductoperationColumns" />
+		    FROM sys.sys_product_operation 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSysProductOperations" resultMap="SysProductOperation">
+		SELECT <include refid="sysproductoperationColumns" />
+		    FROM sys.sys_product_operation  
+	    <include refid="sysproductoperation_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSysProductOperationsMap" resultType="map">
+		SELECT <include refid="sysproductoperationColumns" />
+	    <![CDATA[
+		    FROM sys.sys_product_operation  
+	    ]]>
+	    <include refid="sysproductoperation_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="sysproductoperation_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="title!=null and title!=''">AND title like '%'||#{title}||'%'</if>
+	       <if test="productType!=null and productType!=''">AND product_type = #{productType}</if>
+	       <if test="inputPromotionPlatform!=null and inputPromotionPlatform!=''">
+			  and #{inputPromotionPlatform}  = ANY (promotion_platform)     
+		    </if>
+	       <if test="content!=null and content!=''">AND content = #{content}</if>
+	       <if test="amount!=null ">AND amount = #{amount}</if>
+		   
+	       <if test="isOpen!=null and isOpen!=''">AND is_open = #{isOpen}</if>
+	       <if test="filterByCurrentDate!=null and filterByCurrentDate!=''">
+	           AND begin_time &lt;= now() and  now() &lt;=  end_time  </if>
+	       AND is_enable = '1' 
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSysProductOperationCount" resultType="long">
+        SELECT count(*) FROM sys.sys_product_operation 
+		<include refid="sysproductoperation_findPage_where"/>    
+    </select>
+    
+</mapper>

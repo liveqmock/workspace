@@ -1,0 +1,1424 @@
+/*btn*/
+html body .ui-page .m-btn1 {
+	background: #fff;
+	border: 1px solid #f53c51;
+	color: #f53c51;
+	border-radius: 15px;
+	padding: 2px 10px 3px;
+	font-size: 12px;
+	text-decoration:none;
+}
+
+html body .ui-page .m-btn1:hover {
+	color: #f53c51;
+	text-decoration:none;
+}
+
+html body .ui-page .m-btn2 {
+	border: 1px solid #fff;
+	color: #fff;
+	border-radius: 15px;
+	padding: 2px 15px 3px;
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration:none;
+}
+
+html body .ui-page .m-btn2:hover {
+	color: #fff;
+	text-decoration:none;
+}
+html body .ui-page .m-btn3 {
+	display:block;
+	text-align:center;
+	background:#f53c51;
+	color: #fff;
+	padding: 13px 0;
+	font-size: 16px;
+	text-shadow:0 0 0 #f3f3f3;
+	border:none;
+	border-radius:0;
+	text-decoration:none;
+	margin:0;
+}
+html body .ui-page .m-btn3:hover {
+	color: #fff;
+	text-shadow:0 0 0 #f3f3f3;
+	text-decoration:none;
+	background:#f53c51;
+}
+html body .ui-page .m-btn4 {
+	display:block;
+	text-align:center;
+	background:#44aa39;
+	color: #fff;
+	padding: 13px 0;
+	font-size: 16px;
+	text-shadow:0 0 0 #f3f3f3;
+	text-decoration:none;
+	border:none;
+	border-radius:0;
+}
+html body .ui-page .m-btn4:hover {
+	color: #fff;
+	text-shadow:0 0 0 #f3f3f3;
+	text-decoration:none;
+}
+html body .ui-page .m-btn5 {
+	display:inline-block;
+	text-align:center;
+	background:#f53c51;
+	color: #fff;
+	padding: 8px 20px;
+	font-size: 16px;
+	text-shadow:0 0 0 #f3f3f3;
+	border:none;
+	border-radius:0;
+	text-decoration:none;
+}
+html body .ui-page .m-btn5:hover {
+	color: #fff;
+	text-shadow:0 0 0 #f3f3f3;
+	text-decoration:none;
+	background:#f53c51;
+}
+/*index*/
+.member-message-wrap {
+	padding: 1em;
+	background:#fff;
+	border-bottom: 1px solid #cfcfcf;
+}
+
+.member-message-wrap .member-message-list li {
+	border-top: 1px solid #ededed;
+	padding: 10px 7px;
+	color: #333;
+	position: relative;
+}
+
+.member-message-wrap .member-message-list li:nth-child(1) {
+	border-top: none;
+}
+
+.member-message-wrap .member-message-list li h1 .memeber-name {
+	font-size: 24px;
+	padding-right:5px;
+}
+
+.member-message-wrap .member-message-list li h1 {
+	position: relative;
+}
+
+.member-message-wrap .member-message-list li h1 .sex {
+	border-left: 1px solid #dbdbdb;
+	padding: 0 0 0 10px;
+	display: inline-block;
+	vertical-align:1px;
+}
+
+.member-message-list li .mesg-info {
+	margin-top: 10px;
+}
+
+.icon-male,.icon-remale,.icon-arrow-right {
+	background: url(../../images/member/icon02.png) top right no-repeat;
+	content: '';
+	background-size: contain;
+	width: 13px;
+	height: 13px;
+}
+
+.icon-remale {
+	background: url(../../images/member/icon11.png) top right no-repeat;
+	background-size: contain;
+}
+
+.icon-arrow-right {
+	background: url(../../images/member/icon01.png) top right no-repeat;
+	background-size: contain;
+	position: absolute;
+	top: 40%;
+	right: 20px;
+	display: inline-block;
+	height:11px;
+	width:6px;
+}
+
+.member-message-wrap .member-message-list li .member-set {
+	width: 25%;
+	text-align: center;
+}
+.member-message-wrap .member-message-list li .member-set-two{
+	width:50%;
+}
+.member-message-wrap .member-message-list li .member-set-three{
+	width:33.3%;
+}
+
+.member-message-wrap .member-message-list li .member-set p {
+	font-size: 12px;
+}
+
+.member-message-wrap .member-message-list li .member-set img {
+	margin-bottom: 5px;
+	width: 42px;
+}
+.member-message-wrap .member-message-list li .member-set-one img{
+	margin-right: 5px;
+	width: 42px;
+}
+.mesg-word {
+	color: #999;
+}
+
+.mesg-word-color {
+	color: #5f718d;
+}
+/*list*/
+.member-list-wrap {
+	margin-bottom: 15px;
+}
+
+.member-list-wrap .list-header {
+	background: url(../../images/member/list-header-bg.png) repeat-x;
+	background-size: contain;
+	height: 39px;
+	border-radius: 3px 3px 0 0;
+	color: #fff;
+	position: relative;
+	z-index:2;
+}
+
+.member-list-wrap .list-header-blue {
+	background: url(../../images/member/list-header-bg-blue.png) repeat-x;
+	background-size: contain;
+}
+
+.member-list-wrap .list-header .list-header-name {
+	padding: 9px 0 10px 15px;
+}
+
+.member-list-wrap .list-header .m-btn2 {
+	position: absolute;
+	right: 15px;
+	top: 11px;
+}
+
+.member-list-wrap .list-content {
+	background:#fff;
+	border: 1px solid #d9d9d9;
+	border-top: none;
+	border-radius: 0 0 3px 3px;
+	padding: 15px 15px;
+	position: relative;
+	top:-1px;
+	z-index:1;
+}
+
+.member-list-wrap .list-content h3 {
+	text-align: center;
+	font-size: 15px;
+	font-weight: normal;
+	margin: 0 0 10px;
+}
+
+.member-list-wrap .list-content h3 .list-time {
+	color: #6cb647;
+}
+
+.icon-arrow-gray,.icon-arrow-green,.icon-arrow-top,.viewIco,.viewMoreIco{
+	position: absolute;
+	bottom: 11px;
+	left:0;
+	width: 100%;
+	height: 15px;
+	cursor: pointer;
+	text-align:center;
+}
+.viewIco,.viewMoreIco{
+	bottom:14px;
+}
+.icon-arrow-gray i,.icon-arrow-green i,.icon-arrow-top i,.viewIco i,.viewMoreIco i{
+	display: inline-block;
+	background: url(../../images/member/icon16.png) no-repeat;
+	background-size:contain;
+	width:11px;
+	height:6px;
+	
+}
+.icon-arrow-green i,.viewMoreIco i,.icon-arrow-top i{
+	background: url(../../images/member/icon16_1.png) no-repeat;
+	background-size:contain;
+}
+
+.list-content-wrap {
+	margin: 0 0 10px;
+	font-size: 15px;
+	display:none;
+}
+
+.member-card-content {
+	background:#fff;
+	padding-bottom:20px;
+}
+
+.member-card-content h1 {
+	text-align: center;
+	color: #888;
+	font-size: 16px;
+	padding: 0 0 10px;
+}
+
+.member-card-content h1 span {
+	padding: 5px 15px;
+	font-size: 20px;
+	vertical-align: 3px;
+}
+.member-card-show {
+	text-align: center;
+	width: 320px;
+	overflow: hidden;
+	margin: 0 auto;
+	position:relative;
+}
+
+.member-card-show ul {
+	width: 100000px;
+	margin-left: 0;
+	height:146px;
+	overflow:hidden;
+}
+
+.member-card-show li {
+	float: left;
+	margin: 0 5px 0 0;
+	position:relative;
+}
+
+.member-card-show li img {
+	width: 240px;
+}
+.member-card-show .img-big{
+}
+.member-card-show .img-big img {
+	width: 250px;
+}
+/*member card*/
+.member-card-message {
+	margin-bottom: 15px;
+}
+
+.member-card-message .member-card-img {
+	text-align: center;
+	position:relative;
+	padding:0 4px;
+}
+.member-card-message .member-card-img img{
+	width:100%;
+}
+
+.member-card-message .member-card-contain {
+	padding: 28px 10px 19px;
+	font-size: 14px;
+	border: 1px solid #d9d9d9;
+	border-radius:5px;
+	background: #fff;
+	margin-top:-25px;
+}
+
+.member-card-message .member-card-contain .member-card-number {
+	padding: 5px 0 10px;
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.member-card-contain .member-card-number .member-card-num-info span {
+	font-size: 18px;
+	color: #444;
+	font-weight:normal;
+}
+
+.member-card-contain .member-card-number .member-card-set {
+	text-align: center;
+	color: #6e7a8c;
+	font-size: 12px;
+	margin-top: 15px;
+}
+
+.member-card-contain .member-card-number .member-card-set a,.member-card-contain .member-card-number .member-card-set a:hover {
+	font-weight: normal;
+	color: #6e7a8c;
+}
+
+.member-card-contain .member-card-number .member-card-set a i {
+	display: inline-block;
+	content: '';
+	padding-right: 5px;
+	width: 22px;
+	height: 22px;
+	vertical-align: middle;
+}
+
+.member-card-number .member-card-set .member-card-modPaw {
+	padding-right: 15px;
+	border-right: 1px solid #d9d9d9;
+	height:20px;
+	width:20px;
+}
+
+.member-card-number .member-card-set .member-card-rePaw {
+	padding-left: 15px;
+}
+
+.member-card-number .member-card-set .member-card-modPaw i {
+	background: url(../../images/member/icon12.png) no-repeat;
+	background-size: contain;
+}
+
+.member-card-number .member-card-set .member-card-rePaw i {
+	background: url(../../images/member/icon13.png) no-repeat;
+	background-size: contain;
+}
+
+.member-card-money .money-num {
+	font-size: 24px;
+	color: #ee2937;
+}
+
+.member-card-money .money-style {
+	color: #c1c1c1;
+	font-size: 10px;
+	padding: 0 5px 0 3px;
+}
+
+.member-card-money .jf-num {
+	font-size: 24px;
+	color: #48b19c;
+}
+
+.member-card-money p {
+	padding-top: 10px;
+}
+.member-list-module{
+	min-height:100px;
+}
+.member-list-module h2 {
+	padding: 10px 0;
+	font-size: 16px;
+	color: #333;
+}
+
+.member-list-module h2 .member-tit-sm {
+	font-size: 12px;
+	color: #888;
+	padding-left: 10px;
+	margin-left: 10px;
+	border-left: 1px solid #d9d9d9;
+}
+
+.member-trade-list-wrap {
+	position: relative;
+	z-index: 1;
+}
+
+.member-trade-list-wrap h3 {
+	border-radius: 15px;
+	border: 1px solid #9d9d9d;
+	background: #dcdcdc;
+	height: 10px;
+	-moz-box-shadow: 1px 2px 0 0 #cfcfcf inset;
+	-webkit-box-shadow: 1px 2px 0 0 #cfcfcf inset;
+	box-shadow: 1px 2px 0 0 #cfcfcf inset;
+}
+.member-trade-list-wrap .member-trade-list-content{
+	position: absolute;
+	top: 5px;
+	left: 2.3%;
+	width: 95%;
+	z-index:2;
+}
+.member-trade-list-wrap .member-trade-list-content .list-bottom-bg{
+	background: url(../../images/member/m-bg.png?111) repeat-x;
+	background-size:contain;
+	display:block;
+	height:10px;
+	border-left: 1px solid #c8c8c8;
+	border-right: 1px solid #c8c8c8;
+	z-index:3;
+	
+}
+.member-trade-list-wrap .member-trade-list {
+	padding-bottom: 0px;	
+	border: 1px solid #c8c8c8;
+	border-bottom: none;
+	background:#fff;
+}
+
+.member-trade-list-wrap .member-trade-list .m-bg-tit {
+	background: url(../../images/member/m-bg2.png) repeat-x;
+	height: 11px;
+}
+
+.member-trade-list-wrap .member-trade-list .trade-list-tit {
+	text-align: center;
+	font-size: 16px;
+	color: #333;
+	padding: 15px 0;
+}
+
+.member-trade-list-wrap .member-trade-list .trade-list-content li {
+	border-top: 2px dashed #e2e3e5;
+	padding: 15px 10px;
+	background:#fff;
+	color:#666;
+}
+
+.member-trade-list .trade-list-content li table {
+	width: 100%;
+}
+
+.member-trade-list .trade-list-content li td {
+	color: #a7a7a7;
+	font-size: small;
+	padding: 5px 0;
+	vertical-align: top;
+}
+.member-trade-list .trade-list-content li td .td-xfpj{
+	margin-right:-5px;
+}
+.trade-list-content li td .trade-list-money {
+	font-size: 16px;
+	color: #ee2937;
+}
+
+.trade-list-content li td .word-info {
+	color: #666;
+}
+
+.member-trade-list .trade-list-content li td .mod-can {
+	text-decoration: underline;
+	color: #4473b3;
+	font-weight: normal;
+}
+
+.trade-list-content .member-trade-pj {
+	border-top: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
+	background: #f4f4f4;
+	padding: 15px 10px;
+	font-size: small;
+	color: #666;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.trade-list-content .member-trade-pj .m-arrow {
+	position: absolute;
+	top: -10px;
+	left: 45%;
+	background: url(../../images/member/icon14.png) no-repeat;
+	background-size: contain;
+	width: 20px;
+	height: 10px;
+}
+
+.trade-list-content .member-trade-pj .pj-cont {
+	padding: 10px 0;
+}
+
+.pj-mesg {
+	padding-top: 10px;
+}
+
+.pj-mesg span {
+	color: #ee2937;
+}
+
+.trade-list-content .member-trade-pj .pj-cont span {
+	float: left;
+	text-align: center;
+	border: 1px solid #d9d9d9;
+	background: #fff;
+	width: 50px;
+	height: 28px;
+	line-height: 28px;
+	font-size: small;
+	margin:0 10px 10px 0;
+}
+
+.trade-list-content .member-trade-pj .pj-cont .span-sel {
+	border: 1px solid #f53c51;
+	color: #f53c51;
+}
+
+.trade-list-content .member-trade-pj .pj-input {
+	position: relative;
+}
+
+.trade-list-content .member-trade-pj .pj-input .ui-input-text {
+	width: 183px;
+	background:#fff;
+}
+
+.trade-list-content .member-trade-pj .pj-input input {
+	padding: 0.6em;
+}
+
+.trade-list-content .member-trade-pj .pj-input button {
+	width: 75px;
+	background: #f53c51;
+	border: none;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	position: absolute;
+	left: 183px;
+	top: 0;
+	border-radius: 0;
+	margin: 0;
+	padding: 0.45em 0;
+	font-weight: normal;
+}
+
+/*user-message*/
+.member-information-wrap{
+	background:#fff;
+}
+.member-information-wrap h1 {
+	border-bottom: 1px solid #cfcfcf;
+	background: #f0f0f0;
+	padding: 15px 20px;
+	color: #333;
+	font-size: 16px;
+	position:relative;
+}
+
+.member-information-wrap:nth-child(1) h1 {
+	border-top: none;
+}
+
+.member-information-wrap ul {
+	padding: 0 20px;
+	border-bottom:1px solid #cfcfcf;
+}
+
+.member-information-wrap li {
+	padding: 15px 10px;
+	border-top: 1px solid #ededed;
+	position: relative;
+	font-size:14px;
+}
+.member-information-wrap .information-edit li{
+	padding:0 10px;
+	line-height:50px;
+	height:50px;
+}
+
+.member-information-wrap li:nth-child(1) {
+	border-top: none;
+}
+.mesg-word6{
+	color:#666;
+}
+.member-information-wrap li label{
+	width:50px;
+	text-align:right;
+	float:left;
+	margin:0;
+	font-size:14px;
+}
+.member-information-wrap li .ui-input-text{
+	float:left;
+	margin:0;
+	background:#fff;
+	border-radius:0;
+	border:none;
+	text-shadow:0 0 0 #f3f3f3;
+	width:70%;
+}
+.member-information-wrap li .ui-select,.weixin-input .weixin-input-cont .ui-select{
+	margin:0;
+	float:left;
+	width:32%;
+}
+.member-information-wrap li .ui-select{
+	margin:14px 0 0;
+}
+.ui-btn-icon-right:after{
+	right:0;
+}
+.weixin-input .weixin-input-cont .ui-select{
+	width:32%;
+	text-align:center;
+	margin-top:15px;
+}
+.member-information-wrap li .ui-select .ui-btn,.member-information-wrap li .ui-select .ui-btn-active,.weixin-input .weixin-input-cont .ui-select .ui-btn,.weixin-input .weixin-input-cont .ui-select .ui-btn-active{
+	background:#fff;
+	color:#666;
+	box-shadow:none;
+	font-size:14px;
+	padding:0.1em 1.5em 0.5em 0.5em;
+	border-radius:0;
+	font-weight:normal;
+	text-shadow:none;
+}
+.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after{
+	width:18px;
+	height:18px;
+}
+.weixin-input .weixin-input-cont .ui-select .ui-btn,.weixin-input .weixin-input-cont .ui-select .ui-btn-active{
+	font-weight: bold;
+}
+.member-information-wrap li .ui-radio{
+	float:left;
+	padding-top:6px;
+	background:#fff;
+}
+.member-information-wrap li .ui-radio input{
+	margin:0;
+	top:5px;
+}
+.member-information-wrap .sex-style{
+	width:40px;
+	text-align:left;
+}
+.member-information-wrap .birth-time{
+	border-left:1px solid #cfcfcf;
+	float:left;
+	width:75px;
+	position:relative;
+	text-align:center;
+	height:20px;
+	line-height:20px;
+	margin-top:10px;
+	
+}
+.member-information-wrap .birth-time:nth-child(1){
+	border-left:none;
+}
+.member-information-wrap .birth-time i{
+	display:inline-block;	
+	background: url(images/icon16.png) center right no-repeat;
+	background-size: contain;
+	width: 16px;
+	height: 9px;
+	position: absolute;
+	top: 6px;
+	right: 7px;
+}
+.member-information-wrap .mesg-icon-arrow {
+	position: absolute;
+	right: 10px;
+	top: 32%;
+	width: 30px;
+	height: 20px;
+	border-left: 1px solid #ededed;
+}
+
+.member-information-wrap .mesg-icon-arrow i {
+	display: inline-block;
+	background: url(../../images/member/icon16.png) center right no-repeat;
+	background-size: contain;
+	width: 16px;
+	height: 9px;
+	position: absolute;
+	top: 6px;
+	right: 0;
+}
+
+.member-information-wrap .mesg-icon-arrow a,.member-information-wrap .mesg-icon-arrow a:hover {
+	color: #4473b3;
+	text-decoration: underline;
+	font-size: 14px;
+	position: absolute;
+	top: 0;
+	right: -4px;
+	font-weight:normal;
+	line-height:19px;
+}
+
+.member-information-wrap .mesg-birth {
+	position: absolute;
+	left: 86px;
+	top: 15px;
+	text-align: center;
+	width: 110px;
+	border-left: 1px solid #cfcfcf;
+}
+.member-information-wrap .relation-cont .ui-select{
+	border-right: 1px solid #ededed;
+	padding-right:5px;
+	width:26%;
+	margin:0;
+	height:20px;
+}
+.member-information-wrap .relation-cont .ui-input-text{
+	width:35%;
+	font-size:small;
+	color:#666;
+	font-weight:normal;
+}
+.member-information-wrap .mesg-birth i {
+	display: inline-block;
+	background: url(../../images/member/icon16.png) center right no-repeat;
+	background-size: contain;
+	width: 16px;
+	height: 9px;
+	position: absolute;
+	top: 6px;
+	right: -3px;
+}
+.member-information-wrap .mesg-icon-arrow .m-icon-add{
+	background: url(../../images/member/icon17.png) center right no-repeat;
+	background-size: contain;
+	width:20px;
+	height:20px;
+	top:1px;
+}
+
+.member-information-wrap .mesg-icon-arrow .m-icon-remove{
+	background: url(../../images/member/icon18.png) center right no-repeat;
+	background-size: contain;
+	width:20px;
+	height:20px;
+	top:1px;
+}
+.member-information-wrap .mesg-relation{
+	width:60px;
+	text-align:center;
+	display:inline-block;
+}
+.ui-page .m-save {
+	background: none;
+	border-radius: 0;
+	color: #fff;
+	border: none;
+	font-size: 14px;
+	text-shadow: 0 0 0 #f3f3f3;
+}
+
+.ui-page .m-save:hover {
+	color: #fff;
+	text-shadow: 0 0 0 #f3f3f3;
+}
+/*success*/
+.memeber-tips-wrap{
+	border-bottom:1px dashed #f0a168;
+	background:#fffbf3;
+	padding:7px 15px;
+	color:#fa6422;
+	font-size:small;
+	position:relative;
+	z-index:1;
+	margin-bottom:15px;
+}
+.memeber-tips-wrap .m-icon-tips{
+	display:inline-block;
+	background:url(../../images/member/icon20.png) no-repeat;
+	background-size: contain;
+	width:16px;
+	height:16px;
+	vertical-align:-3px;
+	margin-right:5px;
+}
+.memeber-tips-wrap .m-tips-arrow{
+	display:inline-block;
+	background:url(../../images/member/icon19.png) no-repeat;
+	background-size: contain;
+	width:11px;
+	height:6px;
+	position:absolute;
+	left:47%;
+	bottom:-6px;
+	z-index:11;
+}
+.member-success-content{
+	background:#fff;
+	border-bottom:1px solid #cfcfcf;
+	border-top:1px solid #cfcfcf;
+	padding:30px 15px 25px;
+}
+.member-success-content .success-cont{
+	width:230px;
+	margin:0 auto;
+}
+.member-success-content .success-cont .success-icon{
+	padding-bottom:25px;
+	text-align:center;
+	color:#333;
+	font-size:18px;
+}
+.member-success-content .success-cont .success-icon img{
+	width:65px;
+	margin-bottom:17px;
+}
+.member-success-content .success-cont .success-mesg{
+	border-top:1px solid #cfcfcf;
+	font-size:14px;
+	line-height:180%;
+	padding:20px 0;
+}
+.sucess-btn-cont{
+	padding:15px 20px;
+}
+.member-success-content .success-cont .mesg-friend-phone{
+	font-size:16px;
+}
+.coupon-tips,.mesg-error-tips{
+	border:1px dashed #f0a168;
+	border-radius:3px;
+	background:#fffcf5;
+	color:#c9936c;
+	font-size:14px;
+	line-height:150%;
+	text-align:center;
+	padding:10px 0;
+	position:relative;
+	display: block;
+}
+.coupon-tips .tips-word-color{
+	color:#fa6422;
+}
+.coupon-tips .coupon-tips-arrow{
+	position:absolute;
+	top:-6px;
+	left:45%;
+	background:url(../../images/member/icon22.png) no-repeat;
+	background-size:contain;
+	width:11px;
+	height:6px;
+}
+/*weixin-pay*/
+.weixin-input h2{
+	padding:10px 20px;
+	font-size:16px;
+	color:#444;
+	font-weight:normal;
+}
+.weixin-input .weixin-input-cont{
+	position:relative;
+	background:#fff;
+	border-top:1px solid #cfcfcf;
+	border-bottom:1px solid #cfcfcf;
+	height:50px;
+	line-height:50px;
+	padding:0 20px;
+}
+
+.weixin-input .password{
+	display:none;
+}
+
+.weixin-input .weixin-input-cont:nth-child(n+2){
+	border-top:none;
+}
+.input-border-top .weixin-input-cont:nth-child(3),.input-border-top .weixin-input-cont:nth-child(2){
+	border-top:1px solid #cfcfcf;
+}
+.bind-weixin .weixin-input-cont:nth-child(3){
+	border-top:none;
+}
+.weixin-input .weixin-input-cont label{
+	float:left;
+	margin:0;
+	width:80px;
+	text-align:right;
+}
+.weixin-input .weixin-input-cont .text-r{
+	width:80px;
+	text-align:right;
+}
+.weixin-input .weixin-input-cont .ui-input-text{
+	float:left
+	;margin:0;
+	background:#fff;
+	border-radius:0;
+	border:none;
+	text-shadow:0 0 0 #f3f3f3;
+	height:50px;
+	width:70%;
+}
+.weixin-input .weixin-input-cont .ui-input-text input{
+	height:3.2em;
+	color:#666;
+}
+.weixin-input .yzm-input-cont .ui-input-text{
+	width:43%;
+}
+.ui-input-text input[placeholder]{
+	
+}
+.weixin-mesg{
+	padding:15px 20px;
+}
+.weixin-mesg .weixin-mesg-word{
+	padding:10px 0 20px;
+	font-size:small;
+}
+.weixin-input .yzm-input-cont .yzm-btn{
+	width:36%;
+	text-align:center;
+	border-left:1px solid #cfcfcf;
+	height:50px;
+	display:inline-block;
+	font-size:16px;
+	background:#fbfbfb;
+	position:absolute;
+	right:0;
+}
+.weixin-input .yzm-input-cont .reset-yzm{
+	width:36%;
+	font-size:14px;
+	position:absolute;
+	right:0;
+}
+.mesg-error{
+	padding:15px 20px 0;
+	display:none;
+}
+.mesg-error-tips{
+	border:1px dashed #f53c51;
+	background:#fff8f8;
+	color:#f53c51;
+	display: block;
+}
+.weixin-input .recharge-money-num{
+	font-size:18px;
+	color:#e44b4f;
+}
+.m-icon-arrow-b{
+	display: inline-block;
+	background: url(../../images/member/icon16.png) center right no-repeat;
+	background-size: contain;
+	width: 16px;
+	height: 9px;
+	position: absolute;
+	top: 15px;
+	right: 20px;
+}
+.give-coupon-cont{
+	padding:10px 20px 0;
+}
+.give-coupon-cont .list-content{
+	padding:10px 0 0;
+}
+.give-coupon-name{
+	color:#666;
+	font-size:20px;
+	text-align:center;
+}
+.give-coupon-name .give-coupon-money{
+	color:#6cb647;
+	font-size:100px;
+}
+.member-fans-wrap h1{
+	background:#f0f0f0;
+	color:#333;
+	font-size:16px;
+	padding:10px 20px 10px;
+}
+.weixin-input .ui-radio{
+	float:left;
+	padding-top:5px;
+	margin:0;
+	backgrund:#fff;
+}
+.weixin-input .ui-radio input{
+	
+}
+.weixin-input .weixin-input-cont .sex-style{
+	width:40px;
+	text-align:left;
+}
+.weixin-input .birth-time{
+	border-left:1px solid #cfcfcf;
+	float:left;
+	width:90px;
+	position:relative;
+	text-align:center;
+	height:20px;
+	line-height:20px;
+	margin-top:10px;
+	
+}
+.weixin-input .birth-time:nth-child(1){
+	border-left:none;
+}
+.weixin-input .birth-time i{
+	display:inline-block;	
+	background: url(../../images/member/icon16.png) center right no-repeat;
+	background-size: contain;
+	width: 16px;
+	height: 9px;
+	position: absolute;
+	top: 6px;
+	right: 7px;
+}
+.weixin-input .weixin-input-cont{
+	padding:0;
+}
+.member-fans-wrap .weixin-input .weixin-input-cont .ui-input-text{
+	width:73%
+}
+.member-fans-wrap .weixin-input .weixin-input-cont .ui-input-text input{
+	height:3.3em;
+	font-size:15px;
+}
+/*pay result*/
+.pay-result .member-card-message{
+	margin:10px;
+}
+.coupon-mesg-moduel{
+	margin-bottom:10px;
+}
+.coupon-mesg-moduel h1{
+	font-size:14px;
+	color:#333;
+	font-weight:normal;
+	padding:0 10px 10px;
+}
+.coupon-mesg-moduel .coupon-mesg{
+	border-top:1px solid #cfcfcf;
+	border-bottom:1px solid #cfcfcf;
+	background:#fff;
+	padding:13px 10px;
+	font-size:small;
+	color:#666;
+	position:relative;
+}
+.coupon-mesg-moduel .coupon-mesg .coupon-nums{
+	padding-left:15px;
+}
+.coupon-mesg-moduel .coupon-mesg .coupon-arrow{
+	background:url(../../images/member/icon16.png) no-repeat;
+	background-size:contain;
+	display:inline-block;
+	width:15px;
+	height:8px;
+	position:absolute;
+	right:10px;
+	top:41%;
+}
+.coupon-mesg-moduel .coupon-mesg .coupon-arrow-t{
+	background:url(../../images/member/icon16_1.png) no-repeat;
+	background-size:contain;
+}
+.coupon-mesg-moduel .coupon-mesg-cont{
+	background:#fff;
+	border-bottom:1px solid #cfcfcf;
+	padding:10px;
+	color:#666;
+	font-size:small;
+	line-height:1.7;
+	display:none;
+}
+
+.ui-mobile label{display:inline-block;}
+.recordTitle{font-size:18px; font-weight:normal; display:block; color:#333333;  background:#fff; height:50px; line-height:50px; text-align:center}
+.recordTitle:hover,.recordTitle:visited{border:none;}
+.viewMoreLinks{display:block; height:38px; line-height:38px; border:#b2b2b2 solid 1px; text-align:center;
+text-decoration:none; color:#333; font-size:16px;margin:0;}
+.comment-more{padding:0 10px 15px;}
+
+.recordList li{padding: 5px 1%; border:none; margin-top:-1px; background:#F7F7F7;}
+.recordList li:nth-child(2n){background:#FEFCF3;}
+
+.recordList li p{padding:2px 0;font-size:12px;}
+.recordList li label{color:#a7a7a7;font-size:12px;width:70px;text-align:right;}
+.recordList .listExtra label{color:#a7a7a7;font-size:12px;width:70px;text-align:right;}
+.recordList li span{display:inline-block; width:50%; color:#333;}
+.recordList li b{font-weight:normal; font-weight:bold; color:#f53c51; padding:0px 2px;font-size:16px;}
+.recordList li .listExtra{font-size:12px;}
+
+/*交易记录增加 消费评价*/
+.consumeComment{font-size:14px; padding-left:70px; position:relative; line-height:24px; color:#333333;}
+.consumeComment label{position:absolute; left:0px; top:7px; color:#999999;}
+.recordList li .consumeComment p{padding:0px;position:relative;}
+.consumeComment p.commentInfo{height:40px; line-height:40px;}
+.consumeComment .commentTips{color:#999999; line-height:20px;}
+.consumeComment p.commentCont{}
+.consumeComment p.commentCont .commentWord{display:block;border-top:1px dashed #cfcfcf;margin-left:-71px;width:auto;margin-top:3px;padding:0 0 0 10px;}
+/*按钮*/
+html body .ui-page .orangeBtn{padding:0 0 0 5px;font-weight:normal;line-height:12px; margin:0;vertical-align:middle; margin-left:5px; display:inline-block; border-left:1px solid #cbcbcb; color:#646464;}
+html body .ui-page .modifyBtn{margin:19px 0 0;}
+html body .ui-page .sureBtn{padding:5px 15px;position:absolute;right:0;top:0;line-height:24px; margin:0; display:inline-block; background:#f53c51;color:#fff;}
+html body .ui-page .sureBtn:hover{color:#fff;}
+html body .ui-page .orangeBtn:hover,html body .ui-page .JS_cancelConsumeCommentBtn:hover{color:#646464;}
+html body .ui-page .JS_cancelConsumeCommentBtn{padding:0 0 0 5px;font-weight:normal;line-height:12px; margin:4px 0; margin-left:5px; display:inline-block; border-left:1px solid #cbcbcb; color:#646464; display:none;}
+/*评价表单*/
+.consumeCommentForm{background:#ffffff; border:#CDCDCD solid 1px;padding:0; margin-left:-70px;}
+.commentFormTxt{width:94%;padding:5px 3%; height:74px; line-height:20px; border:none; color:#6D6D6D; font-size:14px; font-family:"Microsoft Yahei";}
+.wordsNumCount{text-align:right; color:#6D6D6D; margin-right:8px;}
+.wordsNumCount em{color:#f53c51; padding:0px 2px;}
+/*星星投票*/
+.starVoteBtns{border-top:#CDCDCD solid 1px; position:relative;}
+.recordList li span.starScores{padding-top:6px; padding-left:5px;width:auto; display:inline-block;}
+.recordList li .commentShow span{width:auto; display:inline-block; line-height:28px;}
+.recordList li .commentShow span.commentTxt{margin-left:-60px;display:block;}
+.recordList li .consumeComment .commentShow{line-height:30px; padding-top:5px; padding-bottom:5px; position:relative;}
+.recordList li span.starScoreShow{display:block}
+.starScoreShow .starIco{
+	width:10px; 
+	height:10px; 
+	margin-left:3px; 
+	background:url(../../images/member/starGray.png) no-repeat; 
+	background-size:contain; 
+	display:inline-block;
+}
+.starScoreShow .votedStar{
+	background:url(../../images/member/starColor.png) no-repeat;
+	background-size:contain;
+}
+.starScores .starIco{
+	width:20px; 
+	height:20px; 
+	margin-left:3px; 
+	background:url(../../images/member/starGray_big.png) no-repeat; 
+	background-size:contain; 
+	display:inline-block;	
+}
+.starScores .votedStar{
+	background:url(../../images/member/starColor_big.png) no-repeat;
+	background-size:contain;
+}
+.starVoteBtns .orangeBtn,.JS_commentFormspan{position:absolute; right:5px; top:0px;}
+.JS_editCommentFormBtn{display:block; position:absolute; right:5px; top:-6px;}
+.JS_commentFormspan{padding:5px 15px;position:absolute;right:0;top:0;line-height:24px; margin:0; display:inline-block; background:#f53c51;color:#fff;}
+/*卡片背景图*/
+.cardBgItem{position:relative;} 
+.cardImg{ width:100%; margin:0px auto; display:block;}
+.cardLogo{ width:50px; height:50px; background:#fff; border:#fff solid 2px; position:absolute; left:25px; top:15px; display:block;}
+.member-card-img .cardLogo img{ width:50px; height:50px;}
+.memberInfoList li span.cardLogo{ margin-left:0px;}
+.cardName{ line-height:20px; font-size:1em; color:#333; position:absolute; left:95px; top:16px; display:block; text-align:center;}
+.cardCoffeName{ width:74px; line-height:20px; font-size:14px; color:#ffffff; position:absolute; left:12px; top:100px; display:block; text-align:center;}
+.cardType{ position:absolute; top:50px;left:95px; font-size:0.8em; color:#333;}
+.cardNum{position:absolute; right:20px; bottom:24px; font-size:12px; line-height:20px; text-align:right; color:#ffffff;}
+.cardNum strong{display:block; font-size:16px; padding-top:2px;}
+/*增加单一会员卡 区分颜色*/
+.difColor{ color:#94851B}
+.cardBirthday{position:absolute; right:20px; top:40px; font-size:14px;color:#333;}
+
+.cardDefaultBg{display:block; margin:8px auto; width:90%;}
+.borderShadow{width:100%; height:5px; position:absolute; bottom:0px; left:0px;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,#ffffff),color-stop(1,#cccccc));
+	background-image: -webkit-linear-gradient( #ffffff,#cccccc);
+	background-image:    -moz-linear-gradient(#ffffff,#cccccc );
+	background-image:     -ms-linear-gradient( #ffffff,#cccccc );
+	background-image:      -o-linear-gradient( #ffffff,#cccccc );
+	background-image:         linear-gradient( #ffffff,#cccccc );
+}
+.member-card-show li .cardDefaultLogo{position:absolute; top:15px; left:10%; width:50px; height:50px; border:#fff solid 2px; }
+
+/*咖啡陪你 card*/
+.cofeBeanCardNum{ position:absolute; right:20px; bottom:15px; font-size:20px; font-family:Arial;color:#F1C700; font-weight:normal;}
+
+.ui-datepicker select.ui-datepicker-month, .ui-datepicker select.ui-datepicker-year{
+	width:20%;
+	font-size:0.75em;
+	position:absolute;
+	top:8px;
+	left:168px;
+}
+.ui-datepicker select.ui-datepicker-month{
+	left:72px;
+}
+#popupDialog .ui-content{
+	text-align:center;
+}
+.member-information-wrap .information-edit li input{
+	color:#5f718d;
+	font-weight:normal;
+	height:3.6em;
+}
+.member-card-contain .member-card-number .member-card-num-info .member-nums,.member-card-contain .member-card-money .member-nums{
+	display:inline-block;
+	width:72px;
+	text-align:right;
+	font-size:14px;
+}
+.m-online{
+	float:right;
+	margin:5px 0 0;
+}
+.member-information-wrap h1 .mesg-icon-arrow{
+	border-left:none;
+	right:30px;
+}
+.member-information-wrap .mesg-relation-tit{
+	color:#666;
+	display: inline-block;
+    text-align: center;
+    width: 26%;
+    padding-right:1px;
+	border-left:1px solid #ededed;
+}
+.member-information-wrap .relation-time{
+	width:35%;
+}
+.member-information-wrap .mesg-relation-tit:nth-child(1){
+	border-left:none;
+}
+.ui-page .member-fans-wrap .weixin-input .yzm-input-cont .ui-input-text{
+	width:43%;
+}
+.weixin-input-cont .ui-controlgroup,.weixin-input-cont fieldset.ui-controlgroup,.information-edit li .ui-controlgroup, .information-edit li fieldset.ui-controlgroup{
+		float: left;
+    	margin: 0;
+    	padding: 0;
+    	position:relative;
+    	z-index:0;
+}
+html .ui-controlgroup-controls .ui-radio .ui-btn,html .ui-controlgroup-controls .ui-radio .ui-btn:visited{
+	background:#fff;	
+}
+html .ui-controlgroup-controls .ui-radio .ui-btn:active{
+	background-color:#fff ;
+	border-color:#fff ;
+}
+.member-card-message .member-card-img .m-coustom-logo{
+	position:absolute;
+	top:15px;
+	left:27px;
+}
+.member-card-message .member-card-img .m-coustom-logo img{
+	width:50px;
+	height:50px;
+}
+.member-card-message .member-card-img .m-coustom-name{
+	font-size:1em;
+	color:#333;
+	position:absolute;
+	top:20px;
+	left:95px;
+}
+.member-card-message .member-card-img .m-coustom-cardNum{
+	font-size:0.8em;
+	color:#333;
+	position:absolute;
+	top:47px;
+	left:95px;
+}
+.small {
+	top:28px;
+	left:89px;	
+}
+.member-card-show .click-left,.member-card-show .click-right{
+	display:inline-block;
+	width:50px;
+	height:45px;
+	padding-top:7px;
+	position:absolute;
+	top:40%;
+	left:15px;
+	text-align:center;
+}
+.member-card-show .click-left i,.member-card-show .click-right i{
+	display:inline-block;
+	background:url(../../images/member/icon53.png) no-repeat;
+	background-size:contain;
+	width:35px;
+	height:35px;
+}
+.member-card-show .click-right{
+	left:267px;
+}
+.member-card-show .click-right i{
+	background:url(../../images/member/icon52.png) no-repeat;
+	background-size:contain;
+}
+
+.member-information-wrap .relation-cont .ui-select .ui-btn{
+	padding:0.1em 1.5em 0.5em 0.5em;
+}
+.member-information-wrap .relation-cont .mesg-icon-arrow{
+	top:28%;
+}
+.member-information-wrap .relation-cont .ui-input-text input{
+	padding:0 0.4em;
+	min-height:1.6em;
+	text-align:center;
+}
+.member-information-wrap .mesg-relation-tit .relation-name-tit{
+	padding-right:1.1em;	
+}
+.member-card-number .member-card-num-info{
+	padding:3px 0;
+}
+.member-card-contain .member-card-number .member-card-num-info .card-phone-nums{
+	color:#5f718d;
+	font-weight:normal;
+}
+.member-fans-wrap .weixin-input{
+	background:#fff;
+	border-bottom:1px solid #cfcfcf;
+	padding:0 10px;
+}
+.member-fans-wrap .weixin-input .weixin-input-cont{	
+	border-top:none;
+	border-bottom:none;
+	border-top:1px solid #ededed;
+}
+.member-fans-wrap .weixin-input .weixin-input-cont:nth-child(1){
+	border-top:none;
+}
+.member-fans-wrap h1{	
+	border-bottom:1px solid #cfcfcf;
+}
+.ui-page .ui-content .member-card-contain-pad{
+	padding:10px;
+}
+/*wifi卡推荐页样式*/
+.member-card-tips{
+	background:#fefbf2;
+	border:1px solid #eec799;
+	border-radius:5px;
+	position:absolute;
+	top:57px;
+	left:0;
+	z-index:99;
+	margin:0 10px;
+}
+.member-card-tips .card-tips-word{
+	font-size:12px;
+	color:#444;
+	line-height:150%;
+	padding:10px 30px;
+}
+.ui-page .member-card-tips .c-info,.ui-page .member-card-tips .c-info:hover{
+	color:#fe8332;
+}
+.member-card-tips .success-img{
+	text-align:center;
+	padding:10px 0 0;
+}
+.member-card-tips img{
+	width:40px;
+}
+.member-card-word{
+	padding:10px 0 0 0;
+	line-height:150%;
+}
+.card-recommend-tit{
+	text-align:center;
+	font-size:small;
+	color:#444;
+	padding:10px 0;
+}
+.ui-page .card-VIP{
+	background:#fff;
+	padding:10px;
+	border-top:1px solid #e2e2e2;
+	border-bottom:1px solid #e2e2e2;
+}
+.ui-page .card-VIP .card-vip-cont{
+	padding-bottom:15px;
+}
+.card-name{
+	color:#444;
+	font-size:14px;
+	padding:0 0 10px;
+	text-align:center;
+}
+.ui-page .ui-content{
+	margin-bottom:15px;
+}

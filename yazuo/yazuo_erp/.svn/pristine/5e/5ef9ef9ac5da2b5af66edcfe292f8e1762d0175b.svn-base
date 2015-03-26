@@ -1,0 +1,160 @@
+.page-backend-customerservice-customer {
+    color:#777;
+}
+.page-backend-customerservice-customer .page-padding{
+    padding:20px 15px;
+}
+.page-backend-customerservice-customer .client-head{
+    width:100%;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+.page-backend-customerservice-customer .client-head-left{
+    float:left;
+    display:inline;
+}
+.page-backend-customerservice-customer .client-head-left-logo{
+    float:left;display:inline;
+    width:100px;
+    height:100px;
+    border:1px solid red;
+}
+.page-backend-customerservice-customer .client-head-left-text{
+    float:left;display:inline;
+    margin-left:30px;
+    width:350px;
+}
+.page-backend-customerservice-customer .client_head_right{
+    float:right;
+    display:inline;
+}
+.page-backend-customerservice-customer .client-head-left-text h2 {
+    font-size:24px;
+    line-height:30px;
+}
+.page-backend-customerservice-customer .client-head-left-text ul {
+    width:100%;
+    overflow:hidden;
+}
+.page-backend-customerservice-customer .client-head-left-text ul li {
+    float:left;
+    display: inline;
+    width:170px;
+    line-height:23px;
+    margin:10px 0;
+}
+.page-backend-customerservice-customer .mail {
+    background: #FDF4DA;
+    padding:10px;
+}
+.client-top {
+    border:1px solid #DDE3EA;
+}
+.client-info-left {
+    padding:15px;
+    width:650px;
+}
+.client-info-right {
+    padding:15px;
+    width:300px;
+    border-left:1px solid #DDE3EA;
+}
+.client-info-left li {
+    float:left;
+    display:inline;
+    font-size:16px;
+    width:300px;
+    margin:8px 5px;
+}
+.client-info-right li {
+    font-size:16px;
+    margin-top:5px;
+    width:100%;
+    overflow:hidden;
+}
+.client-info-right li p {
+    float:left;
+    display:inline;
+    width:130px;
+    margin:2px 0;
+}
+.client-info-right li p a {
+    font-size:14px;
+}
+.swfupload {
+    left:0;
+}
+
+
+.page-backend-customerservice-customer .client-step {
+    margin-top :15px;
+}
+.page-backend-customerservice-customer .status-box {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    background:#fff;
+    margin-bottom:15px;
+    border:1px solid #E1E1E1;
+}
+.page-backend-customerservice-customer .status-box .number {
+    width:55px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:28px;
+    height:100%;
+    border:none;
+    background:#D5D2CD;
+    color:#fff;
+
+}
+.page-backend-customerservice-customer .status-box .content {
+    position:relative;
+    margin-left:70px;
+    margin-right:300px;
+    padding:10px 0;
+}
+
+.page-backend-customerservice-customer .status-box .operation {
+    width:260px;
+    position: absolute;
+    right:20px;
+    top:50%;
+    height:100%;
+    margin-top:-17px;
+    text-align:right;
+}
+.page-backend-customerservice-customer .status-box .content h2 {
+    font-size:20px;
+}
+.page-backend-customerservice-customer .type-box {
+    background: #F4F3F2;
+    padding: 5px;
+}
+.page-backend-customerservice-customer .type-box li {
+    padding:5px 0;
+    width: 100%;
+    overflow: hidden;
+}
+.page-backend-customerservice-customer .type-box li .left-title {
+    float: left;
+    display: inline;
+    width:80px;
+    text-align: right;
+    line-height: 20px;
+}
+.page-backend-customerservice-customer .type-box li .left-con {
+    float: left;
+    display: inline;
+    width:600px;
+    padding-left:10px;
+    text-align: left;
+    line-height: 20px;
+}
+.merchantName {
+    font-size: 14px;
+    padding-top:5px;
+}
+
+

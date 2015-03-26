@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.train.dao.TraLearningProgressDao">
+	<resultMap id="TraLearningProgress" type="com.yazuo.erp.train.vo.TraLearningProgressVO">
+    	<id property="id" column="id"/>
+    	<result property="studentId" column="student_id"/>
+    	<result property="courseId" column="course_id"/>
+    	<result property="coursewareId" column="courseware_id"/>
+    	<result property="courseStatus" column="course_status"/>
+    	<result property="coursewareStatus" column="courseware_status"/>
+    	<result property="courseEndTime" column="course_end_time"/>
+    	<result property="coursewareEndTime" column="courseware_end_time"/>
+    	<result property="progressType" column="progress_type"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="learningProgressType" column="learning_progress_type"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="tralearningprogressColumns">
+	    <![CDATA[
+		id,student_id,course_id,courseware_id,course_status,courseware_status,course_end_time,courseware_end_time,progress_type,remark,insert_by,insert_time,update_by,update_time,learning_progress_type
+	    ]]>
+	</sql>
+
+	<insert id="saveTraLearningProgress" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： student_id,courseware_id,course_status,courseware_status,progress_type,insert_by,insert_time,update_by,update_time,learning_progress_type,--> 
+        INSERT INTO train.tra_learning_progress (
+        	 <if test="studentId!=null ">student_id,</if>
+        	 <if test="courseId!=null ">course_id,</if>
+        	 <if test="coursewareId!=null ">courseware_id,</if>
+        	 <if test="courseStatus!=null and courseStatus!=''">course_status,</if>
+        	 <if test="coursewareStatus!=null and coursewareStatus!=''">courseware_status,</if>
+        	 <if test="courseEndTime!=null ">course_end_time,</if>
+        	 <if test="coursewareEndTime!=null ">courseware_end_time,</if>
+        	 <if test="progressType!=null and progressType!=''">progress_type,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time,</if>
+        	 <if test="learningProgressType!=null and learningProgressType!=''">learning_progress_type</if>
+        ) VALUES (
+       	    <if test="studentId!=null ">#{studentId},</if>
+       	    <if test="courseId!=null ">#{courseId},</if>
+       	    <if test="coursewareId!=null ">#{coursewareId},</if>
+       	    <if test="courseStatus!=null and courseStatus!=''">#{courseStatus},</if>
+       	    <if test="coursewareStatus!=null and coursewareStatus!=''">#{coursewareStatus},</if>
+       	    <if test="courseEndTime!=null ">#{courseEndTime},</if>
+       	    <if test="coursewareEndTime!=null ">#{coursewareEndTime},</if>
+       	    <if test="progressType!=null and progressType!=''">#{progressType},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now(),</if>
+       	    <if test="learningProgressType!=null and learningProgressType!=''">#{learningProgressType}</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertTraLearningProgresss" parameterType="map">
+	 <!--不允许为空的字段： student_id,courseware_id,course_status,courseware_status,progress_type,insert_by,insert_time,update_by,update_time,learning_progress_type,--> 
+        INSERT INTO train.tra_learning_progress (
+        	 <if test="studentId!=null ">student_id,</if>
+        	 <if test="courseId!=null ">course_id,</if>
+        	 <if test="coursewareId!=null ">courseware_id,</if>
+        	 <if test="courseStatus!=null and courseStatus!=''">course_status,</if>
+        	 <if test="coursewareStatus!=null and coursewareStatus!=''">courseware_status,</if>
+        	 <if test="courseEndTime!=null ">course_end_time,</if>
+        	 <if test="coursewareEndTime!=null ">courseware_end_time,</if>
+        	 <if test="progressType!=null and progressType!=''">progress_type,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time,</if>
+        	 <if test="learningProgressType!=null and learningProgressType!=''">learning_progress_type</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="studentId!=null ">#{t.studentId},</if>
+          <if test="courseId!=null ">#{t.courseId},</if>
+          <if test="coursewareId!=null ">#{t.coursewareId},</if>
+          <if test="courseStatus!=null and courseStatus!=''">#{t.courseStatus},</if>
+          <if test="coursewareStatus!=null and coursewareStatus!=''">#{t.coursewareStatus},</if>
+          <if test="courseEndTime!=null ">#{t.courseEndTime},</if>
+          <if test="coursewareEndTime!=null ">#{t.coursewareEndTime},</if>
+          <if test="progressType!=null and progressType!=''">#{t.progressType},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now(),</if>
+          <if test="learningProgressType!=null and learningProgressType!=''">#{t.learningProgressType}</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateTraLearningProgress">
+        UPDATE train.tra_learning_progress 
+ 		  <set>
+	        <if test="studentId!=null ">student_id = #{studentId} ,</if>
+	        <if test="courseId!=null ">course_id = #{courseId} ,</if>
+	        <if test="coursewareId!=null ">courseware_id = #{coursewareId} ,</if>
+	        <if test="courseStatus!=null and courseStatus!=''">course_status = #{courseStatus} ,</if>
+	        <if test="coursewareStatus!=null and coursewareStatus!=''">courseware_status = #{coursewareStatus} ,</if>
+	        <if test="courseEndTime!=null ">course_end_time = #{courseEndTime} ,</if>
+	        <if test="coursewareEndTime!=null ">courseware_end_time = #{coursewareEndTime} ,</if>
+	        <if test="progressType!=null and progressType!=''">progress_type = #{progressType} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="learningProgressType!=null and learningProgressType!=''">learning_progress_type = #{learningProgressType} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateTraLearningProgresssToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE train.tra_learning_progress 
+ 		  <set>
+	        <if test="studentId!=null ">student_id = #{t.studentId} ,</if>
+	        <if test="courseId!=null ">course_id = #{t.courseId} ,</if>
+	        <if test="coursewareId!=null ">courseware_id = #{t.coursewareId} ,</if>
+	        <if test="courseStatus!=null and courseStatus!=''">course_status = #{t.courseStatus} ,</if>
+	        <if test="coursewareStatus!=null and coursewareStatus!=''">courseware_status = #{t.coursewareStatus} ,</if>
+	        <if test="courseEndTime!=null ">course_end_time = #{t.courseEndTime} ,</if>
+	        <if test="coursewareEndTime!=null ">courseware_end_time = #{t.coursewareEndTime} ,</if>
+	        <if test="progressType!=null and progressType!=''">progress_type = #{t.progressType} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="learningProgressType!=null and learningProgressType!=''">learning_progress_type = #{t.learningProgressType} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateTraLearningProgresssToSameVals" parameterType="map">
+        UPDATE train.tra_learning_progress 
+ 		  <set>
+	        <if test="studentId!=null ">student_id = #{studentId} ,</if>
+	        <if test="courseId!=null ">course_id = #{courseId} ,</if>
+	        <if test="coursewareId!=null ">courseware_id = #{coursewareId} ,</if>
+	        <if test="courseStatus!=null and courseStatus!=''">course_status = #{courseStatus} ,</if>
+	        <if test="coursewareStatus!=null and coursewareStatus!=''">courseware_status = #{coursewareStatus} ,</if>
+	        <if test="courseEndTime!=null ">course_end_time = #{courseEndTime} ,</if>
+	        <if test="coursewareEndTime!=null ">courseware_end_time = #{coursewareEndTime} ,</if>
+	        <if test="progressType!=null and progressType!=''">progress_type = #{progressType} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() ,</if>
+	        <if test="learningProgressType!=null and learningProgressType!=''">learning_progress_type = #{learningProgressType} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteTraLearningProgressById">
+    <![CDATA[
+        DELETE FROM train.tra_learning_progress WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteTraLearningProgressByIds" parameterType="list">
+        DELETE FROM train.tra_learning_progress WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getTraLearningProgressById" resultMap="TraLearningProgress">
+		SELECT <include refid="tralearningprogressColumns" />
+		    FROM train.tra_learning_progress 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getTraLearningProgresss" resultMap="TraLearningProgress">
+		SELECT <include refid="tralearningprogressColumns" />
+		    FROM train.tra_learning_progress  
+	    <include refid="tralearningprogress_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getTraLearningProgresssMap" resultType="map">
+		SELECT <include refid="tralearningprogressColumns" />
+	    <![CDATA[
+		    FROM train.tra_learning_progress  
+	    ]]>
+	    <include refid="tralearningprogress_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getAllTraLearningProgresss" resultMap="TraLearningProgress" parameterType="map">
+		SELECT <include refid="tralearningprogressColumns" />
+	    <![CDATA[
+		    FROM train.tra_learning_progress  
+	    ]]>
+	    <include refid="tralearningprogress_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="tralearningprogress_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="studentId!=null ">AND student_id = #{studentId}</if>
+	       <if test="courseId!=null ">AND course_id = #{courseId}</if>
+	       <if test="coursewareId!=null ">AND courseware_id = #{coursewareId}</if>
+	       <if test="courseStatus!=null and courseStatus!=''">AND course_status = #{courseStatus}</if>
+	       <if test="coursewareStatus!=null and coursewareStatus!=''">AND courseware_status = #{coursewareStatus}</if>
+		   <if test="courseEndTime!=null ">AND course_end_time >= #{courseEndTime}</if>
+		   <if test="courseEndTime!=null ">AND course_end_time &lt;= #{courseEndTime}</if>
+		   <if test="coursewareEndTime!=null ">AND courseware_end_time >= #{coursewareEndTime}</if>
+		   <if test="coursewareEndTime!=null ">AND courseware_end_time &lt;= #{coursewareEndTime}</if>
+	       <if test="progressType!=null and progressType!=''">AND progress_type = #{progressType}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+	       <if test="learningProgressType!=null and learningProgressType!=''">AND learning_progress_type = #{learningProgressType}</if>
+		</where>
+	</sql>
+		
+    <select id="getTraLearningProgressCount" resultType="long">
+        SELECT count(*) FROM train.tra_learning_progress 
+		<include refid="tralearningprogress_findPage_where"/>    
+    </select>
+    
+    	<select id="getTraLearningProgresssByCourseId" resultMap="TraLearningProgress" parameterType="map">
+	    SELECT
+			p.ID,
+			p.student_id,
+			p.course_id,
+			p.courseware_id,
+			p.course_status,
+			p.courseware_status,
+			p.course_end_time,
+			p.courseware_end_time,
+			p.progress_type,
+			p.remark,
+			p.insert_by,
+			p.insert_time,
+			p.update_by,
+			p.update_time
+		FROM
+			train.tra_learning_progress P,
+			sys.sys_user u,
+			train.tra_course co,
+			train.tra_courseware cw
+		WHERE
+			1 = 1
+		AND P .course_id = #{courseId}
+		AND P .student_id = u. ID
+		AND P .course_id = co. ID
+		AND P .courseware_id = cw. ID
+		AND P .course_status != #{courseStatus}
+		AND u.is_enable = '1'
+		AND cw.is_enable = '1'
+		AND co.is_enable = '1'
+	</select>
+	
+	<select id="getTraLearningProgresssByCoursewareId" resultMap="TraLearningProgress" parameterType="map">
+		SELECT
+			p.ID,
+			p.student_id,
+			p.course_id,
+			p.courseware_id,
+			p.course_status,
+			p.courseware_status,
+			p.course_end_time,
+			p.courseware_end_time,
+			p.progress_type,
+			p.remark,
+			p.insert_by,
+			p.insert_time,
+			p.update_by,
+			p.update_time
+		FROM
+			train.tra_learning_progress P,
+			sys.sys_user u,
+			train.tra_course co,
+			train.tra_courseware cw
+		WHERE
+			1 = 1
+		AND P .course_id IN(
+			SELECT
+				cc.course_id
+			FROM
+				train.tra_course_courseware cc,
+				train.tra_course C
+			WHERE
+				cc.courseware_id = #{coursewareId}
+			AND C . ID = cc.course_id
+			AND C .is_enable = '1'
+		)
+		AND P .student_id = u. ID
+		AND P .course_id = co. ID
+		AND P .courseware_id = cw. ID
+		AND P .course_status in ('0','1','3')
+		AND u.is_enable = '1'
+		AND cw.is_enable = '1'
+		AND co.is_enable = '1'
+	</select>
+	
+	<update id="updateTraLearningProgressByPaperId" >
+        UPDATE train.tra_learning_progress SET
+	        course_status = #{courseStatus,jdbcType=VARCHAR} ,
+	        progress_type = #{progressType,jdbcType=VARCHAR} ,
+	        update_by = #{updateBy,jdbcType=INTEGER} ,
+	        update_time = now()
+        WHERE 
+	        id = (
+				SELECT
+					P .learning_progress_id
+				FROM
+					train.tra_exam_paper P
+				WHERE
+					P . ID = #{paperId,jdbcType=INTEGER} 
+				LIMIT 1
+	        )
+	</update>
+	
+	<update id="updateCourseEndTime" >
+        UPDATE train.tra_learning_progress SET
+	        course_status = #{courseStatus} ,
+	        course_end_time = #{courseEndTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+	</update>
+    <select id="getCourseIdByStudentId" parameterType="int" resultType="int">
+        SELECT course_id
+        FROM train.tra_learning_progress
+        WHERE student_id=#{studentId} AND course_status IN('1','0')
+    </select>
+
+    <select id="getLearningProgressVOForExamByStudentId" parameterType="int" resultMap="TraLearningProgress">
+        SELECT <include refid="tralearningprogressColumns"/>
+        FROM train.tra_learning_progress
+        WHERE student_id=#{studentId} AND course_status = '1'
+    </select>
+
+    <select id="getLearningProgressVOByStudentId" parameterType="int" resultMap="TraLearningProgress">
+        SELECT <include refid="tralearningprogressColumns"/>
+        FROM train.tra_learning_progress
+        WHERE student_id=#{studentId}
+        AND course_status IN('0','1','3')
+        AND progress_type IN('0','1')
+        order by id desc 
+        limit 1
+    </select>
+    
+    <!-- 根据课程ID、学生ID查询学习进度记录 -->
+	<select id="queryTraLearningProcess" resultMap="TraLearningProgress">
+		SELECT
+			lp.id,
+			lp.student_id,
+			lp.course_id,
+			lp.courseware_id,
+			lp.course_status,
+			lp.courseware_status,
+			lp.course_end_time,
+			lp.courseware_end_time,
+			lp.progress_type,
+			lp.remark,
+			lp.insert_by,
+			lp.insert_time,
+			lp.update_by,
+			lp.update_time
+		FROM
+			train.tra_learning_progress lp
+		WHERE
+			1 = 1
+		AND lp.student_id = #{studentId,jdbcType=INTEGER}
+		AND lp.course_id = #{courseId,jdbcType=INTEGER}
+		ORDER BY lp.update_by DESC
+		LIMIT 1
+	</select>
+
+
+    <select id="getCurrentTraLearningProcess" resultMap="TraLearningProgress">
+        SELECT <include refid="tralearningprogressColumns"/>
+        FROM train.tra_learning_progress
+        WHERE student_id=#{studentId}
+        AND course_id=#{courseId}
+        AND course_status IN('0','1','3')
+        AND progress_type IN('0','1')
+        ORDER BY id DESC
+		LIMIT 1
+    </select>
+
+	<!-- 根据学生ID列表和课程ID查询学习进度表，查询学生的未毕业的课程，且不为指定课程的记录条数 -->
+	<select id="getTraLearningProgressOfLearning" parameterType="int" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			train.tra_learning_progress P
+		WHERE
+			1 = 1
+		AND P.course_status NOT IN ('2','4')
+		AND P .course_id != #{courseId,jdbcType=INTEGER}
+		AND P .student_id IN
+		<foreach collection="studentIdList" item="t" index="index" open="(" close=")" separator=",">
+	       #{t,jdbcType=INTEGER}
+	    </foreach>
+    </select>
+    
+    <!-- 根据学生查询未毕业的学习进度记录 -->
+	<select id="queryTraLearningProcessByStudentId" resultMap="TraLearningProgress">
+		SELECT
+			lp.id,
+			lp.student_id,
+			lp.course_id,
+			lp.courseware_id,
+			lp.course_status,
+			lp.courseware_status,
+			lp.course_end_time,
+			lp.courseware_end_time,
+			lp.progress_type,
+			lp.remark,
+			lp.insert_by,
+			lp.insert_time,
+			lp.update_by,
+			lp.update_time
+		FROM
+			train.tra_learning_progress lp
+		WHERE
+			1 = 1
+		AND lp.student_id = #{studentId,jdbcType=INTEGER}
+		AND lp.course_status NOT IN ('2','4')
+		order by lp.id desc
+		limit 1
+	</select>
+	
+	<select id="getLastLearningProgressVOByStudentId" parameterType="int" resultMap="TraLearningProgress">
+        SELECT <include refid="tralearningprogressColumns"/>
+        FROM train.tra_learning_progress
+        WHERE student_id=#{studentId}
+		order by id desc
+		limit 1
+    </select>
+    
+    <!-- 根据员工ID和课件ID查询，当前正在学习的学习进度个数 -->
+	<select id="getCountOfTraLearningProgresssByCoursewareIdAndStudentId" parameterType="map" resultType="int">
+		SELECT
+			COUNT(l.*)
+		FROM
+			train.tra_learning_progress l
+		WHERE
+			1 = 1
+		AND l.courseware_id = #{coursewareId}
+		AND l.student_id = #{studentId}
+		AND l.course_status IN('0', '1', '3')
+	</select>
+	
+	<!-- 根据员工ID和课件ID查询，历史中毕业的学习进度个数 -->
+	<select id="getStudiedCountOfTraLearningProgresssByCoursewareIdAndStudentId" parameterType="map" resultType="int">
+		SELECT
+			COUNT(l.*)
+		FROM
+			train.tra_learning_progress l
+		WHERE
+			1 = 1
+		AND l.courseware_id = #{coursewareId}
+		AND l.student_id = #{studentId}
+		AND l.course_status = '2'
+	</select>
+	
+	<!-- 批量移除学员，学习进度的课程状态修改为4-异常终止 -->
+	<update id="batchUpdateTraLearningProgresssToExceptionEnding" parameterType="map">
+		UPDATE train.tra_learning_progress
+		SET course_status = '4',
+		 update_by = #{userId,jdbcType=INTEGER},
+		 update_time = now()
+		WHERE
+			1 = 1
+		AND course_status not in ('2','4')
+		AND ID IN
+		<foreach collection="list" item="t" open="(" close=")" separator=",">
+			#{t,jdbcType=INTEGER}
+		</foreach>
+	</update>
+	
+	<!-- 根据学习进度ID查询学习次数，考试次数，和最好成绩 -->
+	<select id="getCountAndBestScore" parameterType="map" resultType="map">
+		SELECT
+			s.studyCount,
+			e.examCount,
+			M .bestScore
+		FROM
+			(
+				SELECT
+					COUNT(r.*) AS studyCount
+				FROM
+					train.tra_student_record r
+				WHERE
+					1 = 1
+				AND r.learning_progress_id = #{learningProgressId,jdbcType=INTEGER}
+				AND r.courseware_id = #{coursewareId,jdbcType=INTEGER}
+				AND r.operating_type = '0'
+				AND r.end_time IS NOT NULL
+			)s,
+			(
+				SELECT
+					COUNT(r.*) AS examCount
+				FROM
+					train.tra_student_record r
+				WHERE
+					1 = 1
+				AND r.learning_progress_id = #{learningProgressId,jdbcType=INTEGER}
+				AND r.courseware_id = #{coursewareId,jdbcType=INTEGER}
+				AND r.operating_type = '1'
+				AND r.end_time IS NOT NULL
+			)e,
+			(
+				SELECT
+					COALESCE(MAX(P .total_score), 0)AS bestScore
+				FROM
+					train.tra_student_record r
+				LEFT JOIN train.tra_exam_paper P ON P . ID = r.paper_id
+				WHERE
+					1 = 1
+				AND r.learning_progress_id = #{learningProgressId,jdbcType=INTEGER}
+				AND r.courseware_id = #{coursewareId,jdbcType=INTEGER}
+				AND r.operating_type = '1'
+				AND r.end_time IS NOT NULL
+			)M
+	</select>
+	
+	<!-- 根据课程状态和课件ID查询记录数 -->
+	<select id="getCountByCourseStatusAndCourseWareId" resultType="map" parameterType="map">
+		SELECT
+			l. ID,
+			l.student_id,
+			s.user_name,
+			s.tel,
+			s.position_id,
+			P .position_name,
+			gu.group_id,
+			G .group_name,
+			l.learning_progress_type,
+			l.course_id,
+			l.courseware_id,
+			C .courseware_name,
+			l.course_status,
+			l.courseware_status,
+			l.course_end_time,
+			l.courseware_end_time,
+			l.progress_type,
+			l.remark,
+			l.insert_by,
+			l.insert_time,
+			l.update_by,
+			l.update_time
+		FROM
+			sys.sys_user s
+		INNER JOIN train.tra_learning_progress l ON l.student_id = s. ID
+		LEFT JOIN sys.sys_position P ON P . ID = s.position_id
+		LEFT JOIN sys.sys_group_user gu ON gu.user_id = s. ID
+		LEFT JOIN sys.sys_group G ON G . ID = gu.group_id
+		LEFT JOIN train.tra_courseware C ON C . ID = l.courseware_id
+		WHERE
+			1 = 1
+		AND l.learning_progress_type = '1'
+		AND l.course_status NOT IN('4')
+		AND s.is_formal = '1'
+		AND s.is_enable = '1'
+		AND l.courseware_id = #{coursewareId,jdbcType=INTEGER}
+		AND l. ID IN(
+			SELECT
+				MAX(lp. ID)AS pid
+			FROM
+				train.tra_learning_progress lp
+			WHERE
+				1 = 1
+			AND lp.courseware_id = #{coursewareId,jdbcType=INTEGER}
+			GROUP BY
+				lp.student_id
+		)
+		
+		<if test="courseStatus != null and courseStatus != '' ">
+			AND l.course_status = #{courseStatus,jdbcType=VARCHAR}
+		</if>
+
+		<if test="userName != null and userName != '' ">
+			AND s.user_name LIKE '%'||#{userName,jdbcType=VARCHAR}||'%'
+		</if>
+	</select>
+	
+	<!-- 根据学生ID统计正在学习的课件数 -->
+	<select id="getCoursewareCountByStudentId" resultType="int" parameterType="int">
+		SELECT
+			COUNT(*) as coursewareCount
+		FROM
+			train.tra_learning_progress l
+		WHERE
+			1 = 1
+		AND l.student_id = #{studentId,jdbcType=INTEGER}
+		AND l.learning_progress_type = '1'
+		AND l.course_status NOT IN('2', '4')
+	</select>
+	
+	<!-- 根据用户ID查询基本信息，学习进度 -->
+	<select id="queryLearningProcessList" resultType="map" parameterType="map">
+		SELECT
+			C .courseware_name,
+			l. ID,
+			l.student_id,
+			l.learning_progress_type,
+			l.course_id,
+			l.courseware_id,
+			l.course_status,
+			l.courseware_status,
+			l.course_end_time,
+			l.courseware_end_time,
+			l.progress_type,
+			l.remark,
+			l.insert_by,
+			l.insert_time,
+			l.update_by,
+			l.update_time
+		FROM
+			train.tra_learning_progress l
+		LEFT JOIN train.tra_courseware C ON C . ID = l.courseware_id
+		WHERE
+			1 = 1
+		AND l.learning_progress_type = '1'
+		and l.student_id=#{studentId,jdbcType=INTEGER}
+	</select>
+    
+    <!-- 查询课件是否有老学员正在学习（查询正在学习的学习进度个数） -->
+    <select id="getLearningCountOfOldStaffByCoursewareId" parameterType="int" resultType="int">
+        SELECT count(l.*)
+        FROM train.tra_learning_progress l
+        WHERE 1=1
+        AND l.course_status IN('0','1','3')
+        AND l.learning_progress_type = '1'
+        AND l.courseware_id = #{coursewareId,jdbcType=INTEGER}
+    </select>
+</mapper>

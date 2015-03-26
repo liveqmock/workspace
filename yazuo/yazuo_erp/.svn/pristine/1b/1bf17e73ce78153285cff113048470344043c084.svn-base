@@ -1,0 +1,134 @@
+<!-- 通讯录 start -->
+<div class="module-address" ms-widget="dialog,$,$addressOpts">
+<form ms-widget="form,$,$addressFormOpts" action="javascript:;">
+    <div class="f-body">
+        <div class="research-con">
+            <table class="research-table">
+                <tr>
+                    <td align="right" class="research-left"><span class="warn">*</span>商户名称：</td>
+                    <td class="f-field ff-value">
+                        <div ms-if="!isSearch">{{data.merchantName}}</div>
+                        <div ms-if="isSearch">
+                            <span class="brand-name" ms-widget="autocomplete,$,$brandOpts"></span>
+                            <input type="hidden"
+                                   class="auto-complete"
+                                   ms-value="data.merchantId"
+                                   data-rules="empty"
+                                   data-tips="请选择商户！"
+                                   isrule=true>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn">*</span>姓名：</td>
+                    <td class="f-field ff-value">
+                        <div ms-if="displayType == 'edit' || displayType == 'read'">{{data.name}}</div>
+                        <input  ms-if="displayType == 'add' || displayType == 'allEdit'" type="text" class="input-text address-input"
+                               ms-duplex="data.name"
+                               data-rules="empty"
+                               data-tips="请输入姓名！"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn">*</span>性别：</td>
+                    <td>
+                        <div ms-if="displayType == 'edit' || displayType == 'add' || displayType == 'allEdit'">
+                            <label class="label-check-radio">
+                                <input name="sex" ms-checked="data.genderType==1" ms-click="setGenderType" value="1" type="radio"> 男
+                            </label>
+                            <label class="label-check-radio">
+                                <input name="sex" ms-checked="data.genderType==0" ms-click="setGenderType" value="0" type="radio"> 女
+                            </label>
+                            <div class="ff-value-tip"></div>
+                        </div>
+                        <div ms-if="displayType == 'read'">
+                            <span ms-if="data.genderType==1">男</span>
+                            <span ms-if="data.genderType==0">女</span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn"></span>生日：</td>
+                    <td>
+                        <div ms-if="displayType == 'read'">{{data.birthday}}</div>
+                        <input ms-if="displayType == 'add' || displayType == 'edit' || displayType == 'allEdit'"
+                               type="text" class="input-text birthday"
+                               name="birthday" readonly="readonly"
+                               ms-value="data.birthday"
+                               ms-click="openDateCalendar"/>
+                        <div class="ff-value-tip"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn">*</span>职位：</td>
+                    <td class="f-field ff-value">
+                        <div ms-if="displayType == 'edit'||displayType == 'read'">{{data.position}}</div>
+                        <input ms-if="displayType == 'add' || displayType == 'allEdit'" type="text" class="input-text address-input"
+                               ms-duplex="data.position"
+                               data-rules="empty"
+                               data-tips="请输入职位！"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn">*</span>角色：</td>
+                    <td class="f-field ff-value">
+                        <div ms-visible="displayType == 'add' || displayType == 'allEdit'"><span class="survey-select" ms-widget="select,$,$addressroleSelectOpts"></span></div>
+                        <div ms-visible="displayType == 'read'||displayType == 'edit'" class="readroleId"></div>
+                        <input type="hidden" value="first"
+                               class="roleId"
+                               data-rules="empty"
+                               data-tips="请选择角色！"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn">*</span>手机：</td>
+                    <td  class="f-field ff-value">
+                        <div ms-visible="displayType == 'edit'||displayType == 'read'">{{data.mobilePhone}}</div>
+                        <input  ms-visible="displayType == 'add' || displayType == 'allEdit'" type="text" class="input-text address-input"
+                               ms-duplex="data.mobilePhone"
+                               data-rules="empty&mobile"
+                               data-tips="手机号不能为空&请输入正确的手机号！"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn"></span>座机：</td>
+                    <td  class="f-field ff-value">
+                        <div ms-visible="displayType == 'edit'||displayType == 'read'">{{data.telephone}}</div>
+                        <input ms-visible="displayType == 'add' || displayType == 'allEdit'" type="text" class="input-text address-input"
+                               ms-duplex="data.telephone"
+                               data-rules="tel"
+                               data-tips="请输入正确的座机号！"
+                               isempty="true"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="research-left"><span class="warn">*</span>邮箱：</td>
+                    <td class="f-field ff-value">
+                        <div ms-visible="displayType == 'read'">{{data.mail}}</div>
+                        <input type="text"
+                               ms-visible="displayType == 'edit'||displayType == 'add' || displayType == 'allEdit'"
+                               class="input-text address-input"
+                               ms-duplex="data.mail"
+                               data-rules="empty&mail"
+                               data-tips="邮箱不能为空&请输入正确的邮箱！"
+                               isrule=true>
+                        <div class="ff-value-tip"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+</div>
+<!-- 商户调研单 end -->

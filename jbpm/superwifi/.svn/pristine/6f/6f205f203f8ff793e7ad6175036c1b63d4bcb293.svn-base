@@ -1,0 +1,33 @@
+<div class="module-chargepwdsetting-dialog ui-hidden"
+    ms-widget="dialog,$,$dialogOpts" ms-visible="supervisor">
+    <form class="module-chargepwdsetting-form" ms-widget="form,$,$formOpts"
+        action="javascript:;">
+        <div class="f-body">
+            <div class="tip-field">
+                <span class="tip-content">请设置主管密码。当门店添加或解除白名单黑名单和访问限制时，需要验证主管密码。</span>
+            </div>
+            <div class="f-field">
+                <label class="ff-label">请输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password" class="input-text pwd"
+                               name="newPassWord" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+
+            </div>
+            <div class="f-field">
+                <label class="ff-label">请再次输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box">
+                        <input type="password" class="input-text confirm-pwd"
+                               name="confirm_pwd"
+                               ms-value="confirm-pwd" />
+                    </div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

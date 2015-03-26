@@ -1,0 +1,9 @@
+{
+    "rows": [{
+        "value": "",
+        "text": "请选择地址"
+    }, {
+        "value": "/softpos/createintegralcard",
+        "text": "办理积分卡页"
+    }]
+}

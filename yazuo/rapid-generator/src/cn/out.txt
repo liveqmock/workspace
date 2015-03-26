@@ -1,0 +1,90 @@
+[{ALLOW view All}]
+[{ALLOW edit erp_weixin}]
+[{ReferringPagesPlugin}]
+[{TableOfContents}]
+!!!功能描述
+
+查询商户修正商户信息
+
+
+!!!请求示例
+%%prettify 
+{{{
+var mydata = JSON.stringify(
+ {
+     "merchantName" :"", //"商户名称";
+     "brand" :"", //"品牌名称";
+     "merchantNo" :"", //"商户编号";
+     "isFaceShop" :"", //"是否实体店";
+     "adColumn" :"", //"广告";
+     "promptBar" :"", //"推广";
+     "parent" :"", //"父商户ID";
+     "brandShortPinyin" :"", //"集团简称";
+     "brandId" :"", //"集团id";
+     "thirdpartyMerchantNo" :"", //"第三方商户号";
+     "serviceYear" :"", //"服务年份";
+     "freeMonth" :"", //"门店赠送月份";
+     "serviceStartTime" :"", //"服务开始时间";
+     "serviceEndTime" :"", //"服务结束时间";
+     "merchantStatus" :"", //"上线状态";2-商户调研3-待分配前端顾问
+     "updateTime" :"", //"最后修改时间";
+     "attachmentId" :"", //"附件ID";
+     "storeId" :"", //门店ID
+     "inputUserId" :"", //前端负责人ID;
+     "salesId" :"", //销售负责人ID
+     "pageNumber":0, //不为空
+     "pageSize":10//不为空
+ });
+$.ajax({ 
+    type: "POST",
+    url:'http://192.168.232.187:1314/yazuo_erp/synMerchant/getSynMerchantsForAment.do',
+    data: mydata,
+    contentType : 'application/json',
+    dataType:"json",
+    success:function(data){
+
+}}}
+/%
+!!!返回数据
+%%prettify 
+{{{
+{
+ "flag": 1,//1: '成功', 2:'失败' 
+ "message": "",
+ "data": 
+    {
+     "merchantId" :"", //"商户ID";
+     "merchantName" :"", //"商户名称";
+     "brand" :"", //"品牌名称";
+     "merchantNo" :"", //"商户编号";
+     "isFaceShop" :"", //"是否实体店";
+     "adColumn" :"", //"广告";
+     "promptBar" :"", //"推广";
+     "parent" :"", //"父商户ID";
+     "status" :"", //"状态";
+     "brandShortPinyin" :"", //"集团简称";
+     "brandId" :"", //"集团id";
+     "thirdpartyMerchantNo" :"", //"第三方商户号";
+     "serviceYear" :"", //"服务年份";
+     "freeMonth" :"", //"门店赠送月份";
+     "serviceStartTime" :"", //"服务开始时间";
+     "serviceEndTime" :"", //"服务结束时间";
+     "merchantStatus" :"", //"上线状态";0-未上线1-已上线2-商户调研3-待分配前端顾问
+     "updateTime" :"", //"最后修改时间";
+     "attachmentId" :"", //"附件ID";
+     "storeId" :"", //门店ID
+     "inputUserId" :"", //前端负责人ID;
+     "salesId" :"", //销售负责人ID
+     "salesUsers" :"", //销售负责人列表
+     "frontEndUsers" :"", //前端负责人列表
+     "merchantStatusText" :"", //上线状态文本
+     "isAment" :"", //标识是否为一键上线查询
+     "salesName" :"", //销售用户名
+     "frontEndUserName" :"", //前端用户名
+    }
+  
+}
+
+}}}
+/%
+[{ReferringUndefinedPagesPlugin}]

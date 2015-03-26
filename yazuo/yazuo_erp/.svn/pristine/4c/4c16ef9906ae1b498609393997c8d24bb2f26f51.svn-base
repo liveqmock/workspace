@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraAttachmentDao">
+
+	<resultMap id="TraAttachment" type="com.yazuo.erp.train.vo.TraAttachmentVO">
+        <result property="id" column="id"/>
+        <result property="attachmentName" column="attachment_name"/>
+        <result property="attachmentType" column="attachment_type"/>
+        <result property="attachmentSize" column="attachment_size"/>
+        <result property="attachmentPath" column="attachment_path"/>
+        <result property="attachmentSuffix" column="attachment_suffix"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="isDownloadable" column="is_downloadable"/>
+        <result property="hours" column="hours"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="traattachmentColumns">
+	    <![CDATA[
+		id,attachment_name,attachment_type,attachment_size,attachment_path,attachment_suffix,is_enable,is_downloadable,hours,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraAttachment"  useGeneratedKeys="true"  keyProperty="id">
+    <![CDATA[
+        INSERT INTO train.tra_attachment (
+        		attachment_name ,
+        		attachment_type ,
+        		attachment_size ,
+        		attachment_path ,
+        		attachment_suffix ,
+        		is_enable ,
+        		is_downloadable ,
+        		hours ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{attachmentName} ,
+        	#{attachmentType} ,
+        	#{attachmentSize} ,
+        	#{attachmentPath} ,
+        	#{attachmentSuffix} ,
+        	#{isEnable} ,
+        	#{isDownloadable} ,
+        	#{hours} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	now() ,
+        	#{updateBy} ,
+        	now() 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraAttachment" >
+    <![CDATA[
+        UPDATE train.tra_attachment SET
+	        attachment_name = #{attachmentName} ,
+	        attachment_type = #{attachmentType} ,
+	        hours = #{hours},
+	        remark = #{remark} ,
+	        update_by = #{updateBy} ,
+	        update_time = now()
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraAttachment">
+    <![CDATA[
+        DELETE FROM train.tra_attachment WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraAttachmentById" resultMap="TraAttachment">
+		SELECT <include refid="traattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_attachment 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraAttachments" resultMap="TraAttachment" parameterType="map">
+		SELECT <include refid="traattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_attachment  
+	    ]]>
+	    <include refid="traattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraAttachmentsMap" resultType="map" parameterType="map">
+		SELECT <include refid="traattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_attachment  
+	    ]]>
+	    <include refid="traattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<select id="getAllTraAttachments" resultType="map" parameterType="map">
+		SELECT <include refid="traattachmentColumns" />
+	    <![CDATA[
+		    FROM train.tra_attachment  
+	    ]]>
+	    <include refid="traattachment_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="traattachment_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="attachmentName!=null">
+				AND attachment_name = #{attachmentName}
+			</if>
+	       <if test="attachmentType!=null">
+				AND attachment_type = #{attachmentType}
+			</if>
+	       <if test="attachmentSize!=null">
+				AND attachment_size = #{attachmentSize}
+			</if>
+	       <if test="attachmentPath!=null">
+				AND attachment_path = #{attachmentPath}
+			</if>
+	       <if test="attachmentSuffix!=null">
+				AND attachment_suffix = #{attachmentSuffix}
+			</if>
+	       <if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+	       <if test="isDownloadable!=null">
+				AND is_downloadable = #{isDownloadable}
+			</if>
+	       <if test="hours!=null">
+				AND hours = #{hours}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraAttachmentCount" resultType="long">
+        SELECT count(*) FROM train.tra_attachment 
+		<include refid="traattachment_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraAttachmentPage" resultMap="TraAttachment">
+    	SELECT <include refid="traattachmentColumns" />
+	    FROM train.tra_attachment 
+		<include refid="traattachment_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+
+	<!-- 根据课件ID批量删除 tra_attachment 附件 -->
+	<delete id="batchDeleteTraAttachmentByCoursewareId" parameterType="list">
+		DELETE
+		FROM
+			train.tra_attachment A
+		WHERE
+			A . ID IN(SELECT C .attachment_id FROM train.tra_courseware_attachment C WHERE C.courseware_id IN
+			   <foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+			        #{t,jdbcType=INTEGER}
+			   </foreach>
+			)
+	</delete>
+	
+	<select id="getAttachmentInfoByCoursewareIdList" resultType="map" parameterType="list">
+		SELECT
+			tcw.id,tcw.courseware_name,
+			tcw.speaker,
+			round(tcw.time_limit/60,1) as time_limit,
+			tcw.attachment_id,
+			ta.attachment_name,
+			COALESCE(ta.hours, 0)AS hours,
+			ta.remark
+		FROM
+			train.tra_courseware tcw,
+			train.tra_attachment ta,
+			train.tra_courseware_attachment tca
+		WHERE
+		tca.courseware_id = tcw.id
+		AND tca.attachment_id = ta.id
+		AND tcw.id in 
+		<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+			#{t,jdbcType=INTEGER}
+	    </foreach>
+    </select>
+
+
+
+    <select id="getAttachmentVOsByIds" resultMap="TraAttachment" parameterType="list">
+        SELECT <include refid="traattachmentColumns"/>
+        FROM train.tra_attachment
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+    </select>
+</mapper>
+

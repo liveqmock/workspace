@@ -1,0 +1,24 @@
+.ui-autocomplete {
+    display: inline-block;
+}
+.ui-autocomplete .icon-search {
+    width: 36px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 28px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    color: #66CCB5;
+}
+.ui-autocomplete .ui-select-header-disabled .icon-search {
+    color: #bbbbbb;
+    cursor: default;
+}
+.ui-autocomplete-panel .empty-tip,
+.ui-autocomplete-panel .loading-tip {
+    padding: 0 8px;
+    line-height: 30px;
+}

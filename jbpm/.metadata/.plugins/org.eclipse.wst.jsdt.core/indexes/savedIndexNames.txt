@@ -1,0 +1,8 @@
+INDEX VERSION 1.3+/home/song/workspace/jbpm/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+4045852917.index
+248299152.index
+4251826527.index
+3435151332.index
+2239130236.index
+2296755102.index
+1203379082.index

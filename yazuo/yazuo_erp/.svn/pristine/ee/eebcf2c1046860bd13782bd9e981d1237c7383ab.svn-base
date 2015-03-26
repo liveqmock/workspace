@@ -1,0 +1,50 @@
+
+.module-visit {
+    font-size: 14px;
+    color: #777;
+}
+
+.module-visit table td {
+    vertical-align: top;
+    padding: 5px 0 5px 5px;
+    min-height: 35px;
+}
+.module-visit .ui-dialog-footer {
+    padding: 0 24px;
+}
+.module-visit .ui-dialog-footer .submit-btn {
+    width: 100%;
+    height: 45px;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+.module-visit .ui-dialog-footer .cancel-btn {
+    width: 100%;
+}
+.module-visit .con-top li {
+    position: relative;
+    height: 35px;
+    line-height: 35px;
+}
+.module-visit .con-top li span {
+    display: inline-block;
+    *display:inline;
+    *zoom:1;
+    width:60px;
+    text-align: right;
+}
+
+.module-visit .con-list {
+    padding: 10px 0;
+    width: 100%;
+}
+.module-visit .con-list .submit-btn {
+    width: 106px;
+    background: #e5f8f1;
+    border: none;
+    color: #777;
+    height: 35px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+}

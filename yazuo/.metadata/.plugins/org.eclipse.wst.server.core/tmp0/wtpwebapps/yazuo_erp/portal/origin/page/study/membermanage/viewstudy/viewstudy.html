@@ -1,0 +1,20 @@
+<div class="page-bd study-view-bd">
+    <div class="student-message">
+        <span class="big-font">{{userName}}</span>
+        <span>手机号：{{tel}}</span>
+        <span>部门：{{group}}</span>
+        <span>职位：{{position}}</span>
+    </div>
+    <ul class="view-study-list">
+        <li ms-repeat="rowsData">
+            <span class="study-num">{{$index+1}}</span>
+            <span>{{el.courseware_name}}</span>
+            <span>{{el.begin_time}}</span>
+            <span>{{el.tip}}</span>
+            <p class="study-score">
+                <em>最好成绩</em><br>
+                <i class="big-font">{{el.bestScore}}分</i>
+            </p>
+        </li>
+    </ul>
+</div>

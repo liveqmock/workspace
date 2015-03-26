@@ -1,0 +1,55 @@
+@charset "utf-8";
+/*base*/
+body{font-family:'Microsoft Yahei',Arial,Helvetica,Tahoma,sans-serif;color:#444;}
+h1,h2,h3,div,li,p{margin:0;padding:0;font-size:100%;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body,button,input,select,textarea{font:12px/1.125;}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0; padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+fieldset,img{border:0;}
+q:before,q:after{content:'';}
+input,textarea{outline-style:none;}
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;}
+textarea{resize:none}
+a{text-decoration:none;outline-style:none}
+.left{float:left;}
+.right{float:right;}
+img{ vertical-align:middle;}
+.hide{display:none;}
+
+/*两种清浮动方法*/
+.clear:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clear{display:block;_display:inline-block;}
+
+
+/*图标类*/
+.areaIco{background:url(../images/areaSearchIco.png) no-repeat; display:block;}
+.allAreaIco{width:14px; height:8px; background-position:0 0; position:absolute; left:50%; top:17px; margin-left:40px;}
+.allAreaUpIco{width:14px; height:8px; background-position:0 -8px; position:absolute; left:50%; top:17px; margin-left:40px;}
+.showPartIco{width:9px; height:13px; background-position:0 -17px; position:absolute; right:15px; top:11px;}
+
+
+#JS_areaSelect{position:relative;}
+/*标题*/
+.searchBox{background:#FEFEFE; height:44px; line-height:44px;margin-top:8px; box-shadow:0 0 3px #999999;position:relative; padding-left:40%; cursor:pointer;}
+.areaSelTitle{ font-size:16px; font-weight:normal;  text-align:center; color:#FF7800;position:absolute; left:0px; top:0px;  width:40%;}
+/*门店搜索*/
+.storeSearchBox{ line-height:42px; border:#6FB518 solid 2px; padding:0px 50px 0px 8px;  position:relative;}
+.storeSearchBox .storeKeywordsTxt{ width:100%; height:40px; line-height:40px; font-family:"Microsoft Yahei"; color:#393939; border:none;font-size:16px;}
+.storeSearchBox  .storeSearchBtn{ width:42px; height:42px; background:url(../images/searchBtnIco.png) no-repeat; position:absolute; right:0px; top:0px; display:block;}
+
+/*列表*/
+.mainArea{position:absolute; left:0px; top:46px; z-index:9999; width:100%; background:#ffffff; box-shadow:0 0 3px #999999; display:none;}
+.mainAreaList,.partAreaList{width:40%; line-height:28px; border-bottom:#DFDFDF solid 1px; float:left;max-height:300px;overflow-x:hidden; overflow-y:auto; display:none;}
+.mainAreaList{border-right:#DFDFDF solid 1px; margin-right:-1px;}
+.mainAreaList li{ border-top:#DFDFDF solid 1px; background:#F8F8F8; position:relative;}
+.mainAreaList li a{display:block;padding:6px 4%; color:#3F3B3A;border-left:#F8F8F8 solid 3px;}
+.mainAreaList li a:hover,.mainAreaList li a.active{border-left:#FF7800 solid 3px; background:#E5E5E5;}
+.partAreaList{position:relative; right:0; top:0px; width:60%; background:#E5E5E5;}
+/*区域列表*/
+.partAreaList li{padding:6px 3%; border-top:#DFDFDF solid 1px;}
+.partAreaList li a{color:#3F3B3A; display:block;}
+.partAreaList li a:hover,.partAreaList li a.active{color:#FF7800}
+#div_tip{font-size:16px; color:#646464; line-height:20px; margin:13px 13px 0;}
+

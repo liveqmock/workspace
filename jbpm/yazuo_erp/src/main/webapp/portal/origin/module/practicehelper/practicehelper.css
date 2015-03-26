@@ -1,0 +1,54 @@
+.module-practicehelper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 248px;
+    height: 100%;
+    background: #eff3f6;
+    border-left: 1px solid #e2e2e2;
+    color: #646464;
+}
+.module-practicehelper .timer-panel {
+    font-size: 16px;
+    text-align: center;
+    height: 38px;
+    line-height: 38px;
+    border-bottom: 1px solid #e2e2e2;
+}
+.module-practicehelper .exam-panel .panel-title {
+    padding: 16px 14px;
+    line-height: 1em;
+    font-size: 14px;
+}
+.module-practicehelper .exam-panel .exam-content {
+    padding: 0 14px;
+}
+.module-practicehelper .practice-info-panel-visible-h {
+    display: block;
+    position:fixed;
+    right: 248px;
+    top: 50%;
+   /*width: 24px;
+    height: 46px;*/
+    width: 42px;
+    height: 90px;
+    line-height: 90px;
+    /*background: #66ccb5;*/
+    margin-top: -45px;
+    color: #66ccb5;
+    font-size: 40px;
+    text-align: center;
+    /*padding-top: 2px;*/
+    z-index: 10;
+    /*box-shadow: -1px 1px 2px #cccccc;*/
+    cursor: pointer;
+}
+.module-practicehelper .practice-info-panel-visible-h:hover {
+    background: #66ccb5;
+    color: #ffffff;
+}
+.module-practicehelper-end-tip {
+    font-size: 14px;
+    color: #646464;
+}

@@ -1,0 +1,82 @@
+<div class="page-bd page-bd-form">
+    <!--button-->
+    <div class="permission_type">
+        <button ms-if="permission.data_upload" type="button" class="main-btn" ms-click="localHref('#/databank/list/addedit/1')">上传资料</button>
+    </div>
+    <!--button-->
+    <div class="max-tab-con">
+        <div>
+            <!--search-->
+            <div class="search">
+                <div class="sum">共 <b>{{sum}}</b> 个资料</div>
+                <div class="page-filter">
+                    <div class="box select-box">
+                        <span class="schedule" ms-widget="select,$,$personTypeOpts"></span>
+                    </div>
+                    <div class="box select-box">
+                        <span class="schedule" ms-widget="select,$,$layoutTypeOpts"></span>
+                    </div>
+                    <div class="box select-box">
+                        <span class="schedule" ms-widget="select,$,$dataTypeOpts"></span>
+                    </div>
+                    <div class="box">
+                        <input type="text" class="input-text" placeholder="标题" ms-duplex="responseData.title">&nbsp;
+                        <button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+                    </div>
+                </div>
+            </div>
+            <!--search-end-->
+            <!--table-->
+            <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+                <thead>
+                <tr>
+                    <th class="name-left">标题</th>
+                    <th class="name-center">文件大小</th>
+                    <th class="name-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-repeat="responseDataList" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="name-left">
+                        <div class="title-data">
+                            <div class="data-img">
+                                <span class="iconfont" ms-if="el.attachment_suffix == 'zip'||el.attachment_suffix == 'rar'">&#xe623;</span>
+                                <span class="iconfont" ms-if="el.attachment_suffix == 'xls'||el.attachment_suffix == 'xlsx'">&#xe622;</span>
+                                <span class="iconfont" ms-if="el.attachment_suffix == 'ppt'||el.attachment_suffix == 'pptx'">&#xe621;</span>
+                                <span class="iconfont" ms-if="el.attachment_suffix == 'pdf'">&#xe620;</span>
+                                <span class="iconfont" ms-if="el.attachment_suffix == 'doc'||el.attachment_suffix == 'docx'">&#xe61f;</span>
+                            </div>
+                            <div class="data-text">
+                                <ul>
+                                    <li>
+                                        <a ms-click="toInfo(el.id)" href="javascript:;">{{el.title}}</a>
+                                        <span class="doctype"
+                                              ms-repeat="el.apply_crowd_type_name">{{el}}</span>
+                                        <span class="doctype">{{el.data_type_name}}</span>
+                                    </li>
+                                    <li>
+                                        {{el.description}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="name-center">{{el.attachment_size}}K</td>
+                    <td class="name-center">
+                        <a ms-if="permission.data_download"
+                           href="javascript:;"
+                           ms-click="downFile(el.attachment_id)">下载</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a ms-if="permission.data_update" ms-href="#/databank/list/addedit/0/{{el.id}}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a ms-if="permission.data_delete" href="javascript:;" ms-click="removeFile(el.id)">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+</div>
+

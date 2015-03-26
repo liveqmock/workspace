@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+externalMigrateFromAuthorizationDatabase/isMigrated=true
+migrateFromAuthorizationDatabase/isMigrated=true
+repositories/608c9a3030be00141a6b8afbecd4f49a=608c9a3030be00141a6b8afbecd4f49a;http\://192.168.232.111/svn/yazuo/trade/trunk/taskScheduler/baseWxTask;http\://192.168.232.111/svn/yazuo/trade/trunk/taskScheduler/baseWxTask;branches;tags;trunk;true;76316390-8ce4-4d6e-96b4-1577f8a0385c;http\://192.168.232.111/svn/yazuo;;false;;;0
+repositories/f024842279b200141e0fd235f4278636=f024842279b200141e0fd235f4278636;http\://192.168.232.111/svn/crmapi/code/yazuo_erp/branch/20150209-fix-bug-13-19;http\://192.168.232.111/svn/crmapi/code/yazuo_erp/branch/20150209-fix-bug-13-19;branches;tags;trunk;true;b49ac297-b803-4cca-9b6e-091c4ad8fd11;http\://192.168.232.111/svn/crmapi;;false;<http\://192.168.232.111\:80> Subversion repositories;;0

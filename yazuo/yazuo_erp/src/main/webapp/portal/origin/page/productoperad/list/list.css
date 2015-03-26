@@ -1,0 +1,50 @@
+.page-productoperad-list .page-bd {
+    padding: 20px 15px;
+}
+.page-productoperad-list .permission_type {
+    margin-bottom:30px;
+}
+.page-productoperad-list .permission_type a {
+    color:#fff;
+}
+.page-productoperad-list .max-tab-con {
+    border: 1px solid #CDE2F9;
+    padding: 15px 0;
+    background: #fff;
+}
+.page-productoperad-list .ui-grid-search button {
+    margin-left: 10px;
+}
+.page-productoperad-list .choose {
+    display: inline-block;
+}
+.page-productoperad-list .choose span,
+.page-productoperad-list .choose a {
+    margin:  0 5px;
+}
+.page-productoperad-list .choose .stop {
+    color: #ff542f;
+    cursor: pointer;
+}
+.page-productoperad-list .choose .start {
+    color: #009933;
+    cursor: pointer;
+}
+.backend-product-import .pop-con{
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

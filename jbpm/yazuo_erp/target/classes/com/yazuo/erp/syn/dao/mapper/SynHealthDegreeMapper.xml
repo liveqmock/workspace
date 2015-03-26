@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.syn.dao.SynHealthDegreeDao">
+	<resultMap id="SynHealthDegree" type="com.yazuo.erp.syn.vo.SynHealthDegreeVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="targetType" column="target_type"/>
+    	<result property="targetValue" column="target_value"/>
+    	<result property="actualValue" column="actual_value"/>
+    	<result property="healthDegree" column="health_degree"/>
+    	<result property="reportTime" column="report_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="targetTypeText" column="target_type_text"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="synhealthdegreeColumns">
+	    <![CDATA[
+		id,merchant_id,target_type,target_value,actual_value,health_degree,report_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSynHealthDegree" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,target_type,target_value,actual_value,health_degree,report_time,update_by,update_time,--> 
+        INSERT INTO syn.syn_health_degree (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="targetType!=null and targetType!=''">target_type,</if>
+        	 <if test="targetValue!=null and targetValue!=''">target_value,</if>
+        	 <if test="actualValue!=null and actualValue!=''">actual_value,</if>
+        	 <if test="healthDegree!=null and healthDegree!=''">health_degree,</if>
+        	 <if test="reportTime!=null ">report_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="targetType!=null and targetType!=''">#{targetType},</if>
+       	    <if test="targetValue!=null and targetValue!=''">#{targetValue},</if>
+       	    <if test="actualValue!=null and actualValue!=''">#{actualValue},</if>
+       	    <if test="healthDegree!=null and healthDegree!=''">#{healthDegree},</if>
+       	    <if test="reportTime!=null ">#{reportTime},</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSynHealthDegrees" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,target_type,target_value,actual_value,health_degree,report_time,update_by,update_time,--> 
+        INSERT INTO syn.syn_health_degree (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="targetType!=null and targetType!=''">target_type,</if>
+        	 <if test="targetValue!=null and targetValue!=''">target_value,</if>
+        	 <if test="actualValue!=null and actualValue!=''">actual_value,</if>
+        	 <if test="healthDegree!=null and healthDegree!=''">health_degree,</if>
+        	 <if test="reportTime!=null ">report_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="targetType!=null and targetType!=''">#{t.targetType},</if>
+          <if test="targetValue!=null and targetValue!=''">#{t.targetValue},</if>
+          <if test="actualValue!=null and actualValue!=''">#{t.actualValue},</if>
+          <if test="healthDegree!=null and healthDegree!=''">#{t.healthDegree},</if>
+          <if test="reportTime!=null ">#{t.reportTime},</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSynHealthDegree">
+        UPDATE syn.syn_health_degree 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="targetType!=null and targetType!=''">target_type = #{targetType} ,</if>
+	        <if test="targetValue!=null and targetValue!=''">target_value = #{targetValue} ,</if>
+	        <if test="actualValue!=null and actualValue!=''">actual_value = #{actualValue} ,</if>
+	        <if test="healthDegree!=null and healthDegree!=''">health_degree = #{healthDegree} ,</if>
+	        <if test="reportTime!=null ">report_time = #{reportTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSynHealthDegreesToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE syn.syn_health_degree 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="targetType!=null and targetType!=''">target_type = #{t.targetType} ,</if>
+	        <if test="targetValue!=null and targetValue!=''">target_value = #{t.targetValue} ,</if>
+	        <if test="actualValue!=null and actualValue!=''">actual_value = #{t.actualValue} ,</if>
+	        <if test="healthDegree!=null and healthDegree!=''">health_degree = #{t.healthDegree} ,</if>
+	        <if test="reportTime!=null ">report_time = #{t.reportTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSynHealthDegreesToSameVals" parameterType="map">
+        UPDATE syn.syn_health_degree 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="targetType!=null and targetType!=''">target_type = #{targetType} ,</if>
+	        <if test="targetValue!=null and targetValue!=''">target_value = #{targetValue} ,</if>
+	        <if test="actualValue!=null and actualValue!=''">actual_value = #{actualValue} ,</if>
+	        <if test="healthDegree!=null and healthDegree!=''">health_degree = #{healthDegree} ,</if>
+	        <if test="reportTime!=null ">report_time = #{reportTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSynHealthDegreeById">
+    <![CDATA[
+        DELETE FROM syn.syn_health_degree WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSynHealthDegreeByIds" parameterType="list">
+        DELETE FROM syn.syn_health_degree WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSynHealthDegreeById" resultMap="SynHealthDegree">
+		SELECT <include refid="synhealthdegreeColumns" />
+		    FROM syn.syn_health_degree 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSynHealthDegrees" resultMap="SynHealthDegree">
+		SELECT ID,merchant_id,target_value,actual_value,health_degree,report_time,target_type,t.dictionary_value target_type_text 
+		    FROM syn.syn_health_degree hd inner join (select dictionary_key ,dictionary_value from sys.sys_dictionary where dictionary_type='00000061')
+		    t on (t.dictionary_key = hd.target_type)  
+	    <include refid="synhealthdegree_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="synhealthdegree_findPage_where">
+		<where>	      				
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+		   <if test="startTime!=null and endTime!=null "> AND report_time BETWEEN #{startTime} and #{endTime}</if>
+		</where>
+	</sql>
+    
+</mapper>

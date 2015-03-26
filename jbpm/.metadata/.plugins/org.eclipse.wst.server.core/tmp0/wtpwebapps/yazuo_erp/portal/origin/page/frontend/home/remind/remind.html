@@ -1,0 +1,60 @@
+<div class="page-fbs-remind">
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item" ms-repeat="navCrumbs">
+            <a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a>
+            <span class="nav-text" ms-if="!el.href">{{el.text}}</span>
+            <span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span>
+        </li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <!--tabs-类型-->
+    <div class="cate-list-wrapper">
+        <ul class="cate-list fn-clear" style="padding-top:20px;">
+            <li class="cate-item" ms-class-1="cur:requestData.itemStatus==''" ms-click="changeStatus('')">全部</li>
+            <li class="cate-item" ms-class-1="cur:requestData.itemStatus==1" ms-click="changeStatus('1')">未读提醒</li>
+            <li class="cate-item" ms-class-1="cur:requestData.itemStatus==2" ms-click="changeStatus('2')">已读提醒</li>
+        </ul>
+    </div>
+    <!--tabs-类型-end-->
+    <!--search-->
+    <div class="search">
+        <div class="page-filter">
+            <input type="text" class="coursewareName input-text" ms-duplex="requestData.merchantName" placeholder="请输入商户名称">&nbsp;
+            <button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+        </div>
+    </div>
+    <!--search-end-->
+    <!--table-->
+    <table class="user-grid ui-grid" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th class="name-cell" width="200">时间</th>
+            <th class="name-cell">商户名称</th>
+            <th class="mobile-cell" width="100">类型</th>
+            <th class="remid-content">提醒内容</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ms-repeat="pageData" ms-class-1="odd:!($index % 2)" ms-class-2="even:$index % 2" ms-class-3="not-read:el.itemStatus == '1'" ms-click="modStatus(el.id)">
+            <td class="name-cell">{{el.insertTime|date("yyyy-MM-dd HH:mm")}}</td>
+            <td class="mobile-cell">{{el.merchantName}}</td>
+            <td class="mobile-cell">{{el.itemTypeName}}</td>
+            <td class="remid-content">{{el.itemContent}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <!--table-end-->
+    <div class="grid-bbar fn-clear">
+        <br>
+        <div class="pagination fn-right" ms-widget="pagination,$,$paginationOpts"></div>
+    </div>
+
+
+</div>
+<!--content-end-->
+</div>
+
+
+

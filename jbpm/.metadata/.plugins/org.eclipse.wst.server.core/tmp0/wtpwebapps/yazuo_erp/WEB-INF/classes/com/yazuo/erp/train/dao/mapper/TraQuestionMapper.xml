@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraQuestionDao">
+
+	<resultMap id="TraQuestion" type="com.yazuo.erp.train.vo.TraQuestionVO">
+        <result property="id" column="id"/>
+        <result property="coursewareId" column="courseware_id"/>
+        <result property="questionType" column="question_type"/>
+        <result property="question" column="question"/>
+        <result property="score" column="score"/>
+        <result property="isSystemDetermine" column="is_system_determine"/>
+        <result property="pptId" column="ppt_id"/>
+        <result property="url" column="url"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="traquestionColumns">
+	    <![CDATA[
+		id,courseware_id,question_type,question,score,is_system_determine,ppt_id,url,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraQuestion" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO train.tra_question (
+        		courseware_id ,
+        		question_type ,
+        		question ,
+        		score ,
+        		is_system_determine ,
+        		ppt_id ,
+        		url ,
+        		is_enable ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{coursewareId} ,
+        	#{questionType} ,
+        	#{question} ,
+        	#{score} ,
+        	#{isSystemDetermine} ,
+        	#{pptId} ,
+        	#{url} ,
+        	#{isEnable} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	current_timestamp(3) ,
+        	#{updateBy} ,
+        	current_timestamp(3)
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraQuestion" >
+    <![CDATA[
+        UPDATE train.tra_question SET
+	        courseware_id = #{coursewareId} ,
+	        question_type = #{questionType} ,
+	        question = #{question} ,
+	        ppt_id = #{pptId} ,
+	        url = #{url} ,
+	        update_by = #{updateBy} ,
+	        update_time = now() 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraQuestion">
+    <![CDATA[
+        DELETE FROM train.tra_question WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraQuestionById" resultMap="TraQuestion">
+		SELECT <include refid="traquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_question 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraQuestions" resultMap="TraQuestion" parameterType="map">
+		SELECT <include refid="traquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_question  
+	    ]]>
+	    <include refid="traquestion_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraQuestionsMap" resultType="map" parameterType="map">
+		SELECT <include refid="traquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_question  
+	    ]]>
+	    WHERE train.tra_question.question_type in ('0','1','2')
+	    AND train.tra_question.is_enable = '1'
+	    AND train.tra_question.courseware_id = #{coursewareId}
+	    <include refid="traquestion_findPage_where"/> 
+	    ORDER BY train.tra_question.id
+	</select>
+	
+	<select id="getAllTraQuestions" resultType="map" parameterType="map">
+		SELECT <include refid="traquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_question  
+	    ]]>
+	    <include refid="traquestion_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="traquestion_findPage_where">
+		<!--  <where>	 -->     				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="coursewareId!=null and coursewareId!=''">
+				AND courseware_id = #{coursewareId}
+			</if>
+	       <if test="questionType!=null and questionType!=''">
+				AND question_type = #{questionType}
+			</if>
+	       <if test="question!=null and question!=''">
+				AND question like '%'||#{question}||'%'
+			</if>
+	       <if test="score!=null">
+				AND score = #{score}
+			</if>
+	       <if test="isSystemDetermine!=null">
+				AND is_system_determine = #{isSystemDetermine}
+			</if>
+	       <if test="pptId!=null">
+				AND ppt_id = #{pptId}
+			</if>
+	       <if test="url!=null">
+				AND url = #{url}
+			</if>
+	       <if test="isEnable!=null">
+				AND is_enable = #{isEnable}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		<!--  </where>-->
+	</sql>
+		
+    <select id="getTraQuestionCount" resultType="long">
+        SELECT count(*) FROM train.tra_question 
+		<include refid="traquestion_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraQuestionPage" resultMap="TraQuestion">
+    	SELECT <include refid="traquestionColumns" />
+	    FROM train.tra_question 
+		<include refid="traquestion_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+
+    <select id="getTraQuestionByOption" resultType="map" parameterType="map">
+    	SELECT train.tra_question.id,train.tra_question.question,train.tra_question.question_type,train.tra_courseware.courseware_name
+	    FROM train.tra_question,train.tra_courseware
+	    where train.tra_courseware.id = train.tra_question.courseware_id and train.tra_question.is_enable = '1'
+	    and train.tra_courseware.is_enable = '1'
+	    <include refid="traquestion_findPage_where"/> ORDER BY train.tra_question.id DESC
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+    
+    <select id="getTraQuestionByOptionAndCoursewareName" resultType="map" parameterType="map">
+    	SELECT train.tra_question.id,train.tra_question.question,train.tra_question.question_type,train.tra_courseware.courseware_name,train.tra_courseware.id as coursewareId
+	    FROM train.tra_question,train.tra_courseware
+	    where train.tra_courseware.id = train.tra_question.courseware_id
+	    and train.tra_courseware.is_enable = '1'
+	    and train.tra_question.is_enable = '1'
+	    and train.tra_courseware.courseware_name like '%'||#{coursewareName}||'%'
+	    <include refid="traquestion_findPage_where"/> 
+		ORDER BY train.tra_question.id DESC
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+    
+    <select id="getQuestionByQId" resultType="map" parameterType="map">
+    	SELECT train.tra_question.id as questionId,
+    	train.tra_courseware.id as coursewareId,
+    	train.tra_courseware.courseware_name,
+    	train.tra_question.question_type,
+    	train.tra_question.question,
+    	train.tra_question.ppt_id,
+    	train.tra_question.url
+	    FROM train.tra_question,train.tra_courseware
+	    where train.tra_courseware.id = train.tra_question.courseware_id
+	    and train.tra_courseware.is_enable = '1'
+	    and train.tra_question.is_enable = '1'
+	    and train.tra_question.id = #{questionId} 
+    </select>
+	
+	<update id="batchUpdateTraQuestion" parameterType="list">
+       <foreach collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE train.tra_question SET
+	        is_enable = #{t.isEnable} 
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>
+	</update>
+	
+	<select id="getTraQuestionsByCourseIdMap" resultType="map" parameterType="map">
+		SELECT train.tra_question.id as question_id , <include refid="traquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_question  
+	    ]]>
+	    WHERE train.tra_question.question_type in ('0','1','2')
+	    AND train.tra_question.is_enable = '1'
+	    AND train.tra_question.courseware_id in(
+        SELECT train.tra_courseware."id" from train.tra_course_courseware,train.tra_courseware
+        WHERE train.tra_course_courseware.course_id = #{courseId}
+        AND train.tra_courseware.is_enable = '1'
+        AND train.tra_courseware.id = train.tra_course_courseware.courseware_id )
+	    ORDER BY train.tra_question.id
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	   
+	</select>
+
+    <select id="getAllQuestionVOByCoursewareId" parameterType="map" resultMap="TraQuestion">
+        SELECT <include refid="traquestionColumns"/>
+        FROM train.tra_question
+        WHERE courseware_id=#{coursewareId} 
+        
+        <if test="paperType == 0">
+        	and question_type in ('0','1','2')
+		</if>
+		
+		<if test="paperType == 1">
+			and question_type = '3'
+		</if>
+		
+		<if test="paperType == 2">
+			and question_type = '4'
+		</if>
+        
+        AND tra_question.is_enable = '1'
+    </select>
+
+    <select id="getQuestionVOsByIds" parameterType="list" resultMap="TraQuestion">
+        SELECT <include refid="traquestionColumns"/>
+        FROM train.tra_question
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+        AND tra_question.is_enable = '1'
+    </select>
+
+    <select id="getQuestionVOByIds" parameterType="list" resultMap="TraQuestion">
+        SELECT <include refid="traquestionColumns"/>
+        FROM train.tra_question
+        WHERE id in <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+        AND tra_question.is_enable = '1'
+    </select>
+    
+    <select id="getQuestionOptionsById" parameterType="map" resultType="map" >
+        SELECT train.tra_question_option.id,train.tra_question_option.option_content,train.tra_question_option.is_right
+        FROM train.tra_question,train.tra_question_option
+        WHERE train.tra_question.id = train.tra_question_option.question_id
+        AND train.tra_question.is_enable = '1'
+        AND train.tra_question.id = #{questionId}
+    </select>
+    
+    <update id="updateTraQuestionByCoursewareId"  parameterType="map" >
+    <![CDATA[
+        UPDATE train.tra_question SET
+	        is_enable = #{isEnable},
+	        update_by = #{updateBy} ,
+	        update_time = now() 
+        WHERE 
+	        courseware_id = #{couwareId}
+    ]]>
+	</update>
+	
+	<select id="getPptDtlByPptId" parameterType="map" resultType="map" >
+        SELECT train.tra_ppt_dtl.id,train.tra_ppt.ppt_name,train.tra_ppt_dtl.ppt_id,train.tra_ppt_dtl.ppt_dtl_name,train.tra_ppt_dtl.sort,train.tra_ppt_dtl.original_file_name
+        FROM train.tra_ppt_dtl,train.tra_question,train.tra_ppt
+        WHERE train.tra_ppt_dtl.ppt_id = train.tra_question.ppt_id
+        AND train.tra_ppt_dtl.ppt_id = train.tra_ppt.id
+        AND train.tra_question.is_enable = '1'
+        AND train.tra_question.ppt_id = #{pptId}
+    </select>
+
+    <!-- 优化SQL  -->
+    <select id="getAllWrittenQuestionIdsForCourse" parameterType="int" resultType="int">
+         SELECT tq.id
+         FROM train.tra_question tq
+         LEFT JOIN train.tra_courseware tc ON tc.id=tq.courseware_id
+         WHERE tc.id IN(
+              SELECT courseware_id
+              FROM train.tra_course_courseware
+              WHERE course_id=#{courseId}
+         ) AND tc.is_enable='1' AND tq.is_enable='1' AND tq.question_type IN('0','1','2')
+    </select>
+    
+    <select id="getTraPptsByCoursewareId" resultType="map" parameterType="map">
+		SELECT train.tra_question.id,train.tra_question.ppt_id,train.tra_ppt.ppt_name
+	    <![CDATA[
+		    FROM train.tra_question,train.tra_ppt
+	    ]]>
+	    WHERE train.tra_question.question_type = '3'
+	    AND train.tra_question.is_enable = '1'
+	    AND train.tra_ppt.id =train.tra_question.ppt_id 
+	    AND train.tra_question.courseware_id = #{coursewareId}
+	    
+	    <if test="question!=null and question!=''">
+			AND train.tra_question.question like '%'||#{question}||'%'
+		</if>
+	    
+	    ORDER BY train.tra_question.id
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<!-- 根据课件ID批量删除 tra_question 试题（修改is_enable为'0'） -->
+	<delete id="batchUpdateTraQuestionByCoursewareId" parameterType="list">
+		<foreach collection="list" item="t" index="index" open="" close="" separator=";">
+			UPDATE train.tra_question
+			SET is_enable = '0'
+			WHERE
+				courseware_id = #{t,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+	
+	<!-- 根据试题ID列表批量删除 tra_question 试题（修改is_enable为'0'） -->
+	<delete id="batchUpdateTraQuestionByIdList" parameterType="list">
+		<foreach collection="list" item="t" index="index" open="" close="" separator=";">
+			UPDATE train.tra_question
+			SET is_enable = '0'
+			WHERE
+				id = #{t,jdbcType=INTEGER}
+		</foreach>
+	</delete>
+	
+	<select id="getPracticeQuestionByCoursewareId" resultType="map" parameterType="map">
+		SELECT <include refid="traquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_question
+	    ]]>
+	    WHERE train.tra_question.question_type = '4'
+	    AND train.tra_question.is_enable = '1'
+	    AND train.tra_question.courseware_id = #{coursewareId}
+	    <include refid="traquestion_findPage_where"/> 
+	    ORDER BY train.tra_question.id
+	</select>
+</mapper>
+

@@ -1,0 +1,39 @@
+.page-sysmange-role-add-edit .ff-label {
+    width: 100px;
+}
+.page-sysmange-role-add-edit .ff-value {
+    margin-left: 100px;
+}
+.page-sysmange-role-add-edit .role-name {
+    width: 300px;
+}
+.page-sysmange-role-add-edit .permission-box {
+    background: #ffffff;
+    border: 1px solid #EAEAEA;
+    padding: 10px;
+    /*color: #666666;*/
+}
+.page-sysmange-role-add-edit .permission-box .visible-h {
+    cursor: pointer;
+}
+.page-sysmange-role-add-edit .permission-title .visible-h,
+.page-sysmange-role-add-edit .permission-title .check-h,
+.page-sysmange-role-add-edit .permission-title .permission-name {
+    vertical-align: middle;
+}
+.page-sysmange-role-add-edit .permission-item .permission-list {
+    padding-left: 3em;
+}
+.page-sysmange-role-add-edit .leaf-item {
+    /*display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    margin-right: 2em;*/
+}
+.page-sysmange-role-add-edit .leaf-item .visible-h {
+    visibility: hidden;
+}
+.page-sysmange-role-add-edit .permission-item {
+    margin-top: 0.2em;
+    margin-bottom: 0.4em;
+}

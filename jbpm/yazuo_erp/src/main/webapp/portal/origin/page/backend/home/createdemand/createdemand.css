@@ -1,0 +1,65 @@
+.page-backend-home-createdemand .page-bd {
+    padding: 20px 15px;
+}
+.page-backend-home-createdemand .addedit-title {
+    font-size: 26px;
+    color: #777;
+    padding: 15px 5px;
+}
+.page-backend-home-createdemand .add-edit-content {
+    padding: 20px;
+}
+.page-backend-home-createdemand .ff-label {
+    width: 150px;
+    text-align: right;
+}
+.page-backend-home-createdemand .input-text {
+    width:400px;
+}
+.page-backend-home-createdemand .input-textarea {
+    width:400px;
+    height:150px;
+}
+
+.page-backend-home-createdemand .used-list {
+    margin-right: 25px;
+}
+
+.page-backend-home-createdemand .save-button {
+    width: 300px;
+    margin-left: 150px;
+}
+.page-backend-home-createdemand .valid-error {
+    padding-left: 150px;
+}
+.page-backend-home-createdemand .upload-box {
+    float: left;
+    display: inline;
+    height: 27px;
+    line-height:27px;
+    padding: 0 10px;
+    margin-right: 15px;
+}
+.page-backend-home-createdemand .ff-value-box {
+
+}
+.page-backend-home-createdemand .ff-value-box .tips{
+    float: left;
+    display: inline;
+    margin-right: 15px;
+    line-height: 16px;
+    color: #777;
+}
+.page-backend-home-createdemand .date-input {
+    width: 150px;
+}
+
+.page-backend-home-createdemand .font14 {
+    font-size: 14px;
+}
+.page-backend-home-createdemand .create-select-small {
+    width: 120px;
+}
+.page-backend-home-createdemand .create-input-small {
+    width: 150px;
+}

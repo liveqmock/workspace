@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraWrongQuestionDao">
+
+	<resultMap id="TraWrongQuestion" type="com.yazuo.erp.train.vo.TraWrongQuestionVO">
+        <result property="id" column="id"/>
+        <result property="studentId" column="student_id"/>
+        <result property="paperId" column="paper_id"/>
+        <result property="questionId" column="question_id"/>
+        <result property="remark" column="remark"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="trawrongquestionColumns">
+	    <![CDATA[
+		id,student_id,paper_id,question_id,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraWrongQuestion">
+    <![CDATA[
+        INSERT INTO train.tra_wrong_question (
+        		student_id ,
+        		paper_id ,
+        		question_id ,
+        		remark ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{studentId} ,
+        	#{paperId} ,
+        	#{questionId} ,
+        	#{remark} ,
+        	#{insertBy} ,
+        	#{insertTime} ,
+        	#{updateBy} ,
+        	#{updateTime} 
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraWrongQuestion" >
+    <![CDATA[
+        UPDATE train.tra_wrong_question SET
+	        student_id = #{studentId} ,
+	        paper_id = #{paperId} ,
+	        question_id = #{questionId} ,
+	        remark = #{remark} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraWrongQuestion">
+    <![CDATA[
+        DELETE FROM train.tra_wrong_question WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraWrongQuestionById" resultMap="TraWrongQuestion">
+		SELECT <include refid="trawrongquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_wrong_question 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraWrongQuestions" resultMap="TraWrongQuestion" parameterType="map">
+		SELECT <include refid="trawrongquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_wrong_question  
+	    ]]>
+	    <include refid="trawrongquestion_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraWrongQuestionsMap" resultType="map" parameterType="map">
+		SELECT <include refid="trawrongquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_wrong_question  
+	    ]]>
+	    <include refid="trawrongquestion_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<select id="getAllTraWrongQuestions" resultType="map" parameterType="map">
+		SELECT <include refid="trawrongquestionColumns" />
+	    <![CDATA[
+		    FROM train.tra_wrong_question  
+	    ]]>
+	    <include refid="trawrongquestion_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+    <select id="batchInsertWrongQuestions" parameterType="list">
+        INSERT INTO train.tra_wrong_question(student_id,paper_id,question_id, remark, insert_by,insert_time,update_by,update_time)
+        VALUES <foreach collection="list" item="vo" separator=",">
+               (#{vo.studentId},#{vo.paperId},#{vo.questionId},#{vo.remark},#{vo.insertBy},#{vo.insertTime},#{vo.updateBy},#{vo.updateTime})
+        </foreach>
+    </select>
+
+    <select id="getAllWrongQuestionIds" resultType="int">
+        SELECT question_id
+        FROM train.tra_wrong_question
+        WHERE student_id=#{studentId}
+        AND question_id IN (
+              SELECT question_id
+              FROM train.tra_question tq
+              LEFT JOIN train.tra_courseware tc on tq.courseware_id=tc.id
+              WHERE tc.is_enable='1' and tq.courseware_id in(
+                  select courseware_id
+                  FROM train.tra_course_courseware
+                  WHERE course_id=#{courseId}
+              )
+        )
+    </select>
+	
+	<sql id="trawrongquestion_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="studentId!=null">
+				AND student_id = #{studentId}
+			</if>
+	       <if test="paperId!=null">
+				AND paper_id = #{paperId}
+			</if>
+	       <if test="questionId!=null">
+				AND question_id = #{questionId}
+			</if>
+	       <if test="remark!=null">
+				AND remark = #{remark}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraWrongQuestionCount" resultType="long">
+        SELECT count(*) FROM train.tra_wrong_question 
+		<include refid="trawrongquestion_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraWrongQuestionPage" resultMap="TraWrongQuestion">
+    	SELECT <include refid="trawrongquestionColumns" />
+	    FROM train.tra_wrong_question 
+		<include refid="trawrongquestion_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+
+	
+</mapper>
+

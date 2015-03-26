@@ -1,0 +1,67 @@
+<div class="page-bd fn-clear">
+    <a href="#/network" class="go-back">返回</a>
+    <div class="limit-l fn-clear">
+        <div class="device-t">
+            <p class="main-t">超级WIFI访问限制管理</p>
+            <p>连接WIFI的用户将无法访问下面的网址和APP</p>
+        </div>
+        <div class="limit-grid fn-left" ms-widget="grid,$,$webGridOpts"></div>
+        <div class="limit-grid fn-right" ms-widget="grid,$,$appGridOpts"></div>
+    </div>
+    <div class="limit-r">
+        <ul class="limit-r-tab fn-clear">
+            <li class="limit-web" ms-class-1="tab-current:tabType=='web'" ms-click="toggleTab" data-type="webTab">网页限制排行</li>
+            <li class="limit-app" ms-class-1="tab-current:tabType=='app'" ms-click="toggleTab" data-type="appTab">APP限制排行</li>
+        </ul>
+        <div ms-visible="tabType=='web'">
+            <h3 class="ranking-tip">被其它商户屏蔽最多的网址：</h3>
+            <dl class="ranking-list fn-clear" ms-repeat="webPhb">
+                <dt ms-class-1="bg-red:$index==0" ms-class-2="bg-orange:$index==1" ms-class-3="bg-blue:$index==2">{{$index+1}}</dt>
+                <dd>
+                    <p class="ranking-url">{{el.url}}</p>
+                    <p>超过 {{el.urlPercent}}% 的商家屏蔽了这个网址</p>
+                </dd>
+            </dl>
+        </div>
+        <div ms-visible="tabType=='app'">
+            <h3 class="ranking-tip">被其它商户屏蔽最多的APP：</h3>
+            <dl class="ranking-list fn-clear" ms-repeat="appPhb">
+                <dt ms-class-1="bg-red:$index==0" ms-class-2="bg-orange:$index==1" ms-class-3="bg-blue:$index==2">{{$index+1}}</dt>
+                <dd>
+                    <p class="ranking-url">{{el.appName}}</p>
+                    <p>超过 {{el.urlPercent}}% 的商家屏蔽了这个APP</p>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<!-- 添加白名单 start -->
+<div class="page-network-browse-limit-dialog ui-hidden"
+     ms-widget="dialog,$,$webAppDialogOpts">
+    <form class="add-edit-form" ms-widget="form,$,$webAppFormOpts" action="javascript:;">
+        <div class="f-body">
+            <div class="f-field fn-clear" ms-visible="dialogType=='web'">
+                <label class="ff-label">请输入要限制页面的URL：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="text" placeholder="请在此输入链接地址" class="input-text web-url" name="url" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear" ms-visible="dialogType=='app'">
+                <label class="ff-label">请选择要限制的APP：</label>
+                <div class="ff-value">
+                    <span class="app-list" ms-widget="select,$,$appListOpts"></span>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+            <div class="f-field fn-clear">
+                <label class="ff-label">请输入主管密码：</label>
+                <div class="ff-value">
+                    <div class="ff-value-box"><input type="password" placeholder="6位主管密码" class="input-text manager-psd" name="managerPsd" /></div>
+                    <div class="ff-value-tip"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 添加白名单 end -->

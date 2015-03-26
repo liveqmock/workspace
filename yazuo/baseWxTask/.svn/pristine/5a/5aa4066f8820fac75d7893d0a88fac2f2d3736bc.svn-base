@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+
+	<!-- 实体卡下单制作定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.CardMakeRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 物料设计定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.MaterielMakeRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 实体卡配送定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.CardDeliveryRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 设配配送定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.EquipmentDeliveryRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 距离计划上线时间5天时定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.OnlineBefore5daysRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 计划上线时间已过时定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.OnlineRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 会员方案洽谈定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.DraftProgramRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!--商户短信余量不足2000定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.MerchantSMSCountRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<count>2000</count>
+		</params>
+	</config>
+
+	<!--商户实体卡余量不足1000张定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.MerchantCardCountRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<count>1000</count>
+			<type>3</type>
+			<quantity>800</quantity>
+		</params>
+	</config>
+
+	<!--商户电子卡余量不足1000张定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.MerchantCardCountRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<count>1000</count>
+			<type>4</type>
+			<quantity>800</quantity>
+		</params>
+	</config>
+
+	<!-- 商户合同30天前续约定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynMerchantContractDueRemind</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 工作计划定时提醒 -->
+	<config>
+		<class>com.yazuo.erp.schedule.FesPlanRemind</class>
+		<cronExpress>0 10 * * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 商户健康度定时更新 -->
+	<!-- 售卡收益 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeUpdateTask</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>14</indexId>
+		</params>
+	</config>
+	<!-- 新增积分会员 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeUpdateTask</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>15</indexId>
+		</params>
+	</config>
+	<!-- 会员消费占比 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeUpdateTask</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>16</indexId>
+		</params>
+	</config>
+	<!-- 新增储值 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeUpdateTask</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>18</indexId>
+		</params>
+	</config>
+	<!-- 新增收费会员占比 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeUpdateTask</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>-1</indexId>
+		</params>
+	</config>
+
+	<!-- 商户健康度首次同步 -->
+	<!-- 新增储值 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeInsertTask</class>
+		<cronExpress>0 40 14 9 9 ? 2014</cronExpress>
+		<open>f</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>18</indexId>
+		</params>
+	</config>
+	<!-- 会员消费占比 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeInsertTask</class>
+		<cronExpress>0 40 14 9 9 ? 2014</cronExpress>
+		<open>f</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>16</indexId>
+		</params>
+	</config>
+	<!-- 新增积分会员 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeInsertTask</class>
+		<cronExpress>0 40 14 9 9 ? 2014</cronExpress>
+		<open>f</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>15</indexId>
+		</params>
+	</config>
+	<!-- 售卡收益 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeInsertTask</class>
+		<cronExpress>0 40 14 9 9 ? 2014</cronExpress>
+		<open>f</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>14</indexId>
+		</params>
+	</config>
+	<!-- 新增收费会员占比 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynHealthDegreeInsertTask</class>
+		<cronExpress>0 0 12 24 11 ? 2014</cronExpress>
+		<open>f</open><!--定时任务开关，t打开，f关闭 -->
+		<params>
+			<indexId>-1</indexId>
+		</params>
+	</config>
+
+	<!-- 定时更新会员卡信息 -->
+	<config>
+		<class>com.yazuo.erp.schedule.MerchantCardInfoTask</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 定时更新商户产品 -->
+	<config>
+		<class>com.yazuo.erp.schedule.SynMerchantProductUpdateTask</class>
+		<cronExpress>0 0 6 * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+	<!-- 定时更新月报检查数据 30分钟一次-->
+	<config>
+		<class>com.yazuo.erp.schedule.BesMonthlyCheckTask</class>
+		<cronExpress>0 0/30 * * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+	
+	<!-- 定时检查课程是否超时 -->
+	<config>
+		<class>com.yazuo.erp.schedule.CourseStateCheckTask</class>
+		<cronExpress>0 0 * * * ?</cronExpress>
+		<open>t</open><!--定时任务开关，t打开，f关闭 -->
+	</config>
+
+    <!-- 检查是否发送月报 -->
+    <config>
+        <class>com.yazuo.erp.schedule.ErpTimerCheckTask</class>
+        <cronExpress>0 0 16 * * ?</cronExpress>
+        <open>t</open>
+        <params>
+            <erpUri>/besMonthlyApi/saveOrCheckSendMonthlyReport.do</erpUri>
+        </params>
+    </config>
+
+    <!--检查月报任务是否完成-->
+    <config>
+        <class>com.yazuo.erp.schedule.ErpTimerCheckTask</class>
+        <cronExpress>0 0 0 * * ?</cronExpress>
+        <open>t</open>
+        <params>
+            <erpUri>/besMonthlyApi/checkIfCompletedWorkPlan.do</erpUri>
+        </params>
+    </config>
+    <!--自SOP至ERP同步联系人-->
+    <config>
+        <class>com.yazuo.erp.schedule.ContactSynchronize</class>
+        <cronExpress>0 0 5 * * ?</cronExpress>
+        <open>t</open>
+    </config>
+    <!--为处理人保存需求提醒-->
+    <config>
+        <class>com.yazuo.erp.schedule.ErpGenRemindForReq</class>
+        <cronExpress>0 50 23 * * ?</cronExpress>
+        <open>f</open>
+        <params>
+            <erpUri>/besApi/saveReqRemindForTimer.do</erpUri>
+        </params>
+    </config>
+</configs>
+

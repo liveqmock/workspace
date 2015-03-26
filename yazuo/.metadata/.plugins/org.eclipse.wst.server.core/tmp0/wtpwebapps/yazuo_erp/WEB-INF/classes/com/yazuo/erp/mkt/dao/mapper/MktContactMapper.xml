@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.mkt.dao.MktContactDao">
+	<resultMap id="MktContact" type="com.yazuo.erp.mkt.vo.MktContactVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="name" column="name"/>
+    	<result property="genderType" column="gender_type"/>
+    	<result property="birthday" column="birthday"/>
+    	<result property="position" column="position"/>
+    	<result property="mobilePhone" column="mobile_phone"/>
+    	<result property="telephone" column="telephone"/>
+    	<result property="roleType" column="role_type"/>
+    	<result property="mail" column="mail"/>
+    	<result property="microMessage" column="micro_message"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="merchantName" column="merchant_name"/>
+    	<result property="storeId" column="store_id"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="mktcontactColumns">
+	    <![CDATA[
+		id,merchant_id,name,gender_type,birthday,position,mobile_phone,telephone,role_type,mail,micro_message,is_enable,remark,insert_by,insert_time,update_by,update_time,store_id
+	    ]]>
+	</sql>
+
+	<insert id="saveMktContact" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,name,gender_type,mobile_phone,role_type,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_contact (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="name!=null and name!=''">name,</if>
+        	 <if test="genderType!=null and genderType!=''">gender_type,</if>
+        	 <if test="birthday!=null ">birthday,</if>
+        	 <if test="position!=null and position!=''">position,</if>
+        	 <if test="mobilePhone!=null and mobilePhone!=''">mobile_phone,</if>
+        	 <if test="telephone!=null and telephone!=''">telephone,</if>
+        	 <if test="roleType!=null and roleType!=''">role_type,</if>
+        	 <if test="mail!=null and mail!=''">mail,</if>
+        	 <if test="microMessage!=null and microMessage!=''">micro_message,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="storeId!=null ">store_id</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="name!=null and name!=''">#{name},</if>
+       	    <if test="genderType!=null and genderType!=''">#{genderType},</if>
+       	    <if test="birthday!=null ">#{birthday},</if>
+       	    <if test="position!=null and position!=''">#{position},</if>
+       	    <if test="mobilePhone!=null and mobilePhone!=''">#{mobilePhone},</if>
+       	    <if test="telephone!=null and telephone!=''">#{telephone},</if>
+       	    <if test="roleType!=null and roleType!=''">#{roleType},</if>
+       	    <if test="mail!=null and mail!=''">#{mail},</if>
+       	    <if test="microMessage!=null and microMessage!=''">#{microMessage},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="storeId!=null ">#{storeId},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertMktContacts" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,name,gender_type,mobile_phone,role_type,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO mkt.mkt_contact (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="name!=null and name!=''">name,</if>
+        	 <if test="genderType!=null and genderType!=''">gender_type,</if>
+        	 <if test="birthday!=null ">birthday,</if>
+        	 <if test="position!=null and position!=''">position,</if>
+        	 <if test="mobilePhone!=null and mobilePhone!=''">mobile_phone,</if>
+        	 <if test="telephone!=null and telephone!=''">telephone,</if>
+        	 <if test="roleType!=null and roleType!=''">role_type,</if>
+        	 <if test="mail!=null and mail!=''">mail,</if>
+        	 <if test="microMessage!=null and microMessage!=''">micro_message,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="storeId!=null ">store_id</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="name!=null and name!=''">#{t.name},</if>
+          <if test="genderType!=null and genderType!=''">#{t.genderType},</if>
+          <if test="birthday!=null ">#{t.birthday},</if>
+          <if test="position!=null and position!=''">#{t.position},</if>
+          <if test="mobilePhone!=null and mobilePhone!=''">#{t.mobilePhone},</if>
+          <if test="telephone!=null and telephone!=''">#{t.telephone},</if>
+          <if test="roleType!=null and roleType!=''">#{t.roleType},</if>
+          <if test="mail!=null and mail!=''">#{t.mail},</if>
+          <if test="microMessage!=null and microMessage!=''">#{t.microMessage},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="storeId!=null ">#{t.storeId}</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateMktContact">
+        UPDATE mkt.mkt_contact 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="name!=null and name!=''">name = #{name} ,</if>
+	        <if test="genderType!=null and genderType!=''">gender_type = #{genderType} ,</if>
+	        <if test="birthday!=null ">birthday = #{birthday} ,</if>
+	        <if test="position!=null and position!=''">position = #{position} ,</if>
+	        <if test="mobilePhone!=null and mobilePhone!=''">mobile_phone = #{mobilePhone} ,</if>
+	        <if test="telephone!=null and telephone!=''">telephone = #{telephone} ,</if>
+	        <if test="roleType!=null and roleType!=''">role_type = #{roleType} ,</if>
+	        <if test="mail!=null and mail!=''">mail = #{mail} ,</if>
+	        <if test="microMessage!=null and microMessage!=''">micro_message = #{microMessage} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="storeId!=null ">store_id = #{storeId} </if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateMktContactsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE mkt.mkt_contact 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="name!=null and name!=''">name = #{t.name} ,</if>
+	        <if test="genderType!=null and genderType!=''">gender_type = #{t.genderType} ,</if>
+	        <if test="birthday!=null ">birthday = #{t.birthday} ,</if>
+	        <if test="position!=null and position!=''">position = #{t.position} ,</if>
+	        <if test="mobilePhone!=null and mobilePhone!=''">mobile_phone = #{t.mobilePhone} ,</if>
+	        <if test="telephone!=null and telephone!=''">telephone = #{t.telephone} ,</if>
+	        <if test="roleType!=null and roleType!=''">role_type = #{t.roleType} ,</if>
+	        <if test="mail!=null and mail!=''">mail = #{t.mail} ,</if>
+	        <if test="microMessage!=null and microMessage!=''">micro_message = #{t.microMessage} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="storeId!=null ">store_id = #{t.storeId} </if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateMktContactsToSameVals" parameterType="map">
+        UPDATE mkt.mkt_contact 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="name!=null and name!=''">name = #{name} ,</if>
+	        <if test="genderType!=null and genderType!=''">gender_type = #{genderType} ,</if>
+	        <if test="birthday!=null ">birthday = #{birthday} ,</if>
+	        <if test="position!=null and position!=''">position = #{position} ,</if>
+	        <if test="mobilePhone!=null and mobilePhone!=''">mobile_phone = #{mobilePhone} ,</if>
+	        <if test="telephone!=null and telephone!=''">telephone = #{telephone} ,</if>
+	        <if test="roleType!=null and roleType!=''">role_type = #{roleType} ,</if>
+	        <if test="mail!=null and mail!=''">mail = #{mail} ,</if>
+	        <if test="microMessage!=null and microMessage!=''">micro_message = #{microMessage} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="storeId!=null ">store_id = #{storeId} </if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteMktContactById">
+    <![CDATA[
+        DELETE FROM mkt.mkt_contact WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteMktContactByIds" parameterType="list">
+        DELETE FROM mkt.mkt_contact WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getMktContactById" resultMap="MktContact">
+		SELECT <include refid="mktcontactColumns" />
+		    FROM mkt.mkt_contact 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getMktContacts" resultMap="MktContact">
+		SELECT c.id, c.merchant_id,c.name,gender_type,c.birthday,c.position,c.mobile_phone,c.telephone,c.mail,c.micro_message
+		,m.merchant_name, d.dictionary_value as role_type from mkt.mkt_contact c
+		INNER JOIN syn.syn_merchant m 
+		ON (c.merchant_id = m.merchant_id)
+		INNER JOIN (select dictionary_key, dictionary_value from sys.sys_dictionary where dictionary_type='00000065' )d 
+		on (d.dictionary_key = c.role_type)
+	    <include refid="contanct_order" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="contanct_order">
+		<where>
+			<if test="1==1">c.is_enable='1' and m.status='1'</if>
+			<if test="userId !=null"> 
+			and exists ( SELECT 1 from sys.sys_user_merchant ssum where user_id = #{userId} and ssum.merchant_id = m.merchant_id)</if>
+			<if test="merchantId !=null and merchantId !=0"> and m.merchant_id=#{merchantId}</if>
+			<if test="name !=null and name !=''"> and c.name like '%'||#{name}||'%'</if>
+			<if test="merchantName !=null and merchantName !=''"> and m.merchant_name like '%'||#{merchantName}||'%'</if>
+		</where>
+	</sql>
+	
+	
+	<select id="getMktContactsMap" resultType="map">
+		SELECT <include refid="mktcontactColumns" />
+	    <![CDATA[
+		    FROM mkt.mkt_contact  
+	    ]]>
+	    <include refid="mktcontact_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+    <select id="getLastContactForMerchant" resultMap="MktContact">
+        SELECT <include refid="mktcontactColumns"/>
+        FROM mkt.mkt_contact
+        WHERE merchant_id=#{merchantId}
+        ORDER BY id DESC
+        LIMIT 1
+    </select>
+
+	<select id="getContactForMerchantRoles" resultMap="MktContact">
+		SELECT <include refid="mktcontactColumns"/>
+		FROM mkt.mkt_contact
+		WHERE merchant_id=#{merchantId}
+		    AND is_enable='1'
+		    AND role_type in <foreach collection="roleTypes" item="roleType" index="index" open="(" close=")" separator=",">#{roleType}</foreach>
+		ORDER BY id DESC
+	</select>
+	
+	<select id="getMktContactsStd" resultType="map">
+		SELECT id as value, name as text
+		    FROM mkt.mkt_contact  
+	    <include refid="mktcontact_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="mktcontact_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="name!=null and name!=''">AND name = #{name}</if>
+	       <if test="genderType!=null and genderType!=''">AND gender_type = #{genderType}</if>
+		   <if test="birthday!=null ">AND birthday >= #{birthday}</if>
+		   <if test="birthday!=null ">AND birthday &lt;= #{birthday}</if>
+	       <if test="position!=null and position!=''">AND position = #{position}</if>
+	       <if test="mobilePhone!=null and mobilePhone!=''">AND mobile_phone = #{mobilePhone}</if>
+	       <if test="telephone!=null and telephone!=''">AND telephone = #{telephone}</if>
+	       <if test="roleType!=null and roleType!=''">AND role_type = #{roleType}</if>
+	       <if test="mail!=null and mail!=''">AND mail = #{mail}</if>
+	       <if test="microMessage!=null and microMessage!=''">AND micro_message = #{microMessage}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+	       <if test="storeId!=null ">AND store_id = #{storeId}</if>
+	       and is_enable = '1' 
+		</where>
+	</sql>
+		
+    <select id="getMktContactCount" resultType="long">
+        SELECT count(*) FROM mkt.mkt_contact 
+		<include refid="mktcontact_findPage_where"/>    
+    </select>
+    
+</mapper>

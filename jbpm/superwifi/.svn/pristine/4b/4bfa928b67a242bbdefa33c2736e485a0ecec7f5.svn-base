@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+	<!--服务名称 -->
+	<dubbo:application name="dubbo-crm-client" />
+	<dubbo:registry protocol="redis-yazuo" address="${dubbo.redis.address}" />
+
+	<dubbo:reference id="userWebService"
+		interface="com.yazuo.api.service.account.user.UserWebService"
+		protocol="dubbo" />
+
+	<dubbo:reference id="merchantWebService"
+		interface="com.yazuo.api.service.merchant.MerchantWebService"
+		protocol="dubbo" />
+
+	<dubbo:reference id="cardWebService"
+		interface="com.yazuo.api.service.card.CardWebService" protocol="dubbo" />
+		
+	<dubbo:reference id="userAuthWebService"
+		interface="com.yazuo.api.service.account.user.UserAuthWebService" protocol="dubbo" />
+
+	<!-- <dubbo:annotation package="com.yazuo" /> -->
+
+	<dubbo:consumer timeout="30000" />
+</beans>

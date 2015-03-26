@@ -1,0 +1,47 @@
+<div class="ui-itemselector-inner fn-clear">
+    <div class="ui-itemselector-left fn-left">
+        <div class="ui-itemselector-left-inner">
+            <div class="ui-itemselector-panel">
+                <h3 class="ui-itemselector-panel-title" ms-if="showLeftTitle">{{leftTitle}}</h3>
+                <div class="ui-itemselector-filter-wrapper" ms-if="showLeftFilter">
+                    <span class="ui-itemselector-filter-box"><input type="text" class="ui-itemselector-filter-input" ms-duplex="leftFilterValue" placeholder="输入内容筛选对应项" /><i class="ui-icon">&#xe602;</i></span>
+                </div>
+                <div class="ui-itemselector-list-wrapper">
+                    <ul class="ui-itemselector-list">
+                        <li ms-repeat="store" class="ui-itemselector-item"
+                            ms-if-loop="!el.selected && el.visible"
+                            ms-hover="item-hover"
+                            ms-click="clickLeftItem"
+                            ms-class-1="item-selected: el.preSelected">
+                            <div class="item-text">{{el.text | html}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-itemselector-right fn-left">
+        <div class="ui-itemselector-right-inner">
+            <div class="ui-itemselector-panel">
+                <h3 class="ui-itemselector-panel-title" ms-if="showRightTitle">{{rightTitle}}</h3>
+                <div class="ui-itemselector-filter-wrapper" ms-if="showRightFilter">
+                    <span class="ui-itemselector-filter-box"><input type="text" class="ui-itemselector-filter-input" ms-duplex="rightFilterValue" placeholder="输入内容筛选对应项" /><i class="ui-icon">&#xe602;</i></span>
+                </div>
+                <div class="ui-itemselector-list-wrapper">
+                    <ul class="ui-itemselector-list">
+                        <li ms-repeat="store" class="ui-itemselector-item"
+                            ms-if-loop="el.selected && el.visible"
+                            ms-hover="item-hover"
+                            ms-class-1="item-selected: el.preSelected">
+                            <div class="item-text">{{el.text | html}}</div>
+                            <i class="item-remove-h" ms-click="clickSelectedRemove">&#10005;</i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-itemselector-action">
+        <div class="ui-itemselector-action-inner"><i class="move-right-h ui-icon" ms-click="clickMoveRight">&#xe603;</i></div>
+    </div>
+</div>

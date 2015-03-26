@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesMarketingActivityDao">
+	<resultMap id="FesMarketingActivity" type="com.yazuo.erp.fes.vo.FesMarketingActivityVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="activityType" column="activity_type"/>
+    	<result property="activityTitle" column="activity_title"/>
+    	<result property="description" column="description"/>
+    	<result property="attachmentId" column="attachment_id"/>
+    	<result property="applicantBy" column="applicant_by"/>
+    	<result property="applicationTime" column="application_time"/>
+    	<result property="reason" column="reason"/>
+    	<result property="marketingActivityStatus" column="marketing_activity_status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="merchantName" column="merchant_name"/>
+    	<result property="activityTypeName" column="activity_type_name"/>
+    	<result property="applicantByName" column="applicant_by_name"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="fesmarketingactivityColumns">
+	    <![CDATA[
+		id,merchant_id,activity_type,activity_title,description,attachment_id,applicant_by,application_time,reason,marketing_activity_status,is_enable,remark,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveFesMarketingActivity" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,activity_type,activity_title,attachment_id,applicant_by,application_time,marketing_activity_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_marketing_activity (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="activityType!=null and activityType!=''">activity_type,</if>
+        	 <if test="activityTitle!=null and activityTitle!=''">activity_title,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="applicantBy!=null ">applicant_by,</if>
+        	 <if test="applicationTime!=null ">application_time,</if>
+        	 <if test="reason!=null and reason!=''">reason,</if>
+        	 <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">marketing_activity_status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="activityType!=null and activityType!=''">#{activityType},</if>
+       	    <if test="activityTitle!=null and activityTitle!=''">#{activityTitle},</if>
+       	    <if test="description!=null and description!=''">#{description},</if>
+       	    <if test="attachmentId!=null ">#{attachmentId},</if>
+       	    <if test="applicantBy!=null ">#{applicantBy},</if>
+       	    <if test="applicationTime!=null ">#{applicationTime},</if>
+       	    <if test="reason!=null and reason!=''">#{reason},</if>
+       	    <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">#{marketingActivityStatus},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertFesMarketingActivitys" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,activity_type,activity_title,attachment_id,applicant_by,application_time,marketing_activity_status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_marketing_activity (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="activityType!=null and activityType!=''">activity_type,</if>
+        	 <if test="activityTitle!=null and activityTitle!=''">activity_title,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="attachmentId!=null ">attachment_id,</if>
+        	 <if test="applicantBy!=null ">applicant_by,</if>
+        	 <if test="applicationTime!=null ">application_time,</if>
+        	 <if test="reason!=null and reason!=''">reason,</if>
+        	 <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">marketing_activity_status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="activityType!=null and activityType!=''">#{t.activityType},</if>
+          <if test="activityTitle!=null and activityTitle!=''">#{t.activityTitle},</if>
+          <if test="description!=null and description!=''">#{t.description},</if>
+          <if test="attachmentId!=null ">#{t.attachmentId},</if>
+          <if test="applicantBy!=null ">#{t.applicantBy},</if>
+          <if test="applicationTime!=null ">#{t.applicationTime},</if>
+          <if test="reason!=null and reason!=''">#{t.reason},</if>
+          <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">#{t.marketingActivityStatus},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now(),</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesMarketingActivity">
+        UPDATE fes.fes_marketing_activity 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="activityType!=null and activityType!=''">activity_type = #{activityType} ,</if>
+	        <if test="activityTitle!=null and activityTitle!=''">activity_title = #{activityTitle} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="applicantBy!=null ">applicant_by = #{applicantBy} ,</if>
+	        <if test="applicationTime!=null ">application_time = #{applicationTime} ,</if>
+	        <if test="reason!=null and reason!=''">reason = #{reason} ,</if>
+	        <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">marketing_activity_status = #{marketingActivityStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesMarketingActivitysToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_marketing_activity 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="activityType!=null and activityType!=''">activity_type = #{t.activityType} ,</if>
+	        <if test="activityTitle!=null and activityTitle!=''">activity_title = #{t.activityTitle} ,</if>
+	        <if test="description!=null and description!=''">description = #{t.description} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{t.attachmentId} ,</if>
+	        <if test="applicantBy!=null ">applicant_by = #{t.applicantBy} ,</if>
+	        <if test="applicationTime!=null ">application_time = #{t.applicationTime} ,</if>
+	        <if test="reason!=null and reason!=''">reason = #{t.reason} ,</if>
+	        <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">marketing_activity_status = #{t.marketingActivityStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesMarketingActivitysToSameVals" parameterType="map">
+        UPDATE fes.fes_marketing_activity 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="activityType!=null and activityType!=''">activity_type = #{activityType} ,</if>
+	        <if test="activityTitle!=null and activityTitle!=''">activity_title = #{activityTitle} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="attachmentId!=null ">attachment_id = #{attachmentId} ,</if>
+	        <if test="applicantBy!=null ">applicant_by = #{applicantBy} ,</if>
+	        <if test="applicationTime!=null ">application_time = #{applicationTime} ,</if>
+	        <if test="reason!=null and reason!=''">reason = #{reason} ,</if>
+	        <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">marketing_activity_status = #{marketingActivityStatus} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesMarketingActivityById">
+    <![CDATA[
+        DELETE FROM fes.fes_marketing_activity WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesMarketingActivityByIds" parameterType="list">
+        DELETE FROM fes.fes_marketing_activity WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesMarketingActivityById" resultMap="FesMarketingActivity">
+		SELECT <include refid="fesmarketingactivityColumns" />
+		    FROM fes.fes_marketing_activity 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getFesMarketingActivitys" resultMap="FesMarketingActivity">
+		SELECT <include refid="fesmarketingactivityColumns" />
+		    FROM fes.fes_marketing_activity  
+	    <include refid="fesmarketingactivity_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getFesMarketingActivitysMap" resultType="map">
+		SELECT <include refid="fesmarketingactivityColumns" />
+	    <![CDATA[
+		    FROM fes.fes_marketing_activity  
+	    ]]>
+	    <include refid="fesmarketingactivity_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="fesmarketingactivity_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="activityType!=null and activityType!=''">AND activity_type = #{activityType}</if>
+	       <if test="activityTitle!=null and activityTitle!=''">AND activity_title = #{activityTitle}</if>
+	       <if test="description!=null and description!=''">AND description = #{description}</if>
+	       <if test="attachmentId!=null ">AND attachment_id = #{attachmentId}</if>
+	       <if test="applicantBy!=null ">AND applicant_by = #{applicantBy}</if>
+		   <if test="applicationTime!=null ">AND application_time >= #{applicationTime}</if>
+		   <if test="applicationTime!=null ">AND application_time &lt;= #{applicationTime}</if>
+	       <if test="reason!=null and reason!=''">AND reason = #{reason}</if>
+	       <if test="marketingActivityStatus!=null and marketingActivityStatus!=''">AND marketing_activity_status = #{marketingActivityStatus}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getFesMarketingActivityCount" resultType="long">
+        SELECT count(*) FROM fes.fes_marketing_activity 
+		<include refid="fesmarketingactivity_findPage_where"/>    
+    </select>
+    
+    <select id="getActivityByOrder" resultMap="FesMarketingActivity">
+    	select t.merchant_name ,d.dictionary_value activity_type_name, su.user_name applicant_by_name, a.* from fes.fes_marketing_activity a left join 
+		(SELECT m.merchant_id,m.merchant_name from syn.syn_merchant m INNER JOIN sys.sys_user_merchant um 
+		on (m.merchant_id = um.merchant_id) where um.user_id=#{userId} and m.status='1') t on (a.merchant_id = t.merchant_id)
+		 LEFT JOIN (select dictionary_value,dictionary_key FROM sys.sys_dictionary where dictionary_type='00000056') d on (d.dictionary_key = a.activity_type)
+		 INNER JOIN sys.sys_user su on (su.id = a.applicant_by)
+    	 <include refid="activity_order" />
+    </select>
+    <sql id="activity_order">
+    	<where>
+	    	<if test="1==1"> a.is_enable='1'</if>
+	    	<if test="merchantId !=null and merchantId !=0"> and a.merchant_id=#{merchantId}</if>
+	    	<if test="merchantName!=null and merchantName!=''"> and t.merchant_name like '%'||#{merchantName}||'%'</if>
+	    	<if test="marketingActivityStatus!=null and marketingActivityStatus!=''"> and a.marketing_activity_status=#{marketingActivityStatus}</if>
+    	</where>
+    </sql>
+</mapper>

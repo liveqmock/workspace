@@ -1,0 +1,414 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+a {
+    color: #00e;
+}
+
+a:visited {
+    color: #551a8b;
+}
+
+a:hover {
+    color: #06e;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers
+ * https://github.com/h5bp/html5-boilerplate/issues/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+html {
+    font-size: 24px;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+}
+ul, 
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.page {
+    max-width: 640px;
+    margin: 0 auto;
+    display: none;
+}
+.page-full {
+    width: 100%;
+    height: 100%;
+}
+.page-hd {
+    background: url(image/hd-bg.png) no-repeat;
+    background-size: 100%;
+    height: 131px;
+    height: 10.92rem;
+    position: relative;
+}
+.month-num {
+    position: absolute;
+    top: 41%;
+    left: 54%;
+    color: #ffffff;
+    font-size: 43px;
+    font-size: 3.6rem;
+    font-weight: bold;
+    font-style: italic;
+    letter-spacing: -8px;
+    letter-spacing: -0.67rem;
+    text-shadow: 4px 0 4px #373737;
+}
+.box-title {
+    margin: 0;
+    padding: 35px 0 4px 0;
+    padding: 2.92rem 0 0.333rem 0;
+    text-align: center;
+    font-size: 14px;
+    font-size: 1.17rem;
+    color: #444444;
+    font-weight: normal;
+}
+.report-box {
+    font-size: 14px;
+    font-size: 1.17rem;
+    color: #444444;
+}
+.report-summary {
+    position: relative;
+    background: #fff8f0;
+    padding-top: 47px;
+    padding-top: 3.92rem;
+    padding-bottom: 26px;
+    padding-bottom: 2.17rem;
+    border-bottom: 1px solid #fff8f0;
+}
+.report-summary .line {
+    position: absolute;
+    bottom: -3.5px;
+    bottom: -0.3rem;
+    left: 7.8125%;
+    width: 271px;
+    width: 22.583rem;
+    height: 7px;
+    height: 0.583rem;
+    background: url(./image/line-bg-0.png) repeat-x;
+    background-size: 100%;
+}
+.report-summary .item { 
+    padding-left: 32px;
+    padding-left: 2.67rem;
+    margin-bottom: 40px;
+    margin-bottom: 3.33rem;
+    margin-left: 18px;
+    margin-left: 1.5rem;
+}
+.report-summary .icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 56px;
+    height: 56px;
+    width: 4.67rem;
+    height: 4.67rem;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.report-summary .item-content {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 15px;
+    margin-left: 1.25rem;
+}
+.report-summary .item-member .icon {
+    background-image: url(./image/icon-user.png);
+}
+.report-summary .item-card .icon {
+    background-image: url(./image/icon-card.png);
+}
+.report-summary .item-hand .icon {
+    background-image: url(./image/icon-hand.png);
+}
+.report-summary .item-income .icon {
+    background-image: url(./image/icon-bottle.png);
+}
+.month-member-num,
+.year-member-num {
+    color: #43b7d4;
+}
+.month-storage-num,
+.total-storage-num {
+    color: #c2854a;
+}
+.desk-rate {
+    color: #5cc72d;
+}
+.income-num {
+    color: #fc9918;
+}
+.chart-wrapper {
+    padding-bottom: 30px;
+    padding-bottom: 2.5rem;
+    width: 271px;
+    width: 22.583rem;
+    margin: 0 auto;
+}
+.member-detail {
+    background: #edf5fd;
+}
+.storage-detail {
+    background: #e0edfc;
+}
+.desk-detail {
+    background: #edf5fd;
+}
+.page-ft {
+    position: relative;
+    background: #ff94a3;
+    padding: 26px 27px 14px 36px;
+    padding: 2.17rem 2.25rem 1.17rem 3rem;
+}
+.page-ft .line {
+    position: absolute;
+    top: -3.5px;
+    top: -0.3rem;
+    left: 7.8125%;
+    width: 271px;
+    width: 22.583rem;
+    height: 7px;
+    height: 0.583rem;
+    background: url(./image/line-bg-1.png) repeat-x;
+    background-size: 100%;
+}
+.page-ft p {
+    margin: 0;
+    text-align: center;
+}
+.page-ft .ft-logo-wrapper {
+    margin-top: 28px;
+    margin-top: 2.333rem;
+    color: #333333;
+}
+.page-ft .ft-logo-wrapper img {
+    width: 45px;
+    height: 25.5px;
+    width: 3.75rem;
+    height: 2.125rem;
+}
+.page-ft .ft-logo-wrapper p {
+    font-size: 9px;
+    font-size: 0.75rem;
+}
+.page-ft .ft-logo-wrapper .slogan {
+    font-weight: bold;
+    margin-top: 5px;
+    margin-top: 0.417rem;
+}
+.page-ft .ft-summary {
+    color: #fefefe;
+    font-size: 13px;
+    font-size: 1.083rem;
+}
+
+.error-page,
+.expired-page {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+.expired-page {
+    background: #fff8f0 url(image/icon-expired.png) no-repeat center center;
+    background-size: 320px;
+    background-size: 26.67rem;
+}
+.error-page {
+    background: #fff8f0 url(image/icon-error.png) no-repeat center center;
+    background-size: 320px;
+    background-size: 26.67rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/* Prevent callout */
+
+.nocallout {
+    -webkit-touch-callout: none;
+}
+
+.pressed {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* A hack for HTML5 contenteditable attribute on mobile */
+
+textarea[contenteditable] {
+    -webkit-appearance: none;
+}
+
+/* A workaround for S60 3.x and 5.0 devices which do not animated gif images if
+   they have been set as display: none */
+
+.gifhidden {
+    position: absolute;
+    left: -100%;
+}
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: 0;
+    direction: ltr;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    text-indent: -999em;
+}
+
+.ir br {
+    display: none;
+}
+
+/*
+ * Hide from both screenreaders and browsers
+ * http://juicystudio.com/article/screen-readers-display-none.php
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/**
+ * Clearfix helper
+ * Used to contain floats: http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 800px) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+    /* Style adjustments for viewports that meet the condition */
+}

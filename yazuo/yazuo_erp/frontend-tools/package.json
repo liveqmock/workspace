@@ -1,0 +1,33 @@
+{
+    "name": "erp",
+    "version": "0.0.0",
+    "description": "development",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+        "lodash": "latest",
+        "escodegen": "latest",
+        "esprima": "latest",
+        "minimatch": "latest",
+        "esmangle": "latest",
+        "uglify-js": "latest",
+        "css": "latest",
+        "html-minifier": "latest",
+        "clean-css": "latest",
+        "mkdirp": "latest",
+        "rimraf": "latest",
+        "connect": "latest",
+        "serve-static": "latest",
+        "proxy-middleware": "latest",
+        "ssh2":"latest",
+        "glob":"latest",
+        "morgan": "latest",
+        "watch": "latest"
+    },
+    "devDependencies": {
+    },
+    "author": "13",
+    "license": "ISC"
+}

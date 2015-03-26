@@ -1,0 +1,7 @@
+connect_timeout = 30
+network_timeout = 60
+charset = ISO8859-1
+http.tracker_http_port = 22122
+http.anti_steal_token = no
+http.secret_key = 123456
+tracker_server = 192.168.236.84:8080

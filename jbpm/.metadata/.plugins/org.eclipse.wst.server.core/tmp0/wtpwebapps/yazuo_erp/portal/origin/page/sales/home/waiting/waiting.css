@@ -1,0 +1,513 @@
+.page-backend-sales-home-waiting {
+    color:#777;
+}
+.page-backend-sales-home-waiting .page-padding{
+    padding:20px 15px;
+}
+.page-backend-sales-home-waiting .client-head{
+    width:100%;
+    overflow:hidden;
+    margin-bottom: 20px;
+}
+.page-backend-sales-home-waiting .client-head-left{
+    float:left;
+    display:inline;
+}
+.page-backend-sales-home-waiting .client-head-left-logo{
+    float:left;display:inline;
+    width:100px;
+    height:100px;
+}
+.page-backend-sales-home-waiting .client-head-left-logo img {
+    width:100px;
+}
+.page-backend-sales-home-waiting .client-head-left-text{
+    float:left;display:inline;
+    margin-left:30px;
+    width:550px;
+}
+.page-backend-sales-home-waiting .client_head_right{
+    float:right;
+    display:inline;
+}
+.page-backend-sales-home-waiting .client-head-left-text h2 {
+    font-size:24px;
+    line-height:30px;
+}
+.page-backend-sales-home-waiting .client-head-left-text ul {
+    width:100%;
+    overflow:hidden;
+}
+.page-backend-sales-home-waiting .client-head-left-text ul li {
+    float:left;
+    display: inline;
+    width:170px;
+    line-height:23px;
+    margin:10px 0;
+}
+.page-backend-sales-home-waiting .mail {
+    background: #FDF4DA;
+    padding:10px;
+}
+.client-top {
+    border:1px solid #DDE3EA;
+}
+.client-info-left {
+    padding:15px;
+    width:650px;
+}
+.client-info-right {
+    padding:15px;
+    width:300px;
+    border-left:1px solid #DDE3EA;
+}
+.client-info-left li {
+    float:left;
+    display:inline;
+    font-size:16px;
+    width:300px;
+    margin:8px 5px;
+}
+.client-info-right li {
+    font-size:16px;
+    margin-top:5px;
+    width:100%;
+    overflow:hidden;
+}
+.client-info-right li p {
+    float:left;
+    display:inline;
+    width:130px;
+    margin:2px 0;
+}
+.client-info-right li p a {
+    font-size:14px;
+}
+.swfupload {
+    left:0;
+}
+
+
+.page-backend-sales-home-waiting .client-step {
+    margin-top :15px;
+}
+.page-backend-sales-home-waiting .status-box {
+    position: relative;
+    width:100%;
+    overflow: hidden;
+    background:#fff;
+    margin-bottom:15px;
+    border:1px solid #E1E1E1;
+}
+.page-backend-sales-home-waiting .status-box .number {
+    width:55px;
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:28px;
+    height:100%;
+    border:none;
+    background:#D5D2CD;
+    color:#fff;
+
+}
+.page-backend-sales-home-waiting .status-box .content {
+    position:relative;
+    margin-left:70px;
+    margin-right:450px;
+    padding:10px 0;
+}
+
+.page-backend-sales-home-waiting .status-box .operation {
+    width:420px;
+    position: absolute;
+    right:20px;
+    top:50%;
+    height:100%;
+    margin-top:-17px;
+    text-align:right;
+}
+.page-backend-sales-home-waiting .status-box .operation button {
+    margin: 5px 0;
+}
+.page-backend-sales-home-waiting .status-box .content h2 {
+    font-size:20px;
+}
+.page-backend-sales-home-waiting .type-box {
+    background: #F4F3F2;
+    padding:2px 5px;
+    margin:5px 0;
+}
+.page-backend-sales-home-waiting .type-box li {
+    padding:5px 0;
+    width: 100%;
+    overflow: hidden;
+}
+.page-backend-sales-home-waiting .type-box li .left-title {
+    float: left;
+    display: inline;
+    width:80px;
+    text-align: right;
+    line-height: 20px;
+}
+.page-backend-sales-home-waiting .type-box li .left-con {
+    float: left;
+    display: inline;
+    width:500px;
+    padding-left:10px;
+    text-align: left;
+    line-height: 20px;
+}
+.page-backend-sales-home-waiting .type-step1-table-list {
+    width: 100%;
+    overflow: hidden;
+    padding:2px 0;
+}
+.page-backend-sales-home-waiting .type-step1-table-list p {
+    float: left;
+    display: inline;
+    border: 1px solid #eee;
+    padding: 2px;
+    margin: 2px 10px 2px 0;
+    cursor: pointer;
+    position: relative;
+    padding:2px 20px;
+}
+.page-backend-sales-home-waiting .type-step1-table-list p.shopSurvey {
+    padding-right:40px;
+}
+.page-backend-sales-home-waiting .type-step1-table-list p i {
+    font-family: "宋体";
+    font-style: normal;
+    cursor: pointer;
+    font-size: 18px;
+    position: absolute;
+    top:0;
+    right:3px;
+}
+.merchantName {
+    font-size: 14px;
+    padding-top:0px;
+}
+
+
+
+
+.page-backend-sales-home-waiting .research-name {
+    padding: 10px 0;
+    background: #F3F3F4;
+    border-bottom:4px solid #C4D7E3;
+}
+.page-backend-sales-home-waiting .research-name span {
+    margin-right:20px;
+    font-size: 14px;
+}
+.page-backend-sales-home-waiting .research-con {
+    padding:20px 10px;
+}
+.page-backend-sales-home-waiting .research-table td{
+    padding:5px 10px 5px 5px;
+    font-size: 14px;
+}
+.page-backend-sales-home-waiting .research-table td .checkbox-list {
+    width: 120px;
+    float: left;
+    display: inline;
+    margin-right:20px;
+}
+.page-backend-sales-home-waiting .research-tabs ul {
+    width: 100%;
+    border-bottom: 1px solid #CAE5FA;
+    background: #ECF6FF;
+    height:45px;
+}
+.page-backend-sales-home-waiting .research-tabs ul li {
+    float: left;
+    display: inline;
+    padding:0 15px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+}
+.page-backend-sales-home-waiting .research-tabs ul li.cur {
+    border-top: 4px solid #5EA9E0;
+    border-left: 1px solid #CAE5FA;
+    border-right: 1px solid #CAE5FA;
+    color: #5EA9E0;
+    background: #fff;
+    height: 42px;
+    line-height: 40px;
+}
+
+.page-backend-sales-home-waiting .ui-dialog-content {
+    padding: 0;
+}
+.page-backend-sales-home-waiting .input-text {
+    width: 180px;
+}
+.page-backend-sales-home-waiting-Interview-tabs {
+    width: 100%;
+    border-bottom: 1px solid #CAE5FA;
+    background: #ECF6FF;
+    height:45px;
+}
+.page-backend-sales-home-waiting-Interview-tabs {
+    width: 100%;
+    border-bottom: 1px solid #CAE5FA;
+    background: #ECF6FF;
+    height:45px;
+}
+.page-backend-sales-home-waiting-Interview-tabs td{
+    position: relative;
+}
+.page-backend-sales-home-waiting-Interview-tabs p {
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+.page-backend-sales-home-waiting-Interview-tabs p.cur {
+    border-top: 4px solid #5EA9E0;
+    border-left: 1px solid #CAE5FA;
+    border-right: 1px solid #CAE5FA;
+    color: #5EA9E0;
+    background: #fff;
+    height: 42px;
+    line-height: 40px;
+}
+.page-backend-sales-home-waiting .input-text-400 {
+    width:400px;
+}
+.communication {
+    padding:25px 30px;
+}
+.communication .ff-label {
+    padding-left:10px;
+}
+.communication .input-text {
+    width: 330px;
+}
+.communication .sex-position {
+    padding-top:6px;
+}
+.page-backend-sales-home-waiting .merchant-logo {
+    width: 100px;
+    height:100px;
+    border:1px solid #ccc;
+    float:left;
+    display:inline;
+    margin-right:20px;
+    position: relative;
+}
+.page-backend-sales-home-waiting .merchant-logo .icon-close {
+    position: absolute;
+    top:0px;
+    right: 0px;
+    font-family: "宋体";
+    font-style: normal;
+    cursor: pointer;
+    font-size: 18px;
+    width:18px;
+    height:18px;
+    line-height:18px;
+    background:#fff;
+}
+
+.page-backend-sales-home-waiting .merchant-logo img {
+    width:100px;
+    height:100px;
+}
+.page-backend-sales-home-waiting .merchant-logo-select {
+    float:left;
+    display:inline;
+}
+.page-backend-sales-home-waiting .merchant-title {
+    font-size: 14px;
+
+}
+.research-con .schedule {width:180px;}
+
+
+
+/*未开始*/
+.page-backend-sales-home-waiting .status-ready {
+    border:1px solid #E1E1E1;
+}
+.page-backend-sales-home-waiting .status-ready .number {
+    background:#E1E1E1;
+}
+.page-backend-sales-home-waiting .status-ready .status-style {
+    background:#fff;
+    border:1px solid #E1E1E1;
+}
+/*已经开始*/
+.page-backend-sales-home-waiting .status-bging {
+    border:1px solid #0099CC;
+    background: #f4fdff;
+}
+.page-backend-sales-home-waiting .status-bging .number {
+    background: #0099CC;
+}
+.page-backend-sales-home-waiting .status-bging .content h2 {
+    color:#0099CC;
+}
+.page-backend-sales-home-waiting .status-bging .status-style {
+    background:#fff;
+    border:1px solid #0099CC;
+}
+/*已经结束*/
+.page-backend-sales-home-waiting .status-end {
+    border:1px solid #2CC78F;
+    background: #eafff1;
+}
+.page-backend-sales-home-waiting .status-end .number {
+    background: #2CC78F;
+}
+.page-backend-sales-home-waiting .status-end .content h2 {
+    color:#2CC78F;
+}
+.page-backend-sales-home-waiting .status-end .status-style {
+    background:#fff;
+    border:1px solid #2CC78F;
+}
+/*已超时*/
+.page-backend-sales-home-waiting .status-past {
+    border:1px solid #FF7800;
+    background: #ffeeea;
+}
+.page-backend-sales-home-waiting .status-past .number {
+    background: #FF7800;
+}
+.page-backend-sales-home-waiting .status-past .content h2 {
+    color:#FF7800;
+}
+.page-backend-sales-home-waiting .status-past .status-style {
+    background:#fff;
+    border:1px solid #FF7800;
+}
+.page-backend-sales-home-waiting .content-list {
+    width:100%;
+    overflow: hidden;
+    margin:5px 0;
+}
+
+.page-backend-sales-home-waiting .page-button {
+    width: 180px;
+    overflow: hidden;
+    margin: 0px 5px 8px 0;
+    height: 25px;
+    position: relative;
+    float: left;
+    display: inline-block;
+    cursor: pointer;
+}
+.page-backend-sales-home-waiting .page-button .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    padding: 0 5px;
+    text-align: center;
+    overflow: hidden;
+    background: #fff;
+    line-height: 25px;
+    margin: 0;
+    color : #005ea7;
+}
+.page-backend-sales-home-waiting .page-button .choice {
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    width: 50px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+/*未开始*/
+.page-backend-sales-home-waiting .status-ready .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #e1e1e1;
+    text-align: center;
+}
+/*已经开始*/
+.page-backend-sales-home-waiting .status-bging .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #0099cc;
+    text-align: center;
+}
+/*已经结束*/
+.page-backend-sales-home-waiting .status-end .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #2cc78f;
+    text-align: center;
+}
+/*已超时*/
+.page-backend-sales-home-waiting .status-past .page-button .choice i {
+    float: right;
+    display: inline-block;
+    width: 23px;
+    height: 25px;
+    border-left:1px solid #FF7800;
+    text-align: center;
+}
+.page-backend-sales-home-waiting .update-time {
+    margin:5px 0;
+    line-height: 25px;
+    background: #f3f3f3;
+    width:598px;
+    overflow:hidden;
+    position: relative;
+    margin-right: 5px;
+}
+.page-backend-sales-home-waiting .left-title {
+    float:left;
+    display:inline;
+    width:140px;
+    padding-left:5px;
+}
+.page-backend-sales-home-waiting .left-con {
+    float:left;
+    display:inline;
+    width:430px;
+}
+
+.page-backend-sales-home-waiting .fn-left-time {
+    float:left;
+    display:inline;
+    width:140px;
+    height:15px;
+    text-indent: 5px;
+}
+.page-backend-sales-home-waiting .fn-left-text {
+    float:left;
+    display:inline;
+    width:430px;
+    padding:0 5px;
+}
+.page-backend-sales-home-waiting .icon-close {
+    font-family: "arial";
+    font-style: normal;
+    cursor: pointer;
+    font-size:18px;
+    position: absolute;
+    right:3px;
+    top:1px;
+}

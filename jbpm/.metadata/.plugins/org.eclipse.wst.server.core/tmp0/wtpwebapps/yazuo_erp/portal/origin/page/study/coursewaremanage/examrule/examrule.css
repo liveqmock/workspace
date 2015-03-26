@@ -1,0 +1,39 @@
+.page-study-coursewaremanage-examrule .ff-label {
+    width: 120px;
+    text-align: right;
+}
+.page-study-coursewaremanage-examrule .ff-value {
+    margin-left: 120px;
+    color: #646464;
+    font-size: 14px;
+}
+.page-study-coursewaremanage-examrule .input-text {
+    width: 60px;
+}
+
+.page-study-coursewaremanage-examrule .questions-grid-wrapper {
+    margin-top: 20px;
+    width: 568px;
+    border: 1px solid #cde2f9;
+}
+.page-study-coursewaremanage-examrule .questions-grid-wrapper .grid-body-wrapper {
+    height: 210px;
+    overflow: auto;
+}
+.page-study-coursewaremanage-examrule .questions-grid-wrapper table {
+    width: 100%;
+}
+.page-study-coursewaremanage-examrule .questions-grid-wrapper th,
+.page-study-coursewaremanage-examrule .questions-grid-wrapper td {
+    text-align: left;
+    padding: 0 8px;
+}
+.page-study-coursewaremanage-examrule .questions-grid-wrapper .cell-title {
+    width: 360px;
+}
+.page-study-coursewaremanage-examrule .questions-grid-wrapper .cell-question-type {
+    width: 60px;
+}
+.page-study-coursewaremanage-examrule .score-tip {
+    color: #969696;
+}

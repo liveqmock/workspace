@@ -1,0 +1,41 @@
+#获取商户信息
+#getMerchantChildListByMerchantId=http://192.168.236.41:8083/crmapi/merchantNew/getMerchantChildListByMerchantId.do
+#getMerchantChildListByMerchantId=http://58.83.233.47:8081/crmapi/merchantNew/getMerchantChildListByMerchantId.do
+getMerchantChildListByMerchantId=http://192.168.236.74:8083/crmapi/merchantNew/getMerchantChildListByMerchantId.do
+
+#查询商户信息
+getMerchantInfoByMerchantId=http://192.168.236.74:8083/crmapi/merchant/getMerchantInfoByMerchantId.do
+getMerchantByMerchantId=http://192.168.236.74:8083/crmapi/merchant/getMerchantByMerchantId.do
+
+#微信会员中心
+connectWifiAddMember=http://124.42.38.70/yazuo-weixin/merchantWifi/visitMemberByWifi.do
+
+#获取卡类型
+getCardType =http://192.168.236.41:8083/crmapi/cardtype/getCardType.do
+
+#发送短信url
+smsUrl=http://192.168.236.35:8085/crmapi/shortmessage/shortMessageSendJMS.do
+
+#设置卡样  微信
+#saveMemberRightSetting = http://124.42.38.70/yazuo-weixin/merchantWifi/saveMemberRightSetting.do
+saveMemberRightSetting = http://124.42.38.70/weixin-api/setting/saveMemberRightSetting.do
+
+#同步卡  微信
+saveCardType =  http://124.42.38.70/weixin-api/setting/saveCardType.do
+
+#设备最多可连接人数
+oneMax = 200
+
+#超级wiki产品ID
+superwiki_productId = 1000037
+
+#营销短信接口
+addOrUpdateAwardRuleInfo=http://192.168.236.74:8083/crmapi/awardRuleNew/addOrUpdateAwardRuleInfo.do
+saveOrUpdateActiveSmsTemplate=http://192.168.236.74:8083/crmapi/activeSms/saveOrUpdateActiveSmsTemplate.do
+deleteAwardRule=http://192.168.236.74:8083/crmapi/awardRule/deleteAwardRule.do
+
+#crmApiKey
+crmApiKey=600040
+
+#portal--芝麻提供
+portal=wifi.yazuo.com/controller/login/portal.do

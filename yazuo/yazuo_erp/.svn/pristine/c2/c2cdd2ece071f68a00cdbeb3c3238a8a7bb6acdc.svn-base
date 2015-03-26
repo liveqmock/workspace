@@ -1,0 +1,46 @@
+{
+    "remote": {
+        "servicePortalPath": "http://erp.yazuo.com:11001/portal/",
+        "alias": {
+            "mmHistory": "origin/asset/third/avalon/mmHistory.js",
+            "mmRouter": "origin/asset/third/avalon/mmRouter.js",
+            "events": "origin/asset/events.js",
+            "common": "origin/asset/common.js",
+            "util": "origin/asset/util.js",
+            "index": "origin/asset/index.js",
+            "json": "origin/asset/third/json2.js",
+            "dialog": "origin/widget/dialog/dialog.js",
+            "raphael": "origin/asset/third/raphael/raphael.js",
+            "uploadify": "origin/asset/third/uploadify/jquery.uploadify.js",
+            "moment": "origin/asset/third/moment-with-langs.js",
+            "jwplayer": "origin/asset/third/jwplayer/jwplayer.js",
+            "sortable": "origin/asset/third/jquery-sortable.js",
+            "graphael": "origin/asset/third/graphael/g.raphael.js",
+            "highcharts": "origin/asset/third/highcharts/js/highcharts-all.js"
+        },
+        "ignore": ["origin/demo/**.*", "origin/asset/login.css", "origin/widget/editor/ueditor/**/*.*", "origin/widget/tree/ztree/**/*.*", "origin/widget/uploader/jquery.uploadify.js", "origin/asset/third/**/*.*", "origin/dist/**/*.*"],
+        "alone": ["origin/asset/util.js", "origin/asset/common.js", "origin/asset/index.js"]
+    },
+    "local": {
+        "servicePortalPath": "http://localhost:9090/yazuo_erp_before_20141009/portal/",
+        "alias": {
+            "mmHistory": "origin/asset/third/avalon/mmHistory.js",
+            "mmRouter": "origin/asset/third/avalon/mmRouter.js",
+            "events": "origin/asset/events.js",
+            "common": "origin/asset/common.js",
+            "util": "origin/asset/util.js",
+            "index": "origin/asset/index.js",
+            "json": "origin/asset/third/json2.js",
+            "dialog": "origin/widget/dialog/dialog.js",
+            "raphael": "origin/asset/third/raphael/raphael.js",
+            "uploadify": "origin/asset/third/uploadify/jquery.uploadify.js",
+            "moment": "origin/asset/third/moment-with-langs.js",
+            "jwplayer": "origin/asset/third/jwplayer/jwplayer.js",
+            "sortable": "origin/asset/third/jquery-sortable.js",
+            "graphael": "origin/asset/third/graphael/g.raphael.js",
+            "highcharts": "origin/asset/third/highcharts/js/highcharts-all.js"
+        },
+        "ignore": ["origin/demo/**.*", "origin/asset/login.css", "origin/widget/editor/ueditor/**/*.*", "origin/widget/tree/ztree/**/*.*", "origin/widget/uploader/jquery.uploadify.js", "origin/asset/third/**/*.*", "origin/dist/**/*.*"],
+        "alone": ["origin/asset/util.js", "origin/asset/common.js", "origin/asset/index.js"]
+    }
+}

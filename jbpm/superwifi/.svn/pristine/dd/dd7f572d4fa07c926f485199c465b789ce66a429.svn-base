@@ -1,0 +1,8 @@
+.ui-autocomplete {
+    display: inline-block;
+}
+.ui-autocomplete-panel .empty-tip,
+.ui-autocomplete-panel .loading-tip {
+    padding: 0 8px;
+    line-height: 30px;
+}

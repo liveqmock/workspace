@@ -1,0 +1,53 @@
+.ui_thinkSearch {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+}
+.ui_thinkSearch input {
+	width:100%;
+	border:1px solid #2cc78f;
+	height:33px;
+	line-height:33px;
+	text-indent:3px;
+	font-size:12px;
+}
+.ui_thinkSearch_search {
+	border:1px solid #2cc78f;
+	position:absolute;
+	left:0px;
+	top:34px;
+	width:100%;
+	background:#fff;
+	max-height:300px;
+	height:300px \9;
+	overflow-y:auto;
+    z-index: 10000;
+}
+.ui_thinkSearch_search div.ui_thinkSearch_search_list {
+	line-height:30px;
+	font-size:14px;
+	padding-left:5px;
+	cursor:pointer;
+}
+.ui_thinkSearch_search div.ui_thinkSearch_search_cur,
+.ui_thinkSearch_search div.ui_thinkSearch_search_list:hover {
+	background:#eee;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

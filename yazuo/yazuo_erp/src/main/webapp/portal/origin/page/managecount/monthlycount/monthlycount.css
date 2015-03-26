@@ -1,0 +1,126 @@
+.page-managecount-monthlycount .page-bd {
+    padding: 20px 15px;
+}
+.page-managecount-monthlycount .search-head {
+    margin-bottom: 30px;
+}
+.page-managecount-monthlycount .search-head span {
+    margin-right: 10px;
+    width: 120px;
+}
+
+.page-managecount-monthlycount .search-head .input-search {
+    width: 160px;
+    margin-right: 10px;
+}
+.page-managecount-monthlycount .select-con {
+    margin-bottom: 80px;
+    position: relative;
+}
+.page-managecount-monthlycount .select-con table {
+    width: 100%;
+    background: #eee;
+    border-collapse: inherit;
+    border-spacing: 1px;
+    font-size: 14px;
+    border:1px solid #2CC78F;
+}
+.page-managecount-monthlycount .select-con table th {
+    background: #fff;
+    padding: 10px 6px;
+    width: 80px;
+    text-align: center;
+}
+.page-managecount-monthlycount .select-con table td {
+    background: #fff;
+    padding: 6px;
+}
+.page-managecount-monthlycount .select-con table td p {
+    margin-right: 10px;
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.page-managecount-monthlycount .select-con table td span {
+    padding: 5px 10px;
+    display: inline-block;
+    margin-right: 10px;
+    color: #999;
+    font-size: 14px;
+}
+.page-managecount-monthlycount .select-con table td .button-order {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor:pointer;
+    border: none;
+    background: none;
+    font-size: 14px;
+}
+.page-managecount-monthlycount .select-con .choice {
+    border:1px solid #ccc;
+    border-top:none;
+    cursor: pointer;
+    padding: 5px 0;
+    width: 100px;
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+    text-align: center;
+    overflow: hidden;
+    background: #fff;
+    font-size: 14px;
+}
+.page-managecount-monthlycount .select-con .choice .iconfont {
+    margin-left: 6px;
+    margin-top: -3px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    text-align: center;
+}
+.page-managecount-monthlycount .grid-con {
+    border:1px solid #ccc;
+}
+.page-managecount-monthlycount .ui-grid-tbar {
+    padding-top: 5px;
+    line-height: 30px;
+}
+.page-managecount-monthlycount .ui-grid-tbar .fn-left {
+    width: 700px;
+    overflow: hidden;
+}
+.page-managecount-monthlycount .ui-grid-tbar .grid-tit1 {
+    float: left;
+    width: 70px;
+}
+.page-managecount-monthlycount .ui-grid-tbar .grid-tit2 {
+    float: left;
+    width: 600px;
+}
+.page-managecount-monthlycount .ui-grid-tbar .grid-tit2 p {
+    display: inline-block;
+    margin: 0 10px 10px 0;
+
+}
+.page-managecount-monthlycount .ui-grid-tbar .grid-tit2 p.options {
+    position: relative;
+    border:1px solid #2CC78F;
+    background: #fff;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 35px 0 10px;
+}
+.page-managecount-monthlycount .ui-grid-tbar .grid-tit2 p.options .iconfont {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    border-left: 1px solid #2CC78F;
+    height: 28px;
+    text-align: center;
+    cursor: pointer;
+}
+
+

@@ -1,0 +1,72 @@
+@charset "utf-8";
+/*base*/
+body{background:#f8f8f8;font-family:'Microsoft Yahei',Arial,Helvetica,Tahoma,sans-serif;color:#444;}
+h1,h2,h3,div,li,p{margin:0;padding:0;font-size:100%;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body,button,input,select,textarea{font:12px/1.125;}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0; padding:0;-webkit-text-size-adjust:none;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+fieldset,img{border:0;}
+q:before,q:after{content:'';}
+input,textarea{outline-style:none;}
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;}
+textarea{resize:none}
+a{text-decoration:none;color:#444;}
+a:hover{text-decoration:none;color:#444;}
+.left{float:left;}
+.right{float:right;}
+.block{display:block;}
+img{ vertical-align:middle;}
+.hide{display:none;}
+
+/*两种清浮动方法*/
+.clear_wrap:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clear_wrap {display:block;_display:inline-block;}
+
+
+
+/*完善会员资料*/
+.mem-main{padding:0 10px;font-family:'Microsoft Yahei',Arial,Helvetica;}
+.mem-main h1{font-size:18px;color:#676767;padding-left:5px;}
+.mem-main p{margin-top:10px;font-size:16px;border:2px solid #c6c6c6;border-radius:5px;background:#fff;height:36px;line-height:36px;padding:0 10px;}
+.mem-main .text{border:none;height:32px;line-height:32px;font-family:'Microsoft Yahei';font-size:16px;width:195px;}
+.mem-main p span{font-weight:bold;}
+.mem-main .checkbox,.mem-main .select{margin-right:5px;}
+.padR20{padding-right:20px;}
+.mem-main input::-webkit-input-placeholder{color:#bbb;}
+.mem-main input:-moz-placeholder{color:#bbb;}
+.mem-main input::-moz-placeholder{color:#bbb;}
+.mem-main .yzm{width:55%;}
+.mem-main .yzm .text{width:95px;}
+.mem-main .sub-div{padding:15px 0;}
+.mem-main .yz_btn{border:2px solid #d1d1d1;border-radius:5px;padding:0 10px;height:36px;line-height:36px;margin-top:10px;font-weight:bold;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,#f6f6f6),color-stop(0.5, #eeeeee),color-stop(1,#e6e6e6));
+	background-image: -webkit-linear-gradient( #f6f6f6,#eeeeee, #e6e6e6 );
+	background-image:    -moz-linear-gradient( #f6f6f6,#eeeeee, #e6e6e6 );
+	background-image:     -ms-linear-gradient( #f6f6f6,#eeeeee, #e6e6e6 );
+	background-image:      -o-linear-gradient( #f6f6f6,#eeeeee, #e6e6e6 );
+	background-image:         linear-gradient( #f6f6f6,#eeeeee, #e6e6e6 );
+}
+.mem-main .mem-sub{display:block;color:#fff;font-size:18px;border:0; text-align:center;padding:10px 0;font-weight:bold;width:100%;border-radius:5px;font-family:'Microsoft Yahei';
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,#38cf38),color-stop(0.5, #2ec02e),color-stop(1,#25b225));
+	background-image: -webkit-linear-gradient( #38cf38,#2ec02e, #25b225 );
+	background-image:    -moz-linear-gradient( #38cf38,#2ec02e, #25b225 );
+	background-image:     -ms-linear-gradient( #38cf38,#2ec02e, #25b225 );
+	background-image:      -o-linear-gradient( #38cf38,#2ec02e, #25b225 );
+	background-image:         linear-gradient( #38cf38,#2ec02e, #25b225 );
+}
+.error-mesg{color:#ff6600;padding:0 0 10px;display:block;}
+.mem-succ{text-align:center;font-family:'Microsoft Yahei';font-size:20px;color:#759914;font-weight:bold;margin:20px 0 50px;}
+.mem-succ img{margin-right:5px;vertical-align:middle;}
+
+/*会员卡绑定*/
+.header{height:40px; line-height:40px; font-size:18px; text-align:center; border-bottom:#C5C0CF solid 1px; box-shadow:0 0 3px #999; font-weight:bold;font-family:'Microsoft Yahei';
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,#ffffff),color-stop(1,#EEEBF3));
+	background-image: -webkit-linear-gradient( #ffffff,#EEEBF3);
+	background-image:    -moz-linear-gradient(#ffffff,#EEEBF3 );
+	background-image:     -ms-linear-gradient( #ffffff,#EEEBF3 );
+	background-image:      -o-linear-gradient( #ffffff,#EEEBF3 );
+	background-image:         linear-gradient( #ffffff,#EEEBF3 );
+}
+.formItemTitle{margin-top:20px; font-size:18px; font-weight:normal;}

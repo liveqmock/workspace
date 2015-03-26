@@ -1,0 +1,298 @@
+.practice-exam-softpos {
+    position: relative;
+}
+.practice-exam-softpos .hd {
+    background: #e5dfd0 url(image/hd-bg.png) repeat-x;
+}
+.practice-exam-softpos .hd-l {
+    background: url(image/hd-l.png) no-repeat;
+    width: 493px;
+    height: 128px;
+}
+.practice-exam-softpos .hd-r {
+    background: url(image/hd-r.png) no-repeat;
+    width: 478px;
+    height: 128px;
+}
+.practice-exam-softpos .bd {
+    background: #f3f3f3;
+    height: 1024px;
+}
+.practice-exam-softpos .bd .action-section {
+    position: relative;
+    margin: 0 auto;
+}
+.practice-exam-softpos .field-tip {
+    position: absolute;
+    color: #f00000;
+    font-weight: bold;
+    font-size: 14px;
+}
+.practice-exam-softpos .dialog-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #cccccc;
+    opacity: 0.5;
+}
+.practice-exam-softpos .softpos-dialog {
+    display: none;
+    z-index: 10;
+    position: absolute;
+    top: 100px;
+    left: 300px;
+    box-shadow: 0 0 20px #666666;
+}
+/* 办理积分卡 */
+.practice-exam-softpos .bd .portal-section {
+    width: 830px;
+    height: 250px;
+    margin: 0 auto;
+    position: relative;
+    top: 30px;
+}
+.practice-exam-softpos .bd .card-input-box {
+    height: 100%;
+    background: url(image/card-input.png) no-repeat;
+}
+.practice-exam-softpos .bd .card-input-box .field-tip {
+    top: 174px;
+    right: 216px;
+}
+.practice-exam-softpos .portal-section .card-input {
+    position: absolute;
+    top: 127px;
+    height: 45px;
+    width: 545px;
+    left: 61px;
+    border: none;
+    font-size: 24px;
+    padding: 0 3px;
+}
+.practice-exam-softpos .portal-section .card-submit {
+    position: absolute;
+    top: 127px;
+    left: 616px;
+    width: 154px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    height: 45px;
+}
+.practice-exam-softpos .card-active-tip {
+    width: 420px;
+    height: 285px;
+    background: url(image/card-active-tip.png) no-repeat;
+}
+.practice-exam-softpos .card-active-tip .submit-btn {
+    position: absolute;
+    top: 216px;
+    left: 32px;
+    width: 158px;
+    height: 45px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.practice-exam-softpos .card-active-tip .cancel-btn {
+    position: absolute;
+    top: 216px;
+    left: 232px;
+    width: 158px;
+    height: 45px;
+    background: transparent;
+    border: none;
+   ecursor: pointer;
+}
+/* 卡激活流程 */
+.practice-exam-softpos .card-active-section .card-active-box {
+    position: relative;
+    width: 689px;
+    height: 586px;
+    background: url(image/card-active-bg.png) no-repeat;
+    margin: 0 auto;
+}
+.practice-exam-softpos .card-active-box input {
+    width: 282px;
+    height: 40px;
+    padding: 0 8px;
+    font-size: 24px;
+    border: none;
+}
+.practice-exam-softpos .card-active-box select {
+    font-size: 24px;
+}
+.practice-exam-softpos .card-active-box .mobile {
+    position: absolute;
+    left: 333px;
+    top: 172px;
+}
+.practice-exam-softpos .card-active-box .user-name {
+    position: absolute;
+    top: 227px;
+    left: 333px;
+}
+.practice-exam-softpos .card-active-box .sex {
+    position: absolute;
+    left: 333px;
+    top: 284px;
+}
+.practice-exam-softpos .card-active-box .birthday-wrapper {
+    position: absolute;
+    top: 338px;
+    left: 333px;
+}
+.practice-exam-softpos .card-active-box button {
+    width: 156px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.practice-exam-softpos .card-active-box .card-active-submit {
+    position: absolute;
+    top: 408px;
+    left: 165px;
+}
+.practice-exam-softpos .card-active-box .card-active-cancel {
+    position: absolute;
+    top: 408px;
+    left: 365px;
+}
+.practice-exam-softpos .card-active-box .mobile-field-tip {
+    position: absolute;
+    top: 180px;
+    left: 640px;
+    width: 130px;
+}
+/* 组合消费流程 */
+.practice-exam-softpos .main-section {
+    position: relative;
+    height: 100%;
+}
+.practice-exam-softpos .main-section .action-btn-box {
+    position: absolute;
+    left:0;
+    top: 0;
+    width: 100%;
+    height: 44px;
+    border-top: 1px solid #c4c4c4;
+    border-bottom: 1px solid #c4c4c4;
+    background: white;
+    font-size: 24px;
+    text-align: center;
+    color: #646464;
+}
+.practice-exam-softpos .main-section .card-info-box {
+    position: absolute;
+    right:0;
+    top: 0;
+    width: 420px;
+    height: 100%;
+    border-left: 1px solid #c4c4c4;
+    background: white;
+    font-size: 24px;
+    text-align: center;
+    color: #646464;
+}
+.practice-exam-softpos .main-section .group-consume-box {
+    position: relative;
+    left: 24px;
+    width: 687px;
+    height: 347px;
+    background: url(image/group-consume-bg.png) no-repeat;
+}
+.practice-exam-softpos .group-consume-box input {
+    position: absolute;
+    width: 96px;
+    height: 28px;
+    border: none;
+    font-size: 24px;
+    text-align: right;
+}
+.practice-exam-softpos .group-consume-box .total-amount {
+    top: 48px;
+    left: 543px;
+}
+.practice-exam-softpos .group-consume-box .cash-amount {
+    top: 218px;
+    left: 544px;
+}
+.practice-exam-softpos .group-consume-box button {
+    position: absolute;
+    width: 156px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.practice-exam-softpos .group-consume-box .group-consume-submit {
+    top: 280px;
+    left: 165px;
+}
+.practice-exam-softpos .group-consume-box .group-consume-cancel {
+    top: 280px;
+    left: 365px;
+}
+/* 消费确认流程 */
+.practice-exam-softpos .consume-confirm {
+    width: 600px;
+    height: 456px;
+    background: url(image/consume-confirm-bg.png) no-repeat;
+}
+.practice-exam-softpos .consume-confirm .content {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    width: 562px;
+    font-size: 18px;
+    text-align: center;
+}
+.practice-exam-softpos .consume-confirm button {
+    width: 156px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.practice-exam-softpos .consume-confirm .submit-btn {
+    position: absolute;
+    left: 122px;
+    top: 388px;
+}
+.practice-exam-softpos .consume-confirm .cancel-btn {
+    position: absolute;
+    top: 388px;
+    left: 322px;
+}
+/* 打印流程 */
+.practice-exam-softpos .print {
+    width: 494px;
+    height: 546px;
+    background: url(image/print-bg.png) no-repeat;
+}
+.practice-exam-softpos .print .cash-value {
+    position: absolute;
+    top: 360px;
+    right: 162px;
+}
+.practice-exam-softpos .print button {
+    width: 156px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.practice-exam-softpos .print .submit-btn {
+    position: absolute;
+    left: 70px;
+    top: 478px;
+}
+.practice-exam-softpos .print .cancel-btn {
+    position: absolute;
+    top: 478px;
+    left: 270px;
+}

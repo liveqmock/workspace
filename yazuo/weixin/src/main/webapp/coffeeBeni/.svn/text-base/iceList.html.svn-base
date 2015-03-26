@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,minimum-scale=1.0, maximum-scale=1.0"/> 
+<link href="style/typeList.css" type="text/css" rel="stylesheet" />
+<title>刨冰、冰淇淋类</title>
+</head>
+
+<body>
+	<header>陪你菜单</header>
+    <img src="foodImg/BingsuGelato/typeLogo.jpg" class="typeLogoImg" />
+    
+    <div class="typeItemList">
+    	<h3 class="typeTitle">刨冰、冰淇淋系列  Bingsu/ Gelato<i class="borderCenterIco"></i></h3>
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/红豆刨冰.png" class="oneItemImg" />
+        	<p class="foodName">红豆刨冰<br/>팥빙수<br/>Red Bean Bingsu</p>
+            <p class="foodInfo">
+            	柔和红豆沙与香浓牛奶搭配的无与伦比的清凉红豆刨冰<br />
+				价格：标杯<em>57</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/水果刨冰.png" class="oneItemImg" />
+        	<p class="foodName">水果刨冰<br/>과일빙수<br/>Fruit Bingsu</p>
+            <p class="foodInfo">
+            	加入应季新鲜水果的咖啡陪你特制刨冰<br />
+				价格：标杯<em>57</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/咖啡刨冰.png" class="oneItemImg" />
+        	<p class="foodName">咖啡刨冰<br/>커피빙수<br/>Coffee Bingsu</p>
+            <p class="foodInfo">
+            	加入特质意大利式咖啡冰淇淋的香浓咖啡味刨冰<br />
+				价格：标杯<em>57</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+       
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/绿茶刨冰.png" class="oneItemImg" />
+        	<p class="foodName">绿茶刨冰<br/>녹차빙수<br/>Green Tea Bing</p>
+            <p class="foodInfo">
+            	浓郁绿茶与香滑鲜奶油完美结合的经典刨冰<br />
+				价格：标杯<em>57</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/树莓冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">树莓冰淇淋<br/>랩스베리 젤라또<br/>Raspberry Gelato</p>
+            <p class="foodInfo">
+				价格：单球<em>15</em>元
+            </p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>  
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/草莓冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">草莓冰淇淋<br/>딸기 젤라또<br/>Strawberry Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/巧克力冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">巧克力冰淇淋 <br/>초콜릿 젤라또<br/>Chocolate Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/酸奶蓝莓冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">酸奶蓝莓冰淇淋<br/>루베리 젤라또<br/>Yogurt Blueberry Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/咖啡冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">咖啡冰淇淋<br/>커피 젤라또<br/>Coffee Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>   
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/香草冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">香草冰淇淋<br/>바닐라 젤라또<br/>Vanilla Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/奶油芝士曲奇冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">奶油芝士曲奇冰淇淋<br/>크림 치즈 쿠키 젤라또<br/>cream cheese cookie gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/酸奶冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">酸奶冰淇淋<br/>요거트 젤라또<br/>Yogurt Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/柠檬冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">柠檬冰淇淋<br/>레몬 젤라또<br/>Lemon Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div> 
+        <div class="oneItem">
+        	<img src="foodImg/BingsuGelato/绿茶冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">绿茶冰淇淋<br/>녹차 젤라또<br/>Green Tea Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>
+        <div class="oneItem last">
+        	<img src="foodImg/BingsuGelato/绿茶冰淇淋.jpg" class="oneItemImg" />
+        	<p class="foodName">绿茶冰淇淋<br/>녹차 젤라또<br/>Green Tea Gelato</p>
+            <p class="foodInfo">价格：单球<em>15</em>元</p>
+            <a href="javascript:;" class="buyBtn">立即购买</a>
+        </div>     
+    </div>
+
+
+<script language="javascript" src="js/jquery-1.8.3.min.js"></script>
+<script language="javascript" src="js/typeList.js"></script>
+</body>
+</html>

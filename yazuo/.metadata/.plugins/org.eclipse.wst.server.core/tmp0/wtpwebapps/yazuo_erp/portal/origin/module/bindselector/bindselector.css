@@ -1,0 +1,25 @@
+.bind-select-dialog .bind-course-wrapper {
+    padding: 10px 14px;
+}
+.bind-select-dialog .bind-course-wrapper .f-field{
+    margin-bottom: 0;
+}
+.bind-select-dialog .dialog-tbar .input-text {
+    width: 160px;
+}
+.bind-select-dialog .name-cell {
+    width: 130px;
+    margin-right: 20px;
+}
+.bind-select-dialog .mobile-cell {
+    width: 80px;
+    margin-right: 20px;
+}
+.bind-select-dialog .group-cell {
+    width: 80px;
+    margin-right: 20px;
+}
+.bind-select-dialog .position-cell {
+    width: 80px;
+    margin-right: 20px;
+}

@@ -1,0 +1,144 @@
+@charset "utf-8";
+body{font-family:'Microsoft Yahei',Arial,Helvetica,Tahoma,sans-serif;color:#393939;}
+body{-webkit-user-select:none;-webkit-text-size-adjust:none}
+h1,h2,h3,div,li,p{margin:0;padding:0;font-size:100%;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body,button,input,select,textarea{font:14px/1.25;}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0; padding:0;-webkit-text-size-adjust:none;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+img{border:0;vertical-align:middle;}
+input,textarea{outline-style:none;font-family:'Microsoft Yahei'}
+textarea{resize:none}
+em,i{font-style:normal;font-weight:normal;}
+a{text-decoration:none;color:#444;}
+
+/*两种清浮动方法*/
+.clear:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clear{display:block;_display:inline-block;}
+
+/*图标*/
+.wifiIco{background:url(../image/superWifiIco.png) no-repeat; display:inline-block;}
+.wifiWelIco{width:26px; height:20px; background-position:0 0; margin-right:0px; position:relative; top:3px;}
+.loginTipIco{width:26px; height:20px; background-position:0px -20px; position:relative; top:5px;}
+.successIco{width:26px; height:25px; background-position:0px -40px; position:absolute; left:15px; top:15px;}
+.couponIco{width:13px; height:10px; background-position:-13px -65px; position:absolute; right:15px; top:18px;}
+.foldIco{background-position:0px -65px;}
+
+/*wifi title*/
+.yazuoWifi{line-height:24px; text-align:center; background:#F1F1F1; font-size:12px; text-align:center; font-weight:normal;}
+/*商户自定义图片*/
+.clientPic{width:100%; min-height:100px; height:100px; height:auto !important; position:relative; background:#6FB811; border-top:#D7D7D7 solid 2px;}
+.clientPic em{font-size:14px; line-height:100%; text-align:center; color:#ffffff;width:100%; height:100%; position:absolute; left:0px; top:0px;}
+.clientPic img{width:100%; display:block; position:relative; z-index:5;}
+
+/*wifi欢迎*/
+.wifiWelcome{background:-moz-linear-gradient(left,#F5F5F5,#DBDBDB,#F5F5F5);background: -webkit-gradient(linear,left top,right bottom,from(#F5F5F5),color-stop(0.5, #DBDBDB),to(#F5F5F5));
+background: -o-linear-gradient(left,#F5F5F5, #DBDBDB,#F5F5F5); position:relative; top:20px; height:4px; margin:20px 3% 50px; text-align:center;}
+.wifiWelcome span{padding:0px 15px; display:inline-block; background:#ffffff; position:relative; top:-10px; font-weight:normal;}
+
+
+/*登录form*/
+.loginWifi{margin:0px 3% 30px; line-height:30px; font-size:16px;}
+.formItem{margin-bottom:20px; position:relative;}
+.btnItem{padding-right:120px;}
+.formItem .wifiTxt{line-height:30px; border:#D8D8D8 solid 1px;width:100%; font-size:14px; color:#393939;}
+.sendVerifyCodeBtn,.sendVerifyCodeSpan{width:118px; height:42px; border:#B3D38D solid 1px; text-align:center; line-height:42px; background:#EBF5E0; display:block; position:absolute; right:0px; top:0px;}
+.sendVerifyCodeBtn{color:#488400; display:none;}
+.sendVerifyCodeSpan{color:#646464; border:#cccccc solid 1px; background:#f1f1f1;}
+#JS_errorTip{font-size:12px; line-height:20px; color:red; position:relative; top:-16px; display:none;}
+.login-xy .ui-checkbox{display:inline-block;}
+.login-xy .xy-click{padding-left:25px;}
+.login-xy  .ui-checkbox input{width:15px;height:15px;margin:-5px 0 0;}
+/*登录按钮部分*/
+.loginWifi .wifiLoginBtn{ border:#7ABC14 solid 1px; box-shadow:0 0 1px #7ABC14; border-radius:3px; margin:0px 1%; background:#90C90B; color:#ffffff; text-align:center; display:block; line-height:40px; font-size:18px;}
+.wifiLoginTip{font-size:14px; margin:0px 1% 20px; color:#646464;}
+.wifiLoginTip em{color:#FF6600; padding:0px 3px;}
+.wifiLoginBtnDisabled{ border:#ededed solid 1px;  border-radius:3px; margin:0px; background:#ccc; color:#999; text-align:center; display:block; line-height:40px; font-size:18px;}
+.loginWifi .wifiLoginBtn:hover{color:#fff;}
+
+/*会员中心页面*/
+/*menu*/
+.memberMenu{background:#ffffff; line-height:44px; box-shadow:0 0 3px #666; margin-bottom:10px;}
+.memberMenu li{width:25%; float:left; border-left:#CFCFCF solid 1px; color:#646464; margin-left:-1px; text-align:center;}
+.memberMenu li:hover,.memberMenu li.active{background:#EFEFEF;}
+.memberMenu li:hover a,.memberMenu li.active a{color:#6FB811;}
+
+/*模块文字介绍部分*/
+.subTitle{ background:#F3F3F3; line-height:24px; color:#393939; font-size:14px; border-left:#66CC00 solid 4px; text-indent:1em; margin-bottom:5px;}
+.addSuccessTip{ background:#F8F5E6; font-size:14px; padding:8px 8px 8px 50px; position:relative; color:#646464; line-height:24px; margin-bottom:10px;}
+.addSuccessTip a{color:#66CC00; font-weight:bold; padding:0px 2px; display:inline-block;}
+.cardDiscrib{margin:0px 2% 10px; line-height:24px; font-size:14px;}
+
+/*卡信息*/
+.cardInformation{ margin:10px 5%; box-shadow:0 0 5px #A89980; border-radius:5px; background:#F8F5E6;}
+.cardInfo{width:100%;position:relative;}
+.cardBg{width:100%; box-shadow:0 0 3px #666666; display:block; border-radius:5px;}
+.cardName{color:#786D16; font-size:14px; font-weight:bold; position:absolute; top:15px; right:15px;}
+.cardLogo{position:absolute; top:15px; left:15px; width:65px;border:#F6E6A4 solid 3px;}
+.cardNum{position:absolute; bottom:12px; right:15px; text-align:right; color:#675B00; font-size:18px; font-weight:bold; font-family:"Arial"}
+.cardNum label{display:block; color:#ffffff; font-size:12px; font-weight:normal; line-height:24px;}
+.cardBalance{line-height:48px; padding:0px 10px;}
+.cardBalance.bottomLine{border-bottom:#E2D4BF solid 1px;}
+.cardBalance strong{color:#FF6600; font-size:20px; padding-right:5px;}
+.cardBalance em{color:#cccccc; font-size:12px; position:relative; top:2px;}
+.cardBalance span{color:#6CCE0A; font-size:20px; font-weight:bold;}
+
+
+/*优惠券*/
+.couponList{margin:20px 2%;}
+.couponTitle{font-size:16px; color:#393939; line-height:30px; padding:0px 5px;}
+.couponItem dt{position:relative; border:#E4E4E4 solid 1px; padding:6px 10px; line-height:30px; margin-top:-1px; cursor:pointer;}
+.couponItem dd{background:#f5f5f5; padding:12px 10px; line-height:20px; font-size:14px; border:#E4E4E4 solid 1px; margin-top:-1px; display:none;}
+
+/*协议*/
+.formItem a,.formItem a:hover{color:#3366cc;}
+.xy-header{
+	padding:15px 0;
+	position:relative;
+	text-align:center;
+	font-size:16px;
+	background:#e4e4e4;
+}
+.xy-back{
+	background:url(../image/u20.png) no-repeat;
+	background-size:contain;
+	width:24px;
+	height:22px;
+	position:absolute;
+	top:15px;
+	left:20px;
+	display:inline-block;
+}
+.xy-main h1{
+	background:#6499d3;
+	padding:15px 0;
+	color:#fff;
+	font-size:14px;
+	text-align:center;
+}
+.xy-main .xy-cont{
+	line-height:150%;
+	font-size:12px;
+	color:#999;
+	padding:20px;
+	background:#ededed;
+}
+.xy-main .xy-cont h2{
+	font-size:small;
+	padding:5px 0;
+	color:#666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

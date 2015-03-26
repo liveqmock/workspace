@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.trade.dao.TradeCardtypeDao">
+	<resultMap id="TradeCardtype" type="com.yazuo.erp.trade.vo.TradeCardtypeVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="cardtype" column="cardtype"/>
+    	<result property="price" column="price"/>
+    	<result property="gradeLevel" column="grade_level"/>
+    	<result property="isSynchronize" column="is_synchronize"/>
+	</resultMap>
+
+    <resultMap id="AwardRule" type="com.yazuo.erp.trade.vo.TradeAwardRuleVO" extends="com.yazuo.erp.trade.dao.TradeAwardRuleDao.TradeAwardRule">
+        <id property="id" column="award_rule_id"/>
+    </resultMap>
+
+    <resultMap id="TradeCardtypeWithAwardRule" type="com.yazuo.erp.trade.vo.TradeCardtypeVO" extends="TradeCardtype">
+        <association property="awardRuleVos" javaType="java.util.ArrayList" resultMap="AwardRule"/>
+    </resultMap>
+
+    <select id="getTradeCardtypesAndAwardRules" parameterType="int" resultMap="TradeCardtypeWithAwardRule">
+        SELECT tc.*,tar.id as award_rule_id,tar.lower_limit,tar.upper_limit,tar.award_amount,tar.trans_code,tar.cardtype_id,tar.award_type,tar.award_amount_type
+        FROM trade.trade_cardtype tc
+        LEFT JOIN trade.trade_award_rule tar ON tar.cardtype_id=tc.id
+        WHERE tc.merchant_id = #{merchantId}
+    </select>
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="tradecardtypeColumns">
+	    <![CDATA[
+		id,merchant_id,cardtype,price,grade_level,is_synchronize
+	    ]]>
+	</sql>
+
+	<insert id="saveTradeCardtype" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,grade_level,is_synchronize,-->
+        INSERT INTO trade.trade_cardtype (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="cardtype!=null and cardtype!=''">cardtype,</if>
+        	 <if test="price!=null and price!=''">price,</if>
+        	 <if test="gradeLevel!=null and gradeLevel!=''">grade_level,</if>
+        	 <if test="isSynchronize!=null ">is_synchronize</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="cardtype!=null and cardtype!=''">#{cardtype},</if>
+       	    <if test="price!=null and price!=''">#{price},</if>
+       	    <if test="gradeLevel!=null and gradeLevel!=''">#{gradeLevel},</if>
+       	    <if test="isSynchronize!=null ">#{isSynchronize}</if>
+        )
+	</insert>
+
+	<insert id="batchInsertTradeCardtypes" parameterType="TradeCardtypeVO">
+        <selectKey keyColumn="id" order="BEFORE" keyProperty="id" resultType="integer">
+            SELECT nextval('trade.trade_cardtype_id_seq');
+        </selectKey>
+        INSERT INTO trade.trade_cardtype(id, merchant_id,cardtype,price,grade_level,is_synchronize)
+        VALUES
+        <foreach collection="list" item="t" separator=",">
+            (#{t.id}, #{t.merchantId},#{t.cardtype},#{t.price},#{t.gradeLevel},#{t.isSynchronize})
+        </foreach>
+	</insert>
+
+    <insert id="insertTradeCardtypeVO" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO trade.trade_cardtype(merchant_id,cardtype,price,grade_level,is_synchronize)
+        VALUES (#{merchantId},#{cardtype},#{price},#{gradeLevel},#{isSynchronize})
+    </insert>
+
+	<update id="updateTradeCardtype">
+        UPDATE trade.trade_cardtype
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="cardtype!=null and cardtype!=''">cardtype = #{cardtype} ,</if>
+	        <if test="price!=null and price!=''">price = #{price} ,</if>
+	        <if test="gradeLevel!=null and gradeLevel!=''">grade_level = #{gradeLevel} ,</if>
+	        <if test="isSynchronize!=null ">is_synchronize = #{isSynchronize} </if>
+	      </set>
+        WHERE
+	        id = #{id}
+	</update>
+
+    <update id="batchUpdateTradeCardtypes" parameterType="TradeCardtypeVO">
+        <foreach collection="list" item="t" separator=";">
+            UPDATE trade.trade_cardtype
+            <set>
+                <if test="t.merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+                <if test="t.cardtype!=null and t.cardtype!=''">cardtype = #{t.cardtype} ,</if>
+                <if test="t.price!=null and t.price!=''">price = #{t.price} ,</if>
+                <if test="t.gradeLevel!=null and t.gradeLevel!=''">grade_level = #{t.gradeLevel}</if>
+            </set>
+            WHERE id=#{t.id}
+        </foreach>
+    </update>
+
+	<update id="batchUpdateTradeCardtypesToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE trade.trade_cardtype
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="cardtype!=null and cardtype!=''">cardtype = #{t.cardtype} ,</if>
+	        <if test="price!=null and price!=''">price = #{t.price} ,</if>
+	        <if test="gradeLevel!=null and gradeLevel!=''">grade_level = #{t.gradeLevel} ,</if>
+	        <if test="isSynchronize!=null ">is_synchronize = #{t.isSynchronize} </if>
+	      </set>
+        WHERE
+	        id = #{t.id}
+	    </foreach>
+	</update>
+
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateTradeCardtypesToSameVals" parameterType="map">
+        UPDATE trade.trade_cardtype
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="cardtype!=null and cardtype!=''">cardtype = #{cardtype} ,</if>
+	        <if test="price!=null and price!=''">price = #{price} ,</if>
+	        <if test="gradeLevel!=null and gradeLevel!=''">grade_level = #{gradeLevel} ,</if>
+	        <if test="isSynchronize!=null ">is_synchronize = #{isSynchronize} </if>
+	      </set>
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+	</update>
+
+    <delete id="deleteTradeCardtypeById">
+    <![CDATA[
+        DELETE FROM trade.trade_cardtype WHERE
+        id = #{id}
+    ]]>
+    </delete>
+
+    <delete id="batchDeleteTradeCardtypeByIds" parameterType="list">
+        DELETE FROM trade.trade_cardtype WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>
+    </delete>
+
+    <select id="getTradeCardtypeById" resultMap="TradeCardtype">
+		SELECT <include refid="tradecardtypeColumns" />
+		    FROM trade.trade_cardtype
+	        WHERE id = #{id}
+	</select>
+
+	<select id="getTradeCardtypes" resultMap="TradeCardtype">
+		SELECT <include refid="tradecardtypeColumns" />
+		FROM trade.trade_cardtype
+        WHERE merchant_id=#{merchantId}
+	    ORDER BY #{id}
+	</select>
+
+    <update id="updateIsSynchronizeForCardtypes">
+        UPDATE trade.trade_cardtype SET is_synchronize=true
+        WHERE id IN <foreach collection="list" item="t" open="(" close=")" separator=",">#{t.id}</foreach>
+    </update>
+
+	<select id="getTradeCardtypesMap" resultType="map">
+		SELECT <include refid="tradecardtypeColumns" />
+	    <![CDATA[
+		    FROM trade.trade_cardtype
+	    ]]>
+	    <include refid="tradecardtype_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="tradecardtype_findPage_where">
+		<where>
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="cardtype!=null and cardtype!=''">AND cardtype = #{cardtype}</if>
+	       <if test="price!=null and price!=''">AND price = #{price}</if>
+	       <if test="gradeLevel!=null and gradeLevel!=''">AND grade_level = #{gradeLevel}</if>
+	       <if test="isSynchronize!=null ">AND is_synchronize = #{isSynchronize}</if>
+		</where>
+	</sql>
+    
+</mapper>

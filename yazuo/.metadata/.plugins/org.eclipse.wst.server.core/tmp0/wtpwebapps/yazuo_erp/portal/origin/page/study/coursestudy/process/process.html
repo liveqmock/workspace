@@ -1,0 +1,42 @@
+<div class="page-tbar">
+    <ul class="page-nav-crumbs">
+        <li class="nav-item"
+            ms-repeat="navCrumbs"><a ms-href="el.href" class="nav-l" ms-if="el.href">{{el.text}}</a><span class="nav-text" ms-if="!el.href">{{el.text}}</span><span class="separater" ms-if="el.href">&nbsp;>&nbsp;</span></li>
+    </ul>
+</div>
+<div class="page-bd page-bd-form">
+    <div class="courseware-wrapper page-section">
+        <div class="courseware-shown" ms-if="isExist">
+            <h3 class="courseware-title">{{coursewareName}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="title-summary">{{coursewareSummary | html}}</span><button type="button" class="enter-exam-btn main-btn" ms-if="studied && examEnable" ms-click="enterExam">开始考试</button></h3>
+            <div class="courseware-player" ms-widget="player,$,$coursewareOpts"></div>
+            <div class="study-history">
+                <div class="history-title" ms-if="studyHistoryList.length">学习历史</div>
+                <div class="history-list-wrapper">
+                    <ul class="history-list" ms-if="studyHistoryList.length">
+                        <li class="history-item" ms-repeat="studyHistoryList">
+                            <div class="history-time">{{el.historyTime}}</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="history-title" ms-if="examHistoryList.length">考试历史</div>
+                <div class="history-list-wrapper">
+                    <ul class="history-list" ms-if="examHistoryList.length">
+                        <li class="history-item" ms-repeat="examHistoryList">
+                            <div class="history-time">{{el.historyTime}}</div>
+                            <div class="exam-score">考试成绩：<span class="num"
+                                                                   ms-class-1="is-passed-num: el.isPassed">{{el.examScore}}</span>分</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="history-list-empty-tip" ms-if="!studyHistoryList.length && !examHistoryList.length">亲~<br/>这是你第一次学习此课件哦</div>
+            </div>
+        </div>
+        <div class="courseware-empty-tip" ms-if="!isExist">
+            <div class="tip-content"><span class="is-strong">Sorry!</span><br/>您要复习的课程已被删除。</div>
+            <div class="action-box"><button class="return-back-btn main-btn" type="button" ms-click="enterStudyPage">回到课程学习</button>&nbsp;&nbsp;<button class="view-history-btn main-btn" type="button" ms-click="enterHistoryPage">查看历史回顾</button></div>
+        </div>
+    </div>
+</div>
+<div class="play-completed-dialog ui-hidden" ms-widget="dialog,$,$completedOpts">
+    <div class="play-tip">课程已播放完</div>
+</div>

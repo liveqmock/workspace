@@ -1,0 +1,30 @@
+{
+    "flag": 1,
+    "data": [{
+        "id": "1",
+        "text": "test1",
+        "childrenList": [{
+            "id": "2",
+            "text": "test2",
+            "childrenList": [{
+                "id": "3",
+                "text": "test3"
+            },{
+                "id": "4",
+                "text": "test4"
+            }]
+        }]
+    }, {
+        "id": "1",
+        "text": "test11",
+        "childrenList": [{
+            "id": "22",
+            "text": "test22",
+            "childrenList": [{
+                "id": "33",
+                "text": "test33"
+            }]
+        }]
+    }],
+    "message": "t1ff1est"
+}

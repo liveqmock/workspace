@@ -1,0 +1,110 @@
+<div class="page-bd fn-clear">
+    <h2 class="page-selection">广告设置</h2>
+    <div class="adv-l">
+        <div class="adv-l-block fn-clear">
+            <div class="adv-l-title">
+                PORTAL页面广告位设置
+                <div class="adv-l-bt">
+                    <button type="button" class="query-btn main-btn-green" ms-click="editProtal">{{editOrSave}}</button>&nbsp;&nbsp;
+                    <button type="button" class="query-btn main-btn" ms-click="cancelProtal" ms-visible="showUpload">取消</button>
+                </div>
+            </div>
+            <div class="adv-img">
+                <p ms-visible="!uploaderImg">您当前还没有设置PORTAL页面广告位图片</p>
+                <p ms-visible="uploaderImg">当前PORTAL页面广告位图片</p>
+                <p><img ms-src="uploaderImg" ms-if="uploaderImg" /></p>
+            </div>
+            <div class="upload-box" ms-visible="showUpload">
+                <p>请选择上传的文件：</p>
+                <div class="img-upload" ms-widget="uploader,$,$uploaderOpts">
+                    <button type="button" class="pic-btn main-btn-blue" ms-if="!uploading"><ins>上传图片</ins></button>
+                    <button type="button" class="simple-btn-disabled" ms-if="uploading">正在上传&#8230;</button>
+                </div>
+                <p>图片尺寸：640*210   大小不超过70K</p>
+            </div>
+        </div>
+        <div class="adv-l-block">
+            <div class="adv-l-title">
+                连接WIFI后显示的主页面设置
+                <div class="adv-l-bt">
+                    <button type="button" class="query-btn main-btn-green" ms-click="editLinkType">{{editOrSaveTwo}}</button>&nbsp;&nbsp;
+                    <button type="button" class="query-btn main-btn" ms-click="cancelLinkType" ms-visible="showPageSet">取消</button>
+                </div>
+            </div>
+            <div class="home-set">
+                <div ms-visible="!showPageSet">
+                    <p>连接主页是指，当用户连接门店WIFI后，默认为用户打开的页面。</p>
+                    <p><span class="font-grey">当前设置的连接主页面是：</span>{{currentLink}}</p>
+                </div>
+                <div ms-visible="showPageSet">
+                    <p class="font-grey">请在下方选择您的主页方案：</p>
+                    <ul class="link-type-tab">
+                        <li><span class="select-style" ms-class-1="checked-st:linkType==1" data-type="1" data-type-name="连接至会员中心" ms-click="checkedSel"></span>连接至会员中心</li>
+                        <li><span class="select-style" ms-class-1="checked-st:linkType==2" data-type="2" data-type-name="自定义主页方案" ms-click="checkedSel"></span>自定义主页方案</li>
+                        <li ms-visible="isCrmMerchant"><span class="select-style" ms-class-1="checked-st:linkType==3" data-type="3" data-type-name="会员卡推荐页面" ms-click="checkedSel"></span>会员卡推荐页面</li>
+                    </ul>
+                    <div ms-visible="linkType==2">
+                        <div class="article-content" ms-widget="editor,$,$articleContentOpts"></div>
+                    </div>
+                    <div ms-visible="linkType==3">
+                        <span class="down-label">请选择要推荐的会员卡：</span>
+                        <div class="down-list-check">
+                            <div class="down-outer-c" ms-click="showCardFn">{{cardNameString}}</div>
+                            <span class="icon-arrow iconfont" ms-visible="!showCard">&#xe609;</span>
+                            <span class="icon-arrow iconfont" ms-visible="showCard">&#xe60a;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="adv-l-block">
+            <div class="adv-l-title">
+                短信推送设置
+                <div class="adv-l-bt">
+                    <button type="button" class="query-btn main-btn-green" ms-click="showMessage">{{editOrSaveThree}}</button>&nbsp;&nbsp;
+                    <button type="button" class="query-btn main-btn" ms-click="cancelMessage" ms-visible="showMessageSet">取消</button>
+                </div>
+            </div>
+            <div class="home-set">
+                <div ms-visible="!showMessageSet">
+                    <p>当用户连接了店内WIFI或有用户路过门店时，可向其发送问候或优惠活动短消息。</p>
+                    <p class="margin-t10" ms-visible="!isSendMessage"><span class="font-grey">您还没有设置短信推送</span></p>
+                    <p class="margin-t10" ms-visible="isSendMessage"><span class="font-grey">当前设置的短信推送是：</span></p>
+                    <p ms-visible="isSendMessage">{{currentMessage}}</p>
+                </div>
+                <div ms-visible="showMessageSet">
+                    <div class="message-tip"><span class="select-style" ms-class-1="checked-st:isSendMessage" ms-click="messageCheck"></span>给连接WIFI后的用户发送短信</div>
+                    <p><textarea name="" class="message-text" ms-keyup="countWord" ms-duplex="currentMessage" ms-disabled="!isSendMessage"></textarea></p>
+                    <p ms-visible="wordNum>0">已经输入 {{wordNum}} 个字，预计发送 {{messageNum}} 条短信</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="adv-r">
+        <h2 class="adv-r-title">页面预览区</h2>
+        <div class="no-img" ms-visible="imgType==0||imgType==3">
+            <p>此处将显示设置页面的预览图片。</p>
+        </div>
+        <p class="portal-text" ms-visible="imgType==1">Portal认证页面</p>
+        <div class="portal-img" ms-visible="imgType==1">
+            <img ms-if="uploaderImg" ms-src="uploaderImg" width="270" height="111"/>
+        </div>
+        <div class="no-img" ms-visible="imgType==2&&linkType==2">
+            <p>您正在编辑自定义页面。</p>
+        </div>
+        <p class="portal-text" ms-visible="imgType==2&&linkType==1">会员中心</p>
+        <div class="link-card-img" ms-visible="imgType==2&&linkType==1"></div>
+        <p class="portal-text" ms-visible="imgType==2&&linkType==3">会员权益介绍</p>
+        <div class="link-member-img" ms-visible="imgType==2&&linkType==3"></div>
+        <div class="img-tips" ms-visible="(imgType==2&&linkType==3)||(imgType==2&&linkType==1)||imgType==1">预览区为示意图，展示内容请以实际页面为准如果页面上有您感兴趣的功能,欢迎致电 <span>4008-676-816</span></div>
+    </div>
+</div>
+<div class="down-list-box" ms-visible="showCard&&linkType==3">
+    <ul id="card-ul">
+        <li ms-repeat="cardList"><span class="select-style" ms-class-1="checked-st:" ms-data-name="el.cardtype" ms-data-value="el.id" ms-click="cardCheck"></span>{{el.cardtype}}</li>
+    </ul>
+    <div class="down-list-bt">
+        <button type="button" class="query-btn main-btn-green" ms-click="saveCheck">保存</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="query-btn main-btn" ms-click="cancelCheck" ms-visible="showPageSet">取消</button>
+    </div>
+</div>

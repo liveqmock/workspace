@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.fes.dao.FesPlanDao">
+	<resultMap id="FesPlan" type="com.yazuo.erp.fes.vo.FesPlanVO">
+    	<id property="id" column="id"/>
+    	<result property="userId" column="user_id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="title" column="title"/>
+    	<result property="planItemType" column="plan_item_type"/>
+    	<result property="communicationFormType" column="communication_form_type"/>
+    	<result property="description" column="description"/>
+    	<result property="startTime" column="start_time"/>
+    	<result property="endTime" column="end_time"/>
+    	<result property="explanation" column="explanation"/>
+    	<result property="isRemind" column="is_remind"/>
+    	<result property="remindTime" column="remind_time"/>
+    	<result property="isSendSms" column="is_send_sms"/>
+    	<result property="sponsor" column="sponsor"/>
+    	<result property="plansSource" column="plans_source"/>
+    	<result property="status" column="status"/>
+    	<result property="isEnable" column="is_enable"/>
+    	<result property="remark" column="remark"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+    	<result property="contactId" column="contact_id"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="fesplanColumns">
+	    <![CDATA[
+		id,user_id,merchant_id,title,plan_item_type,communication_form_type,description,start_time,end_time,explanation,is_remind,remind_time,is_send_sms,sponsor,plans_source,status,is_enable,remark,insert_by,insert_time,update_by,update_time,contact_id
+	    ]]>
+	</sql>
+
+	<insert id="saveFesPlan" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： user_id,title,plan_item_type,communication_form_type,start_time,is_remind,is_send_sms,plans_source,status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_plan (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="planItemType!=null and planItemType!=''">plan_item_type,</if>
+        	 <if test="communicationFormType!=null and communicationFormType!=''">communication_form_type,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="startTime!=null ">start_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="explanation!=null and explanation!=''">explanation,</if>
+        	 <if test="isRemind!=null ">is_remind,</if>
+        	 <if test="remindTime!=null ">remind_time,</if>
+        	 <if test="isSendSms!=null ">is_send_sms,</if>
+        	 <if test="sponsor!=null ">sponsor,</if>
+        	 <if test="plansSource!=null and plansSource!=''">plans_source,</if>
+        	 <if test="status!=null and status!=''">status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="userId!=null ">#{userId},</if>
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="title!=null and title!=''">#{title},</if>
+       	    <if test="planItemType!=null and planItemType!=''">#{planItemType},</if>
+       	    <if test="communicationFormType!=null and communicationFormType!=''">#{communicationFormType},</if>
+       	    <if test="contactId!=null ">#{contactId},</if>
+       	    <if test="description!=null and description!=''">#{description},</if>
+       	    <if test="startTime!=null ">#{startTime},</if>
+       	    <if test="endTime!=null ">#{endTime},</if>
+       	    <if test="explanation!=null and explanation!=''">#{explanation},</if>
+       	    <if test="isRemind!=null ">#{isRemind},</if>
+       	    <if test="remindTime!=null ">#{remindTime},</if>
+       	    <if test="isSendSms!=null ">#{isSendSms},</if>
+       	    <if test="sponsor!=null ">#{sponsor},</if>
+       	    <if test="plansSource!=null and plansSource!=''">#{plansSource},</if>
+       	    <if test="status!=null and status!=''">#{status},</if>
+       	    <if test="isEnable!=null and isEnable!=''">#{isEnable},</if>
+       	    <if test="remark!=null and remark!=''">#{remark},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now(),</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertFesPlans" parameterType="map">
+	 <!--不允许为空的字段： user_id,title,plan_item_type,communication_form_type,start_time,is_remind,is_send_sms,plans_source,status,is_enable,insert_by,insert_time,update_by,update_time,--> 
+        INSERT INTO fes.fes_plan (
+        	 <if test="userId!=null ">user_id,</if>
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="title!=null and title!=''">title,</if>
+        	 <if test="planItemType!=null and planItemType!=''">plan_item_type,</if>
+        	 <if test="communicationFormType!=null and communicationFormType!=''">communication_form_type,</if>
+        	 <if test="contactId!=null ">contact_id,</if>
+        	 <if test="description!=null and description!=''">description,</if>
+        	 <if test="startTime!=null ">start_time,</if>
+        	 <if test="endTime!=null ">end_time,</if>
+        	 <if test="explanation!=null and explanation!=''">explanation,</if>
+        	 <if test="isRemind!=null ">is_remind,</if>
+        	 <if test="remindTime!=null ">remind_time,</if>
+        	 <if test="isSendSms!=null ">is_send_sms,</if>
+        	 <if test="sponsor!=null ">sponsor,</if>
+        	 <if test="plansSource!=null and plansSource!=''">plans_source,</if>
+        	 <if test="status!=null and status!=''">status,</if>
+        	 <if test="isEnable!=null and isEnable!=''">is_enable,</if>
+        	 <if test="remark!=null and remark!=''">remark,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="userId!=null ">#{t.userId},</if>
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="title!=null and title!=''">#{t.title},</if>
+          <if test="planItemType!=null and planItemType!=''">#{t.planItemType},</if>
+          <if test="communicationFormType!=null and communicationFormType!=''">#{t.communicationFormType},</if>
+          <if test="contactId!=null ">#{t.contactId},</if>
+          <if test="description!=null and description!=''">#{t.description},</if>
+          <if test="startTime!=null ">#{t.startTime},</if>
+          <if test="endTime!=null ">#{t.endTime},</if>
+          <if test="explanation!=null and explanation!=''">#{t.explanation},</if>
+          <if test="isRemind!=null ">#{t.isRemind},</if>
+          <if test="remindTime!=null ">#{t.remindTime},</if>
+          <if test="isSendSms!=null ">#{t.isSendSms},</if>
+          <if test="sponsor!=null ">#{t.sponsor},</if>
+          <if test="plansSource!=null and plansSource!=''">#{t.plansSource},</if>
+          <if test="status!=null and status!=''">#{t.status},</if>
+          <if test="isEnable!=null and isEnable!=''">#{t.isEnable},</if>
+          <if test="remark!=null and remark!=''">#{t.remark},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">#{t.insertTime},</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">#{t.updateTime}</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateFesPlan">
+        UPDATE fes.fes_plan 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        merchant_id = #{merchantId} ,
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="planItemType!=null and planItemType!=''">plan_item_type = #{planItemType} ,</if>
+	        <if test="communicationFormType!=null and communicationFormType!=''">communication_form_type = #{communicationFormType} ,</if>
+	        contact_id = #{contactId} ,
+	        description = #{description} ,
+	        <if test="startTime!=null ">start_time = #{startTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="explanation!=null and explanation!=''">explanation = #{explanation} ,</if>
+	        <if test="isRemind!=null ">is_remind = #{isRemind} ,</if>
+	        <if test="remindTime!=null ">remind_time = #{remindTime} ,</if>
+	        <if test="isSendSms!=null ">is_send_sms = #{isSendSms} ,</if>
+	        <if test="sponsor!=null ">sponsor = #{sponsor} ,</if>
+	        <if test="plansSource!=null and plansSource!=''">plans_source = #{plansSource} ,</if>
+	        <if test="status!=null and status!=''">status = #{status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now()</if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateFesPlansToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE fes.fes_plan 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{t.userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="title!=null and title!=''">title = #{t.title} ,</if>
+	        <if test="planItemType!=null and planItemType!=''">plan_item_type = #{t.planItemType} ,</if>
+	        <if test="communicationFormType!=null and communicationFormType!=''">communication_form_type = #{t.communicationFormType} ,</if>
+	        <if test="contactId!=null ">contact_id = #{t.contactId} ,</if>
+	        <if test="description!=null and description!=''">description = #{t.description} ,</if>
+	        <if test="startTime!=null ">start_time = #{t.startTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{t.endTime} ,</if>
+	        <if test="explanation!=null and explanation!=''">explanation = #{t.explanation} ,</if>
+	        <if test="isRemind!=null ">is_remind = #{t.isRemind} ,</if>
+	        <if test="remindTime!=null ">remind_time = #{t.remindTime} ,</if>
+	        <if test="isSendSms!=null ">is_send_sms = #{t.isSendSms} ,</if>
+	        <if test="sponsor!=null ">sponsor = #{t.sponsor} ,</if>
+	        <if test="plansSource!=null and plansSource!=''">plans_source = #{t.plansSource} ,</if>
+	        <if test="status!=null and status!=''">status = #{t.status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{t.isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{t.remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateFesPlansToSameVals" parameterType="map">
+        UPDATE fes.fes_plan 
+ 		  <set>
+	        <if test="userId!=null ">user_id = #{userId} ,</if>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="title!=null and title!=''">title = #{title} ,</if>
+	        <if test="planItemType!=null and planItemType!=''">plan_item_type = #{planItemType} ,</if>
+	        <if test="communicationFormType!=null and communicationFormType!=''">communication_form_type = #{communicationFormType} ,</if>
+	        <if test="contactId!=null ">contact_id = #{contactId} ,</if>
+	        <if test="description!=null and description!=''">description = #{description} ,</if>
+	        <if test="startTime!=null ">start_time = #{startTime} ,</if>
+	        <if test="endTime!=null ">end_time = #{endTime} ,</if>
+	        <if test="explanation!=null and explanation!=''">explanation = #{explanation} ,</if>
+	        <if test="isRemind!=null ">is_remind = #{isRemind} ,</if>
+	        <if test="remindTime!=null ">remind_time = #{remindTime} ,</if>
+	        <if test="isSendSms!=null ">is_send_sms = #{isSendSms} ,</if>
+	        <if test="sponsor!=null ">sponsor = #{sponsor} ,</if>
+	        <if test="plansSource!=null and plansSource!=''">plans_source = #{plansSource} ,</if>
+	        <if test="status!=null and status!=''">status = #{status} ,</if>
+	        <if test="isEnable!=null and isEnable!=''">is_enable = #{isEnable} ,</if>
+	        <if test="remark!=null and remark!=''">remark = #{remark} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteFesPlanById">
+    <![CDATA[
+        DELETE FROM fes.fes_plan WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteFesPlanByIds" parameterType="list">
+        DELETE FROM fes.fes_plan WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getFesPlanById" resultMap="FesPlan">
+		SELECT <include refid="fesplanColumns" />
+		FROM fes.fes_plan 
+		WHERE id = #{id}     
+	</select>
+	
+	<select id="getFesPlans" resultMap="FesPlan">
+		SELECT <include refid="fesplanColumns" />
+		    FROM fes.fes_plan  
+	    <include refid="fesplan_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns} desc 
+		</if>
+	</select>
+	
+	<select id="getFesPlansMap" resultType="map">
+		SELECT <include refid="fesplanColumns" />
+	    <![CDATA[
+		    FROM fes.fes_plan  
+	    ]]>
+	    <include refid="fesplan_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="fesplan_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="userId!=null ">AND user_id = #{userId}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="title!=null and title!=''">AND title = #{title}</if>
+	       <if test="planItemType!=null and planItemType!=''">AND plan_item_type = #{planItemType}</if>
+	       <if test="communicationFormType!=null and communicationFormType!=''">AND communication_form_type = #{communicationFormType}</if>
+	       <if test="description!=null and description!=''">AND description = #{description}</if>
+		   <if test="startTime!=null ">AND start_time >= #{startTime}</if>
+		   <if test="startTime!=null ">AND start_time &lt;= #{startTime}</if>
+		   <if test="endTime!=null ">AND end_time >= #{endTime}</if>
+		   <if test="endTime!=null ">AND end_time &lt;= #{endTime}</if>
+	       <if test="explanation!=null and explanation!=''">AND explanation = #{explanation}</if>
+	       <if test="isRemind!=null ">AND is_remind = #{isRemind}</if>
+		   <if test="remindTime!=null ">AND remind_time >= #{remindTime}</if>
+		   <if test="remindTime!=null ">AND remind_time &lt;= #{remindTime}</if>
+	       <if test="isSendSms!=null ">AND is_send_sms = #{isSendSms}</if>
+	       <if test="sponsor!=null ">AND sponsor = #{sponsor}</if>
+	       <if test="plansSource!=null and plansSource!=''">AND plans_source = #{plansSource}</if>
+	       <if test="status!=null and status!=''">AND status = #{status}</if>
+	       <if test="isEnable!=null and isEnable!=''">AND is_enable = #{isEnable}</if>
+	       <if test="remark!=null and remark!=''">AND remark = #{remark}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+	       <if test="contactId!=null ">AND contact_id = #{contactId}</if>
+		   <!-- others filter -->
+		   <if test="fesBeginTime!=null ">AND start_time >= '${fesBeginTime}'</if>
+		   <if test="fesEndTime!=null ">AND start_time &lt;= '${fesEndTime}'</if>
+		   <if test="nonStatus!=null ">AND status != #{nonStatus}</if>
+		</where>
+	</sql>
+		
+    <select id="getFesPlanCount" resultType="long">
+        SELECT count(*) FROM fes.fes_plan 
+		<include refid="fesplan_findPage_where"/>    
+    </select>
+    
+    <!-- 查询工作计划列表 -->
+    <select id="queryFesPlanList" resultType="map" parameterType="map">
+		SELECT
+			P . ID,
+			P .user_id,
+			o.user_name,
+			COALESCE(P .merchant_id, 0)AS merchant_id,
+			COALESCE(M .merchant_name, '其他')AS merchant_name,
+			P .title,
+			P .plan_item_type,
+			pit.dictionary_value AS plan_item_type_name,
+			P .communication_form_type,
+			cft.dictionary_value AS communication_form_type_name,
+			COALESCE(P .contact_id, 0)AS contact_id,
+			COALESCE(C . NAME, '')AS contact_name,
+			COALESCE(P .description, '')AS description,
+			P .start_time,
+			P .end_time,
+			COALESCE(P .explanation, '')AS explanation,
+			P .is_remind,
+			P .remind_time,
+			P .is_send_sms,
+			COALESCE(P .sponsor, 0)AS sponsor,
+			COALESCE(u.user_name, '')AS sponsor_name,
+			P .plans_source,
+			P .status,
+			s.dictionary_value AS status_name,
+			P .is_enable,
+			COALESCE(P .remark, '')AS remark,
+			P .insert_by,
+			P .insert_time,
+			P .update_by,
+			P .update_time
+		FROM
+			fes.fes_plan P
+		LEFT JOIN sys.sys_user u ON u. ID = P .sponsor
+		LEFT JOIN syn.syn_merchant M ON M .merchant_id = P .merchant_id
+		LEFT JOIN sys.sys_user o ON o. ID = P .user_id
+		LEFT JOIN sys.sys_dictionary pit ON pit.dictionary_key = P .plan_item_type AND pit.dictionary_type = '00000063'
+		LEFT JOIN sys.sys_dictionary cft ON cft.dictionary_key = P .communication_form_type	AND cft.dictionary_type = '00000064'
+		LEFT JOIN sys.sys_dictionary s ON s.dictionary_key = P .status AND s.dictionary_type = '00000047'
+		LEFT JOIN mkt.mkt_contact C ON C . ID = P .contact_id
+		WHERE
+			1 = 1
+		AND P .is_enable = '1'
+		AND P .start_time >= #{startTime}
+		AND P .start_time &lt;= #{endTime}
+		<if test="userId!=null ">AND P .user_id = #{userId,jdbcType=INTEGER}</if>
+		<if test="merchantId!=null ">AND P .merchant_id = #{merchantId,jdbcType=INTEGER}</if>
+    </select> 
+    
+    <!-- 根据指定ID查询工作计划 -->
+    <select id="queryFesPlan" resultType="map" parameterType="map">
+		<![CDATA[
+		SELECT
+			P . ID,
+			P .user_id,
+			o.user_name,
+			COALESCE(P .merchant_id, 0)AS merchant_id,
+			COALESCE(M .merchant_name, '其他')AS merchant_name,
+			P .title,
+			P .plan_item_type,
+			pit.dictionary_value AS plan_item_type_name,
+			P .communication_form_type,
+			cft.dictionary_value AS communication_form_type_name,
+			COALESCE(P .contact_id, 0)AS contact_id,
+			COALESCE(C . NAME, '')AS contact_name,
+			COALESCE(P .description, '')AS description,
+			P .start_time,
+			P .end_time,
+			COALESCE(P .explanation, '')AS explanation,
+			P .is_remind,
+			P .remind_time,
+			P .is_send_sms,
+			COALESCE(P .sponsor, 0)AS sponsor,
+			COALESCE(u.user_name, '')AS sponsor_name,
+			P .plans_source,
+			P .status,
+			s.dictionary_value AS status_name,
+			P .is_enable,
+			COALESCE(P .remark, '')AS remark,
+			P .insert_by,
+			P .insert_time,
+			P .update_by,
+			P .update_time
+		FROM
+			fes.fes_plan P
+		LEFT JOIN sys.sys_user u ON u. ID = P .sponsor
+		LEFT JOIN syn.syn_merchant M ON M .merchant_id = P .merchant_id
+		LEFT JOIN sys.sys_user o ON o. ID = P .user_id
+		LEFT JOIN sys.sys_dictionary pit ON pit.dictionary_key = P .plan_item_type AND pit.dictionary_type = '00000063'
+		LEFT JOIN sys.sys_dictionary cft ON cft.dictionary_key = P .communication_form_type	AND cft.dictionary_type = '00000064'
+		LEFT JOIN sys.sys_dictionary s ON s.dictionary_key = P .status AND s.dictionary_type = '00000047'
+		LEFT JOIN mkt.mkt_contact C ON C . ID = P .contact_id
+		WHERE
+			1 = 1
+		AND P .id = #{planId,jdbcType=INTEGER}
+		AND P .is_enable = '1'
+	    ]]>
+    </select> 
+    
+    <!-- 根据用户ID、商户ID、月份查询月报类型工作计划的个数 -->
+    <select id="getCountOfMonthlyPlans" resultType="int" parameterType="map">
+		SELECT
+			COUNT(1)
+		FROM
+			fes.fes_plan P
+		WHERE
+			1 = 1
+		AND P .plan_item_type = '1'
+		AND P .user_id = #{userId,jdbcType=INTEGER}
+		AND P .merchant_id = #{merchantId,jdbcType=INTEGER}
+		AND to_char(P .start_time, 'yyyy-mm-dd')LIKE '%'||#{month,jdbcType=VARCHAR}||'%'
+		<if test="planId!=null ">AND p.id != #{planId,jdbcType=INTEGER}</if>
+    </select>
+
+    <select id="getMonthlyPlanVO" resultMap="FesPlan">
+        SELECT *
+        FROM fes.fes_plan fp
+        WHERE fp.merchant_id=#{merchantId} AND fp.start_time BETWEEN #{from} AND #{to}
+        AND plan_item_type='1' order by fp.start_time desc
+    </select>
+    
+    <!-- 根据用户ID、商户ID、月份查询已完成的、月报类型的工作计划的个数 -->
+    <select id="getCountOfCompletedMonthlyPlans" resultType="int" parameterType="map">
+		SELECT
+			COUNT(1)
+		FROM
+			fes.fes_plan P
+		WHERE
+			1 = 1
+		AND P .plan_item_type = '1'
+		AND P .user_id = #{userId,jdbcType=INTEGER}
+		AND P .merchant_id = #{merchantId,jdbcType=INTEGER}
+		AND to_char(P .start_time, 'yyyy-mm-dd')LIKE '%'||#{month,jdbcType=VARCHAR}||'%'
+		AND P .status ='4'
+    </select>
+
+
+    <select id="getCurrentMonthlyPlan" resultMap="FesPlan">
+        SELECT *
+        FROM fes.fes_plan fp
+        WHERE merchant_id=#{merchantId}
+        AND start_time BETWEEN #{from} AND #{to}
+        AND is_enable='1'
+        ORDER BY id DESC
+        LIMIT 1
+    </select>
+    
+    <!-- 按照开始时间和结束时间查询工作计划列表 -->
+    <select id="getFesPlansList" resultType="map" parameterType="map">
+		SELECT
+			P . ID AS plan_id,
+			P .user_id,
+			u.user_name,
+			COALESCE(P .merchant_id, 0)AS merchant_id,
+			COALESCE(M .merchant_name, '其他')AS merchant_name,
+			COALESCE(M .brand_short_pinyin,'')AS brand_short_pinyin, 
+			COALESCE(P .title,'')AS title,
+			P .plan_item_type,
+			it.dictionary_value AS plan_item_type_name,
+			P .communication_form_type,
+			cft.dictionary_value AS communication_form_type_name,
+			COALESCE(P .contact_id,0)AS contact_id, 
+			COALESCE(C . NAME,'')AS contact_name,
+			COALESCE(P .description,'')AS description, 
+			to_char(P .start_time, 'yyyy-mm-dd')AS start_time,
+			COALESCE(to_char(P .end_time, 'yyyy-mm-dd hh:mm'),'')AS end_time,
+			COALESCE(P .explanation,'')AS explanation, 
+			P .is_remind,
+			P .remind_time,
+			P .is_send_sms,
+			P .sponsor,
+			P .plans_source,
+			ps.dictionary_value AS plans_source_name,
+			P .status,
+			s.dictionary_value AS status_name,
+			P .is_enable,
+			P .remark,
+			P .insert_by,
+			i.user_name AS insert_by_name,
+			to_char(P .insert_time, 'yyyy-mm-dd hh:mm')AS insert_time,
+			P .update_by,
+			l.user_name AS update_by_name,
+			to_char(P .update_time, 'yyyy-mm-dd hh:mm')AS update_time
+		FROM
+			fes.fes_plan P
+		LEFT JOIN sys.sys_user u ON u. ID = P .user_id
+		LEFT JOIN syn.syn_merchant M ON M .merchant_id = P .merchant_id AND M .status = '1'
+		LEFT JOIN sys.sys_dictionary it ON it.dictionary_type = '00000063'
+		AND it.dictionary_key = P .plan_item_type
+		LEFT JOIN sys.sys_dictionary cft ON cft.dictionary_type = '00000064'
+		AND cft.dictionary_key = P .communication_form_type
+		LEFT JOIN sys.sys_dictionary ps ON ps.dictionary_type = '00000048'
+		AND ps.dictionary_key = P .plans_source
+		LEFT JOIN sys.sys_dictionary s ON s.dictionary_type = '00000047'
+		AND s.dictionary_key = P .status
+		LEFT JOIN sys.sys_user i ON i. ID = P .insert_by
+		LEFT JOIN mkt.mkt_contact C ON C . ID = P .contact_id
+		LEFT JOIN sys.sys_user l ON l. ID = P .update_by
+		WHERE
+			1 = 1
+		AND P .is_enable = '1'
+		AND P .start_time >= #{startTime}
+		AND P .start_time &lt;= #{endTime}
+		ORDER BY
+			P .start_time
+    </select>
+</mapper>

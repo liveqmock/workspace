@@ -1,0 +1,70 @@
+<div class="page-tbar">
+    <div class="page-action">
+        <button type="button" class="add-btn main-btn" ms-if="permission.magCourseware" ms-click="jumpAddPage">添加课件</button>
+    </div>
+    <div class="page-filter">
+        <input type="text" class="coursewareName input-text"
+            placeholder="课件名称" ms-duplex="coursewareName" />&nbsp;<input
+            type="text" class="courseName input-text" placeholder="课程名称"
+            ms-duplex="courseName" />&nbsp;
+        <button type="button" class="query-btn main-btn" ms-click="search">搜索</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="grid-wrapper">
+        <div class="summary">
+            共<span class="num">{{gridTotalSize}}</span>个课件
+        </div>
+        <table class="courseware-grid ui-grid" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                    <th class="check-cell"><input type="checkbox"
+                        class="check-all" ms-checked="gridAllChecked"
+                        ms-click="gridCheckAll" /></th>
+                    <th class="courseware-cell">课件名称</th>
+                    <th class="speaker-cell">主讲人</th>
+                    <th class="course-count-cell">所属课程</th>
+                    <th class="operation-cell">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ms-repeat="gridData" ms-class-1="odd:!($index % 2)"
+                    ms-class-2="even:$index % 2" ms-hover="state-hover">
+                    <td class="check-cell"><input type="checkbox" ms-value="el.id"
+                        ms-duplex="gridSelected" /></td>
+                    <td class="courseware-cell">{{el.courseware_name}}</td>
+                    <td class="speaker-cell">{{el.speaker}}</td>
+                    <td class="course-count-cell"><span class="course-count"
+                        ms-data-index="$index">{{el.coursecount}}</span></td>
+                    <td class="operation-cell"><a
+                        ms-href="'#/study/questionmanage/add/'+ el.id + '/'+el.courseware_name" class="edit-l"
+                        ms-if="permission.magQuestion"
+                        ms-data-id="el.id">添加试题</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        ms-href="'#/study/questionmanage/'+el.courseware_name" class="edit-l"
+                        ms-if="permission.magQuestion"
+                        ms-data-id="el.id">查看试题</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        ms-href="'#/study/coursewaremanage/examrule/' + el.id + '/'+el.courseware_name"
+                        ms-if="permission.paperRule"
+                        class="edit-l">考卷规则</a>&nbsp;&nbsp;&nbsp;&nbsp; <a
+                        ms-href="#/study/coursewaremanage/edit/{{el.id}}" class="edit-l"
+                        ms-if="permission.magCourseware"
+                        ms-data-id="el.id">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+                        href="javascript:;" class="remove-l" ms-click="removeGridItem"
+                        ms-if="permission.magCourseware"
+                        ms-data-id="el.id">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="grid-bbar fn-clear">
+            <div class="grid-action fn-left">
+                <button type="button" class="check-all-btn main-btn"
+                    ms-click="scCheckAll">全选</button>
+                &nbsp;
+                <button type="button" class="batch-remove-btn main-btn"
+                    ms-click="batchRemoveGridItem">批量删除</button>
+            </div>
+            <div class="pagination fn-right"
+                ms-widget="pagination,$,$paginationOpts"></div>
+        </div>
+    </div>
+</div>

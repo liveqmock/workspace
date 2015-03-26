@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.syn.dao.SynMerchantProductDao">
+	<resultMap id="SynMerchantProduct" type="com.yazuo.erp.syn.vo.SynMerchantProductVO">
+		<id property="id" column="id" />
+		<result property="merchantId" column="merchant_id" />
+		<result property="productId" column="product_id" />
+		<result property="productName" column="product_name" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="synmerchantproductColumns">
+	    <![CDATA[
+		id,merchant_id,product_id,product_name,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSynMerchantProduct" useGeneratedKeys="true"
+		keyProperty="id">
+		<!--不允许为空的字段： merchant_id,product_id,product_name,update_time, -->
+		INSERT INTO syn.syn_merchant_product (
+		<if test="merchantId!=null ">merchant_id,</if>
+		<if test="productId!=null ">product_id,</if>
+		<if test="productName!=null and productName!=''">product_name,</if>
+		<if test="updateTime!=null ">update_time</if>
+		) VALUES (
+		<if test="merchantId!=null ">#{merchantId},</if>
+		<if test="productId!=null ">#{productId},</if>
+		<if test="productName!=null and productName!=''">#{productName},</if>
+		<if test="updateTime!=null ">now()</if>
+		)
+	</insert>
+
+	<insert id="batchInsertSynMerchantProducts" parameterType="map">
+		<!--不允许为空的字段： merchant_id,product_id,product_name,update_time, -->
+		INSERT INTO syn.syn_merchant_product (
+		<if test="merchantId!=null ">merchant_id,</if>
+		<if test="productId!=null ">product_id,</if>
+		<if test="productName!=null and productName!=''">product_name,</if>
+		<if test="updateTime!=null ">update_time</if>
+		) VALUES
+		<foreach collection="list" item="t" separator=",">
+			(
+			<if test="merchantId!=null ">#{t.merchantId},</if>
+			<if test="productId!=null ">#{t.productId},</if>
+			<if test="productName!=null and productName!=''">#{t.productName},</if>
+			<if test="updateTime!=null ">now()</if>
+			)
+		</foreach>
+	</insert>
+
+	<update id="updateSynMerchantProduct">
+		UPDATE syn.syn_merchant_product
+		<set>
+			<if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+			<if test="productId!=null ">product_id = #{productId} ,</if>
+			<if test="productName!=null and productName!=''">product_name = #{productName} ,</if>
+			<if test="updateTime!=null ">update_time = now() </if>
+		</set>
+		WHERE
+		id = #{id}
+	</update>
+
+	<update id="batchUpdateSynMerchantProductsToDiffVals"
+		parameterType="map">
+		<foreach collection="list" item="t" index="index" open=""
+			close="" separator=";">
+			UPDATE syn.syn_merchant_product
+			<set>
+				<if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+				<if test="productId!=null ">product_id = #{t.productId} ,</if>
+				<if test="productName!=null and productName!=''">product_name = #{t.productName} ,</if>
+				<if test="updateTime!=null ">update_time = now() </if>
+			</set>
+			WHERE
+			id = #{t.id}
+		</foreach>
+	</update>
+
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSynMerchantProductsToSameVals"
+		parameterType="map">
+		UPDATE syn.syn_merchant_product
+		<set>
+			<if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+			<if test="productId!=null ">product_id = #{productId} ,</if>
+			<if test="productName!=null and productName!=''">product_name = #{productName} ,</if>
+			<if test="updateTime!=null ">update_time = now() </if>
+		</set>
+		WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</update>
+
+	<delete id="deleteSynMerchantProductById">
+    <![CDATA[
+        DELETE FROM syn.syn_merchant_product WHERE
+        id = #{id} 
+    ]]>
+	</delete>
+
+	<delete id="batchDeleteSynMerchantProductByIds" parameterType="list">
+		DELETE FROM syn.syn_merchant_product WHERE id IN
+		<foreach collection="list" item="id" open="(" close=")"
+			separator=",">#{id}</foreach>
+	</delete>
+
+	<select id="getSynMerchantProductById" resultMap="SynMerchantProduct">
+		SELECT
+		<include refid="synmerchantproductColumns" />
+		FROM syn.syn_merchant_product
+		WHERE id = #{id}
+	</select>
+
+	<select id="getSynMerchantProducts" resultMap="SynMerchantProduct">
+		SELECT
+		<include refid="synmerchantproductColumns" />
+		FROM syn.syn_merchant_product
+		<include refid="synmerchantproduct_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<select id="getSynMerchantProductsMap" resultType="map">
+		SELECT
+		<include refid="synmerchantproductColumns" />
+	    <![CDATA[
+		    FROM syn.syn_merchant_product  
+	    ]]>
+		<include refid="synmerchantproduct_findPage_where" />
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="synmerchantproduct_findPage_where">
+		<where>
+			<if test="id!=null ">AND id = #{id}</if>
+			<if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+			<if test="productId!=null ">AND product_id = #{productId}</if>
+			<if test="productName!=null and productName!=''">AND product_name = #{productName}</if>
+			<if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+			<if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+
+	<select id="getSynMerchantProductCount" resultType="long">
+		SELECT count(*) FROM syn.syn_merchant_product
+		<include refid="synmerchantproduct_findPage_where" />
+	</select>
+
+	<select id="getProdectsByMerchantId" resultType="String">
+		SELECT
+		product_name
+		FROM
+		syn.syn_merchant_product
+		WHERE
+		merchant_id =#{merchantId}
+	</select>
+
+</mapper>

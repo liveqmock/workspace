@@ -1,0 +1,64 @@
+@charset "utf-8";
+/*base*/
+body{background:#F0F0F0;font-family:'Microsoft Yahei',Arial,Helvetica,Tahoma,sans-serif;color:#444;}
+h1,h2,h3,div,li,p{margin:0;padding:0;font-size:100%;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;}
+body,button,input,select,textarea{font:12px/1.125;}
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr{margin:0; padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+li{list-style:none;}
+fieldset,img{border:0;}
+q:before,q:after{content:'';}
+input,textarea{outline-style:none;}
+input[type="text"],input[type="password"],textarea{outline-style:none;-webkit-appearance:none;}
+textarea{resize:none}
+a{text-decoration:none;outline-style:none}
+.left{float:left;}
+.right{float:right;}
+img{ vertical-align:middle;}
+.hide{display:none;}
+
+/*两种清浮动方法*/
+.clear:after{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.clear{display:block;_display:inline-block;}
+
+
+/*图标类*/
+.dishesIco{background:url(../images/dishesIco.png) no-repeat; width:25px; height:25px; display:block;}
+
+
+/*菜品列表*/
+.dishesList{width:100%; background:#ffffff; margin:10px 0 20px; padding:10px 0; box-shadow:0 0 3px #cccccc;}
+.dishesList h3{line-height:36px; font-size:18px; padding:0px 10px; font-weight:normal; border-bottom:#E0E0DF solid 1px;}
+.dishesList ul li{position:relative; padding:0px 80px 0px 10px;border-bottom:#E0E0DF solid 1px;}
+.dishesList ul a{color:#333333;}
+.dishesList ul li .listAvatar{width:90px; float:left; margin:10px 10px 10px 0;}
+.dishesList ul li p{padding:15px 0px; line-height:20px; font-size:16px; font-weight:normal;}
+.dishesList ul li p span{display:block; padding-top:15px; color:#333333; font-size:14px;}
+.dishesList ul li p span del{ margin-right:10px;}
+.dishesList ul li p span em{font-size:14px; color:#969696; font-style:normal; display:inline-block;}
+.dishesList ul li p span em label{color:#ff6600;}
+/*列表右侧投票*/
+.dishesVote{width:70px;height:100%;position:absolute; right:0px; top:0px; display:block; background:#F7F7F7; border-left:#f1f1f1 solid 1px;}
+.dishesVote .dishesIco{background-position:0 0; position:absolute; top:50%; margin-top:-20px; left:50%; margin-left:-12px;}
+.voted .dishesIco{ background-position:0 -25px;}
+.dishesVote em{position:absolute; top:50%; left:0px; font-style:normal; padding-top:10px; line-height:20px; color:#9E9E9E; width:70px; text-align:center;}
+.dishesList .voted{ cursor:text}
+
+/*菜品 详情页*/
+.bigDishesImg{width:90%; display:block; margin:20px auto;}
+.dishesInfo{margin:0px 2% 20px; padding:5px 0 20px; background:#ffffff; box-shadow:0 0 3px #cccccc;}
+.dishesInfo h3{border-bottom:#E5E5E5 solid 2px; padding:8px 80px 8px 10px; position:relative; font-size:16px; font-weight:normal;}
+.dishesInfo h3 p{padding:5px 0; color:#333333; font-size:14px; text-indent:0;}
+.dishesInfo h3 p em{font-size:14px; font-style:normal; color:#969696;}
+.dishesInfo h3 p em label{color:#ff6600;}
+.dishesInfo p{padding:8px 10px; line-height:24px; font-size:14px; text-indent:2em;}
+/*投票*/
+.dishesInfo h3 .dishesVote{ background:#ffffff; height:80%; top:8px; right:5px; border-left:#ccc solid 1px;}
+
+/*详情页 增加 面包屑*/
+.dishDetailTitle{ font-size:16px; color:#646464;}
+.dishDetailTitle em{font-size:14px; padding:0px 5px; color:#939393;}
+.dishDetailTitle a{color:#6fb811}
+
+

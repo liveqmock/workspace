@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+	<!-- 判断是插入哪个数据库 -->
+
+<!-- 不使用namespace的话sql搜索定位会比较方便 -->
+<mapper namespace="com.yazuo.erp.train.dao.TraPptDao">
+
+	<resultMap id="TraPpt" type="com.yazuo.erp.train.vo.TraPptVO">
+        <result property="id" column="id"/>
+        <result property="coursewareId" column="courseware_id"/>
+        <result property="pptName" column="ppt_name"/>
+        <result property="pptDesc" column="ppt_desc"/>
+        <result property="pptPath" column="ppt_path"/>
+        <result property="insertBy" column="insert_by"/>
+        <result property="insertTime" column="insert_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="trapptColumns">
+	    <![CDATA[
+		id,courseware_id,ppt_name,ppt_desc,ppt_path,insert_by,insert_time,update_by,update_time
+	    ]]>
+	</sql>
+
+	<!-- useGeneratedKeys="true" keyProperty="xxx" for sqlserver and mysql -->
+	<insert id="saveTraPpt" useGeneratedKeys="true" keyProperty="id">
+    <![CDATA[
+        INSERT INTO train.tra_ppt (
+        		courseware_id ,
+        		ppt_name ,
+        		ppt_desc ,
+        		ppt_path ,
+        		insert_by ,
+        		insert_time ,
+        		update_by ,
+        		update_time 
+        ) VALUES (
+        	#{coursewareId} ,
+        	#{pptName} ,
+        	#{pptDesc} ,
+        	#{pptPath} ,
+        	#{insertBy} ,
+        	now() ,
+        	#{updateBy} ,
+        	now()
+        )
+    ]]>
+	</insert>
+	
+	<update id="updateTraPpt" >
+    <![CDATA[
+        UPDATE train.tra_ppt SET
+	        courseware_id = #{coursewareId} ,
+	        ppt_name = #{pptName} ,
+	        ppt_desc = #{pptDesc} ,
+	        ppt_path = #{pptPath} ,
+	        insert_by = #{insertBy} ,
+	        insert_time = #{insertTime} ,
+	        update_by = #{updateBy} ,
+	        update_time = #{updateTime} 
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+
+    <delete id="deleteTraPpt">
+    <![CDATA[
+        DELETE FROM train.tra_ppt WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <select id="getTraPptById" resultMap="TraPpt">
+		SELECT <include refid="trapptColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt 
+	        WHERE 
+		        id = #{id} 
+	    ]]>
+	</select>
+
+	<select id="getTraPpts" resultMap="TraPpt" parameterType="map">
+		SELECT <include refid="trapptColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt  
+	    ]]>
+	    <include refid="trappt_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+	
+	<!-- 同上，唯一不同为返回值对于每一个元素是一个原生的map -->
+	<select id="getTraPptsMap" resultType="map" parameterType="map">
+		SELECT <include refid="trapptColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt  
+	    ]]>
+	    <include refid="trappt_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	    <![CDATA[
+		     limit #{pageSize} offset #{offset}; 
+	    ]]>
+	</select>
+
+    <select id="getPptVOByCoursewareId" parameterType="int" resultMap="TraPpt">
+        SELECT <include refid="trapptColumns"/>
+        FROM train.tra_ppt
+        WHERE courseware_id=#{coursewareId}
+    </select>
+	
+	<select id="getAllTraPpts" resultType="map" parameterType="map">
+		SELECT <include refid="trapptColumns" />
+	    <![CDATA[
+		    FROM train.tra_ppt  
+	    ]]>
+	    <include refid="trappt_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="trappt_findPage_where">
+		<where>	      				
+	       <if test="id!=null">
+				AND id = #{id}
+			</if>
+	       <if test="coursewareId!=null">
+				AND courseware_id = #{coursewareId}
+			</if>
+	       <if test="pptName!=null">
+				AND ppt_name = #{pptName}
+			</if>
+	       <if test="pptDesc!=null">
+				AND ppt_desc = #{pptDesc}
+			</if>
+	       <if test="pptPath!=null">
+				AND ppt_path = #{pptPath}
+			</if>
+	       <if test="insertBy!=null">
+				AND insert_by = #{insertBy}
+			</if>
+	       <if test="insertTimeBegin!=null">
+				AND insert_time >= #{insertTimeBegin}
+		   </if>
+		   <if test="insertTimeEnd!=null">
+				AND insert_time &lt;= #{insertTimeEnd}
+		   </if>
+	       <if test="updateBy!=null">
+				AND update_by = #{updateBy}
+			</if>
+	       <if test="updateTimeBegin!=null">
+				AND update_time >= #{updateTimeBegin}
+		   </if>
+		   <if test="updateTimeEnd!=null">
+				AND update_time &lt;= #{updateTimeEnd}
+		   </if>
+		</where>
+	</sql>
+		
+    <select id="getTraPptCount" resultType="long">
+        SELECT count(*) FROM train.tra_ppt 
+		<include refid="trappt_findPage_where"/>    
+    </select>
+    
+    <!--
+    	分页查询已经使用Dialect进行分页,也可以不使用Dialect直接编写分页
+    	因为分页查询将传 offset,pageSize,lastRows 三个参数,不同的数据库可以根于此三个参数属性应用不同的分页实现
+    -->
+    <select id="findTraPptPage" resultMap="TraPpt">
+    	SELECT <include refid="trapptColumns" />
+	    FROM train.tra_ppt 
+		<include refid="trappt_findPage_where"/>
+		<if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+    </select>
+    
+    <!-- 根据试卷ID查找PPT基本信息 -->
+    <select id="queryPptInfoByPaperId" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			P . ID,
+			P .courseware_id,
+			P .ppt_name,
+			P .ppt_desc,
+			P .ppt_path,
+			P .insert_by,
+			P .insert_time,
+			P .update_by,
+			P .update_time
+		FROM
+			train.tra_ppt P
+		WHERE
+			P . ID =(SELECT ed.ppt_id FROM train.tra_exam_dtl ed WHERE ed.paper_id = #{paperId,jdbcType=INTEGER} limit 1)
+    </select>
+    
+    <!-- 根据试卷ID查找PPT的录音信息 -->
+    <select id="queryRecordingByPaperId" resultType="map" parameterType="java.lang.Integer">
+		SELECT
+			A . ID,
+			A .attachment_name,
+			A .attachment_type,
+			A .attachment_size,
+			A .attachment_path,
+			A .attachment_suffix,
+			A .is_enable,
+			A .is_downloadable,
+			A .hours,
+			A .remark,
+			A .insert_by,
+			A .insert_time,
+			A .update_by,
+			A .update_time
+		FROM
+			train.tra_attachment A
+		WHERE
+			A . ID =(SELECT eo.attachment_id FROM train.tra_exam_option eo WHERE eo.exam_dtl_id =(
+				SELECT ID FROM train.tra_exam_dtl ed WHERE ed.paper_id = #{paperId,jdbcType=INTEGER} limit 1)
+			)
+    </select>
+    <update id="updateTraPptCoursewareId" >
+    <![CDATA[
+        UPDATE train.tra_ppt SET
+	        courseware_id = #{coursewareId} ,
+	        ppt_name = #{pptName} ,
+	        update_by = #{updateBy} ,
+	        update_time = now()
+        WHERE 
+	        id = #{id} 
+    ]]>
+	</update>
+	
+    <!-- 根据课件ID批量删除 tra_ppt PPT -->
+	<delete id="batchDeleteTraPptByCoursewareId" parameterType="list">
+		delete from train.tra_ppt p
+		where p.id in (
+			select q.ppt_id from train.tra_question q
+			where q.courseware_id in
+			<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+				#{t,jdbcType=INTEGER}
+			</foreach>
+			and q.question_type='3'
+		)
+	</delete>
+	
+    <!-- 根据试题ID列表批量删除 tra_ppt PPT -->
+	<delete id="batchDeleteTraPptByQuestionIdList" parameterType="list">
+		delete from train.tra_ppt p
+		where p.id in (
+			select q.ppt_id from train.tra_question q
+			where q.id in
+			<foreach collection="list" item="t" index="index" open="(" close=")" separator=",">
+				#{t,jdbcType=INTEGER}
+			</foreach>
+			and q.question_type='3'
+		)
+	</delete>
+	
+</mapper>
+

@@ -1,0 +1,41 @@
+<div class="page-tbar">
+    <div class="page-tip">
+        你有待办事项：<a ms-href="'#/study/seniorstudy/todolist/'+ loginUserId" class="edit-l"><span class="num">{{todoNum}}</span>个</a>
+    </div>
+    <div class="page-action">
+        <input type="text" class="keyword input-text" ms-duplex="keyword" placeholder="课程名称" />&nbsp;
+        <button type="button" class="query-btn main-btn" ms-click="query">搜 索</button>
+    </div>
+</div>
+<div class="page-bd">
+    <div class="course-grid" ms-widget="grid,$,$gridOpts"></div>
+</div>
+<!-- 发起学习 start -->
+<div class="page-study-seniorstudy-create-study-dialog ui-hidden" ms-widget="dialog,$,$createStudyDialogOpts">
+    <div class="study-type-title">
+        <h2 class="study-type-text" ms-click="showType">{{currentType}}<span class="iconfont"> &#xe607;</span></h2>
+        <div class="type-text-r"><input type="checkbox" name="flag" ms-duplex-radio="excludeStudied"/>&nbsp;&nbsp;排除已学习过的</div>
+        <ul class="study-type-box" ms-visible="showIs">
+            <li ms-repeat="studyType" ms-click="chooseType(el)" ms-data-type="$index+1">{{el}}</li>
+        </ul>
+    </div>
+    <div class="study-list">
+        <div class="tree-box" ms-widget="tree,$,$treeOpts" ms-visible="typeNum==1"></div>
+        <ul class="position-list" ms-visible="typeNum==2">
+            <li ms-repeat="positionData" ms-data-id="el.id" ms-click="chooseSel">{{el.position_name}}</li>
+        </ul>
+        <div class="study-list-content" ms-visible="typeNum==3">
+            <div class="employee-search">
+                <input type="text" class="employee-name input-text" ms-duplex="keyName" placeholder="姓名" />&nbsp;
+                <button type="button" class="query-btn main-btn" ms-click="searchName">搜 索</button>
+            </div>
+            <ul class="employee-list">
+                <li ms-repeat="employeeData" ms-data-id="el.id" ms-click="chooseSel">
+                    <span>{{el.userName}}</span>
+                    <span>{{el.tel}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- 发起学习 end -->

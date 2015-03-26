@@ -1,0 +1,19 @@
+#--------------product info properties---------
+coffee.orderQuery=https://api.weixin.qq.com/pay/orderquery?access_token=
+messageTemplate=https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=
+#----------coffee--merchant--properties--------
+coffee.appId=wxf4c931a2bb7d40ef
+coffee.appSecret=7c53fe4ae3fce91ae716bd5b71629910
+coffee.appKey=PKMuRBm4BRvqnmGv4GuoK9j8omu7Q1kvSWZjnd889I71Gyr4Ws1YFfTisUlgjGgU37Jh7yo4s6F5WkKUfrlH1NXcobl4OEZsBPjbEi0EO2BpSdgrYVyIxIikN84WhRYk
+coffee.partnerId=1219692001
+coffee.partnerKey=0d9be069458c0a9a390e710514f7f1bf
+#----------mail-url--properties-----------------
+smsUrl=http://192.168.236.41:8083/crmapi/shortmessage/shortMessageSendJMS.do
+coffee.queryCardList=http://192.168.236.41:8083/crmapi/cardnew/getCardListByMobileAndMerchantIdForVirtual.do
+coffee.chongzhi=http://192.168.236.41:8083/crmapi/cardnew/storedCash2Card.do
+coffee.checkStore=http://192.168.236.41:8083/crmapi/cardnew/checkStoreCard.do
+coffee.mails=kefubu@yazuo.com,sundongfeng@yazuo.com
+#coffee.mails=sundongfeng@yazuo.com
+#----------other--properties--------------------
+coffee.subject=\u5496\u5561\u966a\u4f60\u5145\u503c\u5931\u8d25
+coffee.error=\u5f88\u62b1\u6b49\u60a8\u7684\u50a8\u503c\u5361\u6ca1\u6709\u5145\u503c\u6210\u529f\u3002\u8bf7\u60a8\u81f4\u7535\u5ba2\u670d\u4eba\u5458\u8fdb\u884c\u4eba\u5de5\u5145\u503c\u3002\u5ba2\u670d\u7535\u8bdd\uff1a#4008827456#\u3002\u7ed9\u60a8\u5e26\u6765\u4e0d\u4fbf\u656c\u8bf7\u8c05\u89e3\u3002

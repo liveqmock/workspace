@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.bes.dao.BesMonthlyCheckDao">
+	<resultMap id="BesMonthlyCheck" type="com.yazuo.erp.bes.vo.BesMonthlyCheckVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="reportTime" column="report_time"/>
+    	<result property="openNumber" column="open_number"/>
+    	<result property="jobOverview" column="job_overview"/>
+    	<result property="effectAndSuggestion" column="effect_and_suggestion"/>
+    	<result property="membershipDevelopment" column="membership_development"/>
+    	<result property="memberConsumption" column="member_consumption"/>
+    	<result property="membershipValue" column="membership_value"/>
+    	<result property="affiliateMarketing" column="affiliate_marketing"/>
+    	<result property="populationQuality" column="population_quality"/>
+    	<result property="monthlyCheckState" column="monthly_check_state"/>
+    	<result property="updateBy" column="update_by"/>
+    	<result property="updateTime" column="update_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="besmonthlycheckColumns">
+	    <![CDATA[
+		id,merchant_id,report_time,open_number,job_overview,effect_and_suggestion,membership_development,member_consumption,membership_value,affiliate_marketing,population_quality,monthly_check_state,update_by,update_time
+	    ]]>
+	</sql>
+
+	<insert id="saveBesMonthlyCheck" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,report_time,open_number,job_overview,effect_and_suggestion,membership_development,member_consumption,membership_value,affiliate_marketing,population_quality,monthly_check_state,update_by,update_time,--> 
+        INSERT INTO bes.bes_monthly_check (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="reportTime!=null ">report_time,</if>
+        	 <if test="openNumber!=null and openNumber!=''">open_number,</if>
+        	 <if test="jobOverview!=null and jobOverview!=''">job_overview,</if>
+        	 <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">effect_and_suggestion,</if>
+        	 <if test="membershipDevelopment!=null and membershipDevelopment!=''">membership_development,</if>
+        	 <if test="memberConsumption!=null and memberConsumption!=''">member_consumption,</if>
+        	 <if test="membershipValue!=null and membershipValue!=''">membership_value,</if>
+        	 <if test="affiliateMarketing!=null and affiliateMarketing!=''">affiliate_marketing,</if>
+        	 <if test="populationQuality!=null and populationQuality!=''">population_quality,</if>
+        	 <if test="monthlyCheckState!=null and monthlyCheckState!=''">monthly_check_state,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="reportTime!=null ">#{reportTime},</if>
+       	    <if test="openNumber!=null and openNumber!=''">#{openNumber},</if>
+       	    <if test="jobOverview!=null and jobOverview!=''">#{jobOverview},</if>
+       	    <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">#{effectAndSuggestion},</if>
+       	    <if test="membershipDevelopment!=null and membershipDevelopment!=''">#{membershipDevelopment},</if>
+       	    <if test="memberConsumption!=null and memberConsumption!=''">#{memberConsumption},</if>
+       	    <if test="membershipValue!=null and membershipValue!=''">#{membershipValue},</if>
+       	    <if test="affiliateMarketing!=null and affiliateMarketing!=''">#{affiliateMarketing},</if>
+       	    <if test="populationQuality!=null and populationQuality!=''">#{populationQuality},</if>
+       	    <if test="monthlyCheckState!=null and monthlyCheckState!=''">#{monthlyCheckState},</if>
+       	    <if test="updateBy!=null ">#{updateBy},</if>
+       	    <if test="updateTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertBesMonthlyChecks" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,report_time,open_number,job_overview,effect_and_suggestion,membership_development,member_consumption,membership_value,affiliate_marketing,population_quality,monthly_check_state,update_by,update_time,--> 
+        INSERT INTO bes.bes_monthly_check (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="reportTime!=null ">report_time,</if>
+        	 <if test="openNumber!=null and openNumber!=''">open_number,</if>
+        	 <if test="jobOverview!=null and jobOverview!=''">job_overview,</if>
+        	 <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">effect_and_suggestion,</if>
+        	 <if test="membershipDevelopment!=null and membershipDevelopment!=''">membership_development,</if>
+        	 <if test="memberConsumption!=null and memberConsumption!=''">member_consumption,</if>
+        	 <if test="membershipValue!=null and membershipValue!=''">membership_value,</if>
+        	 <if test="affiliateMarketing!=null and affiliateMarketing!=''">affiliate_marketing,</if>
+        	 <if test="populationQuality!=null and populationQuality!=''">population_quality,</if>
+        	 <if test="monthlyCheckState!=null and monthlyCheckState!=''">monthly_check_state,</if>
+        	 <if test="updateBy!=null ">update_by,</if>
+        	 <if test="updateTime!=null ">update_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="reportTime!=null ">#{t.reportTime},</if>
+          <if test="openNumber!=null and openNumber!=''">#{t.openNumber},</if>
+          <if test="jobOverview!=null and jobOverview!=''">#{t.jobOverview},</if>
+          <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">#{t.effectAndSuggestion},</if>
+          <if test="membershipDevelopment!=null and membershipDevelopment!=''">#{t.membershipDevelopment},</if>
+          <if test="memberConsumption!=null and memberConsumption!=''">#{t.memberConsumption},</if>
+          <if test="membershipValue!=null and membershipValue!=''">#{t.membershipValue},</if>
+          <if test="affiliateMarketing!=null and affiliateMarketing!=''">#{t.affiliateMarketing},</if>
+          <if test="populationQuality!=null and populationQuality!=''">#{t.populationQuality},</if>
+          <if test="monthlyCheckState!=null and monthlyCheckState!=''">#{t.monthlyCheckState},</if>
+          <if test="updateBy!=null ">#{t.updateBy},</if>
+          <if test="updateTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateBesMonthlyCheck">
+        UPDATE bes.bes_monthly_check 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="reportTime!=null ">report_time = #{reportTime} ,</if>
+	        <if test="openNumber!=null and openNumber!=''">open_number = #{openNumber} ,</if>
+	        <if test="jobOverview!=null and jobOverview!=''">job_overview = #{jobOverview} ,</if>
+	        <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">effect_and_suggestion = #{effectAndSuggestion} ,</if>
+	        <if test="membershipDevelopment!=null and membershipDevelopment!=''">membership_development = #{membershipDevelopment} ,</if>
+	        <if test="memberConsumption!=null and memberConsumption!=''">member_consumption = #{memberConsumption} ,</if>
+	        <if test="membershipValue!=null and membershipValue!=''">membership_value = #{membershipValue} ,</if>
+	        <if test="affiliateMarketing!=null and affiliateMarketing!=''">affiliate_marketing = #{affiliateMarketing} ,</if>
+	        <if test="populationQuality!=null and populationQuality!=''">population_quality = #{populationQuality} ,</if>
+	        <if test="monthlyCheckState!=null and monthlyCheckState!=''">monthly_check_state = #{monthlyCheckState} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateBesMonthlyChecksToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE bes.bes_monthly_check 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="reportTime!=null ">report_time = #{t.reportTime} ,</if>
+	        <if test="openNumber!=null and openNumber!=''">open_number = #{t.openNumber} ,</if>
+	        <if test="jobOverview!=null and jobOverview!=''">job_overview = #{t.jobOverview} ,</if>
+	        <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">effect_and_suggestion = #{t.effectAndSuggestion} ,</if>
+	        <if test="membershipDevelopment!=null and membershipDevelopment!=''">membership_development = #{t.membershipDevelopment} ,</if>
+	        <if test="memberConsumption!=null and memberConsumption!=''">member_consumption = #{t.memberConsumption} ,</if>
+	        <if test="membershipValue!=null and membershipValue!=''">membership_value = #{t.membershipValue} ,</if>
+	        <if test="affiliateMarketing!=null and affiliateMarketing!=''">affiliate_marketing = #{t.affiliateMarketing} ,</if>
+	        <if test="populationQuality!=null and populationQuality!=''">population_quality = #{t.populationQuality} ,</if>
+	        <if test="monthlyCheckState!=null and monthlyCheckState!=''">monthly_check_state = #{t.monthlyCheckState} ,</if>
+	        <if test="updateBy!=null ">update_by = #{t.updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateBesMonthlyChecksToSameVals" parameterType="map">
+        UPDATE bes.bes_monthly_check 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="reportTime!=null ">report_time = #{reportTime} ,</if>
+	        <if test="openNumber!=null and openNumber!=''">open_number = #{openNumber} ,</if>
+	        <if test="jobOverview!=null and jobOverview!=''">job_overview = #{jobOverview} ,</if>
+	        <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">effect_and_suggestion = #{effectAndSuggestion} ,</if>
+	        <if test="membershipDevelopment!=null and membershipDevelopment!=''">membership_development = #{membershipDevelopment} ,</if>
+	        <if test="memberConsumption!=null and memberConsumption!=''">member_consumption = #{memberConsumption} ,</if>
+	        <if test="membershipValue!=null and membershipValue!=''">membership_value = #{membershipValue} ,</if>
+	        <if test="affiliateMarketing!=null and affiliateMarketing!=''">affiliate_marketing = #{affiliateMarketing} ,</if>
+	        <if test="populationQuality!=null and populationQuality!=''">population_quality = #{populationQuality} ,</if>
+	        <if test="monthlyCheckState!=null and monthlyCheckState!=''">monthly_check_state = #{monthlyCheckState} ,</if>
+	        <if test="updateBy!=null ">update_by = #{updateBy} ,</if>
+	        <if test="updateTime!=null ">update_time = now() </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteBesMonthlyCheckById">
+    <![CDATA[
+        DELETE FROM bes.bes_monthly_check WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteBesMonthlyCheckByIds" parameterType="list">
+        DELETE FROM bes.bes_monthly_check WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getBesMonthlyCheckById" resultMap="BesMonthlyCheck">
+		SELECT <include refid="besmonthlycheckColumns" />
+		    FROM bes.bes_monthly_check 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getBesMonthlyChecks" resultMap="BesMonthlyCheck">
+		SELECT <include refid="besmonthlycheckColumns" />
+		    FROM bes.bes_monthly_check  
+	    <include refid="besmonthlycheck_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getBesMonthlyChecksMap" resultType="map">
+		SELECT <include refid="besmonthlycheckColumns" />
+	    <![CDATA[
+		    FROM bes.bes_monthly_check  
+	    ]]>
+	    <include refid="besmonthlycheck_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="besmonthlycheck_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+		   <if test="reportTime!=null ">AND report_time >= #{reportTime}</if>
+		   <if test="reportTime!=null ">AND report_time &lt;= #{reportTime}</if>
+	       <if test="openNumber!=null and openNumber!=''">AND open_number = #{openNumber}</if>
+	       <if test="jobOverview!=null and jobOverview!=''">AND job_overview = #{jobOverview}</if>
+	       <if test="effectAndSuggestion!=null and effectAndSuggestion!=''">AND effect_and_suggestion = #{effectAndSuggestion}</if>
+	       <if test="membershipDevelopment!=null and membershipDevelopment!=''">AND membership_development = #{membershipDevelopment}</if>
+	       <if test="memberConsumption!=null and memberConsumption!=''">AND member_consumption = #{memberConsumption}</if>
+	       <if test="membershipValue!=null and membershipValue!=''">AND membership_value = #{membershipValue}</if>
+	       <if test="affiliateMarketing!=null and affiliateMarketing!=''">AND affiliate_marketing = #{affiliateMarketing}</if>
+	       <if test="populationQuality!=null and populationQuality!=''">AND population_quality = #{populationQuality}</if>
+	       <if test="monthlyCheckState!=null and monthlyCheckState!=''">AND monthly_check_state = #{monthlyCheckState}</if>
+	       <if test="updateBy!=null ">AND update_by = #{updateBy}</if>
+		   <if test="updateTime!=null ">AND update_time >= #{updateTime}</if>
+		   <if test="updateTime!=null ">AND update_time &lt;= #{updateTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getBesMonthlyCheckCount" resultType="long">
+        SELECT count(*) FROM bes.bes_monthly_check 
+		<include refid="besmonthlycheck_findPage_where"/>    
+    </select>
+    
+    <select id="queryBesMonthlyCheckList" resultType="map" parameterType="map">
+		SELECT
+			M . ID,
+			M .merchant_id,
+			b.merchant_name,
+			b.brand,
+			um.user_id AS front_user_id,
+			u.user_name AS front_user_name,
+			M .report_time,
+			M .open_number,
+			M .job_overview,
+			M .effect_and_suggestion,
+			M .membership_development,
+			M .member_consumption,
+			M .membership_value,
+			M .affiliate_marketing,
+			M .population_quality,
+			M .monthly_check_state,
+			d.dictionary_value AS monthly_check_state_name,
+			M .update_by,
+			M .update_time
+		FROM
+			bes.bes_monthly_check M
+		LEFT JOIN syn.syn_merchant b ON b.merchant_id = M .merchant_id
+		LEFT JOIN sys.sys_dictionary d ON d.dictionary_type = '00000101'
+		AND d.dictionary_key = M .monthly_check_state
+		LEFT JOIN sys.sys_user_merchant um ON um.merchant_id = b.merchant_id
+		LEFT JOIN sys.sys_user u ON u. ID = um.user_id
+		WHERE
+			1 = 1
+		AND M .report_time = #{reportTime}
+		AND um.user_id IS NOT NULL
+		
+		<if test="isCheck!=null and isCheck!=''">
+		AND M .merchant_id IN(
+			SELECT DISTINCT
+				P .merchant_id
+			FROM
+				fes.fes_plan P
+			WHERE
+				1 = 1
+			AND P .plan_item_type = '1'
+			AND to_char(P .start_time, 'yyyy-mm-dd')LIKE '%'||#{tomorrow,jdbcType=VARCHAR}||'%'
+			AND P .merchant_id IS NOT NULL
+			and p.status = '1'
+		)
+		</if>
+		
+		<if test="merchantName!=null and merchantName!=''">
+			AND b.merchant_name LIKE '%'||#{merchantName,jdbcType=VARCHAR}||'%'
+		</if>
+		
+		<if test="monthlyCheckState!=null and monthlyCheckState!=''">
+			AND M .monthly_check_state = #{monthlyCheckState}
+		</if>
+		
+		<if test="frontUserId!=null and frontUserId!=0">
+			and u.id=#{frontUserId,jdbcType=INTEGER}
+		</if>
+	</select>
+    
+</mapper>

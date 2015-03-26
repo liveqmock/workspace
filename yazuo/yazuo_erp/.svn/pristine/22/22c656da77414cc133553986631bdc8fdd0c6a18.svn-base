@@ -1,0 +1,77 @@
+package com.yazuo.erp.api.dao.impl;
+
+import com.yazuo.erp.api.dao.ReportDataDao;
+import org.apache.commons.lang.time.DateUtils;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+/**
+ */
+@Repository
+public class ReportDataDaoImpl implements ReportDataDao {
+    @Resource
+    private JdbcTemplate jdbcTemplateCrm210;
+
+    @Resource
+    private JdbcTemplate jdbcTemplateCrm;
+
+    @Override
+    public int getOpenNumPercent(Integer brandId, Date month) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+        String sql = "SELECT index_value FROM public.merchant_index_plan WHERE brand_id=? and month=?";
+        List<Integer> result =  this.jdbcTemplateCrm210.query(sql, new RowMapper<Integer>() {
+              @Override
+              public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                  return rs.getInt("index_value");
+              }
+          }, brandId, format.format(month));
+
+        Integer total = result.size() > 0 ? result.get(0) : 0;
+        Integer membershipOpenNum = this.getMembershipOpenNum(brandId, month);
+        return total == 0 ? 0 : membershipOpenNum / total;
+    }
+
+    protected int getMembershipOpenNum(Integer brandId, Date month) {
+        String sql = "SELECT sum(trans_quantity) as trans_quantity FROM report.daily_merchant_summary WHERE brand_id=? and trans_date between ? and ? ";
+        List<Integer> result = this.jdbcTemplateCrm.query(sql, new RowMapper<Integer>() {
+            @Override
+            public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getInt("trans_quantity");
+            }
+        },brandId, month, DateUtils.addMonths(month, 1));
+        return result.size() > 0 ? result.get(0) : 0;
+    }
+
+    @Override
+    public double getMarketingIncome(Integer merchantId, Date from, Date to) {
+        String sql = "SELECT marketing_income FROM report.daily_merchant_summary where trans_date BETWEEN ? and ?";
+        List<Double> result  =this.jdbcTemplateCrm.query(sql,new RowMapper<Double>(){
+            @Override
+            public Double mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getDouble("marketing_income");
+            }
+        },from,to);
+        return result.size() > 0 ? result.get(0) : 0;
+    }
+
+    @Override
+    public double getReportBeginning(Integer merchantId, Date lastDay) {
+        String sql = "SELECT store_balance FROM report.report_begining where type=1 and report_date =? and brand_id=?";
+        List<Double> result = this.jdbcTemplateCrm.query(sql, new RowMapper<Double>() {
+            @Override
+            public Double mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getDouble("store_balance");
+            }
+
+        },lastDay,merchantId);
+        return result.size() > 0 ? result.get(0) : 0;
+    }
+}

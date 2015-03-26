@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+
+<mapper namespace="com.yazuo.erp.syn.dao.SynMerchantBrandDao">
+	<resultMap id="SynMerchantBrand" type="com.yazuo.erp.syn.vo.SynMerchantBrandVO">
+    	<id property="id" column="id"/>
+    	<result property="merchantId" column="merchant_id"/>
+    	<result property="miniMerchantId" column="mini_merchant_id"/>
+    	<result property="insertBy" column="insert_by"/>
+    	<result property="insertTime" column="insert_time"/>
+	</resultMap>
+	
+	
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="synmerchantbrandColumns">
+	    <![CDATA[
+		id,merchant_id,mini_merchant_id,insert_by,insert_time
+	    ]]>
+	</sql>
+
+	<insert id="saveSynMerchantBrand" useGeneratedKeys="true" keyProperty="id" >
+	 <!--不允许为空的字段： merchant_id,mini_merchant_id,insert_by,insert_time,--> 
+        INSERT INTO syn.syn_merchant_brand (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="miniMerchantId!=null ">mini_merchant_id,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES (
+       	    <if test="merchantId!=null ">#{merchantId},</if>
+       	    <if test="miniMerchantId!=null ">#{miniMerchantId},</if>
+       	    <if test="insertBy!=null ">#{insertBy},</if>
+       	    <if test="insertTime!=null ">now()</if>
+        )
+	</insert>
+	
+	<insert id="batchInsertSynMerchantBrands" parameterType="map">
+	 <!--不允许为空的字段： merchant_id,mini_merchant_id,insert_by,insert_time,--> 
+        INSERT INTO syn.syn_merchant_brand (
+        	 <if test="merchantId!=null ">merchant_id,</if>
+        	 <if test="miniMerchantId!=null ">mini_merchant_id,</if>
+        	 <if test="insertBy!=null ">insert_by,</if>
+        	 <if test="insertTime!=null ">insert_time</if>
+        ) VALUES 
+            <foreach collection="list" item="t" separator=",">
+           (
+          <if test="merchantId!=null ">#{t.merchantId},</if>
+          <if test="miniMerchantId!=null ">#{t.miniMerchantId},</if>
+          <if test="insertBy!=null ">#{t.insertBy},</if>
+          <if test="insertTime!=null ">now()</if>
+         )
+        </foreach>
+	</insert>
+	
+	<update id="updateSynMerchantBrand">
+        UPDATE syn.syn_merchant_brand 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="miniMerchantId!=null ">mini_merchant_id = #{miniMerchantId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{id} 
+	</update>
+	
+	<update id="batchUpdateSynMerchantBrandsToDiffVals" parameterType="map">
+		<foreach  collection="list" item="t" index="index" open="" close="" separator=";">
+        UPDATE syn.syn_merchant_brand 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{t.merchantId} ,</if>
+	        <if test="miniMerchantId!=null ">mini_merchant_id = #{t.miniMerchantId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{t.insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{t.insertTime} </if>
+	      </set>  
+        WHERE 
+	        id = #{t.id} 
+	    </foreach>       
+	</update>
+	
+	<!-- 默认主键为id，不支持组合主键的情况 -->
+	<update id="batchUpdateSynMerchantBrandsToSameVals" parameterType="map">
+        UPDATE syn.syn_merchant_brand 
+ 		  <set>
+	        <if test="merchantId!=null ">merchant_id = #{merchantId} ,</if>
+	        <if test="miniMerchantId!=null ">mini_merchant_id = #{miniMerchantId} ,</if>
+	        <if test="insertBy!=null ">insert_by = #{insertBy} ,</if>
+	        <if test="insertTime!=null ">insert_time = #{insertTime} </if>
+	      </set>  
+        WHERE id IN <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>       
+	</update>
+	
+    <delete id="deleteSynMerchantBrandById">
+    <![CDATA[
+        DELETE FROM syn.syn_merchant_brand WHERE
+        id = #{id} 
+    ]]>
+    </delete>
+    
+    <delete id="batchDeleteSynMerchantBrandByIds" parameterType="list">
+        DELETE FROM syn.syn_merchant_brand WHERE id IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">#{id}</foreach>   
+    </delete>
+    
+    <select id="getSynMerchantBrandById" resultMap="SynMerchantBrand">
+		SELECT <include refid="synmerchantbrandColumns" />
+		    FROM syn.syn_merchant_brand 
+	        WHERE id = #{id}     
+	</select>
+
+	<select id="getSynMerchantBrands" resultMap="SynMerchantBrand">
+		SELECT <include refid="synmerchantbrandColumns" />
+		    FROM syn.syn_merchant_brand  
+	    <include refid="synmerchantbrand_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<select id="getSynMerchantBrandsMap" resultType="map">
+		SELECT <include refid="synmerchantbrandColumns" />
+	    <![CDATA[
+		    FROM syn.syn_merchant_brand  
+	    ]]>
+	    <include refid="synmerchantbrand_findPage_where" />
+	    <if test="sortColumns!=null">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	
+	<sql id="synmerchantbrand_findPage_where">
+		<where>	      				
+	       <if test="id!=null ">AND id = #{id}</if>
+	       <if test="merchantId!=null ">AND merchant_id = #{merchantId}</if>
+	       <if test="miniMerchantId!=null ">AND mini_merchant_id = #{miniMerchantId}</if>
+	       <if test="insertBy!=null ">AND insert_by = #{insertBy}</if>
+		   <if test="insertTime!=null ">AND insert_time >= #{insertTime}</if>
+		   <if test="insertTime!=null ">AND insert_time &lt;= #{insertTime}</if>
+		</where>
+	</sql>
+		
+    <select id="getSynMerchantBrandCount" resultType="long">
+        SELECT count(*) FROM syn.syn_merchant_brand 
+		<include refid="synmerchantbrand_findPage_where"/>    
+    </select>
+    
+</mapper>
