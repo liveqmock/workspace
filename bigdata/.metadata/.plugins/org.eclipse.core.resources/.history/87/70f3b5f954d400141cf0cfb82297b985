@@ -38,7 +38,7 @@ public class ElasticSearchHandler {
 	public ElasticSearchHandler() {
 		// 使用本机做为节点
 //		this("127.0.0.1");
-		this("192.168.232.181");
+		this("192.168.232.187");
 	}
 
 	public ElasticSearchHandler(String ipAddress) {

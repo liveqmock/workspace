@@ -13,7 +13,7 @@ import backtype.storm.tuple.Values;
 public class RedisStormSpout extends BaseRichSpout {
 	private static final long serialVersionUID = 1L;
 	private SpoutOutputCollector spoutOutputCollector;
-	static final Jedis jedis = new Jedis("192.168.232.181", 6379);
+	static final Jedis jedis = new Jedis("192.168.232.187", 6379);
 	static final String redisKey = "myspout";
 
 	public void open(Map conf, TopologyContext context, SpoutOutputCollector spoutOutputCollector) {
