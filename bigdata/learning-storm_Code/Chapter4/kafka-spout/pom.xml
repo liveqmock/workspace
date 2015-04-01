@@ -28,11 +28,6 @@
 			<artifactId>kafka_2.10</artifactId>
 			<version>0.8.1.1</version>
 		</dependency>
-		<dependency>
-	<groupId>com.github.sgroschupf</groupId>
-	<artifactId>zkclient</artifactId>
-	<version>0.1</version>
-</dependency>
 		<!-- Dependency for Storm -->
 		<dependency>
 			<groupId>org.apache.storm</groupId>
