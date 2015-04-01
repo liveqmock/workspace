@@ -18,11 +18,12 @@ public class KafkaTopology {
 		ZkHosts zkHosts = new ZkHosts("localhost:2181");
 
 		// Create the KafkaSpout configuartion
-		// Second argument is the topic name
+		// Second argument is the topic name 
 		// Third argument is the zookeeper root for Kafka
 		// Fourth argument is consumer group id
-		SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, "words_topic", "", "id7");
-
+//		SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, "words_topic", "", "id7");
+		SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, "words_topic", "/usr/lib/zookeeper", "id7");
+		
 		// Specify that the kafka messages are String
 		kafkaConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
 
@@ -52,7 +53,7 @@ public class KafkaTopology {
 		try {
 			// Wait for some time before exiting
 			System.out.println("Waiting to consume from kafka");
-			Thread.sleep(10000);
+			Thread.sleep(103330000);
 		} catch (Exception exception) {
 			System.out.println("Thread interrupted exception : " + exception);
 		}

@@ -1,0 +1,131 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.learningstorm</groupId>
+	<artifactId>kafka-storm-topology</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Learning Storm - Kafka Spout</name>
+
+	<dependencies>
+		<!-- Dependency for Storm-Kafka spout -->
+		 <dependency>
+			<groupId>net.wurstmeister.storm</groupId>
+			<artifactId>storm-kafka-0.8-plus</artifactId>
+			<version>0.4.0</version>
+		</dependency> 
+<!-- 		 <dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-kafka</artifactId>
+			<version>0.9.3</version>
+		</dependency>  -->
+		<dependency>
+			<groupId>com.netflix.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>0.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.1.1</version>
+		</dependency>
+		<dependency>
+	<groupId>com.github.sgroschupf</groupId>
+	<artifactId>zkclient</artifactId>
+	<version>0.1</version>
+</dependency>
+		<!-- Dependency for Storm -->
+		<dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-core</artifactId>
+			<version>0.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>0.8.2.0</version>
+		</dependency>
+		<!-- Utilities -->
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>15.0</version>
+		</dependency>
+	</dependencies>
+
+<build>
+	<plugins>
+		<plugin>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<configuration>
+				<descriptorRefs>
+					<descriptorRef>jar-with-dependencies</descriptorRef>
+				</descriptorRefs>
+				<archive>
+					<manifest>
+						<mainClass></mainClass>
+					</manifest>
+				</archive>
+			</configuration>
+			<executions>
+				<execution>
+					<id>make-assembly</id>
+					<phase>package</phase>
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>exec-maven-plugin</artifactId>
+			<version>1.2.1</version>
+			<executions>
+				<execution>
+					<goals>
+						<goal>exec</goal>
+					</goals>
+				</execution>
+			</executions>
+			<configuration>
+				<executable>java</executable>
+				<includeProjectDependencies>true</includeProjectDependencies>
+				<includePluginDependencies>false</includePluginDependencies>
+				<classpathScope>compile</classpathScope>
+				<mainClass>${main.class}</mainClass>
+			</configuration>
+		</plugin>
+
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<source>1.6</source>
+				<target>1.6</target>
+			</configuration>
+		</plugin>
+
+	</plugins>
+</build>
+
+<repositories>
+	<repository>
+		<id>github-releases</id>
+		<url>http://oss.sonatype.org/content/repositories/github-releases/</url>
+	</repository>
+	<repository>
+		<id>github-releases1</id>
+		<url>https://github.com/apache/incubator-storm</url>
+	</repository>
+	<repository>
+		<id>clojars.org</id>
+		<url>http://clojars.org/repo</url>
+	</repository>
+</repositories>
+</project>

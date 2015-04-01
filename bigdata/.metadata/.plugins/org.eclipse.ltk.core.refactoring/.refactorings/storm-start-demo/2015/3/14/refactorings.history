@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;storm-start-demo&apos;&#x0A;- Original project: &apos;storm-start-demo&apos;&#x0A;- Original element: &apos;storm-start-demo/src/main/java/com.storm.topology.com.storm.topology&apos;" description="Delete element" element1="/src\/main\/java&lt;com.storm.topology.com.storm.topology" element2="/src\/main\/java&lt;com.storm.topology.com.storm" element3="/src\/main\/java&lt;com.storm.topology.com" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1427800378731" subPackages="false" version="1.0"/>
+</session>

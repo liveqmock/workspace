@@ -1640,6 +1640,8 @@ urlparse|/usr/lib64/python2.6/urlparse.py
 user|/usr/lib64/python2.6/user.py
 uu|/usr/lib64/python2.6/uu.py
 uuid|/usr/lib64/python2.6/uuid.py
+vboxapi.VirtualBox_constants|/usr/lib/python2.6/site-packages/vboxapi/VirtualBox_constants.py
+vboxapi.__init__|/usr/lib/python2.6/site-packages/vboxapi/__init__.py
 vtemodule|/usr/lib64/python2.6/site-packages/gtk-2.0/vtemodule.so
 warnings|/usr/lib64/python2.6/warnings.py
 wave|/usr/lib64/python2.6/wave.py

@@ -2351,3 +2351,116 @@ org.eclipse.core.runtime.CoreException: Launch configuration TaskMain references
 2015-03-26 10:27:15,107 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
 2015-03-26 10:27:15,110 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
 2015-03-26 10:27:15,110 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:47:10,101 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 16:47:10,140 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2015-03-30 16:47:10,200 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 16:47:10,201 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/yazuo/baseWxTask/src/test/resources
+2015-03-30 16:47:21,637 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:47:21,638 [Worker-6] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:47:21,886 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:47:21,952 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 16:47:22,115 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 16:47:22,144 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:47:22,145 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:49:22,656 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 16:49:22,662 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2015-03-30 16:49:22,667 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 16:49:22,667 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/yazuo/baseWxTask/src/test/resources
+2015-03-30 16:49:33,592 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.yazuo:yazuo_erp:0.0.1-SNAPSHOT @ /home/song/workspace/yazuo/yazuo_erp/pom.xml.
+2015-03-30 16:49:34,571 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:49:34,580 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:49:36,692 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:49:36,693 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:49:36,785 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:49:36,786 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:49:37,465 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:49:37,509 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 16:49:37,553 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 16:49:37,557 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:49:37,557 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:49:47,052 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:49:47,052 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:49:47,120 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:49:47,121 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:49:47,121 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:49:47,157 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:49:47,158 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:51:29,947 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:51:29,951 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 16:51:29,970 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 16:51:29,974 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:51:29,974 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:52:06,523 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 16:52:06,524 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2015-03-30 16:52:06,526 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 16:52:06,526 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/yazuo/baseWxTask/src/test/resources
+2015-03-30 16:52:08,925 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:52:08,931 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 16:52:08,953 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 16:52:08,958 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:52:08,958 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 16:55:34,462 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.yazuo:yazuo_erp:0.0.1-SNAPSHOT @ /home/song/workspace/yazuo/yazuo_erp/pom.xml.
+2015-03-30 16:55:35,726 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:55:35,727 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:55:36,176 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:55:36,176 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:55:36,216 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 16:55:36,216 [Worker-2] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 16:55:36,391 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:55:36,422 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 16:55:36,447 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 16:55:36,451 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 16:55:36,452 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:09:15,519 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 17:09:15,520 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2015-03-30 17:09:15,522 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 17:09:15,522 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/yazuo/baseWxTask/src/test/resources
+2015-03-30 17:09:16,136 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 17:09:16,136 [Worker-16] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 17:09:16,161 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:09:16,161 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:09:16,161 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:09:16,162 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:09:16,162 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:09:33,143 [Worker-22] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.yazuo:yazuo_erp:0.0.1-SNAPSHOT @ /home/song/workspace/yazuo/yazuo_erp/pom.xml.
+2015-03-30 17:09:33,517 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 17:09:33,518 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 17:09:34,026 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 17:09:34,026 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 17:09:34,113 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 17:09:34,114 [Worker-22] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 17:09:34,331 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:09:34,338 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 17:09:34,364 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 17:09:34,368 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:09:34,368 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:39:59,307 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 17:39:59,307 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:39:59,309 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 17:39:59,309 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/yazuo/baseWxTask/src/test/resources
+2015-03-30 17:39:59,705 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact servletapi:servletapi:jar:2.4 has been relocated to javax.servlet:servlet-api:jar:2.4
+2015-03-30 17:39:59,706 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - The artifact jspapi:jsp-api:jar:2.0 has been relocated to javax.servlet:jsp-api:jar:2.0
+2015-03-30 17:39:59,735 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:39:59,735 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:39:59,735 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:39:59,737 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:39:59,737 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:40:17,259 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 17:40:17,259 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 6 resources
+2015-03-30 17:40:17,262 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-30 17:40:17,262 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/song/workspace/yazuo/baseWxTask/src/test/resources
+2015-03-30 17:40:21,196 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:40:21,201 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 17:40:21,217 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 17:40:21,220 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:40:21,221 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:54:24,967 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:54:25,088 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 17:54:25,144 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 17:54:25,147 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:54:25,157 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-03-30 17:55:28,655 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:55:28,668 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 101 resources
+2015-03-30 17:55:28,671 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 8 resources
+2015-03-30 17:55:28,672 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'utf-8' encoding to copy filtered resources.
+2015-03-30 17:55:28,673 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource

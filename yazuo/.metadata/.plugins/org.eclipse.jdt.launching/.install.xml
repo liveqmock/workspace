@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
+<entry loc="/opt/jdk1.6.0_45" stamp="1427706337000"/>
+<entry loc="/usr" stamp="1418951157000"/>
 <entry loc="/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.75.x86_64" stamp="1423647423000"/>
+<entry loc="/usr/java/jdk1.7.0_75" stamp="1427362103000"/>
 <entry loc="/usr/java/jdk1.6.0_45" stamp="1423728265000"/>
 </dirs>

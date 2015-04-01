@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmlns:ui="http://www.eclipse.org/ui/2010/UIModel/application/ui" xmi:id="_txQIcMYPEeS0r_6OxjBiNg" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_txQIccYPEeS0r_6OxjBiNg" bindingContexts="_txfZKMYPEeS0r_6OxjBiNg">
-  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckServiceImpl.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;config.properties&quot; tooltip=&quot;baseWxTask/src/main/resources/config.properties&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/resources/config.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SqlUtil.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/util/SqlUtil.java&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/util/SqlUtil.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckServiceImpl.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;BesMonthlyCheckMapper.xml&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/bes/dao/mapper/BesMonthlyCheckMapper.xml&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/bes/dao/mapper/BesMonthlyCheckMapper.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;EmailUtil.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/util/EmailUtil.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/util/EmailUtil.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckTask.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/schedule/BesMonthlyCheckTask.java&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/schedule/BesMonthlyCheckTask.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;task.xml&quot; tooltip=&quot;baseWxTask/src/main/resources/task.xml&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/resources/task.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;FesOnlineProcessController.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/fes/controller/FesOnlineProcessController.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/fes/controller/FesOnlineProcessController.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.wst.server.ui.editor.input.factory&quot; id=&quot;org.eclipse.wst.server.ui.editor&quot; name=&quot;Tomcat v7.0 Server at localhost&quot; tooltip=&quot;Tomcat v7.0 Server at localhost&quot;>&#xA;&lt;persistable server-id=&quot;Tomcat v7.0 Server at localhost&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;jdbc.properties&quot; tooltip=&quot;yazuo_erp/src/main/resources/jdbc.properties&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/resources/jdbc.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SynMerchantVO.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/syn/vo/SynMerchantVO.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/syn/vo/SynMerchantVO.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.python.pydev.editor.PythonEditor&quot; name=&quot;wiki.py&quot; tooltip=&quot;rapid-generator/src/cn/wiki.py&quot;>&#xA;&lt;persistable path=&quot;/rapid-generator/src/cn/wiki.py&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;OperationLog.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/interceptors/OperationLog.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/interceptors/OperationLog.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;spring-datasource.xml&quot; tooltip=&quot;baseWxTask/src/main/resources/spring-datasource.xml&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/resources/spring-datasource.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workbench>&#xA;&lt;mruList>&#xA;&lt;file factoryID=&quot;org.eclipse.jdt.ui.ClassFileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.ClassFileEditor&quot; name=&quot;ThreadPoolExecutor.class&quot; tooltip=&quot;java.util.concurrent.ThreadPoolExecutor&quot;>&#xA;&lt;persistable org.eclipse.jdt.ui.ClassFileIdentifier=&quot;=baseWxTask/\/opt\/jdk1.6.0_45\/jre\/lib\/rt.jar&amp;lt;java.util.concurrent(ThreadPoolExecutor.class&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.wst.server.ui.editor.input.factory&quot; id=&quot;org.eclipse.wst.server.ui.editor&quot; name=&quot;Tomcat v7.0 Server at localhost&quot; tooltip=&quot;Tomcat v7.0 Server at localhost&quot;>&#xA;&lt;persistable server-id=&quot;Tomcat v7.0 Server at localhost&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;LoginController.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/system/controller/LoginController.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/system/controller/LoginController.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SynMerchantServiceImpl.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/syn/service/impl/SynMerchantServiceImpl.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/syn/service/impl/SynMerchantServiceImpl.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SynMerchantController.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/syn/controller/SynMerchantController.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/syn/controller/SynMerchantController.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SysUserMerchantServiceImpl.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/system/service/impl/SysUserMerchantServiceImpl.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/system/service/impl/SysUserMerchantServiceImpl.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SynMerchantVO.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/syn/vo/SynMerchantVO.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/syn/vo/SynMerchantVO.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckServiceImpl.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;config.properties&quot; tooltip=&quot;baseWxTask/src/main/resources/config.properties&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/resources/config.properties&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SqlUtil.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/util/SqlUtil.java&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/util/SqlUtil.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckServiceImpl.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;BesMonthlyCheckMapper.xml&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/bes/dao/mapper/BesMonthlyCheckMapper.xml&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/bes/dao/mapper/BesMonthlyCheckMapper.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;EmailUtil.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/util/EmailUtil.java&quot;>&#xA;&lt;persistable path=&quot;/yazuo_erp/src/main/java/com/yazuo/util/EmailUtil.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckTask.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/schedule/BesMonthlyCheckTask.java&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/schedule/BesMonthlyCheckTask.java&quot;/>&#xA;&lt;/file>&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart&quot; name=&quot;task.xml&quot; tooltip=&quot;baseWxTask/src/main/resources/task.xml&quot;>&#xA;&lt;persistable path=&quot;/baseWxTask/src/main/resources/task.xml&quot;/>&#xA;&lt;/file>&#xA;&lt;/mruList>&#xA;&lt;/workbench>"/>
   <tags>ModelMigrationProcessor.001</tags>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_txQIccYPEeS0r_6OxjBiNg" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_txQIcsYPEeS0r_6OxjBiNg" label="%trimmedwindow.label.eclipseSDK" x="55" y="27" width="1020" height="714">
@@ -66,16 +66,15 @@
           <tags>persp.viewSC:org.eclipse.ui.views.ContentOutline</tags>
           <tags>persp.viewSC:org.eclipse.wst.common.snippets.internal.ui.SnippetsView</tags>
           <tags>persp.viewSC:org.eclipse.datatools.connectivity.DataSourceExplorerNavigator</tags>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_txQIdcYPEeS0r_6OxjBiNg" selectedElement="_txQIdsYPEeS0r_6OxjBiNg" horizontal="true">
-            <children xsi:type="basic:PartStack" xmi:id="_txQIdsYPEeS0r_6OxjBiNg" elementId="topLeft" containerData="1971" selectedElement="_txQIeMYPEeS0r_6OxjBiNg">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_txQIdcYPEeS0r_6OxjBiNg" selectedElement="_txQIe8YPEeS0r_6OxjBiNg" horizontal="true">
+            <children xsi:type="basic:PartStack" xmi:id="_txQIdsYPEeS0r_6OxjBiNg" elementId="topLeft" containerData="1949" selectedElement="_txQIeMYPEeS0r_6OxjBiNg">
               <tags>newtablook</tags>
-              <tags>active</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_txQId8YPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_txTy0MYPEeS0r_6OxjBiNg"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_txQIeMYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.ResourceNavigator" ref="_txTy08YPEeS0r_6OxjBiNg"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_txQIecYPEeS0r_6OxjBiNg" elementId="org.eclipse.jdt.ui.TypeHierarchy" toBeRendered="false" ref="_txUZ7cYPEeS0r_6OxjBiNg"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_txQIesYPEeS0r_6OxjBiNg" elementId="org.eclipse.jdt.ui.PackagesView" toBeRendered="false" ref="_txUZ7sYPEeS0r_6OxjBiNg"/>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_txQIe8YPEeS0r_6OxjBiNg" containerData="8029" selectedElement="_txQIfMYPEeS0r_6OxjBiNg">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_txQIe8YPEeS0r_6OxjBiNg" containerData="8051" selectedElement="_txQIfMYPEeS0r_6OxjBiNg">
               <children xsi:type="basic:PartSashContainer" xmi:id="_txQIfMYPEeS0r_6OxjBiNg" containerData="6780" selectedElement="_txQIfcYPEeS0r_6OxjBiNg" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_txQIfcYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.editorss" containerData="7933" ref="_txTLyMYPEeS0r_6OxjBiNg"/>
                 <children xsi:type="basic:PartStack" xmi:id="_txQIfsYPEeS0r_6OxjBiNg" elementId="topRight" containerData="2067" selectedElement="_txQIgMYPEeS0r_6OxjBiNg">
@@ -85,9 +84,10 @@
                   <children xsi:type="advanced:Placeholder" xmi:id="_txQIgcYPEeS0r_6OxjBiNg" elementId="org.eclipse.mylyn.tasks.ui.views.tasks" toBeRendered="false" ref="_txWPKcYPEeS0r_6OxjBiNg"/>
                 </children>
               </children>
-              <children xsi:type="basic:PartStack" xmi:id="_txQIgsYPEeS0r_6OxjBiNg" elementId="bottomRight" containerData="3220" selectedElement="_txQIjMYPEeS0r_6OxjBiNg">
+              <children xsi:type="basic:PartStack" xmi:id="_txQIgsYPEeS0r_6OxjBiNg" elementId="bottomRight" containerData="3220" selectedElement="_txQIicYPEeS0r_6OxjBiNg">
                 <tags>newtablook</tags>
                 <tags>org.eclipse.e4.secondaryDataStack</tags>
+                <tags>noFocus</tags>
                 <children xsi:type="advanced:Placeholder" xmi:id="_txQIg8YPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.AllMarkersView" ref="_txUZ78YPEeS0r_6OxjBiNg"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_txQIhMYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.PropertySheet" ref="_txUZ8sYPEeS0r_6OxjBiNg"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_txQIhcYPEeS0r_6OxjBiNg" elementId="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" toBeRendered="false" ref="_txVoC8YPEeS0r_6OxjBiNg"/>
@@ -147,8 +147,8 @@
           <tags>persp.viewSC:org.eclipse.datatools.sqltools.result.resultView</tags>
           <tags>persp.viewSC:org.eclipse.ant.ui.views.AntView</tags>
           <children xsi:type="basic:PartSashContainer" xmi:id="_txQIkMYPEeS0r_6OxjBiNg" selectedElement="_txQIkcYPEeS0r_6OxjBiNg">
-            <children xsi:type="basic:PartSashContainer" xmi:id="_txQIkcYPEeS0r_6OxjBiNg" containerData="5615" selectedElement="_txQIksYPEeS0r_6OxjBiNg">
-              <children xsi:type="basic:PartSashContainer" xmi:id="_txQIksYPEeS0r_6OxjBiNg" containerData="4500" selectedElement="_txQImcYPEeS0r_6OxjBiNg" horizontal="true">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_txQIkcYPEeS0r_6OxjBiNg" containerData="5615" selectedElement="_txQInsYPEeS0r_6OxjBiNg">
+              <children xsi:type="basic:PartSashContainer" xmi:id="_txQIksYPEeS0r_6OxjBiNg" containerData="4500" selectedElement="_txQIk8YPEeS0r_6OxjBiNg" horizontal="true">
                 <children xsi:type="basic:PartStack" xmi:id="_txQIk8YPEeS0r_6OxjBiNg" elementId="org.eclipse.debug.internal.ui.NavigatorFolderView" containerData="5000" selectedElement="_txQIlMYPEeS0r_6OxjBiNg">
                   <tags>newtablook</tags>
                   <tags>org.eclipse.e4.primaryNavigationStack</tags>
@@ -176,7 +176,7 @@
                 </children>
               </children>
             </children>
-            <children xsi:type="basic:PartStack" xmi:id="_txQIo8YPEeS0r_6OxjBiNg" elementId="org.eclipse.debug.internal.ui.ConsoleFolderView" containerData="4385" selectedElement="_txQIq8YPEeS0r_6OxjBiNg">
+            <children xsi:type="basic:PartStack" xmi:id="_txQIo8YPEeS0r_6OxjBiNg" elementId="org.eclipse.debug.internal.ui.ConsoleFolderView" containerData="4385" selectedElement="_txQIpMYPEeS0r_6OxjBiNg">
               <tags>newtablook</tags>
               <tags>org.eclipse.e4.secondaryDataStack</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_txQIpMYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.console.ConsoleView" ref="_txVoI8YPEeS0r_6OxjBiNg"/>
@@ -268,10 +268,11 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_txTLyMYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.editorss" selectedElement="_txTLycYPEeS0r_6OxjBiNg">
-      <children xsi:type="basic:PartStack" xmi:id="_txTLycYPEeS0r_6OxjBiNg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_ZtJPwMuHEeSmFMluEz2pdw">
+      <children xsi:type="basic:PartStack" xmi:id="_txTLycYPEeS0r_6OxjBiNg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_iSSp4Na6EeSgLIYfd2-mAg">
         <tags>newtablook</tags>
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
+        <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_zPb1UMZEEeSB1OvfoaaMYQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="jdbc.properties" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/file_obj.gif" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.PropertiesFileEditor&quot; name=&quot;jdbc.properties&quot; partName=&quot;jdbc.properties&quot; title=&quot;jdbc.properties&quot; tooltip=&quot;yazuo_erp/src/main/resources/jdbc.properties&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/yazuo_erp/src/main/resources/jdbc.properties&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;843&quot; selectionTopPixel=&quot;252&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
@@ -303,7 +304,21 @@
           <tags>removeOnHide</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_ZtJPwMuHEeSmFMluEz2pdw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="BesMonthlyCheckServiceImpl.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckServiceImpl.java&quot; partName=&quot;BesMonthlyCheckServiceImpl.java&quot; title=&quot;BesMonthlyCheckServiceImpl.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;4130&quot; selectionTopPixel=&quot;1638&quot;/>&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;BesMonthlyCheckServiceImpl.java&quot; partName=&quot;BesMonthlyCheckServiceImpl.java&quot; title=&quot;BesMonthlyCheckServiceImpl.java&quot; tooltip=&quot;baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/baseWxTask/src/main/java/com/yazuo/erp/bes/service/impl/BesMonthlyCheckServiceImpl.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;4225&quot; selectionTopPixel=&quot;1637&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_iSSp4Na6EeSgLIYfd2-mAg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="SynMerchantController.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SynMerchantController.java&quot; partName=&quot;SynMerchantController.java&quot; title=&quot;SynMerchantController.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/syn/controller/SynMerchantController.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/syn/controller/SynMerchantController.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;7280&quot; selectionTopPixel=&quot;2389&quot;/>&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
+          <tags>removeOnHide</tags>
+          <tags>active</tags>
+          <tags>activeOnClose</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_zIAX4Na8EeSgLIYfd2-mAg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="SynMerchantServiceImpl.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.gif" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;SynMerchantServiceImpl.java&quot; partName=&quot;SynMerchantServiceImpl.java&quot; title=&quot;SynMerchantServiceImpl.java&quot; tooltip=&quot;yazuo_erp/src/main/java/com/yazuo/erp/syn/service/impl/SynMerchantServiceImpl.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/yazuo_erp/src/main/java/com/yazuo/erp/syn/service/impl/SynMerchantServiceImpl.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;11&quot; selectionOffset=&quot;8213&quot; selectionTopPixel=&quot;2936&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -321,11 +336,9 @@
       <toolbar xmi:id="_txTy0sYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.navigator.ProjectExplorer" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_txTy08YPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.ResourceNavigator" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Navigator" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/filenav_nav.png" closeable="true">
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view LINK_NAVIGATOR_TO_EDITOR=&quot;0&quot; sorter=&quot;1&quot;>&#xA;&lt;filters>&#xA;&lt;filter element=&quot;*.class&quot; isEnabled=&quot;false&quot;/>&#xA;&lt;filter element=&quot;RemoteSystemsConnections&quot; isEnabled=&quot;true&quot;/>&#xA;&lt;filter element=&quot;RemoteSystemsTempFiles&quot; isEnabled=&quot;true&quot;/>&#xA;&lt;filter element=&quot;.*&quot; isEnabled=&quot;false&quot;/>&#xA;&lt;/filters>&#xA;&lt;expanded>&#xA;&lt;element path=&quot;/rapid-generator&quot;/>&#xA;&lt;element path=&quot;/rapid-generator/src&quot;/>&#xA;&lt;element path=&quot;/rapid-generator/src/cn&quot;/>&#xA;&lt;element path=&quot;/yazuo_erp&quot;/>&#xA;&lt;element path=&quot;/yazuo_erp/src&quot;/>&#xA;&lt;element path=&quot;/yazuo_erp/src/main&quot;/>&#xA;&lt;/expanded>&#xA;&lt;selection>&#xA;&lt;element path=&quot;/rapid-generator/src/cn/wiki.py&quot;/>&#xA;&lt;/selection>&#xA;&lt;/view>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view LINK_NAVIGATOR_TO_EDITOR=&quot;0&quot; sorter=&quot;1&quot;>&#xA;&lt;filters>&#xA;&lt;filter element=&quot;*.class&quot; isEnabled=&quot;false&quot;/>&#xA;&lt;filter element=&quot;RemoteSystemsConnections&quot; isEnabled=&quot;true&quot;/>&#xA;&lt;filter element=&quot;RemoteSystemsTempFiles&quot; isEnabled=&quot;true&quot;/>&#xA;&lt;filter element=&quot;.*&quot; isEnabled=&quot;false&quot;/>&#xA;&lt;filter element=&quot;*.pyc&quot; isEnabled=&quot;true&quot;/>&#xA;&lt;filter element=&quot;*.class&quot; isEnabled=&quot;false&quot;/>&#xA;&lt;filter element=&quot;*.pyo&quot; isEnabled=&quot;true&quot;/>&#xA;&lt;filter element=&quot;__pycache__&quot; isEnabled=&quot;true&quot;/>&#xA;&lt;/filters>&#xA;&lt;expanded>&#xA;&lt;element path=&quot;/Servers&quot;/>&#xA;&lt;element path=&quot;/yazuo_erp&quot;/>&#xA;&lt;element path=&quot;/yazuo_erp/src&quot;/>&#xA;&lt;element path=&quot;/yazuo_erp/src/main&quot;/>&#xA;&lt;/expanded>&#xA;&lt;selection>&#xA;&lt;element path=&quot;/Servers&quot;/>&#xA;&lt;/selection>&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
-      <tags>active</tags>
-      <tags>activeOnClose</tags>
       <menus xmi:id="_txTy1MYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.ResourceNavigator">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
@@ -429,7 +442,7 @@
       <toolbar xmi:id="_txVoEMYPEeS0r_6OxjBiNg" elementId="org.eclipse.wst.common.snippets.internal.ui.SnippetsView" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_txVoEcYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" closeable="true">
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot; partName=&quot;Problems&quot;>&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;90&quot; org.eclipse.ui.ide.markerType=&quot;499&quot; org.eclipse.ui.ide.pathField=&quot;196&quot; org.eclipse.ui.ide.resourceField=&quot;90&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;566&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xA;&lt;/view>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view PRIMARY_SORT_FIELD=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot; categoryGroup=&quot;org.eclipse.ui.ide.severity&quot; markerContentGenerator=&quot;org.eclipse.ui.ide.problemsGenerator&quot; partName=&quot;Problems&quot;>&#xA;&lt;expanded>&#xA;&lt;category IMemento.internal.id=&quot;Warnings (100 of 7088 items)&quot;/>&#xA;&lt;/expanded>&#xA;&lt;columnWidths org.eclipse.ui.ide.locationField=&quot;90&quot; org.eclipse.ui.ide.markerType=&quot;499&quot; org.eclipse.ui.ide.pathField=&quot;196&quot; org.eclipse.ui.ide.resourceField=&quot;90&quot; org.eclipse.ui.ide.severityAndDescriptionField=&quot;566&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.severityAndDescriptionField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.resourceField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.pathField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.locationField&quot;/>&#xA;&lt;visible IMemento.internal.id=&quot;org.eclipse.ui.ide.markerType&quot;/>&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
       <menus xmi:id="_txVoEsYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.ProblemView">
@@ -480,7 +493,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.eclipse.debug.ui.ProcessConsoleType.#ContextMenu</tags>
       </menus>
-      <toolbar xmi:id="_txVoKsYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.console.ConsoleView" visible="false"/>
+      <toolbar xmi:id="_txVoKsYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.console.ConsoleView"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_txWPGsYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.BookmarkView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Bookmarks" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/bkmrk_nav.png" closeable="true">
       <tags>View</tags>
@@ -512,7 +525,7 @@
         <tags>menuContribution:popup</tags>
         <tags>popup:org.eclipse.search.ui.views.SearchView</tags>
       </menus>
-      <toolbar xmi:id="_txWPJcYPEeS0r_6OxjBiNg" elementId="org.eclipse.search.ui.views.SearchView"/>
+      <toolbar xmi:id="_txWPJcYPEeS0r_6OxjBiNg" elementId="org.eclipse.search.ui.views.SearchView" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_txWPJsYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.views.ContentOutline" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png" closeable="true">
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view/>"/>
@@ -630,12 +643,11 @@
       <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view search_scope_type=&quot;1&quot;/>"/>
       <tags>View</tags>
       <tags>categoryTag:Java</tags>
-      <tags>highlighted</tags>
       <menus xmi:id="_txW2LcYPEeS0r_6OxjBiNg" elementId="org.eclipse.jdt.callhierarchy.view">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
-      <toolbar xmi:id="_txW2LsYPEeS0r_6OxjBiNg" elementId="org.eclipse.jdt.callhierarchy.view"/>
+      <toolbar xmi:id="_txW2LsYPEeS0r_6OxjBiNg" elementId="org.eclipse.jdt.callhierarchy.view" visible="false"/>
     </sharedElements>
     <trimBars xmi:id="_txW2L8YPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.main.toolbar">
       <children xsi:type="menu:ToolBar" xmi:id="_txW2MMYPEeS0r_6OxjBiNg" elementId="group.file" toBeRendered="false">
@@ -644,13 +656,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_txW2MsYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_R02ZMNNbEeShN9hpBDWseg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_txs0ssYPEeS0r_6OxjBiNg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_R6iNwNa5EeSgLIYfd2-mAg" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_txs0ssYPEeS0r_6OxjBiNg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_txW2QMYPEeS0r_6OxjBiNg" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_txW2QcYPEeS0r_6OxjBiNg" elementId="additions" toBeRendered="false"/>
       </children>
-      <children xsi:type="menu:ToolBar" xmi:id="_txW2QsYPEeS0r_6OxjBiNg" elementId="com.python.pydev.debug.actionSet" visible="false">
+      <children xsi:type="menu:ToolBar" xmi:id="_txW2QsYPEeS0r_6OxjBiNg" elementId="com.python.pydev.debug.actionSet">
         <tags>Draggable</tags>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_txW2Q8YPEeS0r_6OxjBiNg" elementId="com.python.pydev.navigate.actionSet" visible="false">
@@ -907,7 +919,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_txZSY8YPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_R08f0dNbEeShN9hpBDWseg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_txrmXcYPEeS0r_6OxjBiNg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_R6sl0da5EeSgLIYfd2-mAg" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_txrmXcYPEeS0r_6OxjBiNg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_txZScsYPEeS0r_6OxjBiNg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1014,6 +1026,8 @@
     </trimBars>
     <trimBars xmi:id="_txZ5c8YPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.trim.vertical2" toBeRendered="false" side="Right">
       <children xsi:type="menu:ToolControl" xmi:id="_txZ5dMYPEeS0r_6OxjBiNg" elementId="topRight(org.eclipse.jst.j2ee.J2EEPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
+        <persistedState key="XSize" value="600"/>
+        <persistedState key="YSize" value="595"/>
         <tags>TrimStack</tags>
       </children>
       <children xsi:type="menu:ToolControl" xmi:id="_txZ5dcYPEeS0r_6OxjBiNg" elementId="bottomRight(org.eclipse.jst.j2ee.J2EEPerspective)" toBeRendered="false" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.addons.swt/org.eclipse.e4.ui.workbench.addons.minmax.TrimStack">
@@ -1325,6 +1339,7 @@
     <bindings xmi:id="_txcV3cYPEeS0r_6OxjBiNg" keySequence="ALT+CTRL+H" command="_txpKGsYPEeS0r_6OxjBiNg"/>
     <bindings xmi:id="_txcV3sYPEeS0r_6OxjBiNg" keySequence="ALT+CTRL+SHIFT+ARROW_DOWN" command="_txtblcYPEeS0r_6OxjBiNg"/>
     <bindings xmi:id="_txcV4MYPEeS0r_6OxjBiNg" keySequence="CTRL+`" command="_txuDK8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn7WYNa5EeSgLIYfd2-mAg" keySequence="ALT+CTRL+R" command="_txuDA8YPEeS0r_6OxjBiNg"/>
   </bindingTables>
   <bindingTables xmi:id="_txcV4cYPEeS0r_6OxjBiNg" elementId="org.eclipse.ui.textEditorScope" bindingContext="_txfZMMYPEeS0r_6OxjBiNg">
     <bindings xmi:id="_txcV4sYPEeS0r_6OxjBiNg" keySequence="CTRL+SHIFT+J" command="_txs0i8YPEeS0r_6OxjBiNg"/>
@@ -1604,8 +1619,53 @@
   <bindingTables xmi:id="_txeyOcYPEeS0r_6OxjBiNg" bindingContext="_txgAX8YPEeS0r_6OxjBiNg"/>
   <bindingTables xmi:id="_txeyOsYPEeS0r_6OxjBiNg" bindingContext="_txgAYMYPEeS0r_6OxjBiNg"/>
   <bindingTables xmi:id="_txeyO8YPEeS0r_6OxjBiNg" bindingContext="_txgAYcYPEeS0r_6OxjBiNg"/>
-  <bindingTables xmi:id="_txeyPMYPEeS0r_6OxjBiNg" elementId="org.python.pydev.ui.editor.scope" bindingContext="_txgAF8YPEeS0r_6OxjBiNg"/>
-  <bindingTables xmi:id="_txfZIcYPEeS0r_6OxjBiNg" elementId="com.python.pydev.contexts.window" bindingContext="_txgAI8YPEeS0r_6OxjBiNg"/>
+  <bindingTables xmi:id="_txeyPMYPEeS0r_6OxjBiNg" elementId="org.python.pydev.ui.editor.scope" bindingContext="_txgAF8YPEeS0r_6OxjBiNg">
+    <bindings xmi:id="_QnzakNa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+F" command="_txuDB8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn120Na5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+ARROW_UP" command="_txuC-8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn6IQNa5EeSgLIYfd2-mAg" keySequence="F2" command="_txuDGsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn8kgNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+M" command="_txuDGcYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn9LkNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+L" command="_txuDHsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn9yoNa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+T" command="_txuDDMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn_AwNa5EeSgLIYfd2-mAg" keySequence="CTRL+5" command="_txuC78YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn_Awda5EeSgLIYfd2-mAg" keySequence="CTRL+4" command="_txuDBMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn_Awta5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+4" command="_txuC8MYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn_Aw9a5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+3" command="_txuDIMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn_n0Na5EeSgLIYfd2-mAg" keySequence="CTRL+-" command="_txuDDsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qn_n0da5EeSgLIYfd2-mAg" keySequence="CTRL+9" command="_txuDDcYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoAO4Na5EeSgLIYfd2-mAg" keySequence="CTRL+0" command="_txuDC8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoAO4da5EeSgLIYfd2-mAg" keySequence="CTRL+2" command="_txuDCcYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoAO4ta5EeSgLIYfd2-mAg" keySequence="ALT+CTRL+CR" command="_txuC_MYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoA18Na5EeSgLIYfd2-mAg" keySequence="F9" command="_txuDEsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoA18da5EeSgLIYfd2-mAg" keySequence="ALT+CTRL+F9" command="_txuDG8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoBdANa5EeSgLIYfd2-mAg" keySequence="CTRL+F9" command="_txuDEcYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoBdAda5EeSgLIYfd2-mAg" keySequence="SHIFT+F9" command="_txuDCMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoDSMNa5EeSgLIYfd2-mAg" keySequence="F3" command="_txuC_cYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoD5QNa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+P" command="_txuC9cYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoFHYNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+R" command="_txuC-sYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoFucNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+O" command="_txuC-cYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoG8kNa5EeSgLIYfd2-mAg" keySequence="CTRL+/" command="_txuDFsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoL1ENa5EeSgLIYfd2-mAg" keySequence="CTRL+O" command="_txuDFcYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoMcINa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+F9" command="_txuDCsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoNqQNa5EeSgLIYfd2-mAg" keySequence="F4" command="_txuDH8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoO4YNa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+O" command="_txuC7cYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QoaekNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+ARROW_DOWN" command="_txuDAcYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QobssNa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+ARROW_UP" command="_txuC_8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qodh4Na5EeSgLIYfd2-mAg" keySequence="CTRL+\" command="_txuDIMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qof-INa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+I" command="_txuDGMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QohzUNa5EeSgLIYfd2-mAg" keySequence="CTRL+=" command="_txuDEMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QosycNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+T P" command="_txuDAsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QotZgNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+T C" command="_txuDE8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QotZgda5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+T O" command="_txuC-MYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QouAkNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+T L" command="_txuDHsYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QouAkda5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+T I" command="_txuDGMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_QounoNa5EeSgLIYfd2-mAg" keySequence="ALT+SHIFT+T E" command="_txuDGcYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qowc0Na5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+ARROW_DOWN" command="_txuDAMYPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qoy5ENa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+D" command="_txuDD8YPEeS0r_6OxjBiNg"/>
+    <bindings xmi:id="_Qo2jcNa5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+G" command="_txuC_sYPEeS0r_6OxjBiNg"/>
+  </bindingTables>
+  <bindingTables xmi:id="_txfZIcYPEeS0r_6OxjBiNg" elementId="com.python.pydev.contexts.window" bindingContext="_txgAI8YPEeS0r_6OxjBiNg">
+    <bindings xmi:id="_Qn9yoda5EeSgLIYfd2-mAg" keySequence="CTRL+SHIFT+T" command="_txuDF8YPEeS0r_6OxjBiNg"/>
+  </bindingTables>
   <bindingTables xmi:id="_txfZI8YPEeS0r_6OxjBiNg" bindingContext="_txgAYsYPEeS0r_6OxjBiNg"/>
   <bindingTables xmi:id="_txfZJMYPEeS0r_6OxjBiNg" bindingContext="_txgAY8YPEeS0r_6OxjBiNg"/>
   <bindingTables xmi:id="_txfZJcYPEeS0r_6OxjBiNg" bindingContext="_txgAZMYPEeS0r_6OxjBiNg"/>

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="FileSystemImportWizard">
+		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
+		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID"/>
+		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="/home/song/workspace/yazuo/feiyu-master"/>
+		</list>
+	</section>
 	<section name="org.eclipse.ui.internal.dialogs.WorkbenchEditorsDialog">
 		<item value="0" key="sort"/>
 		<item value="false" key="allPersp"/>
@@ -14,17 +21,10 @@
 			<item value="532"/>
 		</list>
 	</section>
-	<section name="FileSystemImportWizard">
-		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
-		<item value="false" key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID"/>
-		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
-			<item value="/home/song/workspace/yazuo/feiyu-master"/>
-		</list>
-	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
-		<item value="853" key="dialogWidth"/>
+		<item value="847" key="dialogWidth"/>
 		<item value="true" key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE"/>
-		<item value="480" key="dialogHeight"/>
+		<item value="474" key="dialogHeight"/>
 		<item value="460" key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_WIDTH"/>
 		<item value="false" key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION"/>
 		<item value="502" key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_HEIGHT"/>
@@ -41,35 +41,35 @@
 		<item value="0" key="DIALOG_Y_ORIGIN"/>
 		<item value="218" key="DIALOG_X_ORIGIN"/>
 	</section>
+	<section name="InstallationDialogSettings">
+		<item value="690" key="DIALOG_WIDTH"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
+		<item value="743" key="DIALOG_HEIGHT"/>
+		<item value="216" key="DIALOG_X_ORIGIN"/>
+		<item value="1|微软雅黑|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
 	<section name="NewWizardAction">
 		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 		</list>
 	</section>
-	<section name="InstallationDialogSettings">
-		<item value="690" key="DIALOG_WIDTH"/>
-		<item value="0" key="DIALOG_Y_ORIGIN"/>
-		<item value="216" key="DIALOG_X_ORIGIN"/>
-		<item value="743" key="DIALOG_HEIGHT"/>
-		<item value="1|微软雅黑|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
-	</section>
 	<section name="ShowViewDialog">
 		<item value="313" key="DIALOG_WIDTH"/>
 		<item value="org.eclipse.ui.views.ProblemView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
 		<item value="76" key="DIALOG_Y_ORIGIN"/>
-		<item value="499" key="DIALOG_X_ORIGIN"/>
 		<item value="420" key="DIALOG_HEIGHT"/>
+		<item value="499" key="DIALOG_X_ORIGIN"/>
 		<item value="1|Liberation Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.ui"/>
 		</list>
 	</section>
-	<section name="EditorSelectionDialog">
-	</section>
 	<section name="org.eclipse.ui.preferences.keysPreferencePage">
 		<item value="true" key="uncategorizedFilter"/>
 		<item value="true" key="internalFilter"/>
 		<item value="true" key="actionSetFilter"/>
+	</section>
+	<section name="EditorSelectionDialog">
 	</section>
 	<section name="ImportExportAction">
 		<item value="org.eclipse.team.svn.ui.wizard.ImportFromSVNWizard" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
