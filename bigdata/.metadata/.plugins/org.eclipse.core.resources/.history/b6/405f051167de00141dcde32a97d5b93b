@@ -1,0 +1,50 @@
+package com.yazuo.log;
+
+import org.apache.commons.lang.StringUtils;
+
+import backtype.storm.topology.BasicOutputCollector;
+import backtype.storm.topology.OutputFieldsDeclarer;
+import backtype.storm.topology.base.BaseBasicBolt;
+import backtype.storm.tuple.Fields;
+import backtype.storm.tuple.Tuple;
+import backtype.storm.tuple.Values;
+
+public class SplitBolt extends BaseBasicBolt {
+
+	public void cleanup() {
+	}
+
+	/**
+	 * The bolt will receive the line from the words file and process it to
+	 * Normalize this line
+	 * 
+	 * The normalize will be put the words in lower case and split the line to
+	 * get all words in this
+	 */
+	public void execute(Tuple input, BasicOutputCollector collector) {
+		 String sentence = input.getString(0);
+		System.err.println("sentence: " + sentence);
+		if (StringUtils.isNotEmpty(sentence)) {
+			if (sentence.contains("userName:")) {
+				String[] split = sentence.split("userName:");
+				String str = split[1].trim(); // admin\",\"@version\":\"1\",\"@timestamp\":\"2015-04-01t06:51:42.653z
+
+				String word = str.substring(0, str.indexOf("\""));
+
+				if (!word.isEmpty()) {
+					word = word.toLowerCase();
+					System.err.println("word: " + word);
+					collector.emit(new Values(word));// means username
+				}
+
+			}
+		}
+	}
+
+	/**
+	 * The bolt will only emit the field "word"
+	 */
+	public void declareOutputFields(OutputFieldsDeclarer declarer) {
+		declarer.declare(new Fields("word"));
+	}
+}

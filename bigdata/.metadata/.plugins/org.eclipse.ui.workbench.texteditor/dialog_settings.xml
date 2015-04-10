@@ -13,19 +13,24 @@
 		<item value="false" key="isRegEx"/>
 		<item value="true" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="ZooKeeper" key="selection"/>
 		<list key="findhistory">
-			<item value="https://github.com/apache/storm"/>
-			<item value="zmq"/>
-			<item value="netf"/>
-			<item value="RedisStormSpout"/>
-			<item value="personalMap"/>
-			<item value="execute"/>
-			<item value="Europe"/>
-			<item value="batchSize"/>
+			<item value="zookeeper"/>
+			<item value="ZooKeeper"/>
+			<item value="k"/>
+			<item value="single"/>
+			<item value="-------"/>
+			<item value="fe"/>
+			<item value="Committed"/>
+			<item value="Path"/>
 		</list>
 		<list key="replacehistory">
+			<item value="esHandler"/>
 			<item value=""/>
 		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item value="229" key="DIALOG_Y_ORIGIN"/>
+		<item value="445" key="DIALOG_X_ORIGIN"/>
 	</section>
 </section>

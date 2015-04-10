@@ -1,0 +1,91 @@
+package com.yazuo.log;
+
+import storm.kafka.KafkaSpout;
+import storm.kafka.SpoutConfig;
+import storm.kafka.StringScheme;
+import storm.kafka.ZkHosts;
+import backtype.storm.Config;
+import backtype.storm.LocalCluster;
+import backtype.storm.StormSubmitter;
+import backtype.storm.generated.AlreadyAliveException;
+import backtype.storm.generated.InvalidTopologyException;
+import backtype.storm.spout.SchemeAsMultiScheme;
+import backtype.storm.topology.TopologyBuilder;
+import backtype.storm.tuple.Fields;
+
+public class KafkaTopology {
+	public static void main(String[] args) throws AlreadyAliveException, InvalidTopologyException {
+
+		// zookeeper hosts for the Kafka cluster
+		// ZkHosts zkHosts = new ZkHosts("localhost:2181");
+		// ZkHosts zkHosts = new ZkHosts("slave-thinkcentre:2181");
+		ZkHosts zkHosts = new ZkHosts("192.168.232.181:2181");
+		// ZkHosts zkHosts = new ZkHosts("192.168.232.187:2181");
+
+		// Create the KafkaSpout configuartion
+		// Second argument is the topic name
+		// Third argument is the zookeeper root for Kafka
+		// Fourth argument is consumer group id
+		// SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, "words_topic", "",
+		// "id7");
+		// SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, "words_topic",
+		// "/usr/lib/zookeeper", "id7");
+		SpoutConfig kafkaConfig = new SpoutConfig(zkHosts, "words_topic", "/opt/programs/zookeeper-3.4.6", "id7");
+
+		// Specify that the kafka messages are String
+		kafkaConfig.scheme = new SchemeAsMultiScheme(new StringScheme());
+
+		// We want to consume all the first messages in the topic everytime
+		// we run the topology to help in debugging. In production, this
+		// property should be false
+		kafkaConfig.forceFromStart = false;
+
+		// Now we create the topology
+		TopologyBuilder builder = new TopologyBuilder();
+
+		// set the kafka spout class
+		// 通常的做法，一个Consumer去对应一个Partition, 可以根据主题有多少个分配选择参数
+		builder.setSpout("KafkaSpout", new KafkaSpout(kafkaConfig), 1);
+
+
+		builder.setBolt("word-normalizer", new SplitBolt()).shuffleGrouping("KafkaSpout");
+		builder.setBolt("word-counter", new LogCounter(), 2).shuffleGrouping("word-normalizer");
+//		builder.setBolt("es-update", new ESLogStormBolt()).fieldsGrouping("word-counter", new Fields("word"));
+		builder.setBolt("es-update", new ESLogStormBolt(), 1).shuffleGrouping("word-counter");
+
+		Config conf = new Config();
+		if (args == null || args.length == 0) {
+			// create an instance of LocalCluster class for executing topology
+			// in
+			// local mode.
+			LocalCluster cluster = new LocalCluster();
+
+			// Submit topology for execution
+			cluster.submitTopology("KafkaToplogy", conf, builder.createTopology());
+
+			try {
+				// Wait for some time before exiting
+				System.out.println("Waiting to consume from kafka");
+				Thread.sleep(103330000);
+			} catch (Exception exception) {
+				System.out.println("Thread interrupted exception : " + exception);
+			}
+
+			// kill the KafkaTopology
+			cluster.killTopology("KafkaToplogy");
+
+			// shut down the storm test cluster
+			cluster.shutdown();
+		} else {
+			
+			StormSubmitter remoteClustor = new StormSubmitter();
+			try {
+				remoteClustor.submitTopology(args[0], conf, builder.createTopology());
+			} catch (AlreadyAliveException e) {
+				e.printStackTrace();
+			} catch (InvalidTopologyException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

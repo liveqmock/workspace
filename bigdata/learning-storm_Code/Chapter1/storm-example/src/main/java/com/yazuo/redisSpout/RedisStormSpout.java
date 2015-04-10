@@ -30,7 +30,7 @@ public class RedisStormSpout extends BaseRichSpout {
 			if(rpop!=null){
 				spoutOutputCollector.emit(new Values(redisKey, rpop));
 			}else{
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 				System.err.println("no work to do, sleep for a little while ! ");
 			}
 		} catch (InterruptedException e) {

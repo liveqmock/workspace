@@ -16,7 +16,7 @@ public class LearningStormTopology {
 		builder.setBolt("LearningStormBolt", new LearningStormBolt(), 4).shuffleGrouping("LearningStormSpout");
 
 		Config conf = new Config();
-		conf.setDebug(true);
+		conf.setDebug(false);
 		// create an instance of LocalCluster class for
 		// executing topology in local mode.
 		LocalCluster cluster = new LocalCluster();

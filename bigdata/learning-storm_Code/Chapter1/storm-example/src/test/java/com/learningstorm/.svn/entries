@@ -1,14 +1,14 @@
 10
 
 dir
-10
-svn://192.168.232.181/storm/branches/log-redis-intergation/test/java/com/learningstorm
+20
+svn://192.168.232.181/storm/branches/flume-kafka-storm/src/test/java/com/learningstorm
 svn://192.168.232.181/storm
 
 
 
-2015-03-27T14:51:22.945694Z
-10
+2015-04-10T18:22:55.907730Z
+20
 
 
 

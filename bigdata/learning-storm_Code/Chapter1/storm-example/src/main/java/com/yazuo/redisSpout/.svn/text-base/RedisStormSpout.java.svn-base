@@ -13,7 +13,7 @@ import backtype.storm.tuple.Values;
 public class RedisStormSpout extends BaseRichSpout {
 	private static final long serialVersionUID = 1L;
 	private SpoutOutputCollector spoutOutputCollector;
-	static final Jedis jedis = new Jedis("192.168.232.187", 6379);
+	static final Jedis jedis = new Jedis("192.168.232.181", 6379);
 	static final String redisKey = "myspout";
 
 	public void open(Map conf, TopologyContext context, SpoutOutputCollector spoutOutputCollector) {
@@ -30,7 +30,7 @@ public class RedisStormSpout extends BaseRichSpout {
 			if(rpop!=null){
 				spoutOutputCollector.emit(new Values(redisKey, rpop));
 			}else{
-				Thread.sleep(10000);
+				Thread.sleep(5000);
 				System.err.println("no work to do, sleep for a little while ! ");
 			}
 		} catch (InterruptedException e) {

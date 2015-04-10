@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
+
+<html>
+<body>
+	<h1>storm统计</h1>	
+
+  <div id="id">${message}</div>
+  <div id="add"></div>
+</body>
+</html>
+<script>
+ 
+ var map = document.getElementById("id").innerHTML;
+ console.log(map)
+ 
+ for(var i=0;i<map.length;i++)
+	{
+	    document.write(JSON.stringfiy(arr[i]))
+	} 
+
+
+</script>

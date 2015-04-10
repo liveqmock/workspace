@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="backtype.storm.StormSubmitter"/>
 <fullyQualifiedTypeName name="backtype.storm.tuple.Values"/>
 <fullyQualifiedTypeName name="backtype.storm.Config"/>
@@ -14,4 +13,21 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="org.elasticsearch.node.Node"/>
 <fullyQualifiedTypeName name="org.elasticsearch.search.aggregations.AggregationBuilders"/>
+<fullyQualifiedTypeName name="com.yazuo.log.LogCounter"/>
+<fullyQualifiedTypeName name="com.yazuo.redisSpout.RedisStormSpout"/>
+<fullyQualifiedTypeName name="net.sf.json.util.JSONBuilder"/>
+<fullyQualifiedTypeName name="java.lang.Deprecated"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.yazuo.Constant"/>
+<fullyQualifiedTypeName name="org.apache.commons.lang.StringUtils"/>
+<fullyQualifiedTypeName name="storm.kafka.BrokerHosts"/>
+<fullyQualifiedTypeName name="com.yazuo.log.SplitBolt"/>
+<fullyQualifiedTypeName name="com.mkyong.common.controller.ElasticSearchHandler"/>
+<fullyQualifiedTypeName name="com.mkyong.common.controller.JsonUtil"/>
+<fullyQualifiedTypeName name="org.elasticsearch.common.netty.util.internal.StringUtil"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.InitBinder"/>
+<fullyQualifiedTypeName name="javax.annotation.PreDestroy"/>
+<fullyQualifiedTypeName name="com.mkyong.common.controller.Single"/>
+<fullyQualifiedTypeName name="storm.kafka.Broker"/>
+<fullyQualifiedTypeName name="org.apache.zookeeper.ZooKeeper"/>
 </qualifiedTypeNameHistroy>

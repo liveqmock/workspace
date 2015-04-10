@@ -1,0 +1,19 @@
+<html>
+<body>
+	<h1>Message : ${message}</h1>	
+
+  <div id="id">${message}</div>
+  <div id="add"></div>
+</body>
+</html>
+<script>
+alert(1);
+ console.log(1)
+ document.getElementById("id").text;
+ for(var i=0;i<${message}.length;i++)
+	{
+	    document.write(JSON.stringfiy(${message}[i]))
+	} 
+
+
+</script>

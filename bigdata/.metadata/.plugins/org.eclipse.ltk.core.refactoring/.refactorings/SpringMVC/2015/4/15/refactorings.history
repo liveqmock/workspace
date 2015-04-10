@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private List getMap(SearchHit [] searchHits, String key) throws IOException &apos; from &apos;com.mkyong.common.controller.HelloController.show()&apos; to &apos;com.mkyong.common.controller.HelloController&apos;&#x0A;- Original project: &apos;SpringMVC&apos;&#x0A;- Method name: &apos;getMap&apos;&#x0A;- Destination type: &apos;com.mkyong.common.controller.HelloController&apos;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;getMap&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src\/main\/java&lt;com.mkyong.common.controller{HelloController.java" name="getMap" replace="false" selection="1431 438" stamp="1428574450901" version="1.0" visibility="2"/>
+</session>

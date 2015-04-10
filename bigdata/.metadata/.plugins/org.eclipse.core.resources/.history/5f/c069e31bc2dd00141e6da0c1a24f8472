@@ -1,0 +1,8 @@
+package snippet;
+
+public class Snippet {
+	public static void main(String[] args) {
+		/home/song/workspace/bigdata/storm-start-demo/lib/storm-kafka-0.8-plus-0.3.0-SNAPSHOT.jar
+	}
+}
+

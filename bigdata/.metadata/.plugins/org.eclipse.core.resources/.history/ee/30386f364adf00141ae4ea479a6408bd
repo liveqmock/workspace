@@ -1,0 +1,84 @@
+package com.mkyong.common.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentFactory;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+@Controller
+@RequestMapping("/")
+public class HelloController {
+
+	ElasticSearchHandler esHandler = null;
+
+//	@InitBinder
+//	protected void initBinder() {
+//		esHandler = new ElasticSearchHandler();
+//		System.out.println("------- ");
+//		System.out.println("------- ");
+//		System.out.println("------- ");
+//		System.out.println("------- ");
+//	}
+
+	@RequestMapping(value = "welcome", method = RequestMethod.GET)
+	public String printWelcome(ModelMap model) {
+
+		model.addAttribute("message", "Spring 3 MVC Hello World");
+		return "hello";
+
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public String show(ModelMap model) throws IOException {
+		
+		esHandler = new ElasticSearchHandler();
+		Map map = new HashMap();
+		QueryBuilder queryBuilder = QueryBuilders.matchAllQuery();// QueryBuilders.hasChildQuery("link",
+																	// null);
+		SearchHit[] searchHits = esHandler.searchHits(queryBuilder, Constant.index, Constant.type);
+		if (searchHits.length > 0) {
+			System.out.println("=========");
+
+			// map.put("key1", getMap(searchHits, "link"));
+			//
+			// map.put("key2", getMap(searchHits, "userName"));
+
+			XContentBuilder jsonBuild = XContentFactory.jsonBuilder();
+			jsonBuild.startObject().field("key1", getMap(searchHits, "link")).field("key2", getMap(searchHits, "userName")).
+
+			endObject();
+
+			model.addAttribute("message", jsonBuild.string());
+		}
+		return "index";
+
+	}
+
+	private List getMap(SearchHit[] searchHits, String key) throws IOException {
+		List list = new ArrayList<String>();
+		for (SearchHit hit : searchHits) {
+			Map<String, Object> source = hit.getSource();
+			// list.add(source);
+			if (source.get(key) != null) {
+				System.out.println(source);
+				XContentBuilder jsonBuild = XContentFactory.jsonBuilder();
+				jsonBuild.startObject().field(key, source.get(key)).field("count", source.get("count")).endObject();
+				list.add(jsonBuild.string());
+			}
+		}
+		return list;
+	}
+
+}
