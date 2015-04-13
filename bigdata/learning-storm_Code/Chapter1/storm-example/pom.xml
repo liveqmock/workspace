@@ -15,14 +15,20 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.netflix.curator</groupId>
 			<artifactId>curator-recipes</artifactId>
 			<version>0.6.4</version>
+		</dependency> -->
+
+		<dependency>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-kafka</artifactId>
+			<version>0.9.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka_2.10</artifactId>
+			<artifactId>kafka_2.9.2</artifactId>
 			<version>0.8.1.1</version>
 			<exclusions>
 				<exclusion>
@@ -36,50 +42,21 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka-clients</artifactId>
-			<version>0.8.2.0</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.zookeeper</groupId>
-					<artifactId>zookeeper</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.apache.storm</groupId>
+			<artifactId>storm-core</artifactId>
+			<version>0.9.3</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>1.6.6</version>
+			<scope>provided</scope>
 		</dependency>
 		<!-- <dependency> <groupId>storm.kafka</groupId> <artifactId>storm-kafka</artifactId> 
 			<version>0.3.0-SNAPSHOT</version> <scope>system</scope> 本地jar的路径,相对或者绝对都可以 
 			<systemPath>/home/song/.m2/repository/song/storm-kafka-0.8-plus-0.3.0-SNAPSHOT.jar</systemPath> 
 			</dependency> -->
-<dependency>
-    <groupId>org.apache.zookeeper</groupId>
-    <artifactId>zookeeper</artifactId>
-    <version>3.3.6</version>
-    <exclusions>
-        <exclusion>
-            <groupId>com.sun.jmx</groupId>
-            <artifactId>jmxri</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>com.sun.jdmk</groupId>
-            <artifactId>jmxtools</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>javax.jms</groupId>
-            <artifactId>jms</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-		<dependency>
-			<groupId>org.apache.storm</groupId>
-			<artifactId>storm-kafka</artifactId>
-			<version>0.9.3</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.zookeeper</groupId>
-					<artifactId>zookeeper</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 		<!-- <dependency> <groupId>storm.kafka</groupId> <artifactId>storm-kafka</artifactId> 
 			<version>0.8-plus-0.3.0</version> </dependency> -->
 		<dependency>
@@ -87,12 +64,6 @@
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>storm</groupId>
-			<artifactId>storm</artifactId>
-			<version>0.9.0.1</version>
-			<!--<scope>provided</scope> -->
 		</dependency>
 		<!-- <dependency> <groupId>org.apache.storm</groupId> <artifactId>storm-core</artifactId> 
 			<version>0.9.2-incubating</version> </dependency> -->

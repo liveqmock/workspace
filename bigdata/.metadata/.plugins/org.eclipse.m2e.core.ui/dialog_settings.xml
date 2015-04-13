@@ -14,6 +14,7 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/home/song/workspace/bigdata/storm-kafka-0.8-plus-test"/>
 			<item value="/home/song/workspace/yazuo/yazuo_erp"/>
 			<item value="/home/song/workspace/mkyong/Spring3-MVC-HelloWorld-Example&#x0A;"/>
 			<item value="/home/song/workspace/bigdata/storm-kafka-0.8-plus"/>
@@ -28,7 +29,6 @@
 			<item value="/home/song/workspace/bigdata/elasticsearch-hadoop"/>
 			<item value="/home/song/workspace/bigdata/learning-storm_Code/Chapter 7/storm-redis"/>
 			<item value="/home/song/workspace/bigdata/examples-ch04-spouts"/>
-			<item value="/home/song/workspace/bigdata/learning-storm_Code/Chapter 1/storm-example"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

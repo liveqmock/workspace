@@ -21,11 +21,13 @@ import com.yazuo.redisSpout.ElasticSearchHandler;
 public class ESLogStormBolt implements IRichBolt {
 	
 	ElasticSearchHandler esHandler = null;
+	OutputCollector  _collector;
 
 	@Override
 	public void prepare(Map stormConf, TopologyContext context, OutputCollector collector) {
 
 		esHandler = new ElasticSearchHandler();
+		 _collector = collector; 
 	}
 
 	@Override
@@ -47,7 +49,7 @@ public class ESLogStormBolt implements IRichBolt {
 			list.add(json);
 			esHandler.createIndexResponse(Constant.index, Constant.type, json );
 		}
-		
+		 _collector.ack(input);
 	}
 
 	@Override
